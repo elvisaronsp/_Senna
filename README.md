@@ -1,14 +1,10 @@
-# _Senna
-Aplicação de controle operacional e financeiro do Grupo Capital Ponto
+## Laravel Framework (Kernel)
 
-
-## Senna ( Melbourne)
-
-[![Build Status](https://travis-ci.org/laravel/framework.svg)]
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)]
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)]
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)]
-[![License](https://poser.pugx.org/laravel/framework/license.svg)]
+[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
+[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
 > **Note:** This repository contains the core code of the Laravel framework. If you want to build an application using Laravel 5, visit the main [Laravel repository](https://github.com/laravel/laravel).
 
