@@ -37,14 +37,14 @@ class IndexController extends AbstractActionController
                     {
                         $this->flashMessenger()
                             ->setNamespace('Usuario')
-                            ->addMessage("Usuário cadastrado com sucesso");
+                            ->addMessage("<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Sucesso: </strong>Usuário cadastrado com sucesso.</div>");
                     }
                 }
                 else
                 {
                     $this->flashMessenger()
                         ->setNamespace('Usuario')
-                        ->addMessage("E-mail já cadastrado");
+                        ->addMessage("<div class='alert alert-warning alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Atenção: </strong>Usuário já cadastrado.</div>");
                 }
                 return $this->redirect()->toRoute('usuario-registro');
             }
