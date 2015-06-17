@@ -52,6 +52,18 @@ class Usuario extends AbstractService
         }
     }
 
+
+    public function verificaUsuarioCadastrado(array $data)
+    {
+        $validator = new \DoctrineModule\Validator\ObjectExists(array(
+            'object_repository' =>  $this->em->getRepository('Usuario\Entity\Usuario'),
+            'fields' => array('email')
+        ));
+
+        return $validator->isValid($data['email']);
+
+    }
+
     /**
      * @param $key
      * @return mixed

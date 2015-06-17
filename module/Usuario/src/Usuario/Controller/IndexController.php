@@ -31,11 +31,20 @@ class IndexController extends AbstractActionController
             if($form->isValid())
             {
                 $service = $this->getServiceLocator()->get("Usuario\Service\Usuario");
-                if($service->insert($request->getPost()->toArray()))
+                if(!$service->verificaUsuarioCadastrado($request->getPost()->toArray()))
                 {
-                $this->flashMessenger()
-                     ->setNamespace('Usuario')
-                     ->addMessage("Usuário cadastrado com sucesso");
+                    if($service->insert($request->getPost()->toArray()))
+                    {
+                        $this->flashMessenger()
+                            ->setNamespace('Usuario')
+                            ->addMessage("Usuário cadastrado com sucesso");
+                    }
+                }
+                else
+                {
+                    $this->flashMessenger()
+                        ->setNamespace('Usuario')
+                        ->addMessage("E-mail já cadastrado");
                 }
                 return $this->redirect()->toRoute('usuario-registro');
             }
