@@ -7,6 +7,7 @@ return array(
         'DoctrineDataFixtureModule',
         'Util',
         'Usuario',
+        'Acl'
     ),
     'module_listener_options' => array(
         'module_paths' => array(
