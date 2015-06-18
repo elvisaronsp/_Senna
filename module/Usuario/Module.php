@@ -79,4 +79,22 @@ class Module
         );
 
     }
+
+    public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+                // a chave do array aqui é o nome pelo qual você
+                // chamará o seu view helper no script da view
+                'UserIdentity' => function() {
+                    return new View\Helper\UserIdentity();
+                },
+            ),
+        );
+    }
+
+
+
+
+
 }
