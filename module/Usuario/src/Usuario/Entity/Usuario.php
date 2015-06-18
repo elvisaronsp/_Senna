@@ -15,6 +15,7 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Table(name="sn_usuario", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="Usuario\Entity\UsuarioRepository")
  */
 class Usuario
 {
@@ -102,13 +103,14 @@ class Usuario
     public function __construct(array $options = array())
     {
 
-        (new Hydrator\ClassMethods)->hydrate($options,$this);
-
         $this->criado = new \DateTime("now");
         $this->atualizacao = new \DateTime("now");
 
         $this->salt = base64_encode(Rand::getBytes(8, true));
         $this->chaveAtivacao = md5($this->email.$this->salt);
+
+        (new Hydrator\ClassMethods)->hydrate($options,$this);
+
     }
 
     /**
@@ -211,8 +213,9 @@ class Usuario
      */
     public function setSalt($salt)
     {
-        $this->salt = $salt;
-        return $this;
+
+        echo $this->salt = $salt;
+
     }
 
     /**
@@ -238,6 +241,7 @@ class Usuario
      */
     public function encryptSenha($senha)
     {
+
         return base64_encode(Pbkdf2::calc('sha256', $senha, $this->salt, 10000, strlen($senha*2)));
     }
 

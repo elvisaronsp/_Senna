@@ -26,6 +26,28 @@ return array(
                     )
                 )
             ),
+            'usuario-auth' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'=>'/auth',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Usuario\Controller',
+                        'controller' => 'Auth',
+                        'action' => 'index'
+                    )
+                )
+            ),
+            'usuario-logout' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'=>'/auth/logout',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Usuario\Controller',
+                        'controller' => 'Auth',
+                        'action' => 'logout'
+                    )
+                )
+            ),
             'usuario-admin' => array(
                 'type' => 'Literal',
                 'options' => array(
@@ -75,7 +97,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Usuario\Controller\Index' => 'Usuario\Controller\IndexController',
-            'Usuario\Controller\Usuarios' => 'Usuario\Controller\UsuariosController'
+            'Usuario\Controller\Usuarios' => 'Usuario\Controller\UsuariosController',
+            'Usuario\Controller\Auth' => 'Usuario\Controller\AuthController',
         )
     ),
     'view_manager' => array(
