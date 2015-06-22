@@ -25,8 +25,12 @@ class Module
 
     public function getServiceConfig()
     {
+
         return array(
             'factories' => array(
+                'Acl\Service\Role' => function($sm){
+                    return new Service\Role($sm->get('Doctrine\ORM\Entitymanager'));
+                }
             )
         );
 

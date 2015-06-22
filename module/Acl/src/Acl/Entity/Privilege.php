@@ -24,13 +24,13 @@ class Privilege
     
     
     /**
-     * @ORM\OneToOne(targetEntity="SONAcl\Entity\Role")
+     * @ORM\OneToOne(targetEntity="Acl\Entity\Role")
      * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
     protected $role;
     
     /**
-     * @ORM\OneToOne(targetEntity="SONAcl\Entity\Resource")
+     * @ORM\OneToOne(targetEntity="Acl\Entity\Resource")
      * @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
      */
     protected $resource;

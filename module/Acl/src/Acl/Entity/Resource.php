@@ -9,7 +9,7 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="sonacl_resources")
- * @ORM\Entity(repositoryClass="SONAcl\Entity\ResourceRepository")
+ * @ORM\Entity(repositoryClass="Acl\Entity\ResourceRepository")
  */
 
 class Resource 
