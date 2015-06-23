@@ -41,6 +41,9 @@
                         <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
                         <?php if($this->UserIdentity("Usuario")): ?>
                             <li class=""><a href="<?php echo $this->url('usuario-logout') ?>"><?php echo 'Sair' ?></a></li>
+                            <li class=""><a href="<?php echo $this->url('acl-admin/default',array('controller'=>'roles')) ?>"><?php echo 'Perfil' ?></a></li>
+                            <li class=""><a href="<?php echo $this->url('acl-admin/default',array('controller'=>'resources')) ?>"><?php echo 'recursos' ?></a></li>
+                            <li class=""><a href="<?php echo $this->url('acl-admin/default',array('controller'=>'privileges')) ?>"><?php echo 'permissões' ?></a></li>
                         <?php endif; ?>
                     </ul>
                 </div><!--/.nav-collapse -->
