@@ -97,6 +97,13 @@ class Usuario
      * @ORM\Column(name="criado", type="datetime", nullable=true)
      */
     private $criado;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="Acl\Entity\Role")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     */
+    protected $perfil;
     /**
      * @param array $options
      */
@@ -318,12 +325,45 @@ class Usuario
     }
 
     /**
+     * @return mixed
+     */
+    public function getPerfil()
+    {
+        return $this->perfil;
+    }
+
+    /**
+     * @param $perfil
+     * @return $this
+     */
+    public function setPerfil($perfil)
+    {
+        $this->perfil = $perfil;
+        return $this;
+    }
+
+
+
+    /**
      * @return array
      */
     public function toArray()
     {
-        return (new Hydrator\ClassMethods())->extract($this);
-    }
+        return array(
+            'id'=>$this->id,
+            'nome'=>$this->getNome(),
+            'sobrenome'=>$this->getSobrenome(),
+            'login'=>$this->getLogin(),
+            'email'=>$this->getEmail(),
+            'senha'=>$this->getSenha(),
+            'salt'=>$this->getSalt(),
+            'ativo'=>$this->getAtivo(),
+            'chaveAtivacao'=>$this->getChaveAtivacao(),
+            'atualizacao'=>$this->getAtualizacao(),
+            'criado'=>$this->getCriado(),
+            'perfil'=>$this->getPerfil()->getNome()
+        );
 
+    }
 }
 

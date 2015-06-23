@@ -11,6 +11,7 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Email</th>
+        <th>Perfil</th>
         <th>Ação</th>
     </tr>
     
@@ -20,6 +21,7 @@
         <td><?php echo $entity->getId(); ?></td>
         <td><?php echo $entity->getNome(); ?></td>
         <td><?php echo $entity->getEmail(); ?></td>
+        <td><?php echo $entity->getPerfil()->getNome(); ?></td>
         <td>
             <a href="<?php echo $this->url('usuario-admin/default',
                     array('controller'=>'usuarios','action'=>'edit','id'=>$entity->getId()));?>">Editar</a>

@@ -9,21 +9,24 @@ class Privilege extends Form {
     
     protected $roles;
     protected $resources;
+    protected $acessos;
 
-    public function __construct($name = null, array $roles = null, array $resources = null) {
+    public function __construct($name = null, array $roles = null, array $resources = null,array $acessos = null) {
         parent::__construct($name);
         $this->roles = $roles;
         $this->resources = $resources;
-        
+        $this->acessos = $acessos;
+
         $this->setAttribute('method', 'post');
 
         $id = new \Zend\Form\Element\Hidden('id');
         $this->add($id);
 
-        $nome = new \Zend\Form\Element\Text("nome");
-        $nome->setLabel("O que posso fazer: ")
-                ->setAttribute('placeholder', "Entre com o nome");
-        $this->add($nome);
+        $acesso = new Select();
+        $acesso->setLabel("Oque posso fazer: ")
+            ->setName("acesso")
+            ->setOptions(array('value_options' => $acessos));
+        $this->add($acesso);
         
         $role = new Select();
         $role->setLabel("Quem pode fazer: ")

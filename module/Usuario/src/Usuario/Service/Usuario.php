@@ -43,15 +43,21 @@ class Usuario extends AbstractService
      * @param array $data
      * @return mixed
      */
+
     public function insert(array $data)
     {
-        $entity = parent::insert($data);
+        $entity = new $this->entity($data);
+
+        $perfil = $this->em->getReference("Acl\Entity\Role",$data['perfil']);
+        $entity->setPerfil($perfil); // Injetando entidade carregada
+
+        $this->em->persist($entity);
+        $this->em->flush();
         if ($entity) {
             $this->enviarEmail('SENNA - Confirmação de cadastro', $data['email'], 'add-user', $data, $entity->getChaveAtivacao());
             return $entity;
         }
     }
-
 
     public function verificaUsuarioCadastrado(array $data)
     {

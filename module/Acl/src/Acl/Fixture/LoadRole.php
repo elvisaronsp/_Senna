@@ -11,26 +11,28 @@ class LoadRole extends AbstractFixture implements OrderedFixtureInterface {
 
     public function load(ObjectManager $manager) {
         // vendor/bin/doctrine-module data-fixture:import --purge-with-truncate
-        
+
         $role = new Role;
-        $role->setNome("Visitante");
+        $role->setNome("Financeiro");
         $manager->persist($role);
-        
-        
-        $visitante = $manager->getReference('Acl\Entity\Role',1);
-        
+
         $role = new Role;
-        $role->setNome("Registrado")
-                ->setParent($visitante);
+        $role->setNome("Expedição");
         $manager->persist($role);
-        
-        $registrado = $manager->getReference('Acl\Entity\Role',2);
-        
+
         $role = new Role;
-        $role->setNome("Redator")
-                ->setParent($registrado);
+        $role->setNome("Start Line");
         $manager->persist($role);
-        
+
+        $role = new Role;
+        $role->setNome("Vendedor");
+        $manager->persist($role);
+
+
+        $role = new Role;
+        $role->setNome("Produção");
+        $manager->persist($role);
+
         $role = new Role;
         $role->setNome("Admin")
                 ->setIsAdmin(true);

@@ -57,6 +57,17 @@ class Module
     {
         return array(
             'factories' => array(
+                'Usuario\Form\Usuario' => function($sm)
+                {
+
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+
+                    $repoRoles= $em->getRepository('Acl\Entity\Role');
+
+                    $roles = $repoRoles->fetchPairs();
+
+                    return new Form\Usuario("usuario", $roles);
+                },
                 'Usuario\Mail\Transport' => function($sm) {
                     $config = $sm->get('Config');
 

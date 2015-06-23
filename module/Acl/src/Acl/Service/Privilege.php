@@ -22,7 +22,11 @@ class Privilege extends AbstractService
         
         $resource = $this->em->getReference("Acl\Entity\Resource",$data['resource']);
         $entity->setResource($resource); // Injetando entidade carregada
-        
+
+
+        $acessos = $this->em->getReference("Acl\Entity\Acessos",$data['acesso']);
+        $entity->setAcessos($acessos); // Injetando entidade carregada
+
         $this->em->persist($entity);
         $this->em->flush();
         return $entity;

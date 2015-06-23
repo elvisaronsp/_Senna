@@ -2,13 +2,14 @@
 
 namespace Usuario\Form;
 
-use Zend\Form\Form;
+use Zend\Form\Form,
+    Zend\Form\Element\Select;
 
 class Usuario  extends Form
 {
 
-    public function __construct($name = null, $options = array()) {
-        parent::__construct('usuario', $options);
+    public function __construct($name = null,array $perfis = null) {
+        parent::__construct($name);
         
         $this->setInputFilter(new UsuarioFilter());
         $this->setAttribute('method', 'post');
@@ -25,6 +26,12 @@ class Usuario  extends Form
         $email->setLabel("Email: ")
                 ->setAttribute('placeholder','Entre com o Email');
         $this->add($email);
+
+        $perfil = new Select();
+        $perfil->setLabel("Perfil:")
+            ->setName("perfil")
+            ->setOptions(array('value_options' => $perfis));
+        $this->add($perfil);
 
         $senha = new \Zend\Form\Element\Password("senha");
         $senha->setLabel("Password: ")

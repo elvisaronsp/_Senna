@@ -34,13 +34,14 @@ class Privilege
      * @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
      */
     protected $resource;
-    
+
     /**
-     * @ORM\Column(type="text")
-     * @var string
+     * @ORM\OneToOne(targetEntity="Acl\Entity\Acessos")
+     * @ORM\JoinColumn(name="acessos_id", referencedColumnName="id")
      */
-    protected $nome;
-    
+    protected $acessos;
+
+
     /**
      * @ORM\Column(type="datetime", name="created_at")
      */
@@ -65,17 +66,6 @@ class Privilege
 
     public function setId($id) {
         $this->id = $id;
-        return $this;
-    }
-
-    
-
-    public function getNome() {
-        return $this->nome;
-    }
-
-    public function setNome($nome) {
-        $this->nome = $nome;
         return $this;
     }
 
@@ -112,6 +102,25 @@ class Privilege
     }
 
     /**
+     * @return mixed
+     */
+    public function getAcessos()
+    {
+        return $this->acessos;
+    }
+
+    /**
+     * @param $acessos
+     * @return $this
+     */
+    public function setAcessos($acessos)
+    {
+        $this->acessos = $acessos;
+        return $this;
+    }
+
+
+    /**
      * @ORM\PrePersist
      */
     public function setUpdatedAt() {
@@ -123,10 +132,10 @@ class Privilege
     {
         return array(
           'id' => $this->id,
-            'nome' => $this->nome,
+            'nome' => $this->acessos->getNome(),
             'role' => $this->role->getId(),
             'resource'=>$this->resource->getId()
         );
     }
-    
+
 }

@@ -3,25 +3,24 @@
 namespace Acl\Fixture;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Acl\Entity\Acessos;
 
-use Acl\Entity\Resource;
-
-class LoadResource extends AbstractFixture implements OrderedFixtureInterface {
+class LoadAcessos extends AbstractFixture implements OrderedFixtureInterface {
 
     public function load(ObjectManager $manager) {
         // vendor/bin/doctrine-module data-fixture:import --purge-with-truncate
-        
-        $resource = new Resource;
-        $resource->setNome("Cadastros");
-        $manager->persist($resource);
+
+        $acesso = new Acessos;
+        $acesso->setNome("Exibir");
+
+        $manager->persist($acesso);
 
         $manager->flush();
-        
-    }
 
+    }
     public function getOrder() {
-        return 2;
+        return 4;
     }
 }
