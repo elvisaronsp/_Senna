@@ -5,20 +5,20 @@ namespace Acl\Controller;
 use Util\Controller\CrudController;
 use Zend\View\Model\ViewModel;
 
-class RolesController extends CrudController
+class PrivilegesController extends CrudController
 {
 
     public function __construct() {
-        $this->entity = "Acl\Entity\Role";
-        $this->service = "Acl\Service\Role";
-        $this->form = "Acl\Form\Role";
-        $this->controller = "roles";
+        $this->entity = "Acl\Entity\Privilege";
+        $this->service = "Acl\Service\Privilege";
+        $this->form = "Acl\Form\Privilege";
+        $this->controller = "privileges";
         $this->route = "acl-admin/default";
     }
     
     public function newAction()
     {
-        $form = $this->getServiceLocator()->get('Acl\Form\Role');
+        $form = $this->getServiceLocator()->get('Acl\Form\Privilege');
         $request = $this->getRequest();
         
         if($request->isPost())
@@ -38,7 +38,7 @@ class RolesController extends CrudController
     
     public function editAction()
     {
-        $form = $this->getServiceLocator()->get('Acl\Form\Role');
+        $form = $this->getServiceLocator()->get('Acl\Form\Privilege');
         $request = $this->getRequest();
         
         $repository = $this->getEm()->getRepository($this->entity);
@@ -60,13 +60,5 @@ class RolesController extends CrudController
         }
         
         return new ViewModel(array('form'=>$form));
-    }
-    
-    public function testeAction()
-    {
-        $acl = $this->getServiceLocator()->get("Acl\Permissions\Acl");
-        
-        echo $acl->isAllowed("Visitante","Posts","Listar")? "Permitido" : "Negado";
-        die;
     }
 }

@@ -54,6 +54,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Acl\Controller\Roles' => 'Acl\Controller\RolesController',
+            'Acl\Controller\Resources' => 'Acl\Controller\ResourcesController',
+            'Acl\Controller\Privileges' => 'Acl\Controller\PrivilegesController',
         )
     ),
     'view_manager' => array(

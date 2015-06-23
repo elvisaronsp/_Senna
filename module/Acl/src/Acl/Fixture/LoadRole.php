@@ -10,7 +10,7 @@ use Acl\Entity\Role;
 class LoadRole extends AbstractFixture implements OrderedFixtureInterface {
 
     public function load(ObjectManager $manager) {
-        // vendor/bin/doctrine-mudule data-fixture:import --purge-with-truncate
+        // vendor/bin/doctrine-module data-fixture:import --purge-with-truncate
         
         $role = new Role;
         $role->setNome("Visitante");
