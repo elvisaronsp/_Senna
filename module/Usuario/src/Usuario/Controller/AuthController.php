@@ -29,10 +29,15 @@ class AuthController extends AbstractActionController
                 
                 // Criando Storage para gravar sessão da authtenticação
                 $sessionStorage = new SessionStorage("Usuario");
-                
+
                 $auth = new AuthenticationService;
                 $auth->setStorage($sessionStorage); // Definindo o SessionStorage para a auth
-                
+
+
+                $sessionPerfil = new SessionStorage("Perfil");
+                $authPerfil = new AuthenticationService;
+                $authPerfil->setStorage($sessionPerfil); // Definindo o SessionStorage para a auth
+
                 $authAdapter = $this->getServiceLocator()->get("usuario\Auth\Adapter");
                 $authAdapter->setUsername($data['email']);
                 $authAdapter->setPassword($data['senha']);
@@ -41,12 +46,8 @@ class AuthController extends AbstractActionController
                 
                 if($result->isValid())
                 {
-                    //$user = $auth->getIdentity();
-                    //$user = $user['usuario'];
-                    //$sessionStorage->write($user,null);
-
-
                     $sessionStorage->write($auth->getIdentity()['usuario'],null);
+                    $sessionPerfil->write("Financeiro",null);
 
                     return $this->redirect()->toRoute('usuario-admin/default',array('controller'=>'usuarios'));
                 }
@@ -62,6 +63,10 @@ class AuthController extends AbstractActionController
     {
         $auth = new AuthenticationService;
         $auth->setStorage(new SessionStorage("Usuario"));
+        $auth->clearIdentity();
+
+        $auth = new AuthenticationService;
+        $auth->setStorage(new SessionStorage("Perfil"));
         $auth->clearIdentity();
 
         return $this->redirect()->toRoute('usuario-auth');

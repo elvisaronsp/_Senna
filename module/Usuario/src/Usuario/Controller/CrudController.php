@@ -8,6 +8,7 @@ use Zend\Mvc\Controller\AbstractActionController,
 use Zend\Paginator\Paginator,
     Zend\Paginator\Adapter\ArrayAdapter;
 
+
 abstract class CrudController extends AbstractActionController
 {
 
@@ -20,6 +21,7 @@ abstract class CrudController extends AbstractActionController
 
 
     public function indexAction() {
+
 
         $list = $this->getEm()
             ->getRepository($this->entity)

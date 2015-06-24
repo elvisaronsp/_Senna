@@ -103,7 +103,7 @@ class Usuario
      * @ORM\OneToOne(targetEntity="Acl\Entity\Role")
      * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
-    protected $perfil;
+    private $perfil;
     /**
      * @param array $options
      */

@@ -37,9 +37,8 @@ class Adapter implements AdapterInterface
     public function authenticate() 
     {
         $repository = $this->em->getRepository("Usuario\Entity\Usuario");
-        
+
         $usuario = $repository->findByEmailAndPassword($this->getUsername(),$this->getPassword());
-        
         if($usuario)
             return new Result(Result::SUCCESS, array('usuario'=>$usuario),array('OK'));
         else

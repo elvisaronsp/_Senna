@@ -66,7 +66,7 @@ class RolesController extends CrudController
     {
         $acl = $this->getServiceLocator()->get("Acl\Permissions\Acl");
         
-        echo $acl->isAllowed("Financeiro","Itens","ver")? "Permitido" : "Negado";
+        echo $acl->isAllowed("Financeiro","Cadastros","1")? "Permitido" : "Negado";//roles/re
         die;
     }
 }

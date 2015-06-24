@@ -20,35 +20,36 @@ class Role
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      */
-    protected $id;
+    private $id;
     
     /**
      * @ORM\OneToOne(targetEntity="Acl\Entity\Role")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
-    protected $parent;
+    private $parent;
     
     /**
      * @ORM\Column(type="text")
      * @var string
      */
-    protected $nome;
-    
+    private $nome;
+
+
     /**
      * @ORM\Column(type="boolean", name="is_admin")
      * @var boolean
      */
-    protected $isAdmin;
+    private $isAdmin;
     
     /**
      * @ORM\Column(type="datetime", name="created_at")
      */
-    protected $createdAt;
+    private $createdAt;
     
     /**
      * @ORM\Column(type="datetime", name="updated_at")
      */
-    protected $updatedAt;
+    private $updatedAt;
     
     
     public function __construct($options = array())

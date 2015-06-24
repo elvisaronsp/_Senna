@@ -53,7 +53,7 @@ class Acl extends ClassAcl
     {
         foreach($this->privileges as $privilege)
         {
-            $this->allow($privilege->getRole()->getNome(), $privilege->getResource()->getNome(),$privilege->getNome());
+            $this->allow($privilege->getRole()->getNome(), $privilege->getResource()->getNome(),$privilege->getAcessos()->getId());
         }
     }
 }
