@@ -104,6 +104,11 @@ class Usuario
      * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
     private $perfil;
+
+
+    private $nomePerfil;
+
+
     /**
      * @param array $options
      */
@@ -340,6 +345,22 @@ class Usuario
     {
         $this->perfil = $perfil;
         return $this;
+    }
+
+    /**
+    * @return mixed
+    */
+    public function getNomePerfil()
+    {
+        return $this->nomePerfil;
+    }
+
+    /**
+    * @param mixed $nomePerfil
+    */
+    public function setNomePerfil($nomePerfil)
+    {
+        $this->nomePerfil = $nomePerfil;
     }
 
 

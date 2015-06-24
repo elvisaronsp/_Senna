@@ -44,6 +44,8 @@
                             <li class=""><a href="<?php echo $this->url('acl-admin/default',array('controller'=>'roles')) ?>"><?php echo 'Perfil' ?></a></li>
                             <li class=""><a href="<?php echo $this->url('acl-admin/default',array('controller'=>'resources')) ?>"><?php echo 'recursos' ?></a></li>
                             <li class=""><a href="<?php echo $this->url('acl-admin/default',array('controller'=>'privileges')) ?>"><?php echo 'permissões' ?></a></li>
+                            <li class=""><a href="#"><?php echo 'Você esta logado como '.$this->UserIdentity("Usuario")->getNomePerfil() ?></a></li>
+
                         <?php endif; ?>
                     </ul>
                 </div><!--/.nav-collapse -->

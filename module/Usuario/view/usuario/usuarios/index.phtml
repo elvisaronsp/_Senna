@@ -5,17 +5,7 @@
 <p>
     <a href="<?php echo $this->url('usuario-admin/default',array('action'=>'new')); ?>">Novo</a>
 </p>
-<?php
-
-
-
-$usuario = $this->UserIdentity("Usuario")->getPerfil();
-echo "<pre>";
-print_r($usuario);
-
-echo "</pre>";
-
-?>
+<?php //$usuario = $this->UserIdentity("Usuario")->getNomePerfil(); ?>
 <table class="table">
     <tr>
         <th>ID</th>
