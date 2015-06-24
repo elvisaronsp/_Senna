@@ -15,9 +15,12 @@ class UsuariosController extends CrudController
         $this->route = "usuario-admin";
     }
 
+    /**
+     * @return \Zend\Http\Response|ViewModel
+     */
     public function newAction()
     {
-        $form = $this->getServiceLocator()->get('Usuario\Form\Usuario');
+        $form = $this->getServiceLocator()->get($this->form);
         $request = $this->getRequest();
 
         if($request->isPost())
@@ -35,9 +38,13 @@ class UsuariosController extends CrudController
         return new ViewModel(array('form'=>$form));
     }
 
+
+    /**
+     * @return \Zend\Http\Response|ViewModel
+     */
     public function editAction()
     {
-        $form = new $this->form();
+        $form = $this->getServiceLocator()->get($this->form);
         $request = $this->getRequest();
 
         $repository = $this->getEm()->getRepository($this->entity);
@@ -64,5 +71,15 @@ class UsuariosController extends CrudController
         }
 
         return new ViewModel(array('form'=>$form));
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function reativacaoAction()
+    {
+        $service = $this->getServiceLocator()->get($this->service);
+        $service->reativacao($this->params()->fromRoute('id',0));
+        return $this->redirect()->toRoute('usuario-auth',array('controller'=>'index'));
     }
 }

@@ -59,6 +59,10 @@ class Usuario extends AbstractService
         }
     }
 
+    /**
+     * @param array $data
+     * @return bool
+     */
     public function verificaUsuarioCadastrado(array $data)
     {
         $validator = new \DoctrineModule\Validator\ObjectExists(array(
@@ -68,6 +72,20 @@ class Usuario extends AbstractService
 
         return $validator->isValid($data['email']);
 
+    }
+
+    /**
+     * @param $idUsuario
+     * @return bool|\Doctrine\Common\Proxy\Proxy|null|object
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function reativacao($idUsuario)
+    {
+        $entity = $this->em->getReference($this->entity,$idUsuario);
+        if ($entity) {
+            $this->enviarEmail('SENNA - Confirmação de cadastro', $entity->getEmail(), 'add-user', array('senha'=>$entity->getSenha(),'nome'=>$entity->getNome(),'email'=>$entity->getEmail()), $entity->getChaveAtivacao());
+            return $entity;
+        }
     }
 
     /**
@@ -94,6 +112,7 @@ class Usuario extends AbstractService
      */
     public function update(array $data)
     {
+
         $entity = $this->em->getReference($this->entity, $data['id']);
 
         if (empty($data['senha'])) {
@@ -103,6 +122,9 @@ class Usuario extends AbstractService
         }
 
         (new Hydrator\ClassMethods())->hydrate($data, $entity);
+
+        $perfil = $this->em->getReference("Acl\Entity\Role",$data['perfil']);
+        $entity->setPerfil($perfil);
 
         $this->em->persist($entity);
         $this->em->flush();

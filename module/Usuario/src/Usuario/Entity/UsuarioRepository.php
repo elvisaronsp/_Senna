@@ -22,7 +22,7 @@ class UsuarioRepository extends EntityRepository
         else
             return false;
     }
-    
+
     public function findArray()
     {
         $usuarios = $this->findAll();

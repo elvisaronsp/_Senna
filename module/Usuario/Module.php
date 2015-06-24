@@ -49,6 +49,9 @@ class Module
         if(!$auth->hasIdentity() and ($matchedRoute == "usuario-admin" OR $matchedRoute == "usuario-admin/paginator")){
                 return $controller->redirect()->toRoute("usuario-auth");
         }
+        if($auth->hasIdentity() and $matchedRoute == "usuario-auth" ){
+            return $controller->redirect()->toRoute("usuario-admin");
+        }
 
     }
 
@@ -100,6 +103,10 @@ class Module
                 'UserIdentity' => function() {
                     return new View\Helper\UserIdentity();
                 },
+                'PermissaoUsuario' => function() {
+                    return new View\Helper\PermissaoUsuario();
+                },
+
             ),
         );
     }

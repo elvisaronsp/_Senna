@@ -10,9 +10,18 @@ use Zend\Authentication\AuthenticationService,
 
 use Usuario\Form\Login as LoginForm;
 
+/**
+ * Class AuthController
+ * @package Usuario\Controller
+ */
 class AuthController extends AbstractActionController
 {
+    private $result;
+    private $message;
 
+    /**
+     * @return \Zend\Http\Response|ViewModel
+     */
     public function indexAction()
     {
         $form = new LoginForm;
@@ -26,20 +35,21 @@ class AuthController extends AbstractActionController
             if($form->isValid())
             {
                 $data = $request->getPost()->toArray();
-                
+
                 // Criando Storage para gravar sessão da authtenticação
                 $sessionStorage = new SessionStorage("Usuario");
-
                 $auth = new AuthenticationService;
                 $auth->setStorage($sessionStorage); // Definindo o SessionStorage para a auth
 
-                $authAdapter = $this->getServiceLocator()->get("usuario\Auth\Adapter");
+                $authAdapter = $this->getServiceLocator()->get("Usuario\Auth\Adapter");
                 $authAdapter->setUsername($data['email']);
                 $authAdapter->setPassword($data['senha']);
                 
-                $result = $auth->authenticate($authAdapter);
-                
-                if($result->isValid())
+                $this->result = $auth->authenticate($authAdapter);
+                $this->message = $this->result->getMessages()[0];
+
+                /** @var TYPE_NAME $result */
+                if($this->result->isValid())
                 {
                     // correção do array da entidade usuario
                     $auth->getIdentity()['usuario']->setNomePerfil($auth->getIdentity()['usuario']->getPerfil()->getNome());
@@ -52,9 +62,17 @@ class AuthController extends AbstractActionController
             }
         }
         
-        return new ViewModel(array('form'=>$form,'error'=>$error));
+        return new ViewModel(array(
+                'form'=>$form,
+                'error'=>$error,
+                'message'=>$this->message
+            )
+        );
     }
-    
+
+    /**
+     * @return \Zend\Http\Response
+     */
     public function logoutAction()
     {
         $auth = new AuthenticationService;

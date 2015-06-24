@@ -48,6 +48,17 @@ return array(
                     )
                 )
             ),
+            'usuario-reativacao' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/registro/reativacao[/:id]',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Usuario\Controller',
+                        'controller' => 'Usuarios',
+                        'action' => 'reativacao'
+                    )
+                )
+            ),
             'usuario-admin' => array(
                 'type' => 'Literal',
                 'options' => array(
