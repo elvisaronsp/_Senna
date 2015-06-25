@@ -5,57 +5,22 @@ namespace Acl;
 return array(
     'router' => array(
         'routes' => array(
-            'acl-admin' => array(
+            'acl-perfil' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/admin/acl',
+                    'route' => '/senna/usuario/perfis',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'acl\Controller',
-                        'controller' => 'Roles',
+                        '__NAMESPACE__' => 'Acl\Controller',
+                        'controller' => 'Perfis',
                         'action' => 'index'
                     )
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '/[:controller[/:action[/:id]]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id' => '\d+'
-                            ),
-                            'defaults' => array(
-                                '__NAMESPACE__' => 'Acl\Controller',
-                                'controller' => 'Roles'
-                            )
-                        )
-                    ),
-                    'paginator' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '/[:controller[/page/:page]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'page' => '\d+'
-                            ),
-                            'defaults' => array(
-                                '__NAMESPACE__' => 'Acl\Controller',
-                                'controller' => 'Roles'
-                            )
-                        )
-                    )
                 )
-            )
+            ),
         )
     ),
     'controllers' => array(
         'invokables' => array(
-            'Acl\Controller\Roles' => 'Acl\Controller\RolesController',
-            'Acl\Controller\Resources' => 'Acl\Controller\ResourcesController',
-            'Acl\Controller\Privileges' => 'Acl\Controller\PrivilegesController',
+            'Acl\Controller\Perfis' => 'Acl\Controller\PerfisController',
         )
     ),
     'view_manager' => array(
@@ -65,7 +30,7 @@ return array(
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
         'template_map' => array(
-            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/layout' => __DIR__ . '/../view/layout/usuario.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -87,7 +52,7 @@ return array(
             ),
         ),
         'fixture' => array(
-            'Acl_fixture' => __DIR__ . '/../src/Acl/Fixture',
+            'Usuario_fixture' => __DIR__ . '/../src/Usuario/Fixture',
         ),
     ),
 );

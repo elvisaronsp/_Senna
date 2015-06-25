@@ -11,9 +11,9 @@ return array(
         'Ancoras',
         'Negado',
         'Cadastro',
+        'Usuario',
         #'Util',
-        #'Usuario',
-        #'Acl'
+        'Acl'
     ),
     'module_listener_options' => array(
         'module_paths' => array(
