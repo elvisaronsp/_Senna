@@ -9,9 +9,10 @@
  */
 namespace Senna\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController, Zend\View\Model\ViewModel;
-use Zend\Paginator\Paginator, Zend\Paginator\Adapter\ArrayAdapter;
-use Zend\Session\Container;
+use Zend\Mvc\Controller\AbstractActionController,
+    Zend\View\Model\ViewModel;
+use Zend\Paginator\Paginator,
+    Zend\Paginator\Adapter\ArrayAdapter;
 
 abstract class GrudController extends AbstractActionController {
 	/**
@@ -133,7 +134,8 @@ abstract class GrudController extends AbstractActionController {
 	 * @return \Zend\View\Model\ViewModel
 	 */
 	public function FilterAction() {
-		
+
+
 		// Captura URL
 		$url = $this->getRequest ()->getQuery ();
 		$this->setFiltro ( $url );
@@ -142,10 +144,11 @@ abstract class GrudController extends AbstractActionController {
 				'edit',
 				'delete' 
 		) );
-		
+
 		$repository = $this->getEm ()->getRepository ( $this->entity );
+
 		$arrayFilter = $repository->toList ( $where );
-		
+
 		// Configuracao para paginacao
 		$paginator = new Paginator ( new ArrayAdapter ( $arrayFilter ) );
 		$page = (isset ( $where ['page'] )) ? $where ['page'] : "1";
@@ -160,7 +163,7 @@ abstract class GrudController extends AbstractActionController {
 				'registos' => count ( $arrayFilter ),
 				'filtro' => $url 
 		);
-		
+
 		$viewModel = new ViewModel ( $view_params );
 		$viewModel->setTerminal ( true ); // desabilita a renderizacao do layout
 		return $viewModel;

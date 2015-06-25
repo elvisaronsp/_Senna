@@ -8,11 +8,44 @@ return array(
             'acl-perfil' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/senna/usuario/perfis',
+                    'route' => '/senna/usuario',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Acl\Controller',
-                        'controller' => 'Perfis',
+                        'controller' => 'Usuarios',
                         'action' => 'index'
+                    )
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[/:action[/:id]]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Acl\Controller',
+                                'controller' => 'Perfis'
+                            )
+                        )
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[/page/:page]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Acl\Controller',
+                                'controller' => 'Perfis'
+                            )
+                        )
                     )
                 )
             ),
@@ -21,6 +54,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Acl\Controller\Perfis' => 'Acl\Controller\PerfisController',
+            'Acl\Controller\Usuarios' => 'Acl\Controller\UsuariosController',
         )
     ),
     'view_manager' => array(
@@ -30,7 +64,7 @@ return array(
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
         'template_map' => array(
-            'layout/layout' => __DIR__ . '/../view/layout/usuario.phtml',
+            'layout/layout' => __DIR__ . '/../view/layout/Acl.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -52,7 +86,7 @@ return array(
             ),
         ),
         'fixture' => array(
-            'Usuario_fixture' => __DIR__ . '/../src/Usuario/Fixture',
+            'Acl_fixture' => __DIR__ . '/../src/Acl/Fixture',
         ),
     ),
 );

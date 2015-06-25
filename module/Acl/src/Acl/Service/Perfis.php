@@ -1,18 +1,19 @@
 <?php
 
-namespace Senna\Service;
+namespace Acl\Service;
 
 use Doctrine\ORM\EntityManager;
+use Senna\Service\AbstractService;
 
 /**
  * Service de empresa
  * 
  * @author Jefferson Fernandes
- * @date 16/02/2015
+ * @date 25/06/2015
  * @time 00:19:56
  * @project_name Senna -- Grupo Capital Ponto
  */
-class Empresa extends AbstractService {
+class Perfis extends AbstractService {
 
 	/**
 	 * @var EntityManager
@@ -26,7 +27,7 @@ class Empresa extends AbstractService {
 	public function __construct(EntityManager $em)
 	{
 		parent::__construct($em);
-		$this->entity = "Senna\Entity\Empresa";
+		$this->entity = "Acl\Entity\Perfis";
 		$this->em = $em;
 	}
 }

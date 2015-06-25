@@ -1,10 +1,6 @@
 <?php
 
 namespace Acl;
-
-use Zend\Mvc\ModuleRouteListener,
-	Zend\Mvc\MvcEvent;
-
 class Module
 {
     public function getConfig()
@@ -21,5 +17,17 @@ class Module
                 ),
             ),
         );
+    }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Acl\Service\Perfis' => function($sm){
+                    return new Service\Perfis($sm->get('Doctrine\ORM\Entitymanager'));
+                },
+            )
+        );
+
     }
 }

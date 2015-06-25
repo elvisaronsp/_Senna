@@ -8,10 +8,6 @@
 namespace Senna\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\Entity;
-use Senna\Entity\Classesprodutos;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Query\Expr\Join;
 
 class ClassesProdutosRepository extends EntityRepository {
 			

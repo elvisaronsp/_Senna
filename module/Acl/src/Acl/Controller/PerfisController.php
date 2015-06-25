@@ -7,18 +7,18 @@
  */
 
 namespace Acl\Controller;
+use Senna\Controller\GrudController;
+/**
+ * Class PerfisController
+ * @package Acl\Controller
+ */
+class PerfisController extends GrudController {
 
-use Zend\Mvc\Controller\AbstractActionController,
-    Zend\View\Model\ViewModel;
-
-class PerfisController extends AbstractActionController {
-
-    public function indexAction() {
-
-        $viewModel = new ViewModel(array());
-        $viewModel->setTerminal(true);
-        return $viewModel;
+    public function __construct()
+    {
+        $this->entity = "Acl\Entity\Perfis";
+        $this->service = "Acl\Service\Perfis";
+        $this->message_delete = "Perfil de acesso excluido com sucesso";
 
     }
-
 }

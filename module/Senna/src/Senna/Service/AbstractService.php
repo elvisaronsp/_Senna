@@ -35,11 +35,13 @@ use Senna\Entity\Configurator;
 		$this->em->flush();
 		return $entity;
 	}
-	
-	/**
-	 * Metodo de atualizacao abstract 
-	 * @param array $data
-	 */
+
+     /**
+      * @param array $data
+      * @return bool|\Doctrine\Common\Proxy\Proxy|null|object|void
+      * @throws \Doctrine\ORM\ORMException
+      * @throws \Exception
+      */
 	public function update(array $data){
 		$entity = $this->em->getReference($this->entity, $data['id']);
 		$entity = Configurator::configure($entity, $data);
