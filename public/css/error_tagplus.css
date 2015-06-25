@@ -1,0 +1,17 @@
+/* Estilos para a página inicial do painel */
+
+h1 {
+	color:				#057EBE;
+}
+.compativeis a:hover	{
+	border-color:		#057EBE;
+}
+	
+#logo,
+.logo {
+	background: 		transparent url(../../../images/logo_senna.png) no-repeat 200px top;
+}
+
+#logo {
+	border-bottom:		1px solid #057EBE;
+}

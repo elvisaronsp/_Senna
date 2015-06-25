@@ -1,0 +1,55 @@
+<div class="tab tab_fixed" id="label_produto_foto_892151025670e9a1b5fe51f6a5252163c84df9327" ref="Foto" rel="label_produto_foto">
+    <fieldset class="fieldset " style="width: 97%; float: left; padding: 8px 3px 0 10px; width: 40%; height: 259px;">
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Principal</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+
+		
+			<div 
+			class="uploader image" 
+			delete_url="/senna/produto/imagem/delete" 
+			list_url="/senna/produto/imagem/listimagem<?= ($this->id!="")?"/".$this->id:"" ?>"
+			rel="produto__foto_principal" 
+			upload_url="/senna/produto/imagem/produtos<?= ($this->id!="")?"/".$this->id:"" ?>"
+			>
+			
+
+            <div class="form_actions">
+                <input class="uploader_close save" type="button" value="Salvar"></input>
+                <span class="sep" size="1">&nbsp;</span>
+                <input class="uploader_close cancel" type="button" value="Fechar"></input>
+            </div>
+
+            <h2>Clique em uma Imagem para Selecioná-la</h2>
+
+            <input id="produto__foto_principal" name="produto__foto_principal" type="hidden" value=""></input>
+            <?php  echo $this->formElement($form->get('file'));?>
+
+            <div class="dropbox">
+                <span>Solte os arquivos para enviar</span>
+            </div>
+            <div class="thumbs"></div>
+        </div>
+        <p class="field file_manager big" style="width: auto;">
+            <span class="input " rel="produto__foto_principal" style=""><span
+                                    class="thumb">
+                                    <span class="img">
+                                    <?php  if($this->image!=""){?>
+                                    	<img src="<?= $this->image ?>">
+                                    <?php } ?>                        
+                                    </span>
+           <a class="change">Trocar Imagem...</a>
+           <span class="none">&nbsp;</span></span>
+            </span>
+        </p>
+
+    </fieldset>
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+    </div>
+</div>

@@ -1,3 +1,5 @@
 vendor/
-data/
+data/DoctrineORMModule/
+data/DoctrineORMModule/
 .idea/
+www./

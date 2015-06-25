@@ -1,0 +1,247 @@
+/** ESCOLHA DE PERÍODO **/
+.calendarRange{
+	position: relative;
+	float: left;
+}
+.calendarRange_popup{
+	float: 			left;
+	margin: 		5px 0 0 -50%;
+	left: 			0;
+	position:		absolute;
+	min-width: 		650px; 
+}
+	.calendarRange_trigger{
+			background: 		url("../images/bullet_arrow_down.png") no-repeat scroll center center #FFFFFF;
+			/*border-left: 		1px solid #EBEBEB;*/
+			border-radius:		0 1px 1px 0;
+			cursor:				default;
+			display: 			block;
+			float:				left;
+			padding: 			6px 8px 5px;
+			height:				28px;
+			position: 			relative;
+			margin-top:			5px;
+			margin-left:		-24px;
+			z-index: 			2;
+			text-align:			center;
+			box-sizing:			border-box;
+			-moz-box-sizing:	border-box;
+			-webkit-box-sizing:	border-box;
+	}
+	.calendarRange_trigger.clicked{
+			background-color:	#F5F5F5;
+			cursor:				default;
+			z-index: 			100;
+	}
+	.calendarRange_trigger:hover:not(.clicked){
+		z-index:  			3;
+		cursor:				pointer;
+	}
+	
+	.calendarRange_trigger.clicked:before,
+	.calendarRange_trigger.clicked:after{
+		content: "";
+		width: 0px;
+		height: 0px;
+		border: 10px outset transparent;
+		border-bottom: 10px solid #FFF;
+		position: absolute;
+		top: 16px;
+		left: 0;
+	}
+	.calendarRange_trigger.clicked:before{
+		top: 15px;
+		border-bottom: 10px solid #CCC;
+	}
+	
+	.calendarRange_menu{
+		background-color: 		#FFF;
+		border: 				1px solid #CCC;
+		border-radius:			1px;
+		box-shadow: 			0 1px 2px rgba(0,0,0,0.2);
+		display: 				none;
+		margin: 				34px 0 0 0;
+		position: 				relative;
+		float:					left;
+		text-indent:		 	0;
+		z-index: 				99;
+	}
+	.calendarRange_menu.visible{
+		display: 				block;
+	}
+
+	.calendarRange_itens{
+		display: 			block;
+		float:				left;
+		width: 				140px;
+	}
+		.calendarRange_itens > span{
+			border-bottom: 		1px solid #DDD;
+			cursor: 			pointer;
+			display: 			block;
+			padding: 			8px 20px;
+			text-align: 		right;
+			position: 			relative;
+		}
+		.calendarRange_itens > span:hover{
+			background-color: 	#F1F1F1;
+		}
+		.calendarRange_itens > span.selected{
+			background-color: 	#0B809E;
+			color: 				#FFF;
+		}
+		.calendarRange_itens > span.selected:after{
+			content: "";
+			width: 0px;
+			height: 0px;
+			border: 10px outset transparent;
+			border-right: 10px solid #FFF;
+			position: absolute;
+			top: 7px;
+			right: -1px;
+			z-index: 1;
+		}
+		.calendarRange_itens > span:last-child{
+			border: 			0;
+		}
+		
+	.calendarRange_picker{
+		float:				left;
+		border-left:		1px solid #DDD;
+	}
+		.calendarRange_picker > div{
+			border-left:		1px solid #DDD;
+			border-right:		1px solid #DDD;
+			float:				left;
+			padding-top: 		5px;
+			position: 			relative;
+			margin-left: 		-1px;
+			box-sizing:				border-box;
+			-moz-box-sizing:		border-box;
+			-webkit-box-sizing:		border-box;
+		}
+		.calendarRange_picker > div.calendarRange_cal_end{
+			border-right-color: transparent;
+		}
+				
+		/** AÇÕES **/
+		.calendarRange_picker > div.calendarRange_actions{
+			width: 			100%;
+			float: 			left;
+			clear: 			both;
+			background-color: #F1F1F1;
+			border:			0;
+			border-top: 	1px solid #DDD;
+			text-align: 	right;
+			padding: 		0 2px 0 0;
+			margin-left: 	0;
+		}
+		.calendarRange_picker > div.calendarRange_actions .input,
+		.calendarRange_picker > div.calendarRange_actions .field{
+			margin: 0 0 0 2px;
+			padding: 0;
+		}
+		.calendarRange_picker > div.calendarRange_actions input,
+		.calendarRange_picker > div.calendarRange_actions select
+		{
+			text-indent: 0;
+			background-color: #FFF; 
+			border: 1px solid #ddd;
+			border-radius: 1px;
+			cursor: pointer;
+			display: block;
+			font-size: 12px;
+			font-weight: 300;
+			height: 33px !important;
+			margin: 5px 5px 5px 2px !important;
+		    outline: 0;
+			position: relative;
+		}
+		.calendarRange_picker > div.calendarRange_actions input:hover,
+		.calendarRange_picker > div.calendarRange_actions select:hover
+		{
+			border-color: #AAA;
+		}
+		.calendarRange_picker > div.calendarRange_actions input[type='button']{
+			float: right !important;
+			padding: 0 15px !important;
+		}
+		
+
+/** DATA NO PERÍODO **/
+.calendarRange_filtro{
+	float: 					left;
+	padding: 				0;
+	position: 				relative;
+}
+.calendarRange_filtro .input.icon:before{
+	content: 				'';
+	background: 			#F2F2F2 url(../images/calendar.png) no-repeat 5px center;
+	border-radius:			1px 0 0 1px;
+	border-right:			1px solid #DDD;
+	display:				block;
+	width: 					24px;
+	position: 				absolute;
+	left: 					1px;
+	top: 					1px;
+	bottom:					1px;
+	z-index: 				3; 
+}
+.calendarRange_filtro .input input{
+	color:					#666;
+	cursor:					pointer;
+	background-color:		#FFF;
+	font-size:				12px;
+	font-weight:			bold;
+	padding: 				3px 20px 3px 0;
+	min-width:				160px;
+	text-align: 			center;
+	position: 				relative;
+	height: 				30px;
+	box-sizing:				border-box;
+	-moz-box-sizing:		border-box;
+	-webkit-box-sizing:		border-box;
+}
+.calendarRange_filtro .input.icon input{
+	padding: 				3px 20px 3px 25px;
+	min-width:				180px;
+}
+.calendarRange_filtro .input input.visible{
+	border-color: #0C8CAA; 
+	box-shadow: 0 0 3px #0C8CAA; 
+	outline: 0;
+}
+.calendarRange_filtro input:hover,
+.calendarRange_filtro input:focus{
+	z-index: 				1;
+}
+
+/** NAVEGAÇÃO **/
+.calendarRange_prev,
+.calendarRange_next{
+	box-sizing:				border-box;
+	-moz-box-sizing:		border-box;
+	-webkit-box-sizing:		border-box;
+	color:					#666;
+	display: 				inline-block;
+	height: 				30px;
+	line-height: 			28px;
+	padding: 				0 10px;
+	background-color: 		#FFF;
+	border: 				1px solid #DDD;
+	cursor: 				pointer;
+	float: 					left;
+	margin: 				4px 0 0;
+	position: 				relative;
+}
+.calendarRange_prev:hover,
+.calendarRange_next:hover{
+	border-color: 			#AAA;
+	z-index: 				3;
+}
+.calendarRange_prev{
+}
+.calendarRange_next{
+	margin-left: -1px;
+}
+

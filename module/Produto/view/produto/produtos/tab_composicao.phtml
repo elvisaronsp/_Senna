@@ -1,0 +1,299 @@
+<div 
+	class="tab tab_fixed"
+	id="label_composicao_2087921041002b3f10845101aa00cc32497d96d9e5"
+	ref="Composição" 
+	rel="label_composicao">
+	
+	<div 
+	class="help_infos" 
+	id="fieldset_composicao" 
+	style="">
+		
+		<div style="">
+			Para que é usada: A composição é utilizada normalmente a empresa
+			fabrica ou produz seus próprios produtos. Ex: Cordão de cracha. 
+			<br /> <br />Como funciona: Ao criar um produto
+			composição,é solicitado que se indique os produtos que são usados
+			para 'produção' desse produto, e suas devidas quantidades. Logo após,
+			pode-se criar ou desfazer composições, realizando o acréscimo ou
+			decréscimo do estoque do produto composto e de seus insumos.
+		</div>
+	</div>
+	<div id="div_produtos_vinculados_composicao" style="float: left;">
+		<fieldset class="fieldset " id="fieldset_form_produtos_vinculados"
+			style="width: 695px;">
+
+			<table borborder="0" cellpadding="0" cellspacing="0"
+				class="table_form" id="produtos_vinculados_item_composicao"
+				width="100%">
+				<tr>
+					<td style="font-size: 10px; width: 305px">Produto</td>
+					<td style="font-size: 10px; width: 75px; margin-left: 50px">Quantidade</td>
+					<td style="font-size: 10px; width: 75px;">Unidade (Saída)</td>
+					<td style="font-size: 10px; width: 115px; padding-left: 8px">Valor de Venda (Varejo)</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><input array="true"
+						id="composicao_produto_vinculado__id_removido" type="hidden"></input>
+						<input class="temp" id="composicao_produto_vinculado__id"
+						type="hidden"></input> <input class="temp"
+						id="composicao_produto_vinculado__id_produto" type="hidden"></input>
+						<input class="temp" id="composicao_produto_vinculado__ativa"
+						type="hidden"></input> <input class="temp"
+						id="composicao_produto_vinculado__data_ativacao" type="hidden"></input>
+						<input class="temp"
+						id="composicao_produto_vinculado__data_desativacao" type="hidden"></input>
+						<input class="temp"
+						id="composicao_produto_vinculado__id_produto_item_vinculado"
+						type="hidden"></input> <input class="temp"
+						id="composicao_produto_vinculado__fracionado" type="hidden"></input>
+						<input class="temp" id="composicao_produto_vinculado__id_kit"
+						type="hidden"></input>
+						<p class="field " style="width: 280px;">
+							<span class="input "
+								rel="composicao_produto_vinculado__descricao_produto" style=""><input
+								id="composicao_produto_vinculado__descricao_produto"
+								name="composicao_produto_vinculado__descricao_produto"
+								type="hidden" value=""></input><i class="ui-autocomplete_combo"
+								tabindex="-1"></i><input
+								autosuggest="composicao_produto_vinculado__descricao_produto"
+								class="temp autosuggest" filters="[]" formRequired="true"
+								form_title="Cadastrando false" form_url="" form_url_field=""
+								id="composicao_produto_vinculado__descricao_produto"
+								minLength="0"
+								name="ac_018528223675a732a6478b9db7501d9d74cc0ed3ffe"
+								new_item_info="Criar um novo registro"
+								new_item_label="Cadastrar Novo"
+								source="/senna/produto/produtos/getProdutos<?= ($this->id!="")?"/".$this->id:"" ?>"
+								style="" type="text" value="" valueclear="true"
+								valuefield="value"></input><em
+								class="autocomplete_search temp autosuggest"></em></span>
+						</p></td>
+					<td><input class="temp" formRequired="true"
+						id="composicao_produto_vinculado__qtd_vinculada"
+						number_format="+#.#0,[3,3]"
+						style="width: 85px; margin-right: 10px; margin-top: 2px;"
+						type="text"></input></td>
+					<td><input class="temp" disabled="true"
+						name="composicao_produto_vinculado__sigla"
+						style="width: 85px; margin-top: 3px;" type="text"></input> <input
+						class="temp" id="composicao_produto_vinculado__sigla"
+						type="hidden"></input></td>
+					<td><input class="temp" disabled="true"
+						id="composicao_produto_vinculado__vr_venda"
+						labelstyle="margin-left:10px;"
+						name="composicao_produto_vinculado__vr_venda"
+						number_format="+#.#0,[2,2]"
+						style="width: 85px; margin-right: 8px; margin-left: 10px; margin-top: 2px;"
+						type="text"></input> <input class="temp"
+						id="composicao_produto_vinculado__vr_venda" type="hidden"></input>
+					</td>
+					<td><input class="addClone" id="addFormComposicao" type="button"
+						value="Adicionar"></input> <input class="addClone"
+						id="updateFormComposicao" type="button" value="Atualizar"></input>
+					</td>
+				</tr>
+			</table>
+
+		</fieldset>
+		<hr class="clear" size="1"></hr>
+		<fieldset class="fieldset " style="width: 695px;">
+			<legend>
+				<span class="legend"><span class="legend_label">Itens da Composição</span><span
+					class="input_alert">&nbsp;</span></span>
+			</legend>
+
+			<table borborder="0" cellpadding="0" cellspacing="0"
+				class="form_table table_list" id="produtos_vinculados_composicao"
+				width="100%">
+				<thead>
+					<tr>
+						<th width="250">Produto</th>
+						<th width="50">Quantidade</th>
+						<th width="40">Unidade (Saída)</th>
+						<th width="70">Valor de Venda (Varejo)</th>
+						<th class="controles" width="40"></th>
+					</tr>
+				</thead>
+				<input class="clone_flag" name="produto_vinculado_flag"
+					type="hidden" value=""></input>
+				<tbody>
+                                    
+				<?php
+				if ($this->composicao != null) {
+					foreach ( $this->composicao as $key => $value ) :
+						?>
+                                    
+                                        <tr>
+						<td style="display: none"><input class=" clone_id"
+							name="produto_vinculado__id[]" ref="composicao_id" type="hidden"
+							value="<?= $value['produto_vinculado__id']?>"></input></td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__id_produto_item_vinculado[]"
+							type="hidden"
+							value="<?= $value['produto_vinculado__id_produto_item_vinculado']?>"></input>
+						</td>
+						<td><span ref="produto_vinculado__descricao_produto"><?= $value['produto_vinculado__descricao_produto']?></span>
+							<input class="" name="produto_vinculado__descricao_produto[]"
+							type="hidden"
+							value="<?= $value['produto_vinculado__descricao_produto']?>"></input>
+						</td>
+						<td><span ref="produto_vinculado__qtd_vinculada"><?= $value['produto_vinculado__qtd_vinculada']?></span>
+							<input class="" name="produto_vinculado__qtd_vinculada[]"
+							type="hidden"
+							value="<?= $value['produto_vinculado__qtd_vinculada']?>"></input>
+						</td>
+						<td><span ref="produto_vinculado__sigla"><?= $value['produto_vinculado__sigla']?></span>
+							<input class="" name="produto_vinculado__sigla[]" type="hidden"
+							value="<?= $value['produto_vinculado__sigla']?>"></input></td>
+						<td><span ref="produto_vinculado__vr_venda"><?= $value['produto_vinculado__vr_venda']?></span>
+							<input class="" name="produto_vinculado__vr_venda[]"
+							type="hidden" value="<?= $value['produto_vinculado__vr_venda']?>"></input>
+						</td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__id_produto[]" type="hidden"
+							value="<?= $value['produto_vinculado__id_produto']?>"></input></td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__ativa[]" type="hidden"
+							value="<?= $value['produto_vinculado__ativa']?>"></input></td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__data_ativacao[]" type="hidden"
+							value="<?= $value['produto_vinculado__data_ativacao']?>"></input>
+						</td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__data_desativacao[]" type="hidden"
+							value="<?= $value['produto_vinculado__data_desativacao']?>"></input>
+						</td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__fracionado[]" type="hidden"
+							value="<?= $value['produto_vinculado__fracionado']?>"></input></td>
+						<td align="center" class="controles" width="5">
+							<div class="removeFormCloneRow pointer">&nbsp;</div>
+							<div class="editFormCloneRow pointer">&nbsp;</div>
+						</td>
+					</tr>
+				<?php
+					endforeach;
+				} else {
+					?>
+
+										<tr>
+						<td style="display: none"><input class=" clone_id"
+							name="produto_vinculado__id[]" ref="composicao_id" type="hidden"
+							value=""></input></td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__id_produto_item_vinculado[]"
+							type="hidden" value=""></input></td>
+						<td><span ref="produto_vinculado__descricao_produto"></span> <input
+							class="" name="produto_vinculado__descricao_produto[]"
+							type="hidden" value=""></input></td>
+						<td><span ref="produto_vinculado__qtd_vinculada"></span> <input
+							class="" name="produto_vinculado__qtd_vinculada[]" type="hidden"
+							value=""></input></td>
+						<td><span ref="produto_vinculado__sigla"></span> <input class=""
+							name="produto_vinculado__sigla[]" type="hidden" value=""></input>
+						</td>
+						<td><span ref="produto_vinculado__vr_venda"></span> <input
+							class="" name="produto_vinculado__vr_venda[]" type="hidden"
+							value=""></input></td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__id_produto[]" type="hidden" value=""></input>
+						</td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__ativa[]" type="hidden" value=""></input>
+						</td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__data_ativacao[]" type="hidden" value=""></input>
+						</td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__data_desativacao[]" type="hidden"
+							value=""></input></td>
+						<td style="display: none"><input class=""
+							name="produto_vinculado__fracionado[]" type="hidden" value=""></input>
+						</td>
+						<td align="center" class="controles" width="5">
+							<div class="removeFormCloneRow pointer">&nbsp;</div>
+							<div class="editFormCloneRow pointer">&nbsp;</div>
+						</td>
+					</tr>
+									
+				<?php }?>
+                                    
+			</tbody>
+			</table>
+
+		</fieldset>
+	</div>
+
+	<div style="float: left; width: 27%">
+		<input id="ecf" name="ecf" type="hidden" value=""></input>
+		<fieldset class="fieldset " id="fieldset_registrar_composicao"
+			style="width: 97%; width: 93%">
+			<legend>
+				<span class="legend"><span class="legend_label">Criar</span><span
+					class="input_alert">&nbsp;</span></span>
+			</legend>
+
+			<p class="field inline" style="width: 150px !important;">
+				<label class="" for="quantidade_composicao_registrar"
+					style="width: 37%">Quantidade</label><span class="input_info"><img
+					alt="info" class="infotip" src="/images/info.png"
+					title="Quantidade de composições a serem criadas"></img></span><span
+					class="input_alert">&nbsp;</span><span class="input "
+					rel="quantidade_composicao_registrar" style="">
+					
+					<input
+					id="quantidade_composicao_registrar"
+					name="quantidade_composicao_registrar" number_format="+#.#0,[3,3]"
+					style="width: 100%" type="text" readonly="readonly" value=""></input>
+					
+					</span>
+			</p>
+			<input class="new_button" disabled="disabled"
+				id="btn_registrar_estoque" name="Criar" saveWindowForm="true"
+				type="submit" value="Criar"></input> <input
+				id="acao_criar_composicao" name="acao_criar_composicao"
+				type="hidden" value="0"></input>
+
+		</fieldset>
+		<hr class="clear" size="1"></hr>
+		<fieldset class="fieldset " id="fieldset_desfazer_composicao"
+			style="width: 97%; width: 93%">
+			<legend>
+				<span class="legend"><span class="legend_label">Desfazer</span><span
+					class="input_alert">&nbsp;</span></span>
+			</legend>
+
+			<p class="field inline" style="width: 150px !important;">
+				<label class="" for="quantidade_composicao_desfazer"
+					style="width: 37%">Quantidade</label>
+					
+					<span class="input_info">
+					<img
+					alt="info" class="infotip" src="/images/info.png"
+					title="Quantidade de composições a serem desfeitas"></img>
+					</span>
+					<span
+					class="input_alert">&nbsp;</span><span class="input "
+					rel="quantidade_composicao_desfazer" style="">
+					<input
+					id="quantidade_composicao_desfazer"
+					name="quantidade_composicao_desfazer" number_format="+#.#0,[3,3]"
+					style="width: 100%" type="text" value="" readonly="readonly" ></input>
+					</span>
+			</p>
+			<input class="returnButton" disabled="disabled"
+				id="btn_desfazer_composicao" name="Desfazer" saveWindowForm="true"
+				style="margin-top: 5px; width: 83px;" type="submit" value="Desfazer"></input>
+			<input id="acao_desfazer_composicao" name="acao_desfazer_composicao"
+				type="hidden" value="0"></input>
+
+		</fieldset>
+	</div>
+	<div class="tab_navigator ">
+		<input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+		<input class="nextTab" name="Continuar" type="button"
+			value="Continuar"></input>
+	</div>
+</div>

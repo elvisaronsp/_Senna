@@ -1,0 +1,135 @@
+   <div class="tab tab_fixed" id="label_kit_18418065677ea001c75f66ea05b8bae94aeb20ce1e" ref="Kit" rel="label_kit">
+                        <div class="help_infos" id="fieldset_kit" style="">
+                            <div style="">
+                                Para que é usado: O Kit é utilizado para promoções ou para a venda de produtos separados de forma agregada.
+                                <br></br>Como funciona: Ao criar um produto Kit, é solicitado que se indique os produtos que são agregados à este, e suas devidas quantidades. Ao vender o produto Kit, o estoque que é movimentado é o dos produtos agregados.
+                            </div>
+                        </div>
+                        <div id="div_produtos_vinculados_kit">
+                            <fieldset class="fieldset " id="fieldset_form_produtos_vinculados_kit" style="width: 720px;">
+
+                                <table borborder="0" cellpadding="0" cellspacing="0" class="table_form" id="produtos_vinculados_item_kit" width="100%">
+                                    <tr>
+                                        <td style="font-size: 10px; width: 310px">Descrição Resumida</td>
+                                        <td style="font-size: 10px; width: 75px;">Quantidade</td>
+                                        <td style="font-size: 10px; width: 75px;">Unidade (Saída)</td>
+                                        <td style="font-size: 10px; width: 100px;">Valor de Venda (Varejo)
+                                        </td>
+                                        <td></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="temp" id="kit_produto_vinculado__id" type="hidden"></input>
+                                            <input class="temp" id="kit_produto_vinculado__id_produto" type="hidden"></input>
+                                            <input class="temp" id="kit_produto_vinculado__id_produto_item_vinculado" type="hidden"></input>
+                                            <input class="temp" id="kit_produto_vinculado__ativa" type="hidden"></input>
+                                            <input class="temp" id="kit_produto_vinculado__data_ativacao" type="hidden"></input>
+                                            <input class="temp" id="kit_produto_vinculado__data_desativacao" type="hidden"></input>
+                                            <input class="temp" id="kit_produto_vinculado__id_produto_item_vinculado" type="hidden"></input>
+                                            <input class="temp" id="kit_produto_vinculado__fracionado" type="hidden"></input>
+                                            <p class="field " style="width: 300px;">
+                                                <span class="input " rel="kit_produto_vinculado__descricao_produto" style=""><input
+													id="kit_produto_vinculado__descricao_produto"
+													name="kit_produto_vinculado__descricao_produto"
+													type="hidden" value=""></input><i
+													class="ui-autocomplete_combo" tabindex="-1"></i><input
+													autosuggest="kit_produto_vinculado__descricao_produto"
+													class="temp autosuggest" filters="[]" formRequired="true"
+													form_title="Cadastrando false" form_url=""
+													form_url_field=""
+													id="kit_produto_vinculado__descricao_produto" minLength="0"
+													name="ac_01464522427b90885a066660d1b3a8ecaf563cb67d9"
+													new_item_info="Criar um novo registro"
+													new_item_label="Cadastrar Novo"
+													source="http://demonstracao.tagplus.com.br/autocomplete/produtos/getMSemKitGradeSerie"
+													style="" type="text" value="" valueclear="true"
+													valuefield="value"></input><em
+													class="autocomplete_search temp autosuggest"></em></span>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <input class="temp" formRequired="true" id="kit_produto_vinculado__qtd_vinculada" maxLength="8" number_format="+#.#0,[3,3]" style="width: 85px; margin-right: 3px; margin-top: 0px; margin-left: 10px;" type="text"></input>
+                                        </td>
+                                        <td>
+                                            <input class="temp" disabled="true" id="kit_produto_vinculado__sigla" style="width: 85px; margin-right: 3px; margin-top: 3px;" type="text"></input>
+                                        </td>
+                                        <td>
+                                            <input class="temp" disabled="true" id="kit_produto_vinculado__vr_venda" style="width: 120px; margin-right: 3px; margin-top: 3px;" type="text"></input>
+                                        </td>
+                                        <td>
+                                            <input class="addClone" id="addFormKit" type="button" value="Adicionar"></input>
+                                            <input class="addClone" id="updateFormKit" type="button" value="Atualizar"></input>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </fieldset>
+                            <fieldset class="fieldset " style="width: 720px;">
+                                <legend>
+                                    <span class="legend"><span class="legend_label">Itens do Kit</span><span class="input_alert">&nbsp;</span></span>
+                                </legend>
+
+                                <table borborder="0" cellpadding="0" cellspacing="0" class="form_table table_list" id="produtos_vinculados_kit" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="220">Produto</th>
+                                            <th width="50">Quantidade</th>
+                                            <th width="20">Unidade</th>
+                                            <th width="20">Valor de Venda (Varejo)</th>
+                                            <th class="controles" width="20"></th>
+                                        </tr>
+                                    </thead>
+                                    <input class="clone_flag" name="produto_vinculado_flag" type="hidden" value=""></input>
+                                    <tbody>
+                                        <tr>
+                                            <td style="display: none">
+                                                <input class="" name="produto_vinculado__id_produto_item_vinculado[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td><span ref="produto_vinculado__descricao_produto"></span>
+                                                <input class="" name="produto_vinculado__descricao_produto[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td><span ref="produto_vinculado__qtd_vinculada"></span>
+                                                <input class="" name="produto_vinculado__qtd_vinculada[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td><span ref="produto_vinculado__sigla"></span>
+                                                <input class="" name="produto_vinculado__sigla[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td><span ref="produto_vinculado__vr_venda"></span>
+                                                <input class="" name="produto_vinculado__vr_venda[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td style="display: none">
+                                                <input class=" clone_id" name="produto_vinculado__id[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td style="display: none">
+                                                <input class="" name="produto_vinculado__id_produto[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td style="display: none">
+                                                <input class="" name="produto_vinculado__fracionado[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td style="display: none">
+                                                <input class="" name="produto_vinculado__ativa[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td style="display: none">
+                                                <input class="" name="produto_vinculado__data_ativacao[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td style="display: none">
+                                                <input class="" name="produto_vinculado__data_desativacao[]" type="hidden" value=""></input>
+                                            </td>
+                                            <td align="center" class="controles" width="5">
+                                                <div class="removeFormCloneRow pointer">&nbsp;</div>
+                                                <div class="editFormCloneRow pointer">&nbsp;</div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </fieldset>
+                        </div>
+
+                        <div class="tab_navigator ">
+                            <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+                            <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+                        </div>
+                    </div>

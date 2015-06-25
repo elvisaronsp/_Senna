@@ -1,13 +1,19 @@
 <?php
 return array(
     'modules' => array(
-        'Application',
         'DoctrineModule',
         'DoctrineORMModule',
         'DoctrineDataFixtureModule',
-        'Util',
-        'Usuario',
-        'Acl'
+        'Application',
+        'Inicio',
+        'Senna',
+        'Produto',
+        'Ancoras',
+        'Negado',
+        'Cadastro',
+        #'Util',
+        #'Usuario',
+        #'Acl'
     ),
     'module_listener_options' => array(
         'module_paths' => array(

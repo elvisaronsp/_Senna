@@ -1,0 +1,3313 @@
+<?php echo $this->doctype(); ?>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv='cache-control' content='no-cache' />
+    <meta http-equiv='expires' content='0' />
+    <meta http-equiv='pragma' content='no-cache' />
+    <meta name="robots" content="NOINDEX,NOFOLLOW" />
+    <meta name="base_url" content="" />
+
+    <title></title>
+
+    
+    <?php echo $this->headScript()
+                ->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+                ->appendFile($this->basePath() . '/js/mootools-1.2-more.js')
+                ->appendFile($this->basePath() . '/js/core.js')
+                ->appendFile($this->basePath() . '/js/Window.js')
+                ->appendFile($this->basePath() . '/js/Modal.js')
+                ->appendFile($this->basePath() . '/js/mocha-ext.js')
+                ->appendFile($this->basePath() . '/js/base.js')
+                ->appendFile($this->basePath() . '/js/atalhos.js')
+                ->appendFile($this->basePath() . '/js/detect-zoom.js')
+                ->appendFile($this->basePath() . '/js/jQuery/core.js')
+                ->appendFile($this->basePath() . '/js/jQuery/dump.js')
+                ->appendFile($this->basePath() . '/js/jQuery/debug.js')
+                ->appendFile($this->basePath() . '/js/jQuery/bt.js')
+                ->appendFile($this->basePath() . '/js/jQuery/validate.js')
+                ->appendFile($this->basePath() . '/js/jQuery/maskedinput.js')
+                ->appendFile($this->basePath() . '/js/jQuery/uppercase.js')
+                ->appendFile($this->basePath() . '/js/jQuery/clonefield.js')
+                ->appendFile($this->basePath() . '/js/jQuery/priceformat.js')
+                ->appendFile($this->basePath() . '/js/jQuery/tab.js')
+                ->appendFile($this->basePath() . '/js/jQuery/tablestyle.js')
+                ->appendFile($this->basePath() . '/js/jQuery/date.js')
+                ->appendFile($this->basePath() . '/js/jQuery/datepicker.js')
+				->appendFile($this->basePath() . '/js/jQuery/readonly.js')
+				->appendFile($this->basePath() . '/js/sexyalertbox.js')
+				->appendFile($this->basePath() . '/js/jQuery/confirm_message.js')
+				->appendFile($this->basePath() . '/js/jQuery/livequery.js')
+                ->appendFile($this->basePath() . '/js/forms.js')
+                ->appendFile($this->basePath() . '/js/jQuery/uploader.js')
+                ->appendFile($this->basePath() . '/js/jQuery/barcode.js')
+                ->appendFile($this->basePath() . '/js/jQuery/autosuggest.js')
+                ->appendFile($this->basePath() . '/js/jQuery/ui.js')
+ 				->appendFile($this->basePath() . '/js/jQuery/serializetable.js')
+ 				->appendFile($this->basePath() . '/js/jQuery/clonetable.js')
+ 				->appendFile($this->basePath() . '/js/jQuery/cloneform.js')
+ 				->appendFile($this->basePath() . '/js/str_pad.js')
+ 				->appendFile($this->basePath() . '/js/jquery.tinymce.js')
+                ->appendFile($this->basePath() . '/js/live.js')
+                ->appendFile($this->basePath() . '/js/fileuploader.js')
+                ->appendFile($this->basePath() . '/js/upload.js')?>
+
+
+
+<!-- Estilos da pagina Css/code -->
+<?php echo $this->headLink() //
+                //->appendStylesheet($this->basePath() . '/css/noprint.css?v=2.0.1')
+				->appendStylesheet($this->basePath() . '/css/loader.css?v=2.0.4')
+				->appendStylesheet($this->basePath() . '/css/style.css?v=2.0.4')
+				->appendStylesheet($this->basePath() . '/css/style_tagplus.css?v=2.0.4')
+				->appendStylesheet($this->basePath() . '/css/sexyalertbox.css?v=2.0.4" media="screen')
+				->appendStylesheet($this->basePath() . '/css/datepicker.css?v=2.0.4')
+				->appendStylesheet($this->basePath() . '/css/uploader.css?v=2.0.4')
+				->appendStylesheet($this->basePath() . '/css/jqueryui.css?v=2.0.4')
+				->appendStylesheet($this->basePath() . '/css/clonetable.css?v=2.0.4')
+				->appendStylesheet($this->basePath() . '/css/cloneform.css?v=2.0.4')
+				->appendStylesheet($this->basePath() . '/css/fileuploader.css?v=2.0.4')?>
+
+
+
+<script type='text/javascript'>
+
+
+ 
+		var uploadMessages = {
+            typeError: 			'Arquivo "<i>%1s</i>" possui uma extensão inválida.<br/>Envie apenas <i>%2s</i>.',
+            sizeError: 			'Arquivo "<i>{file}</i>" é muito grande.<br/>Tamanho máximo: <i>{sizeLimit}</i>.',
+            minSizeError: 		'Arquivo "<i>{file}</i>" é muito pequeno.<br/>Tamanho mánimo: <i>{minSizeLimit}</i>.',
+            emptyError: 		'# label_upload_error_vazio #',
+            onLeave: 			'Os arquivos estão sendo enviados.\nAo sair os envios serão cancelados.',
+            textBoxBtnOk:		'Sim',
+            textBoxBtnCancel:	'Não',
+            textConfirmDelete:	'Deseja realmente excluir este arquivo?',
+            textDeleteSuccess:	'Arquivo excluído com sucesso',
+			textDeleteFailure:	'Erro ao tentar excluir arquivo: ',
+			textDeleteNotAllowed:	'Você não pode apagar uma imagem principal.',
+        }; 
+
+ 
+		var uploadMessages = {
+            typeError: 			'Arquivo "<i>%1s</i>" possui uma extensão inválida.<br/>Envie apenas <i>%2s</i>.',
+            sizeError: 			'Arquivo "<i>{file}</i>" é muito grande.<br/>Tamanho máximo: <i>{sizeLimit}</i>.',
+            minSizeError: 		'Arquivo "<i>{file}</i>" é muito pequeno.<br/>Tamanho mínimo: <i>{minSizeLimit}</i>.',
+            emptyError: 		'# label_upload_error_vazio #',
+            onLeave: 			'Os arquivos estão sendo enviados.\nAo sair os envios Seráo cancelados.',
+            textBoxBtnOk:		'Sim',
+            textBoxBtnCancel:	'Não',
+            textConfirmDelete:	'Deseja realmente excluir este arquivo?',
+            textDeleteSuccess:	'Arquivo excluído com sucesso',
+			textDeleteFailure:	'Erro ao tentar excluir arquivo: ',
+			textDeleteNotAllowed:	'Você não pode apagar uma imagem principal.',
+        }; 
+var confirmation = function(a,b){b=$extend({'textBoxBtnOk':'Sim','textBoxBtnCancel':'Não'},b||{});Sexy.confirm(a,b);};
+if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Continuar","intro_button_avancar":"Avan\u00e7ar","intro_button_entendi":"<i class=\"icon-ok\"><\/i> Entendi","intro_button_ok":"<i class=\"icon-ok\"><\/i> Ok","intro_button_concluir":"<i class=\"icon-thumbs-up\"><\/i> Concluir","intro_button_voltar":"Voltar","intro_button_fechar":"Fechar","intro_button_cancelar":"<i class=\"icon-remove\"><\/i> Cancelar Tutorial"});
+
+/**********************************************
+produto/produtos/form_produto_vinculado_kit.js
+**********************************************/
+
+	(function($){
+		/**
+		 * Metodo para inserir autocomplete de seleção de produtos
+		 * Executado logo apos o carregamento da página e sempre que uma linha é adicionada na tabela de lancamentos
+		 */
+		var autocompleteProdutoKit = function(container){
+			$(container).find("input:visible").eq(0).focus();
+			
+			/**
+			 * Inserindo Autocomplete do NCM no produto a partir "change" do autosuggest
+			 */
+			$("#kit_produto_vinculado__descricao_produto").change(function(evt, el, json){
+				$('#kit_produto_vinculado__id_produto_item_vinculado').val(json.id);
+				$('#kit_produto_vinculado__sigla').val(json.unidade_saida);
+				$('#kit_produto_vinculado__vr_venda').val(json.vr_venda);
+				$('#kit_produto_vinculado__fracionado').val(json.fracionado);
+				tratamento_fracionado_autosuggest();
+				if($('#kit_produto_vinculado__id_produto_item_vinculado').val() != 0)
+					$('#kit_produto_vinculado__qtd_vinculada').addClass('required');
+			});
+			
+			/**
+			 * Inserindo Autocomplete do NCM no produto a partir "change" do autosuggest
+			 */
+			$("#kit_produto_vinculado__descricao_produto").bind('clear', (function(evt, el){
+				$('#kit_produto_vinculado__id_produto_item_vinculado').val("");
+				$('#kit_produto_vinculado__sigla').val("");
+				$('#kit_produto_vinculado__vr_venda').val("");
+				$('#kit_produto_vinculado__qtd_vinculada').val('');
+//				$('#kit_produto_vinculado__vr_venda').numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').removeClass('required');
+			}));
+		};
+		
+		var tratamentoEdit = function (table,row){
+			$('#kit_produto_vinculado__descricao_produto').next().val($(row).find('[ref*=produto_vinculado__descricao_produto]').html());
+		};
+		
+		var tratamento_fracionado_autosuggest = function(){
+			if($('#kit_produto_vinculado__fracionado').val() == 1){
+				$('#kit_produto_vinculado__qtd_vinculada').removeClass("integer").numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').attr('maxLength','7')
+				$('#kit_produto_vinculado__qtd_vinculada').val('0,000');
+			}else{
+				$('#kit_produto_vinculado__qtd_vinculada').addClass("integer").numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').attr('maxLength','3')
+				$('#kit_produto_vinculado__qtd_vinculada').val('');
+			}
+		};
+		
+
+		var tratamento_fracionado = function(){
+			if($('#produto_fracionado').val() == 1){
+				$('#kit_produto_vinculado__qtd_vinculada').removeClass("integer").numberFormat();
+			}else{
+				$('#kit_produto_vinculado__qtd_vinculada').addClass("integer").numberFormat();
+			}
+		}
+		//regra para incremento de elementos na tabela
+	 	var regraIncrement = function(tr){
+	 		var produtoIgual =($(tr).find("input[name*=produto_vinculado__id_produto_item_vinculado]").val() == $("#kit_produto_vinculado__id_produto_item_vinculado").val());
+			// Verifica por status, id, informacao e vr unitario
+			if(produtoIgual){
+				return tr;
+			}
+	 	};
+	 	var validaLancamento = function(){
+	 		if($('#kit_produto_vinculado__qtd_vinculada').numberValue() <= 0.000){
+	 			Sexy.alert('A quantidade do item vinculado deve ser maior que zero.');
+	 			return false;
+	 		}
+	 		else{
+	 			$('#kit_produto_vinculado__qtd_vinculada').removeClass('required');
+	 			return true;
+	 		}
+	 	}
+	 	
+	 	
+		
+		jQuery(document).ready(function(){
+			$('#kit_produto_vinculado__qtd_vinculada').val('');
+			//insere autocomplete
+			autocompleteProdutoKit("#produtos_vinculados_item_kit");
+			//monta tabela clonável
+			$("#div_produtos_vinculados_kit").cloneform({
+				addButton:'#addFormKit',
+				updateButton: '#updateFormKit',
+				fieldPrefix: 'kit',
+				onBeforeEditClone:tratamentoEdit,
+				increment: {
+	    		fields: [
+	    		         'produto_vinculado__id_produto_item_vinculado', 
+	    		         'produto_vinculado__qtd_vinculada', 
+	    		         ],
+	    		rule: regraIncrement
+		    	},
+		    	validateForm: validaLancamento	
+			});
+			$('#kit_produto_vinculado__qtd_vinculada').focus(fracionado_focus);
+		});
+		
+		
+		var fracionado_focus = function(){
+			if($('#kit_produto_vinculado__fracionado').val() == 1){
+				$('#kit_produto_vinculado__qtd_vinculada').removeClass("integer").numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').attr('maxLength','7')
+			}else{
+				$('#kit_produto_vinculado__qtd_vinculada').addClass("integer").numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').attr('maxLength','3')
+			}
+		};
+	})(jQuery);
+
+
+/*****************************************************
+produto/produtos/form_produto_vinculado_composicao.js
+*****************************************************/
+
+	(function($){
+		var composicao_itens_form = '';
+		
+		var tratamento_fracionado = function(){
+			if($('#composicao_produto_vinculado__fracionado').val() == 1){
+				$('#composicao_produto_vinculado__qtd_vinculada').removeClass("integer").numberFormat();
+				$('#composicao_produto_vinculado__qtd_vinculada').val('0,000');
+			}else{
+				$('#composicao_produto_vinculado__qtd_vinculada').addClass("integer").numberFormat();
+				$('#composicao_produto_vinculado__qtd_vinculada').val('0');
+			}
+		};
+		
+		var elemQtd = '#composicao_produto_vinculado__qtd_vinculada';
+		
+		/**
+		 * Metodo para inserir autocomplete de seleção de produtos
+		 * Executado logo apos o carregamento da página e sempre que uma linha é adicionada na tabela de lancamentos
+		 */
+		var autocompleteProduto = function(container){
+			//$(container).find("input:visible").eq(0).focus();
+			
+			$("#composicao_produto_vinculado__descricao_produto").change(function(evt, el, json){
+				//$('#composicao_produto_vinculado__descricao_produto').val(json.value);
+				$('#composicao_produto_vinculado__estoque').val(json.qtd_estoque);
+//				$('[name*=composicao_produto_vinculado__estoque]').val(json.qtd_estoque);
+				$('#composicao_produto_vinculado__id_produto_item_vinculado').val(json.id);
+//				$('[name*=composicao_produto_vinculado__id_produto_item_vinculado]').val(json.id);
+				$('#composicao_produto_vinculado__sigla').val(json.unidade_saida);
+				$('[name*=composicao_produto_vinculado__sigla]').val(json.unidade_saida);
+				$('#composicao_produto_vinculado__vr_venda').val(json.vr_venda);
+//				$('[name*=composicao_produto_vinculado__vr_venda]').val(json.vr_venda).numberFormat();
+				$('#composicao_produto_vinculado__fracionado').val(json.fracionado);
+				//validando campo quantidade quando e inteiro ou fracionado.
+				tratamento_fracionado();
+				$('#composicao_produto_vinculado__qtd_vinculada').addClass('required');
+			});
+			/**
+			 * Inserindo Autocomplete do NCM no produto a partir "change" do autosuggest
+			 */
+			$("#composicao_produto_vinculado__descricao_produto").unbind('clear').bind('clear', (function(evt, el){
+				$('#composicao_produto_vinculado__qtd_vinculada').removeClass('required');
+				$('#composicao_produto_vinculado__descricao_produto').val("");
+				$('#composicao_produto_vinculado__id_produto_item_vinculado').val("");
+				$('#composicao_produto_vinculado__id_produto').val("");
+				$('#composicao_produto_vinculado__sigla').val("");
+				$('#composicao_produto_vinculado__vr_venda').val("");
+			}));
+		};
+		
+		var tratamentoEdit = function (table,row){
+			$('#composicao_produto_vinculado__descricao_produto').next().val($(row).find('[ref*=produto_vinculado__descricao_produto]').html());
+			//tratamento_fracionado();
+		};
+		
+		//regra para incremento de elementos na tabela
+    	var regraIncrement = function(tr){
+    		if($(tr).find("input[name*=produto_vinculado__id_produto]:first").val() == $("#composicao_produto_vinculado__id_produto_item_vinculado").val()){
+    			return tr;
+    		}
+    	};
+    	
+    	var validaLancamento = function(){
+	 		if($('#composicao_produto_vinculado__qtd_vinculada').numberValue() <= 0){
+	 			Sexy.alert('A quantidade do item vinculado deve ser maior que zero.');
+	 			return false;
+	 		}
+	 		else{
+	 			$('#composicao_produto_vinculado__qtd_vinculada').removeClass('required');
+	 			return true;
+	 		}
+	 	};
+	 	
+	 	var atualizaCustoMedio = function(){
+	 		var id_prod = ($('#produto__id').val()) ? $('#produto__id').val() : '0';
+	 		
+	 		
+	 		if($('#produtos_vinculados_composicao tbody tr').length >= 1){
+	 			var url = '/senna/bekka/produto/produtos/getCustoMedio/'+id_prod+'/1';
+	 		}else{
+	 			var url = '/senna/bekka/produto/produtos/getCustoMedio/'+id_prod+'/0';
+	 		}
+	 		
+ 			$.ajax({
+				url: url,
+				dataType: 'json',
+				success: function(data){
+ 					$('#custo_medio').val(data);
+				}
+			});
+	 	};
+    	
+
+		var fracionado_focus = function(){
+			if($('#composicao_produto_vinculado__fracionado').val() == 1){
+				$('#composicao_produto_vinculado__qtd_vinculada').removeClass("integer");
+			}else{
+				$('#composicao_produto_vinculado__qtd_vinculada').addClass("integer");
+			}
+		};
+		
+		
+		jQuery(document).ready(function(){
+			$('#composicao_produto_vinculado__qtd_vinculada').val('');
+			$('#composicao_produto_vinculado__sigla').val('');
+			$('#composicao_produto_vinculado__vr_venda').val('');
+			$("#div_produtos_vinculados_composicao").cloneform({
+				addButton:'#addFormComposicao',
+				updateButton: '#updateFormComposicao',
+				fieldPrefix: 'composicao',
+				increment: {
+            		fields: [
+            		         'produto_vinculado__qtd_vinculada', 
+            		         ],
+            		rule: regraIncrement
+            	},
+				onBeforeEditClone:tratamentoEdit,
+				validateForm: validaLancamento,
+				onClearClone: atualizaCustoMedio,
+				onRemoveClone: atualizaCustoMedio
+			});
+			//insere autocomplete
+			autocompleteProduto("#produtos_vinculados_item_composicao");
+			
+			$('#composicao_produto_vinculado__qtd_vinculada').focus(fracionado_focus);
+		});
+		
+})(jQuery);
+
+	
+(function($){   
+		/**
+		 * Faz as verificações quando se está criando ou editando uma composição
+		 */
+		var validateComposicao= function(){
+			var container = $('#div_produtos_vinculados_composicao');
+			var Venda = $("#existe_venda").val();
+			var idProduto= $("#produto__id").val();
+			var estoque = parseInt($("#produto__estoque_disponivel").val());
+			var estoque_revenda = parseInt($('#produto_estoque__qtd').val());
+			//se esta criando um novo(se não existe id ainda)
+			if(!idProduto){
+//				$('#opcoes_produto_vinculado').hide();
+//				$('#estoque_disponivel_field').hide();
+//				$("#fieldset_registrar_composicao").hide();
+//				$("#fieldset_desfazer_composicao").hide();
+			}
+			else{
+				//se estoque for 0 e Não existir venda 
+				if(estoque==0 && Venda==0){
+//					$("#fieldset_desfazer_composicao").hide();
+					if($('[name=opt_produto_vinculado]:checked').val()==0){
+//						$('#fieldset_form_produtos_vinculados').hide();
+//						container.find('.controles').each(function(i, el) {
+//							$(el).hide();
+//						});
+					}
+					else{
+							$('#fieldset_form_produtos_vinculados').show();
+//							$("#fieldset_registrar_composicao").hide();
+							container.find('.controles').each(function(i, el) {
+								$(el).show();
+							});
+					}
+					//faz a troca de tabela quando se clica em atualizar o alterar estoque.
+					$('[name=opt_produto_vinculado]').change(function () {
+						//momento da mudança de alterao de composicao ou registro de estoque.
+						if($('[name=opt_produto_vinculado]:checked').val()==0){
+//							$('#fieldset_form_produtos_vinculados').hide();
+							$("#fieldset_registrar_composicao").show();
+//							container.find('.controles').each(function(i, el) {
+//								$(el).hide();
+//							});
+						}
+						else{
+							$('#fieldset_form_produtos_vinculados').show();
+//							$("#fieldset_registrar_composicao").hide();
+							container.find('.controles').each(function(i, el) {
+								$(el).show();
+							});
+						}
+					});
+				}
+				else{
+					//se estoque for 0 nao se mosta fieldset para desfazer composicao pois nao existe nenhuma para se desfazer.
+					if(estoque==0){
+//						$("#fieldset_desfazer_composicao").hide();
+					}
+//					$('#opcoes_produto_vinculado').hide();
+					$("#fieldset_desfazer_composicao").show();
+				}
+			}
+		};
+		 var verificaEstoque = function(){
+	        	var flag;
+	        	//Obtendo a quantidade
+				var qtd = $("#quantidade_composicao_registrar").numberValue();
+				//OBtendo o id da composi��o
+				var id = $("#produto__id").val();
+				//Produtos que se encontram na tela
+				var prod = [];
+				//Obtendo os produtos que est�o na tela
+				$('#produtos_vinculados_composicao tbody tr').each(function(i){
+					prod[i] = {
+								id: $(this).find('[name *= produto_vinculado__id_produto_item_vinculado]').val(),
+								qtd_vinculada: $(this).find('[name *= produto_vinculado__qtd_vinculada]').val()
+							  };
+				});
+				$.ajax({
+					type: "POST",
+					url: "/senna/bekka/produto/produtos/verifica_estoque_composicao/"+id+"/"+qtd, //efetua requisicao na pagina apontada pela action do formulario
+					data: ({prod : prod}),
+					dataType: 'json',
+					async:false,
+					success: function(el){
+						if (el == true) {
+							var text = "Não existe quantidade suficiente para criar $1 composição(ões).";
+							Sexy.alert(text.replace(/\$1/,qtd));
+							flag = true;
+						}
+						else {
+							flag = false;
+						}
+					}
+				});
+				return flag;
+	        };
+
+	        
+        var verificaEstoqueDesfazerComposicao = function(){
+        	var qtd = $("#quantidade_composicao_desfazer").numberValue();
+        	var flag;
+        	if(qtd == 0){
+        		Sexy.alert('É necessário indicar uma quantidade maior que zero');
+				flag = true;
+        	}else{
+	    		//OBtendo o id da composição
+	    		var id = ($("#produto__id").val()) ? $("#produto__id").val() : '0';
+	    		$.ajax({
+	    			type: "POST",
+	    			url: "/senna/bekka/produto/produtos/verifica_estoque_desfazer_composicao/"+id+"/"+qtd, //efetua requisicao na pagina apontada pela action do formulario
+	    			dataType: 'json',
+	    			async:false,
+	    			success: function(el){
+	    			if (el == false || el == null) {
+	    				var text = "Não existe quantidade suficiente para desfazer $1 composição(ões).";
+	    				Sexy.alert(text.replace(/\$1/,qtd));
+	    				flag = true;
+	    			}
+	    			else {
+	    				flag = false;
+	    			}
+	    		}
+	    		});
+        	}
+			return flag;
+        };
+        
+
+		var tratamento_fracionado_composicao = function(){
+			if($('#produto_fracionado').val() == 1){
+				$('#quantidade_composicao_desfazer').removeClass("integer").numberFormat();
+				$('#quantidade_composicao_registrar').removeClass("integer").numberFormat();
+			}else{
+				$('#quantidade_composicao_desfazer').addClass("integer").numberFormat();
+				$('#quantidade_composicao_registrar').addClass("integer").numberFormat();
+			}
+		};
+        
+        
+		jQuery(document).ready(function(){
+			$(this).data('confirm_message',"");
+			
+			//realiza tratamento de composicoes
+			tratamento_fracionado_composicao();
+			
+			//Obtendo os dados que est�o na tela
+			composicao_itens_form = $('#produtos_vinculados_composicao').serializeTable();
+			
+			//Evento Click registrar
+			$('#btn_registrar_estoque').bind('click',function (ev,ret){
+				if( $('#produtos_vinculados_composicao tbody tr:visible').length < 1){
+					Sexy.alert('A Composição deve possuir pelo menos um item vinculado.');
+					return false;
+				}
+					
+				//Verificando se existe ecf cadastrado para criar a nota
+				var ecf = $('#ecf').val();
+				//
+				var qtd = $("#quantidade_composicao_registrar").val();
+				
+				var submete = false;
+				//
+				$(this).unbind('beforeSubmit.criar_composicao').bind('beforeSubmit.criar_composicao',function (ev,ret){
+						if(qtd == 0){
+							Sexy.alert('É necessário indicar uma quantidade maior que zero');
+							ret.val = false;
+						}
+					
+						if(('0' == 0 || ecf == '0') && '{indicar_nota_composicao}' == '{nao_gerar_mov}'){
+							var message = "Para <b>criar</b> composições com base na fórmula atual o formulário deve ser salvo.Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+						}else{
+							if(('{indicar_nota_composicao}' == '0' || '{indicar_nota_composicao}' == '{gerar_ajust}') && ('0' == 0 || ecf == '0'))
+								var message = "Para <b>criar</b> composições com base na fórmula atual o formulário deve ser salvo. Será gerado 2 Ajuste de Estoque. Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+							else{
+								if('0' == 0)
+									var message = "Para <b>criar</b> composições com base na fórmula atual o formulário deve ser salvo. Será gerado 2 NF-e's. Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+								else if('0' == 1 && ecf == '0' && '{indicar_nota_composicao}' != '{gerar_nfe}')	
+									var message = "Para <b>criar</b> composições com base na fórmula atual o formulário deve ser salvo.Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+								else
+									var message = "De acordo com o Ato Cotepe 01.10 será gerado duas NF-e para <b>criar</b> a(s) composição(ões) com base na fórmula atual.Deseja salvar o formulário, gerar duas NF-e e registar <b>$1</b> composição(ões)?";
+							}	
+						}
+						$(this).unsetConfirmMessage(message.replace(/\$1/,qtd));
+						$(this).addConfirmMessage(message.replace(/\$1/,qtd), 'Sim','Não');
+//						$(this).data('confirm_message', message.replace(/\$1/,qtd), 'Sim','Não');
+						$(this).bind('afterConfirmSubmit.criar_composicao',function(ev,ret){
+							if(ret.val){
+								$('#acao_criar_composicao').val(1);
+							}
+						});
+						
+				});
+			});	
+			
+			//Evento Click
+			$('#btn_desfazer_composicao').bind('click',function (ev,ret){
+				if( $('#produtos_vinculados_composicao tbody tr:visible').length < 1){
+					Sexy.alert('A Composição deve possuir pelo menos um item vinculado.');
+					return false;
+				}
+				//Verificando se existe ecf cadastrado para criar a nota
+				var ecf = $('#ecf').val();
+				//
+				var qtd = $("#quantidade_composicao_desfazer").val();
+				//
+				var submete = false;
+				//
+				$(this).unbind('beforeSubmit.desfazer_composicao');
+				$(this).bind('beforeSubmit.desfazer_composicao',function (ev,ret){
+					if(!verificaEstoqueDesfazerComposicao()){
+						
+						//Verifica se é fiscal
+						if(('0' == 0 || ecf == '0') && '{indicar_nota_composicao}' == '{nao_gerar_mov}'){
+							var message = "Houve modificações relativo a composição, para desfazer deve-se salvar o formulformuláriorio, você deseja salvar e registrar <b>$1</b> composição(ões)?";
+						}else{
+							if('{indicar_nota_composicao}' == '{gerar_ajust}')
+								var message = "Para <b>desfazer</b> composiçães com base na fórmula atual o formulário deve ser salvo. Será gerado 2 Ajuste de Estoque. Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+							else{
+								if('0' == 0)
+									var message = "Para <b>desfazer</b> composições com base na fórmula atual o formulário deve ser salvo. Será gerado 2 NF-e's. Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+								else if('0' == 1 && ecf == '0' && '{indicar_nota_composicao}' != '{gerar_nfe}')	
+									var message = "Houve modificações relativo a composição, para desfazer deve-se salvar o formulário, você deseja salvar e registrar <b>$1</b> composição(ões)?";
+								else
+									var message = "De acordo com o Ato Cotepe 01.10 será gerado duas NF-e para <b>desfazer</b> a(s) composição(ões) com base na fórmula atual.Deseja salvar o formulário, gerar duas NF-e e registar <b>$1</b> composição(ões)?";
+							}	
+						}
+						$(this).unsetConfirmMessage(message.replace(/\$1/,qtd));
+						$(this).addConfirmMessage(message.replace(/\$1/,qtd), 'Sim','Não');
+//						$(this).data('confirm_message',message.replace(/\$1/,qtd),'Sim','não');
+						$(this).bind('afterConfirmSubmit.desfazer_composicao',function(ev,ret){
+							if(ret.val){
+								$('#acao_desfazer_composicao').val(1);
+							}
+						});
+						
+					}else{
+//						$(this).data('confirm_message','');
+						$('#acao_desfazer_composicao').val(0);
+						ret.val = false;
+					}
+					
+				});
+				
+			});	
+			
+			
+			
+			$("#btn_registrar_estoque").attr('disabled',true);
+			$("#btn_desfazer_composicao").attr('disabled',true);
+			
+			$('#quantidade_composicao_registrar').keyup(function(){
+				if($(this).numberValue() > 0)
+					$("#btn_registrar_estoque").removeAttr('disabled');
+				else
+					$("#btn_registrar_estoque").attr('disabled',true);
+			});
+			
+			$('#quantidade_composicao_desfazer').keyup(function(){
+				if($(this).numberValue() > 0)
+					$("#btn_desfazer_composicao").removeAttr('disabled');
+				else
+					$("#btn_desfazer_composicao").attr('disabled',true);
+			});
+			//faz as valida��es necess�rias referentes a composicao
+			validateComposicao();
+		});
+		
+	})(jQuery);
+
+
+/**********************************************
+produto/produtos/form_produto_vinculado_kit.js
+**********************************************/
+
+	(function($){
+		/**
+		 * Metodo para inserir autocomplete de sele��o de produtos
+		 * Executado logo apos o carregamento da p�gina e sempre que uma linha � adicionada na tabela de lancamentos
+		 */
+		var autocompleteProdutoKit = function(container){
+			$(container).find("input:visible").eq(0).focus();
+			
+			/**
+			 * Inserindo Autocomplete do NCM no produto a partir "change" do autosuggest
+			 */
+			$("#kit_produto_vinculado__descricao_produto").change(function(evt, el, json){
+				$('#kit_produto_vinculado__id_produto_item_vinculado').val(json.id);
+				$('#kit_produto_vinculado__sigla').val(json.unidade_saida);
+				$('#kit_produto_vinculado__vr_venda').val(json.vr_venda);
+				$('#kit_produto_vinculado__fracionado').val(json.fracionado);
+				tratamento_fracionado_autosuggest();
+				if($('#kit_produto_vinculado__id_produto_item_vinculado').val() != 0)
+					$('#kit_produto_vinculado__qtd_vinculada').addClass('required');
+			});
+			
+			/**
+			 * Inserindo Autocomplete do NCM no produto a partir "change" do autosuggest
+			 */
+			$("#kit_produto_vinculado__descricao_produto").bind('clear', (function(evt, el){
+				$('#kit_produto_vinculado__id_produto_item_vinculado').val("");
+				$('#kit_produto_vinculado__sigla').val("");
+				$('#kit_produto_vinculado__vr_venda').val("");
+				$('#kit_produto_vinculado__qtd_vinculada').val('');
+//				$('#kit_produto_vinculado__vr_venda').numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').removeClass('required');
+			}));
+		};
+		
+		var tratamentoEdit = function (table,row){
+			$('#kit_produto_vinculado__descricao_produto').next().val($(row).find('[ref*=produto_vinculado__descricao_produto]').html());
+		};
+		
+		var tratamento_fracionado_autosuggest = function(){
+			if($('#kit_produto_vinculado__fracionado').val() == 1){
+				$('#kit_produto_vinculado__qtd_vinculada').removeClass("integer").numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').attr('maxLength','7')
+				$('#kit_produto_vinculado__qtd_vinculada').val('0,000');
+			}else{
+				$('#kit_produto_vinculado__qtd_vinculada').addClass("integer").numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').attr('maxLength','3')
+				$('#kit_produto_vinculado__qtd_vinculada').val('');
+			}
+		};
+		
+
+		var tratamento_fracionado = function(){
+			if($('#produto_fracionado').val() == 1){
+				$('#kit_produto_vinculado__qtd_vinculada').removeClass("integer").numberFormat();
+			}else{
+				$('#kit_produto_vinculado__qtd_vinculada').addClass("integer").numberFormat();
+			}
+		}
+		//regra para incremento de elementos na tabela
+	 	var regraIncrement = function(tr){
+	 		var produtoIgual =($(tr).find("input[name*=produto_vinculado__id_produto_item_vinculado]").val() == $("#kit_produto_vinculado__id_produto_item_vinculado").val());
+			// Verifica por status, id, informacao e vr unitario
+			if(produtoIgual){
+				return tr;
+			}
+	 	};
+	 	var validaLancamento = function(){
+	 		if($('#kit_produto_vinculado__qtd_vinculada').numberValue() <= 0.000){
+	 			Sexy.alert('A quantidade do item vinculado deve ser maior que zero.');
+	 			return false;
+	 		}
+	 		else{
+	 			$('#kit_produto_vinculado__qtd_vinculada').removeClass('required');
+	 			return true;
+	 		}
+	 	}
+	 	
+	 	
+		
+		jQuery(document).ready(function(){
+			$('#kit_produto_vinculado__qtd_vinculada').val('');
+			//insere autocomplete
+			autocompleteProdutoKit("#produtos_vinculados_item_kit");
+			//monta tabela clon�vel
+			$("#div_produtos_vinculados_kit").cloneform({
+				addButton:'#addFormKit',
+				updateButton: '#updateFormKit',
+				fieldPrefix: 'kit',
+				onBeforeEditClone:tratamentoEdit,
+				increment: {
+	    		fields: [
+	    		         'produto_vinculado__id_produto_item_vinculado', 
+	    		         'produto_vinculado__qtd_vinculada', 
+	    		         ],
+	    		rule: regraIncrement
+		    	},
+		    	validateForm: validaLancamento	
+			});
+			$('#kit_produto_vinculado__qtd_vinculada').focus(fracionado_focus);
+		});
+		
+		
+		var fracionado_focus = function(){
+			if($('#kit_produto_vinculado__fracionado').val() == 1){
+				$('#kit_produto_vinculado__qtd_vinculada').removeClass("integer").numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').attr('maxLength','7')
+			}else{
+				$('#kit_produto_vinculado__qtd_vinculada').addClass("integer").numberFormat();
+				$('#kit_produto_vinculado__qtd_vinculada').attr('maxLength','3')
+			}
+		};
+	})(jQuery);
+
+
+/*****************************************************
+produto/produtos/form_produto_vinculado_composicao.js
+*****************************************************/
+
+	(function($){
+		var composicao_itens_form = '';
+		
+		var tratamento_fracionado = function(){
+			if($('#composicao_produto_vinculado__fracionado').val() == 1){
+				$('#composicao_produto_vinculado__qtd_vinculada').removeClass("integer").numberFormat();
+				$('#composicao_produto_vinculado__qtd_vinculada').val('0,000');
+			}else{
+				$('#composicao_produto_vinculado__qtd_vinculada').addClass("integer").numberFormat();
+				$('#composicao_produto_vinculado__qtd_vinculada').val('0');
+			}
+		};
+		
+		var elemQtd = '#composicao_produto_vinculado__qtd_vinculada';
+		
+		/**
+		 * Metodo para inserir autocomplete de sele��o de produtos
+		 * Executado logo apos o carregamento da p�gina e sempre que uma linha � adicionada na tabela de lancamentos
+		 */
+		var autocompleteProduto = function(container){
+			//$(container).find("input:visible").eq(0).focus();
+			
+			$("#composicao_produto_vinculado__descricao_produto").change(function(evt, el, json){
+				//$('#composicao_produto_vinculado__descricao_produto').val(json.value);
+				$('#composicao_produto_vinculado__estoque').val(json.qtd_estoque);
+//				$('[name*=composicao_produto_vinculado__estoque]').val(json.qtd_estoque);
+				$('#composicao_produto_vinculado__id_produto_item_vinculado').val(json.id);
+//				$('[name*=composicao_produto_vinculado__id_produto_item_vinculado]').val(json.id);
+				$('#composicao_produto_vinculado__sigla').val(json.unidade_saida);
+				$('[name*=composicao_produto_vinculado__sigla]').val(json.unidade_saida);
+				$('#composicao_produto_vinculado__vr_venda').val(json.vr_venda);
+//				$('[name*=composicao_produto_vinculado__vr_venda]').val(json.vr_venda).numberFormat();
+				$('#composicao_produto_vinculado__fracionado').val(json.fracionado);
+				//validando campo quantidade quando e inteiro ou fracionado.
+				tratamento_fracionado();
+				$('#composicao_produto_vinculado__qtd_vinculada').addClass('required');
+			});
+			/**
+			 * Inserindo Autocomplete do NCM no produto a partir "change" do autosuggest
+			 */
+			$("#composicao_produto_vinculado__descricao_produto").unbind('clear').bind('clear', (function(evt, el){
+				$('#composicao_produto_vinculado__qtd_vinculada').removeClass('required');
+				$('#composicao_produto_vinculado__descricao_produto').val("");
+				$('#composicao_produto_vinculado__id_produto_item_vinculado').val("");
+				$('#composicao_produto_vinculado__id_produto').val("");
+				$('#composicao_produto_vinculado__sigla').val("");
+				$('#composicao_produto_vinculado__vr_venda').val("");
+			}));
+		};
+		
+		var tratamentoEdit = function (table,row){
+			$('#composicao_produto_vinculado__descricao_produto').next().val($(row).find('[ref*=produto_vinculado__descricao_produto]').html());
+			//tratamento_fracionado();
+		};
+		
+		//regra para incremento de elementos na tabela
+    	var regraIncrement = function(tr){
+    		if($(tr).find("input[name*=produto_vinculado__id_produto]:first").val() == $("#composicao_produto_vinculado__id_produto_item_vinculado").val()){
+    			return tr;
+    		}
+    	};
+    	
+    	var validaLancamento = function(){
+	 		if($('#composicao_produto_vinculado__qtd_vinculada').numberValue() <= 0){
+	 			Sexy.alert('A quantidade do item vinculado deve ser maior que zero.');
+	 			return false;
+	 		}
+	 		else{
+	 			$('#composicao_produto_vinculado__qtd_vinculada').removeClass('required');
+	 			return true;
+	 		}
+	 	};
+	 	
+	 	var atualizaCustoMedio = function(){
+	 		var id_prod = ($('#produto__id').val()) ? $('#produto__id').val() : '0';
+	 		
+	 		
+	 		if($('#produtos_vinculados_composicao tbody tr').length >= 1){
+	 			var url = '/senna/bekka/produto/produtos/getCustoMedio/'+id_prod+'/1';
+	 		}else{
+	 			var url = '/senna/bekka/produto/produtos/getCustoMedio/'+id_prod+'/0';
+	 		}
+	 		
+ 			$.ajax({
+				url: url,
+				dataType: 'json',
+				success: function(data){
+ 					$('#custo_medio').val(data);
+				}
+			});
+	 	};
+    	
+
+		var fracionado_focus = function(){
+			if($('#composicao_produto_vinculado__fracionado').val() == 1){
+				$('#composicao_produto_vinculado__qtd_vinculada').removeClass("integer");
+			}else{
+				$('#composicao_produto_vinculado__qtd_vinculada').addClass("integer");
+			}
+		};
+		
+		
+		jQuery(document).ready(function(){
+			$('#composicao_produto_vinculado__qtd_vinculada').val('');
+			$('#composicao_produto_vinculado__sigla').val('');
+			$('#composicao_produto_vinculado__vr_venda').val('');
+			$("#div_produtos_vinculados_composicao").cloneform({
+				addButton:'#addFormComposicao',
+				updateButton: '#updateFormComposicao',
+				fieldPrefix: 'composicao',
+				increment: {
+            		fields: [
+            		         'produto_vinculado__qtd_vinculada', 
+            		         ],
+            		rule: regraIncrement
+            	},
+				onBeforeEditClone:tratamentoEdit,
+				validateForm: validaLancamento,
+				onClearClone: atualizaCustoMedio,
+				onRemoveClone: atualizaCustoMedio
+			});
+			//insere autocomplete
+			autocompleteProduto("#produtos_vinculados_item_composicao");
+			
+			$('#composicao_produto_vinculado__qtd_vinculada').focus(fracionado_focus);
+		});
+		
+})(jQuery);
+
+	
+(function($){   
+		/**
+		 * Faz as verifica��es quando se est� criando ou editando uma composi��o
+		 */
+		var validateComposicao= function(){
+			var container = $('#div_produtos_vinculados_composicao');
+			var Venda = $("#existe_venda").val();
+			var idProduto= $("#produto__id").val();
+			var estoque = parseInt($("#produto__estoque_disponivel").val());
+			var estoque_revenda = parseInt($('#produto_estoque__qtd').val());
+			//se esta criando um novo(se não existe id ainda)
+			if(!idProduto){
+//				$('#opcoes_produto_vinculado').hide();
+//				$('#estoque_disponivel_field').hide();
+//				$("#fieldset_registrar_composicao").hide();
+//				$("#fieldset_desfazer_composicao").hide();
+			}
+			else{
+				//se estoque for 0 e não existir venda 
+				if(estoque==0 && Venda==0){
+//					$("#fieldset_desfazer_composicao").hide();
+					if($('[name=opt_produto_vinculado]:checked').val()==0){
+//						$('#fieldset_form_produtos_vinculados').hide();
+//						container.find('.controles').each(function(i, el) {
+//							$(el).hide();
+//						});
+					}
+					else{
+							$('#fieldset_form_produtos_vinculados').show();
+//							$("#fieldset_registrar_composicao").hide();
+							container.find('.controles').each(function(i, el) {
+								$(el).show();
+							});
+					}
+					//faz a troca de tabela quando se clica em atualizar o alterar estoque.
+					$('[name=opt_produto_vinculado]').change(function () {
+						//momento da mudan�a de alterao de composicao ou registro de estoque.
+						if($('[name=opt_produto_vinculado]:checked').val()==0){
+//							$('#fieldset_form_produtos_vinculados').hide();
+							$("#fieldset_registrar_composicao").show();
+//							container.find('.controles').each(function(i, el) {
+//								$(el).hide();
+//							});
+						}
+						else{
+							$('#fieldset_form_produtos_vinculados').show();
+//							$("#fieldset_registrar_composicao").hide();
+							container.find('.controles').each(function(i, el) {
+								$(el).show();
+							});
+						}
+					});
+				}
+				else{
+					//se estoque for 0 nao se mosta fieldset para desfazer composicao pois nao existe nenhuma para se desfazer.
+					if(estoque==0){
+//						$("#fieldset_desfazer_composicao").hide();
+					}
+//					$('#opcoes_produto_vinculado').hide();
+					$("#fieldset_desfazer_composicao").show();
+				}
+			}
+		};
+		 var verificaEstoque = function(){
+	        	var flag;
+	        	//Obtendo a quantidade
+				var qtd = $("#quantidade_composicao_registrar").numberValue();
+				//OBtendo o id da composi��o
+				var id = $("#produto__id").val();
+				//Produtos que se encontram na tela
+				var prod = [];
+				//Obtendo os produtos que est�o na tela
+				$('#produtos_vinculados_composicao tbody tr').each(function(i){
+					prod[i] = {
+								id: $(this).find('[name *= produto_vinculado__id_produto_item_vinculado]').val(),
+								qtd_vinculada: $(this).find('[name *= produto_vinculado__qtd_vinculada]').val()
+							  };
+				});
+				$.ajax({
+					type: "POST",
+					url: "/senna/bekka/produto/produtos/verifica_estoque_composicao/"+id+"/"+qtd, //efetua requisicao na pagina apontada pela action do formulario
+					data: ({prod : prod}),
+					dataType: 'json',
+					async:false,
+					success: function(el){
+						if (el == true) {
+							var text = "Não existe quantidade suficiente para criar $1 composição(ões).";
+							Sexy.alert(text.replace(/\$1/,qtd));
+							flag = true;
+						}
+						else {
+							flag = false;
+						}
+					}
+				});
+				return flag;
+	        };
+
+	        
+        var verificaEstoqueDesfazerComposicao = function(){
+        	var qtd = $("#quantidade_composicao_desfazer").numberValue();
+        	var flag;
+        	if(qtd == 0){
+        		Sexy.alert('É necessário indicar uma quantidade maior que zero');
+				flag = true;
+        	}else{
+	    		//OBtendo o id da composi��o
+	    		var id = ($("#produto__id").val()) ? $("#produto__id").val() : '0';
+	    		$.ajax({
+	    			type: "POST",
+	    			url: "/senna/bekka/produto/produtos/verifica_estoque_desfazer_composicao/"+id+"/"+qtd, //efetua requisicao na pagina apontada pela action do formulario
+	    			dataType: 'json',
+	    			async:false,
+	    			success: function(el){
+	    			if (el == false || el == null) {
+	    				var text = "Não existe quantidade suficiente para desfazer $1 composição(ões).";
+	    				Sexy.alert(text.replace(/\$1/,qtd));
+	    				flag = true;
+	    			}
+	    			else {
+	    				flag = false;
+	    			}
+	    		}
+	    		});
+        	}
+			return flag;
+        };
+        
+
+		var tratamento_fracionado_composicao = function(){
+			if($('#produto_fracionado').val() == 1){
+				$('#quantidade_composicao_desfazer').removeClass("integer").numberFormat();
+				$('#quantidade_composicao_registrar').removeClass("integer").numberFormat();
+			}else{
+				$('#quantidade_composicao_desfazer').addClass("integer").numberFormat();
+				$('#quantidade_composicao_registrar').addClass("integer").numberFormat();
+			}
+		};
+        
+        
+		jQuery(document).ready(function(){
+			$(this).data('confirm_message',"");
+			
+			//realiza tratamento de composicoes
+			tratamento_fracionado_composicao();
+			
+			//Obtendo os dados que est�o na tela
+			composicao_itens_form = $('#produtos_vinculados_composicao').serializeTable();
+			
+			//Evento Click registrar
+			$('#btn_registrar_estoque').bind('click',function (ev,ret){
+				if( $('#produtos_vinculados_composicao tbody tr:visible').length < 1){
+					Sexy.alert('A Composição deve possuir pelo menos um item vinculado.');
+					return false;
+				}
+					
+				//Verificando se existe ecf cadastrado para criar a nota
+				var ecf = $('#ecf').val();
+				//
+				var qtd = $("#quantidade_composicao_registrar").val();
+				
+				var submete = false;
+				//
+				$(this).unbind('beforeSubmit.criar_composicao').bind('beforeSubmit.criar_composicao',function (ev,ret){
+						if(qtd == 0){
+							Sexy.alert('É necessário indicar uma quantidade maior que zero');
+							ret.val = false;
+						}
+					
+						if(('0' == 0 || ecf == '0') && '{indicar_nota_composicao}' == '{nao_gerar_mov}'){
+							var message = "Para <b>criar</b> composições com base na fórmula atual o formulário deve ser salvo.Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+						}else{
+							if(('{indicar_nota_composicao}' == '0' || '{indicar_nota_composicao}' == '{gerar_ajust}') && ('0' == 0 || ecf == '0'))
+								var message = "Para <b>criar</b> composições com base na fármula atual o formulário deve ser salvo. Será gerado 2 Ajuste de Estoque. Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+							else{
+								if('0' == 0)
+									var message = "Para <b>criar</b> composições com base na fórmula atual o formulário deve ser salvo. Será gerado 2 NF-e's. Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+								else if('0' == 1 && ecf == '0' && '{indicar_nota_composicao}' != '{gerar_nfe}')	
+									var message = "Para <b>criar</b> composições com base na fórmula atual o formulário deve ser salvo.Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+								else
+									var message = "De acordo com o Ato Cotepe 01.10 será gerado duas NF-e para <b>criar</b> a(s) composição(ões) com base na fórmula atual.Deseja salvar o formulário, gerar duas NF-e e registar <b>$1</b> composição(ões)?";
+							}	
+						}
+						$(this).unsetConfirmMessage(message.replace(/\$1/,qtd));
+						$(this).addConfirmMessage(message.replace(/\$1/,qtd), 'Sim','não');
+//						$(this).data('confirm_message', message.replace(/\$1/,qtd), 'Sim','não');
+						$(this).bind('afterConfirmSubmit.criar_composicao',function(ev,ret){
+							if(ret.val){
+								$('#acao_criar_composicao').val(1);
+							}
+						});
+						
+				});
+			});	
+			
+			//Evento Click
+			$('#btn_desfazer_composicao').bind('click',function (ev,ret){
+				if( $('#produtos_vinculados_composicao tbody tr:visible').length < 1){
+					Sexy.alert('A Composição deve possuir pelo menos um item vinculado.');
+					return false;
+				}
+				//Verificando se existe ecf cadastrado para criar a nota
+				var ecf = $('#ecf').val();
+				//
+				var qtd = $("#quantidade_composicao_desfazer").val();
+				//
+				var submete = false;
+				//
+				$(this).unbind('beforeSubmit.desfazer_composicao');
+				$(this).bind('beforeSubmit.desfazer_composicao',function (ev,ret){
+					if(!verificaEstoqueDesfazerComposicao()){
+						
+						//Verifica se � fiscal
+						if(('0' == 0 || ecf == '0') && '{indicar_nota_composicao}' == '{nao_gerar_mov}'){
+							var message = "Houve modificações relativo a composição, para desfazer deve-se salvar o formulário, você deseja salvar e registrar <b>$1</b> composição(ões)?";
+						}else{
+							if('{indicar_nota_composicao}' == '{gerar_ajust}')
+								var message = "Para <b>desfazer</b> composições com base na fórmula atual o formulário deve ser salvo. Será gerado 2 Ajuste de Estoque. Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+							else{
+								if('0' == 0)
+									var message = "Para <b>desfazer</b> composições com base na fórmula atual o formulário deve ser salvo. Será gerado 2 NF-e's. Deseja salvar o formulário e registrar <b>$1</b> composição(ões)?";
+								else if('0' == 1 && ecf == '0' && '{indicar_nota_composicao}' != '{gerar_nfe}')	
+									var message = "Houve modificações relativo a composição, para desfazer deve-se salvar o formulário, você deseja salvar e registrar <b>$1</b> composição(ões)?";
+								else
+									var message = "De acordo com o Ato Cotepe 01.10 Será gerado duas NF-e para <b>desfazer</b> a(s) composição(ões) com base na fórmula atual.Deseja salvar o formulário, gerar duas NF-e e registar <b>$1</b> composição(ões)?";
+							}	
+						}
+						$(this).unsetConfirmMessage(message.replace(/\$1/,qtd));
+						$(this).addConfirmMessage(message.replace(/\$1/,qtd), 'Sim','não');
+//						$(this).data('confirm_message',message.replace(/\$1/,qtd),'Sim','não');
+						$(this).bind('afterConfirmSubmit.desfazer_composicao',function(ev,ret){
+							if(ret.val){
+								$('#acao_desfazer_composicao').val(1);
+							}
+						});
+						
+					}else{
+//						$(this).data('confirm_message','');
+						$('#acao_desfazer_composicao').val(0);
+						ret.val = false;
+					}
+					
+				});
+				
+			});	
+			
+			
+			
+			$("#btn_registrar_estoque").attr('disabled',true);
+			$("#btn_desfazer_composicao").attr('disabled',true);
+			
+			$('#quantidade_composicao_registrar').keyup(function(){
+				if($(this).numberValue() > 0)
+					$("#btn_registrar_estoque").removeAttr('disabled');
+				else
+					$("#btn_registrar_estoque").attr('disabled',true);
+			});
+			
+			$('#quantidade_composicao_desfazer').keyup(function(){
+				if($(this).numberValue() > 0)
+					$("#btn_desfazer_composicao").removeAttr('disabled');
+				else
+					$("#btn_desfazer_composicao").attr('disabled',true);
+			});
+			//faz as valida��es necess�rias referentes a composicao
+			validateComposicao();
+		});
+		
+	})(jQuery);
+
+
+/********************************************
+produto/produtos/form_produto_valor_venda.js
+********************************************/
+
+(function ($){
+
+	var elem_outras_desp; // Elemento Outras Despesas
+	var elem_custo_utilizado; // Elemento vis�vel Custo M�dio
+	var elem_custo_medio; // Elemento hidden Custo M�dio
+	var elem_botao_sugestao; // Elemento Bot�o de Sugest�o
+	var elem_input_icms;
+	var elem_input_pis;
+	var elem_input_ipi;
+	var elem_input_cofins;
+	var elem_input_irpj;
+	var elem_input_cpp;
+	var elem_input_csll;
+	
+	var calculaLucro = function(el){
+		var $this = $(el);
+		var custo_utilizado = parseFloat(elem_custo_utilizado.numberValue());
+		
+		//Os impostos salvos
+		var json_unidade	= $('#json_impostos_comissoes').val();
+		var parsedObject 	= '';
+		
+		if(json_unidade)
+			parsedObject 	= eval("(" + json_unidade + ")");
+		else{
+			parsedObject = new Object();
+			parsedObject.produto__ref_icms 			= '0';
+			parsedObject.produto__ref_pis 			= '0';
+			parsedObject.produto__ref_ipi 			= '0';
+			parsedObject.produto__ref_cofins 		= '0';
+			parsedObject.produto__ref_irpj			= '0';
+			parsedObject.produto__ref_cpp 			= '0';
+			parsedObject.produto__ref_csll 			= '0';
+			parsedObject.produto__comissao_calc_vv 	= '0';
+		}
+		
+		if("0" == 0){
+			var v2 = custo_utilizado * (parseFloat(parsedObject.produto__ref_icms.replace(',', '.')) / 100);
+			var v3 = custo_utilizado * (parseFloat(parsedObject.produto__ref_pis.replace(',', '.')) / 100);
+			var v4 = custo_utilizado * (parseFloat(parsedObject.produto__ref_ipi.replace(',', '.')) / 100);
+			var v5 = custo_utilizado * (parseFloat(parsedObject.produto__ref_cofins.replace(',', '.')) / 100);
+			var v6 = custo_utilizado * (parseFloat(parsedObject.produto__ref_irpj.replace(',', '.')) / 100);
+			var v7 = custo_utilizado * (parseFloat(parsedObject.produto__ref_csll.replace(',', '.')) / 100);
+			var v8 = custo_utilizado * (parseFloat(parsedObject.produto__ref_cpp.replace(',', '.')) / 100);
+			var v9 = custo_utilizado * (parseFloat(parsedObject.produto__comissao_calc_vv.replace(',', '.')) / 100);
+			var impostos = v2 + v3 + v4 + v5 + v6 + v7 + v8 + v9;
+			var lucro_utilizado = ($this.numberValue()/(custo_utilizado+impostos)) * 100 - 100;
+			
+			//	�Valor de Venda Sugerido� = 1 + 2 + 3 + 4 + 5 + 6.
+			$this.parents('tr').find('[name*=produto_valor_venda__lucro_utilizado]').val(lucro_utilizado).numberFormat();
+		}
+		else{
+			var aliqIcms = (parseFloat(parsedObject.produto__ref_icms.replace(',', '.')) / 100);
+			var aliqPis = (parseFloat(parsedObject.produto__ref_pis.replace(',', '.')) / 100);
+			var aliqIpi = (parseFloat(parsedObject.produto__ref_ipi.replace(',', '.')) / 100);
+			var aliqCofins = (parseFloat(parsedObject.produto__ref_cofins.replace(',', '.')) / 100);
+			var aliqIrpj = (parseFloat(parsedObject.produto__ref_irpj.replace(',', '.')) / 100);
+			var aliqCsll = (parseFloat(parsedObject.produto__ref_csll.replace(',', '.')) / 100);
+			var aliqCpp = (parseFloat(parsedObject.produto__ref_cpp.replace(',', '.')) / 100);
+			var comissao = (parseFloat(parsedObject.produto__comissao_calc_vv.replace(',', '.')) / 100);
+			var lucro_utilizado = (($this.numberValue()*(1-aliqIcms-aliqPis-aliqIpi-aliqCofins-aliqIrpj-aliqCsll-aliqCpp-comissao))-custo_utilizado)/$this.numberValue();
+			var diferenca =($this.parents('tr').find('[name*=produto_valor_venda__lucro_utilizado]').numberValue()/100)-lucro_utilizado;
+			
+			$this.parents('tr').find('[name*=produto_valor_venda__lucro_utilizado]').val(lucro_utilizado*100).numberFormat();
+		}
+	};
+	
+	var calculaPreco = function(el){
+		var $this = $(el);
+
+		//Os impostos salvos
+		var json_unidade	= $('#json_impostos_comissoes').val();
+		var parsedObject 	= '';
+		
+		if(json_unidade)
+			parsedObject 	= eval("(" + json_unidade + ")");
+		else{
+			parsedObject = new Object();
+			parsedObject.produto__ref_icms 			= '0';
+			parsedObject.produto__ref_pis 			= '0';
+			parsedObject.produto__ref_ipi 			= '0';
+			parsedObject.produto__ref_cofins 		= '0';
+			parsedObject.produto__ref_irpj			= '0';
+			parsedObject.produto__ref_cpp 			= '0';
+			parsedObject.produto__ref_csll 			= '0';
+			parsedObject.produto__comissao_calc_vv 	= '0';
+		}
+		
+		if("0" == 0){
+//			1.  (Valor de Custo Utilizado * % Lucro Utilizado)
+			//	2. �1� * �Al�quota ICMS�
+			//	3. �1� * �Al�quota PIS�
+			//	4. �1� * �Al�quota IPI�
+			//	5. �1� * �Al�quota COFINS�
+			//	6. �1� * �Al�quota IRPJ�
+			var valor_utilizado = (1 + (parseFloat($this.parents('tr').find('[name*=produto_valor_venda__lucro_utilizado]').numberValue())/100)) * parseFloat(elem_custo_utilizado.numberValue());
+			var v2 = valor_utilizado * (parseFloat(parsedObject.produto__ref_icms.replace(',', '.')) / 100);
+			var v3 = valor_utilizado * (parseFloat(parsedObject.produto__ref_pis.replace(',', '.')) / 100);
+			var v4 = valor_utilizado * (parseFloat(parsedObject.produto__ref_ipi.replace(',', '.')) / 100);
+			var v5 = valor_utilizado * (parseFloat(parsedObject.produto__ref_cofins.replace(',', '.')) / 100);
+			var v6 = valor_utilizado * (parseFloat(parsedObject.produto__ref_irpj.replace(',', '.')) / 100);
+			var v7 = valor_utilizado * (parseFloat(parsedObject.produto__ref_csll.replace(',', '.')) / 100);
+			var v8 = valor_utilizado * (parseFloat(parsedObject.produto__ref_cpp.replace(',', '.')) / 100);
+			var v9 = valor_utilizado * (parseFloat(parsedObject.produto__comissao_calc_vv.replace(',', '.')) / 100);
+			
+			//	�Valor de Venda Sugerido� = 1 + 2 + 3 + 4 + 5 + 6.
+			$this.val(valor_utilizado + v2 + v3 + v4 + v5 + v6 + v7 + v8 + v9 ).numberFormat();
+		}
+		else{
+	//		�Valor de Custo� / (1 � ((�Al�quota ICMS�/100) + (�Al�quota PIS�/100)
+	//		+ ( �Al�quota IPI�/100) + ( �Al�quota COFINS�/100)
+	//		+ ( �Al�quota IRPJ�/100) + ( �Al�quota CSLL�/100)
+	//		+ ( �Al�quota CPP�/100) + (�% Lucro Utilizado� / 100))
+			var valorCusto = elem_custo_utilizado.numberValue();
+			var porcentagem = $this.parents('tr').find('[name*=produto_valor_venda__lucro_utilizado]').val().replace('.','').replace(',','.');
+			var aliqIcms = (parseFloat(parsedObject.produto__ref_icms.replace(',', '.')) / 100);
+			var aliqPis = (parseFloat(parsedObject.produto__ref_pis.replace(',', '.')) / 100);
+			var aliqIpi = (parseFloat(parsedObject.produto__ref_ipi.replace(',', '.')) / 100);
+			var aliqCofins = (parseFloat(parsedObject.produto__ref_cofins.replace(',', '.')) / 100);
+			var aliqIrpj = (parseFloat(parsedObject.produto__ref_irpj.replace(',', '.')) / 100);
+			var aliqCsll = (parseFloat(parsedObject.produto__ref_csll.replace(',', '.')) / 100);
+			var aliqCpp = (parseFloat(parsedObject.produto__ref_cpp.replace(',', '.')) / 100);
+			var vrComissao = (parseFloat(parsedObject.produto__comissao_calc_vv.replace(',', '.')) / 100);
+			var vrVendaSugerido = valorCusto / (1 - (aliqIcms + aliqPis + aliqIpi + aliqCofins +aliqIrpj + aliqCsll + aliqCpp + vrComissao+ (porcentagem/100)));
+			var diferenca =$this.numberValue()-vrVendaSugerido;
+			$this.val(vrVendaSugerido).numberFormat();
+		}
+	};
+	
+	var calculaSugerido =function(){
+
+		//Os impostos salvos
+		var json_unidade	= $('#json_impostos_comissoes').val();
+		var parsedObject 	= '';
+		
+		if(json_unidade)
+			parsedObject 	= eval("(" + json_unidade + ")");
+		else{
+			parsedObject = new Object();
+			parsedObject.produto__ref_icms 			= '0';
+			parsedObject.produto__ref_pis 			= '0';
+			parsedObject.produto__ref_ipi 			= '0';
+			parsedObject.produto__ref_cofins 		= '0';
+			parsedObject.produto__ref_irpj			= '0';
+			parsedObject.produto__ref_cpp 			= '0';
+			parsedObject.produto__ref_csll 			= '0';
+			parsedObject.produto__comissao_calc_vv 	= '0';
+		}
+		
+		$('[name*=valor_venda_sugerido]').each(function(){
+			
+				if("0" == 0){
+					//	1.  (Valor de Custo Utilizado * % Lucro Utilizado)
+					//	2. �1� * �Al�quota ICMS�
+					//	3. �1� * �Al�quota PIS�
+					//	4. �1� * �Al�quota IPI�
+					//	5. �1� * �Al�quota COFINS�
+					//	6. �1� * �Al�quota IRPJ�
+					//	7. �1� * �Al�quota CPP�
+					//	8. �1� * �Al�quota CSLL�
+					//	9. �1� * �Al�quota Comiss�o�
+					var porcentagem = $(this).parents('tr').find('[name*=pvv_valor_lucro_sugerido]').val().replace('.','').replace(',','.');
+					var custoMedio = elem_custo_utilizado.numberValue();
+					var valor_utilizado = ((1 + (porcentagem/100)) * custoMedio);
+					var v2 = valor_utilizado * (parseFloat(parsedObject.produto__ref_icms.replace(',', '.')) / 100);
+					var v3 = valor_utilizado * (parseFloat(parsedObject.produto__ref_pis.replace(',', '.')) / 100);
+					var v4 = valor_utilizado * (parseFloat(parsedObject.produto__ref_ipi.replace(',', '.')) / 100);
+					var v5 = valor_utilizado * (parseFloat(parsedObject.produto__ref_cofins.replace(',', '.')) / 100);
+					var v6 = valor_utilizado * (parseFloat(parsedObject.produto__ref_irpj.replace(',', '.')) / 100);
+					var v7 = valor_utilizado * (parseFloat(parsedObject.produto__ref_cpp.replace(',', '.')) / 100);
+					var v8 = valor_utilizado * (parseFloat(parsedObject.produto__ref_csll.replace(',', '.')) / 100);
+					var v9 = valor_utilizado * (parseFloat(parsedObject.produto__comissao_calc_vv.replace(',', '.')) / 100);
+					//	�Valor de Venda Sugerido� = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9.
+					$(this).val(valor_utilizado + v2 + v3 + v4 + v5 + v6 + v7 + v8 + v9).numberFormat();
+				}
+				else{
+	//				�Valor de Custo� / (1 � ((�Al�quota ICMS�/100) + (�Al�quota PIS�/100)
+	//				+ ( �Al�quota IPI�/100) + ( �Al�quota COFINS�/100)
+	//				+ ( �Al�quota IRPJ�/100) + ( �Al�quota CSLL�/100) + ( �Comiss�o�/100)
+	//				+ ( �Al�quota CPP�/100) + (�% Lucro Utilizado� / 100))
+					var valorCusto = elem_custo_utilizado.numberValue();
+					var porcentagem 	= $(this).parents('tr').find('[name*=pvv_valor_lucro_sugerido]').val().replace('.','').replace(',','.');
+					var aliqIcms 		= (parseFloat(parsedObject.produto__ref_icms.replace(',', '.')) / 100);
+					var aliqPis 		= (parseFloat(parsedObject.produto__ref_pis.replace(',', '.')) / 100);
+					var aliqIpi 		= (parseFloat(parsedObject.produto__ref_ipi.replace(',', '.')) / 100);
+					var aliqCofins 		= (parseFloat(parsedObject.produto__ref_cofins.replace(',', '.')) / 100);
+					var aliqIrpj 		= (parseFloat(parsedObject.produto__ref_irpj.replace(',', '.')) / 100);
+					var aliqCsll		= (parseFloat(parsedObject.produto__ref_csll.replace(',', '.')) / 100);
+					var aliqCpp 		= (parseFloat(parsedObject.produto__ref_cpp.replace(',', '.')) / 100);
+					var aliqComissao 	= (parseFloat(parsedObject.produto__comissao_calc_vv.replace(',', '.')) / 100);
+					var vrVendaSugerido = valorCusto / (1 - (aliqIcms + aliqPis + aliqIpi + aliqCofins +aliqIrpj + aliqCsll + aliqCpp + aliqComissao + (porcentagem/100)));
+					$(this).val(Math.abs(vrVendaSugerido)).numberFormat();
+				}
+		});
+	};
+	
+	var atualizaLucro = function(){
+		$('[name*=produto_valor_venda__vr_venda]').each(function(){
+			calculaLucro(this);
+		});
+	};
+	
+	$(document).ready(function(){
+		
+		/**
+		 * Ajustando o toolTip
+		 */
+		$("#tip_cabecalho").find('div').attr('style', 'float:left; margin-left:10%; width:100%;');
+		
+		$("#select_comissao").change(function(){
+			var v = $(this).val();
+			if(v == 1){ 
+				$("#produto__comissao_calc_vv").val(0).numberFormat();
+			}
+			else if(v == 2){
+				$("#produto__comissao_calc_vv").val("0").numberFormat();
+			}
+			else if(v == 3){ 
+				$("#produto__comissao_calc_vv").val($("#produto__comissao").numberValue()).numberFormat();
+			}
+		});
+		
+		elem_outras_desp = $('#produto__custo_outras_despesas');
+		elem_custo_utilizado = $('#produto__custo_utilizado');
+		elem_custo_medio = $('#custo_medio');
+		elem_botao_sugestao = $('#btn_suggest');
+		elem_input_icms = $('#produto__ref_icms');
+		elem_input_pis = $('#produto__ref_pis');
+		elem_input_ipi = $('#produto__ref_ipi');
+		elem_input_cofins = $('#produto__ref_cofins');
+		elem_input_irpj = $('#produto__ref_irpj');
+		elem_input_cpp = $('#produto__ref_cpp');
+		elem_input_csll = $('#produto__ref_csll');
+		elem_input_comi = $('#produto__comissao_calc_vv');
+
+		elem_custo_utilizado.blur(function () { calculaSugerido(); atualizaLucro();});
+		elem_input_icms.blur(function () { calculaSugerido(); atualizaLucro();});
+		elem_input_pis.blur(function () { calculaSugerido(); atualizaLucro();});
+		elem_input_ipi.blur(function () { calculaSugerido(); atualizaLucro();});
+		elem_input_cofins.blur(function () { calculaSugerido(); atualizaLucro();});
+		elem_input_irpj.blur(function () { calculaSugerido(); atualizaLucro(); });
+		elem_input_cpp.blur(function () { calculaSugerido(); atualizaLucro(); });
+		elem_input_csll.blur(function () { calculaSugerido(); atualizaLucro(); });
+		elem_outras_desp.blur(function () {calculaSugerido(); atualizaLucro();});
+		elem_input_comi.blur(function () {calculaSugerido(); atualizaLucro();});
+		
+		elem_custo_utilizado.blur(function(){
+			calculaSugerido(); 
+			atualizaLucro();
+		});
+		
+		$('[name*=lucro_utilizado]').blur(function(){
+			calculaPreco($(this).parents('tr').find('[name*=produto_valor_venda__vr_venda]'));
+		});
+		
+		$('[name*=vr_venda]').blur(function(){
+			calculaLucro($(this).parents('tr').find('[name*=produto_valor_venda__vr_venda]'));
+		});
+		elem_botao_sugestao.click(function(){
+			if($(elem_custo_utilizado).numberValue() <= 0){
+				Sexy.alert('Valor de Custo não foi informado. Sendo assim, o Valor de Venda Será R$0,00');
+				return;
+			}
+				
+			$('[name*=produto_valor_venda__lucro_utilizado]').each(function(){
+					$(this).val($(this).parents('tr').find('[name*=pvv_valor_lucro_sugerido]').val());
+					$(this).parents('tr').find('[name*=produto_valor_venda__vr_venda]').val($(this).parents('tr').find('[name*=valor_venda_sugerido]').val());
+					calculaPreco($(this).parents('tr').find('[name*=produto_valor_venda__vr_venda]'));
+			});
+			calculaSugerido();
+		});
+		
+		// Calcula valores sugeridos
+		calculaSugerido();
+		atualizaLucro();
+		
+		// 'Valor de Venda Utilizado': Este campo não pode ter valor inferior a 0,01. 
+		$("[type=submit]").bind('beforeSubmit.valor',function (evt ,r){
+			$('[name*=produto_valor_venda__vr_venda]').each(function (){
+				if ($(this).numberValue() <= 0)
+				{
+					Sexy.alert('Valores de venda não podem ser inferiores é R$0,01.');
+					r.val = false;
+					return false;
+				}
+			});
+		});
+		
+		$('#btn_calcular_vr_custo').click(function(){
+			
+			var custoMedio = $('#custo_medio').numberValue();
+			var despesasAcessorias = $('#despesas_acessorias').numberValue();
+			var custoOutrasDespesas= $('#produto__custo_outras_despesas').numberValue();
+			$('#produto__custo_utilizado').val(custoMedio + despesasAcessorias + custoOutrasDespesas).numberFormat();
+			$('#produto__custo_utilizado').blur();
+		});
+		
+		//A��o Cadastrar Novo Valor de Venda
+		$('#btn_novo_vr_venda').click(function(){
+			parent.MochaUI.openModal({
+				id: "valor_venda",
+				title: 'Cadastrar Novo Valor de Venda',
+				contentURL: "/senna/bekka/produto/produtos_tipos_valores/form",
+				width:1000,
+				height:587,
+				onClose:function (){
+					$.ajax({
+						url: '/senna/bekka/produto/produtos/get_new_valor_venda/'+$('#produto__id').val(),
+						dataType: 'json',
+						success: function(data){
+						
+							var tabela_vr_venda			= $('#table_vl_vendas tbody tr');
+					
+							var qtd_valor_venda_bd 		= data.length;
+							var qtd_valor_venda_tela	= tabela_vr_venda.length;
+							var diferenca 				= qtd_valor_venda_bd - qtd_valor_venda_tela;
+							
+							if(qtd_valor_venda_bd != qtd_valor_venda_tela){
+								//Como traz do maior para o menor verifica o primeiro
+								data.each(function(val, i){
+									if(i == 0){
+										var clone = tabela_vr_venda.last().clone();
+										$('#table_vl_vendas tbody').append(clone);
+										
+
+										$('#table_vl_vendas tbody tr').last().find('[ref=produto_valor_venda__id_produto_tabela_tipo_valor]').val(val.pvv_id_produto_tabela_tipo_valor).numberFormat();
+										$('#table_vl_vendas tbody tr').last().find('[ref=produto_valor_venda__id_produto_tabela_tipo_valor]').attr('id', 'tipo_'+val.pvv_id_produto_tabela_tipo_valor);
+										$('#table_vl_vendas tbody tr').last().find('[ref=pvv_valor_lucro_sugerido]').val(val.pvv_valor_lucro_sugerido).numberFormat();
+										$('#table_vl_vendas tbody tr').last().find('[ref=produto_valor_venda__lucro_utilizado]').val(val.pvv_valor_lucro_sugerido).numberFormat();
+										$('#table_vl_vendas tbody tr').last().find('[ref=pvv_id]').val(val.pvv_id);
+										$('#table_vl_vendas tbody tr').last().find('[name*=valor_venda_sugerido]').val('0,01').numberFormat();
+										$('#table_vl_vendas tbody tr').last().find('[ref=produto_valor_venda__vr_venda]').val('0,01').numberFormat();
+										$('#table_vl_vendas tbody tr').last().find('td').first().find('span').text(val.pvv_tipo_valor);
+										calculaSugerido(); 
+										atualizaLucro();
+									}
+								});
+								
+							}
+						}
+					});
+				}
+			 });
+		});
+		
+		var id_field = $('#json_impostos_comissoes').attr('id');
+		//A��o Impostos e Comiss�es
+		$('#btn_impostos_comissoes').click(function(){
+			parent.MochaUI.openModal({
+				id: "impostos_comissoes",
+				title: 'Informar Impostos e Comissões',
+				contentURL: "/senna/bekka/produto/produtos/form_impostos_comissoes/"+id_field+"/"+$('#produto__id').val(),
+				onClose:function (){
+					calculaSugerido(); atualizaLucro();
+				}
+			});
+		});
+
+	});
+})(jQuery);
+
+
+/**************************************
+produto/produtos/form_produto_grade.js
+**************************************/
+
+(function($){
+	
+	// Mantem as opcoes iniciais do select
+	var opcoes;
+	
+	var mantemSelects = function ()
+	{
+		// Armazena o ID dos selects de modalidades
+		var prim = '[name=modalidade_primaria]';
+		var sec = '[name=modalidade_secundaria]';
+		var terc = '[name=modalidade_terciaria]';
+		
+		// Armazena o valor dos selects
+		var prim_v = $(prim).val();
+		var sec_v = $(sec).val();
+		var terc_v = $(terc).val();
+
+		$(prim+','+sec+','+terc).unbind('customData').bind('customData',function (ev,customData) {
+			customData.nao_mostrar_ids = [prim_v,sec_v,terc_v];
+		});
+		
+	};	
+	
+	var multiplicar_array = function (a,b)
+	{
+		// Verifica se a e b s�o array e cont�m elementos
+		if (typeof(a[0])=="undefined" || a[0] == '')
+			return b;
+		if (typeof(b[0])=="undefined" || b[0] == '')
+			return a;
+		
+		var saida = [];
+		var count = 0;
+		// Multiplica os arrays
+		$.each(a,
+			function (i, value_a)
+			{
+				$.each(b,
+					function (k, value_b)
+					{
+						saida[count] = value_a + ' ' + value_b;
+						count++;
+					}
+				);
+			}
+		);
+		
+		return saida;
+	};
+	
+	var parse_array = function (arr)
+	{		
+		var saida = [];
+	
+		// Monta o array
+		$.each(arr,
+			function (k, value)
+			{
+				saida[k] = value.desc_modalidade;
+			}
+		);
+		
+		return saida;
+	};
+
+	/**
+	 * Associa eventos da grade para submissao do formulario
+	 * Gera a mensagem de confirma��o. 
+	 */
+	var confirmaSubmit = function(){
+		$("input[type=submit]").bind("beforeSubmit.grade", function(evt,ret){
+			if($('#produto__vinculacao').val() == 'G'){
+				var sum_estoque = 0;
+				$('#produtos_grade tbody tr').each(function(){
+					if($(this).find('[name *= produto_grade__quantidade]').numberValue() > 0){
+						sum_estoque += parseFloat($(this).find('[name *= produto_grade__quantidade]').numberValue());
+					}
+				});
+				
+				var qtdImob = $("#produto_imobilizado__qtd").numberValue();
+				var qtdProp = $("#produto_proprio__qtd").numberValue();
+				var qtdReve = $("#produto_estoque__qtd").numberValue()
+				var total 	= qtdImob + qtdProp + qtdReve;
+				//verificando se soma dos estoques eh maior que a do pai grade
+//				if (sum_estoque != 0 && sum_estoque > parseFloat(total)){
+//					Sexy.alert('O somat�rio da quantidade de cada item da grade � maior que o estoque dispon�vel do produto');
+//					ret.val = true;
+//					return false;
+//				}
+				//Verifica se a grade foi gerada
+				if(!$("#div_produtos_grade").data('created')){
+					Sexy.alert("O produto está definido como grade. É necessário gerar as grades antes de salvá-lo.");
+					ret.val = false;
+				}
+				//Verifica se existem nomes repetidos para filhos da grade
+				var grade_val = [];
+				$('#produtos_grade tbody tr [name*=produto_grade__descricao_produto]').each(function (i){
+					grade_val[i] = $(this).val().toLowerCase(); 
+				});
+				if (grade_val.length != $.unique(grade_val).length){
+					Sexy.alert('Existe "Descrição" de um Filho da Grade duplicada.');
+					ret.val = false;
+					return false;
+				}
+			}
+		});
+	};
+	
+	/**
+	 * Fun��o que sobreescreve a $.unique do jQuery, permitindo que seja aplicada sobre arrays com strings
+	 * @author jdrummond
+	 * @since 24/3/2011
+	 * @see http://paulirish.com/2010/duck-punching-with-jquery/
+	 */
+	var _old = $.unique;
+    $.unique = function(arr){
+        // do the default behavior only if we got an array of elements
+        if (!!arr[0].nodeType){
+            return _old.apply(this,arguments);
+        } else {
+            // reduce the array to contain no dupes via grep/inArray
+            return $.grep(arr,function(v,k){
+                return $.inArray(v,arr) === k;
+            });
+        }
+    };
+    
+	var gerar_lista_grade = function ()
+	{
+		$("#div_produtos_grade").show().data('created', true);
+		$('#gerar_grade').hide();
+		$('.div_modalidade').hide();
+		$('[name*=desc_modalidade]').attr('disabled','disabled');
+		
+		var array_pri = parse_array(eval($('#dados_grade_pri').serializeTable()));
+		var array_sec = parse_array(eval($('#dados_grade_sec').serializeTable()));
+		var array_ter = parse_array(eval($('#dados_grade_ter').serializeTable()));
+		var ret1 = multiplicar_array(array_pri,array_sec);
+		var ret2 = multiplicar_array(ret1,array_ter);
+		
+		//Limite m�ximo de Grades criadas
+		if(ret2.length < '999'){
+			$.each(ret2,
+					function (i,value)
+					{
+				// Departamento
+				var id_departamento_pai = $('[name=produto_departamento__id_financeiro_setor]').val();
+				var desc_departamento_pai = $('[autosuggest=produto_departamento__id_financeiro_setor]').val();
+				$('#div_produtos_grade tr:last').find('[name*=produto_grade__id_financeiro_setor]').val(id_departamento_pai);
+				$('#div_produtos_grade tr:last').find('[autosuggest*=produto_grade__id_financeiro_setor]').val(desc_departamento_pai);
+				
+				
+				$('#div_produtos_grade tr:last').find('[name*=produto_grade__descricao_produto]').val(value);
+				if (ret2.length > (i+1))
+					$('#div_produtos_grade').find('.addClone').click();
+				
+					}
+			);
+		}else{
+			desfazer_grade();
+			Sexy.alert("Não é possível gerar as grades pois ultrapassou o número máximo de combinações (999).");
+		}
+	};
+	/**
+	 * volta a dela anterior para mostrar as modalidades de grade
+	 */
+	var desfazer_grade = function(){
+		$("#div_produtos_grade").hide();
+		$('#gerar_grade').show();
+		$('.div_modalidade').show().formata_inputs_modalidade();
+		$('[name*=desc_modalidade]').removeAttr('disabled');
+		
+		$('#produtos_grade tbody tr:not(:first)').remove();
+		$('#produtos_grade tbody tr:first input[type=text]:not(:first)').val('');
+		
+	}
+	
+	var calculaEstoque = function ()
+	{	
+		var estoque_inicial = $('#produto_estoque__qtd').numberValue();
+		estoque_inicial += $('#produto_imobilizado__qtd').numberValue();
+		estoque_inicial += $('#produto_proprio__qtd').numberValue();
+		
+		var quantidades = 0;
+		$('#div_produtos_grade [name*=produto_grade__quantidade]').each(
+			function ()
+			{
+				if(parseFloat($(this).numberValue()) > 0)
+					quantidades += parseFloat($(this).numberValue());
+			}
+		);
+		var total = estoque_inicial - quantidades;
+				
+		$('#estoque_disponivel').val(total).numberFormat();
+		
+		return true;
+	};
+	
+	var formataLinha = function (tb, container) 
+	{
+		// Departamento
+		var id_departamento_pai = $('[name=produto_departamento__id_financeiro_setor]').val();
+		var desc_departamento_pai = $('[autosuggest=produto_departamento__id_financeiro_setor]').val();
+		$(container).find('[name*=produto_grade__id_financeiro_setor]').val(id_departamento_pai);
+		$(container).find('[autosuggest*=produto_grade__id_financeiro_setor]').val(desc_departamento_pai);
+				
+		$(container).find('[name*=produto_grade__quantidade]').val('0').numberFormat();
+		$(container).find('[name*=produto_grade__quantidade]').blur(function(){ calculaEstoque(); });
+		calculaCodigo();
+    	// Habilitando campos somente leitura na clonetable
+    	$(container).find('[name*=produto_grade__cod_secundario],[name*=produto_grade__descricao_produto]').removeAttr('disabled');
+    	$(container).data('criada',1);
+    	$(container).find('a.removeTableClone').css("visibility", "");
+	};
+	
+	var calculaCodigo = function ()
+	{
+		$("#produtos_grade tr").each(
+			function (i)
+			{
+				$(this).find('[name*=_produto_grade__cod_grade]').val(str_pad(i,3,'0','STR_PAD_LEFT'));
+				$(this).find('[name*=produto_grade__cod_grade]').val(str_pad(i,3,'0','STR_PAD_LEFT'));
+			}
+		);
+	};
+	
+	var validaRemocao = function (row)
+	{
+		if ($(row).data('criada') != 1)
+		{
+			Sexy.alert("Não é possível remover uma grade já lançada.");
+			return false;
+		}
+		return true;
+	};
+	
+	/**
+	 * Trata alteração no select de unidade de saida
+	 * @author jdrummond
+	 * @since 11/03/2011
+	 */
+	var changeUnidadeSaida = function () {
+		$.getJSON(
+				"/senna/produto/unidadeuso/get/"+$('#produto__id_unidade_saida').val(), 
+			function(json){
+				if (json.fracionado != '1'){
+					$('#produtos_grade tbody tr [name*=produto_grade__quantidade]').each(function (a,b) {
+						$(this).addClass('integer').numberFormat();
+					});
+				}
+				else{
+					$('#produtos_grade tbody tr [name*=produto_grade__quantidade]').each(function () {
+						$(this).removeClass('integer').numberFormat();
+					});
+				}
+			}
+		);
+	};
+	
+	/**
+	 * Bloqueia quantidades da grade caso a soma dos estoques seja menor ou igual a zero
+	 */
+	function bloqueiaQuantidades(){
+		var qtdImob = $("#produto_imobilizado__qtd").numberValue();
+		var qtdProp = $("#produto_proprio__qtd").numberValue();
+		var qtdReve = $("#produto_estoque__qtd").numberValue();
+		
+		if(qtdImob + qtdProp + qtdReve <0){
+			$('#produtos_grade tbody tr [name*=produto_grade__quantidade]').attr("readonly", "readonly");
+		}
+		
+	};
+	
+	
+	/**
+	 * Formata os inputs de modalidades (chamado na div)
+	 * @author jdrummond
+	 * @since 16/03/2011
+	 */
+	jQuery.fn.formata_inputs_modalidade = function (){
+		return this.each(function () { $(this).find('[name*=desc_modalidade]').addClass('required'); });
+	};
+	
+	/**
+	 * Remove todos os inputs (chamado na div)
+	 * @author jdrummond
+	 * @since 16/03/2011
+	 */
+	jQuery.fn.remove_inputs_modalidade = function (){
+		return this.each(function () { 
+			// Remove linhas
+			$(this).find('.removeTableClone').click();
+			// Remove required da primeira
+			$(this).find('[name*=desc_modalidade]').removeClass('required');
+		});
+	};
+	
+    $(document).ready(function(){
+    	// Tratamento anterior � submiss�o do form
+		confirmaSubmit();
+		
+    	// Trata select unidade de sa�da
+    	$('#produto__id_unidade_saida').change(changeUnidadeSaida);
+    	changeUnidadeSaida();
+    	
+    	// Monta tabela clon�vel p/ Div de Produtos da Grade 
+    	$("#produtos_grade").clonetable({
+    		addButtonLabel: 'Inserir',
+            onCreateClone: formataLinha,
+            onRemoveClone: function () { calculaCodigo(); calculaEstoque(); },
+            onBeforeRemoveClone: validaRemocao
+    	});
+    	
+    	// Desabilitando campos somente leitura na clonetable
+    	$('#produtos_grade [name*=produto_grade__descricao_produto]').each(
+    		function (){
+    			if ($(this).parents('tr').find('[name*=produto_grade__id]').val() != ''){
+    				$(this).attr('disabled','disabled');
+    				$(this).parents('tr').find('a.removeTableClone').css("visibility", "hidden");
+    				$('#desfazer_grade').hide();
+    			}
+    		}
+		);
+    	
+    	//Bloqueia quantidades de itens da grade caso a soma dos estoques seja menor ou igual a 0
+    	bloqueiaQuantidades();
+    	
+    	// Calcula o estoque
+    	calculaEstoque();
+    	
+    	// Adiciona comportamento no elemento quantidade
+		$("#produtos_grade [name*=produto_grade__quantidade]").blur(function(){ calculaEstoque(); });
+    	
+    	// --- [ Se est� editando o produto ]
+    	if ($('#produto__id').val() != ''){
+    		$('.div_modalidade').hide();
+        	// Esconde botao p gerar grade
+        	$('#gerar_grade').hide();
+        	// Aponta que grades ja foram geradas
+        	$("#div_produtos_grade").data('created','1');
+    	}
+    	// --- [ Se est� criando um novo produto ]
+    	else{
+    		// Formata primeira linha
+    		$('#produtos_grade tbody tr:first').data('criada','1').find('[name*=_produto_grade__cod_grade],[name*=produto_grade__cod_grade]').val('001');
+    		
+    		// Cria mensagem de confirma��o
+    		$('#produto__vinculacao').change(function (){
+    			if ($('#produto__vinculacao').val() == 'G')
+					$('input[type=submit]').data("confirm_message","Após salvar,este item como uma grade você nao poderá modificar o tipo de item. Tem certeza que deseja salvar?");
+    			else
+    				$('input[type=submit]').removeData("confirm_message");
+    				
+    		});
+			
+    		// Aponta comportamento do botao para gera�ao da grade
+	    	$('#gerar_grade').click(gerar_lista_grade);
+	    	
+	    	// Aponta comportamento do botao para gera�ao da grade
+	    	$('#desfazer_grade').click(desfazer_grade);
+	    	
+	        // Monta tabela clon�vel p/ Modalidade Primaria 
+	    	$("#dados_grade_pri").clonetable({
+				addButtonLabel: 'Nova Grade'
+			});
+	    	// Monta tabela clon�vel p/ Modalidade Secundaria 
+	    	$("#dados_grade_sec").clonetable({
+	    		addButtonLabel: 'Nova Grade'
+	    	});
+	    	// Monta tabela clon�vel p/ Modalidade Terciaria 
+	    	$("#dados_grade_ter").clonetable({
+	    		addButtonLabel: 'Nova Grade'
+	    	});
+	    	
+	    	// Esconde div de produtos da grade
+	    	$('#div_produtos_grade').hide();
+	    	
+	    	// Mantem as opcoes iniciais do select
+	    	opcoes = $('#modalidade_primaria').html();
+	    	
+	    	// Formata input de modalidade primaria
+	    	$('#div_modalidade_primaria').formata_inputs_modalidade();
+	    	
+	    	// Esconde modalidades secundaria e terciaria
+	    	$('#div_modalidade_secundaria,#div_modalidade_terciaria').hide();
+	    	
+	    	// Cria ajax para alimentar a coluna de modalidade e mantem os selects
+	    	$('#modalidade_primaria,#modalidade_secundaria,#modalidade_terciaria').change(
+	    		function ()
+	    		{
+					mantemSelects();
+	    			if ($(this).val() != '')
+	    			{
+	    				if ($(this).closest('div').next().find('.autosuggest').length)
+	    				{
+	    					// Mostra div da proxima modalidade
+	    					$(this).closest('div').next().show().formata_inputs_modalidade();
+	    				}
+	    				
+		    			// Remove todas as linhas
+		    			$(this).closest('div').find('.removeTableClone').click();
+		    			
+		    			var $select = $(this);
+		    			
+		    			$.getJSON(
+	    					"/senna/produto/modalidades/getFilhosModalidade/"+$(this).val(), 
+	    					function(json){
+	    						$select.closest('div').find('tr:last [name*=desc_modalidade]').val(json[0].descricao);
+	    						for(var i =1; i < json.length;i++)
+	    						{
+		    						// Cria nova linha vazia
+		    						$select.closest('div').find('.addClone').click();
+		    						
+		    						// Alimenta a nova linha com o valor da descricao
+		    						$select.closest('div').find('tr:last [name*=desc_modalidade]').val(json[i].descricao);
+	    						}
+	    					}
+	    				);
+	    			}
+	    			else
+	    			{
+		    			// Remove todas as linhas com exce��o da primeira
+		    			$(this).closest('div').next().remove_inputs_modalidade().hide();
+	    			}
+	    		}
+			);
+    	}
+    	
+    	// Evento lick para gerar codigo automatico
+    	$('.ean').live("click", function(){
+    		$(this).parents('tr').find("[id*=produto_grade__cod_secundario]").val(gera_ean());
+    	});
+    	
+    	// Evento lick para gerar codigo automatico
+    	$('#ean_todos_filhos_grade').click(function(){
+    		$("[id*=produto_grade__cod_secundario]").each(function() {
+    			$(this).val(gera_ean());    			
+    		});
+    	});
+    	
+    	
+    	
+    });
+})(jQuery);
+
+
+/******************************************
+produto/produtos/form_produto_atributos.js
+******************************************/
+
+(function($){
+	
+     function change_cnpj_produtor (){
+ 		if($('#produto__tipo_producao').val()=='T'){
+ 			$("#produto__cnpj_produtor").removeAttr('disabled');
+ 		}
+ 		else{
+ 			$("#produto__cnpj_produtor").attr('disabled','disabled');
+ 		}
+ 	}
+	
+    $(document).ready(function(){
+    	//Inserere evento para terceiros
+    	change_cnpj_produtor();
+		$('#produto__tipo_producao').change(change_cnpj_produtor);
+    	
+    	 //Insere os eventos antes do focus ser dado na primeira linha no autocomplete.
+    	$("table[id=produto_atributos]").clonetable({
+            addButtonLabel: 'Adicionar'
+        });
+    });
+    
+})(jQuery);
+
+/* Validando desc_produto 
+ * -------------------------------- 
+ * Verifica se o primeiro caractere não � uma letra
+ * 
+ * */
+jQuery.validator.addMethod("primeiroCaractere", function(value, element) {
+	var primeiroCaractere = value.substr(0,1);
+	if(primeiroCaractere.length > 0){
+		return isNaN(primeiroCaractere);
+	}
+	return true;
+});
+
+
+
+
+/*********************************************
+produto/produtos/form_produto_fornecedores.js
+*********************************************/
+
+(function($){
+	
+	var autocompleteFornecedor = function(table, container){
+		
+		// Trata o comportamento do autosuggest de produtos
+		$(container).find("[name*=produto_fornecedor__id_fornecedor]").change(function(evt, el, json){
+			if(json.flag_exterior == 1){
+				$(container).find("[name*=cpf_cnpj_fornecedor]").val("");
+			}
+			else{
+				$(container).find("[name*=cpf_cnpj_fornecedor]").val(json.cpfcnpj);
+			}
+		});
+		
+		 $(container).find("[name*=produto_fornecedor__id_fornecedor]").bind("clear", function(evt){
+	        	$(container).find("[name*=produto_fornecedor__id]," +
+	        			"[name*=produto_fornecedor__id_produto]," +
+	        			"[name*=produto_fornecedor__id_fornecedor]," +
+	        			"[name*=cpf_cnpj_fornecedor],").val("");
+	        	
+	        	$(this).bestupper();
+	        });
+	};
+	
+	var validaLinhas = function(){
+		if($("#produto_fornecedores tbody tr:last").find("[name*=produto_fornecedor__id_fornecedor]").val() ==''){
+			return false;
+		}
+		return true;
+    };
+    
+	
+    $(document).ready(function(){
+    	 //insere os eventos antes do focus ser dado na primeira linha no autocomplete.
+    	
+    	$("#produto_fornecedores").clonetable({
+            addButtonLabel: 'Adicionar',
+            onCreateClone: autocompleteFornecedor,
+	        onBeforeCreateClone: validaLinhas
+            //enterLikeTab: true
+        });
+    	
+    	 //Insere autocomplete e efetua tratamentos para lan�amentos
+        $("#produto_fornecedores tbody tr").each(function (){
+        	autocompleteFornecedor("#produto_fornecedores", $(this), true);
+        });
+    });
+})(jQuery);
+
+
+
+
+/********************************
+produto/produtos/form_produto.js
+********************************/
+
+/**
+ * @author bbarbosa
+ */
+(function($){
+	
+	var toogle_dados_ncm = function(evento_click){
+		if($('#produto__cod_ncm').val() == '' && !evento_click){
+			$('#fieldset_tributacao').hide();
+			$('#caixa_info_ncm').show();
+		}else{
+			$("#produto_nota_fiscal").attr('checked', 'checked');
+			$('#fieldset_tributacao').show();
+			
+			if($('#produto__cod_ncm').val() == '')
+				$('#caixa_info_ncm').show();
+			else
+				$('#caixa_info_ncm').hide();
+		}
+	}
+	
+	var verifica_comercializavel = function(el){
+		if($(el).is(":checked")){
+			if('0' == '1'){
+				$("#produto__cod_secundario").addClass("codigo_para_comercializavel");
+			}else{
+				$("#produto__cod_secundario").addClass("codigo_para_comercializavel_n_fiscal");
+			}
+			
+			$("#produto__cod_secundario").removeClass("codigo_para_n_comercializavel");
+		}
+		else{
+			if('0' == '1'){
+				$("#produto__cod_secundario").removeClass("codigo_para_comercializavel");
+			}else{
+				$("#produto__cod_secundario").removeClass("codigo_para_comercializavel_n_fiscal");
+			}
+			$("#produto__cod_secundario").addClass("codigo_para_n_comercializavel");
+		}
+		verificaCodigoBarras($("#produto__cod_barra"));
+	}
+	
+	
+	var verificaCodigoBarras = function(el){
+		
+		if($("#produto__comercializavel").is(":checked")){
+			if($(el).val()){
+				$("#produto__cod_secundario").attr("maxlength",60);
+			}
+			else{
+				$("#produto__cod_secundario").attr("maxlength",14);
+			}
+		}
+		else{
+			$("#produto__cod_secundario").attr("maxlength",60);
+		}
+	}
+	
+	var open_window_unidade = function(){
+		var id_field = $('#json_unidades').attr('id');
+		
+		parent.MochaUI.openModal({
+			id: "tributacaoProduto",
+			title: 'Conversão de Unidades',
+			contentURL: "/senna/bekka/produto/produtos/form_produto_unidade/"+id_field+"/"+$('#produto__id').val(),
+			width:1000,
+			height:587,
+			onContentLoaded:function (){
+	 			var janela = this.iframeEl;
+				janela = $(janela).contents();
+			 	janela.find("input.save_new").remove();
+			},
+			onClose:function (){
+				if($('#json_unidades').val()){
+					var parsedObject 	= eval("(" + $('#json_unidades').val() + ")");
+					
+					$("#produto__id_unidade_entrada").val(parsedObject.produto__id_unidade_entrada);
+					$("[autosuggest=produto__id_unidade_entrada]").val(parsedObject.unidade_entrada);
+					
+					$("#produto__tx_conversao_e_s").val(parsedObject.produto__tx_conversao_e_s);
+					
+					if($("#produto__id_unidade_saida").val() != parsedObject.produto__id_unidade_saida){
+						$("#produto__id_unidade_saida").val(parsedObject.produto__id_unidade_saida);
+						$("[autosuggest=produto__id_unidade_saida]").val(parsedObject.unidade_saida);
+					}
+					
+				}
+			}
+		 });
+	}
+	
+	$(document).ready(function(){
+		
+		toogle_dados_ncm(false);
+		
+		$("#produto_nota_fiscal").click(function(){
+			if($(this).is(":checked")){
+				toogle_dados_ncm(true);
+			}else{
+				toogle_dados_ncm(false);
+			}
+		});
+		
+		if('0' == '1'){
+			toogle_dados_ncm(true);
+			$('#caixa_info_ncm').hide();
+		}
+		
+		//Caso não seja fiscal Remove a obrigatoriedade do ncm
+		if('0' == '0' && $('#produto__cod_ncm').val() == '')
+			$("[autosuggest=produto__cod_ncm]").removeClass('required');
+			
+		
+		$("#label_produto__produto_tab").bind("activate.vr_varejo",function(){
+			var vr_venda_varejo = $("#table_vl_vendas").find("#tipo_1").parents("tr").find("[name*=produto_valor_venda__vr_venda]").numberValue();
+			$("#valor_venda_varejo_aux").val(vr_venda_varejo).numberFormat();
+		});
+		
+		
+		$("#valor_venda_varejo_aux").blur(function(){
+			$("#table_vl_vendas").find("#tipo_1").parents("tr").find("[name*=produto_valor_venda__vr_venda]").val($(this).numberValue()).numberFormat().blur();
+		});
+		
+		var vr_venda_varejo = $("#table_vl_vendas").find("#tipo_1").parents("tr").find("[name*=produto_valor_venda__vr_venda]").numberValue();
+		$("#valor_venda_varejo_aux").val(vr_venda_varejo).numberFormat();
+		
+		$('#btn_unidade_conv').click(open_window_unidade);
+		
+		// Se possui descricao do produto, altera o t�tulo da janela
+		if ('' != '' && "" != "")
+			MochaUI.changeWindowTitle('');
+		else if ('' == '')
+			MochaUI.changeWindowTitle('Cadastrar Produto');
+		
+		$("#produto__cod_barra").trigger("blur");
+		
+		verificaCodigoBarras($("#produto__cod_barra"));
+		$("#produto__cod_barra").blur(function(){
+			verificaCodigoBarras($(this));
+		});
+
+		
+		//Tratando cadastro de novos enderecos
+        $("#produto__cod_ncm").bind('onWindowLoad', function(evt, newDocument, val){
+        	var id_ncm 		= $(newDocument).find("#tributo_ncm__id").val();
+        	var id_ncm_ref 	= $(newDocument).find("#tributo_ncm_referencia__id").val();
+        	if((id_ncm == "") && (id_ncm_ref == "")){
+        		$(newDocument).find("[autosuggest=cod_ncm_referencia]").focus();
+        		$(newDocument).find("[autosuggest=cod_ncm_referencia]").val(val);
+        		$(newDocument).find("#tributo_ncm_referencia__cod_ncm").val(val);
+        	}
+        });
+
+		/**
+		 * Inserindo Autocomplete do NCM no produto a partir "change" do autosuggest
+		 */
+		$("#produto__cod_ncm").change(function(evt, el, json){
+			$('#descricao_ncm').val(json.info);
+		});
+		
+		/**
+		 * Inserindo Autocomplete do NCM no produto a partir "change" do autosuggest
+		 */
+		$("#produto__cod_ncm").bind('clear', (function(evt, el){
+			$('#descricao_ncm').val("");
+		}));
+		verifica_comercializavel($("#produto__comercializavel"));
+		$("#produto__comercializavel").click(function(){
+			verifica_comercializavel($(this));
+		});
+		
+		trataFracionado($('#produto__id_unidade_saida').val(), $('#produto__tx_conversao_e_s'));
+		
+		$('#produto__id_unidade_saida').change(function (){
+			var json_unidades 		= $('#json_unidades').val()
+			var unidade_saida		= $(this);
+			
+			trataFracionado($(this).val(), $('#produto__tx_conversao_e_s'));
+			
+			if(json_unidades){
+				var parsedObject = eval("(" + $('#json_unidades').val() + ")");
+				if($(this).val() != parsedObject.produto__id_unidade_inventario || $(this).val() != parsedObject.produto__id_unidade_tributavel){
+					var msg = 'A Unidade de saída é diferente da Unidade de Invent�rio ou da Unidade de Tributação. </br></br>Deseja alterar estas de acordo com a Unidade de Saída?'
+					Sexy.confirm(msg,{
+		    			textBoxBtnOk:'Sim',
+						textBoxBtnCancel:'Não',
+						onComplete: function(val) {
+							if(val){
+								parsedObject.produto__id_unidade_inventario = unidade_saida.val();
+								parsedObject.produto__id_unidade_tributavel = unidade_saida.val();
+								parsedObject.produto__id_unidade_saida		= unidade_saida.val();
+								parsedObject.unidade_saida					 = $("[autosuggest=produto__id_unidade_saida]").val();
+								
+								parsedObject.unidade_inventario				= unidade_saida.parent().find('[autosuggest=produto__id_unidade_saida]').val();
+								parsedObject.unidade_tributavel				= '1';
+								parsedObject.produto__tx_conversao_e_i		= $('#produto__tx_conversao_e_s').val();
+							}else{
+								parsedObject.produto__id_unidade_saida		 = unidade_saida.val();
+								parsedObject.unidade_saida					 = $("[autosuggest=produto__id_unidade_saida]").val();
+							}
+							
+							var string_json = JSON.stringify(parsedObject).trim();
+							$('#json_unidades').val(string_json);
+						}
+					});
+				}
+			}else{
+				if($('#produto__id').val()){
+					if($(this).val() != '1' || $(this).val() != '1'){
+						var msg = 'A Unidade de Saída é diferente da Unidade de Inventário ou da Unidade de Tributação. </br></br>Deseja alterar estas de acordo com a Unidade de Saída?'
+							Sexy.confirm(msg,{
+								textBoxBtnOk:'Sim',
+								textBoxBtnCancel:'não',
+								onComplete: function(val) {
+								if(val){
+									$('#produto__id_unidade_inventario').val(unidade_saida.val());
+									$('#produto__id_unidade_tributavel').val(unidade_saida.val());
+								}
+							}
+						});
+					}
+				}
+			}
+		});
+		
+	});
+	
+	var trataFracionado = function (id, campo){
+		$.getJSON('/senna/produto/unidadeuso/get/'+id,function (data){
+			if(data.fracionado == 1)
+				campo.removeClass("integer").numberFormat();
+			else	
+				campo.addClass("integer").numberFormat();
+		});
+	};
+	
+	// implement JSON.stringify serialization
+	JSON.stringify = JSON.stringify || function (obj) {
+		var t = typeof (obj);
+		if (t != "object" || obj === null) {
+			// simple data type
+			if (t == "string") obj = '"'+obj+'"';
+			return String(obj);
+		}
+		else {
+			// recurse array or object
+			var n, v, json = [], arr = (obj && obj.constructor == Array);
+			for (n in obj) {
+				v = obj[n]; t = typeof(v);
+				if (t == "string") v = '"'+v+'"';
+				else if (t == "object" && v !== null) v = JSON.stringify(v);
+				json.push((arr ? "" : '"' + n + '":') + String(v));
+			}
+			return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+		}
+	};
+	
+})(jQuery);
+
+
+
+
+
+/***************************************
+produto/produtos/form_produto_sitepx.js
+***************************************/
+
+(function($){
+    $(document).ready(function(){
+    	
+    	var tipo_vr_venda = "" ? "" : '1';
+    	
+    	//OBtendo o texto selecionado nas configura��es do ecommer
+    	var texto_tipo_vr_venda =  $("#table_vl_vendas").find("#tipo_"+tipo_vr_venda).parents("tr td").text();
+    	
+    	$('#label_loja_virtual_tab').bind('activate.loja_virtual',function (){
+    		var vr_varejo = $("#table_vl_vendas").find("#tipo_1").parents("tr").find("[name*=produto_valor_venda__vr_venda]").val();
+    		$("#valor_venda_varejo").val(vr_varejo);
+    		$("#valor_venda_varejo").parents("p").find('label').text('Valor de Venda ('+texto_tipo_vr_venda.trim()+')');
+		});
+    	
+    	//texto_tipo_vr_venda.trim()
+    	function toggle_loja_infos(){
+    		var sinc = $('#produto_ecommerce__sincroniza');
+    		var infos = $('#loja_infos');
+    		
+    		var data_sinc = $('#produto_ecommerce__data_sincronizacao').val();    	
+        	var acoes = $('#loja_acoes');
+    		
+	    	if(sinc.is(':checked')){
+	    		// If sync is checked, don't show acoes but show infos
+	    		acoes.hide();
+	    		infos.show();	    
+	    	}else{
+	    		//If sync is not checked, don't show infos
+	    		infos.hide();
+	    		if(data_sinc == ''){
+	    			// If product was not sincronized with loja virtual, don't show acoes
+	    			acoes.hide();
+	    		}else{
+	    			//If product was sincronized with loja virtual, show acoes
+	    			acoes.show();
+	    		}
+	    	}
+    	}   
+    	
+    	$("#produto_ecommerce__special_price").blur(function(){
+    		if($(this).numberValue() > $("#valor_venda_varejo").numberValue()){
+    			Sexy.alert("O Valor da Oferta não deve ser maior que o Valor de Venda.");
+    			$(this).val(0).numberFormat();
+    		}
+    	});
+    	
+    	toggle_loja_infos();
+    	$('#produto_ecommerce__sincroniza').click(toggle_loja_infos);
+    	
+    	//Limpar Oferta
+    	$("#limpar_loja_oferta").click(function(){
+    		$("#produto_ecommerce__sale_from_date").val("");
+    		$("#produto_ecommerce__sale_to_date").val("");
+    	});
+    	
+    	
+    });
+})(jQuery);
+
+
+
+/*****************************************
+produto/produtos/form_notas_vinculadas.js
+*****************************************/
+
+(function($){
+	/**
+	 * Registra os identificadores
+	 */
+	$(document).ready(function(){
+		//Evento do click
+		$('[ref*=btn_acessar_nf_vinculada]').click(function(evt){
+			
+			var msg 			= "";
+			var window_title 	= "";
+			id_nf_vinculada		= $(this).parents().find('[name=id_nf_vinculada]').val();
+			var tipo_nf 		= $(this).parents().find('[name=modelo_nf]').val();
+			var ident_emit 		= $(this).parents().find('[name=identificador_emitente]').val();
+			var url = "";
+			
+			$.ajax({
+				async:false,
+				url: "/senna/bekka/produto/produtos/existe_nota/"+id_nf_vinculada, //efetua requisicao na pagina apontada pela action do formulario
+				dataType: 'json',
+				success: function(data){
+					if(data == 0){
+						Sexy.alert("%message_nota_apagada%");
+					}
+					else{
+						if(tipo_nf == "{constant_nfe}" && ident_emit == '0'){
+							url = "/senna/bekka/cadastro/nfes/form/"+id_nf_vinculada;
+							msg = "Você será redirecionado para a Nota Fiscal Eletrônica. Deseja acessá-la agora?";
+							window_title = 'Nota Fiscal Eletrônica'
+						}
+						else if(tipo_nf == "{constant_nfe}" && ident_emit == '1'){
+							url = "/senna/bekka/cadastro/lancamentos/form/"+id_nf_vinculada;
+							msg = "Você será redirecionado para a Nota de Compra. Deseja acessá-la agora?";
+							window_title = 'Nota de Compra'
+						}
+						else if(tipo_nf == "{constant_venda_sem_documento}"){
+							url = "/senna/bekka/nao_fiscal/vendas_nao_fiscais/form/"+id_nf_vinculada;
+							msg = "Você será redirecionado para a Venda. Deseja acessá-la agora?";
+							window_title = 'Venda'
+						}
+						else if(tipo_nf == "{constant_ajuste_estoque}"){
+							url = "/senna/bekka/nao_fiscal/ajustes_estoque/form/"+id_nf_vinculada;
+							msg = "Você será redirecionado para o Ajuste de Estoque. Deseja acessa-lo agora?";
+							window_title = 'Ajuste de Estoque'
+						}
+						else if(tipo_nf == "{constant_nf_serie_d}"){
+							url = "/senna/bekka/cadastro/notas_fiscais_serie_d/form/"+id_nf_vinculada;
+							msg = "Você será redirecionado para a Nota Fiscal de Venda a Consumidor. Deseja acessá-la agora?";
+							window_title = 'Nota Fiscal de Venda a Consumidor'
+						}
+						else if(tipo_nf == "{constant_nf_entrada}"){
+							url = "/senna/bekka/cadastro/lancamentos/form/"+id_nf_vinculada;
+							msg = "Você será redirecionado para a Nota de Compra. Deseja acessá-la agora?";
+							window_title = 'Nota de Compra'
+						}
+						else if(tipo_nf == "{constant_nfce}"){
+							url = "/senna/bekka/cadastro/nfces/form/"+id_nf_vinculada;
+							msg = "Você será redirecionado para a Nota de Compra. Deseja acessá-la agora?";
+							window_title = 'Nota Fiscal de Consumidor Eletrônica'
+						}
+						else if(tipo_nf == "{constant_cupom_fiscal}"){
+							url = "/senna/bekka/venda/vendas_ecf/form/"+id_nf_vinculada;
+							msg = "você Será redirecionado para o Cupons Fiscais Emitidos. Deseja acessá-lo agora?";
+							window_title = 'Cupons Fiscais Emitidos'
+						}
+						//Abrindo Janela
+						parent.MochaUI.openWindow({
+							id:url,
+							title:window_title,
+							contentURL: url
+						});
+					}
+				}
+			});
+			
+		});
+	});
+})(jQuery);
+jQuery(document).ready(function(){jQuery.extend(jQuery.validator.messages, {accept: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.'/> ", cnpj: "<img src='/images/alert.png' class='tooltip' title='Informe um CNPJ válido.'/> ", cpf: "<img src='/images/alert.png' class='tooltip' title='Informe um CPF válido.'/> ", creditcard: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.'/> ", date: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a uma data v&aacute;lida.'/> ", digits: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a somente d&iacute;gitos.'/> ", email: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um endere&ccedil;o eletr&ocirc;nico v&aacute;lido.'/> ", equalTo: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a o mesmo valor novamente.'/> ", max: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor menor ou igual a {0}.'/> "), maxlength: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a n&atilde;o mais que {0} caracteres.'/> "), min: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior ou igual a {0}.'/> "), minlength: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a ao menos {0} caracteres.'/> "), number: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um n&uacute;mero v&aacute;lido.'/> ", range: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor entre {0} e {1}.'/> "), rangelength: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor contendo de {0} a {1} caracteres.'/> "), required: "<img src='/images/alert.png' class='tooltip' title='Este campo é obrigatório.'/> ", requiredIf: "<img src='/images/alert.png' class='tooltip' title='Este campo deve ser preenchido.'/> ", remote: "<img src='/images/alert.png' class='tooltip' title='Por favor, corrija este campo.'/> ", url: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a uma URL v&aacute;lida.'/> ", time: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a uma hora válida'/> ", code: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um código válido'/> ", price: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior que 0'/> ", cidade: "<img src='/images/alert.png' class='tooltip' title='Cidade não cadastrada no sistema.'/> ", pais: "<img src='/images/alert.png' class='tooltip' title='País não 'cadastrado no sistema.'/> ", requiredCep: "<img src='/images/alert.png' class='tooltip' title='CEP e ou Logradouro não cadastrados no sistema.'/> ", transporte: "<img src='/images/alert.png' class='tooltip' title='O valor deste campo deve ser definido.'/> ", positive: "<img src='/images/alert.png' class='tooltip' title='Forneça um valor maior que 0,00.'/> ", cfop: "<img src='/images/alert.png' class='tooltip' title='CFOP invinválidolido'/> ", cfop_transp: "<img src='/images/alert.png' class='tooltip' title='CFOP inválido'/> ", code_ean: "<img src='/images/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 8, 12,13 ou 14 caracteres.'/> ", cod_ncm: "<img src='/images/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 2 ou 8 caracteres.'/> ", max_vr_cupom: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='O valor neste campo deve ser inferior a {0}'/> "), autosuggest: "<img src='/images/alert.png' class='tooltip' title='Este campo nnãoo possui um valor válido selecionado'/> ", password: "<img src='/images/alert.png' class='tooltip' title='Senha deve conter pelo menos 6 caracteres utilizando letras e números'/> ", desc_principal: "<img src='/images/alert.png' class='tooltip' title='A Descrição não deve conter aspas duplas (&quot;) ou aspas simples (&lsquo;)'/> ", desc_resumida: "<img src='/images/alert.png' class='tooltip' title='A Descriscrição não deve conter aspas duplas (&quot;) ou aspas simples (&lsquo;)'/> ", codigo_para_comercializavel: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='<br/><br/><br/><br/><br/>No Código de <strong style=\"color:#A27D35 \">Produto Comercializável no PDV</strong> É PERMITIDO somente:<ul  style=\"color:#A27D35 \"><li>Letras sem acentuação</li><li>números</li><li>espaço</li><li>vírgula (,)</li><li>ponto-e-vírgula (;)</li><li>ponto final (.)</li><li>barra invertida (\)</li><li>sinal de igual (=)</li><li>chave ({})</li><li>colchetes ([])</li><li>underline (_)</li><li>E comercial (&)</li><li>acento circunflexo (^)</li><li>til (~)</li><li>cifrão ($)</li><li>tralha (#)</li></ul> Além de: sinal de mais (+), traço (-), porcentagem (%) ou parentêses, desde que não seja no início ou no final do código.'/> "), codigo_para_n_comercializavel: "<img src='/images/alert.png' class='tooltip' title='O Código não deve conter aspas duplas (&quot;) ou aspas simples (&lsquo;)'/> ", primeiroCaractere: "<img src='/images/alert.png' class='tooltip' title='O nome do atributo não pode iniciar com número'/> ", codigo_para_comercializavel_n_fiscal: "<img src='/images/alert.png' class='tooltip' title='<br/><br/>No Código de <strong style=\"color:#A27D35 \">Produto Comercializável no PDV</strong> não é PERMITIDO :<ul  style=\"color:#A27D35 \"></li><li>Asterísco (*)</li><li>Barra invertida</li><li>Porcentagem (%)</li><li>Underline</li><li>Abre e Fecha parenteses (())</li><li>Abre e Fecha colchetes ([])</li><li>Aspas Simples </li><li>Aspas Duplas</li></ul> Além de: sinal de traço (-) desde que não seja no início ou no final do código.'/> "}); });
+
+Date.monthNames = ['Janeiro','Fevereiro','Maço','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+Date.dayNames = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+jQuery.dpText = { TEXT_PREV_YEAR:'Ano Anterior', TEXT_PREV_MONTH:'Mês Anterior', TEXT_NEXT_YEAR:'Próximo Ano', TEXT_NEXT_MONTH:'Próximo Més', TEXT_CLOSE:'Fechar', TEXT_CHOOSE_DATE:'Escolha a Data', HEADER_FORMAT:'mmmm yyyy'};
+Date.firstDayOfWeek=0;
+
+
+
+
+/************************
+produto/produtos/form.js
+************************/
+
+(function($){
+	
+	var afterSubmit = function (btn,data){
+		
+		//valida��o se � para imprimir
+		if (data.clonar && data.clonar != '0'){
+			if($("[name*=produto__ativo]").parents('p:first').find('input:checked').val() == 1){
+				Sexy.confirm("<b> Atenção:</b> Deseja <b> desativar </b> o produto clonado?",{
+					textBoxBtnOk:"Sim",
+					textBoxBtnCancel:"não",
+					onComplete: function(val){
+						if(val){
+							$.ajax({
+								url: '/senna/bekka/produto/produtos/desativa_produto/'+$('#produto__id').val(),
+								beforeSend: function() { 
+									$("#loader").show().find(".enviando").hide();
+									$("#loader").find(".carregando").show();
+								},
+								success: function(response) {
+									$("#loader").hide();
+									parent.MochaUI.success("Produto desativado com sucesso");
+									var $url ="/senna/bekka/produto/produtos/reload_form_clonar/"+$('#produto__id').val();
+									window.location.href = $url;
+								}
+							});
+						}
+						else{
+							var $url ="/senna/bekka/produto/produtos/reload_form_clonar/"+$('#produto__id').val();
+							window.location.href = $url;
+						}
+					}
+				});
+			}
+			else{
+				var $url ="/senna/bekka/produto/produtos/reload_form_clonar/"+$('#produto__id').val();
+				window.location.href = $url;
+			}
+		}
+	};
+	
+	
+	/** Alterna visibilidade da aba "grade" **/
+	function toggle_grade_tab(){
+		var valor = $("#produto__grade:checked").val();
+		var grade = $("#label_grade_tab");
+		var id	  = $("#produto__id").val();
+		var codbarra = $("#produto__cod_barra");
+		var codbarrasec = $("#produto__cod_secundario");
+		var btncodbarra = $("#gerar_barra");
+		var serie = $('#produto__serie');
+		 			
+		//mostra ou esconde a aba de grade
+		if(valor){
+			codbarra.attr('disabled',true);
+			codbarrasec.attr('disabled',true);
+			btncodbarra.attr('disabled',true);
+			serie.attr('disabled',true);
+		}
+		else{
+			codbarra.removeAttr('disabled');
+			codbarrasec.removeAttr('disabled');
+			btncodbarra.removeAttr('disabled');
+		}
+	}
+	
+	/** Alterna visibilidade de aba de produtos vinculados **/
+	function toggle_vinculos_tab(){
+		//Caso da Grade formulario todo em print.
+		var grade= $("#produto__id_produto_principal_grade").val();
+		var field = $("#produto__vinculacao");
+		var val = field.val();
+		var tab_kit = $("#label_kit_tab");
+		var tab_composicao= $("#label_composicao_tab");
+		var id	  = $("#produto__id").val();
+		var estoque	  = $("#estoque");
+		var tipo = $("[name=produto__tipo]");
+		if( val ){
+			tipo.attr('disabled',true);
+			$('#produto__grade').attr('disabled',true);
+			$('#produto__serie').attr('disabled',true);
+			if(val=='K'){
+				tab_kit.trigger('show');
+				tab_composicao.trigger('hide');
+				estoque.hide();
+			}
+			else {
+				tab_composicao.trigger('show');
+				tab_kit.trigger('hide');
+				estoque.show();
+			}
+		} else {
+			if(!grade){
+				tipo.removeAttr('disabled');
+			}
+			tab_kit.trigger('hide');
+			tab_composicao.trigger('show');
+			estoque.show();
+		}
+		
+		//desabilita o campo caso produto tenha sido gravado
+		if(id) field.attr('disabled',true);
+	}
+	
+	/** 
+	 * Insere eventos executados ao marcar grade  ou v�nculo entre produtos 
+	 * uma vez que não exite grade e Kit/Composi��o simultaneamente
+	 **/
+	function grade_vinculos_change(){
+		var edit = $("#produto__id");
+		var grade = $("#produto__grade");
+		var codbarra = $("#produto__cod_barra");
+		var codbarrasec = $("#produto__cod_secundario");
+		var btncodbarra = $("#gerar_barra");
+		var vincu = $("#produto__vinculacao");
+		//valor da grade mudou 
+		grade.change(function(){
+			toggle_grade_tab();
+			if(edit.val()){
+				if(grade[0].checked){
+					codbarra.attr('disabled',true);
+					codbarrasec.attr('disabled',true);
+					btncodbarra.attr('disabled',true);
+					$("#produto__serie").attr('disabled',true);
+				}else{
+					codbarra.removeAttr('disabled');
+					codbarrasec.removeAttr('disabled');
+					btncodbarra.removeAttr('disabled');
+					$("#produto__serie").removeAttr('disabled');
+				}
+			}
+			else{
+				if(grade[0].checked){
+					vincu.attr('disabled',true);
+					codbarra.attr('disabled',true);
+					codbarrasec.attr('disabled',true);
+					btncodbarra.attr('disabled',true);
+					$("#produto__serie").attr('disabled',true);
+				}else{
+					vincu.removeAttr('disabled');
+					codbarra.removeAttr('disabled');
+					codbarrasec.removeAttr('disabled');
+					btncodbarra.removeAttr('disabled');
+					$("#produto__serie").removeAttr('disabled');
+				}
+			}
+		});
+		
+		//valor do vinculo mudou 
+		vincu.change(function(){
+			toggle_vinculos_tab();
+			if(vincu.val()){
+				grade.attr('disabled',true);
+			}else{
+				grade.removeAttr('disabled');
+			}
+		});
+			
+	}
+	
+	/** 
+	 * Insere eventos executados ao marcar grade  ou v�nculo entre produtos 
+	 * uma vez que não exite grade e Kit/Composi��o simultaneamente
+	 **/
+	function serie_change(){
+		var edit = $("#produto__id");
+		var grade = $("#produto__grade");
+		var serie = $("#produto__serie");
+		var vincu = $("#produto__vinculacao");
+		//valor da serie mudou 
+		serie.change(function(){
+			if(edit.val()){
+				if(serie[0].checked){
+					$("#produto__grade").attr('disabled',true);
+				}else{
+					$("#produto__grade").removeAttr('disabled');
+				}
+			}
+			else{
+				if(serie[0].checked){
+					vincu.attr('disabled',true);
+					$("#produto__grade").attr('disabled',true);
+				}else{
+					vincu.removeAttr('disabled');
+					$("#produto__grade").removeAttr('disabled');
+				}
+			}
+		});
+		
+		//valor do vinculo mudou 
+		vincu.change(function(){
+			if(vincu.val()){
+				grade.attr('disabled',true);
+			}else{
+				grade.removeAttr('disabled');
+			}
+		});
+			
+	}
+	
+	/** Alterna visibilidade da aba "fotos" exibindo-a apenas quando o produto j� foi salvo **/
+	function toggle_fotos_tab(){
+		var tab = $("#label_produto_foto_tab");
+		if($("#produto__id").val() != ""){
+			tab.trigger('show');
+		} 
+		else {
+			tab.trigger('hide');
+		}
+	}
+
+
+    /** Alterna visibilidade da aba "loja" desabilitado pois nao sera desenvolvido ainda **/
+    function toggle_loja_tab() {
+        var tab = $("#label_loja_virtual_tab");
+        tab.trigger('hide');
+
+    }
+
+    function toggle_valores_custos_tab() {
+        var tab = $("#label_produto_valores_tab");
+        tab.trigger('hide');
+
+    }
+
+    function toggle_fornecedores() {
+        var tab = $("#label_aba_fornecedores_tab");
+        tab.trigger('hide');
+
+    }
+
+	/**Alterna visibilidade do campo grade caso exista ou nao filhos nessa grade.*/
+	function mostra_grade_se_filhos(){
+		var grade = $("#produto__grade");
+		if($("#grade").val()=="0"){
+			grade.attr('disabled',true);
+			}
+		else{
+			grade.removeAttr('disabled');
+		}
+	}
+	
+	/** Instala evento para geracao do codigo de barras **/
+	function cod_barras(){
+		$("#gerar_barra").click(function(){	barcode(); });
+	}
+	
+	function click_button_function(){
+		$(".save").click(function(e){
+			var $this = $(e.target);
+			e.preventDefault();
+			e.stopPropagation();
+			confirmation("%confirm_save_grade%", {
+				onComplete: function(val) {
+					if (val){
+						$this.submit(); 
+					}
+				}
+			});				
+		});
+		
+	}
+	
+	function eventos_grade(){
+		if($('#produto__id').val()){
+			var valor = $('#produto__vinculacao').val();
+			$('#produto__vinculacao').attr('disabled',true);
+			var grade = $("#label_grade_tab");
+			var kit = $("#label_kit_tab");
+			var composicao = $("#label_composicao_tab");
+
+			if(valor=='K'){
+				$('#produto__serie').attr('disabled',true);
+				$('#produto__serie').attr('checked',false);
+				kit.trigger('show');
+				grade.trigger('hide');
+				composicao.trigger('hide');
+				$("#fieldset_kit").hide();
+			}
+			else if(valor=='G'){
+				$('#produto__serie').attr('disabled',true);
+				$('#produto__serie').attr('checked',false);
+				grade.trigger('show');
+				composicao.trigger('show');
+				kit.trigger('hide');
+				$("#fieldset_grade").hide();
+			}
+			else if(valor=='C'){
+				$('#produto__serie').removeAttr('disabled');
+//				composicao.trigger('show');
+				kit.trigger('hide');
+				grade.trigger('hide');
+				$("#fieldset_composicao").hide();
+			}
+			else{
+				$('#produto__serie').removeAttr('disabled');
+				composicao.trigger('show');
+				kit.trigger('hide');
+				grade.trigger('hide');
+			}
+		}
+		$('#produto__vinculacao').change(function(){
+			var grade = $("#label_grade_tab");
+			var kit = $("#label_kit_tab");
+			var composicao = $("#label_composicao_tab");
+			var valor =$(this).val();
+			if(valor=='K'){
+				$('#produto__serie').attr('disabled',true);
+				$('#produto__serie').attr('checked',false);
+				$("#produto_imobilizado__qtd").attr('readonly',true);
+				$("#produto_imobilizado__qtd").val('0').numberFormat();
+				$("#produto_proprio__qtd").attr('readonly',true);
+				$("#produto_proprio__qtd").val('0').numberFormat();
+				$("#produto_estoque__qtd").attr('readonly',true);
+				$("#produto_estoque__qtd").val('0').numberFormat();
+				kit.trigger('show');
+				grade.trigger('hide');
+				composicao.trigger('hide');
+			}
+			else if(valor=='G'){
+				if('1' == '1' && '0' != '1'){
+					atualizar_estoque();
+					$("#produto_imobilizado__qtd").removeAttr('readonly');
+					$("#produto_proprio__qtd").removeAttr('readonly');
+					//$("#produto_estoque__qtd").removeAttr('readonly');
+				}
+				$('#produto__serie').attr('disabled',true);
+				$('#produto__serie').attr('checked',false);
+				grade.trigger('show');
+				composicao.trigger('show');
+				kit.trigger('hide');
+			}
+			else if(valor=='C'){
+				if('1' == '1' && '0' != '1'){
+					$("#produto_imobilizado__qtd").removeAttr('readonly');
+					$("#produto_proprio__qtd").removeAttr('readonly');
+					$("#produto_estoque__qtd").removeAttr('readonly');
+				}
+				$('#produto__serie').removeAttr('disabled');
+//				composicao.trigger('show');
+				kit.trigger('hide');
+				grade.trigger('hide');
+			}
+			else{
+				if('1' == '1' && '0' != '1'){
+					$("#produto_imobilizado__qtd").removeAttr('readonly');
+					$("#produto_proprio__qtd").removeAttr('readonly');
+// 					//$("#produto_estoque__qtd").removeAttr('readonly');
+				}
+				$('#produto__serie').removeAttr('disabled');
+				composicao.trigger('show');
+				kit.trigger('hide');
+				grade.trigger('hide');
+				
+			}
+		});
+	}
+	
+	var copiar_descricao = function (){
+		if('0' == '1')
+			if ($('#produto__descricao_resumida').val() == ''){
+				var valor = $('#produto__descricao_produto').val();
+				$('#produto__descricao_resumida').val(valor.substr(0,29));
+	    		$("#produto_ecommerce__name").attr('placeholder', valor.substr(0,29));
+			}
+	};
+	
+	var atualizar_estoque = function (){
+		if('0' != '1' && '1' == '1' && ($('#produto__vinculacao').val() == 'G')){
+			var estoque_inicial = $('#produto_estoque__qtd').numberValue();
+			estoque_inicial += $('#produto_imobilizado__qtd').numberValue();
+			estoque_inicial += $('#produto_proprio__qtd').numberValue();
+			
+			var quantidades = 0;
+			$('#div_produtos_grade [name*=produto_grade__quantidade]').each(
+				function ()
+				{
+					if(parseFloat($(this).numberValue()) > 0)
+						quantidades += parseFloat($(this).numberValue());
+				}
+			);
+			var total = estoque_inicial - quantidades;
+					
+			$('#estoque_disponivel').val(total).numberFormat();
+			
+			return true;
+		}
+	};
+	
+	function existe_estoque(){
+		var estoque_imobilizado = parseFloat($('#produto_imobilizado__qtd').numberValue());
+		var estoque_proprio = parseFloat($('#produto_proprio__qtd').numberValue());
+		var estoque = parseFloat($('#produto_estoque__qtd').numberValue());
+		if(estoque_imobilizado != 0 || estoque_proprio != 0 || estoque != 0){
+		}
+	}
+	
+	var change_cod_ncm = function (evt, el, json){
+		$('#btn_tributacao').attr('id_ncm',json.id).removeAttr('disabled');
+	};
+	
+	var clear_cod_ncm = function (){
+		$('#btn_tributacao').attr('id_ncm',"");
+	};
+	
+	var abre_janela_tributacao = function (){
+		var id_ncm = $(this).attr('id_ncm');
+		 parent.MochaUI.openModal({
+			id: "tributacaoProduto",
+			title: 'Tributação',
+			contentURL: "/senna/bekka/cadastro/tributacoes/form/"+$(this).attr('id_ncm'),
+			width:1000,
+			height:587,
+			onContentLoaded:function (){
+     			var janela = this.iframeEl;
+    			janela = $(janela).contents();
+			 	janela.find("input.save_new").remove();
+			},
+			onClose:function (){
+				atualiza_descricao_ncm();
+			}
+		 });
+	};
+	
+	var atualiza_descricao_ncm = function (){
+		if($('#btn_tributacao').attr('id_ncm')){
+			$.get('/senna/bekka/cadastro/tributacoes//recupera_descricao_ncm/'+$('#btn_tributacao').attr('id_ncm'),
+					function (data){
+				var dados = eval("("+data+")");
+				$('#descricao_ncm').val(dados.descricao);
+				$('#produto__cod_ncm, [autosuggest=produto__cod_ncm]').val(dados.cod_ncm);
+				}
+			);
+		}
+	};
+	
+	/**
+	 * Calcula a taxa de conversao de e_s
+	 * @author jdrummond
+	 * @since 22/3/2011
+	 */
+	var calculaConversaoES = function () {
+		var tx_e_i = $('#produto__tx_conversao_e_i').numberValue();
+		var tx_s_i = $('#produto__tx_conversao_s_i').numberValue();
+		var tx_i_s = 1 / tx_s_i;
+		
+		$('#produto__tx_conversao_e_s').val(tx_e_i / tx_i_s).numberFormat(); 
+	};
+	
+	/** Chamadas durante inicializa��o da tela 
+	 **************************/
+	$(document).ready(function(){
+		
+		/*
+    	 *	    	Validacao para loja virtual SITE PX
+    	 * @author lhenrique
+    	 * @since 29/09/2014
+    	 */
+    	
+    	$('#produto_ecommerce__short_description , #produto_ecommerce__long_description').focusout(function(){
+    		if('2' != '1'){
+    			Sexy.alert('<b>Atenção:</b> Caso insira informações neste campo, aquelas inseridas no produto direto na loja virtual Seráo sobrescritas sempre que o produto for sincronizado.');
+    		}
+    	});
+    	
+		if('0' != '1'){
+			//Tira a descrição resumid se for tagplus
+			$("#produto__descricao_resumida").attr('class','');
+			$("#produto__descricao_resumida").val('');
+			$("#produto__descricao_resumida").parents('p').hide();
+		}else{
+			//Hide a info
+			$("#estoque_qtd span").eq(2).hide();
+		}
+		
+//		if("2" == 1){
+//			$("#fieldset_tributacao").hide();
+//			$("[autosuggest=produto__cod_ncm]").attr("readonly","readonly");
+//			$("[autosuggest=produto__cod_ncm]").removeClass('required');
+//		}
+		
+		//notas vinculadas
+	    if("1" == 1){
+	    	$('#label_aba_notas_fiscais_tab').hide();
+		}
+
+	    // Informa o ID do NCM do produto
+		$('#btn_tributacao').attr('id_ncm','');
+		
+		$("#btn_info_tipo_producao").click(function(){
+			Sexy.info("{label_info_produto__vinculacao}");
+		});
+		
+		$('#produto__id_unidade_saida').change(function (){
+			
+			
+			recuperaFracionado($(this).val());
+			
+			$.post("/senna/bekka/produto/produtos/atualiza_fracionado/" + $(this).val(), {
+                id: $(this).val()});
+			
+			if ($(this).val()){
+				$('#tp_unid_saida,#tp_unid_saida_2').val($(this).find('option:selected').text());
+			}
+			else{
+				$('#tp_unid_saida,#tp_unid_saida_2').val('');
+			}
+		});
+				$('#tp_unid_saida,#tp_unid_saida_2').val($('#produto__id_unidade_saida option:selected').text());
+		
+		$('#produto__id_unidade_entrada').change(function (){
+			if ($(this).val()){
+				$('#tp_unid_entrada').val($(this).find('option:selected').text());
+			}
+			else{
+				$('#tp_unid_entrada').val('');
+			}
+		});
+		
+		$('#tp_unid_entrada').val($('#produto__id_unidade_entrada option:selected').text());
+		
+		$("#label_grade_tab").trigger('hide');
+		$("#label_kit_tab").trigger('hide');
+//		$("#label_composicao_tab").trigger('hide');
+		
+		//mostra ou esconde abas
+		toggle_fotos_tab();
+		eventos_grade();
+		existe_estoque();
+        toggle_loja_tab();
+        toggle_valores_custos_tab();
+        toggle_fornecedores();
+		
+		$('#produto__descricao_produto').blur(copiar_descricao);
+		$('#produto_imobilizado__qtd').bind('input', atualizar_estoque);
+		$('#produto_proprio__qtd').bind('input', atualizar_estoque);
+		$('#produto_estoque__qtd').bind('input', atualizar_estoque);
+
+		$("#ean").click(function () { $('#produto__cod_secundario').val(gera_ean()) });
+		
+		$("#produto__vinculacao").change();
+		$('#produto__cod_ncm').bind('change',change_cod_ncm);
+		$('#produto__cod_ncm').bind('clear',clear_cod_ncm);
+		$('#btn_tributacao').click(abre_janela_tributacao);
+		
+		if ($('#produto__cod_ncm').val() != '')
+			$('#btn_tributacao').removeAttr('disabled');
+		
+	   $(".delete").bind("beforeDelete",function(evt,ret){
+        	$this = $(this);
+        	$.ajax({
+    			url: '/senna/bekka/produto/produtos/before_delete_produto/'+$("#produto__id").val(),
+    			dataType: 'json',
+    			async:false,
+    			success: function(data){
+    				if(data.sincronizado == 1){
+    					if(data.produto_ativo == 0){
+    						Sexy.alert('Este produto não pode ser apagado pois foi sincronizado com o PDV e já está desativado.');
+    						ret.val = false;
+    					}
+    					else{
+    						$this.unsetConfirmMessage('Tem certeza que deseja apagar este registro?');
+    						$this.addConfirmMessage('Este produto não pode ser removido, pois foi sincronizado com o PDV. Deseja desativar este produto?',"Sim","não");
+    					}
+    				}
+    				else{
+    					if(data.produto_ativo == 0){
+    						Sexy.alert('Este produto não pode ser removido, pois possui vínculos no sistema e já está desativado.');
+    						ret.val = false;
+    					}
+    					else if(data.possui_estoque == 1){
+    						$this.unsetConfirmMessage('Tem certeza que deseja apagar este registro?');
+    						$this.addConfirmMessage('Este produto não pode ser removido, pois possui estoque.<br />Deseja desativar este produto?',"Sim","não");
+    					}
+    					else if(data.vinculado==1 || data.vinculado_grade == 1 || data.estoque_disponivel > 0){
+    						$this.unsetConfirmMessage('Tem certeza que deseja apagar este registro?');
+    						$this.addConfirmMessage('Este produto não pode ser removido, pois possui vínculos no sistema.<br />Deseja desativar este produto?',"Sim","não");
+    					}
+    				}
+    			}
+    		});
+        });
+	   
+	   $('#clonar_btn').addConfirmMessage("Para que um novo produto seja criado de acordo com os dados do produto que está sendo editado, É necessário salvá-lo. Confirma?",'Sim','não');
+	   
+	   var data_sinc = $('#produto_ecommerce__data_sincronizacao').val();   
+	   
+	   if(data_sinc == ''){		   	   	
+		   $$('#apagar_em_loja_acoes').set('disabled',true).addClass("disabled");		   
+	   }else{		   
+		   $$('#apagar_em_loja_acoes').removeProperties("disabled").removeClass("disabled");
+	   }
+	   
+	   //Apaga producto da loja virtual
+	   	$('#apagar_em_loja_acoes').click(function(){    	
+	   		var id_produto = $('#produto__id').val();
+	   		
+	   		//Test se produto tenhe id
+	   		if(id_produto == ''){    			
+	   			Sexy.alert('Um produto novo não pode ser apagado');
+	   		}else{    			
+	   			Sexy.confirm("<b> Atenção:</b> Deseja <b> apagar </b> o produto da loja virtual? <br /><br /><b style='color:red'> Esta apção pode demorar alguns minutos</b>",{    			
+	   				textBoxBtnOk:"Sim",
+					textBoxBtnCancel:"não",
+					onComplete: function(val){
+						if(val){
+							 
+							$.ajax({
+								url: '/senna/bekka/produto/produtos/apagar_produto_na_loja/'+id_produto,
+								beforeSend: function() { 
+									$("#loader").show().find(".enviando").hide();
+									$("#loader").find(".carregando").show();
+								},
+								success: function(response) {									
+									parent.MochaUI.success("Produto apagado da Loja Virtual");
+										
+									var $url ="/senna/bekka/produto/produtos/form/"+id_produto;
+									window.location.href = $url;										
+								}
+							});
+						}						
+					}
+				});   			
+	   		}   			
+	   	});
+	   
+	   //imprimir_os_finalizada_mini
+	   $('#clonar_btn').bind('afterConfirmSubmit',function(evt,ret){
+		   if(ret.val)
+			   $('#clonar').val('1');
+	   });
+	   
+   	//	valida��es after submit
+		$$('#form').addEvent('afterSubmit',afterSubmit);
+		
+	   
+	});
+	
+	var recuperaFracionado = function (id_unidade_saida){
+		$.getJSON('/senna/produto/unidadeuso/get/'+id_unidade_saida,function (data){
+			$('#produto_fracionado').val(data.fracionado);
+			if($("#produto__vinculacao").val() == "C")
+				trataCamposFracionadoComposicao();
+		});
+	};
+	
+	var trataCamposFracionadoComposicao = function(){
+		//Trata os campos fracionados
+		if($('#produto_fracionado').val() == 1){
+			$('#quantidade_composicao_desfazer').removeClass("integer").numberFormat();
+			$('#quantidade_composicao_registrar').removeClass("integer").numberFormat();
+		}else{
+			$('#quantidade_composicao_desfazer').addClass("integer").numberFormat();
+			$('#quantidade_composicao_registrar').addClass("integer").numberFormat();
+		}
+	};
+	
+})(jQuery);
+
+/* Validando desc_produto --------------------------------*/
+jQuery.validator.addMethod("desc_resumida", function(value, element) {
+	var ret = false;
+	if(value.length > 2){
+		var exp = new RegExp(/^[^º"'*/-][0-9]*[^º"'*/]*[^0-9º"'*/]+[0-9]*[^º"'*/]*$/);
+		if(exp.test(value)){
+			ret = true;
+		}
+	}
+	else{
+		ret = true;
+	}
+	return ret;
+});
+
+
+/* Validando desc_produto --------------------------------*/
+jQuery.validator.addMethod("desc_principal", function(value, element) { 
+	var ret = false;
+	if(value.length > 2){
+		var exp = new RegExp(/^[^"']*$/);
+		if(exp.test(value)){
+			ret = true;
+		}
+	}
+	else{
+		ret = true;
+	}
+	return ret;
+});
+
+/* Validando ncm --------------------------------*/
+jQuery.validator.addMethod("codigo_para_comercializavel", function(value, element) {
+	var ret = false;
+	if(value){
+		var exp = new RegExp(/^[ #\\0-9a-zA-Z={}\[\]_.,;$@&^~]+[ %+-]*[ #\\0-9a-zA-Z{}=\[\]_.,;$@&^~-]*[ #\\0-9a-zA-Z{}=\[\]_.,;$@&^~]+$/);
+		if(exp.test(value)){
+			ret = true;
+		}
+	}
+	else{
+		ret = true;
+	}
+	return ret;
+});
+
+/* Validando Codigo para n�a fiscal --------------------------------*/
+jQuery.validator.addMethod("codigo_para_comercializavel_n_fiscal", function(value, element) {
+	var ret = true;
+	if(value){
+		var exp = new RegExp(/(^[-]+)|([\[\]()*\\'"%_]+)/)
+		if(exp.test(value)){
+			ret = false;
+		}
+	}
+	else{
+		ret = false;
+	}
+	return ret;
+});
+
+/* Validando desc_produto --------------------------------*/
+jQuery.validator.addMethod("codigo_para_n_comercializavel", function(value, element) {
+	var ret = false;
+	if(value.length > 2){
+		var exp = new RegExp(/^[^"º']*$/);
+		if(exp.test(value)){
+			ret = true;
+		}
+	}
+	else{
+		ret = true;
+	}
+	return ret;
+});
+</script>
+
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-text">
+            <span class='carregando'>Carregando ...</span> <span class='enviando' style="display: none">Enviando ...</span>
+        </div>
+        <div class="loader-bg">&nbsp;</div>
+    </div>
+
+    <div id="tela" style="height: 100%;">
+        <div id="conteudo">
+            <!--Container base_form.php-->
+            <?php 
+            $form->setAttribute('action',$this->url('classes-produto',array('controller'=>'produtos','action'=>'save')));
+            $form->setAttribute('windowId',$this->url('classes-produto',array('controller'=>'produtos','action'=>'form')));
+        
+            $form->prepare();
+            echo $this->form()->openTag($form);?>
+            	<div class="form_actions" id="form_actions">
+                <?php echo $this->formElement($form->get('Salvar')),
+				  		   $this->formElement($form->get('Salvar e Criar Novo')),
+						   $this->formElement($form->get('Salvar e Fechar'));?>
+						   
+				<input 
+					name="Apagar" 
+					type="button" 
+					confirm="Tem certeza que deseja apagar este registro?" 
+					class="delete" value="Apagar" 
+					deleteurl="/senna/produto/produtos/delete/<?php echo $this->id;?>" 
+					labelsconfirm="{'labelSim':'Sim','labelNao':'N&amp;atilde;o'}"
+					
+					<?php 
+					if($this->id==""){?>
+						disabled = "disabled"
+					<?php  }$this->id;?>
+					>
+                    <div class="action_menu_wrapper">
+
+                    <?php echo $this->formElement($form->get('acoes'));?>
+                       	
+                        <span class="action_menu"> 
+                        <?php echo $this->formElement($form->get('clonar'));?>
+                        <?php echo $this->formElement($form->get('Apagar'));?>
+                    
+                        </span>
+                    </div>
+                    <span class="sep" size="1">&nbsp;</span>
+                    <?php echo $this->formElement($form->get('Fechar'));?>
+
+                </div>
+                <div class="form_fields" id="form_fields">
+
+				<?php echo $this->formElement($form->get('produto__id'));?>
+				<?php echo $this->formElement($form->get('produto__id_produto_principal_grade'));?>
+				<?php echo $this->formElement($form->get('grade'));?>
+				<?php echo $this->formElement($form->get('_clonar'));?>
+				<?php echo $this->formElement($form->get('produto_ecommerce__data_sincronizacao'));?>
+				<?php echo $this->formElement($form->get('valor_grade'));?>
+				<?php echo $this->formElement($form->get('produto_ecommerce__id'));?>
+				
+
+                    <?php echo $this->partial('produto/produtos/tab_item')?>
+                    <?php echo $this->partial('produto/produtos/tab_valores_custos')?>
+                    <?php echo $this->partial('produto/produtos/tab_detalhes')?>
+                    <?php echo $this->partial('produto/produtos/tab_composicao')?>
+                    <?php echo $this->partial('produto/produtos/tab_grade')?>
+                    <?php echo $this->partial('produto/produtos/tab_kit')?>
+                    <?php echo $this->partial('produto/produtos/tab_foto')?>
+                    <?php echo $this->partial('produto/produtos/tab_fornecedores')?>
+                    <?php echo $this->partial('produto/produtos/tab_movimentacoes')?>
+                    <?php echo $this->partial('produto/produtos/tab_loja_virtual')?>
+
+                </div>
+            <?php echo $this->form()->closeTag();?>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+</body>
+
+</html>

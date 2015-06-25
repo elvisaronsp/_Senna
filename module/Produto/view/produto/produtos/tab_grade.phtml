@@ -1,0 +1,326 @@
+<div class="tab tab_fixed"
+	id="label_grade_1773714004155a4f4f677ca06dd6f26a804c6d11cf" ref="Grade"
+	rel="label_grade">
+	<div class="help_infos" id="fieldset_grade" style="">
+		<div style="">
+			Para que é usada: A Grade é utilizada quando se deseja um controle
+			mais detalhado de um mesmo produto. Por exemplo, quando se deseja
+			controlar lotes, cor ou tamanho de produtos.<br></br>Como funciona: O
+			usuário sempre realiza a entrada de estoque no produto principal. No
+			cadastro desse produto, pode ser feita a distribuição do estoque do
+			produto principal pelas grades cadastradas. Ao vender ou sair com um
+			produto grade, deve ser indicado o produto detalhado (chamado Filho
+			de Grade), movimentando seu estoque.
+		</div>
+	</div>
+	<!-- Mensagem de confirmação do form -->
+	<input class="new_button" id="gerar_grade" name="Montar Grade"
+		style="margin-left: 5px;" type="button" value="Montar Grade"></input>
+
+	<!--[ Div para montagem da grade ]-->
+	<div id="div_produtos_grade">
+		<p class="field " style="width: 120px;">
+			<label class="" for="estoque_disponivel" style="">Estoque Disponível</label><span
+				class="input_alert">&nbsp;</span><span class="input "
+				rel="estoque_disponivel" style=""><input class="disabled"
+				disabled="disabled" id="estoque_disponivel"
+				name="estoque_disponivel" number_format="#.#0,[3,3]" style=""
+				type="text" value="0"></input></span>
+		</p>
+		<input class="returnButton" id="desfazer_grade" name="Desfazer Grade"
+			style="margin-left: 5px; margin-top: 12px" type="button"
+			value="Desfazer Grade"></input>
+		<hr class="clear" size="1"></hr>
+
+		<fieldset class="fieldset " style="width: 97%;">
+			<legend>
+				<span class="legend"><span class="legend_label">Grade</span><span
+					class="input_alert">&nbsp;</span></span>
+			</legend>
+
+			<table border="0" cellpadding="0" cellspacing="0" class="form_table"
+				id="produtos_grade" style="clear: both; margin: 3px">
+				<thead>
+					<tr>
+						<th width="70px">Código</th>
+						<th width="100px">Código Identificador</th>
+						<th width="6px"></th>
+						<th width="340px">Descrição</th>
+						<th width="100px">Quantidade</th>
+
+					</tr>
+				</thead>
+				<tbody>
+				<?php
+				if ($this->filhos != null) {
+					foreach ( $this->filhos as $key => $value ) :
+						?>
+					<tr>
+						<td>
+							<p class="field " style="width: auto;">
+								<span class="input "
+									rel="_produto_grade__cod_grade_97095093850bbd46d030486651deb84e1d131e2a6"
+									style=""> <input class="disabled number" disabled="disabled"
+									id="_produto_grade__cod_grade_97095093850bbd46d030486651deb84e1d131e2a6"
+									name="_produto_grade__cod_grade[]" style="" type="text"
+									value=<?= $value['produto_grade__cod_grade']?>> </input>
+
+								</span>
+							</p> <input id="produto_grade__cod_grade"
+							name="produto_grade__cod_grade" type="hidden"
+							value=<?= $value['produto_grade__cod_grade']?>> </input> <input
+							id="produto_grade__id" name="produto_grade__id" type="hidden"
+							value=<?= $value['produto_grade__id']?>> </input>
+
+						</td>
+						<td>
+							<p class="field " style="width: auto;">
+								<span class="input " rel="produto_grade__cod_secundario"
+									style=""> <input id="produto_grade__cod_secundario"
+									maxlength="14" name="produto_grade__cod_secundario" style=""
+									type="text" value=<?= $value['produto_grade__cod_secundario']?>>
+									</input>
+
+								</span>
+							</p>
+						</td>
+						<td><a class="ean" id="ean_filhos_grade" name=""
+							style="margin: 0; width: 16px;" title="Gerar Código EAN">&nbsp;</a>
+						</td>
+						<td>
+							<p class="field " style="width: auto;">
+								<span class="input " rel="produto_grade__descricao_produto"
+									style=""> <input class="left required"
+									id="produto_grade__descricao_produto" maxlength="100"
+									name="produto_grade__descricao_produto" style="text-transform: uppercase" type="text" 
+									value="<?php
+						$descricao = explode ( "-", $value ['produto_grade__descricao_produto'] );
+						echo trim ( $descricao [1] );
+						?>"> </input>
+
+								</span>
+							</p>
+						</td>
+						<td>
+							<p class="field " style="width: auto;">
+								<span class="input " rel="produto_grade__quantidade" style=""> <input
+									id="produto_grade__quantidade" name="produto_grade__quantidade"
+									number_format="+#.#0,[3,3]" style="" type="text" value="0.000" readonly="readonly"> </input>
+								</span>
+							</p>
+						</td>
+
+					</tr>
+					
+				<?php
+					endforeach;
+				} else {
+					?>
+				<tr>
+						<td>
+							<p class="field " style="width: auto;">
+								<span class="input "
+									rel="_produto_grade__cod_grade_97095093850bbd46d030486651deb84e1d131e2a6"
+									style=""> <input class="disabled number" disabled="disabled"
+									id="_produto_grade__cod_grade_97095093850bbd46d030486651deb84e1d131e2a6"
+									name="_produto_grade__cod_grade[]" style="" type="text"
+									value=""> </input>
+
+								</span>
+							</p> <input id="produto_grade__cod_grade"
+							name="produto_grade__cod_grade" type="hidden" value=""> </input>
+
+							<input id="produto_grade__id" name="produto_grade__id"
+							type="hidden" value=""> </input>
+
+						</td>
+						<td>
+							<p class="field " style="width: auto;">
+								<span class="input " rel="produto_grade__cod_secundario"
+									style=""> <input id="produto_grade__cod_secundario"
+									maxlength="14" name="produto_grade__cod_secundario" style=""
+									type="text" value=""> </input>
+
+								</span>
+							</p>
+						</td>
+						<td><a class="ean" id="ean_filhos_grade" name=""
+							style="margin: 0; width: 16px;" title="Gerar Código EAN">&nbsp;</a>
+						</td>
+						<td>
+							<p class="field " style="width: auto;">
+								<span class="input " rel="produto_grade__descricao_produto"
+									style=""> <input class="left required"
+									id="produto_grade__descricao_produto" maxlength="100"
+									name="produto_grade__descricao_produto" style="" type="text"
+									value=""> </input>
+
+								</span>
+							</p>
+						</td>
+						<td>
+							<p class="field " style="width: auto;">
+								<span class="input " rel="produto_grade__quantidade" style=""> 
+								<input
+									id="produto_grade__quantidade" name="produto_grade__quantidade"
+									number_format="+#.#0,[3,3]" style="" type="text" value="0.000" readonly="readonly"> </input>
+								
+								</span>
+							</p>
+						</td>
+
+					</tr>
+				
+				<?php }?>
+				</tbody>
+			</table>
+			<div style="margin-top: -45px; margin-left: 80px">
+				<input class="eanButton" id="ean_todos_filhos_grade"
+					name="Gerar Código Identificador para todos os itens"
+					style="margin-left: 5px; margin-top: 12px;"
+					title="Gerar Código EAN" type="button"
+					value="Gerar Código Identificador para todos os itens"></input>
+			</div>
+
+
+		</fieldset>
+	</div>
+
+	<hr class="clear" size="1"></hr>
+
+	<!--[ Modalidade Primária ]-->
+	<div class="div_modalidade" id="div_modalidade_primaria"
+		style="float: left; width: 250px; margin-top: 15px; margin: 0px 5px 0px 5px;">
+		<fieldset class="fieldset " style="width: 97%;">
+			<legend>
+				<span class="legend"><span class="legend_label">Modalidade Primária</span><span
+					class="input_alert">&nbsp;</span></span>
+			</legend>
+
+			<p class="field " style="width: 230px;">
+				<span class="input " rel="modalidade_primaria" style=""><input
+					id="modalidade_primaria" name="modalidade_primaria" type="hidden"
+					value="{modalidade_primaria}"></input><i
+					class="ui-autocomplete_combo" tabindex="-1"></i><input
+					autosuggest="modalidade_primaria" class=" autosuggest" filters="[]"
+					form_title="Cadastrando Modalidade"
+					form_url="/senna/produto/modalidades/form"
+					form_url_field="descricao" id="modalidade_primaria" minLength="0"
+					name="ac_0924232937f790c4db579feb5bad0a5335a05e008d"
+					new_item_info="Criar um novo registro"
+					new_item_label="Cadastrar Novo"
+					source="/senna/produto/modalidades/getModalidades" style=""
+					type="text" uppercase="true" value="" valueclear="true"
+					valuefield="id"></input><em
+					class="autocomplete_search  autosuggest"></em></span>
+			</p>
+
+			<table border="0" cellpadding="0" cellspacing="0" class="form_table"
+				id="dados_grade_pri" style="clear: both; margin-left: 2px">
+				<thead>
+					<tr>
+						<th width="190px">Modalidade</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input id="desc_modalidade" name="desc_modalidade" style="text-transform: uppercase"></input></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</fieldset>
+	</div>
+
+	<!--[ Modalidade Secundária ]-->
+	<div class="div_modalidade" id="div_modalidade_secundaria"
+		style="float: left; width: 250px; margin-top: 15px; margin: 0px 5px 0px 5px;">
+		<fieldset class="fieldset " style="width: 97%;">
+			<legend>
+				<span class="legend"><span class="legend_label">Modalidade
+						Secundária</span><span class="input_alert">&nbsp;</span></span>
+			</legend>
+
+			<p class="field " style="width: 230px;">
+				<span class="input " rel="modalidade_secundaria" style=""><input
+					id="modalidade_secundaria" name="modalidade_secundaria"
+					type="hidden" value="{modalidade_secundaria}"></input><i
+					class="ui-autocomplete_combo" tabindex="-1"></i><input
+					autosuggest="modalidade_secundaria" class=" autosuggest"
+					filters="[]" form_title="Cadastrando Modalidade"
+					form_url="/senna/produto/modalidades/form" form_url_field=""
+					id="modalidade_secundaria" minLength="0"
+					name="ac_01452586458bbff4841e3c1eafdd8d0ed352d9a157e"
+					new_item_info="Criar um novo registro"
+					new_item_label="Cadastrar Novo"
+					source="/senna/produto/modalidades/getModalidades" style=""
+					type="text" uppercase="true" value="" valueclear="true"
+					valuefield="id"></input><em
+					class="autocomplete_search  autosuggest"></em></span>
+			</p>
+
+			<table border="0" cellpadding="0" cellspacing="0" class="form_table"
+				id="dados_grade_sec" style="clear: both; margin-left: 2px">
+				<thead>
+					<tr>
+						<th width="190px">Modalidade</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input id="desc_modalidade" name="desc_modalidade"></input></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</fieldset>
+	</div>
+
+	<!--[ Modalidade Terciária ]-->
+	<div class="div_modalidade" id="div_modalidade_terciaria"
+		style="float: left; width: 250px; margin-top: 15px; margin: 0px 5px 0px 5px;">
+		<fieldset class="fieldset " style="width: 97%;">
+			<legend>
+				<span class="legend"><span class="legend_label">Modalidade Terciária</span><span
+					class="input_alert">&nbsp;</span></span>
+			</legend>
+
+			<p class="field " style="width: 230px;">
+				<span class="input " rel="modalidade_terciaria" style=""><input
+					id="modalidade_terciaria" name="modalidade_terciaria" type="hidden"
+					value="{modalidade_terciaria}"></input><i
+					class="ui-autocomplete_combo" tabindex="-1"></i><input
+					autosuggest="modalidade_terciaria" class=" autosuggest"
+					filters="[]" form_title="Cadastrando Modalidade"
+					form_url="/senna/produto/modalidades/form" form_url_field=""
+					id="modalidade_terciaria" minLength="0"
+					name="ac_0202419236042c8143f1c7ca280f19fd12b37ecf019"
+					new_item_info="Criar um novo registro"
+					new_item_label="Cadastrar Novo"
+					source="/senna/produto/modalidades/getModalidades" style=""
+					type="text" uppercase="true" value="" valueclear="true"
+					valuefield="id"></input><em
+					class="autocomplete_search  autosuggest"></em></span>
+			</p>
+
+			<table border="0" cellpadding="0" cellspacing="0" class="form_table"
+				id="dados_grade_ter" style="clear: both; margin-left: 2px">
+				<thead>
+					<tr>
+						<th width="190px">Modalidade</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input id="desc_modalidade" name="desc_modalidade"></input></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</fieldset>
+	</div>
+	<div class="tab_navigator ">
+		<input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;<input
+			class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+	</div>
+</div>

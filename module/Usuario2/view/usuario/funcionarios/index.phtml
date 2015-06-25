@@ -1,0 +1,156 @@
+<?php echo $this->doctype(); ?>
+<html>
+
+<head>
+    <meta http-equiv='cache-control' content='no-cache'/>
+    <meta http-equiv='expires' content='0'/>
+    <meta http-equiv='pragma' content='no-cache'/>
+    <meta name="robots" content="NOINDEX,NOFOLLOW"/>
+    <meta name="base_url" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+    <!-- Scripts javaScript -->
+    <?php echo $this->headScript()
+        ->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+        ->appendFile($this->basePath() . '/js/mootools-1.2-more.js')
+        ->appendFile($this->basePath() . '/js/core.js')
+        ->appendFile($this->basePath() . '/js/Window.js')
+        ->appendFile($this->basePath() . '/js/Modal.js')
+        ->appendFile($this->basePath() . '/js/mocha-ext.js')
+        ->appendFile($this->basePath() . '/js/base.js')
+        ->appendFile($this->basePath() . '/js/atalhos.js')
+        ->appendFile($this->basePath() . '/js/detect-zoom.js')
+        ->appendFile($this->basePath() . '/js/jQuery/core.js')
+        ->appendFile($this->basePath() . '/js/forms.js')
+        ->appendFile($this->basePath() . '/js/jQuery/bt.js')
+        ->appendFile($this->basePath() . '/js/listing.js')
+        ->appendFile($this->basePath() . '/js/omnigrid.js')
+        ->appendFile($this->basePath() . '/js/sexyalertbox.js') ?>
+
+
+    <!-- Estilos da pagina Css/code -->
+    <?php echo $this->headLink()
+        //->appendStylesheet($this->basePath() . '/css/noprint.css')
+        ->appendStylesheet($this->basePath() . '/css/loader.css')
+        ->appendStylesheet($this->basePath() . '/css/style.css')
+        ->appendStylesheet($this->basePath() . '/css/style_tagplus.css')
+        ->appendStylesheet($this->basePath() . '/css/glyphs.css')
+        ->appendStylesheet($this->basePath() . '/css/listing.css')
+        ->appendStylesheet($this->basePath() . '/css/omnigrid.css')
+        ->appendStylesheet($this->basePath() . '/css/sexyalertbox.css') ?>
+
+    <script type='text/javascript'>
+        var confirmation = function (a, b) {
+            b = $extend({
+                'textBoxBtnOk': 'Sim',
+                'textBoxBtnCancel': 'Não'
+            }, b || {});
+            Sexy.confirm(a, b);
+        };
+        if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
+            "intro_button_continuar": "Continuar",
+            "intro_button_avancar": "Avan\u00e7ar",
+            "intro_button_entendi": "<i class=\"icon-ok\"><\/i> Entendi",
+            "intro_button_ok": "<i class=\"icon-ok\"><\/i> Ok",
+            "intro_button_concluir": "<i class=\"icon-thumbs-up\"><\/i> Concluir",
+            "intro_button_voltar": "Voltar",
+            "intro_button_fechar": "Fechar",
+            "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial"
+        });
+
+        /****************************
+         usuario/funcionarios/list.js
+         ****************************/
+
+        window.addEvent('domready', function () {
+            list.onBeforeDeleteRow = function (row) {
+                /*if(row.possui_vinculo == 0){
+                 $$('input[name=delete]').set('confirm','Deseja realmente apagar o Funcionário selecionado?');
+                 }
+                 else if(row.possui_vinculo == 1){
+                 $$('input[name=delete]').set('confirm','Este Funcionário não pode ser removido pois já efetuou login ou possui vínculos no sistema. Deseja desativá-lo?');
+                 }*/
+                if (row.ativo == '0' && row.possui_log == 1) {
+                    Sexy.info('Este Funcionário já está inativo.');
+                    return false;
+                }
+            };
+
+            list.datagrid.addEvent('loaddata', function () {
+                $$('.btn_desativa').setStyle('display', 'none');
+                $$('.btn_delete').setStyle('display', '');
+            });
+
+            list.datagrid.addEvent('click', function (row) {
+                if (list.datagrid.getDataByRow(row.row).possui_log == '1' || list.datagrid.getDataByRow(row.row).possui_vinculo == '1') {
+                    $$('.btn_desativa').setStyle('display', '');
+                    $$('.btn_delete').setStyle('display', 'none');
+                }
+                else {
+                    $$('.btn_desativa').setStyle('display', 'none');
+                    $$('.btn_delete').setStyle('display', '');
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+<!--Container tela.php-->
+<div id="loader">
+    <div class="loader-text">
+        <span class='carregando'>Carregando ...</span>
+        <span class='enviando' style="display: none">Enviando ...</span>
+    </div>
+    <div class="loader-bg">&nbsp;</div>
+</div>
+
+<div id="tela" style="height: 100%;">
+    <div id="conteudo">
+        <div id="list_control">
+
+            <form action="<?php echo $this->basePath() ?>/senna/usuario/funcionarios/filter" class="form" debug="false"
+                  enctype="text/plain" id="filter" method="post">
+
+                <input name="add" type="button" value="Novo" windowName="Cadastrar Funcionário"></input>
+
+                <input name="edit" type="button" value="Alterar"></input>
+
+                <input class="btn_delete" confirm="Deseja realmente apagar o Funcionário selecionado?" debug="false"
+                       name="delete" type="button" value="Apagar"></input>
+                <input class="button exclamation btn_desativa"
+                       confirm="Este Funcionário não pode ser removido pois já efetuou login ou possui vínculos no sistema. Deseja desativá-lo?"
+                       debug="false" name="delete" style="display:none" type="button" value="Desativar"></input>
+
+                <input debug="true" name="pesquisar" type="submit" value=""></input>
+                <span><p class="field " style="width:auto; "><span class="input " rel="search_text" style=""><input
+                                class="focus" id="search_text" name="busca" placeholder="Filtrar" style="" type="text"
+                                value=""></input></span></p></span>
+            </form>
+        </div>
+
+        <div id="datatable" windowName="Alterar dados de Funcionário">
+            <div col="id" hidden="true">#</div>
+            <div col="ativo" hidden="true">Ativo</div>
+            <div col="possui_vinculo" hidden="true">#</div>
+            <div align="center" col="ativo_img" type="string" width="45">Ativo</div>
+            <div col="nome_funcionario" type="string">Nome</div>
+            <div col="codigo_acesso" type="string" width="15%">Login</div>
+            <div col="cpf" type="string" width="10%">CPF</div>
+            <div col="perfil_acesso" type="string" width="10%">Perfil de Acesso</div>
+            <div col="setor" type="string" width="10%">Departamento</div>
+            <div col="email" type="string" width="23%">Email</div>
+        </div>
+
+        <div add_btn_title="Clique aqui para adicionar um novo registro"
+             adv_search_btn_title="Limpe ou altere o Filtro Avançado para exibir resultados" id="list_empty"
+             search_btn_title="Remova ou altere sua pesquisa para exibir resultados">
+            <h3>Nenhum registro foi encontrado</h3>
+        </div>
+    </div>
+</div>
+<div id="footer"></div>
+</body>
+</html>

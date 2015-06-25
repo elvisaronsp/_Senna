@@ -1,0 +1,106 @@
+.upload {
+	height: 98%;
+	margin-left: 3px;
+	float: left;
+	position: relative;
+	background-color: #f7f7f7;
+	border: 1px solid #EEE;
+	margin-top: 4px;
+}
+
+.qq-uploader { 
+	height: 100%; 
+	float: left;
+	width: 32%; 
+}
+
+.qq-upload-button {}
+.qq-upload-button-focus {}
+.qq-upload-button-hover{
+	background-color: #EEE;
+	cursor: pointer;
+}
+.qq-upload-button span{
+	cursor: pointer;
+	display: block;
+	height: auto !important;
+	margin: 5px;
+	border-radius: 2px;
+}
+
+.qq-upload-drop-area {
+    position:absolute; top:0; left:0; width:100%; height:100%; z-index:2;
+    background:#EEE; text-align:center; 
+}
+.qq-upload-drop-area span {
+    display:block; position:absolute; top: 50%; width:100%; margin-top:-8px; font-size:16px;
+	color: #666;
+}
+.qq-upload-drop-area-active {background:#DDD;}
+
+.qq-upload-list {margin:0px; padding:0; list-style:none;}
+.qq-upload-list li { margin:0; padding:4px; line-height:15px; font-size:12px;  width: 98%;}
+.qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text {
+    margin-right: 7px;
+}
+.qq-upload-list li 						{ background: #EEE; border: 1px solid #DDD; margin-bottom: 2px;}
+.qq-upload-list li.qq-upload-success 	{ background: #DAFFBF; color: #529214; border: 1px solid #97DF61; }
+.qq-upload-list li.qq-upload-fail 		{ background: #FFF6BF; color: #817134; border: 1px solid #FFE57F; }
+
+.qq-upload-file {}
+.qq-upload-spinner {display:inline-block; background: transparent url(../images/mocha/spinner.gif) no-repeat left center; width:15px; height:15px; vertical-align:text-bottom;}
+.qq-upload-size,.qq-upload-cancel {font-size:11px;}
+
+.qq-upload-failed-text {display:none;}
+.qq-upload-fail .qq-upload-failed-text {display:inline; color: #FF0000; font-size: 11px; float:right;}
+
+
+/*Estilo da listagem dos arquivos*/
+.upload_images_container{
+	height: 100%;
+	overflow: auto;
+	margin-top: 10px;
+}
+.upload_images_container .foto{
+	width: 135px;
+	height: 118px;
+	padding: 5px;
+	float: left;
+	margin: 2px;
+	border: 1px solid #EEE;
+	background-color: #FFF;
+}
+	.upload_images_container .foto img{
+		width: 100%;
+		cursor: pointer;
+	}
+	.upload_images_container .foto .acao{
+		background: transparent url('../images/bullet_star.png') top left no-repeat;
+		cursor: pointer;
+		float: left;
+		height: 16px;
+		width: 16px;
+	}
+	.upload_images_container .foto .remover{
+		background: transparent url('../images/remove.gif') top left no-repeat;
+		cursor: pointer;
+		float: left;
+		height: 16px;
+		width: 16px;
+	}
+	
+	.upload_images_container .foto .foto_container {
+		height:100px;
+		overflow:hidden;
+		margin-bottom:3px;
+	}
+
+	.upload_images_container .foto_principal{
+		background-color: #FFF2CF;
+		border-color: #FFE59F;
+	}
+	.upload_images_container .foto_principal .acao{
+		background: transparent url('../images/star.png') top left no-repeat;
+	}
+
+

@@ -1,0 +1,146 @@
+<?php echo $this->doctype(); ?>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv='cache-control' content='no-cache' />
+    <meta http-equiv='expires' content='0' />
+    <meta http-equiv='pragma' content='no-cache' />
+    <meta name="robots" content="NOINDEX,NOFOLLOW" />
+    <meta name="base_url" content="" />
+
+    <title></title>
+
+    <!-- Scripts javaScript -->
+    <?php echo $this->headScript() 
+                    ->appendFile($this->basePath() . '/js/mootools-1.2-core.js') 
+                    ->appendFile($this->basePath() . '/js/mootools-1.2-more.js') 
+                    ->appendFile($this->basePath() . '/js/core.js') 
+                    ->appendFile($this->basePath() . '/js/Window.js') 
+                    ->appendFile($this->basePath() . '/js/Modal.js') 
+                    ->appendFile($this->basePath() . '/js/mocha-ext.js') 
+                    ->appendFile($this->basePath() . '/js/base.js') 
+                    ->appendFile($this->basePath() . '/js/atalhos.js') 
+                    ->appendFile($this->basePath() . '/js/detect-zoom.js') 
+                    ->appendFile($this->basePath() . '/js/ancoras.js')?>
+
+
+    <!-- Estilos da pagina Css/code -->
+    <?php echo $this->headLink()
+                    //->appendStylesheet($this->basePath() . '/css/noprint.css') 
+                    ->appendStylesheet($this->basePath() . '/css/loader.css') 
+                    ->appendStylesheet($this->basePath() . '/css/style.css') 
+                    ->appendStylesheet($this->basePath() . '/css/style_tagplus.css') 
+                    ->appendStylesheet($this->basePath() . '/css/glyphs.css') 
+                    ->appendStylesheet($this->basePath() . '/css/ancoras.css')?>
+
+
+    <script type='text/javascript'>
+        if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
+            "intro_button_continuar": "Continuar",
+            "intro_button_avancar": "Avan\u00e7ar",
+            "intro_button_entendi": "<i class=\"icon-ok\"><\/i> Entendi",
+            "intro_button_ok": "<i class=\"icon-ok\"><\/i> Ok",
+            "intro_button_concluir": "<i class=\"icon-thumbs-up\"><\/i> Concluir",
+            "intro_button_voltar": "Voltar",
+            "intro_button_fechar": "Fechar",
+            "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial"
+        });
+
+        window.addEvent('domready', function() {
+
+            //Verificando se existe nfe e não tem cnpj
+            if ($$('#ancora [name=nfe]')[0] && '{cnpj_empty}' == '')
+                $$('#ancora [name=nfe]')[0].setStyle('display', 'none');
+
+            //Verificando se existe nfe e não tem cnpj
+            if ($$('#ancora [name=nfse]')[0] && '{cnpj_empty}' == '')
+                $$('#ancora [name=nfse]')[0].setStyle('display', 'none');
+
+
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-text">
+            <span class='carregando'>Carregando ...</span>
+            <span class='enviando' style="display: none">Enviando ...</span>
+        </div>
+        <div class="loader-bg">&nbsp;</div>
+    </div>
+
+    <div id="tela" style="height: 100%;">
+        <div id="conteudo">
+            <h1>Cadastros Auxiliares de Produtos</h1>
+
+            <div id="ancora">
+
+                <div class="caixa vermelho colunas_2" name="">
+                    <div class="imagem">
+                        <i class="icon-rulers"></i>
+                    </div>
+                    <div class="corpo">
+                        <h4><span><i class="icon-rulers"></i><span class="label">Unidades de medida</span></span></h4>
+                        <p>Cadastre ou altere as unidades de medidas dos itens de venda</p>
+                    </div>
+                    <div class="links">
+
+                        <a class="openWindow" href="<?php echo $this->basePath() ?>/senna/produto/unidadeuso/form" target="self"><span class='icon-plus'></span><label>Criar Novo</label></a>
+
+                        <a class="goto openList" href="<?php echo $this->basePath() ?>/senna/produto/unidadeuso" target="self"><span class='icon-list'></span><label>Listar Todos</label></a>
+
+                    </div>
+                </div>
+
+                <div class="caixa verde colunas_2" name="">
+                    <div class="imagem"><i class="icon-grid3"></i>
+                    </div>
+                    <div class="corpo">
+                        <h4><span><i class="icon-grid3"></i><span class="label">Classes de itens de venda</span></span></h4>
+                        <p>Cadastre ou altere as classes de itens de venda</p>
+                    </div>
+                    <div class="links">
+
+                        <a class="openWindow" href="<?php echo $this->basePath() ?>/senna/produto/classesprodutos/form" target="self"><span class='icon-plus'></span><label>Criar Novo</label></a>
+
+                        <a class="goto openList" href="<?php echo $this->basePath() ?>/senna/produto/classesprodutos" target="self"><span class='icon-list'></span><label>Listar Todos</label></a>
+
+
+                    </div>
+                </div>
+             
+                <div class="caixa laranja colunas_2" name="">
+                    <div class="imagem">
+                        <i class="icon-foldertree"></i>
+                    </div>
+                    <div class="corpo">
+                        <h4>
+                            <span>
+                                <i class="icon-foldertree"></i>
+                                <span class="label">Modalidades e Grades</span>
+                            </span>
+                        </h4>
+                        <p>Cadastre ou altere as modalidades e grades dos itens de venda</p>
+                    </div>
+                    <div class="links">
+                        <a class="openWindow" href="<?php echo $this->basePath() ?>/senna/produto/modalidades/form" target="self">
+                            <span class='icon-plus'></span>
+                            <label>Criar Novo</label>
+                        </a>
+                        <a class="goto openList" href="<?php echo $this->basePath() ?>/senna/produto/modalidades" target="self">
+                        	<span class='icon-list'></span>
+                       		<label>Listar Todos</label>
+                       	</a>
+                    </div>
+                </div>
+           
+            </div>
+
+        </div>
+    </div>
+    <div id="footer"></div>
+</body>
+</html>

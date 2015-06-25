@@ -1,0 +1,19 @@
+<a class="novo" title="Adicionar Arquivo">&nbsp;</a>
+<?php
+if(count($this->data) > 0)
+{
+?>	
+
+<?php foreach ($this->data as $key => $value):?>
+	<div class='success' rel='<?=$this->path.'/images/produtos/'.$this->id.'/'.$value ?>'>
+		<span class='img'>
+		<img src="<?php echo $this->path.'/images/produtos/'.$this->id.'/'.$value ?>" /></span>
+		<a class='delete' title='Apagar Imagem'></a>
+		<a class='select'></a>
+	</div>
+<?php endforeach; } ?>
+
+
+
+
+

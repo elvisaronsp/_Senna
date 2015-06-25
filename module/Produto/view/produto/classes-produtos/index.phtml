@@ -1,0 +1,125 @@
+<?php echo $this->doctype(); ?>
+<html>
+<head>
+<meta http-equiv='cache-control' content='no-cache' />
+<meta http-equiv='expires' content='0' />
+<meta http-equiv='pragma' content='no-cache' />
+<meta name="robots" content="NOINDEX,NOFOLLOW" />
+<meta name="base_url" content="COLCOAR BASE URL" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<!-- Scripts javaScript -->
+<?php echo $this->headScript()
+		    	->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+			    ->appendFile($this->basePath() . '/js/mootools-1.2-more.js')
+			    ->appendFile($this->basePath() . '/js/core.js')
+			    ->appendFile($this->basePath() . '/js/Window.js')
+			    ->appendFile($this->basePath() . '/js/Modal.js')
+			    ->appendFile($this->basePath() . '/js/mocha-ext.js')
+			    ->appendFile($this->basePath() . '/js/base.js')
+			    ->appendFile($this->basePath() . '/js/atalhos.js')
+			    ->appendFile($this->basePath() . '/js/detect-zoom.js')
+			    ->appendFile($this->basePath() . '/js/jQuery/core.js')
+			    ->appendFile($this->basePath() . '/js/forms.js')
+			    ->appendFile($this->basePath() . '/js/jQuery/bt.js')
+			    ->appendFile($this->basePath() . '/js/listing.js')
+			    ->appendFile($this->basePath() . '/js/omnigrid.js')
+			    ->appendFile($this->basePath() . '/js/sexyalertbox.js')?>
+
+
+<!-- Estilos da pagina Css/code -->
+<?php echo $this->headLink()
+   				//->appendStylesheet($this->basePath() . '/css/noprint.css')
+    			->appendStylesheet($this->basePath() . '/css/loader.css')
+				->appendStylesheet($this->basePath() . '/css/style.css')
+				->appendStylesheet($this->basePath() . '/css/style_tagplus.css')
+				->appendStylesheet($this->basePath() . '/css/glyphs.css')
+				->appendStylesheet($this->basePath() . '/css/listing.css')
+				->appendStylesheet($this->basePath() . '/css/omnigrid.css')
+				->appendStylesheet($this->basePath() . '/css/sexyalertbox.css')?>
+				
+				
+<script type='text/javascript'>
+        var confirmation = function(a, b) {
+            b = $extend({
+                'textBoxBtnOk': 'Sim',
+                'textBoxBtnCancel': 'Não'
+            }, b || {});
+            Sexy.confirm(a, b);
+        };
+        if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
+            "intro_button_continuar": "Continuar",
+            "intro_button_avancar": "Avan\u00e7ar",
+            "intro_button_entendi": "<i class=\"icon-ok\"><\/i> Entendi",
+            "intro_button_ok": "<i class=\"icon-ok\"><\/i> Ok",
+            "intro_button_concluir": "<i class=\"icon-thumbs-up\"><\/i> Concluir",
+            "intro_button_voltar": "Voltar",
+            "intro_button_fechar": "Fechar",
+            "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial"
+        });
+        window.addEvent('domready', function() {
+            list.onBeforeDeleteRow = function(row) {
+                var ret = true;
+                new Request({
+                    url: '/senna/produto/classesprodutos/verificavinculos/' + row.id,
+                    async: false,
+                    onComplete: function(response) {
+                        if (response == '1') {
+                            Sexy.alert("<b>Impossivel remover classe de itens</b><br /> Esta classe pois possui subclasses viculadas a ela.Remova as subclasses primeiro.");
+                            ret = false;
+                        }
+                    }
+                }).send();
+                return ret;
+            };
+        });
+    </script>
+</head>
+<body>
+	<!--Container tela.php-->
+	<div id="loader">
+		<div class="loader-text">
+			<span class='carregando'>Carregando ...</span> <span class='enviando'
+				style="display: none">Enviando ...</span>
+		</div>
+		<div class="loader-bg">&nbsp;</div>
+	</div>
+	<div id="tela" style="height: 100%;">
+		<div id="conteudo">
+			<div id="list_control">
+				<form action="/senna/produto/classesprodutos/filter" class="form"
+					debug="false" enctype="text/plain" id="filter" method="post">
+					<input name="add" type="button" value="Novo"
+						windowname="Cadastro de classes de itens de venda"></input> <input name="edit"
+						type="button" value="Editar" windowname="Atualiza��o de classes de itens de venda"></input>
+					<input confirm="Deseja realmente apagar a classe de itens selecionada?"
+						name="delete" type="button" value="Excluir"></input> <input
+						debug="true" name="pesquisar" type="submit" value=""></input> <span>
+						<p class="field " style="width: auto;">
+							<span class="input " rel="search_text" style=""> <input
+								class="focus" id="search_text" name="busca" placeholder="Buscar"
+								style="" type="text" value=""></input>
+							</span>
+						</p>
+					</span>
+				</form>
+			</div>
+			<div id="datatable" windowname="Atualização de classes de itens de venda">
+				<div col="id" hidden="true"></div>
+				<div col="possui_vinculos" hidden="true" type="string"></div>
+				<div col="descricao" type="string">DescriÇÃo</div>
+				<!--div col="localizacao" type="string" width="25%">Localização</div-->
+				<div col="subcategoria" type="string" width="25%">CLASSE PAI</div>
+			</div>
+			<div
+				add_btn_title="Clique aqui para adicionar uma nova classe de itens de venda"
+				adv_search_btn_title="Limpe ou altere o Filtro Avançado para exibir resultados"
+				id="list_empty"
+				search_btn_title="Remova ou altere sua pesquisa para exibir resultados">
+				<h3>Nenhuma classe de itens encontrada</h3>
+			</div>
+		</div>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+ 
+/****************************** 
+ * DASHBOARD 
+ *******************************/
+#desktopTitlebar #applicationName{
+	color: #3C69AD;
+}
+#topNav a#top_menu_modal_trigger{
+	background-color: #e74c3c;
+	border-bottom-color: #BF7300 !important;
+}
+#topNav a#top_menu_modal_trigger:hover,
+#topNav a#top_menu_modal_trigger.ativo{
+	background-color: #16a085 ;
+}
+ 
+	
+.mochaSpinner{
+	background: url(../../../images/loader.gif) no-repeat;
+}
+
+/** 
+ * Rodape 
+ *************************************/
+.dockTab.activeDockTab {	
+	background-color: #16a085;
+} 
+ 

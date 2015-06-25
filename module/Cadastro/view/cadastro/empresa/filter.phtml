@@ -1,0 +1,12 @@
+<?php
+
+$rows = array("page"=>(int)$this->page,'total'=>'', 'data'=>array()); 
+foreach ( $this->data as $key => $entity ) :
+	foreach ( $entity as $k => $e ) :
+		$row [$k] = $e;
+	endforeach;
+	array_push ( $rows['data'], $row );
+endforeach;
+	$rows['total']="".$this->registos."";
+
+print json_encode($rows);
