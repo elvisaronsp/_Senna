@@ -30,4 +30,26 @@ class Perfis extends AbstractService {
 		$this->entity = "Acl\Entity\Perfis";
 		$this->em = $em;
 	}
+
+    /**
+     * @param array $data
+     * @return mixed
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function insert(array $data)
+    {
+        $entity = new $this->entity($data);
+
+        if(isset($data['parent']))
+        {
+            $parent = $this->em->getReference($this->entity, $data['parent']);
+            $entity->setParent($parent);
+        }
+        else
+            $entity->setParent(null);
+
+        $this->em->persist($entity);
+        $this->em->flush();
+        return $entity;
+    }
 }

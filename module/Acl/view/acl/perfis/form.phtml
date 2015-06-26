@@ -1,0 +1,263 @@
+<?php echo $this->doctype(); ?>
+<html>
+<head>
+    <meta http-equiv='cache-control' content='no-cache'/>
+    <meta http-equiv='expires' content='0'/>
+    <meta http-equiv='pragma' content='no-cache'/>
+    <meta name="robots" content="NOINDEX,NOFOLLOW"/>
+    <meta name="base_url" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    <?php echo $this->headScript()
+        ->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+        ->appendFile($this->basePath() . '/js/mootools-1.2-more.js')
+        ->appendFile($this->basePath() . '/js/Core.js')
+        ->appendFile($this->basePath() . '/js/Window.js')
+        ->appendFile($this->basePath() . '/js/Modal.js')
+        ->appendFile($this->basePath() . '/js/mocha-ext.js')
+        ->appendFile($this->basePath() . '/js/base.js')
+        ->appendFile($this->basePath() . '/js/atalhos.js')
+        ->appendFile($this->basePath() . '/js/detect-zoom.js')
+        ->appendFile($this->basePath() . '/js/jquery/core.js')
+        ->appendFile($this->basePath() . '/js/jquery/dump.js')
+        ->appendFile($this->basePath() . '/js/jquery/debug.js')
+        ->appendFile($this->basePath() . '/js/jquery/bt.js')
+        ->appendFile($this->basePath() . '/js/jquery/validate.js')
+        ->appendFile($this->basePath() . '/js/jquery/maskedinput.js')
+        ->appendFile($this->basePath() . '/js/jquery/uppercase.js')
+        ->appendFile($this->basePath() . '/js/jquery/clonefield.js')
+        ->appendFile($this->basePath() . '/js/jquery/priceformat.js')
+        ->appendFile($this->basePath() . '/js/jquery/tab.js')
+        ->appendFile($this->basePath() . '/js/jquery/tablestyle.js')
+        ->appendFile($this->basePath() . '/js/jquery/date.js')
+        ->appendFile($this->basePath() . '/js/jquery/datepicker.js')
+        ->appendFile($this->basePath() . '/js/jquery/readonly.js')
+        ->appendFile($this->basePath() . '/js/sexyalertbox.js')
+        ->appendFile($this->basePath() . '/js/jquery/confirm_message.js')
+        ->appendFile($this->basePath() . '/js/jquery/livequery.js')
+        ->appendFile($this->basePath() . '/js/forms.js')
+        ->appendFile($this->basePath() . '/js/script_perfis.js')?>
+
+
+
+
+    <!-- Estilos da pagina Css/code -->
+    <?php echo $this->headLink()
+        //->appendStylesheet($this->basePath() . '/css/noprint.css')
+        ->appendStylesheet($this->basePath() . '/css/glyphs.css')
+        ->appendStylesheet($this->basePath() . '/css/loader.css')
+        ->appendStylesheet($this->basePath() . '/css/style.css')
+        ->appendStylesheet($this->basePath() . '/css/style_tagplus.css')
+        ->appendStylesheet($this->basePath() . '/css/listing.css')
+        ->appendStylesheet($this->basePath() . '/css/sexyalertbox.css')
+        ->appendStylesheet($this->basePath() . '/css/datepicker.css')?>
+
+
+</head>
+<body >
+<!--Container tela.php-->
+<div id="loader">
+    <div class="loader-text">
+        <span class='carregando'>Carregando ...</span>
+        <span class='enviando' style="display: none">Enviando ...</span>
+    </div>
+    <div class="loader-bg">&nbsp;</div>
+</div>
+<div id="tela" style="height: 100%;">
+    <div id="conteudo"><!--Container base_form.php-->
+        <form action="<?php echo $this->basePath() ?>/senna/usuario/perfis/save" class="form" id="form" method="post" windowId="<?php echo $this->basePath() ?>/senna/usuario/perfis/form">
+            <div class="form_actions" id="form_actions">
+
+                <input class="save" name="Salvar" saveWindowForm="true" type="submit" value="Salvar"></input>
+                <input class="save_new" name="Salvar e Criar Novo" newWindowForm="true" type="submit" value="Salvar e Criar Novo"></input>
+                <input class="save_close" closeWindow="true" name="Salvar e Fechar" type="submit" value="Salvar e Fechar"></input>
+                <input class="delete" confirm="Tem certeza que deseja apagar este registro?" deleteUrl="<?php echo $this->basePath() ?>/senna/usuario/perfis/delete/" disabled="disabled" labelsConfirm="{'labelSim':'Sim','labelNao':'Não'}" name="Apagar" type="button" value="Apagar"></input>
+                <span class="sep" size="1">&nbsp;</span>
+                <input cancelForm="true" class="cancel" name="Fechar" type="button" value="Fechar"></input>
+            </div>
+            <div class="form_fields" id="form_fields">
+                <div class="tab" id="tab_perfil_acesso_1108873110eccc4c664029118f9ffd460bde020d06" ref="Perfil de Acesso" rel="tab_perfil_acesso">
+                    <fieldset class="fieldset " style="width:97%;width: 98%;">
+                        <legend><span class="legend"><span class="legend_label">Nome do Perfil de Acesso</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <p class="field " style="width:auto; width: 470px;">
+                            <span class="input " rel="nome" style="">
+                                <input class=" required" id="nome" name="nome" style="" type="text" value=""></input>
+                            </span>
+                        </p>
+
+                    </fieldset>
+
+
+                    <!--Primeira Aba-->
+                    <fieldset class="fieldset " style="width:97%;width: 48%; height: 382px;">
+                        <legend>
+                            <span class="legend">
+                                <span class="legend_label">Opções do Retaguarda</span>
+                                <span class="input_alert">&nbsp;</span>
+                            </span>
+                        </legend>
+                        <!--Conteudo Segunda Aba-->
+                        <div style="width: 100%; height: 99%; overflow-y:auto">
+                            <p class="checkbox_field  block" style="">
+                                <label class="" for="permitir_acesso_total" style="">
+                                    <input id="permitir_acesso_total" name="permitir_acesso_total" rel="" style="" type="checkbox" value="1"></input>
+                                    <span>Permitir todos acesso ao Senna</span>
+                                </label>
+                            </p>
+                            <div class="checkbox_group" rel="">
+
+                                <p class="checkbox_field  block" style="">
+                                    <label class="" for="permitir_acesso_cadastro_item_venda" style="">
+                                        <input id="permitir_acesso_cadastro_item_venda" name="permitir_acesso_cadastro_item_venda" rel="0" style="" type="checkbox" value="1"></input>
+                                        <span>Cadastro de itens de venda</span>
+                                    </label>
+                                </p>
+
+                                <div class="checkbox_group" rel="">
+                                    <p class="checkbox_field  block" style="">
+                                        <label class="" for="permitir_acesso_gerenciar_itens_venda" style="">
+                                            <input id="permitir_acesso_gerenciar_itens_venda" name="permitir_acesso_gerenciar_itens_venda" rel="1" style="" type="checkbox" value="1"></input>
+                                            <span>Gerenciar itens de venda</span>
+                                        </label>
+                                    </p>
+                                    <p class="checkbox_field  block" style="">
+                                        <label class="" for="permitir_acesso_cadastro_auxiliares_item" style="">
+                                            <input id="permitir_acesso_cadastro_auxiliares_item" name="permitir_acesso_cadastro_auxiliares_item" rel="2" style="" type="checkbox" value="1"></input>
+                                            <span>Cadastros auxiliares de itens</span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!--Segunda Aba-->
+                    <div style="display: ;">
+                        <fieldset class="fieldset " style="width:97%;width: 48%; height: 382px;">
+                            <legend>
+                                <span class="legend">
+                                    <span class="legend_label">Opções do operacionais</span>
+                                    <span class="input_alert">&nbsp;</span>
+                                </span>
+                            </legend>
+                            <!--Conteudo Segunda Aba-->
+
+                            <div style="width: 100%; height: 99%; overflow-y:auto">
+                                <!--
+                                <p class="checkbox_field  block" style="">
+                                    <label class="" for="acesso_pdv" style="">
+                                        <input id="acesso_pdv" name="acesso_pdv" rel="" style="" type="checkbox" value="1"></input>
+                                        <span>Acesso ao PDV</span>
+                                    </label>
+                                </p>
+                                --->
+                                <!--Conteudo segunda aba-->
+                                <!--
+                                <div class="checkbox_group" rel="">
+                                    <p class="checkbox_field  block" style="">
+                                        <label class="" for="menu_categoria_vendas" style="">
+                                            <input id="menu_categoria_vendas" name="menu_categoria_vendas" rel="0" style="" type="checkbox" value="1"></input>
+                                            <span>Movimentações</span>
+                                        </label>
+                                    </p>
+                                    <div class="checkbox_group" rel="">
+                                        <p class="checkbox_field  block" style="">
+                                            <label class="" for="menu_item_cadastro_pedido_venda" style="">
+                                                <input id="menu_item_cadastro_pedido_venda" name="menu_item_cadastro_pedido_venda" rel="5" style="" type="checkbox" value="1"></input>
+                                                <span>Pedidos/Orçamentos</span>
+                                            </label></p>
+                                        <p class="checkbox_field  block" style="">
+                                            <label class="" for="menu_item_cadastro_vendas_nao_fiscais" style="">
+                                                <input id="menu_item_cadastro_vendas_nao_fiscais" name="menu_item_cadastro_vendas_nao_fiscais" rel="86" style="" type="checkbox" value="1"></input>
+                                                <span>Venda Simples</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                </div>
+                                -->
+                            </div>
+                        </fieldset>
+                    </div>
+
+
+                    <input id="id" name="id" type="hidden" value=""></input>
+                    <input id="id" name="id" type="hidden" value=""></input>
+                    <div class="tab_navigator ">
+                        <input class="prevTab" name="Voltar" type="button" value="Voltar">
+
+                        </input>&nbsp;&nbsp;<input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+                    </div>
+                </div>
+                <div class="tab"  id="tab_permissoes_250514885ba4a49b15252364f9d4ac09fa820f7ab" ref="Permissões" rel="tab_permissoes">
+                    <div style="margin-left:10px;display: none" >
+                        <fieldset class="fieldset " style="width:97%;">
+                            <legend><span class="legend"><span class="legend_label">Financeiro</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                            <p class="checkbox_field  block" style=""><label class="" for="funcionario_permissao_data_lanc" style=""><input id="funcionario_permissao_data_lanc" name="funcionario_permissao_data_lanc" rel="" style="" type="checkbox" value="1"></input><span>Editar a Data de Lançamento do Lançamento Financeiro</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="funcionario_permissao_data_conf" style=""><input id="funcionario_permissao_data_conf" name="funcionario_permissao_data_conf" rel="" style="" type="checkbox" value="1"></input><span>Editar a Data de Confirmação do Lançamento Financeiro</span></label></p>
+
+                        </fieldset>
+                        <fieldset class="fieldset " style="width:97%;">
+                            <legend><span class="legend"><span class="legend_label">Pedidos, Vendas e Compras</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                            <p class="checkbox_field  block" style=""><label class="" for="funcionario_permissao_acrescimo" style=""><input id="funcionario_permissao_acrescimo" name="funcionario_permissao_acrescimo" rel="" style="" type="checkbox" value="1"></input><span>Modificar o Valor Unitário nas vendas (Pedido/Orçamento, Venda Simples e Ordem de Serviço)</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="funcionario_permissao_extorno" style=""><input id="funcionario_permissao_extorno" name="funcionario_permissao_extorno" rel="" style="" type="checkbox" value="1"></input><span>Estornar Pedidos/Orçamentos, Pedidos de Compra, Vendas Simples e Ordem de Serviço</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_numero_controle_pedido_venda" style=""><input id="alterar_numero_controle_pedido_venda" name="alterar_numero_controle_pedido_venda" rel="" style="" type="checkbox" value="1"></input><span>Alterar o Número do Pedido/Orçamento</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_numero_controle_venda_simples" style=""><input id="alterar_numero_controle_venda_simples" name="alterar_numero_controle_venda_simples" rel="" style="" type="checkbox" value="1"></input><span>Alterar o Número da Venda Simples</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_numero_controle_ajuste_estoque" style=""><input id="alterar_numero_controle_ajuste_estoque" name="alterar_numero_controle_ajuste_estoque" rel="" style="" type="checkbox" value="1"></input><span>Alterar o Número do Ajuste de Estoque</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_numero_controle_os" style=""><input id="alterar_numero_controle_os" name="alterar_numero_controle_os" rel="" style="" type="checkbox" value="1"></input><span>Alterar o Número da Ordem de Serviço</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_numero_controle_pedido_compra" style=""><input id="alterar_numero_controle_pedido_compra" name="alterar_numero_controle_pedido_compra" rel="" style="" type="checkbox" value="1"></input><span>Alterar o Número do Pedido de Compra</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_numero_controle_gestao_saldo" style=""><input id="alterar_numero_controle_gestao_saldo" name="alterar_numero_controle_gestao_saldo" rel="" style="" type="checkbox" value="1"></input><span>Alterar o Número da Gestão de Saldos</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_data_hora_atividade_os" style=""><input id="alterar_data_hora_atividade_os" name="alterar_data_hora_atividade_os" rel="" style="" type="checkbox" value="1"></input><span>Alterar a data, hora, e funcionário das atividades da Ordem de Serviço</span></label></p>
+                            <div style="display: ;">
+                                <p class="checkbox_field  block" style=""><label class="" for="alterar_numero_controle_contrato" style=""><input id="alterar_numero_controle_contrato" name="alterar_numero_controle_contrato" rel="" style="" type="checkbox" value="1"></input><span>Alterar o Número do Contrato</span></label></p>
+                            </div>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_data_criacao_movimentacoes" style=""><input id="alterar_data_criacao_movimentacoes" name="alterar_data_criacao_movimentacoes" rel="" style="" type="checkbox" value="1"></input><span>Alterar a Data de Criação das Movimentações</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_data_confirmacao_movimentacoes" style=""><input id="alterar_data_confirmacao_movimentacoes" name="alterar_data_confirmacao_movimentacoes" rel="" style="" type="checkbox" value="1"></input><span>Alterar a Data de Confirmação das Movimentações</span></label></p>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_atividade_os" style=""><input id="alterar_atividade_os" name="alterar_atividade_os" rel="" style="" type="checkbox" value="1"></input><span>Editar ou Excluir Atividades da Ordem de Serviço</span></label></p>
+                            <div style="display: ;">
+                                <p class="checkbox_field  block" style=""><label class="" for="alterar_atividade_contrato" style=""><input id="alterar_atividade_contrato" name="alterar_atividade_contrato" rel="" style="" type="checkbox" value="1"></input><span>Editar ou Excluir Atividades do Contrato</span></label></p>
+                            </div>
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_vendedor_vinculado_cliente" style=""><input id="alterar_vendedor_vinculado_cliente" name="alterar_vendedor_vinculado_cliente" rel="" style="" type="checkbox" value="1"></input><span>Bloquear a alteração ou exclusão de vendedores vinculados no cliente</span></label></p>
+
+                        </fieldset>
+                        <fieldset class="fieldset " style="width:97%;">
+                            <legend><span class="legend"><span class="legend_label">Permissões de Ajuste de Estoque</span><span class="input_info" style=""><img alt="info" class="infotip" src="<?php echo $this->basePath() ?>/images/info.png" title="Estas opções permitem a alteração manual do estoque. <b>ATENÇÃO! Tome cuidado ao utilizá-las!</b>"></img></span><span class="input_alert">&nbsp;</span></span></legend>
+
+                            <p class="checkbox_field  block" style=""><label class="" for="alterar_estoque_produto" style=""><input id="alterar_estoque_produto" name="alterar_estoque_produto" rel="" style="" type="checkbox" value="1"></input><span>Modificar a quantidade dos estoques direto no cadastro do produto</span></label></p>
+
+                        </fieldset>
+                        <!-- COMENTANDO AGENDA -->
+                        <fieldset class="fieldset " style="width:97%;">
+                            <legend><span class="legend"><span class="legend_label">Permissões de Agenda</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                            <p class="checkbox_field  block" style=""><label class="" for="indicar_convidados_agenda" style=""><input id="indicar_convidados_agenda" name="indicar_convidados_agenda" rel="" style="" type="checkbox" value="1"></input><span>Indicar convidados na Agenda</span></label></p>
+
+                        </fieldset>
+                        <fieldset class="fieldset " style="width:97%;">
+                            <legend><span class="legend"><span class="legend_label">Permissões de Visualização</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                            <p class="field " style="width:auto; "><label class="" for="funcionario_permissao_movimentacoes" style="">Permissão de Visualização de Movimentações</label><span class="input_info" style=""><img alt="info" class="infotip" src="<?php echo $this->basePath() ?>/images/info.png" title="Caso seja 1 - Nas listagens e abas só será possível visualizar e acessar as movimentações que o Funcionário está vinculado como Funcionário Responsável ou como Vendedor.<br/>Caso seja 2 - Nas listagens e abas só será possível visualizar e acessar as movimentações em que o Funcionário que está vinculado como Funcionário Responsável ou Vendedor é do mesmo Departamento do Funcionário."></img></span><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_permissao_movimentacoes" style=""><select class="" eval="" id="funcionario_permissao_movimentacoes" name="funcionario_permissao_movimentacoes" size="1" style=""><option value="0">0 - Acessar e Visualizar Todas as Movimentações</option><option value="1">1 - Acessar e Visualizar Somente se Vinculado ao Funcionário</option><option value="2">2 - Acessar e Visualizar Somente se Vinculado ao Departamento</option></select></span></p>
+                            <p class="field " style="width:auto; "><label class="" for="funcionario_permissao_clientes" style="">Permissão de Visualização para clientes</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_permissao_clientes" style=""><select class="" eval="" id="funcionario_permissao_clientes" name="funcionario_permissao_clientes" size="1" style=""><option value="0">0 - Acessar e Visualizar Todos os Clientes</option><option value="1">1 - Acessar e Visualizar os Clientes se Criado pelo Funcionário</option><option value="2">2 - Acessar e Visualizar os Clientes se Criado ao Departamento</option></select></span></p>
+
+                        </fieldset>
+                    </div>
+                    <div class="tab_navigator "><input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;<input class="nextTab" name="Continuar" type="button" value="Continuar"></input></div></div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div id="footer">
+
+
+</div>
+
+
+
+</body>
+</html>
