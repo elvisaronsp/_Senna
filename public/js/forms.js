@@ -662,6 +662,8 @@
 /* 623  */ 		return function(text, textStatus) {
 /* 624  */ 			var btn 		= $(el);
 /* 625  */ 			var message 	= text.message;
+/* 625  */ 			//var nomes 	    = text.nome;
+
 /* 626  */ 			var alert_type	= (text.type!=undefined) ? text.type : "";
 /* 627  */ 			
 /* 628  */ 			//registrando o id
@@ -686,12 +688,8 @@
 /* 647  */ 				//Apenas se janela possuir o MochaUI
 /* 648  */ 				if (typeof( parent.MochaUI ) != "undefined") {
 /* 649  */ 					//Recupera o id da janela coletado no formulario em que o botao esta
-/* 650  */ 					var windowId = $(el.form).attr("windowId"); //var windowId = MochaUI.getFrameWindowId(); 
-
-/* forms.js */
-
-/* 651  */ 					
-/* 652  */ 					//Sucesso ou notificação
+/* 650  */ 					var windowId = $(el.form).attr("windowId");
+/* 652 /Sucesso ou notificação
 /* 653  */ 					switch(alert_type){
 /* 654  */ 						case "notify":
 /* 655  */ 						case "erro":

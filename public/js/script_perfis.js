@@ -107,4 +107,9 @@ Date.format = jQuery.i18n._('lang_date_format');
 
         $$('#form').addEvent('beforeSuccess', beforeSuccess);
     });
+
+
+
+
+
 })(jQuery);

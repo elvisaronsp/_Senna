@@ -43,51 +43,74 @@ class PerfisController extends GrudController {
         return $viewModel;
     }
 
+
+    public function  verificaExistenciaAction()
+    {
+
+        $repository = $this->getEm()->getRepository($this->entity);
+
+        $existePerfil = $repository->findOneByNome( $this->params()->fromRoute('nome',0));
+        $retorno = ($existePerfil)?true:false;
+        $viewModel = new ViewModel (array('data'=>$retorno));
+        $viewModel->setTerminal ( true );
+        return $viewModel;
+    }
+
     /**
      * @return ViewModel
      */
-    public function SaveAction() {
-
+    public function SaveAction()
+    {
         $request = $this->getRequest();
+        $repository = $this->getEm()->getRepository($this->entity);
+        $existePerfil = $repository->findOneByNome($request->getPost()['nome'] );
 
-        if ($request->getPost()['id'] == "") {
-
-            if ($request->isPost()) {
-
-                $service = $this->getServiceLocator()->get($this->service);
-
-                $entity = $service->insert($request->getPost()->toArray());
-                $idLastInset = array(
-                    'id' => $entity->getId(),
-                    'message' => $this->message_insert,
-                    'type' => 'success'
-                );
-
+        if(!$existePerfil) {
+            if ($request->getPost()['id'] == "") {
+                if ($request->isPost()) {
+                    $service = $this->getServiceLocator()->get($this->service);
+                    $entity = $service->insert($request->getPost()->toArray());
+                    $idLastInset = array(
+                        'id' => $entity->getId(),
+                        'message' => $this->message_insert,
+                        'type' => 'success'
+                    );
+                }
             }
+            /*} else {
+
+                if ($request->isPost ()) {
+                    $form->setData ( $request->getPost () );
+                    $service = $this->getServiceLocator ()->get ( $this->service );
+
+                    $entity = $service->update ( $request->getPost ()->toArray () );
+                    $idLastInset = array (
+                        'id' => $entity->getId (),
+                        'message' => $this->message_update,
+                        'type' => 'success'
+                    );
+                }
+            }*/
+            $viewModel = new ViewModel ( array (
+                'data' => array (
+                    'id_field' => 'id',
+                    'id_value' => "" . $idLastInset ['id'] . "",
+                    'message' => $idLastInset ['message'],
+                    'type' => $idLastInset ['type']
+                )
+            ) );
         }
-        /*} else {
-
-            if ($request->isPost ()) {
-                $form->setData ( $request->getPost () );
-                $service = $this->getServiceLocator ()->get ( $this->service );
-
-                $entity = $service->update ( $request->getPost ()->toArray () );
-                $idLastInset = array (
-                    'id' => $entity->getId (),
-                    'message' => $this->message_update,
-                    'type' => 'success'
-                );
-            }
-        }*/
-
-        $viewModel = new ViewModel ( array (
-            'data' => array (
-                'id_field' => 'id',
-                'id_value' => "" . $idLastInset ['id'] . "",
-                'message' => $idLastInset ['message'],
-                'type' => $idLastInset ['type']
-            )
-        ) );
+        else{
+            $viewModel = new ViewModel ( array (
+                'data' => array (
+                    'id_field' => 'id',
+                    'id_value' => "0",
+                    'message' => 'Perfil não pode ser cadastrado pois já existe outro de mesmo nome.',
+                    'type' =>'error',
+                    'nome'=>"ola"
+                )
+            ) );
+        }
         $viewModel->setTerminal ( true );
         return $viewModel;
     }
