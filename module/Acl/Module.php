@@ -26,8 +26,11 @@ class Module
                 'Acl\Service\Perfis' => function($sm){
                     return new Service\Perfis($sm->get('Doctrine\ORM\Entitymanager'));
                 },
-            )
+                'Acl\Form\Perfis' => function($sm)
+                {
+                    return new Form\Perfis();
+                },
+            ),
         );
-
     }
 }

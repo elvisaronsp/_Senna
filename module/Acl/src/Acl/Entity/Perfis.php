@@ -54,9 +54,10 @@ class Perfis
     
     public function __construct($options = array())
     {
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
         $this->criadoEm = new \DateTime("now");
         $this->atualizadoEm = new \DateTime("now");
+        (new Hydrator\ClassMethods)->hydrate($options, $this);
+
     }
     
     public function getId() {
@@ -78,11 +79,11 @@ class Perfis
     }
 
     public function getNome() {
-        return $this->nome;
+        return strtoupper($this->nome);
     }
 
     public function setNome($nome) {
-        $this->nome = $nome;
+        $this->nome = strtoupper($nome);
         return $this;
     }
 
@@ -130,7 +131,7 @@ class Perfis
         
         return array(
           'id' => $this->id,
-          'nome' => $this->nome,
+          'nome' => strtoupper($this->nome),
             'admin' => $this->admin,
             'parent' => $parent
         );

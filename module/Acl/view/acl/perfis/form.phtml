@@ -66,13 +66,34 @@
 </div>
 <div id="tela" style="height: 100%;">
     <div id="conteudo"><!--Container base_form.php-->
-        <form action="<?php echo $this->basePath() ?>/senna/usuario/perfis/save" class="form" id="form" method="post" windowId="<?php echo $this->basePath() ?>/senna/usuario/perfis/form">
+
+        <?php
+        $form->setAttribute('action',$this->url('acl-perfil/default',array('controller'=>'perfis','action'=>'save')));
+        $form->setAttribute('windowId',$this->url('acl-perfil/default',array('controller'=>'perfis','action'=>'form')));
+        $form->prepare();
+        echo $this->form()->openTag($form);
+        ?>
+
+
             <div class="form_actions" id="form_actions">
 
                 <input class="save" name="Salvar" saveWindowForm="true" type="submit" value="Salvar"></input>
                 <input class="save_new" name="Salvar e Criar Novo" newWindowForm="true" type="submit" value="Salvar e Criar Novo"></input>
                 <input class="save_close" closeWindow="true" name="Salvar e Fechar" type="submit" value="Salvar e Fechar"></input>
-                <input class="delete" confirm="Tem certeza que deseja apagar este registro?" deleteUrl="<?php echo $this->basePath() ?>/senna/usuario/perfis/delete/" disabled="disabled" labelsConfirm="{'labelSim':'Sim','labelNao':'Não'}" name="Apagar" type="button" value="Apagar"></input>
+                <input
+                    name="Apagar"
+                    type="button"
+                    confirm="Tem certeza que deseja apagar este registro?"
+                    class="delete" value="Apagar"
+                    deleteurl="/senna/produto/produtos/delete/<?php echo $this->id;?>"
+                    labelsconfirm="{'labelSim':'Sim','labelNao':'N&amp;atilde;o'}"
+
+                    <?php
+                    if($this->id==""){?>
+                        disabled = "disabled"
+                    <?php  }$this->id;?>
+                    >
+
                 <span class="sep" size="1">&nbsp;</span>
                 <input cancelForm="true" class="cancel" name="Fechar" type="button" value="Fechar"></input>
             </div>
@@ -83,8 +104,16 @@
 
                         <p class="field " style="width:auto; width: 470px;">
                             <span class="input " rel="nome" style="">
-                                <input class=" required" id="nome" name="nome" style="" type="text" value=""></input>
+                                <?php echo $this->formElement($form->get('nome'));?>
+
                             </span>
+
+                        </p>
+                        <p class="field" style="width:auto; width: 470px;  padding-top: 7px;">
+                            <label class="center" for="permitir_acesso_total" style="">
+                                <input id="permitir_acesso_total" name="permitir_acesso_total" rel="" style="padding: 2px 0 0;position: relative;" type="checkbox" value="0"></input>
+                                <span style="  padding: 0 0 0 22px; position: relative;">      Dar privilegios de administrador a este perfil</span>
+                            </label>
                         </p>
 
                     </fieldset>
@@ -101,16 +130,16 @@
                         <!--Conteudo Segunda Aba-->
                         <div style="width: 100%; height: 99%; overflow-y:auto">
                             <p class="checkbox_field  block" style="">
-                                <label class="" for="permitir_acesso_total" style="">
-                                    <input id="permitir_acesso_total" name="permitir_acesso_total" rel="" style="" type="checkbox" value="1"></input>
-                                    <span>Permitir todos acesso ao Senna</span>
+                                <label class="" for="permitir_acesso_senna" style="">
+                                    <input id="permitir_acesso_senna" name="permitir_acesso_senna" rel="1" style="" type="checkbox" value="1"></input>
+                                    <span onclick="javascript:void(0)">Acesso ao Senna</span>
                                 </label>
                             </p>
                             <div class="checkbox_group" rel="">
 
                                 <p class="checkbox_field  block" style="">
                                     <label class="" for="permitir_acesso_cadastro_item_venda" style="">
-                                        <input id="permitir_acesso_cadastro_item_venda" name="permitir_acesso_cadastro_item_venda" rel="0" style="" type="checkbox" value="1"></input>
+                                        <input id="permitir_acesso_cadastro_item_venda" name="permitir_acesso_cadastro_item_venda" rel="2" style="" type="checkbox" value="1"></input>
                                         <span>Cadastro de itens de venda</span>
                                     </label>
                                 </p>
@@ -182,8 +211,7 @@
                     </div>
 
 
-                    <input id="id" name="id" type="hidden" value=""></input>
-                    <input id="id" name="id" type="hidden" value=""></input>
+                    <?php echo $this->formElement($form->get('id'));?>
                     <div class="tab_navigator ">
                         <input class="prevTab" name="Voltar" type="button" value="Voltar">
 
@@ -247,7 +275,7 @@
                     <div class="tab_navigator "><input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;<input class="nextTab" name="Continuar" type="button" value="Continuar"></input></div></div>
 
             </div>
-        </form>
+        <?php echo $this->form()->closeTag();?>
 
     </div>
 </div>

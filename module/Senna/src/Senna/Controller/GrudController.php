@@ -85,11 +85,13 @@ abstract class GrudController extends AbstractActionController {
 	 * @return \Zend\View\Model\ViewModel
 	 */
 	public function FormAction() {
-		$form = $this->getServiceLocator ()->get ( $this->form );
-		$repository = $this->getEm ()->getRepository ( $this->entity );
-		if ($this->params ()->fromRoute ( 'id', 0 )) {
-			$entity = $repository->find ( $this->params ()->fromRoute ( 'id', 0 ) );
-			$form->setData ( $entity->toArray () );
+		$form = $this->getServiceLocator()->get( $this->form );
+		$repository = $this->getEm()->getRepository($this->entity);
+
+        if ($this->params ()->fromRoute ( 'id', 0 ))
+        {
+		    $entity = $repository->find($this->params()->fromRoute ('id',0));
+			$form->setData($entity->toArray());
 		}
 		
 		$viewModel = new ViewModel ( array (
@@ -176,7 +178,8 @@ abstract class GrudController extends AbstractActionController {
 	 */
 	public function SaveAction() {
 		$form = $this->getServiceLocator ()->get ( $this->form );
-		$request = $this->getRequest ();
+
+        $request = $this->getRequest ();
 		$post = $request->getPost ();
 		$entity = $this->getEm ()->getRepository ( $this->entity );
 		$valida = $entity->validePost ( $post );

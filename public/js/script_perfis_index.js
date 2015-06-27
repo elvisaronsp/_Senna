@@ -16,6 +16,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial"
 });
 
+/*
 window.addEvent('domready', function() {
     list.onBeforeDeleteRow = function(row) {
             var ret = true;
@@ -32,3 +33,4 @@ window.addEvent('domready', function() {
             return ret;
     };
 });
+    */

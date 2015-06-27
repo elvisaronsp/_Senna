@@ -872,7 +872,7 @@
 /* 823  */         		}
 /* 824  */         		
 /* 825  */         	}
-/* 826  */         	
+/* 826  */
 /* 827  */         	//se não passou no teste de submissao associado ao botao, nao envia
 /* 828  */         	if(!beforeSend(btn, "beforeDelete")) return;
 /* 829  */         	

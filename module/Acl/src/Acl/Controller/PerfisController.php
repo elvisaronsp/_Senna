@@ -22,98 +22,96 @@ class PerfisController extends GrudController {
     {
         $this->entity = "Acl\Entity\Perfis";
         $this->service = "Acl\Service\Perfis";
-        $this->message_insert = "Perfil de acesso cadastrado com sucesso";
-        $this->message_update = "Perfil de acesso atualizado com sucesso";
-        $this->message_delete = "Perfil de acesso excluido com sucesso";
+        $this->form = "Acl\Form\Perfis";
+        $this->message_insert = "Perfil de acesso CADASTRADO com sucesso";
+        $this->message_update = "Perfil de acesso ATUALIZADO com sucesso";
+        $this->message_delete = "Perfil de acesso EXCLUIDO com sucesso";
     }
 
     /**
-     * @return ViewModel
+     * @return bool
      */
-    public function FormAction() {
-/*
-        $repository = $this->getEm ()->getRepository ( $this->entity );
-        if ($this->params ()->fromRoute ( 'id', 0 )) {
-            $entity = $repository->find ( $this->params ()->fromRoute ( 'id', 0 ) );
-            $form->setData ( $entity->toArray () );
-        }
-*/
-        $viewModel = new ViewModel (array() );
-        $viewModel->setTerminal ( true );
-        return $viewModel;
-    }
-
-
-    public function  verificaExistenciaAction()
-    {
-
-        $repository = $this->getEm()->getRepository($this->entity);
-
-        $existePerfil = $repository->findOneByNome( $this->params()->fromRoute('nome',0));
-        $retorno = ($existePerfil)?true:false;
-        $viewModel = new ViewModel (array('data'=>$retorno));
-        $viewModel->setTerminal ( true );
-        return $viewModel;
-    }
-
-    /**
-     * @return ViewModel
-     */
-    public function SaveAction()
+    private function  verificaExistencia()
     {
         $request = $this->getRequest();
         $repository = $this->getEm()->getRepository($this->entity);
-        $existePerfil = $repository->findOneByNome($request->getPost()['nome'] );
 
-        if(!$existePerfil) {
-            if ($request->getPost()['id'] == "") {
-                if ($request->isPost()) {
-                    $service = $this->getServiceLocator()->get($this->service);
+        $existePerfil = $repository->findOneByNome($request->getPost()['nome']);
+        return $retorno = ($existePerfil)?true:false;
+    }
+
+    /**
+     * @return ViewModel
+     * @obs: classe incompleta, quando usuario
+     * atualizar o proprio perfil
+     * deve sugerir atualização de sua sessao
+     */
+    public function SaveAction()
+    {
+        $retorno = array();
+        $request = $this->getRequest();
+        $service = $this->getServiceLocator()->get($this->service);
+        if (empty($request->getPost()['id']))
+        {
+            if (!$this->verificaExistencia())
+            {
+                # INSERT
+                if ($request->isPost())
+                {
                     $entity = $service->insert($request->getPost()->toArray());
-                    $idLastInset = array(
-                        'id' => $entity->getId(),
+                    $retorno['data'] = array(
+                        'id_field' => 'id',
+                        'id_value' => "".$entity->getId()."",
                         'message' => $this->message_insert,
                         'type' => 'success'
                     );
                 }
+
             }
-            /*} else {
-
-                if ($request->isPost ()) {
-                    $form->setData ( $request->getPost () );
-                    $service = $this->getServiceLocator ()->get ( $this->service );
-
-                    $entity = $service->update ( $request->getPost ()->toArray () );
-                    $idLastInset = array (
-                        'id' => $entity->getId (),
-                        'message' => $this->message_update,
-                        'type' => 'success'
-                    );
-                }
-            }*/
-            $viewModel = new ViewModel ( array (
-                'data' => array (
-                    'id_field' => 'id',
-                    'id_value' => "" . $idLastInset ['id'] . "",
-                    'message' => $idLastInset ['message'],
-                    'type' => $idLastInset ['type']
-                )
-            ) );
         }
-        else{
-            $viewModel = new ViewModel ( array (
-                'data' => array (
+        else
+        {
+            # UPDATE
+            if ($request->isPost())
+            {
+                $entity = $service->update($request->getPost()->toArray());
+                $retorno['data'] = array(
                     'id_field' => 'id',
-                    'id_value' => "0",
-                    'message' => 'Perfil não pode ser cadastrado pois já existe outro de mesmo nome.',
-                    'type' =>'error',
-                    'nome'=>"ola"
-                )
-            ) );
+                    'id_value' => "".$entity->getId()."",
+                    'message' => $this->message_update,
+                    'session_updated'=>true,
+                    'type' => 'success'
+                );
+            }
         }
-        $viewModel->setTerminal ( true );
+
+        $viewModel = new ViewModel($retorno);
+        $viewModel->setTerminal(true);
         return $viewModel;
     }
 
+    /**
+     * Deleta abstract
+     *
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function deleteAction()
+    {
+        $retorno = array();
+        $repository = $this->getEm()->getRepository($this->entity);
+        $entity = $repository->findAll();
+        if(count($entity) != 1)
+        {
+            $service = $this->getServiceLocator()->get($this->service);
+            $service->delete($this->params()->fromRoute('id', 0));
+            $retorno['data'] = $this->message_delete;
+        }
+        else
+            $this->message_delete = array();
+
+        $viewModel = new ViewModel ($retorno);
+        $viewModel->setTerminal ( true );
+        return $viewModel;
+    }
 
 }

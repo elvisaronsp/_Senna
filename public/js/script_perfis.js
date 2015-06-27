@@ -10,6 +10,14 @@ Date.firstDayOfWeek=0;
 Date.format = jQuery.i18n._('lang_date_format');
 
 
+
+/**********************
+ usuario/perfis/form.js
+ **********************/
+
+/**
+ * @author eluiz
+ */
 (function ($){
     function get_parent(el){
         return el.parents("div:first").prevAll('p:first').find('input[type=checkbox]');
@@ -79,6 +87,19 @@ Date.format = jQuery.i18n._('lang_date_format');
         });
     }
 
+    function toggleCheckBox(){
+        if('0' == 1){
+            $('#indicar_valor_abertura_caixa, #indicar_valor_fechamento_caixa, #realiza_devolucoes, #info_ultimos_caixa, #info_produtos, #trocar_metodo_sangria_suprimento').attr('disabled', 'disabled');
+            $('#indicar_valor_abertura_caixa, #indicar_valor_fechamento_caixa, #realiza_devolucoes, #info_ultimos_caixa, #info_produtos, #trocar_metodo_sangria_suprimento').parents('p').hide();
+
+            //Se for igual a são paulo para habilitar as opções do novo webservice
+            if('3.7' != '1.6')
+                $('#info_produtos').removeAttr('disabled').parents('p').show();
+
+        }else{
+            $('#indicar_valor_abertura_caixa, #indicar_valor_fechamento_caixa, #realiza_devolucoes, #info_ultimos_caixa, #info_produtos, #trocar_metodo_sangria_suprimento').parents('p').show();
+        }
+    }
 
     /**
      * Trigger executado antes da mensagem de sucesso para perguntar se o usuario deseja recarregar a página com as novas permissões
@@ -100,16 +121,11 @@ Date.format = jQuery.i18n._('lang_date_format');
         }
     }
 
-
     jQuery(document).ready(function(){
         checkbox_tree();
         toggleCheckBox();
 
         $$('#form').addEvent('beforeSuccess', beforeSuccess);
     });
-
-
-
-
-
 })(jQuery);
+

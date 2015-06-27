@@ -4,6 +4,7 @@ namespace Acl\Service;
 
 use Doctrine\ORM\EntityManager;
 use Senna\Service\AbstractService;
+use Zend\Stdlib\Hydrator;
 
 /**
  * Service de empresa
@@ -39,6 +40,37 @@ class Perfis extends AbstractService {
     public function insert(array $data)
     {
         $entity = new $this->entity($data);
+        $entity->setAdmin(false);
+        if(isset($data['permitir_acesso_total']))
+            $entity->setAdmin(true);
+
+        if(isset($data['parent']))
+        {
+            $parent = $this->em->getReference($this->entity, $data['parent']);
+            $entity->setParent($parent);
+        }
+        else
+            $entity->setParent(null);
+
+        $this->em->persist($entity);
+        $this->em->flush();
+        return $entity;
+    }
+
+    /**
+     * @param array $data
+     * @return bool|\Doctrine\Common\Proxy\Proxy|null|object
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function update(array $data)
+    {
+        $entity = $this->em->getReference($this->entity, $data['id']);
+        (new Hydrator\ClassMethods())->hydrate($data, $entity);
+
+        $entity->setAdmin(false);
+        if(isset($data['permitir_acesso_total']))
+            $entity->setAdmin(true);
+
 
         if(isset($data['parent']))
         {
