@@ -28,7 +28,11 @@ class Module
                 },
                 'Acl\Form\Perfis' => function($sm)
                 {
-                    return new Form\Perfis();
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+
+                    $recursosRepository = $em->getRepository("Acl\Entity\Recursos");
+                    $recursos = $recursosRepository->findAll();
+                    return new Form\Perfis($recursos);
                 },
             ),
         );

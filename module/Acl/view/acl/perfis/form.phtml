@@ -130,36 +130,44 @@
                         <!--Conteudo Segunda Aba-->
                         <div style="width: 100%; height: 99%; overflow-y:auto">
                             <p class="checkbox_field  block" style="">
-                                <label class="" for="permitir_acesso_senna" style="">
-                                    <input id="permitir_acesso_senna" name="permitir_acesso_senna" rel="1" style="" type="checkbox" value="1"></input>
-                                    <span onclick="javascript:void(0)">Acesso ao Senna</span>
+
+                                <label class="" for="<?php echo $form->get('permissaoAcesso_1_1')->getName();?>" style="">
+                                    <?php echo $this->formElement($permissao_acesso = $form->get('permissaoAcesso_1_1'));?>
+                                    <span><?php echo $permissao_acesso->getlabel();?></span>
                                 </label>
+
                             </p>
                             <div class="checkbox_group" rel="">
 
                                 <p class="checkbox_field  block" style="">
-                                    <label class="" for="permitir_acesso_cadastro_item_venda" style="">
-                                        <input id="permitir_acesso_cadastro_item_venda" name="permitir_acesso_cadastro_item_venda" rel="2" style="" type="checkbox" value="1"></input>
-                                        <span>Cadastro de itens de venda</span>
+                                    <label class="" for="<?php echo $form->get('permissaoAcesso_1_2')->getName();?>" style="">
+                                        <?php echo $this->formElement($permissao_acesso = $form->get('permissaoAcesso_1_2'));?>
+                                        <span><?php echo $permissao_acesso->getlabel();?></span>
                                     </label>
                                 </p>
 
+                                <p class="checkbox_field  block" style="">
+                                    <label class="" for="<?php echo $form->get('permissaoAcesso_1_3')->getName();?>" style="">
+                                        <?php echo $this->formElement($permissao_acesso = $form->get('permissaoAcesso_1_3'));?>
+                                        <span><?php echo $permissao_acesso->getlabel();?></span>
+                                    </label>
+                                </p>
                                 <div class="checkbox_group" rel="">
                                     <p class="checkbox_field  block" style="">
-                                        <label class="" for="permitir_acesso_gerenciar_itens_venda" style="">
-                                            <input id="permitir_acesso_gerenciar_itens_venda" name="permitir_acesso_gerenciar_itens_venda" rel="1" style="" type="checkbox" value="1"></input>
-                                            <span>Gerenciar itens de venda</span>
+                                        <label class="" for="<?php echo $form->get('permissaoAcesso_1_4')->getName();?>" style="">
+                                            <?php echo $this->formElement($permissao_acesso = $form->get('permissaoAcesso_1_4'));?>
+                                            <span><?php echo $permissao_acesso->getlabel();?></span>
                                         </label>
                                     </p>
                                     <p class="checkbox_field  block" style="">
-                                        <label class="" for="permitir_acesso_cadastro_auxiliares_item" style="">
-                                            <input id="permitir_acesso_cadastro_auxiliares_item" name="permitir_acesso_cadastro_auxiliares_item" rel="2" style="" type="checkbox" value="1"></input>
-                                            <span>Cadastros auxiliares de itens</span>
+                                        <label class="" for="<?php echo $form->get('permissaoAcesso_1_5')->getName();?>" style="">
+                                            <?php echo $this->formElement($permissao_acesso = $form->get('permissaoAcesso_1_5'));?>
+                                            <span><?php echo $permissao_acesso->getlabel();?></span>
                                         </label>
                                     </p>
+                                    </div-->
                                 </div>
                             </div>
-                        </div>
                     </fieldset>
 
                     <!--Segunda Aba-->

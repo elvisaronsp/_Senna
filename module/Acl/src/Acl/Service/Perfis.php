@@ -52,6 +52,39 @@ class Perfis extends AbstractService {
         else
             $entity->setParent(null);
 
+        $entity = new $this->entity($data);
+
+
+
+
+
+
+        $role = $this->em->getReference("Acl\Entity\Role",$data['role']);
+        $entity->setRole($role); // Injetando entidade carregada
+
+        $resource = $this->em->getReference("Acl\Entity\Resource",$data['resource']);
+        $entity->setResource($resource); // Injetando entidade carregada
+
+
+        $acessos = $this->em->getReference("Acl\Entity\Acessos",$data['acesso']);
+        $entity->setAcessos($acessos); // Injetando entidade carregada
+
+        $this->em->persist($entity);
+        $this->em->flush();
+        return $entity;
+
+
+
+
+
+
+
+
+
+
+
+
+
         $this->em->persist($entity);
         $this->em->flush();
         return $entity;

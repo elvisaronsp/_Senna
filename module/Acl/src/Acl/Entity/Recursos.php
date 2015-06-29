@@ -8,11 +8,11 @@ use Zend\Stdlib\Hydrator;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="sn_perfis")
- * @ORM\Entity(repositoryClass="Acl\Repository\PerfisRepository")
+ * @ORM\Table(name="sn_recursos")
+ * @ORM\Entity(repositoryClass="Acl\Repository\RecursosRepository")
  */
 
-class Perfis
+class Recursos
 {
 
     /**
@@ -20,44 +20,33 @@ class Perfis
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      */
-    private $id;
-    
-    /**
-     * @ORM\OneToOne(targetEntity="Acl\Entity\Perfis")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
-     */
-    private $parent;
-    
+    protected $id;
+
     /**
      * @ORM\Column(type="text")
      * @var string
      */
-    private $nome;
+    protected $nome;
 
-
-    /**
-     * @ORM\Column(type="boolean", name="admin")
-     * @var boolean
-     */
-    private $admin;
-    
     /**
      * @ORM\Column(type="datetime", name="criado_em")
      */
-    private $criadoEm;
+    protected $criadoEm;
     
     /**
      * @ORM\Column(type="datetime", name="atualizado_em")
      */
-    private $atualizadoEm;
-    
-    
+    protected $atualizadoEm;
+
+
+    /**
+     * @param array $options
+     */
     public function __construct($options = array())
     {
         $this->criadoEm = new \DateTime("now");
         $this->atualizadoEm = new \DateTime("now");
         (new Hydrator\ClassMethods)->hydrate($options, $this);
-
     }
 
     /**
@@ -77,26 +66,10 @@ class Perfis
     }
 
     /**
-     * @return mixed
-     */
-    public function getParent() {
-        return $this->parent;
-    }
-
-    /**
-     * @param $parent
-     * @return $this
-     */
-    public function setParent($parent) {
-        $this->parent = $parent;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getNome() {
-        return strtoupper($this->nome);
+        return $this->nome;
     }
 
     /**
@@ -104,23 +77,7 @@ class Perfis
      * @return $this
      */
     public function setNome($nome) {
-        $this->nome = strtoupper($nome);
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getAdmin() {
-        return $this->admin;
-    }
-
-    /**
-     * @param $admin
-     * @return $this
-     */
-    public function setAdmin($admin) {
-        $this->admin = $admin;
+        $this->nome = $nome;
         return $this;
     }
 
@@ -144,7 +101,6 @@ class Perfis
      */
     public function getAtualizadoEm() {
         return date_format($this->atualizadoEm, 'd-m-Y H:i');
-
     }
 
     /**
@@ -167,17 +123,7 @@ class Perfis
      */
     public function toArray()
     {
-        if(isset($this->parent))
-            $parent = $this->parent->getId();
-        else 
-            $parent = false;
-        
-        return array(
-          'id' => $this->id,
-          'nome' => strtoupper($this->nome),
-            'admin' => $this->admin,
-            'parent' => $parent
-        );
+        return (new Hydrator\ClassMethods)->extract($this);
     }
     
 }

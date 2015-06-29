@@ -42,6 +42,43 @@ class PerfisController extends GrudController {
 
     /**
      * @return ViewModel
+     */
+    public function FormAction() {
+        $form = $this->getServiceLocator()->get( $this->form );
+        $repository = $this->getEm()->getRepository($this->entity);
+
+        if ($this->params ()->fromRoute ( 'id', 0 ))
+        {
+            $entity = $repository->find($this->params()->fromRoute ('id',0));
+            $form->setData($entity->toArray());
+        }
+
+        $viewModel = new ViewModel ( array (
+            'form' => $form
+        ) );
+        $viewModel->setTerminal ( true );
+        return $viewModel;
+    }
+
+
+    private function capturarPermissoesAcesso(array $permissoes = null)
+    {
+        $permissoesArray = array();
+        foreach ($permissoes as $key => $value):
+
+            if(substr($key, 0, 15) == "permissaoAcesso"):
+                $libs = explode("_", $key);
+                $permissoesArray[] = $libs[1]."_".$libs[2];
+            endif;
+        endforeach;
+
+        // ex 1_2 1-> id acessos 2->id recursos
+        return $permissoesArray;
+    }
+
+
+    /**
+     * @return ViewModel
      * @obs: classe incompleta, quando usuario
      * atualizar o proprio perfil
      * deve sugerir atualização de sua sessao
@@ -58,7 +95,16 @@ class PerfisController extends GrudController {
                 # INSERT
                 if ($request->isPost())
                 {
-                    $entity = $service->insert($request->getPost()->toArray());
+                    $post = $request->getPost()->toArray();
+                    $liberdades = $this->capturarPermissoesAcesso();
+                    $post = array_push($post,$liberdades);
+                    echo "<pre>";
+print_r($post);
+echo "</pre>";
+die;
+
+
+                    $entity = $service->insert($post);
                     $retorno['data'] = array(
                         'id_field' => 'id',
                         'id_value' => "".$entity->getId()."",
