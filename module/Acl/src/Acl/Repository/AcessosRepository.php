@@ -1,11 +1,17 @@
 <?php
-
 namespace Acl\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class AcessosRepository
+ * @package Acl\Entity
+ */
 class AcessosRepository extends EntityRepository {
 
+    /**
+     * @return array
+     */
     public function fetchPairs()
     {
         $entities = $this->findAll();
@@ -16,5 +22,4 @@ class AcessosRepository extends EntityRepository {
         }
         return $array;
     }
-
 }

@@ -9,15 +9,6 @@ jQuery.dpText = { TEXT_PREV_YEAR:'Ano Anterior', TEXT_PREV_MONTH:'Mês Anterior'
 Date.firstDayOfWeek=0;
 Date.format = jQuery.i18n._('lang_date_format');
 
-
-
-/**********************
- usuario/perfis/form.js
- **********************/
-
-/**
- * @author eluiz
- */
 (function ($){
     function get_parent(el){
         return el.parents("div:first").prevAll('p:first').find('input[type=checkbox]');
@@ -124,6 +115,22 @@ Date.format = jQuery.i18n._('lang_date_format');
     jQuery(document).ready(function(){
         checkbox_tree();
         toggleCheckBox();
+
+        // veridica se e perfil administrador
+        $el = jQuery("#permitir_acesso_total");
+        if($el.val()=="1")
+            $el.attr('checked', 'true');
+        else
+            $el.removeAttr('checked');
+
+        // verifica as permissoes do perfil
+        jQuery(".liberdades").each(function(i, el){
+            $el = jQuery(this);
+            $id = $el.val();
+            $ele = jQuery($id);
+            $ele.attr('checked', 'true');
+
+        });
 
         $$('#form').addEvent('beforeSuccess', beforeSuccess);
     });

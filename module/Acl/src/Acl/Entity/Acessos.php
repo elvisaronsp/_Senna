@@ -1,5 +1,4 @@
 <?php
-
 namespace Acl\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -124,5 +123,4 @@ class Acessos
     {
         return (new Hydrator\ClassMethods)->extract($this);
     }
-
 }

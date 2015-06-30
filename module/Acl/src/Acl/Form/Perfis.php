@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jefferson
- * Date: 26/06/2015
- * Time: 15:18
- */
-
 namespace Acl\Form;
 use Zend\Form\Form;
 
@@ -17,6 +10,9 @@ class Perfis extends Form
 {
     private $recursos;
 
+    /**
+     * @param array $recursos
+     */
     public function __construct(array $recursos = null)
     {
         $this->recursos = $recursos;
@@ -49,8 +45,8 @@ class Perfis extends Form
                 'type' => 'Checkbox',
                 'name' => 'permissaoAcesso_1_'.$value->getId(),
                 'options'=>array(
-                  'label'=>$value->getNome(),
-                  'use_hidden_element' => false
+                    'label'=>$value->getNome(),
+                    'use_hidden_element' => false
                 ),
                 'attributes' => array (
                     'id'=>'permissaoAcesso_1_'.$value->getId(),

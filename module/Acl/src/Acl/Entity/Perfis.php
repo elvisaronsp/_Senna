@@ -1,5 +1,4 @@
 <?php
-
 namespace Acl\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -173,11 +172,9 @@ class Perfis
             $parent = false;
         
         return array(
-          'id' => $this->id,
-          'nome' => strtoupper($this->nome),
+            'id' => $this->id,
+            'nome' => strtoupper($this->nome),
             'admin' => $this->admin,
-            'parent' => $parent
         );
     }
-    
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Acl\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -21,7 +20,6 @@ class Privilegios
      * @ORM\GeneratedValue
      */
     protected $id;
-    
     
     /**
      * @ORM\OneToOne(targetEntity="Acl\Entity\Perfis")
@@ -171,11 +169,10 @@ class Privilegios
     public function toArray()
     {
         return array(
-          'id' => $this->id,
+            'id' => $this->id,
             'nome' => $this->acessos->getNome(),
             'role' => $this->perfil->getId(),
             'resource'=>$this->recurso->getId()
         );
     }
-
 }

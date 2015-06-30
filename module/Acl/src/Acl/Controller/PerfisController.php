@@ -46,21 +46,31 @@ class PerfisController extends GrudController {
     public function FormAction() {
         $form = $this->getServiceLocator()->get( $this->form );
         $repository = $this->getEm()->getRepository($this->entity);
+        $retorno = array ('form' => $form );
 
         if ($this->params ()->fromRoute ( 'id', 0 ))
         {
-            $entity = $repository->find($this->params()->fromRoute ('id',0));
+            $entity = $repository->find($this->params ()->fromRoute ( 'id', 0 ));
             $form->setData($entity->toArray());
+            $repository = $this->getEm()->getRepository("Acl\Entity\Privilegios");
+            $privilegios = $repository->findBy(array( 'perfil' => $this->params()->fromRoute ( 'id', 0 )));
+
+            $retorno = array (
+                'form' => $form,
+                'admin'=>$entity->toArray()['admin'],
+                'permissoes'=>$privilegios
+            );
         }
 
-        $viewModel = new ViewModel ( array (
-            'form' => $form
-        ) );
+        $viewModel = new ViewModel ( $retorno );
         $viewModel->setTerminal ( true );
         return $viewModel;
     }
 
-
+    /**
+     * @param array $permissoes
+     * @return array
+     */
     private function capturarPermissoesAcesso(array $permissoes = null)
     {
         $permissoesArray = array();
@@ -117,7 +127,6 @@ class PerfisController extends GrudController {
                 $post = $request->getPost()->toArray();
                 $post = $this->capturarPermissoesAcesso($post);
 
-
                 $repository = $this->getEm()->getRepository("Acl\Entity\Privilegios");
                 $privilegios = $repository->findBy(array( 'perfil' => $request->getPost()['id'] ));
 
@@ -164,5 +173,4 @@ class PerfisController extends GrudController {
         $viewModel->setTerminal ( true );
         return $viewModel;
     }
-
 }

@@ -1,7 +1,7 @@
 # MySQL-Front 5.0  (Build 1.0)
 
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE */;
-/*!40101 SET SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */;
+/*!40101 SET SQL_MODE='' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES */;
 /*!40103 SET SQL_NOTES='ON' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS */;
@@ -10,9 +10,9 @@
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
 
-# Host: 192.168.1.10    Database: _dalcatech
+# Host: mysql.grupocapitalponto.com.br    Database: grupocapitalpo
 # ------------------------------------------------------
-# Server version 5.5.25a
+# Server version 5.5.43-log
 
 #
 # Table structure for table classesprodutos
@@ -419,13 +419,14 @@ DROP TABLE IF EXISTS `sn_acessos`;
 CREATE TABLE `sn_acessos` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) DEFAULT NULL,
-  `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL,
+  `atualizado_em` datetime NOT NULL,
+  `criado_em` datetime NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-INSERT INTO `sn_acessos` VALUES (1,'Exibir','2015-06-23 22:41:22','2015-06-23 22:41:22');
-INSERT INTO `sn_acessos` VALUES (2,'Editar','2015-06-23 22:41:22','2015-06-23 22:41:22');
-INSERT INTO `sn_acessos` VALUES (3,'Excluir','2015-06-23 22:41:22','2015-06-23 22:41:22');
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+INSERT INTO `sn_acessos` VALUES (1,'Visualizar','2015-06-23 22:41:22','2015-06-23 22:41:22');
+INSERT INTO `sn_acessos` VALUES (2,'Criar','2015-06-23 22:41:22','2015-06-23 22:41:22');
+INSERT INTO `sn_acessos` VALUES (3,'Editar','2015-06-23 22:41:22','2015-06-23 22:41:22');
+INSERT INTO `sn_acessos` VALUES (4,'Excluir','2015-06-23 22:41:22','2015-06-23 22:41:22');
 /*!40000 ALTER TABLE `sn_acessos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,16 +444,14 @@ CREATE TABLE `sn_perfis` (
   `atualizado_em` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_sonacl_roles_sonacl_roles` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=latin1;
 INSERT INTO `sn_perfis` VALUES (51,NULL,'ADMINISTRADOR',1,'2015-06-27 00:21:34','2015-06-27 00:21:34');
 INSERT INTO `sn_perfis` VALUES (69,NULL,'FINANCEIRO',NULL,'2015-06-27 01:31:47','2015-06-27 01:31:47');
 INSERT INTO `sn_perfis` VALUES (70,NULL,'EXPEDIÇÃO',NULL,'2015-06-27 01:32:01','2015-06-27 01:32:01');
 INSERT INTO `sn_perfis` VALUES (71,NULL,'VENDEDOR',NULL,'2015-06-27 01:32:14','2015-06-27 01:32:14');
 INSERT INTO `sn_perfis` VALUES (72,NULL,'GERENTE',NULL,'2015-06-27 01:32:31','2015-06-27 01:32:31');
 INSERT INTO `sn_perfis` VALUES (73,NULL,'PRODUÇÃO',NULL,'2015-06-27 01:32:41','2015-06-27 01:32:42');
-INSERT INTO `sn_perfis` VALUES (74,NULL,'ACABAMENTO',NULL,'2015-06-27 01:33:32','2015-06-27 01:33:32');
-INSERT INTO `sn_perfis` VALUES (78,NULL,'TESTE',0,'2015-06-29 23:38:42','2015-06-29 23:38:42');
-INSERT INTO `sn_perfis` VALUES (79,NULL,'DFSFFFF',0,'2015-06-30 00:42:02','2015-06-30 00:42:02');
+INSERT INTO `sn_perfis` VALUES (74,NULL,'ACABAMENTO',0,'2015-06-27 01:33:32','2015-06-27 01:33:32');
 /*!40000 ALTER TABLE `sn_perfis` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -469,10 +468,15 @@ CREATE TABLE `sn_privilegios` (
   `atualizado_em` datetime NOT NULL,
   `acessos_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_sonacl_privileges_sonacl_roles1` (`role_id`),
-  KEY `fk_sonacl_privileges_sonacl_resources1` (`resource_id`),
+  KEY `role_id` (`role_id`,`resource_id`,`acessos_id`),
+  KEY `resource_id` (`resource_id`),
   KEY `acessos_id` (`acessos_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+INSERT INTO `sn_privilegios` VALUES (54,74,1,'2015-06-30 15:57:11','2015-06-30 15:57:11',1);
+INSERT INTO `sn_privilegios` VALUES (55,74,2,'2015-06-30 15:57:11','2015-06-30 15:57:11',1);
+INSERT INTO `sn_privilegios` VALUES (56,74,3,'2015-06-30 15:57:11','2015-06-30 15:57:11',1);
+INSERT INTO `sn_privilegios` VALUES (57,74,4,'2015-06-30 15:57:11','2015-06-30 15:57:11',1);
+INSERT INTO `sn_privilegios` VALUES (58,74,5,'2015-06-30 15:57:12','2015-06-30 15:57:12',1);
 /*!40000 ALTER TABLE `sn_privilegios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -617,9 +621,9 @@ ADD CONSTRAINT `sn_perfis_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `sn_perfi
 #
 
 ALTER TABLE `sn_privilegios`
-ADD CONSTRAINT `fk_sonacl_privileges_sonacl_resources1` FOREIGN KEY (`resource_id`) REFERENCES `sonacl_resources` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sonacl_privileges_sonacl_roles1` FOREIGN KEY (`role_id`) REFERENCES `sonacl_roles` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `sn_privilegios_ibfk_1` FOREIGN KEY (`acessos_id`) REFERENCES `sn_acessos` (`Id`);
+ADD CONSTRAINT `sn_privilegios_ibfk_7` FOREIGN KEY (`acessos_id`) REFERENCES `sn_acessos` (`Id`),
+  ADD CONSTRAINT `sn_privilegios_ibfk_2` FOREIGN KEY (`resource_id`) REFERENCES `sn_recursos` (`id`),
+  ADD CONSTRAINT `sn_privilegios_ibfk_6` FOREIGN KEY (`role_id`) REFERENCES `sn_perfis` (`id`) ON DELETE CASCADE;
 
 
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

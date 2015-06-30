@@ -2,7 +2,6 @@
 namespace Acl\Repository;
 use Doctrine\ORM\EntityRepository;
 
-
 /**
  * Class PerfisRepository
  * @package Acl\Entity

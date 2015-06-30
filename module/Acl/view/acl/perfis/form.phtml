@@ -111,7 +111,7 @@
                         </p>
                         <p class="field" style="width:auto; width: 470px;  padding-top: 7px;">
                             <label class="center" for="permitir_acesso_total" style="">
-                                <input id="permitir_acesso_total" name="permitir_acesso_total" rel="" style="padding: 2px 0 0;position: relative;" type="checkbox" value="0"></input>
+                                <input id="permitir_acesso_total" name="permitir_acesso_total" rel="" style="padding: 2px 0 0;position: relative;" type="checkbox" value="<?php echo ($this->admin)?"1":"0" ?>"></input>
                                 <span style="  padding: 0 0 0 22px; position: relative;">      Dar privilegios de administrador a este perfil</span>
                             </label>
                         </p>
@@ -121,6 +121,10 @@
 
                     <!--Primeira Aba-->
                     <fieldset class="fieldset " style="width:97%;width: 48%; height: 382px;">
+
+                        <?php foreach ($this->permissoes as $privilegio): ?>
+                            <input type="hidden" class="liberdades" value="<?php  echo "#permissaoAcesso_".$privilegio->getAcessos()->getId()."_".$privilegio->getRecurso()->getId();?>">
+                        <?php  endforeach; ?>
                         <legend>
                             <span class="legend">
                                 <span class="legend_label">Opções do Retaguarda</span>

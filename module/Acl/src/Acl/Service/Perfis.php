@@ -1,5 +1,4 @@
 <?php
-
 namespace Acl\Service;
 
 use Doctrine\ORM\EntityManager;
