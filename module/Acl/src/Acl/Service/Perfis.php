@@ -16,21 +16,22 @@ use Zend\Stdlib\Hydrator;
  */
 class Perfis extends AbstractService {
 
-	/**
-	 * @var EntityManager
-	 */
-	private $em;
+    /**
+     * @var EntityManager
+     */
+    private $em;
 	
-	/**
-	 * Contrutor
-	 * @param EntityManager $em        	
-	 */
-	public function __construct(EntityManager $em)
-	{
-		parent::__construct($em);
-		$this->entity = "Acl\Entity\Perfis";
-		$this->em = $em;
-	}
+    /**
+     * Contrutor
+     * @param EntityManager $em
+     */
+    public function __construct(EntityManager $em)
+    {
+        parent::__construct($em);
+        $this->entity = "Acl\Entity\Perfis";
+        $this->privilegios = "Acl\Entity\Privilegios";
+        $this->em = $em;
+    }
 
     /**
      * @param array $data
@@ -44,49 +45,27 @@ class Perfis extends AbstractService {
         if(isset($data['permitir_acesso_total']))
             $entity->setAdmin(true);
 
-        if(isset($data['parent']))
-        {
-            $parent = $this->em->getReference($this->entity, $data['parent']);
-            $entity->setParent($parent);
-        }
-        else
-            $entity->setParent(null);
-
         $entity = new $this->entity($data);
-
-
-
-
-
-
-        $role = $this->em->getReference("Acl\Entity\Role",$data['role']);
-        $entity->setRole($role); // Injetando entidade carregada
-
-        $resource = $this->em->getReference("Acl\Entity\Resource",$data['resource']);
-        $entity->setResource($resource); // Injetando entidade carregada
-
-
-        $acessos = $this->em->getReference("Acl\Entity\Acessos",$data['acesso']);
-        $entity->setAcessos($acessos); // Injetando entidade carregada
-
         $this->em->persist($entity);
         $this->em->flush();
-        return $entity;
 
+        ### VERIFICA TODOS OS ID RELACIONADOS E COLOCA NA ENTIDADE
+        foreach ($data[0] as $key => $value):
+            $entityPrivilegios = new $this->privilegios();
 
+            $perfil = $this->em->getReference("Acl\Entity\Perfis",$entity->getId());
+            $entityPrivilegios->setPerfil($perfil);
 
+            $acesso = $this->em->getReference("Acl\Entity\Acessos",$value[0]);
+            $entityPrivilegios->setAcessos($acesso);
 
+            $recurso = $this->em->getReference("Acl\Entity\Recursos",$value[1]);
+            $entityPrivilegios->setRecurso($recurso);
 
+            $this->em->persist($entityPrivilegios);
+            $this->em->flush();
+        endforeach;
 
-
-
-
-
-
-
-
-        $this->em->persist($entity);
-        $this->em->flush();
         return $entity;
     }
 
@@ -104,17 +83,28 @@ class Perfis extends AbstractService {
         if(isset($data['permitir_acesso_total']))
             $entity->setAdmin(true);
 
-
-        if(isset($data['parent']))
-        {
-            $parent = $this->em->getReference($this->entity, $data['parent']);
-            $entity->setParent($parent);
-        }
-        else
-            $entity->setParent(null);
-
         $this->em->persist($entity);
         $this->em->flush();
+
+        ### VERIFICA TODOS OS ID RELACIONADOS E COLOCA NA ENTIDADE
+        if(isset($data[0])):
+            foreach ($data[0] as $key => $value):
+                $entityPrivilegios = new $this->privilegios();
+
+                $perfil = $this->em->getReference("Acl\Entity\Perfis",$entity->getId());
+                $entityPrivilegios->setPerfil($perfil);
+
+                $acesso = $this->em->getReference("Acl\Entity\Acessos",$value[0]);
+                $entityPrivilegios->setAcessos($acesso);
+
+                $recurso = $this->em->getReference("Acl\Entity\Recursos",$value[1]);
+                $entityPrivilegios->setRecurso($recurso);
+
+                $this->em->persist($entityPrivilegios);
+                $this->em->flush();
+            endforeach;
+        endif;
+
         return $entity;
     }
 }

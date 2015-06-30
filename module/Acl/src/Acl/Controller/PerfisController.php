@@ -65,15 +65,15 @@ class PerfisController extends GrudController {
     {
         $permissoesArray = array();
         foreach ($permissoes as $key => $value):
-
             if(substr($key, 0, 15) == "permissaoAcesso"):
                 $libs = explode("_", $key);
-                $permissoesArray[] = $libs[1]."_".$libs[2];
+                array_push($permissoesArray,array($libs[1],$libs[2]));
             endif;
         endforeach;
 
         // ex 1_2 1-> id acessos 2->id recursos
-        return $permissoesArray;
+        array_push($permissoes,$permissoesArray);
+        return $permissoes;
     }
 
 
@@ -96,14 +96,7 @@ class PerfisController extends GrudController {
                 if ($request->isPost())
                 {
                     $post = $request->getPost()->toArray();
-                    $liberdades = $this->capturarPermissoesAcesso();
-                    $post = array_push($post,$liberdades);
-                    echo "<pre>";
-print_r($post);
-echo "</pre>";
-die;
-
-
+                    $post = $this->capturarPermissoesAcesso($post);
                     $entity = $service->insert($post);
                     $retorno['data'] = array(
                         'id_field' => 'id',
