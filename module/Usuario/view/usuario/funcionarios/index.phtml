@@ -8,7 +8,6 @@
     <meta name="base_url" content=""/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-
     <!-- Scripts javaScript -->
     <?php echo $this->headScript()
         ->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
@@ -26,8 +25,7 @@
         ->appendFile($this->basePath() . '/js/listing.js')
         ->appendFile($this->basePath() . '/js/omnigrid.js')
         ->appendFile($this->basePath() . '/js/sexyalertbox.js')
-        ->appendFile($this->basePath() . '/js/script_perfis_index.js') ?>
-
+        ->appendFile($this->basePath() . '/js/script_usuario_index.js') ?>
 
     <!-- Estilos da pagina Css/code -->
     <?php echo $this->headLink()
@@ -39,11 +37,11 @@
         ->appendStylesheet($this->basePath() . '/css/listing.css')
         ->appendStylesheet($this->basePath() . '/css/omnigrid.css')
         ->appendStylesheet($this->basePath() . '/css/sexyalertbox.css') ?>
-
+<script type="text/javascript"></script>
 </head>
 
 <body>
-
+<!--Container tela.php-->
 <div id="loader">
     <div class="loader-text">
         <span class='carregando'>Carregando ...</span>
@@ -51,36 +49,48 @@
     </div>
     <div class="loader-bg">&nbsp;</div>
 </div>
-
 <div id="tela" style="height: 100%;">
     <div id="conteudo">
         <div id="list_control">
-            <form action="<?php echo $this->basePath() ?>/senna/acesso/perfis/filter" class="form" debug="false" enctype="text/plain" id="filter" method="post">
-                <input name="add" type="button" value="Novo" windowName="Cadastro de Perfis de Acesso"></input>
+
+            <form action="<?php echo $this->basePath() ?>/senna/usuario/funcionarios/filter" class="form" debug="false" enctype="text/plain" id="filter" method="post">
+
+                <input name="add" type="button" value="Novo" windowName="Cadastrar Funcionário"></input>
                 <input name="edit" type="button" value="Alterar"></input>
-                <input confirm="Deseja realmente apagar o Perfil de Acesso selecionado?" debug="false" name="delete" type="button" value="Apagar"></input>
+                <input class="btn_delete" confirm="Deseja realmente apagar o Funcionário selecionado?" debug="false" name="delete" type="button" value="Apagar"></input>
+                <input class="button exclamation btn_desativa" confirm="Este Funcionário não pode ser removido pois já efetuou login ou possui vínculos no sistema. Deseja desativá-lo?" debug="false" name="delete" style="display:none" type="button" value="Desativar"></input>
                 <input debug="true" name="pesquisar" type="submit" value=""></input>
-                <span><p class="field " style="width:auto; "><span class="input " rel="search_text" style=""><input class="focus" id="search_text" name="busca" placeholder="Filtrar" style="" type="text" value=""></input></span></p>
+                <span>
+                    <p class="field " style="width:auto; ">
+                        <span class="input " rel="search_text" style="">
+                            <input class="focus" id="search_text" name="busca" placeholder="Filtrar" style="" type="text" value=""></input>
+                        </span>
+                    </p>
                 </span>
             </form>
         </div>
 
-        <div id="datatable" windowName="Alterar dados de Perfil de Acesso">
-            <div col="id" hidden="true" type="number" width="5%">COD</div>
-            <div col="nome" type="string">Perfil</div>
-            <div col="admin" type="string">Privilegios de Administrador</div>
-            <div col="criado" type="string" width="10%">Criado em</div>
-            <div col="atualizado" type="string" width="10%">Atualizado em</div>
+        <div id="datatable" windowName="Alterar dados de Funcionário">
+            <div col="id" hidden="true">#</div>
+            <div col="ativo" hidden="true">Ativo</div>
+            <div col="possui_vinculo" hidden="true">#</div>
+            <div col="possui_log" hidden="true">#</div>
+
+            <div align="center" col="ativo_img" sort="ativo" type="string" width="45">Ativo</div>
+
+            <div col="nome" type="string">Nome completo</div>
+            <div col="login" type="string" width="15%">Login de acesso</div>
+            <div col="perfil" type="string" width="15%">Perfil de Acesso</div>
+            <div col="setor" type="string" width="15%">Departamento</div>
+            <div col="email" type="string" width="25%">Email</div>
+            <div col="confirmado" type="string" width="10%">Email confirmado</div>
         </div>
 
         <div add_btn_title="Clique aqui para adicionar um novo registro" adv_search_btn_title="Limpe ou altere o Filtro Avançado para exibir resultados" id="list_empty" search_btn_title="Remova ou altere sua pesquisa para exibir resultados">
             <h3>Nenhum registro foi encontrado</h3>
         </div>
-
     </div>
 </div>
-
 <div id="footer"></div>
-
 </body>
 </html>

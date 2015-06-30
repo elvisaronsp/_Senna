@@ -1,0 +1,289 @@
+<div class="tab" id="tab_enderecos_715489327cdb05ebdcb395267bc111244a6dfd294" ref="Endereços" rel="tab_enderecos">
+    <fieldset class="fieldset " style="width:97%;">
+        <legend><span class="legend"><span class="legend_label">Endereço</span><span class="input_alert">&nbsp;</span></span>
+        </legend>
+
+        <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+        <div id="endereco">
+            <input class="clone_flag" name="endereco_flag" type="hidden" value=""></input>
+            <div class="clonedField" id="endereco0">
+                <input class="clone_id" id="endereco_entidade__id_68569458991473b6286c2a41c961199f0f18901740" name="endereco_entidade__id[0]" type="hidden" value=""></input>
+                <input class="clone_readonly" id="endereco_readonly_974589459b3c0f6144f53c9bfd3133731071777970" name="endereco_readonly[0]" type="hidden" value="{readonly}"></input>
+                <input id="endereco_principal_1453301492437c14b22e3dead010018bba67e45eb80" name="endereco_principal[0]" type="hidden" value=""></input>
+                <input id="endereco__id_1504150568d8ed4977dd821c74085a4454f723de490" name="endereco__id[0]" type="hidden" value=""></input>
+                <input id="endereco_entidade__principal_2052851126bf5499dbb885a21483598be5ee2876330" name="endereco_entidade__principal[0]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_entidade_19257380221496697651b02a1e5eea1e7a6ef32cb90" name="endereco_entidade__id_entidade[0]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_endereco_1009093961ea4866f59b9f76fa643bae386b927ea40" name="endereco_entidade__id_endereco[0]" type="hidden" value=""></input>
+                <input class="disabled" disabled="disabled" id="endereco__logradouro_9404892717b97854b80368feb729cc9f0096d4b00" name="endereco__logradouro[0]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline"><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span>Principal</span></label>
+                                            </span>
+                    </p>
+                </div>
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f70" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f70" style=""><input class=" required" id="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f70" mask="99999-999" name="endereco__cep[0]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778200" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778200" style=""><input class=" required" id="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778200" name="endereco__logradouro[0]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e0" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e0" style=""><input class=" required" id="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e0" maxlength="5" name="endereco_entidade__numero[0]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e190" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e190" style=""><input id="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e190" maxlength="20" name="endereco_entidade__complemento[0]" style="" type="text" value=""></input></span></p>
+                    <hr class="clear" size="1"></hr>
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c470" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c470" style=""><input class=" required" id="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c470" name="endereco__bairro[0]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b90" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b90" style=""><input id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b90" name="endereco__id_cidade[0]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[0]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b90" minLength="0" name="ac_0114447370dbe6920ed8d98d8e407b76b301789b6" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c10" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c10" style=""><input id="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c10" name="endereco_entidade__informacoes_adicionais[0]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7340" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7340" style=""><input id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7340" name="endereco_entidade__id_tipo_cadastro[0]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[0]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7340" minLength="0" name="ac_0173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                    <input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                </div>
+            </div>
+            <div class="clonedField" id="endereco1">
+                <input class="clone_id" id="endereco_entidade__id_68569458991473b6286c2a41c961199f0f18901741" name="endereco_entidade__id[1]" type="hidden" value=""></input>
+                <input class="clone_readonly" id="endereco_readonly_974589459b3c0f6144f53c9bfd3133731071777971" name="endereco_readonly[1]" type="hidden" value="{readonly}"></input>
+                <input id="endereco_principal_1453301492437c14b22e3dead010018bba67e45eb81" name="endereco_principal[1]" type="hidden" value=""></input>
+                <input id="endereco__id_1504150568d8ed4977dd821c74085a4454f723de491" name="endereco__id[1]" type="hidden" value=""></input>
+                <input id="endereco_entidade__principal_2052851126bf5499dbb885a21483598be5ee2876331" name="endereco_entidade__principal[1]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_entidade_19257380221496697651b02a1e5eea1e7a6ef32cb91" name="endereco_entidade__id_entidade[1]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_endereco_1009093961ea4866f59b9f76fa643bae386b927ea41" name="endereco_entidade__id_endereco[1]" type="hidden" value=""></input>
+                <input class="disabled" disabled="disabled" id="endereco__logradouro_9404892717b97854b80368feb729cc9f0096d4b01" name="endereco__logradouro[1]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline"><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span>Principal</span></label>
+                                            </span>
+                    </p>
+                </div>
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f71" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f71" style=""><input class=" required" id="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f71" mask="99999-999" name="endereco__cep[1]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778201" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778201" style=""><input class=" required" id="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778201" name="endereco__logradouro[1]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e1" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e1" style=""><input class=" required" id="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e1" maxlength="5" name="endereco_entidade__numero[1]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e191" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e191" style=""><input id="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e191" maxlength="20" name="endereco_entidade__complemento[1]" style="" type="text" value=""></input></span></p>
+                    <hr class="clear" size="1"></hr>
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c471" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c471" style=""><input class=" required" id="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c471" name="endereco__bairro[1]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b91" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b91" style=""><input id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b91" name="endereco__id_cidade[1]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[1]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b91" minLength="0" name="ac_1114447370dbe6920ed8d98d8e407b76b301789b6" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c11" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c11" style=""><input id="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c11" name="endereco_entidade__informacoes_adicionais[1]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7341" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7341" style=""><input id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7341" name="endereco_entidade__id_tipo_cadastro[1]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[1]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7341" minLength="0" name="ac_1173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                    <input class="btn_mapa" count="1" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                </div>
+            </div>
+            <div class="clonedField" id="endereco2">
+                <input class="clone_id" id="endereco_entidade__id_68569458991473b6286c2a41c961199f0f18901742" name="endereco_entidade__id[2]" type="hidden" value=""></input>
+                <input class="clone_readonly" id="endereco_readonly_974589459b3c0f6144f53c9bfd3133731071777972" name="endereco_readonly[2]" type="hidden" value="{readonly}"></input>
+                <input id="endereco_principal_1453301492437c14b22e3dead010018bba67e45eb82" name="endereco_principal[2]" type="hidden" value=""></input>
+                <input id="endereco__id_1504150568d8ed4977dd821c74085a4454f723de492" name="endereco__id[2]" type="hidden" value=""></input>
+                <input id="endereco_entidade__principal_2052851126bf5499dbb885a21483598be5ee2876332" name="endereco_entidade__principal[2]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_entidade_19257380221496697651b02a1e5eea1e7a6ef32cb92" name="endereco_entidade__id_entidade[2]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_endereco_1009093961ea4866f59b9f76fa643bae386b927ea42" name="endereco_entidade__id_endereco[2]" type="hidden" value=""></input>
+                <input class="disabled" disabled="disabled" id="endereco__logradouro_9404892717b97854b80368feb729cc9f0096d4b02" name="endereco__logradouro[2]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline"><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span>Principal</span></label>
+                                            </span>
+                    </p>
+                </div>
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f72" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f72" style=""><input class=" required" id="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f72" mask="99999-999" name="endereco__cep[2]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778202" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778202" style=""><input class=" required" id="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778202" name="endereco__logradouro[2]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e2" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e2" style=""><input class=" required" id="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e2" maxlength="5" name="endereco_entidade__numero[2]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e192" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e192" style=""><input id="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e192" maxlength="20" name="endereco_entidade__complemento[2]" style="" type="text" value=""></input></span></p>
+                    <hr class="clear" size="1"></hr>
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c472" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c472" style=""><input class=" required" id="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c472" name="endereco__bairro[2]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b92" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b92" style=""><input id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b92" name="endereco__id_cidade[2]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[2]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b92" minLength="0" name="ac_2114447370dbe6920ed8d98d8e407b76b301789b6" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c12" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c12" style=""><input id="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c12" name="endereco_entidade__informacoes_adicionais[2]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7342" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7342" style=""><input id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7342" name="endereco_entidade__id_tipo_cadastro[2]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[2]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7342" minLength="0" name="ac_2173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                    <input class="btn_mapa" count="2" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                </div>
+            </div>
+            <div class="clonedField" id="endereco3">
+                <input class="clone_id" id="endereco_entidade__id_68569458991473b6286c2a41c961199f0f18901743" name="endereco_entidade__id[3]" type="hidden" value=""></input>
+                <input class="clone_readonly" id="endereco_readonly_974589459b3c0f6144f53c9bfd3133731071777973" name="endereco_readonly[3]" type="hidden" value="{readonly}"></input>
+                <input id="endereco_principal_1453301492437c14b22e3dead010018bba67e45eb83" name="endereco_principal[3]" type="hidden" value=""></input>
+                <input id="endereco__id_1504150568d8ed4977dd821c74085a4454f723de493" name="endereco__id[3]" type="hidden" value=""></input>
+                <input id="endereco_entidade__principal_2052851126bf5499dbb885a21483598be5ee2876333" name="endereco_entidade__principal[3]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_entidade_19257380221496697651b02a1e5eea1e7a6ef32cb93" name="endereco_entidade__id_entidade[3]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_endereco_1009093961ea4866f59b9f76fa643bae386b927ea43" name="endereco_entidade__id_endereco[3]" type="hidden" value=""></input>
+                <input class="disabled" disabled="disabled" id="endereco__logradouro_9404892717b97854b80368feb729cc9f0096d4b03" name="endereco__logradouro[3]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline"><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span>Principal</span></label>
+                                            </span>
+                    </p>
+                </div>
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f73" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f73" style=""><input class=" required" id="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f73" mask="99999-999" name="endereco__cep[3]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778203" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778203" style=""><input class=" required" id="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778203" name="endereco__logradouro[3]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e3" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e3" style=""><input class=" required" id="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e3" maxlength="5" name="endereco_entidade__numero[3]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e193" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e193" style=""><input id="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e193" maxlength="20" name="endereco_entidade__complemento[3]" style="" type="text" value=""></input></span></p>
+                    <hr class="clear" size="1"></hr>
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c473" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c473" style=""><input class=" required" id="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c473" name="endereco__bairro[3]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b93" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b93" style=""><input id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b93" name="endereco__id_cidade[3]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[3]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b93" minLength="0" name="ac_3114447370dbe6920ed8d98d8e407b76b301789b6" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c13" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c13" style=""><input id="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c13" name="endereco_entidade__informacoes_adicionais[3]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7343" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7343" style=""><input id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7343" name="endereco_entidade__id_tipo_cadastro[3]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[3]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7343" minLength="0" name="ac_3173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                    <input class="btn_mapa" count="3" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                </div>
+            </div>
+            <div class="clonedField" id="endereco4">
+                <input class="clone_id" id="endereco_entidade__id_68569458991473b6286c2a41c961199f0f18901744" name="endereco_entidade__id[4]" type="hidden" value=""></input>
+                <input class="clone_readonly" id="endereco_readonly_974589459b3c0f6144f53c9bfd3133731071777974" name="endereco_readonly[4]" type="hidden" value="{readonly}"></input>
+                <input id="endereco_principal_1453301492437c14b22e3dead010018bba67e45eb84" name="endereco_principal[4]" type="hidden" value=""></input>
+                <input id="endereco__id_1504150568d8ed4977dd821c74085a4454f723de494" name="endereco__id[4]" type="hidden" value=""></input>
+                <input id="endereco_entidade__principal_2052851126bf5499dbb885a21483598be5ee2876334" name="endereco_entidade__principal[4]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_entidade_19257380221496697651b02a1e5eea1e7a6ef32cb94" name="endereco_entidade__id_entidade[4]" type="hidden" value=""></input>
+                <input id="endereco_entidade__id_endereco_1009093961ea4866f59b9f76fa643bae386b927ea44" name="endereco_entidade__id_endereco[4]" type="hidden" value=""></input>
+                <input class="disabled" disabled="disabled" id="endereco__logradouro_9404892717b97854b80368feb729cc9f0096d4b04" name="endereco__logradouro[4]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline"><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span>Principal</span></label>
+                                            </span>
+                    </p>
+                </div>
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f74" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f74" style=""><input class=" required" id="endereco__cep_6558733733be9992dac49a74c7e06e65ba0b390f74" mask="99999-999" name="endereco__cep[4]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778204" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778204" style=""><input class=" required" id="endereco__logradouro_1388797027b77c0a2eea59905bc70651e2862778204" name="endereco__logradouro[4]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e4" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e4" style=""><input class=" required" id="endereco_entidade__numero_1876745078921712b7785bbdaeb6c07c6eed0c641e4" maxlength="5" name="endereco_entidade__numero[4]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e194" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e194" style=""><input id="endereco_entidade__complemento_10310178612de6b3b667b40bb61b10003d7c763e194" maxlength="20" name="endereco_entidade__complemento[4]" style="" type="text" value=""></input></span></p>
+                    <hr class="clear" size="1"></hr>
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c474" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c474" style=""><input class=" required" id="endereco__bairro_18719467264826e1a67b8eefd1bad3a8849d989c474" name="endereco__bairro[4]" style="" type="text" uppercase="true" value=""></input></span></p>
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b94" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b94" style=""><input id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b94" name="endereco__id_cidade[4]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[4]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_2029734935d14d2b20c58f94221e81a11f916507b94" minLength="0" name="ac_4114447370dbe6920ed8d98d8e407b76b301789b6" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c14" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c14" style=""><input id="endereco_entidade__informacoes_adicionais_361618910cdfc23121b3d9ee9eb34a3599d8bf5c14" name="endereco_entidade__informacoes_adicionais[4]" style="" type="text" value=""></input></span></p>
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7344" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7344" style=""><input id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7344" name="endereco_entidade__id_tipo_cadastro[4]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[4]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7344" minLength="0" name="ac_4173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                    <input class="btn_mapa" count="4" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                </div>
+            </div>
+            <input class="cloneable" rel="endereco" separator="true" type="button" value="Inserir Endereço"></input>
+        </div>
+
+    </fieldset>
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+    </div>
+</div>
+

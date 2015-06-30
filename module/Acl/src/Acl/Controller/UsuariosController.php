@@ -14,6 +14,8 @@ use Senna\Controller\GrudController;
  * @package Acl\Controller
  */
 class UsuariosController extends GrudController {
-
-
+// apenas para aparecer pagina nao encontrada na url
+// senna/usuario
+// nao faz nada
+// refatorar se tiver tempo
 }

@@ -1,0 +1,229 @@
+<div class="tab" id="tab_perfil_acesso" ref="Dados Gerais" rel="tab_perfil_acesso">
+
+    <!-- ID OCULTOS  -->
+    <input id="id_entidade" name="id_entidade" type="hidden" value=""></input>
+    <input id="id_empresa" name="id_empresa" type="hidden" value=""></input>
+    <input id="id_funcionario" name="id_funcionario" type="hidden" value=""></input>
+    <!-- FIM ID OCULTOS -->
+
+    <!-- (LADO ESQUERDO) ATIVO-SEXO  -->
+    <div style="float:left; width:30%; margin-right:12px">
+        <!-- Ativo -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Ativo</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="inline">
+                        <input class=" required" eval="1" name="ativo" style="" type="radio" value="1"></input>
+                        <span>Sim</span>
+                    </label>
+                    <label class="inline">
+                        <input class=" required" eval="1" name="ativo" style="" type="radio" value="0"></input>
+                        <span>Não</span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Genero -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Gênero</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="inline">
+                        <input class=" required" eval="M" name="sexo" style="" type="radio" value="M"></input>
+                        <span>Masculino</span>
+                    </label>
+                    <label class="inline">
+                        <input class=" required" eval="M" name="sexo" style="" type="radio" value="F"></input>
+                        <span>Feminino</span>
+                    </label>
+                </span>
+            </p>
+
+        </fieldset>
+    </div>
+    <!-- FIM (LADO ESQUERDO) ATIVO-SEXO-->
+
+    <!-- (LADO DIREITO) NOME-CPF-PERFIL-USUARIO-SENHA-EMAIL-TELEFONE-SETOR-OBSERVAÇÕES  -->
+    <div style="float:left; width:67%">
+        <!-- Nome-Cpf -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Informações Pessoais</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Nome -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="nome" style="width:25%">Nome completo</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="nome" style="width: 68%">
+                    <input class="focus required" id="nome" name="nome" style="" type="text" value=""></input>
+                </span>
+            </p>
+
+            <!-- CPF -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="cpf" style="width:25%">CPF</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="cpf" style="width: 25%">
+                    <input class="cpf" id="cpf" mask="999.999.999-99" name="cpf" style="" type="text" value="">
+                    </input>
+                </span>
+            </p>
+        </fieldset>
+
+        <hr class="clear" size="1"></hr>
+
+        <!-- Perfil-Usuario-Senha -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Dados de Acesso</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Perfil de acesso -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="id_perfil" style="width:25%">Perfil de Acesso</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="id_perfil" style="width: 68%">
+                    <input id="id_perfil" name="id_perfil" type="hidden" value="1"></input>
+                    <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                    <input autosuggest="id_perfil" class="temp  autosuggest" filters="[]" form_title="Cadastrando Perfil de Acesso" form_url="<?php echo $this->basePath() ?>/senna/acesso/perfis/form" form_url_field="descricao" id="id_perfil" minLength="0" name="ac_perfil_acessso" new_item_info="Criar um novo perfil" new_item_label="Cadastrar Novo" source="<?php echo $this->basePath() ?>/senna/acesso/perfis/get_funcionario_perfil" style="" type="text" value="" valueclear="true" valuefield="id"></input>
+                    <em class="autocomplete_search temp  autosuggest"></em>
+                </span>
+            </p>
+
+            <!-- Login de Acesso-->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="codigo_acesso" style="width:25%">Nome de Usuário</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="codigo_acesso" style="width: 68%">
+                    <input class=" required" id="codigo_acesso" name="codigo_acesso" style="" type="text" value=""></input>
+                </span>
+            </p>
+            <span class="ean" id="ean" title="Gerar Código EAN13">&nbsp;</span>
+
+
+            <!-- Senha -->
+            <p class="field inline" style="width:auto; clear:none;width:48% !important;">
+                <label class="" for="senha" style="width:49%">Senha</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="senha" style="width:40%">
+                    <input class="" id="senha" maxLength="100" minLength="6" name="senha" requiredIf="$('#id').val()==''" style="" type="password" value=""></input>
+                </span>
+            </p>
+
+            <!-- Confirma Senha -->
+            <p class="field inline" style="width:auto; clear:none;width:44% !important;">
+                <label class="" for="senha_confirma" style="width:41%">Confirmação de Senha</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="senha_confirma" style="width:44%">
+                    <input class="" equalTo="#senha" id="senha_confirma" maxLength="100" minLength="6" name="senha_confirma" style="" type="password" value=""></input>
+                </span>
+            </p>
+            <!--span class="application_key" id="pass_pdv" style="margin-left:1px;" title="Senha para Acesso Off-Line ao PDV">&nbsp;</span-->
+        </fieldset>
+
+        <!-- Email-Telefone -->
+        <fieldset class="fieldset " id="field_contatos_principais" style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Contatos Principais</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Email -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="email_principal_aux" style="width:25%">Email</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="email_principal_aux" style="width: 68%">
+                    <input class="required" id="email_principal_aux" maxlength="50" name="email_principal_aux" style="" type="text" value=""></input>
+                </span>
+            </p>
+
+            <!-- Telefone-Telefone -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="telefone_principal_aux" style="width:25%">Telefone</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="telefone_principal_aux" style="width: 68%">
+                    <input id="telefone_principal_aux" maxlength="14" name="telefone_principal_aux" style="" type="text" value=""></input>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Setor -->
+        <fieldset class="fieldset " show="inline" style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Dados Trabalhistas</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Setor -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+
+                <label class="" for="id_financeiro_setor" style="width:25%">Setor</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="id_financeiro_setor" style="width: 68%">
+                    <input id="id_financeiro_setor" name="id_financeiro_setor" type="hidden" value="1"></input>
+                    <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                    <input autosuggest="id_financeiro_setor" class="  autosuggest" filters="[]" form_title="Cadastrando Setor" form_url="<?php echo $this->basePath() ?>/senna/financeiro/setores/form" form_url_field="descricao" id="id_financeiro_setor" minLength="0" name="ac_setores" new_item_info="Criar um novo setor" new_item_label="Cadastrar Novo" source="<?php echo $this->basePath() ?>/senna/financeiro/setores/get_setor" style="" type="text" value="" valueclear="true" valuefield="id"></input>
+                    <em class="autocomplete_search   autosuggest"></em>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Observações -->
+        <fieldset class="fieldset " style="width:460px;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Observações</span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Informações referentes ao funcionário"></img>
+                    </span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Observações -->
+            <p class="field " style="width:auto; ">
+                <span class="input " rel="observacoes" style="">
+                    <textarea cols="20" id="observacoes" maxlength="2000" name="observacoes" rows="12" style="width:645px;height:65px;resize:none;"></textarea>
+                </span>
+            </p>
+        </fieldset>
+
+    </div>
+    <!--FIM LADO DIREITO) NOME-CPF-PERFIL-USUARIO-SENHA-EMAIL-TELEFONE-SETOR-OBSERVAÇÕES -->
+
+    <!-- (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR  -->
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>
+        &nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+    </div>
+    <!-- FIM (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR -->
+
+</div>
+
+

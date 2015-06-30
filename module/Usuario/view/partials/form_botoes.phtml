@@ -1,0 +1,17 @@
+<div class="form_actions" id="form_actions">
+    <input class="save" name="Salvar" saveWindowForm="true" type="submit" value="Salvar"></input>
+    <input class="save_new" name="Salvar e Criar Novo" newWindowForm="true" type="submit" value="Salvar e Criar Novo"></input>
+    <input class="save_close" closeWindow="true" name="Salvar e Fechar" type="submit" value="Salvar e Fechar"></input>
+    <input
+        name="Apagar"
+        type="button"
+        confirm="Tem certeza que deseja apagar este registro?"
+        class="delete" value="Apagar"
+        deleteurl="/senna/produto/produtos/delete/<?php echo $this->id;?>"
+        labelsconfirm="{'labelSim':'Sim','labelNao':'N&amp;atilde;o'}"
+
+        <?php echo ($this->id=="")?"disabled = 'disabled'":$this->id ?>>
+
+    <span class="sep" size="1">&nbsp;</span>
+    <input cancelForm="true" class="cancel" name="Fechar" type="button" value="Fechar"></input>
+</div>

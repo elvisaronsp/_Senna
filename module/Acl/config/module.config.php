@@ -8,7 +8,7 @@ return array(
             'acl-perfil' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/senna/usuario',
+                    'route' => '/senna/acesso',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Acl\Controller',
                         'controller' => 'Usuarios',

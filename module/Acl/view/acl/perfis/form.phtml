@@ -122,9 +122,15 @@
                     <!--Primeira Aba-->
                     <fieldset class="fieldset " style="width:97%;width: 48%; height: 382px;">
 
-                        <?php foreach ($this->permissoes as $privilegio): ?>
-                            <input type="hidden" class="liberdades" value="<?php  echo "#permissaoAcesso_".$privilegio->getAcessos()->getId()."_".$privilegio->getRecurso()->getId();?>">
-                        <?php  endforeach; ?>
+                        <?php
+                        if(isset($this->permissoes)):
+                            foreach ($this->permissoes as $privilegio):?>
+                                <input type="hidden" class="liberdades" value="<?php echo "#permissaoAcesso_" . $privilegio->getAcessos()->getId() . "_" . $privilegio->getRecurso()->getId();?>">
+
+                            <?php
+                            endforeach;
+                        endif;
+                        ?>
                         <legend>
                             <span class="legend">
                                 <span class="legend_label">Opções do Retaguarda</span>

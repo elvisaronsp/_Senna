@@ -5,14 +5,48 @@ namespace Usuario;
 return array(
     'router' => array(
         'routes' => array(
-            '***' => array(
+            'usuario-listar' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/registro',
+                    'route' => '/senna/usuario',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Usuario\Controller',
-                        'controller' => 'Index',
-                        'action' => 'registro',
+                        'controller' => 'Funcionarios',
+                        'action' => 'index'
+                    )
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[/:action[/:id][/:nome]]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                                'nome'=>'[a-zA-Z][a-zA-Z0-9_-]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Usuario\Controller',
+                                'controller' => 'Funcionarios'
+                            )
+                        )
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[/page/:page]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Usuario\Controller',
+                                'controller' => 'Funcionarios'
+                            )
+                        )
                     )
                 )
             ),
@@ -20,7 +54,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Usuario\Controller\Index' => 'Usuario\Controller\IndexController',
+            'Usuario\Controller\Funcionarios' => 'Usuario\Controller\FuncionariosController',
         )
     ),
     'view_manager' => array(

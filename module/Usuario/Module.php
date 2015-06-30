@@ -1,9 +1,14 @@
 <?php
-
 namespace Usuario;
+use Zend\ModuleManager\ModuleManager;
+use Zend\Mvc\MvcEvent;
+use Zend\Mail\Transport\Smtp as SmtpTransport;
+use Zend\Mail\Transport\SmtpOptions as SmtpOptions;
 
-use Zend\Mvc\ModuleRouteListener,
-	Zend\Mvc\MvcEvent;
+use Zend\Authentication\AuthenticationService,
+    Zend\Authentication\Storage\Session as SessionStorage;
+
+use Usuario\Auth\Adapter as AuthAdapter;
 
 class Module
 {
@@ -22,4 +27,30 @@ class Module
             ),
         );
     }
+
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+
+
+            )
+        );
+
+    }
+
+    public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+
+            ),
+        );
+    }
+
+
+
+
+
 }
