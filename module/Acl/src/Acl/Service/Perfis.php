@@ -86,6 +86,7 @@ class Perfis extends AbstractService {
         $this->em->persist($entity);
         $this->em->flush();
 
+
         ### VERIFICA TODOS OS ID RELACIONADOS E COLOCA NA ENTIDADE
         if(isset($data[0])):
             foreach ($data[0] as $key => $value):

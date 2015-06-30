@@ -1,9 +1,9 @@
 <?php
 
-namespace Acl\Entity;
+namespace Acl\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
-class PrivilegioRepository extends EntityRepository {
+class PrivilegiosRepository extends EntityRepository {
 
 }

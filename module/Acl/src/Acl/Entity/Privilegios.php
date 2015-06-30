@@ -9,7 +9,7 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="sn_privilegios")
- * @ORM\Entity(repositoryClass="Acl\Entity\PrivilegiosRepository")
+ * @ORM\Entity(repositoryClass="Acl\Repository\PrivilegiosRepository")
  */
 
 class Privilegios

@@ -97,6 +97,7 @@ class PerfisController extends GrudController {
                 {
                     $post = $request->getPost()->toArray();
                     $post = $this->capturarPermissoesAcesso($post);
+
                     $entity = $service->insert($post);
                     $retorno['data'] = array(
                         'id_field' => 'id',
@@ -113,7 +114,18 @@ class PerfisController extends GrudController {
             # UPDATE
             if ($request->isPost())
             {
-                $entity = $service->update($request->getPost()->toArray());
+                $post = $request->getPost()->toArray();
+                $post = $this->capturarPermissoesAcesso($post);
+
+
+                $repository = $this->getEm()->getRepository("Acl\Entity\Privilegios");
+                $privilegios = $repository->findBy(array( 'perfil' => $request->getPost()['id'] ));
+
+                foreach ($privilegios as $privilegio) {
+                    $this->getEm()->remove($privilegio);
+                }
+
+                $entity = $service->update($post);
                 $retorno['data'] = array(
                     'id_field' => 'id',
                     'id_value' => "".$entity->getId()."",
