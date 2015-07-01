@@ -167,4 +167,19 @@ class PerfisController extends GrudController {
         $viewModel->setTerminal ( true );
         return $viewModel;
     }
+
+
+
+    public function getfuncionarioperfilAction()
+    {
+
+        $repository = $this->getEm()->getRepository ($this->entity);
+        $arrayFilter = $repository->fetchPairs ( $this->getRequest()->getPost()->toArray() );
+        $viewModel = new ViewModel ( array (
+            'data' => $arrayFilter
+        ) );
+        $viewModel->setTerminal ( true );
+        return $viewModel;
+
+    }
 }

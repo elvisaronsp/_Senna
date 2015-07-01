@@ -106,8 +106,8 @@
                 <span class="input " rel="id_perfil" style="width: 68%">
                     <input id="id_perfil" name="id_perfil" type="hidden" value="1"></input>
                     <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                    <input autosuggest="id_perfil" class="temp  autosuggest" filters="[]" form_title="Cadastrando Perfil de Acesso" form_url="<?php echo $this->basePath() ?>/senna/acesso/perfis/form" form_url_field="descricao" id="id_perfil" minLength="0" name="ac_perfil_acessso" new_item_info="Criar um novo perfil" new_item_label="Cadastrar Novo" source="<?php echo $this->basePath() ?>/senna/acesso/perfis/get_funcionario_perfil" style="" type="text" value="" valueclear="true" valuefield="id"></input>
-                    <em class="autocomplete_search temp  autosuggest"></em>
+                    <input autosuggest="id_perfil" class="temp  required autosuggest" filters="[]" form_title="Cadastrando Perfil de Acesso" form_url="<?php echo $this->basePath() ?>/senna/acesso/perfis/form" form_url_field="descricao" id="id_perfil" minLength="0" name="ac_perfil_acessso" new_item_info="Criar um novo perfil" new_item_label="Cadastrar Novo" source="<?php echo $this->basePath() ?>/senna/acesso/perfis/getfuncionarioperfil" style="" type="text" value="" valueclear="true" valuefield="id"></input>
+                    <em class="autocomplete_search required temp  autosuggest"></em>
                 </span>
             </p>
 
@@ -160,7 +160,7 @@
                 </span>
             </p>
 
-            <!-- Telefone-Telefone -->
+            <!-- Telefone -->
             <p class="field inline" style="width:auto; width:93% !important;">
                 <label class="" for="telefone_principal_aux" style="width:25%">Telefone</label>
                 <span class="input_alert">&nbsp;</span>

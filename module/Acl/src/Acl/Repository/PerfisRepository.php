@@ -40,31 +40,30 @@ class PerfisRepository extends EntityRepository {
 
     /**
      * @return array
+     * retorna um array contendo
+     * id e nome dos perfis
      */
-    public function fetchParent()
+    public function fetchPairs(array $where)
     {
-        $entities = $this->findAll();
-        $array = array();
-        
-        foreach($entities as $entity)
-        {
-            $array[$entity->getId()]=$entity->getNome();
-        }
-        
-        return $array;
-    }
+        $perfil = array ();
 
-    /**
-     * @return array
-     */
-    public function fetchPairs()
-    {
-        $entities = $this->findAll();
-        $array = array();
-        foreach($entities as $entity)
-        {
-            $array[$entity->getId()] = $entity->getNome();
-        }
-        return $array;
+        if (!empty($this->_em) && isset($where['filter']) && !empty($where['filter'])):
+            $query =  $this->_em->createQueryBuilder();
+            $query->select('perfis');
+            $query->from('Acl\Entity\Perfis', 'perfis');
+            $query->andWhere($query->expr()->like('perfis.nome', $query->expr()->literal('%'.$where['filter'].'%')));
+            //print_r($query->getQuery()->getDql());exit;
+            $entities = $query->getQuery()->getResult();
+        else:
+            $entities = $this->findAll();
+        endif;
+
+        foreach ( $entities as $key => $entity ) :
+            $perfil  [$key] ['id'] = "" . $entity->getId() . "";
+            $perfil  [$key] ['value'] = "" . $entity->getNome() . "";
+
+        endforeach;
+
+        return $perfil;
     }
 }
