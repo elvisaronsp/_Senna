@@ -1,176 +1,548 @@
-<div class="tab" id="tab_contatos_799479040712db9870a05d0c67f80e007b89e7733" ref="Contatos" rel="tab_contatos">
+<div class="tab" id="tab_contatos" ref="Contatos" rel="tab_contatos">
+
     <fieldset class="fieldset " style="width:97%;">
-        <legend><span class="legend"><span class="legend_label">Contatos</span><span class="input_alert">&nbsp;</span></span>
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Contatos</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
         </legend>
 
         <div id="contato">
+
             <input class="clone_flag" name="contato_flag" type="hidden" value=""></input>
+
+            <!-- CAMPOS DE CONTATO 1 -->
             <div class="clonedField" id="contato0">
-                <input class="clone_id" id="contato__id_2000739776f82ff9eafd3813f539749bf0299ba2310" name="contato__id[0]" type="hidden" value="1"></input>
-                <input id="contato__editavel_54843248bc6e3ab17f3c0e9fd821c988733718040" name="contato__editavel[0]" type="hidden" value="1"></input>
-                <input id="contato__id_entidade_1773008846035f57fbcd0c82048fe0ecd943d41e540" name="contato__id_entidade[0]" type="hidden" value="2"></input>
+
+                <input class="clone_id" id="contato__id_0" name="contato__id[0]" type="hidden" value=""></input>
+                <input id="contato__editavel_0" name="contato__editavel[0]" type="hidden" value=""></input>
+                <input id="contato__id_entidade_0" name="contato__id_entidade[0]" type="hidden" value=""></input>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408400" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408400" style=""><input id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408400" name="contato__id_tipo_cadastro[0]" type="hidden" value="2"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[0]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408400" minLength="0" name="ac_01112676182e47b2e2a68bbaacc7ded2a609dd9098d" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="Comercial" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_cadastro_0" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_0" style="">
+                        <select class="" eval="{contato__id_tipo_cadastro_0}" id="contato__id_tipo_cadastro_0" name="contato__id_tipo_cadastro[0]" size="1" style="">
+                            <option value="0">COMERCIAL</option>
+                            <option value="1">PARTICULAR</option>
+                            <option value="2">RESIDENCIAL</option>
+                            <option value="3">ENTREGA</option>
+                            <option value="4">EMERGENCIAS</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775210" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775210" style=""><input id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775210" name="contato__id_tipo_contato[0]" type="hidden" value="2"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[0]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775210" minLength="0" name="ac_02034785122b0f18180747adb7eebfab758bc4be9f2" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_contatos/get" style="" type="text" value="Email" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_contato_0" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_0" style="">
+                        <select class="" eval="{contato__id_tipo_contato_0}" id="contato__id_tipo_contato_0" name="contato__id_tipo_cadastro[0]" size="1" style="">
+                            <option value="0">EMAIL</option>
+                            <option value="1">FAX</option>
+                            <option value="2">TELEFONE</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_181010738902e7a5849de1e7d578598f2a867036160" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_181010738902e7a5849de1e7d578598f2a867036160" style=""><input class=" required" id="contato__descricao_181010738902e7a5849de1e7d578598f2a867036160" maxlength="50" name="contato__descricao[0]" style="" type="text" value="jefferson@outlook.com"></input></span></p>
+                    <label class="" for="contato__descricao_0" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_0" style="">
+                        <input class=" required" id="contato__descricao_0" maxlength="50" name="contato__descricao[0]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac850" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac850" style=""><input id="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac850" maxlength="50" name="contato__detalhes[0]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__detalhes_0" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_0" style="">
+                        <input id="contato__detalhes_0" maxlength="50" name="contato__detalhes[0]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <div style="float:left; padding:23px; margin-left: -15px">
                     <p class="checkbox_field  block" style="">
                         <label class="" for="contato__principal[0]" style="">
-                            <input id="contato__principal_11968307828e4a2a5ec50baf277cd184a724ba81d30" name="contato__principal[0]" rel="1" style="" type="checkbox" value="1"></input><span>Principal</span></label>
+                            <input id="contato__principal_0" name="contato__principal[0]" rel="" style="" type="checkbox" value="1"></input>
+                            <span>Principal</span>
+                        </label>
+
                     </p>
+
                 </div>
+
                 <hr class="clear" size="1"></hr>
+
             </div>
+            <!-- FIM CAMPOS DE CONTATO 1 -->
+
+            <!-- CAMPOS DE CONTATO 2 -->
             <div class="clonedField" id="contato1">
-                <input class="clone_id" id="contato__id_2000739776f82ff9eafd3813f539749bf0299ba2311" name="contato__id[1]" type="hidden" value="2"></input>
-                <input id="contato__editavel_54843248bc6e3ab17f3c0e9fd821c988733718041" name="contato__editavel[1]" type="hidden" value="1"></input>
-                <input id="contato__id_entidade_1773008846035f57fbcd0c82048fe0ecd943d41e541" name="contato__id_entidade[1]" type="hidden" value="2"></input>
+
+                <input class="clone_id" id="contato__id_1" name="contato__id[1]" type="hidden" value=""></input>
+                <input id="contato__editavel_1" name="contato__editavel[1]" type="hidden" value=""></input>
+                <input id="contato__id_entidade_1" name="contato__id_entidade[1]" type="hidden" value=""></input>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408401" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408401" style=""><input id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408401" name="contato__id_tipo_cadastro[1]" type="hidden" value="2"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[1]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408401" minLength="0" name="ac_11112676182e47b2e2a68bbaacc7ded2a609dd9098d" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="Comercial" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_cadastro_0" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_1" style="">
+                        <select class="" eval="{contato__id_tipo_cadastro_1}" id="contato__id_tipo_cadastro_1" name="contato__id_tipo_cadastro[1]" size="1" style="">
+                            <option value="0">COMERCIAL</option>
+                            <option value="1">PARTICULAR</option>
+                            <option value="2">RESIDENCIAL</option>
+                            <option value="3">ENTREGA</option>
+                            <option value="4">EMERGENCIAS</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775211" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775211" style=""><input id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775211" name="contato__id_tipo_contato[1]" type="hidden" value="1"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[1]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775211" minLength="0" name="ac_12034785122b0f18180747adb7eebfab758bc4be9f2" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_contatos/get" style="" type="text" value="Telefone" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_contato_1" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_1" style="">
+                        <select class="" eval="{contato__id_tipo_contato_1}" id="contato__id_tipo_contato_1" name="contato__id_tipo_cadastro[1]" size="1" style="">
+                            <option value="0">EMAIL</option>
+                            <option value="1">FAX</option>
+                            <option value="2">TELEFONE</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_181010738902e7a5849de1e7d578598f2a867036161" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_181010738902e7a5849de1e7d578598f2a867036161" style=""><input class=" required" id="contato__descricao_181010738902e7a5849de1e7d578598f2a867036161" maxlength="50" name="contato__descricao[1]" style="" type="text" value="(41) 9565-3780"></input></span></p>
+                    <label class="" for="contato__descricao_1" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_1" style="">
+                        <input class=" required" id="contato__descricao_1" maxlength="50" name="contato__descricao[1]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac851" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac851" style=""><input id="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac851" maxlength="50" name="contato__detalhes[1]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__detalhes_1" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_1" style="">
+                        <input id="contato__detalhes_1" maxlength="50" name="contato__detalhes[1]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <div style="float:left; padding:23px; margin-left: -15px">
                     <p class="checkbox_field  block" style="">
                         <label class="" for="contato__principal[1]" style="">
-                            <input id="contato__principal_11968307828e4a2a5ec50baf277cd184a724ba81d31" name="contato__principal[1]" rel="1" style="" type="checkbox" value="1"></input><span>Principal</span></label>
+                            <input id="contato__principal_1" name="contato__principal[1]" rel="" style="" type="checkbox" value="1"></input>
+                            <span>Principal</span>
+                        </label>
+
                     </p>
+
                 </div>
+
                 <hr class="clear" size="1"></hr>
+
             </div>
+            <!-- FIM CAMPOS DE CONTATO 2 -->
+
+            <!-- CAMPOS DE CONTATO 3 -->
             <div class="clonedField" id="contato2">
-                <input class="clone_id" id="contato__id_2000739776f82ff9eafd3813f539749bf0299ba2312" name="contato__id[2]" type="hidden" value=""></input>
-                <input id="contato__editavel_54843248bc6e3ab17f3c0e9fd821c988733718042" name="contato__editavel[2]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_1773008846035f57fbcd0c82048fe0ecd943d41e542" name="contato__id_entidade[2]" type="hidden" value=""></input>
+
+                <input class="clone_id" id="contato__id_2" name="contato__id[2]" type="hidden" value=""></input>
+                <input id="contato__editavel_2" name="contato__editavel[2]" type="hidden" value=""></input>
+                <input id="contato__id_entidade_2" name="contato__id_entidade[2]" type="hidden" value=""></input>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408402" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408402" style=""><input id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408402" name="contato__id_tipo_cadastro[2]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[2]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408402" minLength="0" name="ac_21112676182e47b2e2a68bbaacc7ded2a609dd9098d" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_cadastro_2" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_2" style="">
+                        <select class="" eval="{contato__id_tipo_cadastro_2}" id="contato__id_tipo_cadastro_2" name="contato__id_tipo_cadastro[2]" size="1" style="">
+                            <option value="0">COMERCIAL</option>
+                            <option value="1">PARTICULAR</option>
+                            <option value="2">RESIDENCIAL</option>
+                            <option value="3">ENTREGA</option>
+                            <option value="4">EMERGENCIAS</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775212" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775212" style=""><input id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775212" name="contato__id_tipo_contato[2]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[2]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775212" minLength="0" name="ac_22034785122b0f18180747adb7eebfab758bc4be9f2" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_contato_2" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_2" style="">
+                        <select class="" eval="{contato__id_tipo_contato_2}" id="contato__id_tipo_contato_2" name="contato__id_tipo_cadastro[2]" size="1" style="">
+                            <option value="0">EMAIL</option>
+                            <option value="1">FAX</option>
+                            <option value="2">TELEFONE</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_181010738902e7a5849de1e7d578598f2a867036162" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_181010738902e7a5849de1e7d578598f2a867036162" style=""><input class=" required" id="contato__descricao_181010738902e7a5849de1e7d578598f2a867036162" maxlength="50" name="contato__descricao[2]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__descricao_2" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_2" style="">
+                        <input class=" required" id="contato__descricao_2" maxlength="50" name="contato__descricao[2]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac852" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac852" style=""><input id="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac852" maxlength="50" name="contato__detalhes[2]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__detalhes_2" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_2" style="">
+                        <input id="contato__detalhes_2" maxlength="50" name="contato__detalhes[2]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <div style="float:left; padding:23px; margin-left: -15px">
                     <p class="checkbox_field  block" style="">
                         <label class="" for="contato__principal[2]" style="">
-                            <input id="contato__principal_11968307828e4a2a5ec50baf277cd184a724ba81d32" name="contato__principal[2]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label>
+                            <input id="contato__principal_2" name="contato__principal[2]" rel="" style="" type="checkbox" value="1"></input>
+                            <span>Principal</span>
+                        </label>
+
                     </p>
+
                 </div>
+
                 <hr class="clear" size="1"></hr>
+
             </div>
+            <!-- FIM CAMPOS DE CONTATO 1 -->
+
+            <!-- CAMPOS DE CONTATO 4 -->
             <div class="clonedField" id="contato3">
-                <input class="clone_id" id="contato__id_2000739776f82ff9eafd3813f539749bf0299ba2313" name="contato__id[3]" type="hidden" value=""></input>
-                <input id="contato__editavel_54843248bc6e3ab17f3c0e9fd821c988733718043" name="contato__editavel[3]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_1773008846035f57fbcd0c82048fe0ecd943d41e543" name="contato__id_entidade[3]" type="hidden" value=""></input>
+
+                <input class="clone_id" id="contato__id_3" name="contato__id[3]" type="hidden" value=""></input>
+                <input id="contato__editavel_3" name="contato__editavel[3]" type="hidden" value=""></input>
+                <input id="contato__id_entidade_3" name="contato__id_entidade[3]" type="hidden" value=""></input>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408403" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408403" style=""><input id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408403" name="contato__id_tipo_cadastro[3]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[3]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408403" minLength="0" name="ac_31112676182e47b2e2a68bbaacc7ded2a609dd9098d" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_cadastro_3" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_3" style="">
+                        <select class="" eval="{contato__id_tipo_cadastro_3}" id="contato__id_tipo_cadastro_3" name="contato__id_tipo_cadastro[3]" size="1" style="">
+                            <option value="0">COMERCIAL</option>
+                            <option value="1">PARTICULAR</option>
+                            <option value="2">RESIDENCIAL</option>
+                            <option value="3">ENTREGA</option>
+                            <option value="4">EMERGENCIAS</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775213" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775213" style=""><input id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775213" name="contato__id_tipo_contato[3]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[3]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775213" minLength="0" name="ac_32034785122b0f18180747adb7eebfab758bc4be9f2" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_contato_3" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_3" style="">
+                        <select class="" eval="{contato__id_tipo_contato_3}" id="contato__id_tipo_contato_3" name="contato__id_tipo_cadastro[3]" size="1" style="">
+                            <option value="0">EMAIL</option>
+                            <option value="1">FAX</option>
+                            <option value="2">TELEFONE</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_181010738902e7a5849de1e7d578598f2a867036163" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_181010738902e7a5849de1e7d578598f2a867036163" style=""><input class=" required" id="contato__descricao_181010738902e7a5849de1e7d578598f2a867036163" maxlength="50" name="contato__descricao[3]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__descricao_3" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_3" style="">
+                        <input class=" required" id="contato__descricao_3" maxlength="50" name="contato__descricao[3]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac853" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac853" style=""><input id="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac853" maxlength="50" name="contato__detalhes[3]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__detalhes_3" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_3" style="">
+                        <input id="contato__detalhes_3" maxlength="50" name="contato__detalhes[3]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <div style="float:left; padding:23px; margin-left: -15px">
                     <p class="checkbox_field  block" style="">
                         <label class="" for="contato__principal[3]" style="">
-                            <input id="contato__principal_11968307828e4a2a5ec50baf277cd184a724ba81d33" name="contato__principal[3]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label>
+                            <input id="contato__principal_3" name="contato__principal[3]" rel="" style="" type="checkbox" value="1"></input>
+                            <span>Principal</span>
+                        </label>
+
                     </p>
+
                 </div>
+
                 <hr class="clear" size="1"></hr>
+
             </div>
+            <!-- FIM CAMPOS DE CONTATO 4 -->
+
+            <!-- CAMPOS DE CONTATO 5 -->
             <div class="clonedField" id="contato4">
-                <input class="clone_id" id="contato__id_2000739776f82ff9eafd3813f539749bf0299ba2314" name="contato__id[4]" type="hidden" value=""></input>
-                <input id="contato__editavel_54843248bc6e3ab17f3c0e9fd821c988733718044" name="contato__editavel[4]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_1773008846035f57fbcd0c82048fe0ecd943d41e544" name="contato__id_entidade[4]" type="hidden" value=""></input>
+
+                <input class="clone_id" id="contato__id_4" name="contato__id[4]" type="hidden" value=""></input>
+                <input id="contato__editavel_4" name="contato__editavel[4]" type="hidden" value=""></input>
+                <input id="contato__id_entidade_4" name="contato__id_entidade[4]" type="hidden" value=""></input>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408404" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408404" style=""><input id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408404" name="contato__id_tipo_cadastro[4]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[4]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408404" minLength="0" name="ac_41112676182e47b2e2a68bbaacc7ded2a609dd9098d" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_cadastro_4" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_4" style="">
+                        <select class="" eval="{contato__id_tipo_cadastro_4}" id="contato__id_tipo_cadastro_4" name="contato__id_tipo_cadastro[4]" size="1" style="">
+                            <option value="0">COMERCIAL</option>
+                            <option value="1">PARTICULAR</option>
+                            <option value="2">RESIDENCIAL</option>
+                            <option value="3">ENTREGA</option>
+                            <option value="4">EMERGENCIAS</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775214" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775214" style=""><input id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775214" name="contato__id_tipo_contato[4]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[4]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775214" minLength="0" name="ac_42034785122b0f18180747adb7eebfab758bc4be9f2" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_contato_4" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_4" style="">
+                        <select class="" eval="{contato__id_tipo_contato_4}" id="contato__id_tipo_contato_4" name="contato__id_tipo_cadastro[4]" size="1" style="">
+                            <option value="0">EMAIL</option>
+                            <option value="1">FAX</option>
+                            <option value="2">TELEFONE</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_181010738902e7a5849de1e7d578598f2a867036164" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_181010738902e7a5849de1e7d578598f2a867036164" style=""><input class=" required" id="contato__descricao_181010738902e7a5849de1e7d578598f2a867036164" maxlength="50" name="contato__descricao[4]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__descricao_4" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_4" style="">
+                        <input class=" required" id="contato__descricao_4" maxlength="50" name="contato__descricao[4]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac854" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac854" style=""><input id="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac854" maxlength="50" name="contato__detalhes[4]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__detalhes_4" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_4" style="">
+                        <input id="contato__detalhes_4" maxlength="50" name="contato__detalhes[4]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <div style="float:left; padding:23px; margin-left: -15px">
                     <p class="checkbox_field  block" style="">
                         <label class="" for="contato__principal[4]" style="">
-                            <input id="contato__principal_11968307828e4a2a5ec50baf277cd184a724ba81d34" name="contato__principal[4]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label>
+                            <input id="contato__principal_4" name="contato__principal[4]" rel="" style="" type="checkbox" value="1"></input>
+                            <span>Principal</span>
+                        </label>
+
                     </p>
+
                 </div>
+
                 <hr class="clear" size="1"></hr>
+
             </div>
+            <!-- CAMPOS DE CONTATO 5 -->
+
+            <!-- CAMPOS DE CONTATO 6 -->
             <div class="clonedField" id="contato5">
-                <input class="clone_id" id="contato__id_2000739776f82ff9eafd3813f539749bf0299ba2315" name="contato__id[5]" type="hidden" value=""></input>
-                <input id="contato__editavel_54843248bc6e3ab17f3c0e9fd821c988733718045" name="contato__editavel[5]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_1773008846035f57fbcd0c82048fe0ecd943d41e545" name="contato__id_entidade[5]" type="hidden" value=""></input>
+
+                <input class="clone_id" id="contato__id_5" name="contato__id[5]" type="hidden" value=""></input>
+                <input id="contato__editavel_5" name="contato__editavel[5]" type="hidden" value=""></input>
+                <input id="contato__id_entidade_5" name="contato__id_entidade[5]" type="hidden" value=""></input>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408405" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408405" style=""><input id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408405" name="contato__id_tipo_cadastro[5]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[5]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408405" minLength="0" name="ac_51112676182e47b2e2a68bbaacc7ded2a609dd9098d" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_cadastro_5" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_5" style="">
+                        <select class="" eval="{contato__id_tipo_cadastro_5}" id="contato__id_tipo_cadastro_5" name="contato__id_tipo_cadastro[5]" size="1" style="">
+                            <option value="0">COMERCIAL</option>
+                            <option value="1">PARTICULAR</option>
+                            <option value="2">RESIDENCIAL</option>
+                            <option value="3">ENTREGA</option>
+                            <option value="4">EMERGENCIAS</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775215" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775215" style=""><input id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775215" name="contato__id_tipo_contato[5]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[5]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775215" minLength="0" name="ac_52034785122b0f18180747adb7eebfab758bc4be9f2" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_contato_5" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_5" style="">
+                        <select class="" eval="{contato__id_tipo_contato_5}" id="contato__id_tipo_contato_5" name="contato__id_tipo_cadastro[5]" size="1" style="">
+                            <option value="0">EMAIL</option>
+                            <option value="1">FAX</option>
+                            <option value="2">TELEFONE</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_181010738902e7a5849de1e7d578598f2a867036165" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_181010738902e7a5849de1e7d578598f2a867036165" style=""><input class=" required" id="contato__descricao_181010738902e7a5849de1e7d578598f2a867036165" maxlength="50" name="contato__descricao[5]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__descricao_5" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_5" style="">
+                        <input class=" required" id="contato__descricao_5" maxlength="50" name="contato__descricao[5]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac855" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac855" style=""><input id="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac855" maxlength="50" name="contato__detalhes[5]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__detalhes_5" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_5" style="">
+                        <input id="contato__detalhes_5" maxlength="50" name="contato__detalhes[5]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <div style="float:left; padding:23px; margin-left: -15px">
                     <p class="checkbox_field  block" style="">
                         <label class="" for="contato__principal[5]" style="">
-                            <input id="contato__principal_11968307828e4a2a5ec50baf277cd184a724ba81d35" name="contato__principal[5]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label>
+                            <input id="contato__principal_5" name="contato__principal[5]" rel="" style="" type="checkbox" value="1"></input>
+                            <span>Principal</span>
+                        </label>
+
                     </p>
+
                 </div>
+
                 <hr class="clear" size="1"></hr>
+
             </div>
+            <!-- FIM CAMPOS DE CONTATO 6 -->
+
+            <!-- CAMPOS DE CONTATO 7 -->
             <div class="clonedField" id="contato6">
-                <input class="clone_id" id="contato__id_2000739776f82ff9eafd3813f539749bf0299ba2316" name="contato__id[6]" type="hidden" value=""></input>
-                <input id="contato__editavel_54843248bc6e3ab17f3c0e9fd821c988733718046" name="contato__editavel[6]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_1773008846035f57fbcd0c82048fe0ecd943d41e546" name="contato__id_entidade[6]" type="hidden" value=""></input>
+
+                <input class="clone_id" id="contato__id_6" name="contato__id[6]" type="hidden" value=""></input>
+                <input id="contato__editavel_6" name="contato__editavel[6]" type="hidden" value=""></input>
+                <input id="contato__id_entidade_6" name="contato__id_entidade[6]" type="hidden" value=""></input>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408406" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408406" style=""><input id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408406" name="contato__id_tipo_cadastro[6]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[6]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408406" minLength="0" name="ac_61112676182e47b2e2a68bbaacc7ded2a609dd9098d" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_cadastro_6" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_6" style="">
+                        <select class="" eval="{contato__id_tipo_cadastro_6}" id="contato__id_tipo_cadastro_6" name="contato__id_tipo_cadastro[6]" size="1" style="">
+                            <option value="0">COMERCIAL</option>
+                            <option value="1">PARTICULAR</option>
+                            <option value="2">RESIDENCIAL</option>
+                            <option value="3">ENTREGA</option>
+                            <option value="4">EMERGENCIAS</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775216" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775216" style=""><input id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775216" name="contato__id_tipo_contato[6]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[6]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775216" minLength="0" name="ac_62034785122b0f18180747adb7eebfab758bc4be9f2" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_contato_6" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_6" style="">
+                        <select class="" eval="{contato__id_tipo_contato_6}" id="contato__id_tipo_contato_6" name="contato__id_tipo_cadastro[6]" size="1" style="">
+                            <option value="0">EMAIL</option>
+                            <option value="1">FAX</option>
+                            <option value="2">TELEFONE</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_181010738902e7a5849de1e7d578598f2a867036166" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_181010738902e7a5849de1e7d578598f2a867036166" style=""><input class=" required" id="contato__descricao_181010738902e7a5849de1e7d578598f2a867036166" maxlength="50" name="contato__descricao[6]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__descricao_6" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_6" style="">
+                        <input class=" required" id="contato__descricao_6" maxlength="50" name="contato__descricao[6]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac856" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac856" style=""><input id="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac856" maxlength="50" name="contato__detalhes[6]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__detalhes_6" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_6" style="">
+                        <input id="contato__detalhes_6" maxlength="50" name="contato__detalhes[6]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <div style="float:left; padding:23px; margin-left: -15px">
                     <p class="checkbox_field  block" style="">
                         <label class="" for="contato__principal[6]" style="">
-                            <input id="contato__principal_11968307828e4a2a5ec50baf277cd184a724ba81d36" name="contato__principal[6]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label>
+                            <input id="contato__principal_6" name="contato__principal[6]" rel="" style="" type="checkbox" value="1"></input>
+                            <span>Principal</span>
+                        </label>
                     </p>
+
                 </div>
+
                 <hr class="clear" size="1"></hr>
+
             </div>
+            <!-- FIM CAMPOS DE CONTATO 7 -->
+
+            <!-- CAMPOS DE CONTATO 8 -->
             <div class="clonedField" id="contato7">
-                <input class="clone_id" id="contato__id_2000739776f82ff9eafd3813f539749bf0299ba2317" name="contato__id[7]" type="hidden" value=""></input>
-                <input id="contato__editavel_54843248bc6e3ab17f3c0e9fd821c988733718047" name="contato__editavel[7]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_1773008846035f57fbcd0c82048fe0ecd943d41e547" name="contato__id_entidade[7]" type="hidden" value=""></input>
+
+                <input class="clone_id" id="contato__id_7" name="contato__id[7]" type="hidden" value=""></input>
+                <input id="contato__editavel_7" name="contato__editavel[7]" type="hidden" value=""></input>
+                <input id="contato__id_entidade_7" name="contato__id_entidade[7]" type="hidden" value=""></input>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408407" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408407" style=""><input id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408407" name="contato__id_tipo_cadastro[7]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[7]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_20686336251d41cacc329b2a1809ce64d249b408407" minLength="0" name="ac_71112676182e47b2e2a68bbaacc7ded2a609dd9098d" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_cadastro_7" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_7" style="">
+                        <select class="" eval="{contato__id_tipo_cadastro_7}" id="contato__id_tipo_cadastro_7" name="contato__id_tipo_cadastro[7]" size="1" style="">
+                            <option value="0">COMERCIAL</option>
+                            <option value="1">PARTICULAR</option>
+                            <option value="2">RESIDENCIAL</option>
+                            <option value="3">ENTREGA</option>
+                            <option value="4">EMERGENCIAS</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775217" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775217" style=""><input id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775217" name="contato__id_tipo_contato[7]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[7]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_2128979397d895a74ea77c20bcd442c05bf95775217" minLength="0" name="ac_72034785122b0f18180747adb7eebfab758bc4be9f2" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                    <label class="" for="contato__id_tipo_contato_7" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_7" style="">
+                        <select class="" eval="{contato__id_tipo_contato_7}" id="contato__id_tipo_contato_7" name="contato__id_tipo_cadastro[7]" size="1" style="">
+                            <option value="0">EMAIL</option>
+                            <option value="1">FAX</option>
+                            <option value="2">TELEFONE</option>
+                        </select>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_181010738902e7a5849de1e7d578598f2a867036167" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_181010738902e7a5849de1e7d578598f2a867036167" style=""><input class=" required" id="contato__descricao_181010738902e7a5849de1e7d578598f2a867036167" maxlength="50" name="contato__descricao[7]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__descricao_7" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_7" style="">
+                        <input class=" required" id="contato__descricao_7" maxlength="50" name="contato__descricao[7]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac857" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac857" style=""><input id="contato__detalhes_516690562fc50ab5d95cf2db9b0c84169a870ac857" maxlength="50" name="contato__detalhes[7]" style="" type="text" value=""></input></span></p>
+                    <label class="" for="contato__detalhes_7" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_7" style="">
+                        <input id="contato__detalhes_7" maxlength="50" name="contato__detalhes[7]" style="" type="text" value=""></input>
+                    </span>
+                </p>
+
                 <div style="float:left; padding:23px; margin-left: -15px">
                     <p class="checkbox_field  block" style="">
                         <label class="" for="contato__principal[7]" style="">
-                            <input id="contato__principal_11968307828e4a2a5ec50baf277cd184a724ba81d37" name="contato__principal[7]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label>
+                            <input id="contato__principal_7" name="contato__principal[7]" rel="" style="" type="checkbox" value="1"></input>
+                            <span>Principal</span>
+                        </label>
                     </p>
+
                 </div>
+
                 <hr class="clear" size="1"></hr>
+
             </div>
+            <!-- FIM CAMPOS DE CONTATO 8 -->
+
             <input class="cloneable" rel="contato" separator="false" type="button" value="Inserir novo contato"></input>
+
         </div>
 
     </fieldset>
+
+    <!-- (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR  -->
     <div class="tab_navigator ">
-        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>
+        &nbsp;&nbsp;
         <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
     </div>
+    <!-- FIM (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR -->
+
 </div>
+

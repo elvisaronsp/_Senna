@@ -2,7 +2,7 @@
 
     <!-- ID OCULTOS  -->
     <input id="id_entidade" name="id_entidade" type="hidden" value=""></input>
-    <input id="id_empresa" name="id_empresa" type="hidden" value=""></input>
+    <input id="id_empresa" name="id_empresa" type="hidden" value="1"></input>
     <input id="id_funcionario" name="id_funcionario" type="hidden" value=""></input>
     <!-- FIM ID OCULTOS -->
 
@@ -113,7 +113,7 @@
 
             <!-- Login de Acesso-->
             <p class="field inline" style="width:auto; width:93% !important;">
-                <label class="" for="codigo_acesso" style="width:25%">Nome de Usuário</label>
+                <label class="" for="codigo_acesso" style="width:25%">Login de acesso</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="codigo_acesso" style="width: 68%">
                     <input class=" required" id="codigo_acesso" name="codigo_acesso" style="" type="text" value=""></input>
@@ -124,7 +124,7 @@
 
             <!-- Senha -->
             <p class="field inline" style="width:auto; clear:none;width:48% !important;">
-                <label class="" for="senha" style="width:49%">Senha</label>
+                <label class="" for="senha" style="width:49%">Senha de acesso</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="senha" style="width:40%">
                     <input class="" id="senha" maxLength="100" minLength="6" name="senha" requiredIf="$('#id').val()==''" style="" type="password" value=""></input>
@@ -179,16 +179,19 @@
                 </span>
             </legend>
 
-            <!-- Setor -->
+            <!-- Setor
+            <!-- Setor-->
             <p class="field inline" style="width:auto; width:93% !important;">
-
                 <label class="" for="id_financeiro_setor" style="width:25%">Setor</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="id_financeiro_setor" style="width: 68%">
-                    <input id="id_financeiro_setor" name="id_financeiro_setor" type="hidden" value="1"></input>
-                    <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                    <input autosuggest="id_financeiro_setor" class="  autosuggest" filters="[]" form_title="Cadastrando Setor" form_url="<?php echo $this->basePath() ?>/senna/financeiro/setores/form" form_url_field="descricao" id="id_financeiro_setor" minLength="0" name="ac_setores" new_item_info="Criar um novo setor" new_item_label="Cadastrar Novo" source="<?php echo $this->basePath() ?>/senna/financeiro/setores/get_setor" style="" type="text" value="" valueclear="true" valuefield="id"></input>
-                    <em class="autocomplete_search   autosuggest"></em>
+                    <select class="" eval="{setor}" id="setor" name="setor" size="1" style="">
+                        <option value="0">Administrativo</option>
+                        <option value="1">Financeiro</option>
+                        <option value="2">Vendas</option>
+                        <option value="3">Produção</option>
+                        <option value="3">Gerencia</option>
+                    </select>
                 </span>
             </p>
         </fieldset>

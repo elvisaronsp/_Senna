@@ -1,143 +1,325 @@
-<div class="tab" id="tab_dados_secundarios_2011131310eb3b44b1d2c88dbd667eafeb552067b6" ref="Dados Secundarios" rel="tab_dados_secundarios">
+<div class="tab" id="tab_dados_secundarios" ref="Dados Secundarios" rel="tab_dados_secundarios">
 
+    <!-- (COLUNA LADO ESQUERDO) RG-DATA DE NASCIMENTO-ESCOLARIDADE  -->
     <fieldset class="fieldset " style="width:33%;height:131px;">
-        <legend><span class="legend"><span class="legend_label">Informações Pessoais</span><span class="input_alert">&nbsp;</span></span>
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Informações Pessoais</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
         </legend>
 
+        <!-- rg -->
         <p class="field inline" style="width:auto; width:95% !important;">
-            <label class="" for="rg" style="width:40%">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="rg" style="width: 58%"><input id="rg" maxLength="10" name="rg" style="" type="text" value=""></input></span></p>
+            <label class="" for="rg" style="width:40%">RG</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="rg" style="width: 58%">
+                <input id="rg" maxLength="10" name="rg" style="" type="text" value=""></input>
+            </span>
+        </p>
+
         <!-- Nascimento -->
         <p class="field inline" style="width:auto; width:95% !important;">
-            <label class="" for="data_nascimento" style="width:40%">Data de Nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="data_nascimento" style="width: 58%"><input class=" date" id="data_nascimento" mask="39/19/9999" name="data_nascimento" style="" type="text" value=""></input></span></p>
+            <label class="" for="dataNascimento" style="width:40%">Data de Nascimento</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="dataNascimento" style="width: 58%">
+                <input class=" date" id="dataNascimento" mask="39/19/9999" name="dataNascimento" style="" type="text" value=""></input>
+            </span>
+        </p>
+
         <!-- Escolaridade -->
         <p class="field inline" style="width:auto; width:95% !important;">
-            <label class="" for="escolaridade" style="width:40%">Escolaridade</label><span class="input_alert">&nbsp;</span><span class="input " rel="escolaridade" style="width: 58%"><select class="" eval="5" id="escolaridade" name="escolaridade" size="1" style=""><option value="0">Ensino Fundamental Incompleto</option><option value="1">Ensino Fundamental Completo</option><option value="2">Ensino Médio Incompleto</option><option value="3">Ensino Médio Completo</option><option value="4">Ensino Superior Incompleto</option><option value="5">Ensino Superior Completo</option></select></span></p>
-
+            <label class="" for="escolaridade" style="width:40%">Escolaridade</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="escolaridade" style="width: 58%">
+                <select class="" eval="5" id="escolaridade" name="escolaridade" size="1" style="">
+                    <option value="0">Ensino Fundamental Incompleto</option>
+                    <option value="1">Ensino Fundamental Completo</option>
+                    <option value="2">Ensino Médio Incompleto</option>
+                    <option value="3">Ensino Médio Completo</option>
+                    <option value="4">Ensino Superior Incompleto</option>
+                    <option value="5">Ensino Superior Completo</option>
+                </select>
+            </span>
+        </p>
 
     </fieldset>
+    <!-- FIM (COLUNA LADO ESQUERDO) RG-DATA DE NASCIMENTO-ESCOLARIDADE  -->
 
+    <!-- (COLUNA CENTRAL) DATA ADMISSAO-DATA DEMISSAO-DESCANÇO SEMANAL-CRPS  -->
     <fieldset class="fieldset " show="inline" style="width:27%;height:131px;">
-        <legend><span class="legend"><span class="legend_label">Dados Trabalhistas</span><span class="input_alert">&nbsp;</span></span>
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Dados Trabalhistas</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
         </legend>
 
+        <!--Data de adminissao-->
         <p class="field inline" style="width:auto; width:95% !important;">
-            <label class="" for="data_admissao" style="width:40%">Data de Admissão</label><span class="input_alert">&nbsp;</span><span class="input " rel="data_admissao" style="width: 58%"><input class=" date" id="data_admissao" mask="39/19/9999" name="data_admissao" style="" type="text" value=""></input></span></p>
+            <label class="" for="dataAdminissao" style="width:40%">Data de Admissão</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="dataAdminissao" style="width: 58%">
+                <input class=" date" id="dataAdminissao" mask="39/19/9999" name="dataAdminissao" style="" type="text" value=""></input>
+            </span>
+        </p>
+
         <!-- Data Demissao -->
         <p class="field inline" style="width:auto; width:95% !important;">
-            <label class="" for="data_demissao" style="width:40%">Data de Demissão</label><span class="input_alert">&nbsp;</span><span class="input " rel="data_demissao" style="width: 58%"><input class=" date" id="data_demissao" mask="39/19/9999" name="data_demissao" style="" type="text" value=""></input></span></p>
+            <label class="" for="dataDemissao" style="width:40%">Data de Demissão</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="dataDemissao" style="width: 58%">
+                <input class=" date" id="dataDemissao" mask="39/19/9999" name="dataDemissao" style="" type="text" value=""></input>
+            </span>
+        </p>
+
         <!-- Descanso semanal -->
         <p class="field inline" style="width:auto; width:95% !important;">
-            <label class="" for="descanso_semanal" style="width:40%">Descanso Semanal</label><span class="input_alert">&nbsp;</span><span class="input " rel="descanso_semanal" style="width: 58%"><input id="descanso_semanal" name="descanso_semanal" style="" type="text" value=""></input></span></p>
+            <label class="" for="descancoSemanal" style="width:40%">Descanso Semanal</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="descancoSemanal" style="width: 58%">
+                <input id="descancoSemanal" name="descancoSemanal" style="" type="text" value=""></input>
+            </span>
+        </p>
+
         <!-- CTPS -->
         <p class="field inline" style="width:auto; width:95% !important;">
-            <label class="" for="ctps" style="width:40%">CTPS</label><span class="input_alert">&nbsp;</span><span class="input short" rel="ctps" style="width: 58%"><input id="ctps" maxLength="10" name="ctps" style="" type="text" value=""></input></span></p>
+            <label class="" for="ctps" style="width:40%">CTPS</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input short" rel="ctps" style="width: 58%">
+                <input id="ctps" maxLength="10" name="ctps" style="" type="text" value=""></input>
+            </span>
+        </p>
 
     </fieldset>
+    <!-- FIM (COLUNA CENTRAL) DATA ADMISSAO-DATA DEMISSAO-DESCANÇO SEMANAL-CRPS  -->
 
-
+    <!-- (COLUNA LADO DIREITO ) TIPO CONTA BANCARIA-AGENCIA-CONTA-NUMERO BANCO -->
     <fieldset class="fieldset " show="inline" style="width:33%;height:131px;">
-        <legend><span class="legend"><span class="legend_label">Dados Bancários</span><span class="input_alert">&nbsp;</span></span>
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Dados Bancários</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
         </legend>
 
+        <!--Tipo conta bancaria-->
         <p class="field inline" style="width:45%; ">
-            <label class="" for="tipo_conta" style="">Tipo de Conta Bancária</label><span class="input_alert">&nbsp;</span><span class="input " rel="tipo_conta" style=""><select class="" eval="0" id="tipo_conta" name="tipo_conta" size="1" style=""><option value="0">Conta Corrente</option><option value="1">Conta Poupança</option><option value="2">Conta Salário</option></select></span></p>
+            <label class="" for="tipoContaBancaria" style="">Tipo de Conta Bancária</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="tipoContaBancaria" style="">
+                <select class="" eval="0" id="tipoContaBancaria" name="tipoContaBancaria" size="1" style="">
+                    <option value="0">Conta Corrente</option>
+                    <option value="1">Conta Poupança</option>
+                    <option value="2">Conta Salário</option>
+                </select>
+            </span>
+        </p>
+
+        <!--Agencia-->
         <p class="field inline" style="width:45%; ">
-            <label class="" for="banco_agencia" style="">Agência Bancária</label><span class="input_alert">&nbsp;</span><span class="input " rel="banco_agencia" style=""><input id="banco_agencia" maxLength="10" name="banco_agencia" style="" type="text" value=""></input></span></p>
+            <label class="" for="agencia" style="">Agência Bancária</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="agencia" style="">
+                <input id="agencia" maxLength="10" name="agencia" style="" type="text" value=""></input>
+            </span>
+        </p>
+
+        <!--conta corrente-->
         <p class="field inline" style="width:45%; ">
-            <label class="" for="banco_conta" style="">Conta Bancária</label><span class="input_alert">&nbsp;</span><span class="input " rel="banco_conta" style=""><input class=" code" id="banco_conta" maxLength="10" name="banco_conta" style="" type="text" value=""></input></span></p>
+            <label class="" for="contaCorrente" style="">Conta Bancária</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="contaCorrente" style="">
+                <input class="code" id="contaCorrente" maxLength="10" name="contaCorrente" style="" type="text" value=""></input>
+            </span>
+        </p>
+
+        <!--Numero do banco-->
         <p class="field inline" style="width:45%; ">
-            <label class="" for="banco_numero" style="">Número do Banco</label><span class="input_alert">&nbsp;</span><span class="input " rel="banco_numero" style=""><input class=" code" id="banco_numero" maxLength="10" name="banco_numero" style="" type="text" value=""></input></span></p>
+            <label class="" for="numerobanco" style="">Numero banco</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="numerobanco" style="">
+                <input class="code" id="numerobanco" maxLength="10" name="numerobanco" style="" type="text" value=""></input>
+            </span>
+        </p>
 
     </fieldset>
+    <!-- FIM (COLUNA LADO DIREITO ) TIPO CONTA BANCARIA-AGENCIA-CONTA-NUMERO BANCO -->
 
+    <!-- (COLUNA LADO ESQUERDO) COMISSAO  -->
     <fieldset class="fieldset " show="inline" style="width:33%;">
-        <legend><span class="legend"><span class="legend_label">Comissão</span><span class="input_alert">&nbsp;</span></span>
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Comissão</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
         </legend>
 
+        <!--comissao-->
         <p class="field inline" style="width:auto; width:95% !important;">
-            <label class="" for="comissao" style="width:40%">Comissão (%)</label><span class="input_alert">&nbsp;</span><span class="input " rel="comissao" style="width: 58%"><input id="comissao" maxLength="10" name="comissao" number_format="+#.#0,[2,2]" style="" type="text" value="0.00"></input></span></p>
+            <label class="" for="comissao" style="width:40%">Comissão (%)</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="comissao" style="width: 58%">
+                <input id="comissao" maxLength="10" name="comissao" number_format="+#.#0,[2,2]" style="" type="text" value="0.00"></input>
+            </span>
+        </p>
 
     </fieldset>
+    <!-- FIM (COLUNA LADO ESQUERDO) COMISSAO  -->
 
+    <!-- (COLUNA CENTRAL) DESCONTO MAXIMO  -->
     <fieldset class="fieldset " show="inline" style="width:27%;">
-        <legend><span class="legend"><span class="legend_label">Desconto Máximo</span><span class="input_alert">&nbsp;</span></span>
-        </legend>
 
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Desconto Máximo</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+       </legend>
+
+        <!--Desconto Maximo-->
         <p class="field inline" style="width:auto; width:95% !important;">
-            <label class="" for="desconto_maximo_permitido" style="width:44%">Desconto Máximo (%)</label><span class="input_alert">&nbsp;</span><span class="input " rel="desconto_maximo_permitido" style="width: 54%"><input id="desconto_maximo_permitido" name="desconto_maximo_permitido" number_format="+#.#0,[2,2]" style="" type="text" value="0.00"></input></span></p>
+            <label class="" for="descontoMaximo" style="width:44%">Desconto Máximo (%)</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="desconto_maximo_permitido" style="width: 54%">
+                <input id="desconto_maximo_permitido" name="desconto_maximo_permitido" number_format="+#.#0,[2,2]" style="" type="text" value="0.00"></input>
+            </span>
+        </p>
 
     </fieldset>
+    <!-- FIM (COLUNA CENTRAL) DESCONTO MAXIMO  -->
 
     <hr class="clear" size="1"></hr>
+
+    <!--AVISO AO USUARIO-->
     <div class="help_infos" id="tip_cabecalho" style=" ">
-        <div style="">
-            Indica o dia e horário de acesso do usuário. Caso o mesmo tente acessar fora do dia e horário estabelecido(s), o acesso será negado. Será levado em consideração o horário de Brasília, no formato '00:00' às '23:59'. Os dias marcados serão aqueles que o usuário terá acesso.
-        </div>
+        <div style="">Indica o dia e horário de acesso do usuário. Caso o mesmo tente acessar fora do dia e horário estabelecido(s), o acesso será negado. Será levado em consideração o horário de Brasília, no formato '00:00' às '23:59'. Os dias marcados serão aqueles que o usuário terá acesso.</div>
     </div>
+
+    <!-- FIM (COLUNA ESQUERDA) HORARIOS DE SERVIÇO  -->
     <fieldset class="fieldset " style="width:342px;">
-        <legend><span class="legend"><span class="legend_label">Horários</span><span class="input_alert">&nbsp;</span></span>
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Horários</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
         </legend>
 
+
         <div style="float:left; width:213px;">
+
             <!-- Hora de Entrada -->
             <p class="field inline" style="width:auto; ">
-                <label class="" for="hora_entrada" style="width:40%">Hora de Entrada</label><span class="input_alert">&nbsp;</span><span class="input " rel="hora_entrada" style="width: 28%"><input class=" time" id="hora_entrada" name="hora_entrada" style="" type="text" value="00:00:00"></input></span></p>
-            <!-- Hora de Entrada Almoco -->
-            <p class="field inline" style="width:auto; ">
-                <label class="" for="hora_almoco_entrada" style="width:40%">Início do Almoço</label><span class="input_alert">&nbsp;</span><span class="input " rel="hora_almoco_entrada" style="width: 28%"><input class=" time" id="hora_almoco_entrada" name="hora_almoco_entrada" style="" type="text" value="00:00:00"></input></span></p>
-            <!-- Hora de Saida Almoco -->
-            <p class="field inline" style="width:auto; ">
-                <label class="" for="hora_almoco_saida" style="width:40%">Fim do Almoço</label><span class="input_alert">&nbsp;</span><span class="input " rel="hora_almoco_saida" style="width: 28%"><input class=" time" id="hora_almoco_saida" name="hora_almoco_saida" style="" type="text" value="00:00:00"></input></span></p>
-            <!-- Hora de Saida -->
-            <p class="field inline" style="width:auto; ">
-                <label class="" for="hora_saida" style="width:40%">Hora de Saída</label><span class="input_alert">&nbsp;</span><span class="input " rel="hora_saida" style="width: 28%"><input class=" time" id="hora_saida" name="hora_saida" style="" type="text" value="00:00:00"></input></span></p>
-            <!-- Dias da Semana -->
-        </div>
-        <div style="float:right; width:75px; margin-right:50px;">
-
-            <p class="checkbox_field  block" style="">
-                <label class="" for="dias_da_semana_0" style="">
-                    <input id="dias_da_semana_0" name="dias_da_semana_0" rel="1" style="" type="checkbox" value="1"></input><span>Domingo</span></label>
+                <label class="" for="hora_entrada" style="width:40%">Hora de Entrada</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="hora_entrada" style="width: 28%">
+                    <input class=" time" id="hora_entrada" name="hora_entrada" style="" type="text" value="08:00:00"></input>
+                </span>
             </p>
 
+            <!-- Hora de Entrada Almoco -->
+            <p class="field inline" style="width:auto; ">
+                <label class="" for="hora_almoco_entrada" style="width:40%">Início do Almoço</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="hora_almoco_entrada" style="width: 28%">
+                    <input class=" time" id="hora_almoco_entrada" name="hora_almoco_entrada" style="" type="text" value="12:00:00"></input>
+                </span>
+            </p>
+
+            <!-- Hora de Saida Almoco -->
+            <p class="field inline" style="width:auto; ">
+                <label class="" for="hora_almoco_saida" style="width:40%">Fim do Almoço</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="hora_almoco_saida" style="width: 28%">
+                    <input class=" time" id="hora_almoco_saida" name="hora_almoco_saida" style="" type="text" value="13:00:00"></input>
+                </span>
+            </p>
+
+            <!-- Hora de Saida -->
+            <p class="field inline" style="width:auto; ">
+                <label class="" for="hora_saida" style="width:40%">Hora de Saída</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="hora_saida" style="width: 28%">
+                    <input class=" time" id="hora_saida" name="hora_saida" style="" type="text" value="18:00:00"></input>
+                </span>
+            </p>
+
+        </div>
+
+        <div style="float:right; width:75px; margin-right:50px;">
+
+            <!-- Dias da Semana -->
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_1" style="">
-                    <input id="dias_da_semana_1" name="dias_da_semana_1" rel="1" style="" type="checkbox" value="1"></input><span>Segunda</span></label>
+                    <input id="dias_da_semana_1" name="dias_da_semana_1" rel="1" style="" type="checkbox" value="1"></input>
+                    <span>Segunda</span>
+                </label>
             </p>
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_2" style="">
-                    <input id="dias_da_semana_2" name="dias_da_semana_2" rel="1" style="" type="checkbox" value="1"></input><span>Terça</span></label>
+                    <input id="dias_da_semana_2" name="dias_da_semana_2" rel="1" style="" type="checkbox" value="1"></input>
+                    <span>Terça</span>
+                </label>
+
             </p>
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_3" style="">
-                    <input id="dias_da_semana_3" name="dias_da_semana_3" rel="1" style="" type="checkbox" value="1"></input><span>Quarta</span></label>
+                    <input id="dias_da_semana_3" name="dias_da_semana_3" rel="1" style="" type="checkbox" value="1"></input>
+                    <span>Quarta</span>
+                </label>
             </p>
+
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_4" style="">
-                    <input id="dias_da_semana_4" name="dias_da_semana_4" rel="1" style="" type="checkbox" value="1"></input><span>Quinta</span></label>
+                    <input id="dias_da_semana_4" name="dias_da_semana_4" rel="1" style="" type="checkbox" value="1"></input>
+                    <span>Quinta</span>
+                </label>
+
             </p>
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_5" style="">
-                    <input id="dias_da_semana_5" name="dias_da_semana_5" rel="1" style="" type="checkbox" value="1"></input><span>Sexta</span></label>
+                    <input id="dias_da_semana_5" name="dias_da_semana_5" rel="1" style="" type="checkbox" value="1"></input>
+                    <span>Sexta</span>
+                </label>
             </p>
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_6" style="">
-                    <input id="dias_da_semana_6" name="dias_da_semana_6" rel="1" style="" type="checkbox" value="1"></input><span>Sábado</span></label>
+                    <input id="dias_da_semana_6" name="dias_da_semana_6" rel="0" style="" type="checkbox" value="1"></input>
+                    <span style="color: #057EBE;">Sábado</span>
+                </label>
+            </p>
+
+            <p class="checkbox_field  block" style="">
+                <label class="" for="dias_da_semana_0" style="">
+                    <input id="dias_da_semana_0" name="dias_da_semana_0" rel="0" style="" type="checkbox" value="1"></input>
+                    <span style="color: #FF0000;">Domingo</span>
+                </label>
             </p>
 
         </div>
 
     </fieldset>
+    <!-- (COLUNA ESQUERDA) HORARIOS DE SERVIÇO  -->
 
     <div class="tab_navigator ">
-        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+        <!-- BOTÕES CONTINUAR-VOLTAR  -->
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>
+        &nbsp;&nbsp;
         <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+        <!-- BOTÕES CONTINUAR-VOLTAR  -->
     </div>
+
 </div>
+
 
 
