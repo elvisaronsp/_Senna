@@ -28,6 +28,7 @@ class FuncionariosController extends GrudController {
      * @return ViewModel
      */
     public function FormAction() {
+
         $form = $this->getServiceLocator()->get( $this->form );
         $repository = $this->getEm()->getRepository($this->entity);
 
@@ -44,6 +45,12 @@ class FuncionariosController extends GrudController {
         }
 
         $viewModel = new ViewModel ( $retorno );
+        $viewModel->setTerminal ( true );
+        return $viewModel;
+    }
+
+    public function MapaAction() {
+        $viewModel = new ViewModel ( );
         $viewModel->setTerminal ( true );
         return $viewModel;
     }

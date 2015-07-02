@@ -75,16 +75,16 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
                 // Se resultado é válido
                 if (status == google.maps.GeocoderStatus.OK)
                 {
-                    alert('http://app.tagplus.com.br/empresariamkk/usuario/funcionarios/mapa');
+                    alert('http://127.0.0.1:8080/senna/usuario/funcionarios/mapa');
                     // Abre modal com o mapa
                     parent.MochaUI.openWindow({
-                        id:'http://app.tagplus.com.br/empresariamkk/usuario/funcionarios/mapa',
+                        id:'http://127.0.0.1:8080/senna/usuario/funcionarios/mapa',
                         title:'Mapa',
                         onContentLoaded:function ()
                         {
                             // Armazena objeto para latitude e longitude
                             var myLatlng = results[0].geometry.location;
-
+                            alert(myLatlng);
                             // Armazena elemento da janela (modal)
                             var janela = this.iframeEl;
                             janela = $(janela).contents();

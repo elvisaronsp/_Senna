@@ -13,7 +13,8 @@ return array(
         'Cadastro',
         'Usuario',
         #'Util',
-        'Acl'
+        'Acl',
+        'InfanaticaCepModule'
     ),
     'module_listener_options' => array(
         'module_paths' => array(

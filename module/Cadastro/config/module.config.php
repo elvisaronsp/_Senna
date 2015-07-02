@@ -3,34 +3,51 @@ namespace Cadastro;
 return array(
     'router' => array(
         'routes' => array(
-            'cadastro' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+            'senna-cadastro' => array(
+                'type' => 'Literal',
                 'options' => array(
-                	'route'    => '/senna/cadastro',
+                    'route' => '/senna/cadastro',
                     'defaults' => array(
-                        'controller' => 'Cadastro\Controller\Index',
-                        'action'     => 'index',
-                    ),
+                        '__NAMESPACE__' => 'Cadastro\Controller',
+                        'controller' => 'Index',
+                        'action' => 'index'
+                    )
                 ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[/:action[/:id][/:nome]]]',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Cadastro\Controller',
+                                'controller' => 'Index'
+                            )
+                        )
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[/page/:page]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '[a-zA-Z][a-zA-Z0-9_-]*-'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Cadastro\Controller',
+                                'controller' => 'Index'
+                            )
+                        )
+                    )
+                )
             ),
-        	
-        		'classes-cadastro' => array(
-        				'type' => 'Segment',
-        				'options' => array(
-        						'route'    => '/senna/cadastro/[:controller[/:action]][/:id]',
-        						'defaults' => array(
-        								'action'     => 'index',
-        								//'page'=>'1'
-        						),
-        				),
-        		),
-        ),
+        )
     ),
     'controllers' => array(
         'invokables' => array(
             'Cadastro\Controller\Index' => 'Cadastro\Controller\IndexController',
-            'empresa' => 'Cadastro\Controller\EmpresaController'
-
+            'Cadastro\Controller\Endereco' => 'Cadastro\Controller\EnderecoController',
         ),
     ),
     'view_manager' => array(
