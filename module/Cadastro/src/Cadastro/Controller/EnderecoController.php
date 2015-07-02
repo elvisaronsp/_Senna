@@ -18,16 +18,30 @@ class EnderecoController extends AbstractActionController
     {
         $cep = preg_replace('/\(|\)|-/', '',$this->params ()->fromRoute ( 'id', 0 ));
 
-        $formato        = 'json';
+        $formato        = 'array';
 
         $serviceLocator = $this->getServiceLocator();
         $cepService     = $serviceLocator->get('InfanaticaCepModule\Service\CepService');
         $endereco       = $cepService->getEnderecoByCep($cep,$formato);
 
-        echo "<pre>";
-        print_r($endereco);
-        echo "</pre>";
-
+        if(!empty($endereco['logradouro'])) {
+            $endereco['cep'] = $this->params ()->fromRoute ( 'id', 0 );
+            $endereco['id'] = "1";
+            $endereco['cidade'] = $endereco['localidade'];
+            $endereco['cidade_cod'] = '4106902';
+            $endereco['id_cidade'] = "9851";
+            $endereco['pais_cod'] = "1058";
+            $endereco['id_pais'] = "1";
+            $endereco['pais'] = 'BRASIL';
+            $endereco['id_estado'] = '17';
+            $endereco['estado_nome'] = $endereco['uf'];
+            $endereco['estado_cod'] = '41';
+            unset($endereco['localidade']);
+            unset($endereco['uf']);
+            print json_encode($endereco);
+        }else{
+            json_encode(array("resultado"=>"0","server"=>"1"));
+        }
 
 
 

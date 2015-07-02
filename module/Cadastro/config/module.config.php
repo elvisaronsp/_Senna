@@ -48,6 +48,7 @@ return array(
         'invokables' => array(
             'Cadastro\Controller\Index' => 'Cadastro\Controller\IndexController',
             'Cadastro\Controller\Endereco' => 'Cadastro\Controller\EnderecoController',
+            'Cadastro\Controller\Util' => 'Cadastro\Controller\UtilController',
         ),
     ),
     'view_manager' => array(

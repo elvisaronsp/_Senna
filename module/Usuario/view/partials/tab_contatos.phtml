@@ -37,13 +37,24 @@
                     <label class="" for="contato__id_tipo_contato_0" style="">Tipo de Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_contato_0" style="">
+                        <input id="contato__id_tipo_contato_0" name="contato__id_tipo_contato[0]" type="hidden" value="2"></input>
+                        <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                        <input autosuggest="contato__id_tipo_contato[0]" class="autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url=""   form_url_field="descricao" id="contato__id_tipo_contato_0" minLength="0" name="ac_0" new_item_info="Criar um novo registro" new_item_label="PAdrao" source="/senna/cadastro/util/getTiposCadastros" uppercase="true" value="1" valueclear="true" valuefield="id_cidade" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                        <em class="autocomplete_search  autosuggest"></em>
+                    </span>
+                </p>
+
+                <!--p class="field " style="width:105px; ">
+                    <label class="" for="contato__id_tipo_contato_0" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_0" style="">
                         <select class="" eval="{contato__id_tipo_contato_0}" id="contato__id_tipo_contato_0" name="contato__id_tipo_cadastro[0]" size="1" style="">
                             <option value="0">EMAIL</option>
                             <option value="1">FAX</option>
                             <option value="2">TELEFONE</option>
                         </select>
                     </span>
-                </p>
+                </p-->
 
                 <p class="field " style="width:auto; width:270px">
                     <label class="" for="contato__descricao_0" style="">Contato</label>
@@ -64,7 +75,7 @@
                 <div style="float:left; padding:23px; margin-left: -15px">
                     <p class="checkbox_field  block" style="">
                         <label class="" for="contato__principal[0]" style="">
-                            <input id="contato__principal_0" name="contato__principal[0]" rel="" style="" type="checkbox" value="1"></input>
+                            <input id="contato__principal_0" name="contato__principal[0]" rel="1" style="" type="checkbox" value="1"></input>
                             <span>Principal</span>
                         </label>
 
@@ -174,6 +185,9 @@
                         </select>
                     </span>
                 </p>
+
+
+
 
                 <p class="field " style="width:auto; width:270px">
                     <label class="" for="contato__descricao_2" style="">Contato</label>

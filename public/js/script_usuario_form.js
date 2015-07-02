@@ -189,32 +189,6 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
             set_principal_padrao();
         });
 
-        /*
-         //Tratando cadastro de novos enderecos
-         $("[id*=endereco__id]").bind('onWindowLoad', function(evt, newDocument, val){
-         //OBtendo os dados da tela que abriu.
-         var logradouro	= $(newDocument).find("#endereco__logradouro").val();
-         var bairro		= $(newDocument).find("#endereco__bairro").val();
-         var cidade		= $(newDocument).find("#endereco__id_cidade").val();
-
-         if(logradouro == '' || bairro == '' || cidade == ''){
-         //Retirando os espaços
-         val = val.replace(/^s+|s+$/g, '').replace('.', '');
-         // Caso o CEP não esteja nesse formato ele vai ser inserido no campo de logradouro
-         var objER = /^[0-9]{5}[-]?[0-9]{3}$/;
-         //Verficando se foi inserido um conteúdo
-         if(val.length > 0){
-         if(objER.test(val)){
-         $(newDocument).find("#endereco__cep").val(val);
-         $(newDocument).find("#btn_cep").click();
-         }
-         else
-         $(newDocument).find("#endereco__logradouro").val(val);
-         }
-         }
-
-         });
-         */
         /* BOTÃO DE BUSCA DE CEP ******************************/
         $("[id*=btn_cep]").click(function(evt, el){ get_cep_ws($(this).parents('.clonedField')) });
         $("[name*=endereco__cep]").blur(function(evt, el){
@@ -224,6 +198,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
 
 
         $("[id*=endereco__id_cidade]").change(function(evt, el, json){
+
             container = $(this).parents('.clonedField');
             $(container).find("[name*=endereco__id_cidade]").val(json.id);
             $(container).find("[name*=localidade_cidade__nome]").val(json.nome);
@@ -239,154 +214,71 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
 
     });
 
-
+    //######## CONSULTA DE CEP #######
     var get_cep_ws = function (container) {
         //Carregando
         $("#loader").show().find(".carregando").hide();
         $("#loader").find(".enviando").show();
 
         var cep = $(container).find("[name*=endereco__cep]").val();
-        var url = '{url_ws_cep}';
-
         if (!cep){
             Sexy.alert('Por favor, informe o CEP.');
             $("#loader").hide();
         }
         else{
-            //Faz uma requisição pra verificar se o cep ja foi cadastrado
-            $.ajax({
-                type: "POST",
-                url: 'http://app.tagplus.com.br/empresariamkk/cadastro/enderecos/get_endereco_by_cep/'+cep,
-                dataType: 'json',
-                async:false,
-                success: function(data){
-                    if(data.length != 0){
-                        //Se tem só 1 endereço
-                        if(data.length == 1){
-                            var json =  data[0];
-                            $(container).find('[name*=endereco__cep]').val(json.cep);
-                            $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
-                            $(container).find('[name*=endereco__bairro]').val(json.bairro);
-                            $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
-                            $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
-                            $(container).find('[name*=estado]').val(json.sigla_estado);
-                            $(container).find('[name*=pais]').val(json.pais);
-                            $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
-                            $(container).find('[name*=cidade_cod]').val(json.cidade_cod);
-                            $(container).find('[name*=estado_cod]').val(json.estado_cod);
-                            $(container).find('[name*=pais_cod]').val(json.pais_cod);
-                            //Se tem mas de 1 pergunto
-                        }else{
-                            Sexy.confirm('Foi encontrado mais de um endereço para o mesmo CEP. Deseja selecionar estes endereços?',{
-                                textBoxBtnOk:"Sim",
-                                textBoxBtnCancel:"Não",
-                                onComplete:function (ret) {
-                                    if (ret){
-                                        // Abre modal com o mapa
-                                        var data_end = false;
-                                        var url = 'http://app.tagplus.com.br/empresariamkk/cadastro/enderecos/form_enderecos_mult';
-                                        parent.MochaUI.openWindow({
-                                            id:url,
-                                            title: 'Endereço',
-                                            type:'modal',
-                                            //Id de onde foi clicado enviado como parametro.
-                                            contentURL: url,
-                                            width:700,
-                                            height:486,
-                                            onContentLoaded:function () {
+            $.getJSON("/senna/cadastro/endereco/busqueEnderecoPorCep/" + cep,{},function(json){
+                if (!json || json.resultado == ''){
+                    $("#loader").hide();
+                    Sexy.alert("Não foi possível pesquisar este CEP. Por favor tente novamente em alguns instantes");
+                    return false;
+                }
 
-                                                var janela = this.iframeEl;
-                                                janela = $(janela).contents();
+                if (!json || json.resultado == 0){
+                    $("#loader").hide();
+                    Sexy.alert("CEP não encontrado.");
+                    return false;
+                }
 
-                                                janela.find("[id*=_endereco__id]").attr('source','http://app.tagplus.com.br/empresariamkk/autocomplete/enderecos/index/'+cep);
-                                            },
-                                            onClose:function (){
-                                                var janela = this.iframeEl;
-                                                janela = $(janela).contents();
-                                                var id_endereco = janela.find('[id*=_endereco__id]').val();
+                //Erro ao recuperar CEP
+                if(json.cod_error){
+                    $("#loader").hide();
+                    Sexy.alert("Não foi possível pesquisar este CEP. Por favor tente novamente em alguns instantes");
+                    return false;
 
-                                                if((id_endereco) && (id_endereco != undefined)){
-                                                    $.getJSON("http://app.tagplus.com.br/empresariamkk/cadastro/enderecos/get_endereco_by_id/"+id_endereco,{},function(json){
-                                                        $(container).find('[name*=endereco__id]').val(id_endereco);
-                                                        $(container).find('[name*=endereco__cep]').val(json.cep);
-                                                        $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
-                                                        $(container).find('[name*=endereco__bairro]').val(json.bairro);
-                                                        $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
-                                                        $(container).find('[autosuggest*=endereco__id_cidade]').val(json.nome_cidade);
-                                                        $(container).find('[name*=estado]').val(json.sigla_estado);
-                                                        $(container).find('[name*=pais]').val(json.pais);
-                                                        $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
-                                                        $(container).find('[name*=cidade_cod]').val(json.cod_cidade);
-                                                        $(container).find('[name*=estado_cod]').val(json.cod_estado);
-                                                        $(container).find('[name*=pais_cod]').val(json.cod_pais);
-                                                    });
-                                                }
-                                            }
-                                        });//Modal
-                                    }
-                                }
-                            });//SexyConfirm
-                        }
+                }
 
-                        $("#loader").hide();
-                    }else{
-                        //Procura no WS
-                        $.getJSON("http://app.tagplus.com.br/empresariamkk/cadastro/enderecos/get_cep_ws/" + cep,{},function(json){
-                            if (!json || json.resultado == ''){
-                                $("#loader").hide();
-                                Sexy.alert("Não foi possível pesquisar este CEP. Por favor tente novamente em alguns instantes");
-                                return false;
-                            }
-
-                            if (!json || json.resultado == 0){
-                                $("#loader").hide();
-                                Sexy.alert("CEP não encontrado.");
-                                return false;
-                            }
-
-                            //Erro ao recuperar CEP
-                            if(json.cod_error){
-                                $("#loader").hide();
-                                Sexy.alert("Não foi possível pesquisar este CEP. Por favor tente novamente em alguns instantes");
-                                return false;
-
-                            }
-
-                            //Verificando se houve retorno no webservice caso não manda editar direto
-                            if(json.logradouro != '' && json.bairro != '' && json.id_cidade != ''){
-                                // Criando string contendo o endereço completo e adicionando conteúdo ao campo próprio
-                                var endereco_completo = '['+json.cep+'] '+json.logradouro+', '+json.bairro+' - '+json.cidade+'/'+json.uf_nome;
-                                var msg = ('O Endereço: \$s%1, foi encontrado.<br /><br /> O que você deseja fazer?').replace('$s%1',endereco_completo);
-
-                                json.uf_nome = json.uf;
-                                $(container).find('[name*=endereco__cep]').val(json.cep);
-                                $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
-                                $(container).find('[name*=endereco__bairro]').val(json.bairro);
-                                $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
-                                $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
-                                $(container).find('[name*=estado]').val(json.uf_nome);
-                                $(container).find('[name*=pais]').val(json.pais);
-                                $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
-                                $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
-                                $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
-                                $(container).find('[name*=pais_cod]').val(json.pais_cod);
-                            }else{
-                                $(container).find('[name*=endereco__cep]').val(json.cep);
-                                $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
-                                $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
-                                $(container).find('[name*=estado]').val(json.uf);
-                                $(container).find('[name*=pais]').val(json.pais);
-                                $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
-                                $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
-
-                            }
-                            $("#loader").hide();
-                        });
-                    }//Else
-                }//Success
-            });//Ajax
+                //Verificando se houve retorno no webservice caso não manda editar direto
+                if(json.logradouro != '' && json.bairro != '' && json.id_cidade != ''){
+                    json.uf_nome = json.uf;
+                    $(container).find('[name*=endereco__cep]').val(json.cep);
+                    $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
+                    $(container).find('[name*=endereco__bairro]').val(json.bairro);
+                    $(container).find('[name*=endereco__id_cidade]').val(json.cidade);//id_cidade
+                    $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
+                    $(container).find('[name*=estado]').val(json.estado_nome);
+                    $(container).find('[name*=pais]').val(json.pais);
+                    $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
+                    $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
+                    $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
+                    $(container).find('[name*=pais_cod]').val(json.pais_cod);
+                }
+                else
+                {
+                    $(container).find('[name*=endereco__cep]').val(json.cep);
+                    $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
+                    $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
+                    $(container).find('[name*=estado]').val("TE");
+                    $(container).find('[name*=pais]').val(json.pais);
+                    $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
+                    $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
+                    $(container).find('[name*=endereco_entidade__numero]').focus();
+                }
+                $("#loader").hide();
+            });
         }
     }
+
+
 })(jQuery);
 
 
@@ -599,6 +491,9 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
 
     $(document).ready(function(){
 
+        $('#tab_dependentes_tab').hide();
+        $('#tab_clientes_tab').hide();
+
         if( $("[name=vendas_restritas]").val() == 0)
             $("#table_clientes_vendedores").hide();
 
@@ -667,9 +562,11 @@ Date.format = jQuery.i18n._('lang_date_format');
 
         //seleciona todos as divs que sao do tipo email
         var email_principal = "";
-        var emails = $("#contato").find("[name*=contato__id_tipo_contato][value=2]");
+        var emails = $("#contato").find("[name*=contato__id_tipo_contato][value=0]");
+
         $(emails).each(function(){
             if($(this).parents("div:first").find("[name*=contato__principal]:checked").val() == "1"){
+                alert($(this).val())
                 email_principal = $(this).parents("div:first").find("[name*=contato__descricao]");
                 return false;
             }
