@@ -1,9 +1,9 @@
 <div class="tab" id="tab_perfil_acesso" ref="Dados Gerais" rel="tab_perfil_acesso">
 
     <!-- ID OCULTOS  -->
-    <input id="id_entidade" name="id_entidade" type="hidden" value=""></input>
-    <input id="id_empresa" name="id_empresa" type="hidden" value="1"></input>
-    <input id="id_funcionario" name="id_funcionario" type="hidden" value=""></input>
+    <?php echo $this->formElement($input = $form->get('id_entidade'));?>
+    <?php echo $this->formElement($input = $form->get('id_empresa'));?>
+    <?php echo $this->formElement($input = $form->get('id_funcionario'));?>
     <!-- FIM ID OCULTOS -->
 
     <!-- (LADO ESQUERDO) ATIVO-SEXO  -->
@@ -19,13 +19,9 @@
 
             <p class="field " style="width:auto; ">
                 <span class="input radio" rel="" style="">
-                    <label class="inline">
-                        <input class=" required" eval="1" name="ativo" style="" type="radio" value="1"></input>
-                        <span>Sim</span>
-                    </label>
-                    <label class="inline">
-                        <input class=" required" eval="1" name="ativo" style="" type="radio" value="0"></input>
-                        <span>Não</span>
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('ativo'));?>
+                        <span><?php echo $input->getlabel();?></span>
                     </label>
                 </span>
             </p>
@@ -42,13 +38,9 @@
 
             <p class="field " style="width:auto; ">
                 <span class="input radio" rel="" style="">
-                    <label class="inline">
-                        <input class=" required" eval="M" name="sexo" style="" type="radio" value="M"></input>
-                        <span>Masculino</span>
-                    </label>
-                    <label class="inline">
-                        <input class=" required" eval="M" name="sexo" style="" type="radio" value="F"></input>
-                        <span>Feminino</span>
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('sexo'));?>
+                        <span><?php echo $input->getlabel();?></span>
                     </label>
                 </span>
             </p>
@@ -73,16 +65,17 @@
                 <label class="" for="nome" style="width:25%">Nome completo</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="nome" style="width: 68%">
-                    <input class="focus required" id="nome" name="nome" style="" type="text" value=""></input>
+                    <?php echo $this->formElement($form->get('nome'));?>
                 </span>
             </p>
+
 
             <!-- CPF -->
             <p class="field inline" style="width:auto; width:93% !important;">
                 <label class="" for="cpf" style="width:25%">CPF</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="cpf" style="width: 25%">
-                    <input class="cpf" id="cpf" mask="999.999.999-99" name="cpf" style="" type="text" value="">
+                    <?php echo $this->formElement($form->get('cpf'));?>
                     </input>
                 </span>
             </p>
@@ -106,7 +99,7 @@
                 <span class="input " rel="id_perfil" style="width: 68%">
                     <input id="id_perfil" name="id_perfil" type="hidden" value="1"></input>
                     <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                    <input autosuggest="id_perfil" class="temp  required autosuggest" filters="[]" form_title="Cadastrando Perfil de Acesso" form_url="<?php echo $this->basePath() ?>/senna/acesso/perfis/form" form_url_field="descricao" id="id_perfil" minLength="0" name="ac_perfil_acessso" new_item_info="Criar um novo perfil" new_item_label="Cadastrar Novo" source="<?php echo $this->basePath() ?>/senna/acesso/perfis/getfuncionarioperfil" style="" type="text" value="" valueclear="true" valuefield="id"></input>
+                    <?php echo $this->formElement($form->get('ac_perfil_acessso'));?>
                     <em class="autocomplete_search required temp  autosuggest"></em>
                 </span>
             </p>
@@ -116,7 +109,7 @@
                 <label class="" for="codigo_acesso" style="width:25%">Login de acesso</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="codigo_acesso" style="width: 68%">
-                    <input class=" required" id="codigo_acesso" name="codigo_acesso" style="" type="text" value=""></input>
+                    <?php echo $this->formElement($form->get('codigo_acesso'));?>
                 </span>
             </p>
             <span class="ean" id="ean" title="Gerar Código EAN13">&nbsp;</span>
@@ -127,7 +120,7 @@
                 <label class="" for="senha" style="width:49%">Senha de acesso</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="senha" style="width:40%">
-                    <input class="" id="senha" maxLength="100" minLength="6" name="senha" requiredIf="$('#id').val()==''" style="" type="password" value=""></input>
+                    <?php echo $this->formElement($form->get('senha'));?>
                 </span>
             </p>
 
@@ -136,7 +129,7 @@
                 <label class="" for="senha_confirma" style="width:41%">Confirmação de Senha</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="senha_confirma" style="width:44%">
-                    <input class="" equalTo="#senha" id="senha_confirma" maxLength="100" minLength="6" name="senha_confirma" style="" type="password" value=""></input>
+                    <?php echo $this->formElement($form->get('senha_confirma'));?>
                 </span>
             </p>
             <!--span class="application_key" id="pass_pdv" style="margin-left:1px;" title="Senha para Acesso Off-Line ao PDV">&nbsp;</span-->
@@ -156,7 +149,7 @@
                 <label class="" for="email_principal_aux" style="width:25%">Email</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="email_principal_aux" style="width: 68%">
-                    <input class="required" id="email_principal_aux" maxlength="50" name="email_principal_aux" style="" type="text" value=""></input>
+                    <?php echo $this->formElement($form->get('email_principal_aux'));?>
                 </span>
             </p>
 
@@ -165,7 +158,7 @@
                 <label class="" for="telefone_principal_aux" style="width:25%">Telefone</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="telefone_principal_aux" style="width: 68%">
-                    <input id="telefone_principal_aux" maxlength="14" name="telefone_principal_aux" style="" type="text" value=""></input>
+                    <?php echo $this->formElement($form->get('telefone_principal_aux'));?>
                 </span>
             </p>
         </fieldset>
@@ -185,13 +178,7 @@
                 <label class="" for="id_financeiro_setor" style="width:25%">Setor</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="id_financeiro_setor" style="width: 68%">
-                    <select class="" eval="{setor}" id="setor" name="setor" size="1" style="">
-                        <option value="0">Administrativo</option>
-                        <option value="1">Financeiro</option>
-                        <option value="2">Vendas</option>
-                        <option value="3">Produção</option>
-                        <option value="3">Gerencia</option>
-                    </select>
+                    <?php echo $this->formElement($form->get('setor'));?>
                 </span>
             </p>
         </fieldset>
@@ -211,11 +198,10 @@
             <!-- Observações -->
             <p class="field " style="width:auto; ">
                 <span class="input " rel="observacoes" style="">
-                    <textarea cols="20" id="observacoes" maxlength="2000" name="observacoes" rows="12" style="width:645px;height:65px;resize:none;"></textarea>
+                    <?php echo $this->formElement($form->get('observacoes'));?>
                 </span>
             </p>
         </fieldset>
-
     </div>
     <!--FIM LADO DIREITO) NOME-CPF-PERFIL-USUARIO-SENHA-EMAIL-TELEFONE-SETOR-OBSERVAÇÕES -->
 

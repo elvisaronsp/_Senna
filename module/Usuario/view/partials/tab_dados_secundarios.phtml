@@ -15,7 +15,7 @@
             <label class="" for="rg" style="width:40%">RG</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="rg" style="width: 58%">
-                <input id="rg" maxLength="10" name="rg" style="" type="text" value=""></input>
+                <?php echo $this->formElement($input = $form->get('rg'));?>
             </span>
         </p>
 
@@ -24,7 +24,7 @@
             <label class="" for="dataNascimento" style="width:40%">Data de Nascimento</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="dataNascimento" style="width: 58%">
-                <input class=" date" id="dataNascimento" mask="39/19/9999" name="dataNascimento" style="" type="text" value=""></input>
+                <?php echo $this->formElement($input = $form->get('dataNascimento'));?>
             </span>
         </p>
 
@@ -33,14 +33,7 @@
             <label class="" for="escolaridade" style="width:40%">Escolaridade</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="escolaridade" style="width: 58%">
-                <select class="" eval="5" id="escolaridade" name="escolaridade" size="1" style="">
-                    <option value="0">Ensino Fundamental Incompleto</option>
-                    <option value="1">Ensino Fundamental Completo</option>
-                    <option value="2">Ensino Médio Incompleto</option>
-                    <option value="3">Ensino Médio Completo</option>
-                    <option value="4">Ensino Superior Incompleto</option>
-                    <option value="5">Ensino Superior Completo</option>
-                </select>
+                <?php echo $this->formElement($input = $form->get('escolaridade'));?>
             </span>
         </p>
 
@@ -62,7 +55,7 @@
             <label class="" for="dataAdminissao" style="width:40%">Data de Admissão</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="dataAdminissao" style="width: 58%">
-                <input class=" date" id="dataAdminissao" mask="39/19/9999" name="dataAdminissao" style="" type="text" value=""></input>
+                <?php echo $this->formElement($input = $form->get('dataAdminissao'));?>
             </span>
         </p>
 
@@ -71,7 +64,7 @@
             <label class="" for="dataDemissao" style="width:40%">Data de Demissão</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="dataDemissao" style="width: 58%">
-                <input class=" date" id="dataDemissao" mask="39/19/9999" name="dataDemissao" style="" type="text" value=""></input>
+                <?php echo $this->formElement($input = $form->get('dataDemissao'));?>
             </span>
         </p>
 
@@ -80,7 +73,7 @@
             <label class="" for="descancoSemanal" style="width:40%">Descanso Semanal</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="descancoSemanal" style="width: 58%">
-                <input id="descancoSemanal" name="descancoSemanal" style="" type="text" value=""></input>
+                <?php echo $this->formElement($input = $form->get('descancoSemanal'));?>
             </span>
         </p>
 

@@ -45,9 +45,6 @@
         ->appendFile($this->basePath() . '/js/jquery/uploader.js')
         ->appendFile($this->basePath() . '/js/script_usuario_form.js')?>
 
-
-
-
     <!-- Estilos da pagina Css/code -->
     <?php echo $this->headLink()
         //->appendStylesheet($this->basePath() . '/css/noprint.css')
@@ -76,17 +73,18 @@
 <div id="tela" style="height: 100%;">
     <div id="conteudo">
         <!--INICIO DO FORMULARIO-->
-
-
-        <!--Container base_form.php-->
-        <form action="http://app.tagplus.com.br/empresariamkk/usuario/funcionarios/save" class="form" id="form" method="post" windowId="http://app.tagplus.com.br/empresariamkk/usuario/funcionarios/form">
+            <?php
+            $form->setAttribute('action',$this->url('usuario-listar/default',array('controller'=>'funcionarios','action'=>'save')));
+            $form->setAttribute('windowId',$this->url('usuario-listar/default',array('controller'=>'funcionarios','action'=>'form')));
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            ?>
 
             <!-- BOTOES DO FORM -->
             <?php echo $this->partial('partials/form_botoes'); ?>
             <!-- -->
-
             <div class="form_fields" id="form_fields">
-                <input id="id" name="id" type="hidden" value="1"></input>
+                <input id="id" name="id" type="hidden" value=""></input>
                 <!-- TAB PERFIL -->
                 <?php echo $this->partial('partials/tab_perfil_acesso'); ?>
                 <!-- -->
@@ -119,11 +117,8 @@
                 <?php //echo $this->partial('partials/tab_upload'); ?>
                 <!-- -->
             </div>
-        </form>
-
-
+        <?php echo $this->form()->closeTag();?>
         <!--FIM DO FORMULARIO-->
-
     </div>
 </div>
 <div id="footer"></div>
