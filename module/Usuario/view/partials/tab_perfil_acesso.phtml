@@ -44,8 +44,96 @@
                     </label>
                 </span>
             </p>
-
         </fieldset>
+
+        <!-- enviar mensagem de boas vindas -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">E-mail de boas vidas</span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Envie o novo funcionario um link de acesso da conta do qual o funcionario será capaz de defini sua própria senha. Caso contrário, você precisará definir senha e comunicar as informações de login para os novos funcionários."></img>
+                    </span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('mensagemBoasVindas'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Solicitar redefinir senha no primeiro login -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Forçar alteração de senha</span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Habilite isso se você quiser forçar o novo funcionario para alterar sua própria senha no momento seguinte log-in."></img>
+                    </span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('solicitarRedefinirSenha'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Modo de ferias -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Modo de férias </span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Se você alterar o status do suporte para o <b>Modo de férias</b>, o suporte não receber todos os Alertas. E Avisos nem estar disponível para atribuição de bilhetes."></img>
+                    </span>
+                <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('modoFerias'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Enviar alertas de e-mail -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Aletas de e-mail</span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Enviar e-mails de alertas do sistema para o funcionario."></img>
+                    </span>
+                <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('alertas'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
     </div>
     <!-- FIM (LADO ESQUERDO) ATIVO-SEXO-->
 
@@ -109,7 +197,7 @@
                 <label class="" for="codigo_acesso" style="width:25%">Login de acesso</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="codigo_acesso" style="width: 68%">
-                    <?php echo $this->formElement($form->get('codigo_acesso'));?>
+                    <?php echo $this->formElement($form->get('login'));?>
                 </span>
             </p>
             <span class="ean" id="ean" title="Gerar Código EAN13">&nbsp;</span>
@@ -149,7 +237,7 @@
                 <label class="" for="email_principal_aux" style="width:25%">Email</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="email_principal_aux" style="width: 68%">
-                    <?php echo $this->formElement($form->get('email_principal_aux'));?>
+                    <?php echo $this->formElement($form->get('email'));?>
                 </span>
             </p>
 
@@ -158,7 +246,7 @@
                 <label class="" for="telefone_principal_aux" style="width:25%">Telefone</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="telefone_principal_aux" style="width: 68%">
-                    <?php echo $this->formElement($form->get('telefone_principal_aux'));?>
+                    <?php echo $this->formElement($form->get('telefoneprincipal'));?>
                 </span>
             </p>
         </fieldset>

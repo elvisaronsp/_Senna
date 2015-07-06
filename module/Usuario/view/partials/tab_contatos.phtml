@@ -1,4 +1,4 @@
-<div class="tab" id="tab_contatos" ref="Contatos" rel="tab_contatos">
+<div class="tab" id="tab_contatos" ref="Contatos Extras" rel="tab_contatos">
 
     <fieldset class="fieldset " style="width:97%;">
         <legend>
@@ -13,23 +13,17 @@
             <input class="clone_flag" name="contato_flag" type="hidden" value=""></input>
 
             <!-- CAMPOS DE CONTATO 1 -->
-            <div class="clonedField" id="contato0">
+            <div class="clonedField hiddenClone" id="contato0">
 
-                <input class="clone_id" id="contato__id_0" name="contato__id[0]" type="hidden" value=""></input>
-                <input id="contato__editavel_0" name="contato__editavel[0]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_0" name="contato__id_entidade[0]" type="hidden" value=""></input>
+                <?php echo $this->formElement($input = $form->get('contato__id[0]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[0]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[0]'));?>
 
-                <p class="field " style="width:105px; ">
+                <p class="field " style="width:115px; ">
                     <label class="" for="contato__id_tipo_cadastro_0" style="">Tipo de Cadastro</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_cadastro_0" style="">
-                        <select class="" eval="{contato__id_tipo_cadastro_0}" id="contato__id_tipo_cadastro_0" name="contato__id_tipo_cadastro[0]" size="1" style="">
-                            <option value="0">COMERCIAL</option>
-                            <option value="1">PARTICULAR</option>
-                            <option value="2">RESIDENCIAL</option>
-                            <option value="3">ENTREGA</option>
-                            <option value="4">EMERGENCIAS</option>
-                        </select>
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[0]'));?>
                     </span>
                 </p>
 
@@ -37,9 +31,9 @@
                     <label class="" for="contato__id_tipo_contato_0" style="">Tipo de Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_contato_0" style="">
-                        <input id="contato__id_tipo_contato_0" name="contato__id_tipo_contato[0]" type="hidden" value="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[0]'));?>
                         <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                        <input autosuggest="contato__id_tipo_contato[0]" class="autosuggest required ui-autocomplete-input" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="contato__id_tipo_contato_0" minlength="0" name="ac_0" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="/senna/cadastro/util/getTiposCadastros" style="" type="text" uppercase="true" valueclear="true" valuefield="id" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                        <?php echo $this->formElement($input = $form->get('ac_0'));?>
                         <em class="autocomplete_search  required autosuggest"></em>
                     </span>
                 </p>
@@ -48,7 +42,7 @@
                     <label class="" for="contato__descricao_0" style="">Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__descricao_0" style="">
-                        <input class=" required" id="contato__descricao_0" maxlength="50" name="contato__descricao[0]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[0]'));?>
                     </span>
                 </p>
 
@@ -56,33 +50,26 @@
                     <label class="" for="contato__detalhes_0" style="">Detalhes</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__detalhes_0" style="">
-                        <input id="contato__detalhes_0" maxlength="50" name="contato__detalhes[0]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[0]'));?>
                     </span>
                 </p>
 
                 <hr class="clear" size="1"></hr>
-
             </div>
             <!-- FIM CAMPOS DE CONTATO 1 -->
 
             <!-- CAMPOS DE CONTATO 2 -->
-            <div class="clonedField" id="contato1">
+            <div class="clonedField hiddenClone" id="contato1">
 
-                <input class="clone_id" id="contato__id_1" name="contato__id[1]" type="hidden" value=""></input>
-                <input id="contato__editavel_1" name="contato__editavel[1]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_1" name="contato__id_entidade[1]" type="hidden" value=""></input>
+                <?php echo $this->formElement($input = $form->get('contato__id[1]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[1]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[1]'));?>
 
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_0" style="">Tipo de Cadastro</label>
+                <p class="field " style="width:115px; ">
+                    <label class="" for="contato__id_tipo_cadastro_1" style="">Tipo de Cadastro</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_cadastro_1" style="">
-                        <select class="" eval="{contato__id_tipo_cadastro_1}" id="contato__id_tipo_cadastro_1" name="contato__id_tipo_cadastro[1]" size="1" style="">
-                            <option value="0">COMERCIAL</option>
-                            <option value="1">PARTICULAR</option>
-                            <option value="2">RESIDENCIAL</option>
-                            <option value="3">ENTREGA</option>
-                            <option value="4">EMERGENCIAS</option>
-                        </select>
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[1]'));?>
                     </span>
                 </p>
 
@@ -90,9 +77,9 @@
                     <label class="" for="contato__id_tipo_contato_1" style="">Tipo de Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_contato_1" style="">
-                        <input id="contato__id_tipo_contato_1" name="contato__id_tipo_contato[1]" type="hidden" value="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[1]'));?>
                         <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                        <input autosuggest="contato__id_tipo_contato[1]" class="autosuggest required ui-autocomplete-input" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="contato__id_tipo_contato_1" minlength="0" name="ac_1" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="/senna/cadastro/util/getTiposCadastros" style="" type="text" uppercase="true" valueclear="true" valuefield="id" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                        <?php echo $this->formElement($input = $form->get('ac_1'));?>
                         <em class="autocomplete_search  required autosuggest"></em>
                     </span>
                 </p>
@@ -101,7 +88,7 @@
                     <label class="" for="contato__descricao_1" style="">Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__descricao_1" style="">
-                        <input class=" required" id="contato__descricao_1" maxlength="50" name="contato__descricao[1]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[1]'));?>
                     </span>
                 </p>
 
@@ -109,33 +96,26 @@
                     <label class="" for="contato__detalhes_1" style="">Detalhes</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__detalhes_1" style="">
-                        <input id="contato__detalhes_1" maxlength="50" name="contato__detalhes[1]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[1]'));?>
                     </span>
                 </p>
 
                 <hr class="clear" size="1"></hr>
-
             </div>
             <!-- FIM CAMPOS DE CONTATO 2 -->
 
             <!-- CAMPOS DE CONTATO 3 -->
-            <div class="clonedField" id="contato2">
+            <div class="clonedField hiddenClone" id="contato2">
 
-                <input class="clone_id" id="contato__id_2" name="contato__id[2]" type="hidden" value=""></input>
-                <input id="contato__editavel_2" name="contato__editavel[2]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_2" name="contato__id_entidade[2]" type="hidden" value=""></input>
+                <?php echo $this->formElement($input = $form->get('contato__id[2]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[2]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[2]'));?>
 
-                <p class="field " style="width:105px; ">
+                <p class="field " style="width:115px; ">
                     <label class="" for="contato__id_tipo_cadastro_2" style="">Tipo de Cadastro</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_cadastro_2" style="">
-                        <select class="" eval="{contato__id_tipo_cadastro_2}" id="contato__id_tipo_cadastro_2" name="contato__id_tipo_cadastro[2]" size="1" style="">
-                            <option value="0">COMERCIAL</option>
-                            <option value="1">PARTICULAR</option>
-                            <option value="2">RESIDENCIAL</option>
-                            <option value="3">ENTREGA</option>
-                            <option value="4">EMERGENCIAS</option>
-                        </select>
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[2]'));?>
                     </span>
                 </p>
 
@@ -143,9 +123,9 @@
                     <label class="" for="contato__id_tipo_contato_2" style="">Tipo de Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_contato_2" style="">
-                        <input id="contato__id_tipo_contato_2" name="contato__id_tipo_contato[2]" type="hidden" value="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[2]'));?>
                         <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                        <input autosuggest="contato__id_tipo_contato[2]" class="autosuggest required ui-autocomplete-input" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="contato__id_tipo_contato_2" minlength="0" name="ac_2" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="/senna/cadastro/util/getTiposCadastros" style="" type="text" uppercase="true" valueclear="true" valuefield="id" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                        <?php echo $this->formElement($input = $form->get('ac_2'));?>
                         <em class="autocomplete_search  required autosuggest"></em>
                     </span>
                 </p>
@@ -154,7 +134,7 @@
                     <label class="" for="contato__descricao_2" style="">Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__descricao_2" style="">
-                        <input class=" required" id="contato__descricao_2" maxlength="50" name="contato__descricao[2]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[2]'));?>
                     </span>
                 </p>
 
@@ -162,10 +142,9 @@
                     <label class="" for="contato__detalhes_2" style="">Detalhes</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__detalhes_2" style="">
-                        <input id="contato__detalhes_2" maxlength="50" name="contato__detalhes[2]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[2]'));?>
                     </span>
                 </p>
-
 
                 <hr class="clear" size="1"></hr>
 
@@ -173,23 +152,17 @@
             <!-- FIM CAMPOS DE CONTATO 1 -->
 
             <!-- CAMPOS DE CONTATO 4 -->
-            <div class="clonedField" id="contato3">
+            <div class="clonedField hiddenClone" id="contato3">
 
-                <input class="clone_id" id="contato__id_3" name="contato__id[3]" type="hidden" value=""></input>
-                <input id="contato__editavel_3" name="contato__editavel[3]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_3" name="contato__id_entidade[3]" type="hidden" value=""></input>
+                <?php echo $this->formElement($input = $form->get('contato__id[3]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[3]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[3]'));?>
 
-                <p class="field " style="width:105px; ">
+                <p class="field " style="width:115px; ">
                     <label class="" for="contato__id_tipo_cadastro_3" style="">Tipo de Cadastro</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_cadastro_3" style="">
-                        <select class="" eval="{contato__id_tipo_cadastro_3}" id="contato__id_tipo_cadastro_3" name="contato__id_tipo_cadastro[3]" size="1" style="">
-                            <option value="0">COMERCIAL</option>
-                            <option value="1">PARTICULAR</option>
-                            <option value="2">RESIDENCIAL</option>
-                            <option value="3">ENTREGA</option>
-                            <option value="4">EMERGENCIAS</option>
-                        </select>
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[3]'));?>
                     </span>
                 </p>
 
@@ -197,9 +170,9 @@
                     <label class="" for="contato__id_tipo_contato_3" style="">Tipo de Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_contato_3" style="">
-                        <input id="contato__id_tipo_contato_3" name="contato__id_tipo_contato[3]" type="hidden" value="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[3]'));?>
                         <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                        <input autosuggest="contato__id_tipo_contato[3]" class="autosuggest required ui-autocomplete-input" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="contato__id_tipo_contato_3" minlength="0" name="ac_3" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="/senna/cadastro/util/getTiposCadastros" style="" type="text" uppercase="true" valueclear="true" valuefield="id" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                        <?php echo $this->formElement($input = $form->get('ac_3'));?>
                         <em class="autocomplete_search  required autosuggest"></em>
                     </span>
                 </p>
@@ -208,7 +181,7 @@
                     <label class="" for="contato__descricao_3" style="">Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__descricao_3" style="">
-                        <input class=" required" id="contato__descricao_3" maxlength="50" name="contato__descricao[3]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[3]'));?>
                     </span>
                 </p>
 
@@ -216,20 +189,9 @@
                     <label class="" for="contato__detalhes_3" style="">Detalhes</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__detalhes_3" style="">
-                        <input id="contato__detalhes_3" maxlength="50" name="contato__detalhes[3]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[3]'));?>
                     </span>
                 </p>
-
-                <div style="float:left; padding:23px; margin-left: -15px">
-                    <p class="checkbox_field  block" style="">
-                        <label class="" for="contato__principal[3]" style="">
-                            <input id="contato__principal_3" name="contato__principal[3]" rel="" style="" type="checkbox" value="1"></input>
-                            <span>Principal</span>
-                        </label>
-
-                    </p>
-
-                </div>
 
                 <hr class="clear" size="1"></hr>
 
@@ -237,23 +199,17 @@
             <!-- FIM CAMPOS DE CONTATO 4 -->
 
             <!-- CAMPOS DE CONTATO 5 -->
-            <div class="clonedField" id="contato4">
+            <div class="clonedField hiddenClone" id="contato4">
 
-                <input class="clone_id" id="contato__id_4" name="contato__id[4]" type="hidden" value=""></input>
-                <input id="contato__editavel_4" name="contato__editavel[4]" type="hidden" value=""></input>
-                <input id="contato__id_entidade_4" name="contato__id_entidade[4]" type="hidden" value=""></input>
+                <?php echo $this->formElement($input = $form->get('contato__id[4]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[4]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[4]'));?>
 
-                <p class="field " style="width:105px; ">
+                <p class="field " style="width:115px; ">
                     <label class="" for="contato__id_tipo_cadastro_4" style="">Tipo de Cadastro</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_cadastro_4" style="">
-                        <select class="" eval="{contato__id_tipo_cadastro_4}" id="contato__id_tipo_cadastro_4" name="contato__id_tipo_cadastro[4]" size="1" style="">
-                            <option value="0">COMERCIAL</option>
-                            <option value="1">PARTICULAR</option>
-                            <option value="2">RESIDENCIAL</option>
-                            <option value="3">ENTREGA</option>
-                            <option value="4">EMERGENCIAS</option>
-                        </select>
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[4]'));?>
                     </span>
                 </p>
 
@@ -261,9 +217,9 @@
                     <label class="" for="contato__id_tipo_contato_4" style="">Tipo de Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__id_tipo_contato_4" style="">
-                        <input id="contato__id_tipo_contato_4" name="contato__id_tipo_contato[4]" type="hidden" value="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[4]'));?>
                         <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                        <input autosuggest="contato__id_tipo_contato[4]" class="autosuggest required ui-autocomplete-input" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="contato__id_tipo_contato_4" minlength="0" name="ac_4" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="/senna/cadastro/util/getTiposCadastros" style="" type="text" uppercase="true" valueclear="true" valuefield="id" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                        <?php echo $this->formElement($input = $form->get('ac_4'));?>
                         <em class="autocomplete_search  required autosuggest"></em>
                     </span>
                 </p>
@@ -272,7 +228,7 @@
                     <label class="" for="contato__descricao_4" style="">Contato</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__descricao_4" style="">
-                        <input class=" required" id="contato__descricao_4" maxlength="50" name="contato__descricao[4]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[4]'));?>
                     </span>
                 </p>
 
@@ -280,7 +236,7 @@
                     <label class="" for="contato__detalhes_4" style="">Detalhes</label>
                     <span class="input_alert">&nbsp;</span>
                     <span class="input " rel="contato__detalhes_4" style="">
-                        <input id="contato__detalhes_4" maxlength="50" name="contato__detalhes[4]" style="" type="text" value=""></input>
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[4]'));?>
                     </span>
                 </p>
 

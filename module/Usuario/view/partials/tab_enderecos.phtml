@@ -15,32 +15,16 @@
 
             <input class="clone_flag" name="endereco_flag" type="hidden" value=""></input>
 
-            <!-- ENDEREÇO 1-->
-            <div class="clonedField" id="endereco0">
-
-                <input class="clone_id" id="endereco_entidade__id_0" name="endereco_entidade__id[0]" type="hidden" value=""></input>
-                <input class="clone_readonly" id="endereco_readonly_0" name="endereco_readonly[0]" type="hidden" value="{readonly}">
-                <input id="endereco_principal_0" name="endereco_principal[0]" type="hidden" value=""></input>
-                <input id="endereco__id_0" name="endereco__id[0]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_0" name="endereco_entidade__principal[0]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_0" name="endereco_entidade__id_entidade[0]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_0" name="endereco_entidade__id_endereco[0]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled" id="endereco__logradouro_0" name="endereco__logradouro[0]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- ENDEREÇO 0-->
+            <div class="clonedField hiddenClone"  id="endereco0">
 
                 <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
 
                     <p class="field " style="width:auto; ">
                         <span class="input radio" rel="" style="">
-                            <label class="inline">
-                                <input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input>
-                                <span>Principal</span>
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
                             </label>
                         </span>
                     </p>
@@ -54,7 +38,7 @@
                         <label class="" for="endereco__cep_0" style="">Cep</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__cep_0" style="">
-                            <input class=" required" id="endereco__cep_0" mask="99999-999" name="endereco__cep[0]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[0]'));?>
                         </span>
                     </p>
 
@@ -65,7 +49,7 @@
                         <label class="" for="endereco__logradouro_0" style="">Logradouro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__logradouro_0" style="">
-                            <input class=" required" id="endereco__logradouro_0" name="endereco__logradouro[0]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[0]'));?>
                         </span>
                     </p>
 
@@ -76,7 +60,7 @@
                         <label class="" for="endereco_entidade__numero_0" style="">Número</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__numero_0" style="">
-                            <input class=" required" id="endereco_entidade__numero_0" maxlength="5" name="endereco_entidade__numero[0]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[0]'));?>
                         </span>
                     </p>
 
@@ -85,7 +69,7 @@
                         <label class="" for="endereco_entidade__complemento_0" style="">Complemento</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__complemento_0" style="">
-                            <input id="endereco_entidade__complemento_0" maxlength="20" name="endereco_entidade__complemento[0]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[0]'));?>
                         </span>
                     </p>
 
@@ -96,8 +80,7 @@
                         <label class="" for="endereco__bairro_0" style="">Bairro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__bairro_0" style="">
-                            <input class=" required" id="endereco__bairro_0" name="endereco__bairro[0]" style="" type="text" uppercase="true" value="">
-                            </input>
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[0]'));?>
                         </span>
                     </p>
 
@@ -106,7 +89,7 @@
                         <label class="" for="endereco__id_cidade_0" style="">Cidade</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__id_cidade_0" style="">
-                            <input class=" required" id="endereco__id_cidade_0" name="endereco__id_cidade[0]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[0]'));?>
                         </span>
                     </p>
 
@@ -115,7 +98,7 @@
                         <label class="" for="endereco_entidade__informacoes_adicionais_0" style="">Referência</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__informacoes_adicionais_0" style="">
-                            <input id="endereco_entidade__informacoes_adicionais_0" name="endereco_entidade__informacoes_adicionais[0]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[0]'));?>
                         </span>
                     </p>
 
@@ -124,9 +107,9 @@
                         <label class="" for="endereco_entidade__id_tipo_cadastro_0" style="">Tipo de Endereço</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__id_tipo_cadastro_0" style="">
-                            <input id="endereco_entidade__id_tipo_cadastro_0" name="endereco_entidade__id_tipo_cadastro[0]" type="hidden" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[0]'));?>
                             <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                            <input autosuggest="endereco_entidade__id_tipo_cadastro[0]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7340" minLength="0" name="ac_0173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input>
+                            <?php echo $this->formElement($input = $form->get('ac_e_0'));?>
                             <em class="autocomplete_search  autosuggest"></em>
                         </span>
                     </p>
@@ -136,7 +119,7 @@
                         <label class="" for="estado" style="">Estado</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="estado" style="">
-                            <input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input>
+                            <?php echo $this->formElement($input = $form->get('estado'));?>
                         </span>
                     </p>
 
@@ -146,32 +129,16 @@
             </div>
             <!-- FIM ENDEREÇO  -->
 
-            <!-- ENDEREÇO 2 -->
-            <div class="clonedField" id="endereco1">
-
-                <input class="clone_id" id="endereco_entidade__id_1" name="endereco_entidade__id[1]" type="hidden" value=""></input>
-                <input class="clone_readonly" id="endereco_readonly_1" name="endereco_readonly[1]" type="hidden" value="{readonly}">
-                <input id="endereco_principal_1" name="endereco_principal[1]" type="hidden" value=""></input>
-                <input id="endereco__id_1" name="endereco__id[1]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_1" name="endereco_entidade__principal[1]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_1" name="endereco_entidade__id_entidade[1]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_1" name="endereco_entidade__id_endereco[1]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled" id="endereco__logradouro_1" name="endereco__logradouro[1]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- ENDEREÇO 1 -->
+            <div class="clonedField hiddenClone" id="endereco1">
 
                 <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
 
                     <p class="field " style="width:auto; ">
                         <span class="input radio" rel="" style="">
-                            <label class="inline">
-                                <input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input>
-                                <span>Principal</span>
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
                             </label>
                         </span>
                     </p>
@@ -185,7 +152,7 @@
                         <label class="" for="endereco__cep_1" style="">Cep</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__cep_1" style="">
-                            <input class=" required" id="endereco__cep_1" mask="99999-999" name="endereco__cep[1]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[1]'));?>
                         </span>
                     </p>
 
@@ -196,7 +163,7 @@
                         <label class="" for="endereco__logradouro_1" style="">Logradouro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__logradouro_1" style="">
-                            <input class=" required" id="endereco__logradouro_1" name="endereco__logradouro[1]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[1]'));?>
                         </span>
                     </p>
 
@@ -207,7 +174,7 @@
                         <label class="" for="endereco_entidade__numero_1" style="">Número</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__numero_1" style="">
-                            <input class=" required" id="endereco_entidade__numero_1" maxlength="5" name="endereco_entidade__numero[1]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[1]'));?>
                         </span>
                     </p>
 
@@ -216,7 +183,7 @@
                         <label class="" for="endereco_entidade__complemento_1" style="">Complemento</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__complemento_1" style="">
-                            <input id="endereco_entidade__complemento_1" maxlength="20" name="endereco_entidade__complemento[1]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[1]'));?>
                         </span>
                     </p>
 
@@ -227,8 +194,7 @@
                         <label class="" for="endereco__bairro_1" style="">Bairro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__bairro_1" style="">
-                            <input class=" required" id="endereco__bairro_1" name="endereco__bairro[1]" style="" type="text" uppercase="true" value="">
-                            </input>
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[1]'));?>
                         </span>
                     </p>
 
@@ -237,7 +203,7 @@
                         <label class="" for="endereco__id_cidade_1" style="">Cidade</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__id_cidade_1" style="">
-                            <input class=" required" id="endereco__id_cidade_1" name="endereco__id_cidade[1]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[1]'));?>
                         </span>
                     </p>
 
@@ -246,7 +212,7 @@
                         <label class="" for="endereco_entidade__informacoes_adicionais_1" style="">Referência</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__informacoes_adicionais_1" style="">
-                            <input id="endereco_entidade__informacoes_adicionais_1" name="endereco_entidade__informacoes_adicionais[1]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[1]'));?>
                         </span>
                     </p>
 
@@ -255,9 +221,9 @@
                         <label class="" for="endereco_entidade__id_tipo_cadastro_1" style="">Tipo de Endereço</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__id_tipo_cadastro_1" style="">
-                            <input id="endereco_entidade__id_tipo_cadastro_1" name="endereco_entidade__id_tipo_cadastro[1]" type="hidden" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[1]'));?>
                             <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                            <input autosuggest="endereco_entidade__id_tipo_cadastro[1]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_19697571984b991d73040c0773fed931347b17e7340" minLength="0" name="ac_1173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input>
+                            <?php echo $this->formElement($input = $form->get('ac_e_1'));?>
                             <em class="autocomplete_search  autosuggest"></em>
                         </span>
                     </p>
@@ -267,7 +233,7 @@
                         <label class="" for="estado" style="">Estado</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="estado" style="">
-                            <input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input>
+                            <?php echo $this->formElement($input = $form->get('estado'));?>
                         </span>
                     </p>
 
@@ -277,32 +243,16 @@
             </div>
             <!-- FIM ENDEREÇO  -->
 
-            <!-- ENDEREÇO 3 -->
-            <div class="clonedField" id="endereco2">
-
-                <input class="clone_id" id="endereco_entidade__id_2" name="endereco_entidade__id[2]" type="hidden" value=""></input>
-                <input class="clone_readonly" id="endereco_readonly_2" name="endereco_readonly[2]" type="hidden" value="{readonly}">
-                <input id="endereco_principal_2" name="endereco_principal[2]" type="hidden" value=""></input>
-                <input id="endereco__id_2" name="endereco__id[2]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_2" name="endereco_entidade__principal[2]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_2" name="endereco_entidade__id_entidade[2]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_2" name="endereco_entidade__id_endereco[2]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled" id="endereco__logradouro_2" name="endereco__logradouro[2]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- ENDEREÇO 2 -->
+            <div class="clonedField hiddenClone" id="endereco2">
 
                 <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
 
                     <p class="field " style="width:auto; ">
                         <span class="input radio" rel="" style="">
-                            <label class="inline">
-                                <input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input>
-                                <span>Principal</span>
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
                             </label>
                         </span>
                     </p>
@@ -316,7 +266,7 @@
                         <label class="" for="endereco__cep_2" style="">Cep</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__cep_2" style="">
-                            <input class=" required" id="endereco__cep_2" mask="99999-999" name="endereco__cep[2]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[2]'));?>
                         </span>
                     </p>
 
@@ -327,7 +277,7 @@
                         <label class="" for="endereco__logradouro_2" style="">Logradouro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__logradouro_2" style="">
-                            <input class=" required" id="endereco__logradouro_2" name="endereco__logradouro[2]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[2]'));?>
                         </span>
                     </p>
 
@@ -338,7 +288,7 @@
                         <label class="" for="endereco_entidade__numero_2" style="">Número</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__numero_2" style="">
-                            <input class=" required" id="endereco_entidade__numero_2" maxlength="5" name="endereco_entidade__numero[2]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[2]'));?>
                         </span>
                     </p>
 
@@ -347,7 +297,7 @@
                         <label class="" for="endereco_entidade__complemento_2" style="">Complemento</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__complemento_2" style="">
-                            <input id="endereco_entidade__complemento_2" maxlength="20" name="endereco_entidade__complemento[2]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[2]'));?>
                         </span>
                     </p>
 
@@ -358,7 +308,7 @@
                         <label class="" for="endereco__bairro_2" style="">Bairro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__bairro_2" style="">
-                            <input class=" required" id="endereco__bairro_2" name="endereco__bairro[2]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[2]'));?>
                         </span>
                     </p>
 
@@ -367,7 +317,7 @@
                         <label class="" for="endereco__id_cidade_2" style="">Cidade</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__id_cidade_2" style="">
-                            <input class=" required" id="endereco__id_cidade_2" name="endereco__id_cidade[2]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[2]'));?>
                         </span>
                     </p>
 
@@ -376,7 +326,7 @@
                         <label class="" for="endereco_entidade__informacoes_adicionais_2" style="">Referência</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__informacoes_adicionais_2" style="">
-                            <input id="endereco_entidade__informacoes_adicionais_2" name="endereco_entidade__informacoes_adicionais[2]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[2]'));?>
                         </span>
                     </p>
 
@@ -385,9 +335,9 @@
                         <label class="" for="endereco_entidade__id_tipo_cadastro_2" style="">Tipo de Endereço</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__id_tipo_cadastro_2" style="">
-                            <input id="endereco_entidade__id_tipo_cadastro_2" name="endereco_entidade__id_tipo_cadastro[2]" type="hidden" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[2]'));?>
                             <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                            <input autosuggest="endereco_entidade__id_tipo_cadastro[2]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_29697571984b991d73040c0773fed931347b17e7340" minLength="0" name="ac_2173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input>
+                            <?php echo $this->formElement($input = $form->get('ac_e_2'));?>
                             <em class="autocomplete_search  autosuggest"></em>
                         </span>
                     </p>
@@ -397,7 +347,7 @@
                         <label class="" for="estado" style="">Estado</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="estado" style="">
-                            <input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input>
+                            <?php echo $this->formElement($input = $form->get('estado'));?>
                         </span>
                     </p>
 
@@ -407,32 +357,16 @@
             </div>
             <!-- FIM ENDEREÇO  -->
 
-            <!-- ENDEREÇO 4 -->
-            <div class="clonedField" id="endereco3">
-
-                <input class="clone_id" id="endereco_entidade__id_3" name="endereco_entidade__id[3]" type="hidden" value=""></input>
-                <input class="clone_readonly" id="endereco_readonly_3" name="endereco_readonly[3]" type="hidden" value="{readonly}">
-                <input id="endereco_principal_3" name="endereco_principal[3]" type="hidden" value=""></input>
-                <input id="endereco__id_3" name="endereco__id[3]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_3" name="endereco_entidade__principal[3]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_3" name="endereco_entidade__id_entidade[3]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_3" name="endereco_entidade__id_endereco[3]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled" id="endereco__logradouro_3" name="endereco__logradouro[3]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- ENDEREÇO 3 -->
+            <div class="clonedField hiddenClone" id="endereco3">
 
                 <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
 
                     <p class="field " style="width:auto; ">
                         <span class="input radio" rel="" style="">
-                            <label class="inline">
-                                <input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input>
-                                <span>Principal</span>
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
                             </label>
                         </span>
                     </p>
@@ -446,7 +380,7 @@
                         <label class="" for="endereco__cep_3" style="">Cep</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__cep_3" style="">
-                            <input class=" required" id="endereco__cep_3" mask="99999-999" name="endereco__cep[3]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[3]'));?>
                         </span>
                     </p>
 
@@ -457,7 +391,7 @@
                         <label class="" for="endereco__logradouro_3" style="">Logradouro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__logradouro_3" style="">
-                            <input class=" required" id="endereco__logradouro_3" name="endereco__logradouro[3]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[3]'));?>
                         </span>
                     </p>
 
@@ -468,7 +402,7 @@
                         <label class="" for="endereco_entidade__numero_3" style="">Número</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__numero_3" style="">
-                            <input class=" required" id="endereco_entidade__numero_3" maxlength="5" name="endereco_entidade__numero[3]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[3]'));?>
                         </span>
                     </p>
 
@@ -477,7 +411,7 @@
                         <label class="" for="endereco_entidade__complemento_3" style="">Complemento</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__complemento_3" style="">
-                            <input id="endereco_entidade__complemento_3" maxlength="20" name="endereco_entidade__complemento[3]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[3]'));?>
                         </span>
                     </p>
 
@@ -488,8 +422,7 @@
                         <label class="" for="endereco__bairro_3" style="">Bairro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__bairro_3" style="">
-                            <input class=" required" id="endereco__bairro_3" name="endereco__bairro[3]" style="" type="text" uppercase="true" value="">
-                            </input>
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[3]'));?>
                         </span>
                     </p>
 
@@ -498,7 +431,7 @@
                         <label class="" for="endereco__id_cidade_3" style="">Cidade</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__id_cidade_3" style="">
-                            <input class=" required" id="endereco__id_cidade_3" name="endereco__id_cidade[3]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[3]'));?>
                         </span>
                     </p>
 
@@ -507,7 +440,7 @@
                         <label class="" for="endereco_entidade__informacoes_adicionais_3" style="">Referência</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__informacoes_adicionais_3" style="">
-                            <input id="endereco_entidade__informacoes_adicionais_3" name="endereco_entidade__informacoes_adicionais[3]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[3]'));?>
                         </span>
                     </p>
 
@@ -516,9 +449,9 @@
                         <label class="" for="endereco_entidade__id_tipo_cadastro_3" style="">Tipo de Endereço</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__id_tipo_cadastro_3" style="">
-                            <input id="endereco_entidade__id_tipo_cadastro_3" name="endereco_entidade__id_tipo_cadastro[3]" type="hidden" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[3]'));?>
                             <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                            <input autosuggest="endereco_entidade__id_tipo_cadastro[3]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_39697571984b991d73040c0773fed931347b17e7340" minLength="0" name="ac_3173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input>
+                            <?php echo $this->formElement($input = $form->get('ac_e_3'));?>
                             <em class="autocomplete_search  autosuggest"></em>
                         </span>
                     </p>
@@ -528,7 +461,7 @@
                         <label class="" for="estado" style="">Estado</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="estado" style="">
-                            <input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('estado'));?>
                         </span>
                     </p>
 
@@ -538,32 +471,16 @@
             </div>
             <!-- FIM ENDEREÇO  -->
 
-            <!-- ENDEREÇO 5 -->
-            <div class="clonedField" id="endereco4">
-
-                <input class="clone_id" id="endereco_entidade__id_4" name="endereco_entidade__id[4]" type="hidden" value=""></input>
-                <input class="clone_readonly" id="endereco_readonly_4" name="endereco_readonly[4]" type="hidden" value="{readonly}">
-                <input id="endereco_principal_4" name="endereco_principal[4]" type="hidden" value=""></input>
-                <input id="endereco__id_4" name="endereco__id[4]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_4" name="endereco_entidade__principal[4]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_4" name="endereco_entidade__id_entidade[4]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_4" name="endereco_entidade__id_endereco[4]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled" id="endereco__logradouro_4" name="endereco__logradouro[4]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- ENDEREÇO 4 -->
+            <div class="clonedField hiddenClone" id="endereco4">
 
                 <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
 
                     <p class="field " style="width:auto; ">
                         <span class="input radio" rel="" style="">
-                            <label class="inline">
-                                <input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input>
-                                <span>Principal</span>
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
                             </label>
                         </span>
                     </p>
@@ -577,7 +494,7 @@
                         <label class="" for="endereco__cep_4" style="">Cep</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__cep_4" style="">
-                            <input class=" required" id="endereco__cep_4" mask="99999-999" name="endereco__cep[4]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[4]'));?>
                         </span>
                     </p>
 
@@ -588,7 +505,7 @@
                         <label class="" for="endereco__logradouro_4" style="">Logradouro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__logradouro_4" style="">
-                            <input class=" required" id="endereco__logradouro_4" name="endereco__logradouro[4]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[4]'));?>
                         </span>
                     </p>
 
@@ -599,7 +516,7 @@
                         <label class="" for="endereco_entidade__numero_4" style="">Número</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__numero_4" style="">
-                            <input class=" required" id="endereco_entidade__numero_4" maxlength="5" name="endereco_entidade__numero[4]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[4]'));?>
                         </span>
                     </p>
 
@@ -608,7 +525,7 @@
                         <label class="" for="endereco_entidade__complemento_4" style="">Complemento</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__complemento_4" style="">
-                            <input id="endereco_entidade__complemento_4" maxlength="20" name="endereco_entidade__complemento[4]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[4]'));?>
                         </span>
                     </p>
 
@@ -619,8 +536,7 @@
                         <label class="" for="endereco__bairro_4" style="">Bairro</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__bairro_4" style="">
-                            <input class=" required" id="endereco__bairro_4" name="endereco__bairro[4]" style="" type="text" uppercase="true" value="">
-                            </input>
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[4]'));?>
                         </span>
                     </p>
 
@@ -629,7 +545,7 @@
                         <label class="" for="endereco__id_cidade_4" style="">Cidade</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco__id_cidade_4" style="">
-                           <input class=" required" id="endereco__id_cidade_4" name="endereco__id_cidade[4]" style="" type="text" uppercase="true" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[4]'));?>
                         </span>
                     </p>
 
@@ -638,7 +554,7 @@
                         <label class="" for="endereco_entidade__informacoes_adicionais_4" style="">Referência</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__informacoes_adicionais_4" style="">
-                            <input id="endereco_entidade__informacoes_adicionais_4" name="endereco_entidade__informacoes_adicionais[4]" style="" type="text" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[4]'));?>
                         </span>
                     </p>
 
@@ -647,9 +563,9 @@
                         <label class="" for="endereco_entidade__id_tipo_cadastro_4" style="">Tipo de Endereço</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="endereco_entidade__id_tipo_cadastro_4" style="">
-                            <input id="endereco_entidade__id_tipo_cadastro_4" name="endereco_entidade__id_tipo_cadastro[4]" type="hidden" value=""></input>
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[4]'));?>
                             <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                            <input autosuggest="endereco_entidade__id_tipo_cadastro[4]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/empresariamkk/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_49697571984b991d73040c0773fed931347b17e7340" minLength="0" name="ac_4173976576419f809e9e7d3e3222165a18df2828a5b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/empresariamkk/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input>
+                            <?php echo $this->formElement($input = $form->get('ac_e_4'));?>
                             <em class="autocomplete_search  autosuggest"></em>
                         </span>
                     </p>
@@ -659,7 +575,7 @@
                         <label class="" for="estado" style="">Estado</label>
                         <span class="input_alert">&nbsp;</span>
                         <span class="input " rel="estado" style="">
-                            <input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input>
+                            <?php echo $this->formElement($input = $form->get('estado'));?>
                         </span>
                     </p>
 

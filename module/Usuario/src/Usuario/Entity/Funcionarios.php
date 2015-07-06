@@ -2,6 +2,7 @@
 namespace Usuario\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zend\Stdlib\Hydrator;
 
 /**
  * @ORM\Entity
@@ -116,7 +117,7 @@ class Funcionarios
      *
      * @ORM\Column(name="dataNascimento", type="date", nullable=true)
      */
-    private $datanascimento = '0000-00-00';
+    private $datanascimento;
 
     /**
      * @var integer
@@ -137,14 +138,14 @@ class Funcionarios
      *
      * @ORM\Column(name="dataAdminissao", type="date", nullable=true)
      */
-    private $dataadminissao = '0000-00-00';
+    private $dataadminissao;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dataDemissao", type="date", nullable=true)
      */
-    private $datademissao = '0000-00-00';
+    private $datademissao;
 
     /**
      * @var string
@@ -207,7 +208,7 @@ class Funcionarios
      *
      * @ORM\Column(name="bloqueioTemporario", type="datetime", nullable=true)
      */
-    private $bloqueiotemporario = '0000-00-00 00:00:00';
+    private $bloqueiotemporario;
 
     /**
      * @var boolean
@@ -242,29 +243,42 @@ class Funcionarios
      *
      * @ORM\Column(name="criadoEm", type="datetime", nullable=false)
      */
-    private $criadoem = '0000-00-00 00:00:00';
+    private $criadoem;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="atualizadoEm", type="datetime", nullable=false)
      */
-    private $atualizadoem = '0000-00-00 00:00:00';
+    private $atualizadoem;
+
+    /**
+     * @param array $options
+     */
+    public function __construct($options = array())
+    {
+
+        $this->criadoem = new \DateTime("now");
+        $this->atualizadoem = new \DateTime("now");
+        (new Hydrator\ClassMethods)->hydrate($options, $this);
+    }
 
     /**
      * @return \DateTime
      */
     public function getDataadminissao()
     {
-        return date_format($this->dataadminissao, 'd-m-Y H:i');
+        return $this->dataadminissao;
     }
 
     /**
-     * @param \DateTime $dataadminissao
+     * @param $dataadminissao
+     * @return $this
      */
     public function setDataadminissao($dataadminissao)
     {
         $this->dataadminissao = $dataadminissao;
+        return $this;
     }
 
     /**
@@ -276,11 +290,13 @@ class Funcionarios
     }
 
     /**
-     * @param int $id
+     * @param $id
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -292,11 +308,13 @@ class Funcionarios
     }
 
     /**
-     * @param string $nome
+     * @param $nome
+     * @return $this
      */
     public function setNome($nome)
     {
         $this->nome = strtoupper($nome);
+        return $this;
     }
 
     /**
@@ -308,11 +326,13 @@ class Funcionarios
     }
 
     /**
-     * @param string $cpf
+     * @param $cpf
+     * @return $this
      */
     public function setCpf($cpf)
     {
         $this->cpf = $cpf;
+        return $this;
     }
 
     /**
@@ -324,11 +344,13 @@ class Funcionarios
     }
 
     /**
-     * @param boolean $ativo
+     * @param $ativo
+     * @return $this
      */
     public function setAtivo($ativo)
     {
         $this->ativo = $ativo;
+        return $this;
     }
 
     /**
@@ -340,7 +362,8 @@ class Funcionarios
     }
 
     /**
-     * @param boolean $confirmado
+     * @param $confirmado
+     * @return $this
      */
     public function setConfirmado($confirmado)
     {
@@ -357,7 +380,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $sexo
+     * @param $sexo
+     * @return $this
      */
     public function setSexo($sexo)
     {
@@ -374,7 +398,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $login
+     * @param $login
+     * @return $this
      */
     public function setLogin($login)
     {
@@ -391,7 +416,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $senha
+     * @param $senha
+     * @return $this
      */
     public function setSenha($senha)
     {
@@ -408,7 +434,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $salt
+     * @param $salt
+     * @return $this
      */
     public function setSalt($salt)
     {
@@ -425,7 +452,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $chaveativacao
+     * @param $chaveativacao
+     * @return $this
      */
     public function setChaveativacao($chaveativacao)
     {
@@ -442,7 +470,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $email
+     * @param $email
+     * @return $this
      */
     public function setEmail($email)
     {
@@ -459,7 +488,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $telefoneprincipal
+     * @param $telefoneprincipal
+     * @return $this
      */
     public function setTelefoneprincipal($telefoneprincipal)
     {
@@ -476,7 +506,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $observacoes
+     * @param $observacoes
+     * @return $this
      */
     public function setObservacoes($observacoes)
     {
@@ -493,7 +524,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $rg
+     * @param $rg
+     * @return $this
      */
     public function setRg($rg)
     {
@@ -506,11 +538,12 @@ class Funcionarios
      */
     public function getDatanascimento()
     {
-        return $this->datanascimento;
+        return date_format($this->datanascimento, 'd-m-Y');
     }
 
     /**
-     * @param \DateTime $datanascimento
+     * @param $datanascimento
+     * @return $this
      */
     public function setDatanascimento($datanascimento)
     {
@@ -527,7 +560,8 @@ class Funcionarios
     }
 
     /**
-     * @param int $escolaridade
+     * @param $escolaridade
+     * @return $this
      */
     public function setEscolaridade($escolaridade)
     {
@@ -544,7 +578,8 @@ class Funcionarios
     }
 
     /**
-     * @param float $comissao
+     * @param $comissao
+     * @return $this
      */
     public function setComissao($comissao)
     {
@@ -557,11 +592,12 @@ class Funcionarios
      */
     public function getDatademissao()
     {
-        return date_format($this->datademissao, 'd-m-Y H:i');
+        return $this->datademissao;
     }
 
     /**
-     * @param \DateTime $datademissao
+     * @param $datademissao
+     * @return $this
      */
     public function setDatademissao($datademissao)
     {
@@ -578,7 +614,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $descancosemanal
+     * @param $descancosemanal
+     * @return $this
      */
     public function setDescancosemanal($descancosemanal)
     {
@@ -595,7 +632,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $ctps
+     * @param $ctps
+     * @return $this
      */
     public function setCtps($ctps)
     {
@@ -612,7 +650,8 @@ class Funcionarios
     }
 
     /**
-     * @param float $descontomaximo
+     * @param $descontomaximo
+     * @return $this
      */
     public function setDescontomaximo($descontomaximo)
     {
@@ -629,7 +668,8 @@ class Funcionarios
     }
 
     /**
-     * @param int $tipocontabancaria
+     * @param $tipocontabancaria
+     * @return $this
      */
     public function setTipocontabancaria($tipocontabancaria)
     {
@@ -646,7 +686,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $agencia
+     * @param $agencia
+     * @return $this
      */
     public function setAgencia($agencia)
     {
@@ -663,7 +704,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $contacorrente
+     * @param $contacorrente
+     * @return $this
      */
     public function setContacorrente($contacorrente)
     {
@@ -680,7 +722,8 @@ class Funcionarios
     }
 
     /**
-     * @param string $numerobanco
+     * @param $numerobanco
+     * @return $this
      */
     public function setNumerobanco($numerobanco)
     {
@@ -697,7 +740,8 @@ class Funcionarios
     }
 
     /**
-     * @param int $liberdadevenda
+     * @param $liberdadevenda
+     * @return $this
      */
     public function setLiberdadevenda($liberdadevenda)
     {
@@ -714,7 +758,8 @@ class Funcionarios
     }
 
     /**
-     * @param \DateTime $bloqueiotemporario
+     * @param $bloqueiotemporario
+     * @return $this
      */
     public function setBloqueiotemporario($bloqueiotemporario)
     {
@@ -731,7 +776,8 @@ class Funcionarios
     }
 
     /**
-     * @param boolean $redefinirsenha
+     * @param $redefinirsenha
+     * @return $this
      */
     public function setRedefinirsenha($redefinirsenha)
     {
@@ -748,7 +794,8 @@ class Funcionarios
     }
 
     /**
-     * @param int $perfilId
+     * @param $perfil
+     * @return $this
      */
     public function setPerfilId($perfil)
     {
@@ -766,7 +813,8 @@ class Funcionarios
     }
 
     /**
-     * @param int $setorId
+     * @param $setor
+     * @return $this
      */
     public function setSetor($setor)
     {
@@ -783,7 +831,8 @@ class Funcionarios
     }
 
     /**
-     * @param int $horariosId
+     * @param $horarios
+     * @return $this
      */
     public function setHorarios($horarios)
     {
@@ -800,11 +849,12 @@ class Funcionarios
     }
 
     /**
-     * @param \DateTime $criadoem
+     * @return $this
      */
-    public function setCriadoem($criadoem)
+    public function setCriadoem()
     {
-        $this->criadoem = $criadoem;
+        $this->criadoEm = new \DateTime("now");
+
     }
 
     /**
@@ -816,11 +866,61 @@ class Funcionarios
     }
 
     /**
-     * @param \DateTime $atualizadoem
+     * @ORM\PrePersist
      */
-    public function setAtualizadoem($atualizadoem)
+    public function setAtualizadoem()
     {
-        $this->atualizadoem = $atualizadoem;
+        $this->atualizadoEm = new \DateTime("now");
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->nome;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'id'=>$this->id,
+            'nome'=>$this->nome,
+            'cpf'=>$this->cpf,
+            'ativo'=>$this->ativo,
+            'confirmado'=>$this->confirmado,
+            'sexo'=>$this->sexo,
+            'login'=>$this->login,
+            'senha'=>$this->senha,
+            'salt'=>$this->salt,
+            'chaveativacao'=>$this->chaveativacao,
+            'email'=>$this->email,
+            'telefoneprincipal'=>$this->telefoneprincipal,
+            'observacoes'=>$this->observacoes,
+            'rg'=>$this->rg,
+            'dataNascimento'=> ($this->datanascimento)?date_format($this->datanascimento, 'd-m-Y'):"",
+            'escolaridade'=>$this->escolaridade,
+            'comissao'=>$this->comissao,
+            'dataAdminissao'=> ($this->dataadminissao)?date_format($this->dataadminissao, 'd-m-Y'):"",
+            'dataDemissao'=> ($this->datademissao)?date_format($this->datademissao, 'd-m-Y'):"",
+            'descancosemanal'=>$this->descancosemanal,
+            'ctps'=>$this->ctps,
+            'descontomaximo'=>$this->descontomaximo,
+            'tipocontabancaria'=>$this->tipocontabancaria,
+            'agencia'=>$this->agencia,
+            'contacorrente'=>$this->contacorrente,
+            'numerobanco'=>$this->numerobanco,
+            'liberdadevenda'=>$this->liberdadevenda,
+            'bloqueiotemporario'=>$this->bloqueiotemporario,
+            'redefinirsenha'=>$this->redefinirsenha,
+            'perfil'=>$this->perfil,
+            'setor'=>$this->setor,
+            'horarios'=>$this->horarios,
+            'criadoem'=>$this->getCriadoem(),
+            'atualizadoem'=>$this->getAtualizadoem()
+        );
     }
 }
 

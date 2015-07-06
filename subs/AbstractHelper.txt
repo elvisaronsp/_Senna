@@ -17,3 +17,11 @@ protected function prepareAttributes(array $attributes)
 
         return $attributes;
     }
+
+
+        protected function parseResponse($response)
+        {
+            if(!$this->isJson($response))
+            {
+                //throw new CepNotFoundException();
+            }

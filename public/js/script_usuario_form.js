@@ -363,8 +363,16 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 (function($) {
     $(document).ready(function() {
 
+        if($("#id").val() ==''){
+            var botao_inserir_novo = $("#contato .cloneable");
+            var botao_excluir = $("#contato .removeClone:first");
+
+            $(botao_inserir_novo).click();
+            $(botao_excluir).click();
+        }
+
         $("#ean").click(function() {
-            $('#codigo_acesso').val(gera_ean())
+            $('#login').val(gera_ean())
         });
 
         if ($("#id").val() != "") {

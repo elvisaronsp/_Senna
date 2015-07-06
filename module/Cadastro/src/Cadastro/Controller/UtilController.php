@@ -22,4 +22,14 @@ class UtilController extends AbstractActionController
         $viewModel->setTerminal(true);
         return $viewModel;
     }
+
+
+    public function getTiposEnderecoAction()
+    {
+        print json_encode(array(array("id"=>"1","value"=>"COMERCIAL"),array("id"=>"2","value"=>"ENTREGA"),array("id"=>"3","value"=>"REDIDENCIAL")));
+
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        return $viewModel;
+    }
 }

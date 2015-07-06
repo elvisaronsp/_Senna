@@ -14,7 +14,7 @@ class EnderecoController extends AbstractActionController
         return $viewModel;
     }
 
-    public function busqueEnderecoPorCepAction()
+    public function BusqueEnderecoPorCepAction()
     {
         $cep = preg_replace('/\(|\)|-/', '',$this->params ()->fromRoute ( 'id', 0 ));
 

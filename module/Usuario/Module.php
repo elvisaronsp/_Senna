@@ -33,8 +33,9 @@ class Module
     {
         return array(
             'factories' => array(
-
-
+                'Usuario\Service\Funcionarios' => function($sm){
+                    return new Service\Funcionarios($sm->get('Doctrine\ORM\Entitymanager'));
+                }
             )
         );
 

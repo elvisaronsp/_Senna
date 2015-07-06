@@ -11,13 +11,13 @@
 
         <p class="checkbox_field  block" style="">
             <label class="" for="visualizar_dashboard" style="">
-                <input id="visualizar_dashboard" name="visualizar_dashboard" rel="0" style="" type="checkbox" value="1"></input>
+                <?php echo $this->formElement($input = $form->get('visualizar_dashboard'));?>
                 <span>Permitir visualizar Painel de Informações (Dashboard)</span>
             </label>
         </p>
         <p class="checkbox_field  block" style="">
             <label class="" for="visualizar_todos_funcionarios" style="">
-                <input id="visualizar_todos_funcionarios" name="visualizar_todos_funcionarios" rel="0" style="" type="checkbox" value="1"></input>
+                <?php echo $this->formElement($input = $form->get('visualizar_todos_funcionarios'));?>
                 <span>Permitir visualizar informações de todos os funcionários na Dashboard</span>
             </label>
         </p>

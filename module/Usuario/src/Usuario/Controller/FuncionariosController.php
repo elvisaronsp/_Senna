@@ -27,8 +27,8 @@ class FuncionariosController extends GrudController {
     /**
      * @return ViewModel
      */
-    public function FormAction() {
-
+    public function FormAction()
+    {
         $form = $this->getServiceLocator()->get( $this->form );
         $repository = $this->getEm()->getRepository($this->entity);
 
@@ -49,9 +49,81 @@ class FuncionariosController extends GrudController {
         return $viewModel;
     }
 
+    /**
+     * @return ViewModel
+     */
     public function MapaAction() {
         $viewModel = new ViewModel ( );
         $viewModel->setTerminal ( true );
+        return $viewModel;
+    }
+
+
+    /**
+     * @return bool
+     */
+    private function  verificaExistencia()
+    {
+        $request = $this->getRequest();
+        $repository = $this->getEm()->getRepository($this->entity);
+
+        $existe = $repository->findOneByLogin($request->getPost()['codigo_acesso']);
+        return $retorno = ($existe)?true:false;
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function SaveAction()
+    {
+        $retorno = array();
+        $request = $this->getRequest();
+        $service = $this->getServiceLocator()->get($this->service);
+        if (empty($request->getPost()['id']))
+        {
+            if (!$this->verificaExistencia())
+            {
+                # INSERT
+                if ($request->isPost())
+                {
+                    $entity = $service->insert($request->getPost()->toArray());
+                    $retorno['data'] = array(
+                        'id_field' => 'id',
+                        'id_value' => "".$entity->getId()."",
+                        'message' => $this->message_insert,
+                        'type' => 'success'
+                    );
+                }
+            }
+        }
+        else
+        {
+            # UPDATE
+            if ($request->isPost())
+            {
+                $post = $request->getPost()->toArray();
+                $post = $this->capturarPermissoesAcesso($post);
+
+                $repository = $this->getEm()->getRepository("Acl\Entity\Privilegios");
+                $privilegios = $repository->findBy(array( 'perfil' => $request->getPost()['id'] ));
+
+                foreach ($privilegios as $privilegio) {
+                    $this->getEm()->remove($privilegio);
+                }
+
+                $entity = $service->update($post);
+                $retorno['data'] = array(
+                    'id_field' => 'id',
+                    'id_value' => "".$entity->getId()."",
+                    'message' => $this->message_update,
+                    'session_updated'=>true,
+                    'type' => 'success'
+                );
+            }
+        }
+
+        $viewModel = new ViewModel($retorno);
+        $viewModel->setTerminal(true);
         return $viewModel;
     }
 }

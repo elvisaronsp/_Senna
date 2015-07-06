@@ -82,7 +82,7 @@
             <label class="" for="ctps" style="width:40%">CTPS</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input short" rel="ctps" style="width: 58%">
-                <input id="ctps" maxLength="10" name="ctps" style="" type="text" value=""></input>
+                <?php echo $this->formElement($input = $form->get('ctps'));?>
             </span>
         </p>
 
@@ -104,11 +104,7 @@
             <label class="" for="tipoContaBancaria" style="">Tipo de Conta Bancária</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="tipoContaBancaria" style="">
-                <select class="" eval="0" id="tipoContaBancaria" name="tipoContaBancaria" size="1" style="">
-                    <option value="0">Conta Corrente</option>
-                    <option value="1">Conta Poupança</option>
-                    <option value="2">Conta Salário</option>
-                </select>
+                <?php echo $this->formElement($input = $form->get('tipoContaBancaria'));?>
             </span>
         </p>
 
@@ -117,7 +113,7 @@
             <label class="" for="agencia" style="">Agência Bancária</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="agencia" style="">
-                <input id="agencia" maxLength="10" name="agencia" style="" type="text" value=""></input>
+                <?php echo $this->formElement($input = $form->get('agencia'));?>
             </span>
         </p>
 
@@ -126,7 +122,7 @@
             <label class="" for="contaCorrente" style="">Conta Bancária</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="contaCorrente" style="">
-                <input class="code" id="contaCorrente" maxLength="10" name="contaCorrente" style="" type="text" value=""></input>
+                <?php echo $this->formElement($input = $form->get('agencia'));?>
             </span>
         </p>
 
@@ -135,7 +131,7 @@
             <label class="" for="numerobanco" style="">Numero banco</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="numerobanco" style="">
-                <input class="code" id="numerobanco" maxLength="10" name="numerobanco" style="" type="text" value=""></input>
+                <?php echo $this->formElement($input = $form->get('numerobanco'));?>
             </span>
         </p>
 
@@ -157,7 +153,7 @@
             <label class="" for="comissao" style="width:40%">Comissão (%)</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="comissao" style="width: 58%">
-                <input id="comissao" maxLength="10" name="comissao" number_format="+#.#0,[2,2]" style="" type="text" value="0.00"></input>
+                <?php echo $this->formElement($input = $form->get('comissao'));?>
             </span>
         </p>
 
@@ -179,7 +175,7 @@
             <label class="" for="descontoMaximo" style="width:44%">Desconto Máximo (%)</label>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="desconto_maximo_permitido" style="width: 54%">
-                <input id="desconto_maximo_permitido" name="desconto_maximo_permitido" number_format="+#.#0,[2,2]" style="" type="text" value="0.00"></input>
+                <?php echo $this->formElement($input = $form->get('desconto_maximo_permitido'));?>
             </span>
         </p>
 
@@ -193,7 +189,7 @@
         <div style="">Indica o dia e horário de acesso do usuário. Caso o mesmo tente acessar fora do dia e horário estabelecido(s), o acesso será negado. Será levado em consideração o horário de Brasília, no formato '00:00' às '23:59'. Os dias marcados serão aqueles que o usuário terá acesso.</div>
     </div>
 
-    <!-- FIM (COLUNA ESQUERDA) HORARIOS DE SERVIÇO  -->
+    <!--  (COLUNA ESQUERDA) HORARIOS DE SERVIÇO  -->
     <fieldset class="fieldset " style="width:342px;">
 
         <legend>
@@ -211,7 +207,7 @@
                 <label class="" for="hora_entrada" style="width:40%">Hora de Entrada</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="hora_entrada" style="width: 28%">
-                    <input class=" time" id="hora_entrada" name="hora_entrada" style="" type="text" value="08:00:00"></input>
+                    <?php echo $this->formElement($input = $form->get('hora_entrada'));?>
                 </span>
             </p>
 
@@ -220,7 +216,7 @@
                 <label class="" for="hora_almoco_entrada" style="width:40%">Início do Almoço</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="hora_almoco_entrada" style="width: 28%">
-                    <input class=" time" id="hora_almoco_entrada" name="hora_almoco_entrada" style="" type="text" value="12:00:00"></input>
+                    <?php echo $this->formElement($input = $form->get('hora_almoco_entrada'));?>
                 </span>
             </p>
 
@@ -229,7 +225,7 @@
                 <label class="" for="hora_almoco_saida" style="width:40%">Fim do Almoço</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="hora_almoco_saida" style="width: 28%">
-                    <input class=" time" id="hora_almoco_saida" name="hora_almoco_saida" style="" type="text" value="13:00:00"></input>
+                    <?php echo $this->formElement($input = $form->get('hora_almoco_saida'));?>
                 </span>
             </p>
 
@@ -238,7 +234,7 @@
                 <label class="" for="hora_saida" style="width:40%">Hora de Saída</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="hora_saida" style="width: 28%">
-                    <input class=" time" id="hora_saida" name="hora_saida" style="" type="text" value="18:00:00"></input>
+                    <?php echo $this->formElement($input = $form->get('hora_saida'));?>
                 </span>
             </p>
 
@@ -249,14 +245,14 @@
             <!-- Dias da Semana -->
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_1" style="">
-                    <input id="dias_da_semana_1" name="dias_da_semana_1" rel="1" style="" type="checkbox" value="1"></input>
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_1'));?>
                     <span>Segunda</span>
                 </label>
             </p>
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_2" style="">
-                    <input id="dias_da_semana_2" name="dias_da_semana_2" rel="1" style="" type="checkbox" value="1"></input>
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_2'));?>
                     <span>Terça</span>
                 </label>
 
@@ -264,7 +260,7 @@
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_3" style="">
-                    <input id="dias_da_semana_3" name="dias_da_semana_3" rel="1" style="" type="checkbox" value="1"></input>
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_3'));?>
                     <span>Quarta</span>
                 </label>
             </p>
@@ -272,7 +268,7 @@
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_4" style="">
-                    <input id="dias_da_semana_4" name="dias_da_semana_4" rel="1" style="" type="checkbox" value="1"></input>
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_4'));?>
                     <span>Quinta</span>
                 </label>
 
@@ -280,21 +276,21 @@
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_5" style="">
-                    <input id="dias_da_semana_5" name="dias_da_semana_5" rel="1" style="" type="checkbox" value="1"></input>
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_5'));?>
                     <span>Sexta</span>
                 </label>
             </p>
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_6" style="">
-                    <input id="dias_da_semana_6" name="dias_da_semana_6" rel="0" style="" type="checkbox" value="1"></input>
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_6'));?>
                     <span style="color: #057EBE;">Sábado</span>
                 </label>
             </p>
 
             <p class="checkbox_field  block" style="">
                 <label class="" for="dias_da_semana_0" style="">
-                    <input id="dias_da_semana_0" name="dias_da_semana_0" rel="0" style="" type="checkbox" value="1"></input>
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_7'));?>
                     <span style="color: #FF0000;">Domingo</span>
                 </label>
             </p>
