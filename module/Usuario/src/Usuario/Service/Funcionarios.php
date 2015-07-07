@@ -34,7 +34,12 @@ class Funcionarios extends AbstractService {
      */
     public function insert(array $data)
     {
+        $data = array_filter($data);
         $entity = new $this->entity($data);
+
+        $perfil = $this->em->getReference("Acl\Entity\Perfis",$data['id_perfil']);
+        $entity->setPerfil($perfil);
+
         $this->em->persist($entity);
         $this->em->flush();
 

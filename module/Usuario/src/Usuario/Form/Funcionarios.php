@@ -174,9 +174,15 @@ class Funcionarios extends Form
             ->setValue("");
         $this->add($input);
 
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('id_perfil');
+        $hidden->setAttribute('id', "id_perfil")
+            ->setValue("");
+        $this->add($hidden);
+
         // input sugestao
         $input = new \Zend\Form\Element\Text("ac_perfil_acessso");
-        $input->setAttribute('id', "id_perfil")
+        $input->setAttribute('id', "id_perfil_acesso")
             ->setAttribute('style', "")
             ->setAttribute('class', "temp  required autosuggest")
             ->setAttribute('filters', "[]")
@@ -371,8 +377,8 @@ class Funcionarios extends Form
         $this->add($input);
 
         // input data
-        $input = new \Zend\Form\Element\Text("desconto_maximo_permitido");
-        $input->setAttribute('id', "desconto_maximo_permitido")
+        $input = new \Zend\Form\Element\Text("descontoMaximo");
+        $input->setAttribute('id', "descontoMaximo")
             ->setAttribute('number_format', "+#.#0,[2,2]")
             ->setAttribute('class', "")
             ->setAttribute('maxLength', "10")
@@ -527,8 +533,8 @@ class Funcionarios extends Form
         //input hidden
         $hidden = new \Zend\Form\Element\Hidden('contato__id[0]');
         $hidden->setAttribute('id', "contato__id_0")
-            ->setValue("")
-            ->setValue("class","clone_id");
+            ->setAttribute("class","clone_id")
+            ->setValue("");
         $this->add($hidden);
 
         //input hidden
@@ -564,7 +570,7 @@ class Funcionarios extends Form
 
         // input sugestao
         $input = new \Zend\Form\Element\Text("ac_0");
-        $input->setAttribute('id', "id_perfil")
+        $input->setAttribute('id', "contato__id_tipo_contato_0")
             ->setAttribute('style', "")
             ->setAttribute('autosuggest', "contato__id_tipo_contato[0]")
             ->setAttribute('class', "autosuggest required ui-autocomplete-input")
@@ -572,7 +578,6 @@ class Funcionarios extends Form
             ->setAttribute('form_title', "Cadastrando Cidade")
             ->setAttribute('form_url', "")
             ->setAttribute('form_url_field', "")
-            ->setAttribute('id', "contato__id_tipo_contato_0")
             ->setAttribute('minlength', "0")
             ->setAttribute('new_item_info', "Criar um novo registro")
             ->setAttribute('new_item_label', "Cadastrar Novo")
@@ -645,7 +650,7 @@ class Funcionarios extends Form
 
         // input sugestao
         $input = new \Zend\Form\Element\Text("ac_1");
-        $input->setAttribute('id', "id_perfil")
+        $input->setAttribute('id', "contato__id_tipo_contato_1")
             ->setAttribute('style', "")
             ->setAttribute('autosuggest', "contato__id_tipo_contato[1]")
             ->setAttribute('class', "autosuggest ui-autocomplete-input")
@@ -653,7 +658,6 @@ class Funcionarios extends Form
             ->setAttribute('form_title', "Cadastrando Cidade")
             ->setAttribute('form_url', "")
             ->setAttribute('form_url_field', "")
-            ->setAttribute('id', "contato__id_tipo_contato_1")
             ->setAttribute('minlength', "0")
             ->setAttribute('new_item_info', "Criar um novo registro")
             ->setAttribute('new_item_label', "Cadastrar Novo")
@@ -724,7 +728,7 @@ class Funcionarios extends Form
 
         // input sugestao
         $input = new \Zend\Form\Element\Text("ac_2");
-        $input->setAttribute('id', "id_perfil")
+        $input->setAttribute('id', "contato__id_tipo_contato_2")
             ->setAttribute('style', "")
             ->setAttribute('autosuggest', "contato__id_tipo_contato[2]")
             ->setAttribute('class', "autosuggest  ui-autocomplete-input")
@@ -732,7 +736,6 @@ class Funcionarios extends Form
             ->setAttribute('form_title', "Cadastrando Cidade")
             ->setAttribute('form_url', "")
             ->setAttribute('form_url_field', "")
-            ->setAttribute('id', "contato__id_tipo_contato_2")
             ->setAttribute('minlength', "0")
             ->setAttribute('new_item_info', "Criar um novo registro")
             ->setAttribute('new_item_label', "Cadastrar Novo")
@@ -803,7 +806,7 @@ class Funcionarios extends Form
 
         // input sugestao
         $input = new \Zend\Form\Element\Text("ac_3");
-        $input->setAttribute('id', "id_perfil")
+        $input->setAttribute('id', "contato__id_tipo_contato_3")
             ->setAttribute('style', "")
             ->setAttribute('autosuggest', "contato__id_tipo_contato[3]")
             ->setAttribute('class', "autosuggest  ui-autocomplete-input")
@@ -811,7 +814,6 @@ class Funcionarios extends Form
             ->setAttribute('form_title', "Cadastrando Cidade")
             ->setAttribute('form_url', "")
             ->setAttribute('form_url_field', "")
-            ->setAttribute('id', "contato__id_tipo_contato_3")
             ->setAttribute('minlength', "0")
             ->setAttribute('new_item_info', "Criar um novo registro")
             ->setAttribute('new_item_label', "Cadastrar Novo")
@@ -882,7 +884,7 @@ class Funcionarios extends Form
 
         // input sugestao
         $input = new \Zend\Form\Element\Text("ac_4");
-        $input->setAttribute('id', "id_perfil")
+        $input->setAttribute('id', "contato__id_tipo_contato_4")
             ->setAttribute('style', "")
             ->setAttribute('autosuggest', "contato__id_tipo_contato[4]")
             ->setAttribute('class', "autosuggest  ui-autocomplete-input")
@@ -890,7 +892,6 @@ class Funcionarios extends Form
             ->setAttribute('form_title', "Cadastrando Cidade")
             ->setAttribute('form_url', "")
             ->setAttribute('form_url_field', "")
-            ->setAttribute('id', "contato__id_tipo_contato_4")
             ->setAttribute('minlength', "0")
             ->setAttribute('new_item_info', "Criar um novo registro")
             ->setAttribute('new_item_label', "Cadastrar Novo")

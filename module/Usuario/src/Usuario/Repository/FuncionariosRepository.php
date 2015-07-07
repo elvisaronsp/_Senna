@@ -34,7 +34,7 @@ class FuncionariosRepository extends EntityRepository {
             $usuarios  [$key] ['confirmado'] = "" . $entity->getConfirmado()?"SIM":"NÃO" . "";
             $usuarios  [$key] ['nome'] = "" . $entity->getNome() . "";
             $usuarios  [$key] ['login'] = "" . $entity->getLogin() . "";
-            $usuarios  [$key] ['perfil'] = "" . $entity->getPerfil() . "";
+            $usuarios  [$key] ['perfil'] = "" . $entity->getPerfil(). "";
             $usuarios  [$key] ['setor'] = "" . $entity->getSetor() . "";
             $usuarios  [$key] ['email'] = "" . $entity->getEmail() . "";
             $usuarios  [$key] ['possui_vinculo'] = "0";

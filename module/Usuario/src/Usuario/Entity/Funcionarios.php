@@ -218,9 +218,8 @@ class Funcionarios
     private $redefinirsenha;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="perfil_id", type="integer", nullable=true)
+     * @ORM\OneToOne(targetEntity="Acl\Entity\Perfis")
+     * @ORM\JoinColumn(name="perfil_id", referencedColumnName="id")
      */
     private $perfil;
 
@@ -257,7 +256,6 @@ class Funcionarios
      */
     public function __construct($options = array())
     {
-
         $this->criadoem = new \DateTime("now");
         $this->atualizadoem = new \DateTime("now");
         (new Hydrator\ClassMethods)->hydrate($options, $this);
@@ -268,7 +266,7 @@ class Funcionarios
      */
     public function getDataadminissao()
     {
-        return $this->dataadminissao;
+        return ($this->dataadminissao)?date_format($this->dataadminissao, 'd-m-Y'):"";
     }
 
     /**
@@ -277,7 +275,7 @@ class Funcionarios
      */
     public function setDataadminissao($dataadminissao)
     {
-        $this->dataadminissao = $dataadminissao;
+        $this->dataadminissao = new \DateTime($dataadminissao);
         return $this;
     }
 
@@ -538,7 +536,7 @@ class Funcionarios
      */
     public function getDatanascimento()
     {
-        return date_format($this->datanascimento, 'd-m-Y');
+        return ($this->datanascimento)?date_format($this->datanascimento, 'd-m-Y'):"";
     }
 
     /**
@@ -547,7 +545,7 @@ class Funcionarios
      */
     public function setDatanascimento($datanascimento)
     {
-        $this->datanascimento = $datanascimento;
+        $this->datanascimento = new \DateTime($datanascimento);
         return $this;
     }
 
@@ -592,7 +590,7 @@ class Funcionarios
      */
     public function getDatademissao()
     {
-        return $this->datademissao;
+        return ($this->datademissao)?date_format($this->datademissao, 'd-m-Y'):"";
     }
 
     /**
@@ -601,7 +599,7 @@ class Funcionarios
      */
     public function setDatademissao($datademissao)
     {
-        $this->datademissao = $datademissao;
+        $this->datademissao = new \DateTime($datademissao);
         return $this;
     }
 
@@ -797,7 +795,7 @@ class Funcionarios
      * @param $perfil
      * @return $this
      */
-    public function setPerfilId($perfil)
+    public function setPerfil($perfil)
     {
         $this->perfil = $perfil;
         return $this;
@@ -845,7 +843,7 @@ class Funcionarios
      */
     public function getCriadoem()
     {
-        return date_format($this->criadoem, 'd-m-Y H:i');
+        //return date_format($this->criadoem, 'd-m-Y H:i');
     }
 
     /**
@@ -862,7 +860,7 @@ class Funcionarios
      */
     public function getAtualizadoem()
     {
-        return date_format($this->atualizadoem, 'd-m-Y H:i');
+        //return date_format($this->atualizadoem, 'd-m-Y H:i');
     }
 
     /**
@@ -905,10 +903,10 @@ class Funcionarios
             'comissao'=>$this->comissao,
             'dataAdminissao'=> ($this->dataadminissao)?date_format($this->dataadminissao, 'd-m-Y'):"",
             'dataDemissao'=> ($this->datademissao)?date_format($this->datademissao, 'd-m-Y'):"",
-            'descancosemanal'=>$this->descancosemanal,
+            'descancoSemanal'=>$this->descancosemanal,
             'ctps'=>$this->ctps,
-            'descontomaximo'=>$this->descontomaximo,
-            'tipocontabancaria'=>$this->tipocontabancaria,
+            'descontoMaximo'=>$this->descontomaximo,
+            'tipoContaBancaria'=>$this->tipocontabancaria,
             'agencia'=>$this->agencia,
             'contacorrente'=>$this->contacorrente,
             'numerobanco'=>$this->numerobanco,
@@ -916,6 +914,7 @@ class Funcionarios
             'bloqueiotemporario'=>$this->bloqueiotemporario,
             'redefinirsenha'=>$this->redefinirsenha,
             'perfil'=>$this->perfil,
+            'id_perfil'=>$this->getPerfil()->getId(),
             'setor'=>$this->setor,
             'horarios'=>$this->horarios,
             'criadoem'=>$this->getCriadoem(),

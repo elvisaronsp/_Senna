@@ -185,7 +185,7 @@
                 <label class="" for="id_perfil" style="width:25%">Perfil de Acesso</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="id_perfil" style="width: 68%">
-                    <input id="id_perfil" name="id_perfil" type="hidden" value="1"></input>
+                    <?php echo $this->formElement($form->get('id_perfil'));?>
                     <i class="ui-autocomplete_combo" tabindex="-1"></i>
                     <?php echo $this->formElement($form->get('ac_perfil_acessso'));?>
                     <em class="autocomplete_search required temp  autosuggest"></em>
