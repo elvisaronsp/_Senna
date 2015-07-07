@@ -252,6 +252,21 @@ class Funcionarios
     private $atualizadoem;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="alertas", type="boolean", nullable=true)
+     */
+    private $alertas;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="modoFerias", type="boolean", nullable=true)
+     */
+    private $ferias;
+
+    /**
      * @param array $options
      */
     public function __construct($options = array())
@@ -581,7 +596,7 @@ class Funcionarios
      */
     public function setComissao($comissao)
     {
-        $this->comissao = $comissao;
+        $this->comissao =  str_replace ( ",", ".", str_replace ( ".", " ", $comissao) );
         return $this;
     }
 
@@ -653,7 +668,7 @@ class Funcionarios
      */
     public function setDescontomaximo($descontomaximo)
     {
-        $this->descontomaximo = $descontomaximo;
+        $this->descontomaximo =  str_replace ( ",", ".", str_replace ( ".", " ", $descontomaximo) );
         return $this;
     }
 
@@ -872,6 +887,42 @@ class Funcionarios
     }
 
     /**
+     * @return boolean
+     */
+    public function getAlertas()
+    {
+        return $this->alertas;
+    }
+
+    /**
+     * @param $alertas
+     * @return $this
+     */
+    public function setAlertas($alertas)
+    {
+        $this->alertas = $alertas;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getFerias()
+    {
+        return $this->ferias;
+    }
+
+    /**
+     * @param $ferias
+     * @return $this
+     */
+    public function setFerias($ferias)
+    {
+        $this->ferias = $ferias;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function __toString() {
@@ -918,7 +969,9 @@ class Funcionarios
             'setor'=>$this->setor,
             'horarios'=>$this->horarios,
             'criadoem'=>$this->getCriadoem(),
-            'atualizadoem'=>$this->getAtualizadoem()
+            'atualizadoem'=>$this->getAtualizadoem(),
+            'ferias'=>$this->ferias,
+            'alertas'=>$this->alertas
         );
     }
 }

@@ -19,9 +19,4 @@ protected function prepareAttributes(array $attributes)
     }
 
 
-        protected function parseResponse($response)
-        {
-            if(!$this->isJson($response))
-            {
-                //throw new CepNotFoundException();
-            }
+viaCepAdapter.php
