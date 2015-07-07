@@ -25,6 +25,20 @@ class FuncionariosController extends GrudController {
     }
 
     /**
+     * @param $form
+     * @param $data
+     * SETA O RESTANTES DO CAMPOS QUE NAO SÃO DO TIPO SIMPLES
+     */
+    protected function setValueForm($form,$data)
+    {
+        $form->get('tipoContaBancaria')->setAttribute('eval',$data['tipoContaBancaria']);
+        $form->get('escolaridade')->setAttribute('eval',$data['escolaridade']);
+        $form->get('setor')->setAttribute('eval',$data['setor']);
+        $form->get('ac_perfil_acessso')->setAttribute('value',$data['perfil']);
+        $form->get('id_perfil')->setAttribute('value',$data['id_perfil']);
+    }
+
+    /**
      * @return ViewModel
      */
     public function FormAction()
@@ -38,17 +52,7 @@ class FuncionariosController extends GrudController {
         {
             $entity = $repository->find($this->params ()->fromRoute ( 'id', 0 ));
             $form->setData($entity->toArray());
-
-            //### SETA O RESTANTES DO CAMPOS QUE NAO SÃO DO TIPO SIMPLES
-            $form->get('tipoContaBancaria')->setAttribute('eval',$entity->toArray()['tipoContaBancaria']);
-            $form->get('escolaridade')->setAttribute('eval',$entity->toArray()['escolaridade']);
-            $form->get('setor')->setAttribute('eval',$entity->toArray()['setor']);
-            $form->get('ac_perfil_acessso')->setAttribute('value',$entity->toArray()['perfil']);
-            $form->get('id_perfil')->setAttribute('value',$entity->toArray()['id_perfil']);
-            //###
-
-
-
+            $this->setValueForm($form,$entity->toArray());
             $retorno = array (
                 'form' => $form,
             );
