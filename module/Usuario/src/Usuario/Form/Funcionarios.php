@@ -25,6 +25,12 @@ class Funcionarios extends Form
         ) );
 
         //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('id');
+        $hidden->setAttribute('id', "id")
+            ->setValue("");
+        $this->add($hidden);
+
+        //input hidden
         $hidden = new \Zend\Form\Element\Hidden('id_entidade');
         $hidden->setAttribute('id', "id_entidade")
             ->setValue("");
@@ -75,7 +81,7 @@ class Funcionarios extends Form
                 'label_attributes' => array('class' => 'inline'),
                 'value_options' => array(
                     'M' => '<span>Masculino</span>',
-                    '0' => '<span>Feminino</span>'
+                    'F' => '<span>Feminino</span>'
                 ),
             )
         ));
@@ -349,6 +355,16 @@ class Funcionarios extends Form
         $this->add($select);
 
         // input data
+        $input = new \Zend\Form\Element\Text("contaCorrente");
+        $input->setAttribute('id', "contaCorrente")
+            ->setAttribute('maxLength', "10")
+            ->setAttribute('class', "code")
+            ->setAttribute('style', "")
+            ->setValue("");
+        $this->add($input);
+
+
+        // input data
         $input = new \Zend\Form\Element\Text("agencia");
         $input->setAttribute('id', "agencia")
             ->setAttribute('maxLength', "10")
@@ -399,7 +415,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "hora_almoco_entrada")
             ->setAttribute('class', "time")
             ->setAttribute('style', "")
-            ->setValue("08:00:00");
+            ->setValue("12:00:00");
         $this->add($input);
 
         // input data
@@ -407,7 +423,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "hora_almoco_saida")
             ->setAttribute('class', "time")
             ->setAttribute('style', "")
-            ->setValue("08:00:00");
+            ->setValue("13:00:00");
         $this->add($input);
 
         // input data
@@ -415,7 +431,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "hora_saida")
             ->setAttribute('class', "time")
             ->setAttribute('style', "")
-            ->setValue("08:00:00");
+            ->setValue("18:00:00");
         $this->add($input);
 
         // checkbox

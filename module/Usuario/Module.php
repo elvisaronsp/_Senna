@@ -34,7 +34,17 @@ class Module
         return array(
             'factories' => array(
                 'Usuario\Service\Funcionarios' => function($sm){
-                    return new Service\Funcionarios($sm->get('Doctrine\ORM\Entitymanager'));
+                    return new Service\Funcionarios($sm->get('Doctrine\ORM\Entitymanager'),
+                        $sm->get('Usuario\Mail\Transport'),
+                        $sm->get('View'));
+                },
+                'Usuario\Mail\Transport' => function($sm) {
+                    $config = $sm->get('Config');
+
+                    $transport = new SmtpTransport;
+                    $options = new SmtpOptions($config['mail']);
+                    $transport->setOptions($options);
+                    return $transport;
                 }
             )
         );

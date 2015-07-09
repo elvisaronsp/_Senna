@@ -40,7 +40,7 @@ class Funcionarios
      *
      * @ORM\Column(name="ativo", type="boolean", nullable=false)
      */
-    private $ativo = '1';
+    private $ativo;
 
     /**
      * @var boolean
@@ -234,6 +234,11 @@ class Funcionarios
      * @var integer
      *
      * @ORM\Column(name="horarios_id", type="integer", nullable=true)
+     */
+
+    /**
+     * @ORM\OneToOne(targetEntity="Usuario\Entity\Horarios")
+     * @ORM\JoinColumn(name="horarios_id", referencedColumnName="id")
      */
     private $horarios;
 
@@ -459,7 +464,7 @@ class Funcionarios
     /**
      * @return string
      */
-    public function getChaveativacao()
+    public function getChaveAtivacao()
     {
         return $this->chaveativacao;
     }
@@ -468,7 +473,7 @@ class Funcionarios
      * @param $chaveativacao
      * @return $this
      */
-    public function setChaveativacao($chaveativacao)
+    public function setChaveAtivacao($chaveativacao)
     {
         $this->chaveativacao = $chaveativacao;
         return $this;
@@ -783,7 +788,7 @@ class Funcionarios
     /**
      * @return boolean
      */
-    public function isRedefinirsenha()
+    public function getRedefinirSenha()
     {
         return $this->redefinirsenha;
     }
@@ -792,7 +797,7 @@ class Funcionarios
      * @param $redefinirsenha
      * @return $this
      */
-    public function setRedefinirsenha($redefinirsenha)
+    public function setRedefinirSenha($redefinirsenha)
     {
         $this->redefinirsenha = $redefinirsenha;
         return $this;
@@ -875,7 +880,7 @@ class Funcionarios
      */
     public function getAtualizadoem()
     {
-        //return date_format($this->atualizadoem, 'd-m-Y H:i');
+        return date_format($this->atualizadoem, 'd-m-Y H:i');
     }
 
     /**
@@ -938,7 +943,7 @@ class Funcionarios
             'id'=>$this->id,
             'nome'=>$this->nome,
             'cpf'=>$this->cpf,
-            'ativo'=>$this->ativo,
+            'ativo'=>($this->ativo)?"1":"0",
             'confirmado'=>$this->confirmado,
             'sexo'=>$this->sexo,
             'login'=>$this->login,
@@ -959,15 +964,27 @@ class Funcionarios
             'descontoMaximo'=>$this->descontomaximo,
             'tipoContaBancaria'=>$this->tipocontabancaria,
             'agencia'=>$this->agencia,
-            'contacorrente'=>$this->contacorrente,
+            'contaCorrente'=>$this->contacorrente,
             'numerobanco'=>$this->numerobanco,
             'liberdadevenda'=>$this->liberdadevenda,
             'bloqueiotemporario'=>$this->bloqueiotemporario,
-            'redefinirsenha'=>$this->redefinirsenha,
+            'redefinirSenha'=>$this->redefinirsenha,
             'perfil'=>$this->perfil,
             'id_perfil'=>$this->getPerfil()->getId(),
             'setor'=>$this->setor,
-            'horarios'=>$this->horarios,
+
+            'hora_entrada'=>$this->getHorarios()->getHoraEntrada(),
+            'hora_almoco_entrada'=>$this->getHorarios()->getHoraAlmocoEntrada(),
+            'hora_almoco_saida'=>$this->getHorarios()->getHoraAlmocoSaida(),
+            'hora_saida'=>$this->getHorarios()->getHoraSaida(),
+            'dias_da_semana_1'=>$this->getHorarios()->getDiasDaSemana1(),
+            'dias_da_semana_2'=>$this->getHorarios()->getDiasDaSemana2(),
+            'dias_da_semana_3'=>$this->getHorarios()->getDiasDaSemana3(),
+            'dias_da_semana_4'=>$this->getHorarios()->getDiasDaSemana4(),
+            'dias_da_semana_5'=>$this->getHorarios()->getDiasDaSemana5(),
+            'dias_da_semana_6'=>$this->getHorarios()->getDiasDaSemana6(),
+            'dias_da_semana_7'=>$this->getHorarios()->getDiasDaSemana7(),
+
             'criadoem'=>$this->getCriadoem(),
             'atualizadoem'=>$this->getAtualizadoem(),
             'ferias'=>$this->ferias,

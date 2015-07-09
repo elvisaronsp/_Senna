@@ -31,11 +31,25 @@ class FuncionariosController extends GrudController {
      */
     protected function setValueForm($form,$data)
     {
+        $form->get('ativo')->setAttribute('eval',$data['ativo']);
+        $form->get('sexo')->setAttribute('eval',$data['sexo']);
         $form->get('tipoContaBancaria')->setAttribute('eval',$data['tipoContaBancaria']);
         $form->get('escolaridade')->setAttribute('eval',$data['escolaridade']);
         $form->get('setor')->setAttribute('eval',$data['setor']);
         $form->get('ac_perfil_acessso')->setAttribute('value',$data['perfil']);
         $form->get('id_perfil')->setAttribute('value',$data['id_perfil']);
+        $form->get('solicitarRedefinirSenha')->setAttribute('eval',$data['redefinirSenha']);
+        $form->get('modoFerias')->setAttribute('eval',$data['ferias']);
+        $form->get('alertas')->setAttribute('eval',$data['alertas']);
+
+        $form->get('dias_da_semana_1')->setAttribute('rel',$data['dias_da_semana_1']);
+        $form->get('dias_da_semana_2')->setAttribute('rel',$data['dias_da_semana_2']);
+        $form->get('dias_da_semana_3')->setAttribute('rel',$data['dias_da_semana_3']);
+        $form->get('dias_da_semana_4')->setAttribute('rel',$data['dias_da_semana_4']);
+        $form->get('dias_da_semana_5')->setAttribute('rel',$data['dias_da_semana_5']);
+        $form->get('dias_da_semana_6')->setAttribute('rel',$data['dias_da_semana_6']);
+        $form->get('dias_da_semana_7')->setAttribute('rel',$data['dias_da_semana_7']);
+
     }
 
     /**
@@ -71,7 +85,6 @@ class FuncionariosController extends GrudController {
         $viewModel->setTerminal ( true );
         return $viewModel;
     }
-
 
     /**
      * @return bool
