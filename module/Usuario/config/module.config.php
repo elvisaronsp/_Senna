@@ -50,11 +50,22 @@ return array(
                     )
                 )
             ),
+            'usuario-ativacao' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/registro/ativacao[/:key]',
+                    'defaults' => array(
+                        'controller' => 'Usuario\Controller\Index',
+                        'action' => 'ativacao'
+                    )
+                )
+            ),
         )
     ),
     'controllers' => array(
         'invokables' => array(
             'Usuario\Controller\Funcionarios' => 'Usuario\Controller\FuncionariosController',
+            'Usuario\Controller\Index' => 'Usuario\Controller\IndexController',
         )
     ),
     'view_manager' => array(

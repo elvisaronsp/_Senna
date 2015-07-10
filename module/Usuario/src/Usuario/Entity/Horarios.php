@@ -9,6 +9,7 @@ use Zend\Stdlib\Hydrator;
  *
  * @ORM\Table(name="sn_horarios")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Usuario\Repository\FuncionariosRepository")
  */
 class Horarios
 {
@@ -100,7 +101,7 @@ class Horarios
 
     /**
      * @ORM\OneToOne(targetEntity="Usuario\Entity\Funcionarios")
-     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="usuarios_id", referencedColumnName="id")
      */
     private $usuario;
 
@@ -344,7 +345,10 @@ class Horarios
         $this->usuario = $usuario;
     }
 
-    public  function toArray()
+    /**
+     * @return array
+     */
+    public function toArray()
     {
         return array(
             'id'=>$this->id,

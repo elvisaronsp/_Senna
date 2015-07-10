@@ -80,24 +80,22 @@ class Funcionarios extends AbstractService {
     public function insert(array $data)
     {
         $data = array_filter($data);
-        $entityHorarios = new $this->horarios($data);
-
-        $this->em->persist($entityHorarios);
-        $this->em->flush();
 
         $entity = new $this->entity($data);
         $entity = $this->setParamExtra($entity,$data);
-        $entity->setHorarios($entityHorarios);
 
         $this->em->persist($entity);
         $this->em->flush();
 
-        if ($entity && isset($data['mensagemBoasVindas'])) {
-            $this->enviarEmail('SENNA - Confirmação de cadastro', $entity->getEmail(), 'add-user', array('senha'=>$entity->getSenha(),'nome'=>$entity->getNome(),'email'=>$entity->getEmail()), $entity->getChaveAtivacao());
-            return $entity;
-        }
+        $entityHorarios = new $this->horarios($data);
+        $entityHorarios->setUsuario($entity);
         $this->em->persist($entityHorarios);
         $this->em->flush();
+
+        if ($entity && isset($data['mensagemBoasVindas'])) {
+            $this->enviarEmail('SENNA - Confirmação de cadastro', $entity->getEmail(), 'add-user', array('senha'=>$data['senha'],'nome'=>$entity->getNome(),'email'=>$entity->getEmail(),'login'=>$entity->getLogin()), $entity->getChaveAtivacao());
+            return $entity;
+        }
 
         return $entity;
     }
@@ -112,8 +110,9 @@ class Funcionarios extends AbstractService {
     private function enviarEmail($assuntoEmail, $destinatarioEmail, $paginaRenderizada, $data = array(), $chaveAtivacao = null)
     {
         $dataEmail = array('senha' => $data['senha'],
-            'nome' => $data['nome'],
+            'nome'  => $data['nome'],
             'email' => $data['email'],
+            'login' => $data['login'],
             'chaveAtivacao' => $chaveAtivacao
         );
 

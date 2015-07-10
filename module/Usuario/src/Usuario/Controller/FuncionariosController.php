@@ -5,8 +5,8 @@ use Senna\Controller\GrudController;
 use Zend\View\Model\ViewModel;
 
 /**
- * Class PerfisController
- * @package Acl\Controller
+ * Class FuncionariosController
+ * @package Usuario\Controller
  */
 class FuncionariosController extends GrudController {
 
@@ -18,10 +18,11 @@ class FuncionariosController extends GrudController {
     {
         $this->entity = "Usuario\Entity\Funcionarios";
         $this->service = "Usuario\Service\Funcionarios";
+        $this->horarios = "Usuario\Entity\Horarios";
         $this->form = "Usuario\Form\Funcionarios";
-        $this->message_insert = "Usuario de acesso CADASTRADO com sucesso";
-        $this->message_update = "Usuario de acesso ATUALIZADO com sucesso";
-        $this->message_delete = "Usuario de acesso EXCLUIDO com sucesso";
+        $this->message_insert = "Funcionario CADASTRADO com sucesso";
+        $this->message_update = "Funcionario ATUALIZADO com sucesso";
+        $this->message_delete = "Funcionario EXCLUIDO com sucesso";
     }
 
     /**
@@ -42,14 +43,17 @@ class FuncionariosController extends GrudController {
         $form->get('modoFerias')->setAttribute('eval',$data['ferias']);
         $form->get('alertas')->setAttribute('eval',$data['alertas']);
 
-        $form->get('dias_da_semana_1')->setAttribute('rel',$data['dias_da_semana_1']);
-        $form->get('dias_da_semana_2')->setAttribute('rel',$data['dias_da_semana_2']);
-        $form->get('dias_da_semana_3')->setAttribute('rel',$data['dias_da_semana_3']);
-        $form->get('dias_da_semana_4')->setAttribute('rel',$data['dias_da_semana_4']);
-        $form->get('dias_da_semana_5')->setAttribute('rel',$data['dias_da_semana_5']);
-        $form->get('dias_da_semana_6')->setAttribute('rel',$data['dias_da_semana_6']);
-        $form->get('dias_da_semana_7')->setAttribute('rel',$data['dias_da_semana_7']);
-
+        // horarios
+        $repository = $this->getEm()->getRepository($this->horarios);
+        $horario = $repository->findBy(array( 'usuario' => $data['id'] ));
+        $form->get('dias_da_semana_1')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana1']);
+        $form->get('dias_da_semana_2')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana2']);
+        $form->get('dias_da_semana_3')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana3']);
+        $form->get('dias_da_semana_4')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana4']);
+        $form->get('dias_da_semana_5')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana5']);
+        $form->get('dias_da_semana_6')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana6']);
+        $form->get('dias_da_semana_7')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana7']);
+        // fim horarios
     }
 
     /**
@@ -65,6 +69,7 @@ class FuncionariosController extends GrudController {
         if ($this->params ()->fromRoute ( 'id', 0 ))
         {
             $entity = $repository->find($this->params ()->fromRoute ( 'id', 0 ));
+
             $form->setData($entity->toArray());
             $this->setValueForm($form,$entity->toArray());
             $retorno = array (

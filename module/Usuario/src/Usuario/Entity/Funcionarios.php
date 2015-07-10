@@ -3,6 +3,8 @@ namespace Usuario\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zend\Stdlib\Hydrator;
+use Zend\Math\Rand,
+    Zend\Crypt\Key\Derivation\Pbkdf2;
 
 /**
  * @ORM\Entity
@@ -231,18 +233,6 @@ class Funcionarios
     private $setor;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="horarios_id", type="integer", nullable=true)
-     */
-
-    /**
-     * @ORM\OneToOne(targetEntity="Usuario\Entity\Horarios")
-     * @ORM\JoinColumn(name="horarios_id", referencedColumnName="id")
-     */
-    private $horarios;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="criadoEm", type="datetime", nullable=false)
@@ -278,6 +268,10 @@ class Funcionarios
     {
         $this->criadoem = new \DateTime("now");
         $this->atualizadoem = new \DateTime("now");
+
+        $this->salt = base64_encode(Rand::getBytes(32, true));
+        $this->chaveativacao = md5($this->email.$this->salt);
+
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
 
@@ -437,10 +431,18 @@ class Funcionarios
      * @param $senha
      * @return $this
      */
-    public function setSenha($senha)
-    {
-        $this->senha = $senha;
+    public function setSenha($senha) {
+        $this->senha = $this->encryptSenha($senha);
         return $this;
+    }
+
+    /**
+     * @param $senha
+     * @return string
+     */
+    public function encryptSenha($senha)
+    {
+        return base64_encode(Pbkdf2::calc('sha256', $senha, $this->salt, 10000, strlen($senha*150)));
     }
 
     /**
@@ -841,29 +843,11 @@ class Funcionarios
     }
 
     /**
-     * @return int
-     */
-    public function getHorarios()
-    {
-        return $this->horarios;
-    }
-
-    /**
-     * @param $horarios
-     * @return $this
-     */
-    public function setHorarios($horarios)
-    {
-        $this->horarios = $horarios;
-        return $this;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getCriadoem()
     {
-        //return date_format($this->criadoem, 'd-m-Y H:i');
+        return date_format($this->criadoem, 'd-m-Y H:i');
     }
 
     /**
@@ -972,19 +956,6 @@ class Funcionarios
             'perfil'=>$this->perfil,
             'id_perfil'=>$this->getPerfil()->getId(),
             'setor'=>$this->setor,
-
-            'hora_entrada'=>$this->getHorarios()->getHoraEntrada(),
-            'hora_almoco_entrada'=>$this->getHorarios()->getHoraAlmocoEntrada(),
-            'hora_almoco_saida'=>$this->getHorarios()->getHoraAlmocoSaida(),
-            'hora_saida'=>$this->getHorarios()->getHoraSaida(),
-            'dias_da_semana_1'=>$this->getHorarios()->getDiasDaSemana1(),
-            'dias_da_semana_2'=>$this->getHorarios()->getDiasDaSemana2(),
-            'dias_da_semana_3'=>$this->getHorarios()->getDiasDaSemana3(),
-            'dias_da_semana_4'=>$this->getHorarios()->getDiasDaSemana4(),
-            'dias_da_semana_5'=>$this->getHorarios()->getDiasDaSemana5(),
-            'dias_da_semana_6'=>$this->getHorarios()->getDiasDaSemana6(),
-            'dias_da_semana_7'=>$this->getHorarios()->getDiasDaSemana7(),
-
             'criadoem'=>$this->getCriadoem(),
             'atualizadoem'=>$this->getAtualizadoem(),
             'ferias'=>$this->ferias,
