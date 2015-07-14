@@ -84,7 +84,7 @@ class Funcionarios
      *
      * @ORM\Column(name="chaveAtivacao", type="string", length=255, nullable=false)
      */
-    private $chaveativacao = '';
+    private $chaveAtivacao = '';
 
     /**
      * @var string
@@ -270,7 +270,7 @@ class Funcionarios
         $this->atualizadoem = new \DateTime("now");
 
         $this->salt = base64_encode(Rand::getBytes(32, true));
-        $this->chaveativacao = md5($this->email.$this->salt);
+        $this->chaveAtivacao = md5($this->email.$this->salt);
 
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
@@ -468,16 +468,16 @@ class Funcionarios
      */
     public function getChaveAtivacao()
     {
-        return $this->chaveativacao;
+        return $this->chaveAtivacao;
     }
 
     /**
-     * @param $chaveativacao
+     * @param $chaveAtivacao
      * @return $this
      */
-    public function setChaveAtivacao($chaveativacao)
+    public function setChaveAtivacao($chaveAtivacao)
     {
-        $this->chaveativacao = $chaveativacao;
+        $this->chaveAtivacao = $chaveAtivacao;
         return $this;
     }
 
@@ -933,7 +933,7 @@ class Funcionarios
             'login'=>$this->login,
             'senha'=>$this->senha,
             'salt'=>$this->salt,
-            'chaveativacao'=>$this->chaveativacao,
+            'chaveativacao'=>$this->chaveAtivacao,
             'email'=>$this->email,
             'telefoneprincipal'=>$this->telefoneprincipal,
             'observacoes'=>$this->observacoes,

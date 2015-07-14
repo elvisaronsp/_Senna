@@ -1,1 +1,201 @@
-<h3>Register</h3>
+<?php echo $this->doctype(); ?>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Senna :: Grupo Capital Ponto</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <link rel="shortcut icon" href="<?php echo $this->basePath() ?>/images/favicon.ico">
+    <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets-minified/js-core.js"></script>
+    <script type="text/javascript">
+        $(window).load(function() {
+            setTimeout(function() {
+                $('#loading').fadeOut(400, "linear");
+            }, 300);
+        });
+    </script>
+    <style>
+        a.normal:hover {
+            cursor: default;
+            color: #7e7e7e;
+            font-size: 13px;
+        }
+        a.normal {
+            cursor: default;
+            font-size: 13px;
+        }
+
+
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: block;
+            background: #F5F5F5;
+            z-index: 10000;
+        }
+
+        #loading img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -23px 0 0 -23px;
+        }
+
+        .text-green{
+            color:#1BA39C!important
+        }
+
+        .text-red{
+            color:#FF0000!important
+        }
+        .text-25px {
+            font-size: 25px;
+        }
+    </style>
+
+    <?php echo $this->headLink ()->appendStylesheet ( $this->basePath () . '/assets-minified/helpers/helpers-all.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/elements/elements-all.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/icons/fontawesome/fontawesome.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/icons/linecons/linecons.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/snippets/snippets-all.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/applications/mailbox.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/themes/supina/layout.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/themes/supina/default/layout-color.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/themes/supina/default/framework-color.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/themes/supina/border-radius.css' )
+        ->appendStylesheet ( $this->basePath () . '/assets-minified/helpers/colors.css' )?>
+</head>
+<body>
+<div id="loading"><img src="<?php echo $this->basePath() ?>/assets-minified/images/spinner/loader-dark.gif" alt="Loading..."></div>
+<div class="center-vertical">
+    <div class="center-content">
+        <form action="" id="login-validation" class="col-md-4 center-margin" method="">
+            <h3 class="text-center pad25B font-gray text-transform-upr font-size-23">
+                <img src="<?php echo $this->basePath() ?>/images/senna_login.png"></span>
+            </h3>
+
+            <div id="login-form" class="content-box modal-content hide">
+                <div class="content-box-wrapper pad20A">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Login:</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon addon-inside bg-white font-primary">
+                                <i class="glyph-icon icon-user"></i>
+                            </span>
+                            <input type="text" class="form-control" id="login" name="login" placeholder="Digite seu login">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Senha:</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon addon-inside bg-white font-primary">
+                                <i class="glyph-icon icon-unlock-alt"></i>
+                            </span>
+                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="checkbox-primary col-md-6" style="height: 20px">
+                            <label>
+                                <input type="checkbox" style="display: none" id="loginCheckbox1" class="custom-checkbox">
+                            </label>
+                        </div>
+                        <div class="text-right col-md-6">
+                            <a href="#" class="switch-button" switch-target="#login-forgot" switch-parent="#login-form" title="Recover password">Esqueceu sua senha?</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-pane">
+                    <button type="submit" class="btn btn-block btn-primary">Entrar</button>
+                </div>
+            </div>
+
+            <div id="login-forgot" class="content-box modal-content hide">
+                <div class="content-box-wrapper pad20A">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">E-mail:</label>
+                        <div class="input-group"><span class="input-group-addon addon-inside bg-gray">
+                                <i class="glyph-icon icon-envelope-o"></i>
+                            </span>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail">
+                        </div>
+                    </div>
+                </div>
+                <div class="button-pane text-center">
+                    <button type="submit" class="btn btn-md btn-primary">Recuperar senha</button>
+                    <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#login-forgot" title="Cancel">Cancelar</a>
+                </div>
+            </div>
+            <?php if(isset($this->erro)): ?>
+                <div id="login-ativacao-erro-usuario" class="content-box modal-content ">
+                    <div class="content-box-wrapper pad20A">
+                        <div class="form-group">
+                            <i class="glyph-icon icon-times text-red text-25px "></i>
+                            <label for="exampleInputEmail1">Erro!</label>
+                            <div class="input-group">
+                                <label for="exampleInputEmail1">Tentativa de ativação falhou.</label>
+                                <br />
+                                Usuario não existe.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-pane text-center">
+                        <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#login-ativacao-erro-usuario" title="Entrar no sistema">Entrar no sistema</a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <?php if (isset($this->usuario)): ?>
+                    <div id="login-ativacao" class="content-box modal-content ">
+                        <div class="content-box-wrapper pad20A">
+                            <div class="form-group">
+                                <i class="glyph-icon icon-check text-green text-25px "></i>
+                                <label for="exampleInputEmail1">Bem vindo ao Senna</label>
+                                <div class="input-group">
+                                    <label for="exampleInputEmail1">Seu e-mail foi ativado com sucesso! Vamos começar?</label>
+                                    Faça seu login para acessar o sistema.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-pane text-center">
+                            <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#login-ativacao" title="Entrar no sistema">Entrar no sistema</a>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div id="login-ativacao-erro" class="content-box modal-content ">
+                        <div class="content-box-wrapper pad20A">
+                            <div class="form-group">
+                                <i class="glyph-icon icon-times text-red text-25px "></i>
+                                <label for="exampleInputEmail1">Seu cadastro já foi ativado.</label>
+                                <div class="input-group">
+                                    <label for="exampleInputEmail1">Você já esta pronto para começar</label>
+                                    <br/>
+                                    Faça seu login para acessar o sistema.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-pane text-center">
+                            <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#login-ativacao-erro" title="Entrar no sistema">Entrar no sistema</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+        </form>
+        <div class="row">
+            <div class="text-center col-md-12">
+                <a href="#" class="switch-button normal">Grupo Capital ponto - Senna Melbourne v1.0 - CopyRight 2014-2015 - AllRight Reserverd - Developed JsF 2015 </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/assets-minified/demo-widgets.css">
+<script type="text/javascript" src="<?php echo $this->basePath() ?>/assets-minified/demo-widgets.js"></script>
+</body>
+</html>

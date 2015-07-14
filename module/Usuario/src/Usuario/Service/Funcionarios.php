@@ -73,6 +73,31 @@ class Funcionarios extends AbstractService {
     }
 
     /**
+     * @param $key
+     * @return mixed
+     */
+    public function ativarFuncionario($key)
+    {
+        $repository = $this->em->getRepository("Usuario\Entity\Funcionarios");
+        $funcionario = $repository->findOneByChaveAtivacao($key);
+
+        if (!$funcionario)
+            return array();
+        else
+        {
+            if ($funcionario && !$funcionario->getConfirmado())
+            {
+                $funcionario->setConfirmado(true);
+                $this->em->persist($funcionario);
+                $this->em->flush();
+                return $funcionario;
+            }
+            else
+                return array(0,1);
+        }
+    }
+
+    /**
      * @param array $data
      * @return mixed
      * @throws \Doctrine\ORM\ORMException

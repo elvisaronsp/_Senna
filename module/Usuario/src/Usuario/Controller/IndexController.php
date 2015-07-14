@@ -15,8 +15,18 @@ class IndexController extends AbstractActionController
      */
     public function ativacaoAction()
     {
-        $viewModel =  new ViewModel();
-        $viewModel->setTerminal ( true );
-        return $viewModel;
+        $chaveAtivacao = $this->params()->fromRoute('key');
+
+        $service = $this->getServiceLocator()->get('Usuario\Service\Funcionarios');
+        $result = $service->ativarFuncionario($chaveAtivacao);
+
+        if($result) {
+            if (count($result) == 1)
+                return new ViewModel(array('usuario' => $result));
+            else
+                return new ViewModel();
+        }
+        else
+            return new ViewModel(array('erro' => true));
     }
 }
