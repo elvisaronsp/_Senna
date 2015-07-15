@@ -1,17 +1,18 @@
 <?php
-
-
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Zend\Mvc\Controller\AbstractActionController,
+    Zend\View\Model\ViewModel;
 
+/**
+ * Class IndexController
+ * @package Application\Controller
+ */
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        $viewModel = new ViewModel();
-		$viewModel->setTerminal(true);
-		return $viewModel;
+        $form = $this->getServiceLocator()->get('Usuario\Form\Login');
+        return new ViewModel(array('form'=>$form));
     }
 }

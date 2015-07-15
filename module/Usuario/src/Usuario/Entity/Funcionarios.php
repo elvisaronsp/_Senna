@@ -261,6 +261,8 @@ class Funcionarios
      */
     private $ferias;
 
+    private $nomePerfilFuncionario;
+
     /**
      * @param array $options
      */
@@ -910,6 +912,26 @@ class Funcionarios
         $this->ferias = $ferias;
         return $this;
     }
+
+    /**
+     * @return nome
+     */
+    public function getNomePerfilFuncionario()
+    {
+        return $this->nomePerfilFuncionario;
+    }
+
+    /**
+     * @param $nomePerfilFuncionario
+     * @return $this
+     */
+    public function setNomePerfilFuncionario($nomePerfilFuncionario)
+    {
+        $this->nomePerfilFuncionario = $nomePerfilFuncionario;
+        return $this;
+    }
+
+
 
     /**
      * @return string

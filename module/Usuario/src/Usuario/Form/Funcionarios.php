@@ -9,14 +9,8 @@ use Zend\Form\Form;
  */
 class Funcionarios extends Form
 {
-    private $recursos;
-
-    /**
-     * @param array $recursos
-     */
-    public function __construct(array $recursos = null)
+    public function __construct()
     {
-        $this->recursos = $recursos;
         parent::__construct('funcionarios');
         $this->setAttributes ( array (
             'method' => 'post',

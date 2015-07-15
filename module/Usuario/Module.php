@@ -40,11 +40,21 @@ class Module
                 },
                 'Usuario\Mail\Transport' => function($sm) {
                     $config = $sm->get('Config');
-
                     $transport = new SmtpTransport;
                     $options = new SmtpOptions($config['mail']);
                     $transport->setOptions($options);
                     return $transport;
+                },
+                'Usuario\Form\Funcionarios' => function($sm)
+                {
+                    return new Form\Funcionarios();
+                },
+                'Usuario\Form\Login' => function($sm)
+                {
+                    return new Form\Login();
+                },
+                'Usuario\Auth\Adapter' => function($sm){
+                    return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));
                 }
             )
         );

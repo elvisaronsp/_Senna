@@ -23,7 +23,7 @@ use Senna\Service\Empresa as EmpresaService;
 use Cadastro\Form\Empresa as EmpresaFRM;
 
 use Senna\Service\Funcionarios as FuncionariosService;
-use Usuario\Form\Funcionarios as FuncionariosFRM;
+
 
 
 class Module {
@@ -102,10 +102,6 @@ class Module {
 			},
 			'Senna\Service\Empresa'=>function ($service){
 				return new EmpresaService($service->get('Doctrine\ORM\EntityManager'));
-			},
-
-			'Usuario\Form\Funcionarios'=>function($service){
-				return new FuncionariosFRM();
 			},
 			'Senna\Service\Funcionarios'=>function ($service){
 				return new FuncionariosService($service->get('Doctrine\ORM\EntityManager'));

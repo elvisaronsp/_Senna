@@ -60,12 +60,24 @@ return array(
                     )
                 )
             ),
+            'usuario-authentication' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'=>'/authentication',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Usuario\Controller',
+                        'controller' => 'Authentication',
+                        'action' => 'index'
+                    )
+                )
+            ),
         )
     ),
     'controllers' => array(
         'invokables' => array(
             'Usuario\Controller\Funcionarios' => 'Usuario\Controller\FuncionariosController',
             'Usuario\Controller\Index' => 'Usuario\Controller\IndexController',
+            'Usuario\Controller\Authentication' => 'Usuario\Controller\AuthenticationController',
         )
     ),
     'view_manager' => array(
