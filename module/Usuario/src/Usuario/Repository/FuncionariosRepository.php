@@ -49,7 +49,7 @@ class FuncionariosRepository extends EntityRepository {
      * @param $senha
      * @return bool
      */
-    public function findByLoginAndSenha($login,$senha)
+    public function findByFuncionar($login,$senha)
     {
         $usuario = $this->findOneByLogin($login);
         if($usuario)

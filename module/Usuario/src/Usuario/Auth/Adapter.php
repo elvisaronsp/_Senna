@@ -25,7 +25,7 @@ class Adapter implements AdapterInterface
     public function __construct(EntityManager $em) 
     {
         $this->em = $em;
-        $this->usuarioValido = true;
+        $this->usuarioValido = false;
     }
 
     /**
@@ -75,22 +75,20 @@ class Adapter implements AdapterInterface
 
         if($usuario)
         {
-            if (!$usuario->getConfirmado()) {
-                $nomeUsuario =  ucwords(strtolower($usuario->getNome()));
-                $this->mensagem = "<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} sua conta ainda não está ativa.<br />Por favor verifique seu email. Para receber o e-mail de ativação novamente <a href='http://127.0.0.1:8080/registro/reativacao/{$usuario->getId()}'>Clique aqui.</a>";
-                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao",$this->mensagem));
-            }
+            $nomeUsuario =  ucwords(strtolower($usuario->getNome()));
+            if (!$usuario->getConfirmado())
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} sua conta ainda não está ativa.<br />Por favor verifique seu email. Para receber o e-mail de ativação novamente <a href='http://127.0.0.1:8080/registro/reativacao/{$usuario->getId()}'>Clique aqui.</a>"));
+            elseif (!$usuario->getAtivo())
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi revogado.<br /> Você não tem permissão para acessar o Senna.</a>"));
+            elseif ($usuario->getPerfil())
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi suspenso temporariamente.<br /> Não queremos que você se preocupe, curta suas férias que nos cuidaremos de tudo por aqui ate você voltar.</a>"));
 
+            $this->usuarioValido = true;
         }
-        else
-            $this->usuarioValido = false;
 
-
-        if ($this->usuarioValido) {
+        if ($this->usuarioValido)
             return new Result(Result::SUCCESS, array('usuario' => $usuario), array('Sucesso'));
-        }
-        else {
+        else
             return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("error",$this->mensagem));
-        }
     }
 }
