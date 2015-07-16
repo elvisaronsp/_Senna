@@ -153,6 +153,11 @@ class Funcionarios extends AbstractService {
             ->send();
     }
 
+    public function enviarAlertaBloqueioContaExcessoTentativas()
+    {
+
+    }
+
     /**
      * @param array $data
      * @return bool|\Doctrine\Common\Proxy\Proxy|null|object
@@ -160,35 +165,19 @@ class Funcionarios extends AbstractService {
      */
     public function update(array $data)
     {
+
         $entity = $this->em->getReference($this->entity, $data['id']);
         (new Hydrator\ClassMethods())->hydrate($data, $entity);
 
-        $entity->setAdmin(false);
-        if(isset($data['permitir_acesso_total']))
-            $entity->setAdmin(true);
+        if(isset($data['bloqueioLogin']))
+        {
+            $bloqueio = $data['bloqueioLogin']+1;
+            $entity->setTentativasLogin($bloqueio);
+        }
+
 
         $this->em->persist($entity);
         $this->em->flush();
-
-
-        ### VERIFICA TODOS OS ID RELACIONADOS E COLOCA NA ENTIDADE
-        if(isset($data[0])):
-            foreach ($data[0] as $key => $value):
-                $entityPrivilegios = new $this->privilegios();
-
-                $perfil = $this->em->getReference("Acl\Entity\Perfis",$entity->getId());
-                $entityPrivilegios->setPerfil($perfil);
-
-                $acesso = $this->em->getReference("Acl\Entity\Acessos",$value[0]);
-                $entityPrivilegios->setAcessos($acesso);
-
-                $recurso = $this->em->getReference("Acl\Entity\Recursos",$value[1]);
-                $entityPrivilegios->setRecurso($recurso);
-
-                $this->em->persist($entityPrivilegios);
-                $this->em->flush();
-            endforeach;
-        endif;
 
         return $entity;
     }

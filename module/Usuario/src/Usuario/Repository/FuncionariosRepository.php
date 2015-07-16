@@ -46,15 +46,29 @@ class FuncionariosRepository extends EntityRepository {
 
     /**
      * @param $login
-     * @param $senha
      * @return bool
      */
-    public function findByFuncionar($login,$senha)
+    public function findByFuncionario($login)
     {
         $usuario = $this->findOneByLogin($login);
         if($usuario)
+            return $usuario;
+        else
+            return false;
+    }
+
+    /**
+     * @param $loginFuncionario
+     * @param $senhaDigitada
+     * @return bool
+     */
+    public function findBySenha($loginFuncionario,$senhaDigitada)
+    {
+        // neste ponto o funcionario com certeza existe mas pego a referencia dele novamente
+        $usuario = $this->findOneByLogin($loginFuncionario);
+        if($usuario)
         {
-            $hashSenha = $usuario->encryptSenha($senha);
+            $hashSenha = $usuario->encryptSenha($senhaDigitada);
             if($hashSenha == $usuario->getSenha())
                 return $usuario;
             else

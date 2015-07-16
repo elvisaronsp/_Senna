@@ -264,6 +264,13 @@ class Funcionarios
     private $nomePerfilFuncionario;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="tentativasLogin", type="integer", nullable=true)
+     */
+    private $tentativasLogin;
+
+    /**
      * @param array $options
      */
     public function __construct($options = array())
@@ -790,6 +797,24 @@ class Funcionarios
     }
 
     /**
+     * @return int
+     */
+    public function getTentativasLogin()
+    {
+        return $this->tentativasLogin;
+    }
+
+    /**
+     * @param $tentativasLogin
+     * @return $this
+     */
+    public function setTentativasLogin($tentativasLogin)
+    {
+        $this->tentativasLogin = $tentativasLogin;
+        return $this;
+    }
+
+    /**
      * @return boolean
      */
     public function getRedefinirSenha()
@@ -981,7 +1006,8 @@ class Funcionarios
             'criadoem'=>$this->getCriadoem(),
             'atualizadoem'=>$this->getAtualizadoem(),
             'ferias'=>$this->ferias,
-            'alertas'=>$this->alertas
+            'alertas'=>$this->alertas,
+            'tentativasLogin'=>$this->tentativasLogin
         );
     }
 }

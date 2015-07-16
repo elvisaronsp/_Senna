@@ -3,6 +3,7 @@ namespace Usuario\Auth;
 
 use Zend\Authentication\Adapter\AdapterInterface,
     Zend\Authentication\Result;
+use Zend\Mvc\Controller\AbstractActionController;
 
 use Doctrine\ORM\EntityManager;
 
@@ -10,13 +11,12 @@ use Doctrine\ORM\EntityManager;
  * Class Adapter
  * @package Usuario\Auth
  */
-class Adapter implements AdapterInterface
+class Adapter extends AbstractActionController implements AdapterInterface
 {
 
     protected $em;
     protected $login;
     protected $senha;
-    protected $usuarioValido;
     protected $mensagem = "<strong>ATENÇÃO:</strong><br />Usuário ou senha inválidos. Por favor tente novamente!";
 
     /**
@@ -25,7 +25,6 @@ class Adapter implements AdapterInterface
     public function __construct(EntityManager $em) 
     {
         $this->em = $em;
-        $this->usuarioValido = false;
     }
 
     /**
@@ -71,11 +70,17 @@ class Adapter implements AdapterInterface
     {
         $repository = $this->em->getRepository("Usuario\Entity\Funcionarios");
 
-        $usuario = $repository->findByLoginAndSenha($this->getLogin(), $this->getSenha());
+        $usuario = $repository->findByFuncionario($this->getLogin());
 
         if($usuario)
         {
             $nomeUsuario =  ucwords(strtolower($usuario->getNome()));
+            if (!$repository->findBySenha($usuario->getLogin(),$this->getLogin()))
+            {
+                $service = $form = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
+                $entity = $service->update(array('id'=>$usuario->getId(),'bloqueioLogin'=>$usuario->getTentativasLogin()));
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("error", "<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} a senha que voce digitou está incorreta.<br /> Por favor tente novamente."));
+            }
             if (!$usuario->getConfirmado())
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} sua conta ainda não está ativa.<br />Por favor verifique seu email. Para receber o e-mail de ativação novamente <a href='http://127.0.0.1:8080/registro/reativacao/{$usuario->getId()}'>Clique aqui.</a>"));
             elseif (!$usuario->getAtivo())
@@ -83,12 +88,9 @@ class Adapter implements AdapterInterface
             elseif ($usuario->getPerfil())
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi suspenso temporariamente.<br /> Não queremos que você se preocupe, curta suas férias que nos cuidaremos de tudo por aqui ate você voltar.</a>"));
 
-            $this->usuarioValido = true;
+            return new Result(Result::SUCCESS, array('usuario' => $usuario), array('Sucesso'));
         }
 
-        if ($this->usuarioValido)
-            return new Result(Result::SUCCESS, array('usuario' => $usuario), array('Sucesso'));
-        else
-            return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("error",$this->mensagem));
+        return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("error",$this->mensagem));
     }
 }
