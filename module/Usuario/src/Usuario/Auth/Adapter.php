@@ -74,8 +74,8 @@ class Adapter extends AbstractActionController implements AdapterInterface
 
         if($usuario)
         {
-            $nomeUsuario =  ucwords(strtolower($usuario->getNome()));
-            if (!$repository->findBySenha($usuario->getLogin(),$this->getLogin()))
+            $nomeUsuario = ucwords(strtolower($usuario->getNome()));
+            if (!$repository->findBySenha($usuario->getLogin(),$this->getSenha()))
             {
                 $service = $form = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
                 $entity = $service->update(array('id'=>$usuario->getId(),'bloqueioLogin'=>$usuario->getTentativasLogin()));

@@ -168,13 +168,23 @@ class Funcionarios extends AbstractService {
 
         $entity = $this->em->getReference($this->entity, $data['id']);
         (new Hydrator\ClassMethods())->hydrate($data, $entity);
-
+        
         if(isset($data['bloqueioLogin']))
         {
+
             $bloqueio = $data['bloqueioLogin']+1;
             $entity->setTentativasLogin($bloqueio);
         }
 
+       /* if($entity->getTentativasLogin() >= 3)
+        {
+            echo "teste";die;
+            $entity->setTentativasLogin(0);
+
+            $date = new DateTime("now");
+            $date->modify('+5 minutes');
+            $entity->setBloqueiotemporario(new \DateTime($date));
+        }*/
 
         $this->em->persist($entity);
         $this->em->flush();
