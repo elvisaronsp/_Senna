@@ -153,9 +153,19 @@ class Funcionarios extends AbstractService {
             ->send();
     }
 
+
     public function enviarAlertaBloqueioContaExcessoTentativas()
     {
+        $repository = $this->em->getRepository("Acl\Entity\Perfis");
+        $perfisAdministradores = $repository->findBy(array( 'admin' => true));
 
+        $repository = $this->em->getRepository("Usuario\Entity\Funcionarios");
+        foreach($perfisAdministradores AS $perfis):
+            $usuariosAdministradores = $repository->findBy(array( 'perfil' => $perfis->getId()));
+            foreach($usuariosAdministradores AS $usuario):
+                echo $usuario->getEmail();
+            endforeach;
+        endforeach;
     }
 
     /**
@@ -165,26 +175,24 @@ class Funcionarios extends AbstractService {
      */
     public function update(array $data)
     {
-
         $entity = $this->em->getReference($this->entity, $data['id']);
         (new Hydrator\ClassMethods())->hydrate($data, $entity);
         
         if(isset($data['bloqueioLogin']))
         {
-
             $bloqueio = $data['bloqueioLogin']+1;
             $entity->setTentativasLogin($bloqueio);
         }
 
-       /* if($entity->getTentativasLogin() >= 3)
+       if($entity->getTentativasLogin() >= 3)
         {
-            echo "teste";die;
             $entity->setTentativasLogin(0);
 
-            $date = new DateTime("now");
-            $date->modify('+5 minutes');
-            $entity->setBloqueiotemporario(new \DateTime($date));
-        }*/
+            $date = new \DateTime('now');
+            $date->modify("+10 minutes");
+            $entity->setBloqueiotemporario($date);
+            $this->enviarAlertaBloqueioContaExcessoTentativas();
+        }
 
         $this->em->persist($entity);
         $this->em->flush();

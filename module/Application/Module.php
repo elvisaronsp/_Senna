@@ -19,7 +19,8 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-
+        // configura timezone para todos os modulos do sistema.
+        ini_set('date.timezone','America/SAO_PAULO');
     }
 
     public function getConfig()

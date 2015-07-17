@@ -781,7 +781,7 @@ class Funcionarios
     /**
      * @return \DateTime
      */
-    public function getBloqueiotemporario()
+    public function getBloqueioTemporario()
     {
         return $this->bloqueiotemporario;
     }

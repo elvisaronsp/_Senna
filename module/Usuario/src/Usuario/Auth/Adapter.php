@@ -75,17 +75,21 @@ class Adapter extends AbstractActionController implements AdapterInterface
         if($usuario)
         {
             $nomeUsuario = ucwords(strtolower($usuario->getNome()));
+
+            $date = new \DateTime('now');
+            if ($usuario->getBloqueioTemporario() >=  $date)
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi suspenso temporariamente.<br /> Excesso de tentativas de login fracassadas."));
             if (!$repository->findBySenha($usuario->getLogin(),$this->getSenha()))
             {
                 $service = $form = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
-                $entity = $service->update(array('id'=>$usuario->getId(),'bloqueioLogin'=>$usuario->getTentativasLogin()));
+                $service->update(array('id'=>$usuario->getId(),'bloqueioLogin'=>$usuario->getTentativasLogin()));
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("error", "<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} a senha que voce digitou está incorreta.<br /> Por favor tente novamente."));
             }
             if (!$usuario->getConfirmado())
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} sua conta ainda não está ativa.<br />Por favor verifique seu email. Para receber o e-mail de ativação novamente <a href='http://127.0.0.1:8080/registro/reativacao/{$usuario->getId()}'>Clique aqui.</a>"));
             elseif (!$usuario->getAtivo())
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi revogado.<br /> Você não tem permissão para acessar o Senna.</a>"));
-            elseif ($usuario->getPerfil())
+            elseif ($usuario->getFerias())
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi suspenso temporariamente.<br /> Não queremos que você se preocupe, curta suas férias que nos cuidaremos de tudo por aqui ate você voltar.</a>"));
 
             return new Result(Result::SUCCESS, array('usuario' => $usuario), array('Sucesso'));

@@ -12,6 +12,9 @@ use Usuario\Auth\Adapter as AuthAdapter;
 
 class Module
 {
+
+
+
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
