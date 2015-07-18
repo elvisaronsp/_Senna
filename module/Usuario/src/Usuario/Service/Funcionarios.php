@@ -118,7 +118,7 @@ class Funcionarios extends AbstractService {
         $this->em->flush();
 
         if ($entity && isset($data['mensagemBoasVindas'])) {
-            $this->enviarEmail('SENNA - Confirmação de cadastro', $entity->getEmail(), 'add-user', array('senha'=>$data['senha'],'nome'=>$entity->getNome(),'email'=>$entity->getEmail(),'login'=>$entity->getLogin()), $entity->getChaveAtivacao());
+            $this->enviarEmail('SENNA - Confirmação de cadastro', $entity->getEmail(), 'add-user' , array('senha' => $data['senha'],'nome'=>$entity->getNome(),'email'=>$entity->getEmail(),'login'=>$entity->getLogin(),'chaveAtivacao' =>$entity->getChaveAtivacao()));
             return $entity;
         }
 
@@ -130,16 +130,10 @@ class Funcionarios extends AbstractService {
      * @param $destinatarioEmail
      * @param $paginaRenderizada
      * @param array $data
-     * @param null $chaveAtivacao
      */
-    private function enviarEmail($assuntoEmail, $destinatarioEmail, $paginaRenderizada, $data = array(), $chaveAtivacao = null)
+    private function enviarEmail($assuntoEmail, $destinatarioEmail, $paginaRenderizada, $data = array())
     {
-        $dataEmail = array('senha' => $data['senha'],
-            'nome'  => $data['nome'],
-            'email' => $data['email'],
-            'login' => $data['login'],
-            'chaveAtivacao' => $chaveAtivacao
-        );
+
 
         $mail = new Mail($this->transport,
             $this->view,
@@ -148,14 +142,20 @@ class Funcionarios extends AbstractService {
 
         $mail->setSubject($assuntoEmail)
             ->setTo($destinatarioEmail)
-            ->setData($dataEmail)
+            ->setData($data)
             ->prepare()
             ->send();
     }
 
 
-    public function enviarAlertaBloqueioContaExcessoTentativas()
+    /**
+     * @param $nomeFuncionario
+     */
+    public function enviarAlertaBloqueioContaExcessoTentativas($nomeFuncionario)
     {
+        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+        date_default_timezone_set('America/Sao_Paulo');
+
         $repository = $this->em->getRepository("Acl\Entity\Perfis");
         $perfisAdministradores = $repository->findBy(array( 'admin' => true));
 
@@ -163,7 +163,7 @@ class Funcionarios extends AbstractService {
         foreach($perfisAdministradores AS $perfis):
             $usuariosAdministradores = $repository->findBy(array( 'perfil' => $perfis->getId()));
             foreach($usuariosAdministradores AS $usuario):
-                echo $usuario->getEmail();
+                $this->enviarEmail('SENNA - Tentativas exessivas de login ('.$nomeFuncionario.')', $usuario->getEmail(), 'block-user', array('email'=>$usuario->getEmail(),'nome'=>$nomeFuncionario,'ip'=>$_SERVER['REMOTE_ADDR'],'data'=>strftime( '%A, %d de %B de %Y', strtotime( date( 'Y-m-d' ) ) )));
             endforeach;
         endforeach;
     }
@@ -191,7 +191,7 @@ class Funcionarios extends AbstractService {
             $date = new \DateTime('now');
             $date->modify("+10 minutes");
             $entity->setBloqueiotemporario($date);
-            $this->enviarAlertaBloqueioContaExcessoTentativas();
+            $this->enviarAlertaBloqueioContaExcessoTentativas($data['nomeFuncionario']);
         }
 
         $this->em->persist($entity);

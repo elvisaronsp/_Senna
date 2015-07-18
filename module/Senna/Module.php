@@ -2,6 +2,7 @@
 
 namespace Senna;
 
+use Zend\ModuleManager\ModuleManager;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
@@ -23,6 +24,9 @@ use Senna\Service\Empresa as EmpresaService;
 use Cadastro\Form\Empresa as EmpresaFRM;
 
 use Senna\Service\Funcionarios as FuncionariosService;
+
+use Zend\Authentication\AuthenticationService,
+	Zend\Authentication\Storage\Session as SessionStorage;
 
 
 
@@ -46,7 +50,34 @@ class Module {
 		}, 100);
 		
 	}
-	
+
+	public function init(ModuleManager $moduleManager)
+	{
+		$sharedEvents = $moduleManager->getEventManager()->getSharedManager();
+
+		$sharedEvents->attach("Zend\Mvc\Controller\AbstractActionController",
+			MvcEvent::EVENT_DISPATCH,
+			array($this,'validaAuth'),100);
+	}
+
+	public function validaAuth($e)
+	{
+		$auth = new AuthenticationService;
+		$auth->setStorage(new SessionStorage("Usuario"));
+
+		$controller = $e->getTarget();
+		$matchedRoute = $controller->getEvent()->getRouteMatch()->getMatchedRouteName();
+
+		if(!$auth->hasIdentity() and ($matchedRoute == "senna")){
+			return $controller->redirect()->toRoute("application");
+		}
+		if($auth->hasIdentity() and $matchedRoute == "application" ){
+			return $controller->redirect()->toRoute("senna");
+		}
+
+	}
+
+
 	public function getConfig() {
 		return include __DIR__ . '/config/module.config.php';
 	}

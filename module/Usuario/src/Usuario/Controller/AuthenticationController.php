@@ -48,18 +48,25 @@ class AuthenticationController extends AbstractActionController
                 $this->message = $this->result->getMessages()[1];
 
                 /** @var TYPE_NAME $result*/
-                if($this->result->isValid())
-                {
-                    // correção do array da entidade usuario
-                    $auth->getIdentity()['usuario']->setNomePerfilFuncionario($auth->getIdentity()['usuario']->getPerfil()->getNome());
-                    $sessionStorage->write($auth->getIdentity()['usuario'],null);
+                if($this->result->isValid()):
 
-                    return $this->redirect()->toRoute('senna',array('controller'=>'index'));
-                }
-                else {
+                    $redefinirSenha =  $auth->getIdentity()['Funcionario']->getRedefinirSenha();
+
+                    // correção do array da entidade usuario
+                    $auth->getIdentity()['Funcionario']->setNomePerfilFuncionario($auth->getIdentity()['Funcionario']->getPerfil()->getNome());
+                    $sessionStorage->write($auth->getIdentity()['Funcionario'],null);
+                    if(!$redefinirSenha):
+                        return $this->redirect()->toRoute('senna',array('controller'=>'index'));
+                    else:
+                        return $this->redirect()->toRoute('usuario-listar/default',array('controller'=>'Funcionarios','action'=>'funcionario'));
+                    endif;
+
+                else:
+
                     $form->clear($form);
                     $error = true;
-                }
+
+                endif;
             }
         }
         
