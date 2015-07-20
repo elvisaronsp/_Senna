@@ -33,46 +33,47 @@ class AuthenticationController extends AbstractActionController
             $form->setData($request->getPost());
             if($form->isValid())
             {
-                $data = $request->getPost()->toArray();
+                $data = array_filter($request->getPost()->toArray());
+                if(!isset($data['email'])):
+                    // Criando Storage para gravar sessão da authtenticação
+                    $sessionStorage = new SessionStorage("Usuario");
+                    $auth = new AuthenticationService;
+                    $auth->setStorage($sessionStorage); // Definindo o SessionStorage para a auth
 
-                // Criando Storage para gravar sessão da authtenticação
-                $sessionStorage = new SessionStorage("Usuario");
-                $auth = new AuthenticationService;
-                $auth->setStorage($sessionStorage); // Definindo o SessionStorage para a auth
-
-                $authAdapter = $this->getServiceLocator()->get("Usuario\Auth\Adapter");
-                $authAdapter->setLogin($data['login']);
-                $authAdapter->setSenha($data['senha']);
+                    $authAdapter = $this->getServiceLocator()->get("Usuario\Auth\Adapter");
+                    $authAdapter->setLogin($request->getPost()->toArray()['login']);
+                    $authAdapter->setSenha($request->getPost()->toArray()['senha']);
                 
-                $this->result = $auth->authenticate($authAdapter);
-                $this->message = $this->result->getMessages()[1];
+                    $this->result = $auth->authenticate($authAdapter);
+                    $tipo = $this->result->getMessages()[0];
+                    $this->message = $this->result->getMessages()[1];
 
-                /** @var TYPE_NAME $result*/
-                if($this->result->isValid()):
+                    /** @var TYPE_NAME $result*/
+                    if($this->result->isValid()):
 
-                    $redefinirSenha =  $auth->getIdentity()['Funcionario']->getRedefinirSenha();
+                        $redefinirSenha =  $auth->getIdentity()['Funcionario']->getRedefinirSenha();
 
-                    // correção do array da entidade usuario
-                    $auth->getIdentity()['Funcionario']->setNomePerfilFuncionario($auth->getIdentity()['Funcionario']->getPerfil()->getNome());
-                    $sessionStorage->write($auth->getIdentity()['Funcionario'],null);
-                    if(!$redefinirSenha):
-                        return $this->redirect()->toRoute('senna',array('controller'=>'index'));
+                        // correção do array da entidade usuario
+                        $auth->getIdentity()['Funcionario']->setNomePerfilFuncionario($auth->getIdentity()['Funcionario']->getPerfil()->getNome());
+                        $sessionStorage->write($auth->getIdentity()['Funcionario'],null);
+                        if(!$redefinirSenha):
+                            return $this->redirect()->toRoute('senna',array('controller'=>'index'));
+                        else:
+                            return $this->redirect()->toRoute('usuario-listar/default',array('controller'=>'Funcionarios','action'=>'funcionario'));
+                        endif;
                     else:
-                        return $this->redirect()->toRoute('usuario-listar/default',array('controller'=>'Funcionarios','action'=>'funcionario'));
+                        $form->clear($form);
+                        $error = true;
                     endif;
-
                 else:
-
-                    $form->clear($form);
-                    $error = true;
-
+                    // TODO DE RECUPERAR E-MAIL
                 endif;
             }
         }
         
         $viewModel =  new ViewModel(array(
                 'form'=>$form,
-                $this->result->getMessages()[0]=>$error,
+                $tipo=>$error,
                 'message'=>$this->message
             )
         );
