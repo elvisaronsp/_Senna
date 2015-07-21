@@ -157,6 +157,19 @@
             <script> setTimeout(function(){$('#atencao').fadeOut(3000); },20000) </script>
         <?php endif; ?>
 
+        <?php if($this->info): ?>
+            <div class="row" id="info">
+                <div class="error-notice">
+                    <div class="oaerror info" style="font-size: 14px">
+                        <?php echo $this->message; ?>
+                    </div>
+                </div>
+            </div>
+            <script>
+                setTimeout(function(){$('#recuperarSenha').click(); },100)
+                setTimeout(function(){$('#info').fadeOut(3000); },10000) </script>
+        <?php endif; ?>
+
 
         <!-- TAB USUARIO SENHA -->
         <?php echo $this->partial('partials/tab_usuario_senha'); ?>

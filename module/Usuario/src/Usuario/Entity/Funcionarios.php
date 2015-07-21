@@ -73,6 +73,14 @@ class Funcionarios
     private $senha = '';
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="prazoRedefinirSenha", type="datetime", nullable=true)
+     */
+    private $prazoRedefinirSenha;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="salt", type="string", length=255, nullable=false)
@@ -280,8 +288,17 @@ class Funcionarios
 
         $this->salt = base64_encode(Rand::getBytes(32, true));
         $this->chaveAtivacao = md5($this->email.$this->salt);
-
         (new Hydrator\ClassMethods)->hydrate($options, $this);
+    }
+
+    /**
+     * Criar chave de ativação
+     * @return string
+     */
+    public function gerarChaveAtivacao()
+    {
+        $this->salt = base64_encode(Rand::getBytes(32, true));
+        return $this->chaveAtivacao = md5($this->email.$this->salt);
     }
 
     /**
@@ -442,6 +459,24 @@ class Funcionarios
      */
     public function setSenha($senha) {
         $this->senha = $this->encryptSenha($senha);
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPrazoRedefinirSenha()
+    {
+        return $this->prazoRedefinirSenha;
+    }
+
+    /**
+     * @param $prazoRedefinirSenha
+     * @return $this
+     */
+    public function setPrazoRedefinirSenha($prazoRedefinirSenha)
+    {
+        $this->prazoRedefinirSenha = $prazoRedefinirSenha;
         return $this;
     }
 

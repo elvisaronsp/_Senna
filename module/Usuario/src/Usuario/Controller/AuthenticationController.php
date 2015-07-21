@@ -18,6 +18,7 @@ class AuthenticationController extends AbstractActionController
     private $result;
     private $message;
     private $erro;
+    private $em;
 
     /**
      * @return \Zend\Http\Response|ViewModel
@@ -48,7 +49,6 @@ class AuthenticationController extends AbstractActionController
                     $tipo = $this->result->getMessages()[0];
                     $this->message = $this->result->getMessages()[1];
 
-                    /** @var TYPE_NAME $result*/
                     if($this->result->isValid()):
 
                         $redefinirSenha =  $auth->getIdentity()['Funcionario']->getRedefinirSenha();
@@ -66,7 +66,19 @@ class AuthenticationController extends AbstractActionController
                         $error = true;
                     endif;
                 else:
-                    // TODO DE RECUPERAR E-MAIL
+                    $repository = $this->getEm()->getRepository("Usuario\Entity\Funcionarios");
+                    $entity = $repository->findByEmail($request->getPost()->toArray()['email']);
+                    if($entity):
+                        $service = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
+                        $service->enviarEmailRedefinicaoSenha($entity->getId());
+                        $tipo = "info";
+                        $error=true;
+                        $this->message="<strong>OK:</strong><br />";
+                    else:
+                        $tipo = "error";
+                        $error=true;
+                        $this->message="<strong>ATENÇÃO:</strong><br />E-mail não cadastrado. Verifique o endereço digitado e tente novamente!";
+                    endif;
                 endif;
             }
         }
@@ -93,5 +105,14 @@ class AuthenticationController extends AbstractActionController
         $auth->clearIdentity();
 
         return $this->redirect()->toRoute('usuario-auth');
+    }
+
+    /**
+     * @return array|object
+     */
+    protected function getEm() {
+        if (null === $this->em)
+            $this->em = $this->getServiceLocator ()->get ( 'Doctrine\ORM\EntityManager' );
+        return $this->em;
     }
 }

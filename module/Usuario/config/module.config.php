@@ -60,6 +60,16 @@ return array(
                     )
                 )
             ),
+            'usuario-reset' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/reset/password[/:key]',
+                    'defaults' => array(
+                        'controller' => 'Usuario\Controller\Index',
+                        'action' => 'reset'
+                    )
+                )
+            ),
             'usuario-authentication' => array(
                 'type' => 'Literal',
                 'options' => array(

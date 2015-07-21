@@ -81,7 +81,7 @@ class Adapter extends AbstractActionController implements AdapterInterface
 
             elseif (!$repository->findBySenha($usuario->getLogin(),$this->getSenha()))
             {
-                $service = $form = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
+                $service = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
                 $service->update(array('id'=>$usuario->getId(),'bloqueioLogin'=>$usuario->getTentativasLogin(),'nomeFuncionario'=>$usuario->getNome()));
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("error", "<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} a senha que voce digitou está incorreta.<br /> Por favor tente novamente."));
             }

@@ -62,7 +62,7 @@ class FuncionariosController extends GrudController {
     public function FormAction()
     {
         $form = $this->getServiceLocator()->get( $this->form );
-        $repository = $this->getEm()->getRepository($this->entity);
+            $repository = $this->getEm()->getRepository($this->entity);
 
         $retorno = array ('form' => $form );
 
@@ -92,8 +92,8 @@ class FuncionariosController extends GrudController {
     }
 
     /**
-     * @return ViewModel
-     */
+ * @return ViewModel
+ */
     public function FuncionarioAction() {
         $viewModel = new ViewModel ( );
         $viewModel->setTerminal ( true );

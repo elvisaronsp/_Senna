@@ -57,6 +57,20 @@ class FuncionariosRepository extends EntityRepository {
             return false;
     }
 
+
+    /**
+     * @param $email
+     * @return bool
+     */
+    public function findByEmail($email)
+    {
+        $usuario = $this->findOneByEmail($email);
+        if($usuario)
+            return $usuario;
+        else
+            return false;
+    }
+
     /**
      * @param $loginFuncionario
      * @param $senhaDigitada

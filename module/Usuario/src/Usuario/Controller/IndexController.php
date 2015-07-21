@@ -29,4 +29,23 @@ class IndexController extends AbstractActionController
         else
             return new ViewModel(array('erro' => true));
     }
+
+    /**
+     * @return ViewModel
+     */
+    public function resetAction() {
+        $chaveAtivacao = $this->params()->fromRoute('key');
+
+        $service = $this->getServiceLocator()->get('Usuario\Service\Funcionarios');
+        $result = $service->verificaChaveAtivacaoResetSenha($chaveAtivacao);
+
+        if($result) {
+            if (count($result) == 1)
+                return new ViewModel(array('usuario' => $result));
+            else
+                return new ViewModel();
+        }
+        else
+            return new ViewModel(array('erro' => true));
+    }
 }

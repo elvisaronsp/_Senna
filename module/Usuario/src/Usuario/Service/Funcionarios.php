@@ -6,6 +6,7 @@ use Senna\Service\AbstractService;
 use Zend\Stdlib\Hydrator;
 use Zend\Mail\Transport\Smtp AS SmtpTransport;
 use Util\Mail\Mail;
+use Zend\XmlRpc\Value\DateTime;
 
 /**s
  * Class Funcionarios
@@ -22,7 +23,6 @@ class Funcionarios extends AbstractService {
     protected $transport;
     protected $view;
 
-
     /**
      * @param EntityManager $em
      * @param SmtpTransport $transport
@@ -37,7 +37,6 @@ class Funcionarios extends AbstractService {
         $this->horarios = "Usuario\Entity\Horarios";
         $this->em = $em;
     }
-
 
     /**
      * @param $entity
@@ -70,6 +69,27 @@ class Funcionarios extends AbstractService {
             $entity->setAlertas(true);
 
         return $entity;
+    }
+
+    /**
+     * @param $key
+     * @return array
+     */
+    public function verificaChaveAtivacaoResetSenha($key)
+    {
+        $repository = $this->em->getRepository("Usuario\Entity\Funcionarios");
+        $funcionario = $repository->findOneByChaveAtivacao($key);
+        if (!$funcionario)
+            return array();
+        else
+        {
+            if ($funcionario && $funcionario->getPrazoRedefinirSenha() >= new \DateTime('now'))
+            {
+                return $funcionario;
+            }
+            else
+                return array(0,1);
+        }
     }
 
     /**
@@ -147,7 +167,6 @@ class Funcionarios extends AbstractService {
             ->send();
     }
 
-
     /**
      * @param $nomeFuncionario
      */
@@ -176,15 +195,22 @@ class Funcionarios extends AbstractService {
     public function update(array $data)
     {
         $entity = $this->em->getReference($this->entity, $data['id']);
+
+        if (empty($data['senha'])):
+            unset($data['senha']);
+        else:
+            //$this->enviarEmail("Alteracao de senha", $data['email'], 'edit-user', $data);
+        endif;
+
         (new Hydrator\ClassMethods())->hydrate($data, $entity);
-        
+
         if(isset($data['bloqueioLogin']))
         {
             $bloqueio = $data['bloqueioLogin']+1;
             $entity->setTentativasLogin($bloqueio);
         }
 
-       if($entity->getTentativasLogin() >= 3)
+        if($entity->getTentativasLogin() >= 3)
         {
             $entity->setTentativasLogin(0);
 
@@ -198,5 +224,27 @@ class Funcionarios extends AbstractService {
         $this->em->flush();
 
         return $entity;
+    }
+
+    /**
+     * @param $id
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function enviarEmailRedefinicaoSenha($id)
+    {
+        $entity = $this->em->getReference($this->entity,$id);
+        $entity->setChaveAtivacao($entity->gerarChaveAtivacao());
+
+
+
+        $date = new \DateTime('now');
+        $date->modify("+10 minutes");
+        $entity->setPrazoRedefinirSenha($date);
+
+        $data = $entity->toArray();
+        $data['senha'] = "";
+
+        $this->update($data);
+        $this->enviarEmail('SENNA - Refefinir senha de acesso', $entity->getEmail(), 'reset-user', array('email'=>$entity->getEmail(),'nome'=>$entity->getNome(),'chaveAtivacao'=> $entity->getChaveAtivacao()));
     }
 }
