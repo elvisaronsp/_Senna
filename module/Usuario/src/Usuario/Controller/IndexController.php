@@ -34,18 +34,18 @@ class IndexController extends AbstractActionController
      * @return ViewModel
      */
     public function resetAction() {
+        $form = $this->getServiceLocator()->get( 'Usuario\Form\Reset' );
         $chaveAtivacao = $this->params()->fromRoute('key');
 
         $service = $this->getServiceLocator()->get('Usuario\Service\Funcionarios');
         $result = $service->verificaChaveAtivacaoResetSenha($chaveAtivacao);
 
-        if($result) {
+        if($result)
+        {
             if (count($result) == 1)
-                return new ViewModel(array('usuario' => $result));
+                return new ViewModel(array('form'=>$form,'usuario' => $result));
             else
-                return new ViewModel();
+                return new ViewModel(array('erro' => true));
         }
-        else
-            return new ViewModel(array('erro' => true));
     }
 }

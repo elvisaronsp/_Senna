@@ -87,8 +87,9 @@ class Funcionarios extends AbstractService {
             {
                 return $funcionario;
             }
-            else
-                return array(0,1);
+            else {
+                return array(0, 1);
+            }
         }
     }
 

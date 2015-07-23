@@ -56,6 +56,10 @@ class Module
                 {
                     return new Form\Login();
                 },
+                'Usuario\Form\Reset' => function($sm)
+                {
+                    return new Form\Reset();
+                },
                 'Usuario\Auth\Adapter' => function($sm){
                     return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));
                 }

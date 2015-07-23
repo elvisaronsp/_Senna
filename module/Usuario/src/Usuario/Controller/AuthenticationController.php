@@ -35,7 +35,8 @@ class AuthenticationController extends AbstractActionController
             if($form->isValid())
             {
                 $data = array_filter($request->getPost()->toArray());
-                if(!isset($data['email'])):
+                if(!isset($data['email']) && isset($data['login'])):
+
                     // Criando Storage para gravar sessão da authtenticação
                     $sessionStorage = new SessionStorage("Usuario");
                     $auth = new AuthenticationService;
@@ -73,7 +74,7 @@ class AuthenticationController extends AbstractActionController
                         $service->enviarEmailRedefinicaoSenha($entity->getId());
                         $tipo = "info";
                         $error=true;
-                        $this->message="<strong>OK:</strong><br />";
+                        $this->message="<strong>ATENÇÃO:</strong><br />Enviamos um e-mail para ".substr(strstr($request->getPost()->toArray()['email'], '@', true),0,1)."*****".strstr($request->getPost()->toArray()['email'], '@')." com instruções para redefinir sua senha.<br />Por favor acesse seu e-mail.";
                     else:
                         $tipo = "error";
                         $error=true;
