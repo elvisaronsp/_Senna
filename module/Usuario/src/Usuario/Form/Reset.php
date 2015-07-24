@@ -10,8 +10,14 @@ class Reset  extends Form
         parent::__construct('Reset', $options);
         $this->setAttribute('method', 'post');
 
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('chaveAtivacao');
+        $hidden->setAttribute('id', "chaveAtivacao")
+            ->setValue("");
+        $this->add($hidden);
+
         // input senha de usuario
-        $input = new \Zend\Form\Element\Text("senha");
+        $input = new \Zend\Form\Element\Password("senha");
         $input->setAttribute('id', "senha")
             ->setAttribute('placeholder', "Digite sua nova senha")
             ->setAttribute('class', "form-control")
@@ -21,7 +27,7 @@ class Reset  extends Form
         $this->add($input);
 
         // input confirmar senha de usuario
-        $input = new \Zend\Form\Element\Text("confirmacaoSenha");
+        $input = new \Zend\Form\Element\Password("confirmacaoSenha");
         $input->setAttribute('id', "confirmacaoSenha")
             ->setAttribute('placeholder', "Confirrme sua nova senha")
             ->setAttribute('class', "form-control")
@@ -40,6 +46,6 @@ class Reset  extends Form
 
     public function clear($form)
     {
-        $form->setData(array('senha'=>'','confirmacaoSenha'=>''));
+        $form->setData(array('senha'=>'','confirmacaoSenha'=>'','confirmacaoSenha'=>''));
     }
 }

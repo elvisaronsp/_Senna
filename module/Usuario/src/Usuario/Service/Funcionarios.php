@@ -154,8 +154,6 @@ class Funcionarios extends AbstractService {
      */
     private function enviarEmail($assuntoEmail, $destinatarioEmail, $paginaRenderizada, $data = array())
     {
-
-
         $mail = new Mail($this->transport,
             $this->view,
             $paginaRenderizada
@@ -195,6 +193,7 @@ class Funcionarios extends AbstractService {
      */
     public function update(array $data)
     {
+
         $entity = $this->em->getReference($this->entity, $data['id']);
 
         if (empty($data['senha'])):
@@ -235,8 +234,6 @@ class Funcionarios extends AbstractService {
     {
         $entity = $this->em->getReference($this->entity,$id);
         $entity->setChaveAtivacao($entity->gerarChaveAtivacao());
-
-
 
         $date = new \DateTime('now');
         $date->modify("+10 minutes");

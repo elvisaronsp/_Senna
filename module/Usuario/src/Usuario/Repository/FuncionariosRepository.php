@@ -82,6 +82,7 @@ class FuncionariosRepository extends EntityRepository {
         $usuario = $this->findOneByLogin($loginFuncionario);
         if($usuario)
         {
+
             $hashSenha = $usuario->encryptSenha($senhaDigitada);
             if($hashSenha == $usuario->getSenha())
                 return $usuario;

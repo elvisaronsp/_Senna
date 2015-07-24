@@ -87,7 +87,7 @@ class Adapter extends AbstractActionController implements AdapterInterface
             }
 
             elseif (!$usuario->getConfirmado())
-                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} sua conta ainda não está ativa.<br />Por favor verifique seu email. Para receber o e-mail de ativação novamente <a href='http://127.0.0.1:8080/registro/reativacao/{$usuario->getId()}'>Clique aqui.</a>"));
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} sua conta ainda não está ativa.<br />Por favor verifique seu email. Para receber o e-mail de ativação novamente <a href='#' id='solicitarRedefinicaoNovamente'>Clique aqui.</a>"));
 
             elseif (!$usuario->getAtivo())
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi revogado.<br /> Você não tem permissão para acessar o Senna.</a>"));

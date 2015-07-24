@@ -1,0 +1,15 @@
+<?php $form->setAttribute('action',$this->url('usuario-reset',array('controller'=>'Index','action'=>'reset')))
+    ->setAttribute('id','login-validation')
+    ->setAttribute('class','col-md-4 center-margin')
+    ->setAttribute('autocomplete','off');
+$form->prepare();
+echo $this->form()->openTag($form); ?>
+
+<!-- TAB USUARIO SENHA -->
+<?php echo $this->partial('partials/tab_redefinir_senha'); ?>
+<!-- -->
+
+<?php echo $this->form()->closeTag();?>
+
+
+

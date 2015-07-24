@@ -24,7 +24,6 @@
             font-size: 13px;
         }
 
-
         #loading {
             position: fixed;
             width: 100%;
@@ -90,12 +89,12 @@
         }
 
         .success {
-            border-left-color: #2b542c;
-            background-color: rgba(43, 84, 44, 0.1);
+            border-left-color: #1BBC9B;
+            background-color: rgba(4, 147, 114, 0.1);
         }
 
         .success strong {
-            color: #2b542c;
+            color: #1BBC9B;
         }
     </style>
 
@@ -122,6 +121,7 @@
 
         <!-- ERRO COM BOTAO-->
         <?php if($this->erro): ?>
+
             <form class="col-md-4 center-margin">
                 <div class="row" id="error">
                     <div class="error-notice">
@@ -132,10 +132,61 @@
                 </div>
                 <div id="div_erro" class="content-box modal-content ">
                     <div class="button-pane text-center">
-                        <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#div_erro" title="Entrar no sistema">Entrar no sistema</a>
+                        <a href="\" class="btn btn-md btn-link " switch-target="#login-form" switch-parent="#div_erro" title="Entrar no sistema">Entrar no sistema</a>
                     </div>
                 </div>
             </form>
+
+        <?php elseif($this->sucesso): ?>
+
+            <form class="col-md-4 center-margin">
+                <div class="row" id="successo">
+                    <div class="error-notice">
+                        <div class="oaerror success" style="font-size: 14px">
+                            <?php echo $this->message; ?>
+                        </div>
+                    </div>
+                </div>
+                <div id="div_erro" class="content-box modal-content ">
+                    <div class="button-pane text-center">
+                        <a href="\" class="btn btn-md btn-link " switch-target="#login-form" switch-parent="#div_erro" title="Entrar no sistema">Entrar no sistema</a>
+                    </div>
+                </div>
+            </form>
+
+        <?php elseif($this->atencao): ?>
+
+            <form class="col-md-4 center-margin">
+                <div class="row" id="atencao">
+                    <div class="error-notice">
+                        <div class="oaerror warning" style="font-size: 14px">
+                            <?php echo $this->message; ?>
+                        </div>
+                    </div>
+                </div>
+                <div id="div_erro" class="content-box modal-content ">
+                    <div class="button-pane text-center">
+                        <a href="\" class="btn btn-md btn-link " switch-target="#login-form" switch-parent="#div_erro" title="Entrar no sistema">Entrar no sistema</a>
+                    </div>
+                </div>
+            </form>
+        <?php elseif($this->info): ?>
+
+            <form class="col-md-4 center-margin">
+                <div class="row" id="info">
+                    <div class="error-notice">
+                        <div class="oaerror info" style="font-size: 14px">
+                            <?php echo $this->message; ?>
+                        </div>
+                    </div>
+                </div>
+                <div id="div_erro" class="content-box modal-content ">
+                    <div class="button-pane text-center">
+                        <a href="\" class="btn btn-md btn-link " switch-target="#login-form" switch-parent="#div_erro" title="Entrar no sistema">Entrar no sistema</a>
+                    </div>
+                </div>
+            </form>
+
         <?php else: ?>
 
             <!-- ALERTAS-->
@@ -146,9 +197,17 @@
             <?php echo $this->partial('partials/form_email'); ?>
             <!--  -->
 
-            <!-- PARTIAL FORM USUARIO E SENHA -->
-            <?php echo $this->partial('partials/form_usuario_senha'); ?>
-            <!--  -->
+            <?php if($this->login):?>
+                <!-- PARTIAL FORM USUARIO E SENHA -->
+                <?php echo $this->partial('partials/form_usuario_senha'); ?>
+                <!--  -->
+            <?php endif?>
+
+            <?php if($this->reset):?>
+                <!-- PARTIAL FORM USUARIO E SENHA -->
+                <?php echo $this->partial('partials/form_redefinir_senha'); ?>
+                <!--  -->
+            <?php endif?>
 
             <!-- PARTIAL FOOTER -->
             <?php echo $this->partial('partials/tab_footer'); ?>

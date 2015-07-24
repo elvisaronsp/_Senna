@@ -5,28 +5,29 @@ $(window).load(function() {
 });
 $(document).ready(function() {
 
-    $('#email').change(function () {
-
+    $('#email').change(function ()
+    {
         if($('#email').val()!="")
           $('#bntRecuperarSenha').removeAttr('disabled');
         else
           $('#bntRecuperarSenha').attr('disabled','disabled');
     });
 
-    $('#recuperarSenha').click(function () {
+    $('#recuperarSenha').click(function ()
+    {
         $('#login').val('');
         $('#senha').val('');
     });
 
-    $('#cancelarRecuperarSenha').click(function () {
+    $('#cancelarRecuperarSenha').click(function ()
+    {
         $('#email').val('');
         $('#bntRecuperarSenha').attr('disabled','disabled');
     });
 
-    $('#bntSolicitarNovamente').click(function () {
-        $('#atencao').remove();
+    $('#solicitarRedefinicaoNovamente').click(function ()
+    {
+       $('#recuperarSenha').click();
+        $('#atencao').fadeOut();
     });
-
-
-
 });

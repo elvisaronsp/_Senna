@@ -90,6 +90,14 @@ class Funcionarios
     /**
      * @var string
      *
+     * @ORM\Column(name="saltRedefinicaoSenha", type="string", length=255, nullable=false)
+     */
+    private $saltSenha = '';
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="chaveAtivacao", type="string", length=255, nullable=false)
      */
     private $chaveAtivacao = '';
@@ -276,7 +284,7 @@ class Funcionarios
      *
      * @ORM\Column(name="tentativasLogin", type="integer", nullable=true)
      */
-    private $tentativasLogin;
+    private $tentativasLogin = 0;
 
     /**
      * @param array $options
@@ -297,8 +305,8 @@ class Funcionarios
      */
     public function gerarChaveAtivacao()
     {
-        $this->salt = base64_encode(Rand::getBytes(32, true));
-        return $this->chaveAtivacao = md5($this->email.$this->salt);
+        $this->saltSenha = base64_encode(Rand::getBytes(32, true));
+        return $this->chaveAtivacao = md5($this->email.$this->saltSenha);
     }
 
     /**
@@ -506,6 +514,23 @@ class Funcionarios
         $this->salt = $salt;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getSaltSenha()
+    {
+        return $this->saltSenha;
+    }
+
+    /**
+     * @param string $saltSenha
+     */
+    public function setSaltSenha($saltSenha)
+    {
+        $this->saltSenha = $saltSenha;
+    }
+
 
     /**
      * @return string
