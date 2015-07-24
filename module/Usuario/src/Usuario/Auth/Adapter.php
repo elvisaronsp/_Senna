@@ -77,27 +77,27 @@ class Adapter extends AbstractActionController implements AdapterInterface
             $nomeUsuario = ucwords(strtolower($usuario->getNome()));
 
             if ($usuario->getBloqueioTemporario() >=  new \DateTime('now'))
-                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi suspenso temporariamente.<br /> Excesso de tentativas de login fracassadas."));
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi suspenso temporariamente.<br /> Excesso de tentativas de login fracassadas."));
 
             elseif (!$repository->findBySenha($usuario->getLogin(),$this->getSenha()))
             {
                 $service = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
                 $service->update(array('id'=>$usuario->getId(),'bloqueioLogin'=>$usuario->getTentativasLogin(),'nomeFuncionario'=>$usuario->getNome()));
-                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("error", "<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} a senha que voce digitou está incorreta.<br /> Por favor tente novamente."));
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("erroForm", "<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} a senha que voce digitou está incorreta.<br /> Por favor tente novamente."));
             }
 
             elseif (!$usuario->getConfirmado())
-                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} sua conta ainda não está ativa.<br />Por favor verifique seu email. Para receber o e-mail de ativação novamente <a href='http://127.0.0.1:8080/registro/reativacao/{$usuario->getId()}'>Clique aqui.</a>"));
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} sua conta ainda não está ativa.<br />Por favor verifique seu email. Para receber o e-mail de ativação novamente <a href='http://127.0.0.1:8080/registro/reativacao/{$usuario->getId()}'>Clique aqui.</a>"));
 
             elseif (!$usuario->getAtivo())
-                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi revogado.<br /> Você não tem permissão para acessar o Senna.</a>"));
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi revogado.<br /> Você não tem permissão para acessar o Senna.</a>"));
 
             elseif ($usuario->getFerias())
-                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencao","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi suspenso temporariamente.<br /> Não queremos que você se preocupe, curta suas férias que nos cuidaremos de tudo por aqui ate você voltar.</a>"));
+                return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi suspenso temporariamente.<br /> Não queremos que você se preocupe, curta suas férias que nos cuidaremos de tudo por aqui ate você voltar.</a>"));
 
             return new Result(Result::SUCCESS, array('Funcionario' => $usuario), array('Sucesso',null));
         }
 
-        return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("error",$this->mensagem));
+        return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("erroForm",$this->mensagem));
     }
 }

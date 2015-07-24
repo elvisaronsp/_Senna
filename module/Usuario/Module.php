@@ -56,6 +56,10 @@ class Module
                 {
                     return new Form\Login();
                 },
+                'Usuario\Form\Email' => function($sm)
+                {
+                    return new Form\Email();
+                },
                 'Usuario\Form\Reset' => function($sm)
                 {
                     return new Form\Reset();

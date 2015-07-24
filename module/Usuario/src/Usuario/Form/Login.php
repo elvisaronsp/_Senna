@@ -20,7 +20,6 @@ class Login  extends Form
             ->setValue("");
         $this->add($input);
 
-
         // input senha de usuario
         $input = new \Zend\Form\Element\Password("senha");
         $input->setAttribute('id', "senha")

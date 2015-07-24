@@ -1,12 +1,11 @@
 <?php echo $this->doctype(); ?>
-<html>
+<html lang="pt-br">
 <head>
-    <meta http-equiv='cache-control' content='no-cache'/>
-    <meta http-equiv='expires' content='0'/>
-    <meta http-equiv='pragma' content='no-cache'/>
-    <meta name="robots" content="NOINDEX,NOFOLLOW"/>
-    <meta name="base_url" content=""/>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Senna :: Grupo Capital Ponto</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
     <link rel="shortcut icon" href="<?php echo $this->basePath() ?>/images/favicon.ico">
     <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets-minified/js-core.js"></script>
@@ -113,83 +112,51 @@
         ->appendStylesheet ( $this->basePath () . '/assets-minified/helpers/colors.css' )?>
 </head>
 <body>
-<div id="loading">
-    <img src="<?php echo $this->basePath() ?>/assets-minified/images/spinner/loader-dark.gif" alt="Loading...">
-</div>
+<div id="loading"><img src="<?php echo $this->basePath() ?>/assets-minified/images/spinner/loader-dark.gif" alt="Loading..."></div>
 <div class="center-vertical">
     <div class="center-content">
 
-        <?php
-        $form->setAttribute('action',$this->url('usuario-reset',array('controller'=>'Index','action'=>'reset')))
-            ->setAttribute('id','login-validation')
-            ->setAttribute('class','col-md-4 center-margin')
-            ->setAttribute('autocomplete','off');
-        $form->prepare();
-        echo $this->form()->openTag($form);
-        ?>
-
-        <!-- TAB LOGO -->
+        <!-- PARTIAL LOGO -->
         <?php echo $this->partial('partials/tab_logo'); ?>
         <!-- -->
 
-        <!-- ERRO USUARIO NAO EXISTE -->
+        <!-- ERRO COM BOTAO-->
         <?php if($this->erro): ?>
-            <div class="row" id="error">
-                <div class="error-notice">
-                    <div class="oaerror danger" style="font-size: 14px">
-                        <?php echo $this->message; ?>
+            <form class="col-md-4 center-margin">
+                <div class="row" id="error">
+                    <div class="error-notice">
+                        <div class="oaerror danger" style="font-size: 14px">
+                            <?php echo $this->message; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="login-ativacao" class="content-box modal-content ">
-                <div class="button-pane text-center">
-                    <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#login-ativacao" title="Entrar no sistema">Entrar no sistema</a>
+                <div id="div_erro" class="content-box modal-content ">
+                    <div class="button-pane text-center">
+                        <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#div_erro" title="Entrar no sistema">Entrar no sistema</a>
+                    </div>
                 </div>
-            </div>
+            </form>
+        <?php else: ?>
+
+            <!-- ALERTAS-->
+            <?php echo $this->partial('partials/alertas_formulario'); ?>
+            <!--  -->
+
+            <!-- PARTIAL FORM EMAIL -->
+            <?php echo $this->partial('partials/form_email'); ?>
+            <!--  -->
+
+            <!-- PARTIAL FORM USUARIO E SENHA -->
+            <?php echo $this->partial('partials/form_usuario_senha'); ?>
+            <!--  -->
+
+            <!-- PARTIAL FOOTER -->
+            <?php echo $this->partial('partials/tab_footer'); ?>
+            <!--  -->
+
         <?php endif; ?>
-        <!-- -->
-
-        <!-- ERRO NAO PODE ATIVAR AGORA -->
-        <?php if($this->atencao): ?>
-            <div class="row" id="atencao">
-                <div class="error-notice">
-                    <div class="oaerror warning" style="font-size: 14px">
-                        <?php echo $this->message; ?>
-                    </div>
-                </div>
-            </div>
-            <div id="solicitarNovamente" class="content-box modal-content ">
-                <div class="button-pane text-center">
-                    <a href="#" id="bntSolicitarNovamente" class="btn btn-md btn-link switch-button" switch-target="#solicitarNovamente" switch-parent="#login-forgot" title="Reenviar e-mail">Reenviar e-mail</a>
-                </div>
-            </div>
-        <?php endif; ?>
-        <!-- -->
-
-        <!--  ENVIAR EMAIL DE RECUPERAR SENHA -->
-        <div id="login-forgot" class="content-box modal-content hide">
-            <div class="content-box-wrapper pad20A">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">E-mail:</label>
-                    <div class="input-group">
-                <span class="input-group-addon addon-inside bg-gray">
-                    <i class="glyph-icon icon-envelope-o"></i>
-                </span>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail">
-                    </div>
-                </div>
-            </div>
-            <div class="button-pane text-center">
-                <button type="submit" id="bntRecuperarSenha" class="btn btn-md btn-primary" disabled >Recuperar senha</button>
-                <a href="#" id="cancelarRecuperarSenha" class="btn btn-md btn-link switch-button" switch-target="#login-form" switch-parent="#login-forgot" title="Cancelar">Cancelar</a></div>
-        </div>
-        <!-- -->
-
-        <?php echo $this->form()->closeTag();?>
-
 
     </div>
-
 </div>
 <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/assets-minified/demo-widgets.css">
 <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets-minified/demo-widgets.js"></script>

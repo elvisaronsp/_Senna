@@ -6,7 +6,7 @@
                 <span class="input-group-addon addon-inside bg-gray">
                     <i class="glyph-icon icon-envelope-o"></i>
                 </span>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail">
+                <?php echo $this->formElement($input = $email->get('email'));?>
             </div>
         </div>
     </div>

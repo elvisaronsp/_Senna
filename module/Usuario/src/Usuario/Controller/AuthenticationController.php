@@ -27,6 +27,7 @@ class AuthenticationController extends AbstractActionController
     {
         $this->erro = false;
         $form = $this->getServiceLocator()->get('Usuario\Form\Login');
+        $email = $this->getServiceLocator()->get('Usuario\Form\Email');
         $request = $this->getRequest();
 
         if($request->isPost())
@@ -35,7 +36,7 @@ class AuthenticationController extends AbstractActionController
             if($form->isValid())
             {
                 $data = array_filter($request->getPost()->toArray());
-                if(!isset($data['email']) && isset($data['login'])):
+                if(!isset($data['email'])):
 
                     // Criando Storage para gravar sessão da authtenticação
                     $sessionStorage = new SessionStorage("Usuario");
@@ -72,19 +73,25 @@ class AuthenticationController extends AbstractActionController
                     if($entity):
                         $service = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
                         $service->enviarEmailRedefinicaoSenha($entity->getId());
-                        $tipo = "info";
+                        $tipo = "infoForm";
                         $error=true;
                         $this->message="<strong>ATENÇÃO:</strong><br />Enviamos um e-mail para ".substr(strstr($request->getPost()->toArray()['email'], '@', true),0,1)."*****".strstr($request->getPost()->toArray()['email'], '@')." com instruções para redefinir sua senha.<br />Por favor acesse seu e-mail.";
                     else:
-                        $tipo = "error";
+                        $tipo = "erroForm";
                         $error=true;
                         $this->message="<strong>ATENÇÃO:</strong><br />E-mail não cadastrado. Verifique o endereço digitado e tente novamente!";
                     endif;
                 endif;
             }
+            else{
+                $tipo = "erroForm";
+                $error=true;
+                $this->message="<strong>ERROR:</strong><br />Formulario invalido!";
+            }
         }
         
         $viewModel =  new ViewModel(array(
+                'email'=>$email,
                 'form'=>$form,
                 $tipo=>$error,
                 'message'=>$this->message
@@ -106,6 +113,14 @@ class AuthenticationController extends AbstractActionController
         $auth->clearIdentity();
 
         return $this->redirect()->toRoute('usuario-auth');
+    }
+
+    public function resetAction()
+    {
+
+        echo "ola";die;
+                return new ViewModel(array());
+
     }
 
     /**

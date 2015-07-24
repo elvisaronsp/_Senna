@@ -22,4 +22,11 @@ $(document).ready(function() {
         $('#email').val('');
         $('#bntRecuperarSenha').attr('disabled','disabled');
     });
+
+    $('#bntSolicitarNovamente').click(function () {
+        $('#atencao').remove();
+    });
+
+
+
 });
