@@ -13,8 +13,6 @@ use Usuario\Auth\Adapter as AuthAdapter;
 class Module
 {
 
-
-
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
@@ -72,10 +70,21 @@ class Module
 
     }
 
+    /**
+     * @return array
+     */
     public function getViewHelperConfig()
     {
         return array(
             'factories' => array(
+                // a chave do array aqui é o nome pelo qual você
+                // chamará o seu view helper no script da view
+                'UsuarioIdentity' => function() {
+                    return new View\Helper\UsuarioIdentity();
+                },
+                'PermissaoUsuario' => function() {
+                    return new View\Helper\PermissaoUsuario();
+                },
 
             ),
         );

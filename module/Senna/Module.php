@@ -31,7 +31,10 @@ use Zend\Authentication\AuthenticationService,
 
 
 class Module {
-	
+
+	/**
+	 * @param MvcEvent $e
+	 */
 	public function onBootstrap(MvcEvent $e)
 	{
 		$eventManager        = $e->getApplication()->getEventManager();
@@ -51,6 +54,9 @@ class Module {
 		
 	}
 
+	/**
+	 * @param ModuleManager $moduleManager
+	 */
 	public function init(ModuleManager $moduleManager)
 	{
 		$sharedEvents = $moduleManager->getEventManager()->getSharedManager();
@@ -60,6 +66,11 @@ class Module {
 			array($this,'validaAuth'),100);
 	}
 
+	/**
+	 * @param $e
+	 * @return mixed
+	 *
+	 */
 	public function validaAuth($e)
 	{
 		$auth = new AuthenticationService;
@@ -68,14 +79,12 @@ class Module {
 		$controller = $e->getTarget();
 		$matchedRoute = $controller->getEvent()->getRouteMatch()->getMatchedRouteName();
 
-		/*
 		if(!$auth->hasIdentity() and ($matchedRoute == "senna")){
 			return $controller->redirect()->toRoute("application");
 		}
 		if($auth->hasIdentity() and $matchedRoute == "application" ){
 			return $controller->redirect()->toRoute("senna");
 		}
-		*/
 	}
 
 

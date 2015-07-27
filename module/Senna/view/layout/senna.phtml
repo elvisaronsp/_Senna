@@ -1,3 +1,4 @@
+<?php define('__PERFIL__',$this->UsuarioIdentity("Usuario")->getPerfil()->getNome());define('__NEGADO__',$this->basePath()."/senna/negado"); ?>
 <?php //echo $this->content?>
 <?php echo $this->doctype(); ?>
 <!-- DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"-->
@@ -198,7 +199,7 @@ common/base/auth_cookie.js
 					<div id="topNav">
 						<ul>
 							<li><a id="top_menu_usuario_trigger"><span><i class="icon-user"></i><span
-										class="label">Administrador</span></span></a></li>
+										class="label"><?=$this->UsuarioIdentity("Usuario")->getNome()?></span></span></a></li>
 							<li><a id="top_menu_suporte_trigger" rel="ajuda" title="Suporte"><span><i
 										class="icon-question-sign"
 										style="font-size: 16px; padding-top: 1px;"></i><span
@@ -498,14 +499,15 @@ common/base/auth_cookie.js
 					<ul>
 						<li class='item '
 							meta='gerenciar usuários gerenciar usuarios usuario/funcionarios funcionário vendedor cadastro de funcionários cadastro de vendedor cadastro de usuário usuário cadastro usuário cadastro vendedor cadastro funcionário cadastro uc006 funcionario cadastro de funcionarios cadastro de usuario usuario cadastro usuario cadastro funcionario usuários e vendedores usuarios e vendedores'><a
-							href='<?php echo $this->basePath() ?>/senna/usuario/funcionarios'
+							href='<?php echo ($this->PermissaoUsuario(__PERFIL__,'Gerenciar usuarios',"1"))?$this->basePath().'/senna/usuario/funcionarios':__NEGADO__; ?>'
 							id='menu_usuario/funcionariosLinkCheck'
 							rel='menu_item_usuario_funcionarios' target='panel' key='50'
 							class='item'><span><i class='icon-users menu_icon'></i><span
 									class='label'>Gerenciar Usuários </span></span></a></li>
 						<li class='item '
-							meta='perfis de acesso usuario/perfis cadastro perfil perfis perfil de acesso acesso permissões cadastro de permissões permissão cadastro de permissão cadastro de perfil de acesso cadastro de perfis de acesso uc005 permissoes cadastro de permissoes permissao cadastro de permissao usuários e vendedores usuarios e vendedores'><a
-							href='<?php echo $this->basePath() ?>/senna/acesso/perfis'
+							meta='perfis de acesso usuario/perfis cadastro perfil perfis perfil de acesso acesso permissões cadastro de permissões permissão cadastro de permissão cadastro de perfil de acesso cadastro de perfis de acesso uc005 permissoes cadastro de permissoes permissao cadastro de permissao usuários e vendedores usuarios e vendedores'>
+							<a
+								href='<?php echo ($this->PermissaoUsuario(__PERFIL__,'Perfis de acesso',"1"))?$this->basePath().'/senna/acesso/perfis':__NEGADO__; ?>'
 							id='menu_usuario/perfis' rel='menu_item_usuario_perfis'
 							target='panel' key='51' class='item'><span><i
 									class='icon-key menu_icon'></i><span class='label'>Perfis de
@@ -695,19 +697,27 @@ common/base/auth_cookie.js
 
 		<div class="top_menu fixed" id="top_menu_usuario">
 			<a class="divide"
-				href="<?php echo $this->basePath() ?>/senna/negado" rel="usuario"
-				target="panel"><span><i class="icon-visitor"></i><span class="label">Informações
+			   href="<?php echo $this->basePath() ?>/senna/negado" rel="usuario"
+			   target="panel"><span><i class="icon-visitor"></i><span class="label">Informações
 						do Usuário</span></span></a> <a class="divide"
-				href="<?php echo $this->basePath() ?>/senna/negado" rel="meu_plano"
-				target="panel"><span><i class="icon-mimetype"></i><span
-					class="label">Meu Plano</span></span></a> <a class="divide"
-				href="<?php echo $this->basePath() ?>/senna/negado"
-				rel="meus_cartoes" style="display: none;" target="panel"><span><i
-					class="icon-credit2"></i><span class="label">Meus Cartões de
-						Crédito</span></span></a> <a
-				confirm="Deseja realmente encerrar sua sessão ?"
-				href="/" rel="sair"><span><i
-					class="icon-signout"></i><span class="label">Sair</span></span></a>
+														href="<?php echo $this->basePath() ?>/senna/negado" rel="meu_plano"
+														target="panel"><span><i class="icon-mimetype"></i><span
+						class="label">Meu Plano</span></span></a>
+			<a class="divide"
+			   href="<?php echo $this->basePath() ?>/senna/negado"
+			   rel="meus_cartoes" style="display: none;" target="panel">
+				<span>
+					<i class="icon-credit2"></i>
+					<span class="label">Meus Cartões de Crédito</span>
+				</span>
+			</a>
+			<!-- bnt Sair-->
+			<a confirm="Deseja realmente encerrar sua sessão no Senna?" href="<?php echo $this->url('usuario-logout',array('controller'=>'authentication','action'=>'logout'))?>" rel="Sair do Senna">
+				<span>
+					<i class="icon-signout"></i>
+					<span class="label">Sair</span>
+				</span>
+			</a>
 		</div>
 
 
@@ -717,24 +727,24 @@ common/base/auth_cookie.js
 
 				<!-- Dashboard -->
 				<li><a href="senna/inicio" id="menu_inicio" rel="menu_inicio"
-					target="panel" title="Início"><span><i class="icon-home menu_icon"></i><span
-							class="label">Início</span></span></a></li>
+					   target="panel" title="Início"><span><i class="icon-home menu_icon"></i><span
+								class="label">Início</span></span></a></li>
 
 				<!-- Vender -->
 				<li><a class="divider_bottom" href="<?php echo $this->basePath() ?>/senna/negado"
-					rel="vendas" shortcut="f3" target="panel"
-					title="Efetuar Venda (F3)"><span><i class="icon-cart menu_icon"></i><span
-							class="label">Realizar Venda</span></span></a></li>
+					   rel="vendas" shortcut="f3" target="panel"
+					   title="Efetuar Venda (F3)"><span><i class="icon-cart menu_icon"></i><span
+								class="label">Realizar Venda</span></span></a></li>
 
 
 				<!-- Mais Acessados -->
 
 				<li class="mais_usado"><a class="mais_usado"
-					href="<?php echo $this->basePath() ?>/senna/negado" rel="Gerenciar Serviços"
-					target="panel" title="Gerenciar Serviços"> <span> <i
-							class="icon-wrench2 menu_icon"></i> <span class="label">
+										  href="<?php echo $this->basePath() ?>/senna/negado" rel="Gerenciar Serviços"
+										  target="panel" title="Gerenciar Serviços"> <span> <i
+								class="icon-wrench2 menu_icon"></i> <span class="label">
 								Gerenciar Serviços </span>
-					</span>
+						</span>
 				</a></li>
 
 				<li class="mais_usado"><a class="mais_usado"
@@ -1071,15 +1081,18 @@ common/base/auth_cookie.js
 						class='item'><span><span class='label'>Usuários e Vendedores </span></span></a>
 						<ul>
 							<li class='item '
-								meta='gerenciar usuários gerenciar usuarios usuario/funcionarios funcionário vendedor cadastro de funcionários cadastro de vendedor cadastro de usuário usuário cadastro usuário cadastro vendedor cadastro funcionário cadastro uc006 funcionario cadastro de funcionarios cadastro de usuario usuario cadastro usuario cadastro funcionario usuários e vendedores usuarios e vendedores'><a
-								href='<?php echo $this->basePath() ?>/senna/usuario/funcionarios'
+								meta='gerenciar usuários gerenciar usuarios usuario/funcionarios funcionário vendedor cadastro de funcionários cadastro de vendedor cadastro de usuário usuário cadastro usuário cadastro vendedor cadastro funcionário cadastro uc006 funcionario cadastro de funcionarios cadastro de usuario usuario cadastro usuario cadastro funcionario usuários e vendedores usuarios e vendedores'>
+								<a
+								href='<?php echo ($this->PermissaoUsuario(__PERFIL__,'Gerenciar usuarios',"1"))?$this->basePath().'/senna/usuario/funcionarios':__NEGADO__; ?>'
 								id='menu_usuario/funcionariosLinkCheck'
 								rel='menu_item_usuario_funcionarios' target='panel' key='50'
 								class='item'><span><i class='icon-users menu_icon'></i><span
 										class='label'>Gerenciar Usuários </span></span></a></li>
 							<li class='item '
-								meta='perfis de acesso usuario/perfis cadastro perfil perfis perfil de acesso acesso permissões cadastro de permissões permissão cadastro de permissão cadastro de perfil de acesso cadastro de perfis de acesso uc005 permissoes cadastro de permissoes permissao cadastro de permissao usuários e vendedores usuarios e vendedores'><a
-								href='<?php echo $this->basePath() ?>/senna/acesso/perfis' id='menu_usuario/perfis'
+								meta='perfis de acesso usuario/perfis cadastro perfil perfis perfil de acesso acesso permissões cadastro de permissões permissão cadastro de permissão cadastro de perfil de acesso cadastro de perfis de acesso uc005 permissoes cadastro de permissoes permissao cadastro de permissao usuários e vendedores usuarios e vendedores'>
+								<a
+									href='<?php echo ($this->PermissaoUsuario(__PERFIL__,'Perfis de acesso',"1"))?$this->basePath().'/senna/acesso/perfis':__NEGADO__; ?>'
+								id='menu_usuario/perfis'
 								rel='menu_item_usuario_perfis' target='panel' key='51'
 								class='item'><span><i class='icon-key menu_icon'></i><span
 										class='label'>Perfis de Acesso </span></span></a></li>

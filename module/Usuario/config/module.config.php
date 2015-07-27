@@ -60,6 +60,17 @@ return array(
                     )
                 )
             ),
+            'usuario-logout' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'=>'/authentication/logout',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Usuario\Controller',
+                        'controller' => 'Authentication',
+                        'action' => 'logout'
+                    )
+                )
+            ),
             'usuario-reset' => array(
                 'type' => 'Segment',
                 'options' => array(

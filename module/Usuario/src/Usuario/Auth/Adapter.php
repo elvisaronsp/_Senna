@@ -95,7 +95,7 @@ class Adapter extends AbstractActionController implements AdapterInterface
             elseif ($usuario->getFerias())
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} seu a acesso foi suspenso temporariamente.<br /> Não queremos que você se preocupe, curta suas férias que nos cuidaremos de tudo por aqui ate você voltar.</a>"));
 
-            return new Result(Result::SUCCESS, array('Funcionario' => $usuario), array('Sucesso',null));
+            return new Result(Result::SUCCESS, array('Usuario' => $usuario), array('Sucesso',null));
         }
 
         return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("erroForm",$this->mensagem));

@@ -7,8 +7,6 @@ use Zend\Mvc\Controller\AbstractActionController,
 use Zend\Authentication\AuthenticationService,
     Zend\Authentication\Storage\Session as SessionStorage;
 
-use Usuario\Form\Login as LoginForm;
-
 /**
  * Class AuthenticationController
  * @package Usuario\Controller
@@ -55,19 +53,23 @@ class AuthenticationController extends AbstractActionController
                     $this->message = $this->result->getMessages()[1];
 
                     if($this->result->isValid()):
+                        // Grava antes da sessao pra poder funcionar
+
+                        $tentativasLogin = $auth->getIdentity()['Usuario']->getTentativasLogin();
+                        $redefinirSenha = $auth->getIdentity()['Usuario']->getRedefinirSenha();
 
                         // grava usuario na sessao
-                        $sessionStorage->write($auth->getIdentity()['Funcionario'],null);
+                        $sessionStorage->write($auth->getIdentity()['Usuario'],null);
 
                         // cancela contagem de tentativas de login erradas quando
-                        if($auth->getIdentity()['Funcionario']->getTentativasLogin()!= "0")
+                        if($tentativasLogin = "0")
                         {
                             $service = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
-                            $service->update(array('id' => $auth->getIdentity()['Funcionario']->getId(), 'tentativasLogin' => '0'));
+                            $service->update(array('id' => $auth->getIdentity()['Usuario']->getId(), 'tentativasLogin' => '0'));
                         }
 
                         // verifica se usuario e obrigado a redefinir sua senha
-                        if(!$auth->getIdentity()['Funcionario']->getRedefinirSenha()):
+                        if(!$redefinirSenha):
                             return $this->redirect()->toRoute('senna',array('controller'=>'index'));
                         else:
                             return $this->redirect()->toRoute('usuario-listar/default',array('controller'=>'Funcionarios','action'=>'funcionario'));
@@ -130,15 +132,7 @@ class AuthenticationController extends AbstractActionController
         $auth->setStorage(new SessionStorage("Usuario"));
         $auth->clearIdentity();
 
-        return $this->redirect()->toRoute('usuario-auth');
-    }
-
-    public function resetAction()
-    {
-
-        echo "ola";die;
-                return new ViewModel(array());
-
+        return $this->redirect()->toRoute('application');
     }
 
     /**

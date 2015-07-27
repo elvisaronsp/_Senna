@@ -236,7 +236,7 @@ class Funcionarios
     private $redefinirsenha;
 
     /**
-     * @ORM\OneToOne(targetEntity="Acl\Entity\Perfis")
+     * @ORM\OneToOne(targetEntity="Acl\Entity\Perfis",fetch="EAGER")
      * @ORM\JoinColumn(name="perfil_id", referencedColumnName="id")
      */
     private $perfil;

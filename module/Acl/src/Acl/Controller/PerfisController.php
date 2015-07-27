@@ -3,6 +3,9 @@ namespace Acl\Controller;
 
 use Senna\Controller\GrudController;
 use Zend\View\Model\ViewModel;
+
+use Zend\Authentication\AuthenticationService,
+    Zend\Authentication\Storage\Session as SessionStorage;
 /**
  * Class PerfisController
  * @package Acl\Controller
@@ -152,16 +155,20 @@ class PerfisController extends GrudController {
     public function deleteAction()
     {
         $retorno = array();
-        $repository = $this->getEm()->getRepository($this->entity);
-        $entity = $repository->findAll();
-        if(count($entity) != 1)
+        $auth = new AuthenticationService;
+        $auth->setStorage(new SessionStorage("Usuario"));
+        if($this->params()->fromRoute('id') != $auth->getIdentity()->getPerfil()->getId() )
         {
-            $service = $this->getServiceLocator()->get($this->service);
-            $service->delete($this->params()->fromRoute('id', 0));
-            $retorno['data'] = $this->message_delete;
+            $repository = $this->getEm()->getRepository($this->entity);
+            $entity = $repository->findAll();
+            if (count($entity) != 1) {
+                $service = $this->getServiceLocator()->get($this->service);
+                $service->delete($this->params()->fromRoute('id', 0));
+                $retorno['data'] = $this->message_delete;
+            }
         }
         else
-            $this->message_delete = array();
+            $retorno['bloqueio'] = true;
 
         $viewModel = new ViewModel ($retorno);
         $viewModel->setTerminal ( true );
@@ -180,6 +187,28 @@ class PerfisController extends GrudController {
         ) );
         $viewModel->setTerminal ( true );
         return $viewModel;
+
+    }
+
+    public function testeAction()
+    {
+
+        $auth = new AuthenticationService;
+        $auth->setStorage(new SessionStorage("Usuario"));
+        echo $auth->getIdentity()->getId();
+
+
+        /**
+         * FINANCEIRO---Acesso ao Senna---1
+        FINANCEIRO---Cadastro de itens de venda---1
+        FINANCEIRO---Usuarios e vendedores---1
+        FINANCEIRO---Gerenciar usuarios---1
+        FINANCEIRO---Perfis de acesso---1
+         */
+        $acl = $this->getServiceLocator()->get("Acl\Permissoes\Acl");
+        echo $acl->isAllowed("ADMINISTRADOR","Perfis de acesso","1")? "Permitido" : "Negado";//roles/re
+
+        die;
 
     }
 }

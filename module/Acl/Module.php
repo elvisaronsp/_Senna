@@ -34,6 +34,21 @@ class Module
                     $recursos = $recursosRepository->findAll();
                     return new Form\Perfis($recursos);
                 },
+                'Acl\Permissoes\Acl' => function($sm)
+                {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+
+                    $perfisRepository = $em->getRepository("Acl\Entity\Perfis");
+                    $perfis = $perfisRepository->findAll();
+
+                    $recursosRepository = $em->getRepository("Acl\Entity\Recursos");
+                    $recursos = $recursosRepository->findAll();
+
+                    $privilegiosRepository = $em->getRepository("Acl\Entity\Privilegios");
+                    $privilegios = $privilegiosRepository->findAll();
+
+                    return new Permissoes\Acl($perfis,$recursos,$privilegios);
+                }
             ),
         );
     }

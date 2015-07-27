@@ -4,12 +4,14 @@ namespace Usuario\Controller;
 use Senna\Controller\GrudController;
 use Zend\View\Model\ViewModel;
 
+use Zend\Authentication\AuthenticationService,
+    Zend\Authentication\Storage\Session as SessionStorage;
+
 /**
  * Class FuncionariosController
  * @package Usuario\Controller
  */
 class FuncionariosController extends GrudController {
-
 
     /**
      * contrutor da classe FuncionariosController
@@ -23,6 +25,32 @@ class FuncionariosController extends GrudController {
         $this->message_insert = "Funcionario CADASTRADO com sucesso";
         $this->message_update = "Funcionario ATUALIZADO com sucesso";
         $this->message_delete = "Funcionario EXCLUIDO com sucesso";
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function FormAction()
+    {
+        $form = $this->getServiceLocator()->get( $this->form );
+        $repository = $this->getEm()->getRepository($this->entity);
+
+        $retorno = array ('form' => $form );
+
+        if ($this->params ()->fromRoute ( 'id', 0 ))
+        {
+            $entity = $repository->find($this->params ()->fromRoute ( 'id', 0 ));
+
+            $form->setData($entity->toArray());
+            $this->setValueForm($form,$entity->toArray());
+            $retorno = array (
+                'form' => $form,
+            );
+        }
+
+        $viewModel = new ViewModel ( $retorno );
+        $viewModel->setTerminal ( true );
+        return $viewModel;
     }
 
     /**
@@ -59,25 +87,22 @@ class FuncionariosController extends GrudController {
     /**
      * @return ViewModel
      */
-    public function FormAction()
+    public function deleteAction()
     {
-        $form = $this->getServiceLocator()->get( $this->form );
-        $repository = $this->getEm()->getRepository($this->entity);
+        $retorno = array();
+        $auth = new AuthenticationService;
+        $auth->setStorage(new SessionStorage("Usuario"));
+        $service = $this->getServiceLocator ()->get ( $this->service );
 
-        $retorno = array ('form' => $form );
-
-        if ($this->params ()->fromRoute ( 'id', 0 ))
+        if($this->params()->fromRoute('id') != $auth->getIdentity()->getId() )
         {
-            $entity = $repository->find($this->params ()->fromRoute ( 'id', 0 ));
-
-            $form->setData($entity->toArray());
-            $this->setValueForm($form,$entity->toArray());
-            $retorno = array (
-                'form' => $form,
-            );
+            if (!$service->delete ( $this->params ()->fromRoute ( 'id', 0 ) ))
+                $retorno['data'] = "Erro ao tentar excluir";
+            else
+                $retorno['data'] = $this->message_delete;
         }
 
-        $viewModel = new ViewModel ( $retorno );
+        $viewModel = new ViewModel ($retorno);
         $viewModel->setTerminal ( true );
         return $viewModel;
     }
@@ -92,8 +117,8 @@ class FuncionariosController extends GrudController {
     }
 
     /**
- * @return ViewModel
- */
+     * @return ViewModel
+     */
     public function FuncionarioAction() {
         $viewModel = new ViewModel ( );
         $viewModel->setTerminal ( true );
@@ -146,7 +171,9 @@ class FuncionariosController extends GrudController {
                 $post = $this->capturarPermissoesAcesso($post);
 
                 $repository = $this->getEm()->getRepository("Acl\Entity\Privilegios");
-                $privilegios = $repository->findBy(array( 'perfil' => $request->getPost()['id'] ));
+                $privilegios = $repository->findBy(array(
+                    'perfil' => $request->getPost()['id']
+                ));
 
                 foreach ($privilegios as $privilegio) {
                     $this->getEm()->remove($privilegio);
