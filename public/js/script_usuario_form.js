@@ -198,6 +198,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
         /* BOTÃO DE BUSCA DE CEP ******************************/
         $("[id*=btn_cep]").click(function(evt, el) {
+            alert()
             get_cep_ws($(this).parents('.clonedField'))
         });
         $("[name*=endereco__cep]").blur(function(evt, el) {

@@ -127,6 +127,12 @@ class Funcionarios extends AbstractService {
     {
         $data = array_filter($data);
 
+
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+        die;
+
         $entity = new $this->entity($data);
         $entity = $this->setParamExtra($entity,$data);
 

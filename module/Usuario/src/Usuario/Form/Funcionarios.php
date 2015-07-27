@@ -624,7 +624,7 @@ class Funcionarios extends Form
         $hidden = new \Zend\Form\Element\Hidden('contato__id[1]');
         $hidden->setAttribute('id', "contato__id_1")
             ->setValue("")
-            ->setValue("class","clone_id");
+            ->setAttribute("class","clone_id");
         $this->add($hidden);
 
         //input hidden
@@ -704,7 +704,7 @@ class Funcionarios extends Form
         $hidden = new \Zend\Form\Element\Hidden('contato__id[2]');
         $hidden->setAttribute('id', "contato__id_2")
             ->setValue("")
-            ->setValue("class","clone_id");
+            ->setAttribute("class","clone_id");
         $this->add($hidden);
 
         //input hidden
@@ -782,7 +782,7 @@ class Funcionarios extends Form
         $hidden = new \Zend\Form\Element\Hidden('contato__id[3]');
         $hidden->setAttribute('id', "contato__id_3")
             ->setValue("")
-            ->setValue("class","clone_id");
+            ->setAttribute("class","clone_id");
         $this->add($hidden);
 
         //input hidden
@@ -860,7 +860,7 @@ class Funcionarios extends Form
         $hidden = new \Zend\Form\Element\Hidden('contato__id[4]');
         $hidden->setAttribute('id', "contato__id_4")
             ->setValue("")
-            ->setValue("class","clone_id");
+            ->setAttribute("class","clone_id");
         $this->add($hidden);
 
         //input hidden
