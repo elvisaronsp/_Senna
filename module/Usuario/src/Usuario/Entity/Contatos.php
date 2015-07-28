@@ -20,7 +20,6 @@ class Contatos
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
 
-
     /**
      * @var integer
      *
@@ -34,7 +33,7 @@ class Contatos
      * @ORM\OneToOne(targetEntity="Usuario\Entity\Funcionarios")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
-    private $usuarioId;
+    private $usuario;
 
     /**
      * @var string
@@ -94,16 +93,16 @@ class Contatos
      */
     public function getUsuarioId()
     {
-        return $this->usuarioId;
+        return $this->usuario;
     }
 
     /**
-     * @param int $usuarioId
-     * @return SnContatosUsuario
+     * @param $usuario
+     * @return $this
      */
-    public function setUsuarioId($usuarioId)
+    public function setUsuarioId($usuario)
     {
-        $this->usuarioId = $usuarioId;
+        $this->usuario = $usuario;
         return $this;
     }
 
@@ -204,7 +203,7 @@ class Contatos
     {
         return array(
             'id' => $this->id,
-            'usuarioid' => $this->usuarioId,
+            'usuarioid' => $this->usuario,
             'tipocadastro' => $this->tipocadastro,
             'tipocontato' => $this->tipocontato,
             'contato' => $this->contato,

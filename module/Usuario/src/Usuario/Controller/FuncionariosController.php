@@ -21,6 +21,7 @@ class FuncionariosController extends GrudController {
         $this->entity = "Usuario\Entity\Funcionarios";
         $this->service = "Usuario\Service\Funcionarios";
         $this->horarios = "Usuario\Entity\Horarios";
+        $this->contatos = "Usuario\Entity\Contatos";
         $this->form = "Usuario\Form\Funcionarios";
         $this->message_insert = "Funcionario CADASTRADO com sucesso";
         $this->message_update = "Funcionario ATUALIZADO com sucesso";
@@ -82,6 +83,24 @@ class FuncionariosController extends GrudController {
         $form->get('dias_da_semana_6')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana6']);
         $form->get('dias_da_semana_7')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana7']);
         // fim horarios
+
+        // contatos
+        $repository = $this->getEm()->getRepository($this->contatos);
+        $contatos = $repository->findBy(array( 'usuario' => $data['id'] ));
+
+        foreach($contatos AS $key => $value):
+            echo $contatos[$key]->getTipoCadastro();
+        endforeach;
+
+        /*$form->get('dias_da_semana_1')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana1']);
+        $form->get('dias_da_semana_2')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana2']);
+        $form->get('dias_da_semana_3')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana3']);
+        $form->get('dias_da_semana_4')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana4']);
+        $form->get('dias_da_semana_5')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana5']);
+        $form->get('dias_da_semana_6')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana6']);
+        $form->get('dias_da_semana_7')->setAttribute('rel',$horario['0']->toArray()['diasDaSemana7']);*/
+        // fim contatos
+
     }
 
     /**
