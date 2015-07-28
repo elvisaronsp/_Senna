@@ -3,11 +3,10 @@ namespace Usuario\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Class HorariosRepository
+ * Class ContatosRepository
  * @package Usuario\Repository
- *
  */
-class HorariosRepository extends EntityRepository
+class ContatosRepository extends EntityRepository
 {
 
 

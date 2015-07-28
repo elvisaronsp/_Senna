@@ -35,40 +35,8 @@ class Funcionarios extends AbstractService {
         $this->view = $view;
         $this->entity = "Usuario\Entity\Funcionarios";
         $this->horarios = "Usuario\Entity\Horarios";
+        $this->contatos = "Usuario\Entity\Contatos";
         $this->em = $em;
-    }
-
-    /**
-     * @param $entity
-     * @param $data
-     * @return mixed
-     * @throws \Doctrine\ORM\ORMException
-     */
-    private function setParamExtra($entity,$data)
-    {
-        $perfil = $this->em->getReference("Acl\Entity\Perfis",$data['id_perfil']);
-        $entity->setPerfil($perfil);
-
-        if(!isset($data['mensagemBoasVindas']))
-            $entity->setConfirmado(true);
-
-        $entity->setRedefinirSenha(false);
-        if(isset($data['solicitarRedefinirSenha']))
-            $entity->setRedefinirSenha(true);
-
-        $entity->setAtivo(false);
-        if(isset($data['ativo']))
-            $entity->setAtivo(true);
-
-        $entity->setFerias(false);
-        if(isset($data['modoFerias']))
-            $entity->setFerias(true);
-
-        $entity->setAlertas(false);
-        if(isset($data['alertas']))
-            $entity->setAlertas(true);
-
-        return $entity;
     }
 
     /**
@@ -119,25 +87,78 @@ class Funcionarios extends AbstractService {
     }
 
     /**
+     * @param $entity
+     * @param $data
+     * @return mixed
+     * @throws \Doctrine\ORM\ORMException
+     */
+    private function setParamExtra($entity,$data)
+    {
+        $perfil = $this->em->getReference("Acl\Entity\Perfis",$data['id_perfil']);
+        $entity->setPerfil($perfil);
+
+        if(!isset($data['mensagemBoasVindas']))
+            $entity->setConfirmado(true);
+
+        $entity->setRedefinirSenha(false);
+        if(isset($data['solicitarRedefinirSenha']))
+            $entity->setRedefinirSenha(true);
+
+        $entity->setAtivo(false);
+        if(isset($data['ativo']))
+            $entity->setAtivo(true);
+
+        $entity->setFerias(false);
+        if(isset($data['modoFerias']))
+            $entity->setFerias(true);
+
+        $entity->setAlertas(false);
+        if(isset($data['alertas']))
+            $entity->setAlertas(true);
+
+        return $entity;
+    }
+
+    /**
+     * @param $entityFuncionario
+     * @param $data
+     * insere todos os contatos do usaario na tabela de contatos
+     */
+    private function incluirContatos($entityFuncionario,$data)
+    {
+        foreach($data['contato__id'] AS $key => $value)
+        {
+            if(!empty($data['ac_'.$key])):
+
+                $entity = new $this->contatos();
+                $entity->setUsuarioId($entityFuncionario);
+                $entity->setTipoCadastro($data['contato__id_tipo_cadastro'][$key]);
+                $entity->setTipoContato($data['contato__id_tipo_contato'][$key]);
+                $entity->setContato($data['contato__descricao'][$key]);
+                $entity->setDetalhes($data['contato__detalhes'][$key]);
+                $entity->setPodeExcluir(false);
+
+                $this->em->persist($entity);
+                $this->em->flush();
+
+            endif;
+        }
+    }
+
+    /**
      * @param array $data
      * @return mixed
      * @throws \Doctrine\ORM\ORMException
      */
     public function insert(array $data)
     {
-        $data = array_filter($data);
-
-
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
-        die;
-
         $entity = new $this->entity($data);
         $entity = $this->setParamExtra($entity,$data);
 
         $this->em->persist($entity);
         $this->em->flush();
+
+        $this->incluirContatos($entity,$data);
 
         $entityHorarios = new $this->horarios($data);
         $entityHorarios->setUsuario($entity);
