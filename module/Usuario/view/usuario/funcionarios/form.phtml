@@ -59,6 +59,16 @@
         ->appendStylesheet($this->basePath() . '/css/clonetable.css')
         ->appendStylesheet($this->basePath() . '/css/uploader.css') ?>
 
+    <style>
+        /*
+        * Correcao de layout para autocomplete
+        */
+        ul.ui-autocomplete
+        {
+            z-index:999!important;
+        }
+    </style>
+
 </head>
 
 <body>

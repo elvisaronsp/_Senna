@@ -22,9 +22,9 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 });
 
 
-(function($) {
+(function ($) {
 
-    var preencheForm = function($parent, json) {
+    var preencheForm = function ($parent, json) {
         $parent.find("[name*=endereco__logradouro]").val(json.logradouro);
         $parent.find("[id*=endereco__bairro]").val(json.bairro);
         $parent.find("[id*=cidade_nome]").val(json.cidade);
@@ -36,7 +36,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
         $parent.find("[name*=endereco__cep]").val(json.cep);
         $parent.find("[name*=endereco_entidade__id_endereco]").val(json.id);
         $parent.find('[name*=btn_mapa]').removeAttr('disabled').unbind('click').click(
-            function() {
+            function () {
                 var container = $parent;
 
                 showMap(container);
@@ -48,7 +48,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
      * Mostra Mapa do endereço informado
      */
     var map;
-    var showMap = function(container) {
+    var showMap = function (container) {
         // Armazena dados
         var rua = container.find("[name*=endereco__logradouro]").val();
         var bairro = container.find("[id*=endereco__bairro]").val();
@@ -65,7 +65,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
         // Valida dados necessários para exibição do mapa
         var ret = false;
         var vars = ['rua', 'cidade', 'estado', 'pais'];
-        $.each(vars, function(i, val) {
+        $.each(vars, function (i, val) {
             if (!eval(val)) {
                 ret = true;
                 return false;
@@ -83,7 +83,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
                 'address': address
             },
             // Callback do pedido de latitude e longitude
-            function(results, status) {
+            function (results, status) {
                 // Se resultado é válido
                 if (status == google.maps.GeocoderStatus.OK) {
                     alert('http://127.0.0.1:8080/senna/usuario/funcionarios/mapa');
@@ -91,7 +91,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
                     parent.MochaUI.openWindow({
                         id: 'http://127.0.0.1:8080/senna/usuario/funcionarios/mapa',
                         title: 'Mapa',
-                        onContentLoaded: function() {
+                        onContentLoaded: function () {
                             // Armazena objeto para latitude e longitude
                             var myLatlng = results[0].geometry.location;
                             alert(myLatlng);
@@ -119,7 +119,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
                                 position: myLatlng
                             });
                             // Adiciona evento "Click" para o marcador
-                            google.maps.event.addListener(marker, 'click', function() {
+                            google.maps.event.addListener(marker, 'click', function () {
                                 map.setZoom(17);
                             });
                         }
@@ -131,17 +131,17 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
         );
     };
 
-    var exist_principal = function() {
+    var exist_principal = function () {
         var retorno = false;
         var fields = $('#endereco .clonedField:not(.hiddenClone)').find('[name*=principal_radio]');
-        fields.each(function() {
+        fields.each(function () {
             if ($(this).is(':checked'))
                 retorno = true;
         });
         return retorno;
     };
 
-    var set_principal_padrao = function() {
+    var set_principal_padrao = function () {
         var visibles = $('#endereco .clonedField:not(.hiddenClone):first');
         var inserido_ultimo = $('#endereco .clonedField:not(.hiddenClone):last');
         if (inserido_ultimo.find('[name*=endereco_entidade__id]').val() == '') {
@@ -153,17 +153,17 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
         }
     };
 
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
 
         // Habilita botoes de mapa
         $('[name=btn_mapa]').each(
-            function() {
+            function () {
                 if ($(this).parents('.clonedField').find('[name*=endereco_entidade__id]').val() != '') {
                     $(this).removeAttr('disabled');
                 }
             }
         ).click(
-            function() {
+            function () {
                 showMap($(this).parents('.clonedField'));
             }
         );
@@ -171,7 +171,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
         // Trata cadastro de endereço principal
         $('#endereco .clonedField').each(
-            function() {
+            function () {
                 /*acao_novo_endereco($(this));
                  auto_comlepete_endereco($(this));*/
 
@@ -179,7 +179,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
                     $(this).find('[name*=principal_radio]').attr('checked', 'checked');
                 }
                 $(this).find('[name*=principal_radio]').click(
-                    function() {
+                    function () {
                         $('[name*=endereco_entidade__principal]').val('0');
                         $(this).parents('.clonedField').find('[name*=__principal]').val($(this).is(':checked') ? 1 : 0);
                     }
@@ -188,26 +188,25 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
         );
 
         //verifica se existe algum campo marcado como principal na hora de remover um clone
-        $(".removeClone").click(function() {
+        $(".removeClone").click(function () {
             set_principal_padrao();
         });
         //verifica se existe algum campo marcado como principal na hora de inserir um clone
-        $(".cloneable").click(function() {
+        $(".cloneable").click(function () {
             set_principal_padrao();
         });
 
         /* BOTÃO DE BUSCA DE CEP ******************************/
-        $("[id*=btn_cep]").click(function(evt, el) {
-            alert()
+        $("[id*=btn_cep]").click(function (evt, el) {
             get_cep_ws($(this).parents('.clonedField'))
         });
-        $("[name*=endereco__cep]").blur(function(evt, el) {
+        $("[name*=endereco__cep]").blur(function (evt, el) {
             if ($('#flag_exterior').val() != '1')
                 get_cep_ws($(this).parents('.clonedField'))
         });
 
 
-        $("[id*=endereco__id_cidade]").change(function(evt, el, json) {
+        $("[id*=endereco__id_cidade]").change(function (evt, el, json) {
 
             container = $(this).parents('.clonedField');
             $(container).find("[name*=endereco__id_cidade]").val(json.id);
@@ -217,7 +216,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
             $(container).find("[name*=estado]").val(json.sigla);
         });
 
-        $("[id*=btn_correio]").click(function(evt, el) {
+        $("[id*=btn_correio]").click(function (evt, el) {
             window.open('http://www.buscacep.correios.com.br/');
         });
 
@@ -225,7 +224,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     });
 
     //######## CONSULTA DE CEP #######
-    var get_cep_ws = function(container) {
+    var get_cep_ws = function (container) {
         //Carregando
         $("#loader").show().find(".carregando").hide();
         $("#loader").find(".enviando").show();
@@ -235,7 +234,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
             Sexy.alert('Por favor, informe o CEP.');
             $("#loader").hide();
         } else {
-            $.getJSON("/senna/cadastro/endereco/busqueEnderecoPorCep/" + cep, {}, function(json) {
+            $.getJSON("/senna/cadastro/endereco/busqueEnderecoPorCep/" + cep, {}, function (json) {
                 if (!json || json.resultado == '') {
                     $("#loader").hide();
                     Sexy.alert("Não foi possível pesquisar este CEP. Por favor tente novamente em alguns instantes");
@@ -288,25 +287,30 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
 })(jQuery);
 
-(function($) {
+(function ($) {
 
 
-    var tratamento_change_tipo_contato = function(el) {
-        if (tipo_contato[$(el).val()] == "T") {
-            $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('email', 'true');
-            $(el).parents('div:first').find('[name*=contato__descricao]').attr('maxlength', '14').attr('minlength', '4');
-        } else {
-            if (tipo_contato[$(el).val()] == "E") {
-                $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('maxlength', '14').removeAttr('minlength', '4');
-                $(el).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
-            } else {
-                $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('email', 'true');
-                $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('maxlength', '14').removeAttr('minlength', '4');
-                $(el).parents('div:first').find('[name*=contato__descricao]').attr('maxlength', '50');
+    var tratamento_change_tipo_contato = function (el) {
+        $('[id*=contato].clonedField').find('[name*=ac_]').each(function () {
+            switch ($(this).parents('span:first').find('[name*=contato__id_tipo_contato]').val()) {
+                case '1':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
+                    break;
+                case '2':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    break;
+                case '3':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('url', 'true');
+                    break;
+                case '4':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    break;
+                case '5':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
+                    break;
             }
-        }
+        });
     };
-
 
 
     var tipo_contato = new Array();
@@ -322,29 +326,33 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     tipo_contato["5"] = "O";
 
     //Principal
-    $(document).ready(function() {
+    $(document).ready(function () {
 
-        $('[id*=contato].clonedField').each(function() {
-            $('[id*=contato].clonedField').find('[name*=contato__id_tipo_contato]').each(function() {
-                if (tipo_contato[$(this).val()] == "T") {
-                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('maxlength', '14').attr('minlength', '4');
-                } else {
-                    if (tipo_contato[$(this).val()] == "E") {
-                        $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
-                    } else {
-                        $(this).parents('div:first').find('[name*=contato__descricao]').attr('maxlength', '50');
-                    }
-                }
 
-            }); //end each();
+        $('[id*=contato].clonedField').find('[name*=ac_]').each(function () {
+            switch ($(this).parents('span:first').find('[name*=contato__id_tipo_contato]').val()) {
+                case '1':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
+                    break;
+                case '2':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    break;
+                case '3':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('url', 'true');
+                    break;
+                case '4':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    break;
+                case '5':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
+                    break;
+            }
         });
 
-
-
         //adicionando comportamento ao evento click no tipo de contato.
-        $(this).find('[name*=contato__id_tipo_contato]').change(function() {
+        $(this).find('[name*=contato__id_tipo_contato]').change(function () {
             tratamento_change_tipo_contato($(this));
-        }).bind('clear', function() {
+        }).bind('clear', function () {
             tratamento_change_tipo_contato($(this));
         });
 
@@ -353,26 +361,53 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
 })(jQuery);
 
-(function($) {
-    $(document).ready(function() {
+(function ($) {
+    $(document).ready(function () {
         $('#tab_dependentes_tab').hide();
         $('#tab_clientes_tab').hide();
 
     });
 })(jQuery);
 
-(function($) {
-    $(document).ready(function() {
+(function ($) {
+    $(document).ready(function () {
 
-        if($("#id").val() ==''){
-            var botao_inserir_novo = $("#contato .cloneable");
+        var botao_inserir_novo = $("#contato .cloneable");
+        var botao_inserir_novo_endereco = $("#endereco .cloneable");
+        if ($("#id").val() == '') {
             var botao_excluir = $("#contato .removeClone:first");
 
             $(botao_inserir_novo).click();
             $(botao_excluir).click();
         }
 
-        $("#ean").click(function() {
+        $('[id*=contato].clonedField').find('.clone_id').each(function () {
+            if ($(this).val() != "")
+                (botao_inserir_novo).click();
+        });
+
+        // abre todos os enderecos
+        $('[id*=endereco].clonedField').each(function () {
+            botao_inserir_novo_endereco.click();
+        });
+
+        // fecha todos os enderecos (correcaod de bug da copia ... erro no riquered)
+        $('[id*=endereco].clonedField').each(function () {
+            var cep = $(this).find('div:last :input').attr('value');
+            if (!cep)
+            {
+                var botao_excluir_contato = $(this).find(".removeClone:first");
+                botao_excluir_contato.click();
+            }
+
+        });
+
+
+        //   $('[id*=endereco].clonedField ').find('div:last :input').each(function() {
+        //      alert($(this).attr('id'))
+        //  });
+
+        $("#ean").click(function () {
             $('#login').val(gera_ean())
         });
 
@@ -387,13 +422,13 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
             $('input[type=submit]').addConfirmMessage('Caso o Funcionário criado realize Login no sistema, não poderá ser apagado. Tem certeza que deseja criar este Funcionário?', 'Sim', 'Não');
         }
 
-        $(".delete").bind("beforeDelete", function() {
+        $(".delete").bind("beforeDelete", function () {
             $this = $(this);
             $.ajax({
                 url: '/senna/usuario/funcionarios/antes_remover/' + $("#id").val(),
                 dataType: 'json',
                 async: false,
-                success: function(data) {
+                success: function (data) {
                     if (data == 1) {
                         $this.unsetConfirmMessage("Tem certeza que deseja apagar este registro?");
                         $this.addConfirmMessage("Este Funcionário não pode ser removido pois já efetuou login ou possui vínculos no sistema. Deseja desativá-lo?", 'Sim', 'Não');
@@ -405,7 +440,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     });
 })(jQuery);
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     jQuery.extend(jQuery.validator.messages, {
         accept: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.'/> ",
         cnpj: "<img src='/images/alert.png' class='tooltip' title='Informe um CNPJ válido.'/> ",

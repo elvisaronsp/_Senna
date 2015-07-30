@@ -615,7 +615,7 @@ class Funcionarios extends Form
         $input = new \Zend\Form\Element\Text("contato__detalhes[0]");
         $input->setAttribute('id', "contato__detalhes_0")
             ->setAttribute('maxLength', "50")
-            ->setAttribute('class', "required")
+            ->setAttribute('class', "")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -663,7 +663,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "contato__id_tipo_contato_1")
             ->setAttribute('style', "")
             ->setAttribute('autosuggest', "contato__id_tipo_contato[1]")
-            ->setAttribute('class', "autosuggest ui-autocomplete-input")
+            ->setAttribute('class', "autosuggest required ui-autocomplete-input")
             ->setAttribute('filters', "[]")
             ->setAttribute('form_title', "Cadastrando Cidade")
             ->setAttribute('form_url', "")
@@ -686,7 +686,7 @@ class Funcionarios extends Form
         $input = new \Zend\Form\Element\Text("contato__descricao[1]");
         $input->setAttribute('id', "contato__descricao_1")
             ->setAttribute('maxLength', "50")
-            ->setAttribute('class', "")
+            ->setAttribute('class', "required")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -741,7 +741,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "contato__id_tipo_contato_2")
             ->setAttribute('style', "")
             ->setAttribute('autosuggest', "contato__id_tipo_contato[2]")
-            ->setAttribute('class', "autosuggest  ui-autocomplete-input")
+            ->setAttribute('class', "autosuggest required ui-autocomplete-input")
             ->setAttribute('filters', "[]")
             ->setAttribute('form_title', "Cadastrando Cidade")
             ->setAttribute('form_url', "")
@@ -764,7 +764,7 @@ class Funcionarios extends Form
         $input = new \Zend\Form\Element\Text("contato__descricao[2]");
         $input->setAttribute('id', "contato__descricao_2")
             ->setAttribute('maxLength', "50")
-            ->setAttribute('class', "")
+            ->setAttribute('class', "required")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -819,7 +819,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "contato__id_tipo_contato_3")
             ->setAttribute('style', "")
             ->setAttribute('autosuggest', "contato__id_tipo_contato[3]")
-            ->setAttribute('class', "autosuggest  ui-autocomplete-input")
+            ->setAttribute('class', "autosuggest required ui-autocomplete-input")
             ->setAttribute('filters', "[]")
             ->setAttribute('form_title', "Cadastrando Cidade")
             ->setAttribute('form_url', "")
@@ -842,7 +842,7 @@ class Funcionarios extends Form
         $input = new \Zend\Form\Element\Text("contato__descricao[3]");
         $input->setAttribute('id', "contato__descricao_3")
             ->setAttribute('maxLength', "50")
-            ->setAttribute('class', "")
+            ->setAttribute('class', "required")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -897,7 +897,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "contato__id_tipo_contato_4")
             ->setAttribute('style', "")
             ->setAttribute('autosuggest', "contato__id_tipo_contato[4]")
-            ->setAttribute('class', "autosuggest  ui-autocomplete-input")
+            ->setAttribute('class', "autosuggest required ui-autocomplete-input")
             ->setAttribute('filters', "[]")
             ->setAttribute('form_title', "Cadastrando Cidade")
             ->setAttribute('form_url', "")
@@ -920,7 +920,7 @@ class Funcionarios extends Form
         $input = new \Zend\Form\Element\Text("contato__descricao[4]");
         $input->setAttribute('id', "contato__descricao_4")
             ->setAttribute('maxLength', "50")
-            ->setAttribute('class', "")
+            ->setAttribute('class', "required")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -940,14 +940,14 @@ class Funcionarios extends Form
             'name' => 'principal_radio[]',
             'attributes' => array (
                 'class' => '',
-                'eval'=>'0',
+                'eval'=>'',
                 'style' => ""
             ),
             'options' => array(
                 'label_options'=>array('disable_html_escape' => true),
                 'label_attributes' => array('class' => 'inline'),
                 'value_options' => array(
-                    '0' => '<span>Pricipal</span>',
+                    '4' => '<span>Pricipal</span>',
                 ),
             )
         ));
@@ -957,7 +957,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "endereco__cep_0")
             ->setAttribute("mask","99999-999")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "")
+            ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -1047,13 +1047,13 @@ class Funcionarios extends Form
         $this->add($input);
 
         // input
-        $input = new \Zend\Form\Element\Text("estado");
-        $input->setAttribute('id', "estado")
+        $input = new \Zend\Form\Element\Text("estado[0]");
+        $input->setAttribute('id', "estado_0")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "disabled")
+            ->setAttribute('class', "")
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
-            ->setAttribute('disabled', "disabled")
+            ->setAttribute('readonly', "true")
             ->setValue("");
         $this->add($input);
 
@@ -1063,7 +1063,7 @@ class Funcionarios extends Form
             'name' => 'principal_radio[]',
             'attributes' => array (
                 'class' => '',
-                'eval'=>'0',
+                'eval'=>'',
                 'style' => ""
             ),
             'options' => array(
@@ -1080,7 +1080,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "endereco__cep_1")
             ->setAttribute("mask","99999-999")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "")
+            ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -1170,13 +1170,13 @@ class Funcionarios extends Form
         $this->add($input);
 
         // input
-        $input = new \Zend\Form\Element\Text("estado");
-        $input->setAttribute('id', "estado")
+        $input = new \Zend\Form\Element\Text("estado[1]");
+        $input->setAttribute('id', "estado_1")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "disabled")
+            ->setAttribute('class', "")
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
-            ->setAttribute('disabled', "disabled")
+            ->setAttribute('readonly', "true")
             ->setValue("");
         $this->add($input);
 
@@ -1186,14 +1186,14 @@ class Funcionarios extends Form
             'name' => 'principal_radio[]',
             'attributes' => array (
                 'class' => '',
-                'eval'=>'0',
+                'eval'=>'',
                 'style' => ""
             ),
             'options' => array(
                 'label_options'=>array('disable_html_escape' => true),
                 'label_attributes' => array('class' => 'inline'),
                 'value_options' => array(
-                    '0' => '<span>Pricipal</span>',
+                    '1' => '<span>Pricipal</span>',
                 ),
             )
         ));
@@ -1203,7 +1203,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "endereco__cep_2")
             ->setAttribute("mask","99999-999")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "")
+            ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -1293,13 +1293,13 @@ class Funcionarios extends Form
         $this->add($input);
 
         // input
-        $input = new \Zend\Form\Element\Text("estado");
-        $input->setAttribute('id', "estado")
+        $input = new \Zend\Form\Element\Text("estado[2]");
+        $input->setAttribute('id', "estado_2")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "disabled")
+            ->setAttribute('class', "")
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
-            ->setAttribute('disabled', "disabled")
+            ->setAttribute('readonly', "true")
             ->setValue("");
         $this->add($input);
 
@@ -1309,14 +1309,14 @@ class Funcionarios extends Form
             'name' => 'principal_radio[]',
             'attributes' => array (
                 'class' => '',
-                'eval'=>'0',
+                'eval'=>'',
                 'style' => ""
             ),
             'options' => array(
                 'label_options'=>array('disable_html_escape' => true),
                 'label_attributes' => array('class' => 'inline'),
                 'value_options' => array(
-                    '0' => '<span>Pricipal</span>',
+                    '2' => '<span>Pricipal</span>',
                 ),
             )
         ));
@@ -1326,7 +1326,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "endereco__cep_3")
             ->setAttribute("mask","99999-999")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "")
+            ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -1417,13 +1417,13 @@ class Funcionarios extends Form
         $this->add($input);
 
         // input
-        $input = new \Zend\Form\Element\Text("estado");
-        $input->setAttribute('id', "estado")
+        $input = new \Zend\Form\Element\Text("estado[3]");
+        $input->setAttribute('id', "estado_3")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "disabled")
+            ->setAttribute('class', "")
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
-            ->setAttribute('disabled', "disabled")
+            ->setAttribute('readonly', "true")
             ->setValue("");
         $this->add($input);
 
@@ -1433,14 +1433,14 @@ class Funcionarios extends Form
             'name' => 'principal_radio[]',
             'attributes' => array (
                 'class' => '',
-                'eval'=>'0',
+                'eval'=>'',
                 'style' => ""
             ),
             'options' => array(
                 'label_options'=>array('disable_html_escape' => true),
                 'label_attributes' => array('class' => 'inline'),
                 'value_options' => array(
-                    '0' => '<span>Pricipal</span>',
+                    '3' => '<span>Pricipal</span>',
                 ),
             )
         ));
@@ -1450,7 +1450,7 @@ class Funcionarios extends Form
         $input->setAttribute('id', "endereco__cep_4")
             ->setAttribute("mask","99999-999")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "")
+            ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -1515,6 +1515,7 @@ class Funcionarios extends Form
             ->setValue("");
         $this->add($hidden);
 
+
         // input sugestao
         $input = new \Zend\Form\Element\Text("ac_e_4");
         $input->setAttribute('id', "endereco_entidade__id_tipo_cadastro_4")
@@ -1540,13 +1541,13 @@ class Funcionarios extends Form
         $this->add($input);
 
         // input
-        $input = new \Zend\Form\Element\Text("estado");
-        $input->setAttribute('id', "estado")
+        $input = new \Zend\Form\Element\Text("estado[4]");
+        $input->setAttribute('id', "estado_4")
             ->setAttribute('uppercase', "true")
-            ->setAttribute('class', "disabled")
+            ->setAttribute('class', "")
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
-            ->setAttribute('disabled', "disabled")
+            ->setAttribute('readonly', "true")
             ->setValue("");
         $this->add($input);
 
@@ -1581,6 +1582,40 @@ class Funcionarios extends Form
                 'style'=>''
             )
         ));
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_entidade__principal[0]');
+        $hidden->setAttribute('id', "endereco_entidade__principal_0")
+            ->setValue("");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_entidade__principal[1]');
+        $hidden->setAttribute('id', "endereco_entidade__principal_1")
+            ->setValue("");
+        $this->add($hidden);
+
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_entidade__principal[2]');
+        $hidden->setAttribute('id', "endereco_entidade__principal_2")
+            ->setValue("");
+        $this->add($hidden);
+
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_entidade__principal[3]');
+        $hidden->setAttribute('id', "endereco_entidade__principal_3")
+            ->setValue("");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_entidade__principal[4]');
+        $hidden->setAttribute('id', "endereco_entidade__principal_4")
+            ->setValue("");
+        $this->add($hidden);
+
+
 
 
     }
