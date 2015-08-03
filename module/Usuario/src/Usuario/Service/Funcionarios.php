@@ -50,8 +50,7 @@ class Funcionarios extends AbstractService
         $funcionario = $repository->findOneByChaveAtivacao($key);
         if (!$funcionario)
             return array();
-        else
-        {
+        else {
             if ($funcionario && $funcionario->getPrazoRedefinirSenha() >= new \DateTime('now')) {
                 return $funcionario;
             } else {
@@ -92,25 +91,11 @@ class Funcionarios extends AbstractService
     {
         $perfil = $this->em->getReference("Acl\Entity\Perfis", $data['id_perfil']);
         $entity->setPerfil($perfil);
-
-        if (!isset($data['mensagemBoasVindas']))
-            $entity->setConfirmado(true);
-
-        $entity->setRedefinirSenha(false);
-        if (isset($data['solicitarRedefinirSenha']))
-            $entity->setRedefinirSenha(true);
-
-        $entity->setAtivo(false);
-        if (isset($data['ativo']))
-            $entity->setAtivo(true);
-
-        $entity->setFerias(false);
-        if (isset($data['modoFerias']))
-            $entity->setFerias(true);
-
-        $entity->setAlertas(false);
-        if (isset($data['alertas']))
-            $entity->setAlertas(true);
+        ($data['mensagemBoasVindas']) ? $entity->setConfirmado(true) : $entity->setConfirmado(false);
+        ($data['solicitarRedefinirSenha']) ? $entity->setRedefinirSenha(true) : $entity->setRedefinirSenha(false);
+        ($data['ativo']) ? $entity->setAtivo(true) : $entity->setAtivo(false);
+        ($data['modoFerias']) ? $entity->setFerias(true) : $entity->setFerias(false);
+        ($data['alertas']) ? $entity->setAlertas(true) : $entity->setAlertas(false);
 
         return $entity;
     }
@@ -155,7 +140,7 @@ class Funcionarios extends AbstractService
                 $entity->setCep($data['endereco__cep'][$key]);
                 $entity->setLogradouro($data['endereco__logradouro'][$key]);
                 $entity->setNumero($data['endereco_entidade__numero'][$key]);
-                $entity->setComplemento($data['endereco_entidade__informacoes_adicionais'][$key]);
+                $entity->setComplemento($data['endereco_entidade__complemento'][$key]);
                 $entity->setBairro($data['endereco__bairro'][$key]);
                 $entity->setCidade($data['endereco__id_cidade'][$key]);
                 $entity->setReferencia($data['endereco_entidade__informacoes_adicionais'][$key]);
@@ -192,18 +177,20 @@ class Funcionarios extends AbstractService
         $this->em->flush();
 
         if ($entity && isset($data['mensagemBoasVindas'])) {
-            $this->enviarEmail(
-                'SENNA - Confirmação de cadastro',
-                $entity->getEmail(),
-                'add-user',
-                array(
-                    'senha' => $data['senha'],
-                    'nome' => $entity->getNome(),
-                    'email' => $entity->getEmail(),
-                    'login' => $entity->getLogin(),
-                    'chaveAtivacao' => $entity->getChaveAtivacao()
-                )
-            );
+            if (isset($data['mensagemBoasVindas']) == "1"):
+                $this->enviarEmail(
+                    'SENNA - Confirmação de cadastro',
+                    $entity->getEmail(),
+                    'add-user',
+                    array(
+                        'senha' => $data['senha'],
+                        'nome' => $entity->getNome(),
+                        'email' => $entity->getEmail(),
+                        'login' => $entity->getLogin(),
+                        'chaveAtivacao' => $entity->getChaveAtivacao()
+                    )
+                );
+            endif;
             return $entity;
         }
 

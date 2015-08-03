@@ -63,7 +63,8 @@ class FuncionariosController extends GrudController
         $request = $this->getRequest();
         $service = $this->getServiceLocator()->get($this->service);
         if (empty($request->getPost()['id'])) {
-            if (!$this->verificaExistencia()) {
+            $podeCadastrar = $this->verificaExistencia();
+            if (!$podeCadastrar) {
                 # INSERT
                 if ($request->isPost()) {
                     $entity = $service->insert($request->getPost()->toArray());
@@ -74,6 +75,10 @@ class FuncionariosController extends GrudController
                         'type' => 'success'
                     );
                 }
+            }
+            else
+            {
+                $retorno['erro'] = $podeCadastrar;
             }
         } else {
             # UPDATE
@@ -135,6 +140,7 @@ class FuncionariosController extends GrudController
      */
     protected function setValueForm($form, $data)
     {
+
         $form->get('ativo')->setAttribute('eval', $data['ativo']);
         $form->get('sexo')->setAttribute('eval', $data['sexo']);
         $form->get('tipoContaBancaria')->setAttribute('eval', $data['tipoContaBancaria']);
@@ -142,9 +148,9 @@ class FuncionariosController extends GrudController
         $form->get('setor')->setAttribute('eval', $data['setor']);
         $form->get('ac_perfil_acessso')->setAttribute('value', $data['perfil']);
         $form->get('id_perfil')->setAttribute('value', $data['id_perfil']);
-        $form->get('solicitarRedefinirSenha')->setAttribute('eval', $data['redefinirSenha']);
-        $form->get('modoFerias')->setAttribute('eval', $data['ferias']);
-        $form->get('alertas')->setAttribute('eval', $data['alertas']);
+        $form->get('solicitarRedefinirSenha')->setAttribute('eval', ($data['redefinirSenha']) ? '1' : '0');
+        $form->get('modoFerias')->setAttribute('eval', ($data['ferias']) ? '1' : '0');
+        $form->get('alertas')->setAttribute('eval', ($data['alertas']) ? '1' : '0');
 
         // horarios
         $repository = $this->getEm()->getRepository($this->horarios);
@@ -199,16 +205,28 @@ class FuncionariosController extends GrudController
             $form->get('endereco__cep[' . $key . ']')->setAttribute('value', $enderecos[$key]->getCep());
             $form->get('endereco__logradouro[' . $key . ']')->setAttribute('value', $enderecos[$key]->getLogradouro());
             $form->get('endereco_entidade__numero[' . $key . ']')->setAttribute('value', $enderecos[$key]->getNumero());
-            $form->get('endereco_entidade__informacoes_adicionais[' . $key . ']')->setAttribute('value', $enderecos[$key]->getComplemento());
+            $form->get('endereco_entidade__complemento[' . $key . ']')->setAttribute('value', $enderecos[$key]->getComplemento());
             $form->get('endereco__bairro[' . $key . ']')->setAttribute('value', $enderecos[$key]->getBairro());
             $form->get('endereco__id_cidade[' . $key . ']')->setAttribute('value', $enderecos[$key]->getCidade());
             $form->get('endereco_entidade__informacoes_adicionais[' . $key . ']')->setAttribute('value', $enderecos[$key]->getReferencia());
             $form->get('endereco_entidade__id_tipo_cadastro[' . $key . ']')->setAttribute('value', $enderecos[$key]->getTipo());
+
+            switch ($enderecos[$key]->getTipo()) :
+                case "1":
+                    $tipoEndereco = "COMERCIAL";
+                    break;
+                case "2":
+                    $tipoEndereco = "ENTREGA";
+                    break;
+                case "3":
+                    $tipoEndereco = "REDIDENCIAL";
+                    break;
+            endswitch;
+            $form->get('ac_e_' . $key)->setAttribute('value', $tipoEndereco);
             $form->get('estado[' . $key . ']')->setAttribute('value', $enderecos[$key]->getUf());
             $form->get('endereco_entidade__principal[' . $key . ']')->setAttribute('value', $enderecos[$key]->getPrincipal());
         endforeach;
         // fim de enderecos
-
     }
 
     /**
@@ -239,7 +257,15 @@ class FuncionariosController extends GrudController
         $request = $this->getRequest();
         $repository = $this->getEm()->getRepository($this->entity);
 
-        $existe = $repository->findOneByLogin($request->getPost()['codigo_acesso']);
-        return $retorno = ($existe) ? true : false;
+        if ($repository->findOneByLogin($request->getPost()['login'])):
+            return "LOGIN";
+        elseif ($repository->findOneByCpf($request->getPost()['cpf'])):
+            return "CPF";
+        elseif ($repository->findOneByEmail($request->getPost()['email'])):
+            return "E-MAIL";
+        endif;
+
+        return false;
+
     }
 }

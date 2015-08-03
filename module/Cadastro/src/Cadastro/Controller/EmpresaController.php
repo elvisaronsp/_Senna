@@ -25,10 +25,10 @@ class EmpresaController extends GrudController
 		$this->message_delete = "Empresa excluida com sucesso";
 		$this->controller = 'Empresa';
 	}
-	
+
 	/**
-	 * Ações de validação para empresa
-	 * @param array $post
+	 * @param $post
+	 * @return bool
 	 */
 	public function acoesValidacaoNegativa($post){
 		return true;

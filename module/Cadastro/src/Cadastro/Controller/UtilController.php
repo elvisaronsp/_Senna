@@ -3,7 +3,7 @@
 namespace Cadastro\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController,
-	Zend\View\Model\ViewModel;
+    Zend\View\Model\ViewModel;
 
 class UtilController extends AbstractActionController
 {
@@ -47,7 +47,20 @@ class UtilController extends AbstractActionController
 
     public function getTiposEnderecoAction()
     {
-        print json_encode(array(array("id"=>"1","value"=>"COMERCIAL"),array("id"=>"2","value"=>"ENTREGA"),array("id"=>"3","value"=>"REDIDENCIAL")));
+        print json_encode(array(
+            array(
+                "id" => "1",
+                "value" => "COMERCIAL"
+            ),
+            array(
+                "id" => "2",
+                "value" => "ENTREGA"
+            ),
+            array(
+                "id" => "3",
+                "value" => "REDIDENCIAL"
+            )
+        ));
 
         $viewModel = new ViewModel();
         $viewModel->setTerminal(true);
