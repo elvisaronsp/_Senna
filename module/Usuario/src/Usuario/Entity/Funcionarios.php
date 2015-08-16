@@ -277,6 +277,9 @@ class Funcionarios
      */
     private $ferias;
 
+    /**
+     * @var
+     */
     private $nomePerfilFuncionario;
 
     /**
@@ -285,6 +288,22 @@ class Funcionarios
      * @ORM\Column(name="tentativasLogin", type="integer", nullable=true)
      */
     private $tentativasLogin = 0;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="visualizarDashboard", type="boolean", nullable=true)
+     */
+    private $visualizarDashboard;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="visualizarTodosFuncionarios", type="boolean", nullable=true)
+     */
+    private $visualizarTodosFuncionarios;
 
     /**
      * @param array $options
@@ -295,7 +314,7 @@ class Funcionarios
         $this->atualizadoem = new \DateTime("now");
 
         $this->salt = base64_encode(Rand::getBytes(32, true));
-        $this->chaveAtivacao = md5($this->email.$this->salt);
+        $this->chaveAtivacao = md5($this->email . $this->salt);
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
 
@@ -306,7 +325,7 @@ class Funcionarios
     public function gerarChaveAtivacao()
     {
         $this->saltSenha = base64_encode(Rand::getBytes(32, true));
-        return $this->chaveAtivacao = md5($this->email.$this->saltSenha);
+        return $this->chaveAtivacao = md5($this->email . $this->saltSenha);
     }
 
     /**
@@ -314,7 +333,7 @@ class Funcionarios
      */
     public function getDataadminissao()
     {
-        return ($this->dataadminissao)?date_format($this->dataadminissao, 'd-m-Y'):"";
+        return ($this->dataadminissao) ? date_format($this->dataadminissao, 'd-m-Y') : "";
     }
 
     /**
@@ -323,7 +342,8 @@ class Funcionarios
      */
     public function setDataadminissao($dataadminissao)
     {
-        $this->dataadminissao = new \DateTime($dataadminissao);
+        if (!empty($dataadminissao))
+            $this->dataadminissao = new \DateTime(implode("-", array_reverse(explode("/", $dataadminissao))));
         return $this;
     }
 
@@ -465,7 +485,8 @@ class Funcionarios
      * @param $senha
      * @return $this
      */
-    public function setSenha($senha) {
+    public function setSenha($senha)
+    {
         $this->senha = $this->encryptSenha($senha);
         return $this;
     }
@@ -494,7 +515,7 @@ class Funcionarios
      */
     public function encryptSenha($senha)
     {
-        return base64_encode(Pbkdf2::calc('sha256', $senha, $this->salt, 10000, strlen($senha*150)));
+        return base64_encode(Pbkdf2::calc('sha256', $senha, $this->salt, 10000, strlen($senha * 150)));
     }
 
     /**
@@ -627,7 +648,7 @@ class Funcionarios
      */
     public function getDatanascimento()
     {
-        return ($this->datanascimento)?date_format($this->datanascimento, 'd-m-Y'):"";
+        return ($this->datanascimento) ? date_format($this->datanascimento, 'd-m-Y') : "";
     }
 
     /**
@@ -636,7 +657,7 @@ class Funcionarios
      */
     public function setDatanascimento($datanascimento)
     {
-        $this->datanascimento = new \DateTime($datanascimento);
+        $this->datanascimento = new \DateTime(implode("-", array_reverse(explode("/", $datanascimento))));
         return $this;
     }
 
@@ -672,25 +693,26 @@ class Funcionarios
      */
     public function setComissao($comissao)
     {
-        $this->comissao =  str_replace ( ",", ".", str_replace ( ".", " ", $comissao) );
+        $this->comissao = str_replace(",", ".", str_replace(".", " ", $comissao));
         return $this;
     }
 
     /**
      * @return \DateTime
      */
-    public function getDatademissao()
+    public function getDataDemissao()
     {
-        return ($this->datademissao)?date_format($this->datademissao, 'd-m-Y'):"";
+        return ($this->datademissao) ? date_format($this->datademissao, 'd-m-Y') : "";
     }
 
     /**
      * @param $datademissao
      * @return $this
      */
-    public function setDatademissao($datademissao)
+    public function setDataDemissao($datademissao)
     {
-        $this->datademissao = new \DateTime($datademissao);
+        if (!empty($datademissao))
+            $this->datademissao = new \DateTime(implode("-", array_reverse(explode("/", $datademissao))));
         return $this;
     }
 
@@ -744,7 +766,7 @@ class Funcionarios
      */
     public function setDescontomaximo($descontomaximo)
     {
-        $this->descontomaximo =  str_replace ( ",", ".", str_replace ( ".", " ", $descontomaximo) );
+        $this->descontomaximo = str_replace(",", ".", str_replace(".", " ", $descontomaximo));
         return $this;
     }
 
@@ -1016,12 +1038,47 @@ class Funcionarios
         return $this;
     }
 
+    /**
+     * @return boolean
+     */
+    public function getVisualizarDashboard()
+    {
+        return $this->visualizarDashboard;
+    }
 
+    /**
+     * @param boolean $visualizarDashboard
+     * @return Funcionarios
+     */
+    public function setVisualizarDashboard($visualizarDashboard)
+    {
+        $this->visualizarDashboard = $visualizarDashboard;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getVisualizarTodosFuncionarios()
+    {
+        return $this->visualizarTodosFuncionarios;
+    }
+
+    /**
+     * @param boolean $visualizarTodosFuncionarios
+     * @return Funcionarios
+     */
+    public function setVisualizarTodosFuncionarios($visualizarTodosFuncionarios)
+    {
+        $this->visualizarTodosFuncionarios = $visualizarTodosFuncionarios;
+        return $this;
+    }
 
     /**
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->nome;
     }
 
@@ -1031,43 +1088,45 @@ class Funcionarios
     public function toArray()
     {
         return array(
-            'id'=>$this->id,
-            'nome'=>$this->nome,
-            'cpf'=>$this->cpf,
-            'ativo'=>($this->ativo)?"1":"0",
-            'confirmado'=>$this->confirmado,
-            'sexo'=>$this->sexo,
-            'login'=>$this->login,
-            'senha'=>$this->senha,
-            'salt'=>$this->salt,
-            'chaveativacao'=>$this->chaveAtivacao,
-            'email'=>$this->email,
-            'telefoneprincipal'=>$this->telefoneprincipal,
-            'observacoes'=>$this->observacoes,
-            'rg'=>$this->rg,
-            'dataNascimento'=> ($this->datanascimento)?date_format($this->datanascimento, 'd-m-Y'):"",
-            'escolaridade'=>$this->escolaridade,
-            'comissao'=>$this->comissao,
-            'dataAdminissao'=> ($this->dataadminissao)?date_format($this->dataadminissao, 'd-m-Y'):"",
-            'dataDemissao'=> ($this->datademissao)?date_format($this->datademissao, 'd-m-Y'):"",
-            'descancoSemanal'=>$this->descancosemanal,
-            'ctps'=>$this->ctps,
-            'descontoMaximo'=>$this->descontomaximo,
-            'tipoContaBancaria'=>$this->tipocontabancaria,
-            'agencia'=>$this->agencia,
-            'contaCorrente'=>$this->contacorrente,
-            'numerobanco'=>$this->numerobanco,
-            'liberdadevenda'=>$this->liberdadevenda,
-            'bloqueiotemporario'=>$this->bloqueiotemporario,
-            'redefinirSenha'=>$this->redefinirsenha,
-            'perfil'=>$this->perfil,
-            'id_perfil'=>$this->getPerfil()->getId(),
-            'setor'=>$this->setor,
-            'criadoem'=>$this->getCriadoem(),
-            'atualizadoem'=>$this->getAtualizadoem(),
-            'ferias'=>$this->ferias,
-            'alertas'=>$this->alertas,
-            'tentativasLogin'=>$this->tentativasLogin
+            'id'                           => $this->id,
+            'nome'                         => $this->nome,
+            'cpf'                          => $this->cpf,
+            'ativo'                        => ($this->ativo) ? "1" : "0",
+            'confirmado'                   => $this->confirmado,
+            'sexo'                         => $this->sexo,
+            'login'                        => $this->login,
+            'senha'                        => $this->senha,
+            'salt'                         => $this->salt,
+            'chaveativacao'                => $this->chaveAtivacao,
+            'email'                        => $this->email,
+            'telefoneprincipal'            => $this->telefoneprincipal,
+            'observacoes'                  => $this->observacoes,
+            'rg'                           => $this->rg,
+            'dataNascimento'               => ($this->datanascimento) ? date_format($this->datanascimento, 'd-m-Y') : "",
+            'escolaridade'                 => $this->escolaridade,
+            'comissao'                     => $this->comissao,
+            'dataAdminissao'               => ($this->dataadminissao) ? date_format($this->dataadminissao, 'd-m-Y') : "",
+            'dataDemissao'                 => ($this->datademissao) ? date_format($this->datademissao, 'd-m-Y') : "",
+            'descancoSemanal'              => $this->descancosemanal,
+            'ctps'                         => $this->ctps,
+            'descontoMaximo'               => $this->descontomaximo,
+            'tipoContaBancaria'            => $this->tipocontabancaria,
+            'agencia'                      => $this->agencia,
+            'contaCorrente'                => $this->contacorrente,
+            'numerobanco'                  => $this->numerobanco,
+            'liberdadevenda'               => $this->liberdadevenda,
+            'bloqueiotemporario'           => $this->bloqueiotemporario,
+            'redefinirSenha'               => $this->redefinirsenha,
+            'perfil'                       => $this->perfil,
+            'id_perfil'                    => $this->getPerfil()->getId(),
+            'setor'                        => $this->setor,
+            'criadoem'                     => $this->getCriadoem(),
+            'atualizadoem'                 => $this->getAtualizadoem(),
+            'ferias'                       => $this->ferias,
+            'alertas'                      => $this->alertas,
+            'tentativasLogin'              => $this->tentativasLogin,
+            'visualizarDashboard'         => $this->visualizarDashboard,
+            'visualizarTodosFuncionarios' => $this->visualizarTodosFuncionarios
         );
     }
 }

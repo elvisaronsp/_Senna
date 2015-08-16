@@ -82,20 +82,47 @@ class Funcionarios extends AbstractService
     }
 
     /**
+     * @see insert , update , login
      * @param $entity
      * @param $data
      * @return mixed
      * @throws \Doctrine\ORM\ORMException
+     * utilizado pelo inset e pelo update
+     * como a funcao e utiliada pelo login tambem
+     * e feito a verificacao se os datas existem
+     * uma vez que os datas de insercao e atualizacao do usuario sao diferentes
      */
     private function setParamExtra($entity, $data)
     {
-        $perfil = $this->em->getReference("Acl\Entity\Perfis", $data['id_perfil']);
-        $entity->setPerfil($perfil);
-        ($data['mensagemBoasVindas']) ? $entity->setConfirmado(true) : $entity->setConfirmado(false);
-        ($data['solicitarRedefinirSenha']) ? $entity->setRedefinirSenha(true) : $entity->setRedefinirSenha(false);
-        ($data['ativo']) ? $entity->setAtivo(true) : $entity->setAtivo(false);
-        ($data['modoFerias']) ? $entity->setFerias(true) : $entity->setFerias(false);
-        ($data['alertas']) ? $entity->setAlertas(true) : $entity->setAlertas(false);
+        if (isset($data['id_perfil'])):
+            $perfil = $this->em->getReference("Acl\Entity\Perfis", $data['id_perfil']);
+            $entity->setPerfil($perfil);
+        endif;
+        if (isset($data['id_perfil'])):
+            (!$data['mensagemBoasVindas']) ? $entity->setConfirmado(true) : $entity->setConfirmado(false);
+        endif;
+        if (isset($data['id_perfil'])):
+            ($data['solicitarRedefinirSenha']) ? $entity->setRedefinirSenha(true) : $entity->setRedefinirSenha(false);
+        endif;
+        if (isset($data['id_perfil'])):
+            ($data['ativo']) ? $entity->setAtivo(true) : $entity->setAtivo(false);
+        endif;
+        if (isset($data['id_perfil'])):
+            ($data['modoFerias']) ? $entity->setFerias(true) : $entity->setFerias(false);
+        endif;
+
+        if (isset($data['id_perfil'])):
+            ($data['alertas']) ? $entity->setAlertas(true) : $entity->setAlertas(false);
+        endif;
+
+
+        if (isset($data['visualizar_dashboard'])):
+            ($data['visualizar_dashboard']) ? $entity->setVisualizarDashboard(true) : $entity->setVisualizarDashboard(false);
+        endif;
+
+        if (isset($data['visualizar_todos_funcionarios'])):
+            ($data['visualizar_todos_funcionarios']) ? $entity->setVisualizarTodosFuncionarios(true) : $entity->setVisualizarTodosFuncionarios(false);
+        endif;
 
         return $entity;
     }
@@ -107,22 +134,24 @@ class Funcionarios extends AbstractService
      */
     private function incluirContatos($entityFuncionario, $data)
     {
-        foreach ($data['contato__id'] AS $key => $value) {
-            if (!empty($data['ac_' . $key])):
+        if (isset($data['contato__id'])):
+            foreach ($data['contato__id'] AS $key => $value) {
+                if (!empty($data['ac_' . $key])):
 
-                $entity = new $this->contatos();
-                $entity->setUsuarioId($entityFuncionario);
-                $entity->setTipoCadastro($data['contato__id_tipo_cadastro'][$key]);
-                $entity->setTipoContato($data['contato__id_tipo_contato'][$key]);
-                $entity->setContato($data['contato__descricao'][$key]);
-                $entity->setDetalhes($data['contato__detalhes'][$key]);
-                $entity->setPodeExcluir(false);
+                    $entity = new $this->contatos();
+                    $entity->setUsuarioId($entityFuncionario);
+                    $entity->setTipoCadastro($data['contato__id_tipo_cadastro'][$key]);
+                    $entity->setTipoContato($data['contato__id_tipo_contato'][$key]);
+                    $entity->setContato($data['contato__descricao'][$key]);
+                    $entity->setDetalhes($data['contato__detalhes'][$key]);
+                    $entity->setPodeExcluir(false);
 
-                $this->em->persist($entity);
-                $this->em->flush();
+                    $this->em->persist($entity);
+                    $this->em->flush();
 
-            endif;
-        }
+                endif;
+            }
+        endif;
     }
 
     /**
@@ -132,25 +161,63 @@ class Funcionarios extends AbstractService
      */
     private function incluirEndereco($entityFuncionario, $data)
     {
-        foreach ($data['endereco__cep'] AS $key => $value) {
-            if (!empty($data['ac_e_' . $key])):
+        if (isset($data['endereco__cep'])):
+            foreach ($data['endereco__cep'] AS $key => $value) {
+                if (!empty($data['ac_e_' . $key])):
 
-                $entity = new $this->enderecos();
-                $entity->setUsuario($entityFuncionario);
-                $entity->setCep($data['endereco__cep'][$key]);
-                $entity->setLogradouro($data['endereco__logradouro'][$key]);
-                $entity->setNumero($data['endereco_entidade__numero'][$key]);
-                $entity->setComplemento($data['endereco_entidade__complemento'][$key]);
-                $entity->setBairro($data['endereco__bairro'][$key]);
-                $entity->setCidade($data['endereco__id_cidade'][$key]);
-                $entity->setReferencia($data['endereco_entidade__informacoes_adicionais'][$key]);
-                $entity->setTipo($data['endereco_entidade__id_tipo_cadastro'][$key]);
-                $entity->setUf($data['estado'][$key]);
-                $entity->setPrincipal($data['endereco_entidade__principal'][$key]);
+                    $entity = new $this->enderecos();
+                    $entity->setUsuario($entityFuncionario);
+                    $entity->setCep($data['endereco__cep'][$key]);
+                    $entity->setLogradouro($data['endereco__logradouro'][$key]);
+                    $entity->setNumero($data['endereco_entidade__numero'][$key]);
+                    $entity->setComplemento($data['endereco_entidade__complemento'][$key]);
+                    $entity->setBairro($data['endereco__bairro'][$key]);
+                    $entity->setCidade($data['endereco__id_cidade'][$key]);
+                    $entity->setReferencia($data['endereco_entidade__informacoes_adicionais'][$key]);
+                    $entity->setTipo($data['endereco_entidade__id_tipo_cadastro'][$key]);
+                    $entity->setUf($data['estado'][$key]);
+                    $entity->setPrincipal($data['endereco_entidade__principal'][$key]);
 
-                $this->em->persist($entity);
-                $this->em->flush();
+                    $this->em->persist($entity);
+                    $this->em->flush();
 
+                endif;
+            }
+        endif;
+    }
+
+
+    /**
+     * @param $entityFuncionario
+     * @param $data
+     * Insere todos os horarios do usuario na tabela de horarios
+     */
+    private function incluirHorarios($entityFuncionario, $data)
+    {
+        $entityHorarios = new $this->horarios($data);
+        $entityHorarios->setUsuario($entityFuncionario);
+        $this->em->persist($entityHorarios);
+        $this->em->flush();
+    }
+
+    /**
+     * @param $entityFuncionario
+     * @param $data
+     * Verifica se tem que enviar uma mensagem de boas vindas para o usuario
+     */
+    private function enviarBoasVindas($entityFuncionario, $data)
+    {
+        if ($entityFuncionario && isset($data['mensagemBoasVindas'])) {
+            if (isset($data['mensagemBoasVindas']) == "1"):
+                $this->enviarEmail('SENNA - Confirmação de cadastro', $entityFuncionario->getEmail(), 'add-user',
+                    array(
+                        'senha'         => $data['senha'],
+                        'nome'          => $entityFuncionario->getNome(),
+                        'email'         => $entityFuncionario->getEmail(),
+                        'login'         => $entityFuncionario->getLogin(),
+                        'chaveAtivacao' => $entityFuncionario->getChaveAtivacao()
+                    )
+                );
             endif;
         }
     }
@@ -163,39 +230,83 @@ class Funcionarios extends AbstractService
     public function insert(array $data)
     {
         $entity = new $this->entity($data);
-        $entity = $this->setParamExtra($entity, $data);
+        $this->setParamExtra($entity, $data);
 
         $this->em->persist($entity);
         $this->em->flush();
 
         $this->incluirContatos($entity, $data);
         $this->incluirEndereco($entity, $data);
-
-        $entityHorarios = new $this->horarios($data);
-        $entityHorarios->setUsuario($entity);
-        $this->em->persist($entityHorarios);
-        $this->em->flush();
-
-        if ($entity && isset($data['mensagemBoasVindas'])) {
-            if (isset($data['mensagemBoasVindas']) == "1"):
-                $this->enviarEmail(
-                    'SENNA - Confirmação de cadastro',
-                    $entity->getEmail(),
-                    'add-user',
-                    array(
-                        'senha' => $data['senha'],
-                        'nome' => $entity->getNome(),
-                        'email' => $entity->getEmail(),
-                        'login' => $entity->getLogin(),
-                        'chaveAtivacao' => $entity->getChaveAtivacao()
-                    )
-                );
-            endif;
-            return $entity;
-        }
+        $this->incluirHorarios($entity, $data);
+        $this->enviarBoasVindas($entity, $data);
 
         return $entity;
     }
+
+
+    /**
+     * @param $data
+     * Verifica a necessidade de alterar a senha de acesso
+     */
+    private function verificaAlteracaoSenha($data)
+    {
+        if (empty($data['senha'])):
+            unset($data['senha']);
+        else:
+            //$this->enviarEmail("Alteracao de senha", $data['email'], 'edit-user', $data);
+        endif;
+    }
+
+
+    /**
+     * @param $entityFuncionario
+     * @param $data
+     * @return mixed
+     * Metoro utilizados pela area de login para eventuais bloqueios ou liberacoes de usuario
+     */
+    private function verificaBloqueiosLogin($entityFuncionario, $data)
+    {
+        if (isset($data['bloqueioLogin'])) {
+            $bloqueio = $data['bloqueioLogin'] + 1;
+            $entityFuncionario->setTentativasLogin($bloqueio);
+        }
+
+        if ($entityFuncionario->getTentativasLogin() >= 3) {
+            $entityFuncionario->setTentativasLogin(0);
+
+            $date = new \DateTime('now');
+            $date->modify("+10 minutes");
+            $entityFuncionario->setBloqueiotemporario($date);
+            $this->enviarAlertaBloqueioContaExcessoTentativas($data['nomeFuncionario']);
+        }
+        return $entityFuncionario;
+    }
+
+
+    /**
+     * @param array $data
+     * @return bool|\Doctrine\Common\Proxy\Proxy|null|object
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function update(array $data)
+    {
+        $entity = $this->em->getReference($this->entity, $data['id']);
+        $this->verificaAlteracaoSenha($data);
+        (new Hydrator\ClassMethods())->hydrate($data, $entity);
+
+        $this->setParamExtra($entity, $data);
+        $this->incluirContatos($entity, $data);
+        $this->incluirEndereco($entity, $data);
+        $this->incluirHorarios($entity, $data);
+        $this->verificaBloqueiosLogin($entity, $data);
+
+
+        $this->em->persist($entity);
+        $this->em->flush();
+
+        return $entity;
+    }
+
 
     /**
      * @param $assuntoEmail
@@ -237,42 +348,6 @@ class Funcionarios extends AbstractService
         endforeach;
     }
 
-    /**
-     * @param array $data
-     * @return bool|\Doctrine\Common\Proxy\Proxy|null|object
-     * @throws \Doctrine\ORM\ORMException
-     */
-    public function update(array $data)
-    {
-        $entity = $this->em->getReference($this->entity, $data['id']);
-
-        if (empty($data['senha'])):
-            unset($data['senha']);
-        else:
-            //$this->enviarEmail("Alteracao de senha", $data['email'], 'edit-user', $data);
-        endif;
-
-        (new Hydrator\ClassMethods())->hydrate($data, $entity);
-
-        if (isset($data['bloqueioLogin'])) {
-            $bloqueio = $data['bloqueioLogin'] + 1;
-            $entity->setTentativasLogin($bloqueio);
-        }
-
-        if ($entity->getTentativasLogin() >= 3) {
-            $entity->setTentativasLogin(0);
-
-            $date = new \DateTime('now');
-            $date->modify("+10 minutes");
-            $entity->setBloqueiotemporario($date);
-            $this->enviarAlertaBloqueioContaExcessoTentativas($data['nomeFuncionario']);
-        }
-
-        $this->em->persist($entity);
-        $this->em->flush();
-
-        return $entity;
-    }
 
     /**
      * @param $id

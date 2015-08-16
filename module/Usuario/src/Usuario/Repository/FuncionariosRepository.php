@@ -35,7 +35,28 @@ class FuncionariosRepository extends EntityRepository {
             $usuarios  [$key] ['nome'] = "" . $entity->getNome() . "";
             $usuarios  [$key] ['login'] = "" . $entity->getLogin() . "";
             $usuarios  [$key] ['perfil'] = "" . $entity->getPerfil(). "";
-            $usuarios  [$key] ['setor'] = "" . $entity->getSetor() . "";
+
+            switch ($entity->getSetor()):
+                case "0":
+                    $usuarios  [$key] ['setor'] = "ADMINISTRATIVO";
+                    break;
+                case "1":
+                    $usuarios  [$key] ['setor'] = "FINANCEIRO";
+                    break;
+                case "2":
+                    $usuarios  [$key] ['setor'] = "COMERCIAL";
+                    break;
+                case "3":
+                    $usuarios  [$key] ['setor'] = "VENDAS";
+                    break;
+                case "4":
+                    $usuarios  [$key] ['setor'] = "GERENCIA";
+                    break;
+                default:
+                    $usuarios  [$key] ['setor'] = "PRODUÇÃO";
+                    break;
+            endswitch;
+
             $usuarios  [$key] ['email'] = "" . $entity->getEmail() . "";
             $usuarios  [$key] ['possui_vinculo'] = "0";
             $usuarios  [$key] ['possui_log'] = "0";
@@ -91,5 +112,57 @@ class FuncionariosRepository extends EntityRepository {
         }
         else
             return false;
+    }
+
+
+    /**
+     * @param $horario
+     * @return bool
+     * Procura por horarios que o funcionario possa acessar o sistema
+     * pode true
+     * nao pode false
+     */
+    public function findByHorarios($horario,$isAdmin)
+    {
+        if(!$isAdmin):
+            $dataAtual = new \DateTime('now');
+            $diaAtual = date('w', strtotime($dataAtual->format('Y-m-d')));
+            switch ($diaAtual):
+                case "1":
+                    if(!$horario['0']->toArray()['diasDaSemana1'])
+                        return false;
+                    break;
+                case "2":
+                    if(!$horario['0']->toArray()['diasDaSemana2'])
+                        return false;
+                case "3":
+                    if(!$horario['0']->toArray()['diasDaSemana3'])
+                        return false;
+                case "4":
+                    if(!$horario['0']->toArray()['diasDaSemana4'])
+                        return false;
+                case "5":
+                    if(!$horario['0']->toArray()['diasDaSemana5'])
+                        return false;
+                case "6":
+                    if(!$horario['0']->toArray()['diasDaSemana6'])
+                        return false;
+                default:
+                    if(!$horario['0']->toArray()['diasDaSemana7'])
+                        return false;
+            endswitch;
+
+            $entrada        = strtotime($horario['0']->toArray()['horaEntrada']);
+            $almoco         = strtotime($horario['0']->toArray()['horaAlmocoEntrada']);
+            $retornoAlmoco  = strtotime($horario['0']->toArray()['horaAlmocoSaida']);
+            $saida          = strtotime($horario['0']->toArray()['horaSaida']);
+            $horaAtual      = strtotime($dataAtual->format('H:m'));
+
+            if($horaAtual > $entrada && $horaAtual < $almoco || $horaAtual > $retornoAlmoco &&  $horaAtual < $saida )
+                return true;
+
+            return false;
+        endif;
+        return true;
     }
 }

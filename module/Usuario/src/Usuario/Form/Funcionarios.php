@@ -234,13 +234,13 @@ class Funcionarios extends Form
 
         // input
         $input = new \Zend\Form\Element\Email("email");
-        $input->setAttribute('class', "required")
+        $input->setAttribute('class', "required valid")
             ->setAttribute('id', "email")
             ->setAttribute('autocomplete', "off")
-            ->setAttribute('uppercase', "false")
             ->setAttribute('maxLength', "50")
             ->setAttribute('minLength', "6")
-            ->setAttribute('style', "")
+            ->setAttribute('style', "text-transform: lowercase")
+            ->setAttribute('email', "true")
             ->setValue("");
         $this->add($input);
 
@@ -346,7 +346,7 @@ class Funcionarios extends Form
         // input
         $input = new \Zend\Form\Element\Text("ctps");
         $input->setAttribute('id', "ctps")
-            ->setAttribute('maxLength', "10")
+            ->setAttribute('maxLength', "12")
             ->setAttribute('class', "")
             ->setAttribute('style', "")
             ->setValue("");
