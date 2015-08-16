@@ -44,92 +44,6 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
         );
     };
 
-    /**
-     * Mostra Mapa do endereço informado
-     */
-    var map;
-    var showMap = function (container) {
-        // Armazena dados
-        var rua = container.find("[name*=endereco__logradouro]").val();
-        var bairro = container.find("[id*=endereco__bairro]").val();
-        var cidade = container.find("[id*=cidade_nome]").val();
-        var estado = container.find("[id*=estado_nome]").val();
-        var pais = container.find("[id*=pais_nome]").val();
-        // Trata exterior
-        if (!pais)
-            pais = container.find("[id*=ext_endereco__id_pais]").val();
-        var cep = container.find("[name*=endereco__cep]").val();
-        var num = container.find("[name*=endereco_entidade__numero]").val();
-        var address = rua + ',' + num + '-' + bairro + ',' + cidade + '-' + estado + ',' + cep + ',' + pais;
-
-        // Valida dados necessários para exibição do mapa
-        var ret = false;
-        var vars = ['rua', 'cidade', 'estado', 'pais'];
-        $.each(vars, function (i, val) {
-            if (!eval(val)) {
-                ret = true;
-                return false;
-            }
-        });
-        if (ret) {
-            parent.Sexy.alert('Favor informar os dados do endereço a ser exibido.');
-            return false;
-        }
-        // Instancia geocoder da API
-        var geocoder = new google.maps.Geocoder();
-
-        // Recupera longitude e latitude, recebendo o endereço como paramentro
-        geocoder.geocode({
-                'address': address
-            },
-            // Callback do pedido de latitude e longitude
-            function (results, status) {
-                // Se resultado é válido
-                if (status == google.maps.GeocoderStatus.OK) {
-                    alert('http://127.0.0.1:8080/senna/usuario/funcionarios/mapa');
-                    // Abre modal com o mapa
-                    parent.MochaUI.openWindow({
-                        id: 'http://127.0.0.1:8080/senna/usuario/funcionarios/mapa',
-                        title: 'Mapa',
-                        onContentLoaded: function () {
-                            // Armazena objeto para latitude e longitude
-                            var myLatlng = results[0].geometry.location;
-                            alert(myLatlng);
-                            // Armazena elemento da janela (modal)
-                            var janela = this.iframeEl;
-                            janela = $(janela).contents();
-
-                            // Opções do mapa
-                            var myOptions = {
-                                zoom: 15,
-                                center: myLatlng,
-                                mapTypeId: google.maps.MapTypeId.ROADMAP
-                            };
-
-                            // Criar o mapa na div "content" da janela
-                            map = new google.maps.Map(janela.find('#content').css({
-                                'width': '100%',
-                                'height': '100%',
-                                'padding': '0',
-                                'margin': '0'
-                            }).get(0), myOptions);
-                            // Cria marcador
-                            var marker = new google.maps.Marker({
-                                map: map,
-                                position: myLatlng
-                            });
-                            // Adiciona evento "Click" para o marcador
-                            google.maps.event.addListener(marker, 'click', function () {
-                                map.setZoom(17);
-                            });
-                        }
-                    });
-                } else {
-                    Sexy.alert("Não foi possível encontrar o endereço informado");
-                }
-            }
-        );
-    };
 
     var exist_principal = function () {
         var retorno = false;
@@ -154,20 +68,6 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     };
 
     jQuery(document).ready(function () {
-
-        // Habilita botoes de mapa
-        $('[name=btn_mapa]').each(
-            function () {
-                if ($(this).parents('.clonedField').find('[name*=endereco_entidade__id]').val() != '') {
-                    $(this).removeAttr('disabled');
-                }
-            }
-        ).click(
-            function () {
-                showMap($(this).parents('.clonedField'));
-            }
-        );
-
 
         // Trata cadastro de endereço principal
         $('#endereco .clonedField').each(

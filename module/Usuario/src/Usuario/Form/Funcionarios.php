@@ -37,6 +37,14 @@ class Funcionarios extends Form
             ->setValue("");
         $this->add($hidden);
 
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('empresa');
+        $hidden->setAttribute('id', "empresa")
+            ->setValue("");
+        $this->add($hidden);
+
+
         //input hidden
         $hidden = new \Zend\Form\Element\Hidden('id_funcionario');
         $hidden->setAttribute('id', "id_funcionario")

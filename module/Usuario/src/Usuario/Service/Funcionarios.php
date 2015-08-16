@@ -94,27 +94,31 @@ class Funcionarios extends AbstractService
      */
     private function setParamExtra($entity, $data)
     {
+
+        if (isset($data['empresa'])):
+            $idEmpresa = $this->em->getReference("Senna\Entity\Empresa", $data['empresa']);
+            $entity->setEmpresa($idEmpresa);
+        endif;
         if (isset($data['id_perfil'])):
             $perfil = $this->em->getReference("Acl\Entity\Perfis", $data['id_perfil']);
             $entity->setPerfil($perfil);
         endif;
-        if (isset($data['id_perfil'])):
+        if (isset($data['mensagemBoasVindas'])):
             (!$data['mensagemBoasVindas']) ? $entity->setConfirmado(true) : $entity->setConfirmado(false);
         endif;
-        if (isset($data['id_perfil'])):
+        if (isset($data['solicitarRedefinirSenha'])):
             ($data['solicitarRedefinirSenha']) ? $entity->setRedefinirSenha(true) : $entity->setRedefinirSenha(false);
         endif;
-        if (isset($data['id_perfil'])):
+        if (isset($data['ativo'])):
             ($data['ativo']) ? $entity->setAtivo(true) : $entity->setAtivo(false);
         endif;
-        if (isset($data['id_perfil'])):
+        if (isset($data['modoFerias'])):
             ($data['modoFerias']) ? $entity->setFerias(true) : $entity->setFerias(false);
         endif;
 
-        if (isset($data['id_perfil'])):
+        if (isset($data['alertas'])):
             ($data['alertas']) ? $entity->setAlertas(true) : $entity->setAlertas(false);
         endif;
-
 
         if (isset($data['visualizar_dashboard'])):
             ($data['visualizar_dashboard']) ? $entity->setVisualizarDashboard(true) : $entity->setVisualizarDashboard(false);

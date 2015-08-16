@@ -841,9 +841,24 @@
 /* 795  */ 	function makeValidations(){
 /* 796  */ 		//botao de cancelar
 /* 797  */ 		$('input[cancelForm=true]').click(function(e){
-/* 798  */ 			new Event(e).stop();
-/* 799  */ 			closeWindow();
-/* 800  */ 		});
+
+                var btn = this;
+
+                //limpa todas as confirmacoes dos botoes antes de colocalas.
+                $(btn).unsetConfirmMessage();
+
+                if($(btn).attr("confirm")){
+
+                    if($(btn).attr("labelsConfirm")){
+                        var labels = eval('('+$(btn).attr("labelsConfirm")+')');
+                        $(btn).addConfirmMessage($(btn).attr("confirm"),labels.labelSim,labels.labelNao);
+                    }
+                    else{
+                        $(btn).addConfirmMessage($(btn).attr("confirm"));
+                    }
+                }
+            confirmExitForm(btn, form,e);
+});
 
 /* forms.js */
 
@@ -870,7 +885,7 @@
 /* 821  */         		else{
 /* 822  */         			$(btn).addConfirmMessage($(btn).attr("confirm"));
 /* 823  */         		}
-/* 824  */         		
+/* 824  */
 /* 825  */         	}
 /* 826  */
 /* 827  */         	//se não passou no teste de submissao associado ao botao, nao envia
@@ -900,10 +915,36 @@
 
 /* forms.js */
 
-/* 851  */ 		
-/* 852  */ 		/**
-/* 853  *| 		 * Confirmando envio do formulario
-/* 854  *| 		 */
+/* 851  */
+
+        var confirmExitForm = function(btn, form,e){
+
+            // Verifica por mensagem de confirmação
+            var conf = $(btn).data("confirm_message");
+            var sx = Sexy;
+            // Verifica confirmação do parent
+            if (!conf || conf == '') {
+                conf = $(btn).data("parent_confirm_message");
+                sx = parent.Sexy;
+            }
+            // Transforma conf em objeto
+            if (typeof(conf) == 'string'){
+                conf = [conf];
+            }
+            // Se existe confirmação, recebe resposta do usuario antes de submeter formulario
+            if(conf){
+                $(conf).showConfirmMessages(sx,function () {
+                    new Event(e).stop();
+                    closeWindow();
+                },btn);
+            }else{
+            }
+        };
+
+
+        /**
+         /* 853  *| 		 * Confirmando envio do formulario
+         /* 854  *| 		 */
 /* 855  */ 		var confirmSubmitForm = function(btn, form){
 /* 856  */         	
 /* 857  */         	// Verifica por mensagem de confirmação
@@ -923,7 +964,10 @@
 /* 871  */ 				$(conf).showConfirmMessages(sx,function () {
 /* 872  */ 					submitForm(btn, form);
 /* 873  */ 				},btn);
-/* 874  */         	}else{
+/* 874  */         	}
+                    else
+                    {
+
 /* 875  */         		submitForm(btn, form);
 /* 876  */         	}
 /* 877  */ 		};

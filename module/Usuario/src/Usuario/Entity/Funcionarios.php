@@ -305,6 +305,13 @@ class Funcionarios
      */
     private $visualizarTodosFuncionarios;
 
+
+    /**
+     * @ORM\OneToOne(targetEntity="Senna\Entity\Empresa",fetch="EAGER")
+     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
+     */
+    private $empresa;
+
     /**
      * @param array $options
      */
@@ -1075,6 +1082,24 @@ class Funcionarios
     }
 
     /**
+     * @return mixed
+     */
+    public function getEmpresa()
+    {
+        return $this->empresa;
+    }
+
+    /**
+     * @param mixed $empresa
+     * @return Funcionarios
+     */
+    public function setEmpresa($empresa)
+    {
+        $this->empresa = $empresa;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
@@ -1126,7 +1151,8 @@ class Funcionarios
             'alertas'                      => $this->alertas,
             'tentativasLogin'              => $this->tentativasLogin,
             'visualizarDashboard'         => $this->visualizarDashboard,
-            'visualizarTodosFuncionarios' => $this->visualizarTodosFuncionarios
+            'visualizarTodosFuncionarios' => $this->visualizarTodosFuncionarios,
+            'empresa'                     => $this->getEmpresa()->getId()
         );
     }
 }

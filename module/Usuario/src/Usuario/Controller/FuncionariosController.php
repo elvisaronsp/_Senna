@@ -34,6 +34,11 @@ class FuncionariosController extends GrudController
     public function FormAction()
     {
         $form = $this->getServiceLocator()->get($this->form);
+
+        $auth = new AuthenticationService;
+        $auth->setStorage(new SessionStorage("Usuario"));
+        $form->get('empresa')->setAttribute('value', $auth->getIdentity()->getEmpresa()->getId());
+
         $repository = $this->getEm()->getRepository($this->entity);
         $retorno = array('form' => $form);
         if ($this->params()->fromRoute('id', 0)) {

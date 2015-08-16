@@ -8,22 +8,31 @@ return array(
                 'options' => array(
                 	'route'    => '/senna/negado',
                     'defaults' => array(
-                        'controller' => 'Negado\Controller\Index',
-                        'action'     => 'index',
+                        '__NAMESPACE__' => 'Negado\Controller',
+                        'controller' => 'Index',
+                        'action' => 'index'
                     ),
                 ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[/:action[/:id][/:nome]]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                                'nome'=>'[a-zA-Z][a-zA-Z0-9_-]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Negado\Controller',
+                                'controller' => 'Index'
+                            )
+                        )
+                    )
+                )
             ),
-        	
-        		'classes-negado' => array(
-        				'type' => 'Segment',
-        				'options' => array(
-        						'route'    => '/senna/negado/[:controller[/:action]][/:id]',
-        						'defaults' => array(
-        								'action'     => 'index',
-        								//'page'=>'1'
-        						),
-        				),
-        		),
         ),
     ),
     'controllers' => array(

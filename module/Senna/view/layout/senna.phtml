@@ -1,5 +1,4 @@
-<?php define('__PERFIL__', $this->UsuarioIdentity("Usuario")->getPerfil()->getNome());
-define('__NEGADO__', $this->basePath() . "/senna/negado"); ?>
+<?php define('__PERFIL__', $this->UsuarioIdentity("Usuario")->getPerfil()->getNome()); define('__NEGADO__', $this->basePath() . "/senna/negado"); define('__NOTVIEW__', $this->basePath() . "/senna/negado/index/inicio"); ?>
 <?php //echo $this->content?>
 <?php echo $this->doctype(); ?>
 <!-- DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"-->
@@ -879,7 +878,9 @@ define('__NEGADO__', $this->basePath() . "/senna/negado"); ?>
 
             <!-- Dashboard -->
             <li>
-                <a href="senna/inicio" id="menu_inicio" rel="menu_inicio"
+
+                <a href='<?php echo ($this->UsuarioIdentity("Usuario")->getVisualizarDashboard()) ? $this->basePath() . '/senna/inicio' : __NOTVIEW__; ?>'
+                   id="menu_inicio" rel="menu_inicio"
                    target="panel" title="Início"><span><i class="icon-home menu_icon"></i><span
                                 class="label">Início</span></span></a>
             </li>
