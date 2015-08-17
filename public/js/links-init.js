@@ -5,11 +5,11 @@
 /* 2  *|  * @author Bruno
 /* 3  *|  */
 /* 4  */ var initializeWindows = function(){
-/* 5  */ 	
+/* 5  */
 /* 6  */ 	$$('a[target]').each(function(el){
 /* 7  */ 		if(!el.retrieve('hasClick', false)){
 /* 8  */ 			el.addEvent('click', function(e){
-/* 9  */ 				
+/* 9  */
 /* 10 */ 				switch (el.get('target')) {
 /* 11 */ 				case "jswindow":
 /* 12 */ 					new Event(e).stop();
@@ -17,7 +17,8 @@
 /* 14 */ 					break;
 /* 15 */ 				case "window":
 /* 16 */ 					new Event(e).stop();
-/* 17 */ 					parent.MochaUI.newWindow(this);
+                            if($$('#redefinir').get('value')== "0")
+                                parent.MochaUI.newWindow(this);
 /* 18 */ 					break;
 /* 19 */ 				case "modal":
 /* 20 */ 					new Event(e).stop();
@@ -28,15 +29,24 @@
 /* 25 */ 					parent.MochaUI.newModal2(this);
 /* 26 */ 					break;
 /* 27 */ 				case "panel":
-/* 28 */ 					new Event(e).stop();
-/* 29 */ 					parent.MochaUI.load(this);
-/* 30 */ 					break;
+                        // alterado para forcar usuario a redefinir sua senha
+                        new Event(e).stop();
+                        if($$('#redefinir').get('value')== "1")
+                            parent.MochaUI.load($$("#perfilUsuario")[0]);
+                        else
+                            parent.MochaUI.load(this);
+                        break;
 /* 31 */ 				}
 /* 32 */ 			});
 /* 33 */ 			el.store('hasClick', true);
 /* 34 */ 		}
 /* 35 */ 	});
-/* 36 */ 
+
+
+
+
+
+/* 36 */
 /* 37 */ 	// Deactivate menu header links
 /* 38 */ 	$$('a.returnFalse').each(function(el){
 /* 39 */ 		el.addEvent('click', function(e){
@@ -48,6 +58,7 @@
 /* 45 */ 
 /* 46 */ // Initialize when the DOM is ready
 /* 47 */ window.addEvent('domready', function(){
+
 /* 48 */ 	//inicializa metodos de abertura de janelas
 /* 49 */ 	initializeWindows();
 /* 50 */ });

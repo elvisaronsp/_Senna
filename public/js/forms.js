@@ -938,6 +938,8 @@
                     closeWindow();
                 },btn);
             }else{
+                new Event(e).stop();
+                closeWindow();
             }
         };
 

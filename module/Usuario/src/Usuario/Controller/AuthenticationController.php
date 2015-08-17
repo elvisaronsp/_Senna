@@ -44,7 +44,7 @@ class AuthenticationController extends AbstractActionController
                     $authAdapter = $this->getServiceLocator()->get("Usuario\Auth\Adapter");
                     $authAdapter->setLogin($request->getPost()->toArray()['login']);
                     $authAdapter->setSenha($request->getPost()->toArray()['senha']);
-                
+
                     // tenta autenticar usuario
                     $this->result = $auth->authenticate($authAdapter);
 
@@ -67,12 +67,11 @@ class AuthenticationController extends AbstractActionController
                             $service = $this->getServiceLocator()->get("Usuario\Service\Funcionarios");
                             $service->update(array('id' => $auth->getIdentity()['Usuario']->getId(), 'tentativasLogin' => '0'));
                         }
-
                         // verifica se usuario e obrigado a redefinir sua senha
                         if(!$redefinirSenha):
                             return $this->redirect()->toRoute('senna',array('controller'=>'index'));
                         else:
-                            return $this->redirect()->toRoute('usuario-listar/default',array('controller'=>'Funcionarios','action'=>'funcionario'));
+                            return $this->redirect()->toRoute('senna',array('controller'=>'index'),array('fragment' => 'perfilUsuario'));
                         endif;
                     else:
                         $form->clear($form);

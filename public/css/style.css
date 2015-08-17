@@ -1574,9 +1574,9 @@ a.btn_tributacao[disabled] {
  .warning_infos{
  	background: url("../images/error.png") no-repeat scroll 35px center #E7F3FC;
  }
- 
+
 .help_infos{
-	background: url("../images/lightbulb.png") no-repeat scroll 35px center #E7F3FC;	
+	background: url("../images/lightbulb.png") no-repeat scroll 35px center #E7F3FC;
 }
 
 .help_infos, .warning_infos{
@@ -1587,12 +1587,12 @@ a.btn_tributacao[disabled] {
     margin: 4px;
     padding: 20px 0;
     display: block;
-    width: 99%;	
+    width: 99%;
 }
 
 
 	.help_infos > div, .warning_infos > div{
-		float:left; 
+		float:left;
 		width:85%;
 		margin-left:10%;
 	}
@@ -1603,8 +1603,52 @@ a.btn_tributacao[disabled] {
 		color: #222;
 	}
 	.help_infos li, .warning_infos li{
-		padding-bottom: 5px; 
+		padding-bottom: 5px;
 	}
+
+
+
+/**
+ * Alertas
+ ************************/
+
+.warning_alertas{
+	background: url("../images/error.png") no-repeat scroll 35px center #ffeec6;
+}
+
+.help_alertas{
+	background: url("../images/lightbulb.png") no-repeat scroll 35px center #ffeec6;
+}
+
+
+.help_alertas, .warning_alertas{
+	border: 1px solid #ebc875;
+	clear: both;
+	color: #624b0f;
+	float: left;
+	margin: 4px;
+	padding: 20px 0;
+	display: block;
+	width: 99%;
+}
+
+.help_alertas > div, .warning_alertas > div{
+	float:left;
+	width:85%;
+	margin-left:10%;
+}
+.help_alertas *, .warning_alertas *{
+	color: #624b0f;
+}
+.help_alertas a, .warning_alertas a{
+	color: #624b0f;
+}
+.help_alertas li, .warning_alertas li{
+	padding-bottom: 5px;
+}
+/**
+ * Alertas
+ ************************/
  
 /** 
  * Menu de Botões de Ação

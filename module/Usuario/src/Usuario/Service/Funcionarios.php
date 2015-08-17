@@ -211,8 +211,9 @@ class Funcionarios extends AbstractService
      */
     private function enviarBoasVindas($entityFuncionario, $data)
     {
+
         if ($entityFuncionario && isset($data['mensagemBoasVindas'])) {
-            if (isset($data['mensagemBoasVindas']) == "1"):
+            if ($data['mensagemBoasVindas'] == "1"):
                 $this->enviarEmail('SENNA - Confirmação de cadastro', $entityFuncionario->getEmail(), 'add-user',
                     array(
                         'senha'         => $data['senha'],
@@ -259,6 +260,7 @@ class Funcionarios extends AbstractService
         else:
             //$this->enviarEmail("Alteracao de senha", $data['email'], 'edit-user', $data);
         endif;
+        return $data;
     }
 
 
@@ -295,9 +297,8 @@ class Funcionarios extends AbstractService
     public function update(array $data)
     {
         $entity = $this->em->getReference($this->entity, $data['id']);
-        $this->verificaAlteracaoSenha($data);
+        $data = $this->verificaAlteracaoSenha($data);
         (new Hydrator\ClassMethods())->hydrate($data, $entity);
-
         $this->setParamExtra($entity, $data);
         $this->incluirContatos($entity, $data);
         $this->incluirEndereco($entity, $data);

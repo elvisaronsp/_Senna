@@ -988,7 +988,8 @@ class Funcionarios
      */
     public function setAtualizadoem()
     {
-        $this->atualizadoEm = new \DateTime("now");
+        $this->atualizadoem = new \DateTime("now");
+
     }
 
     /**

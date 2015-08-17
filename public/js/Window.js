@@ -199,10 +199,10 @@
 /* 187  */ 	shape:             'box',
 /* 188  */ 
 /* 189  */ 	// Window Controls
-/* 190  */ 	collapsible:       true,
-/* 191  */ 	minimizable:       true,
-/* 192  */ 	maximizable:       true,
-/* 193  */ 	closable:          true,
+/* 190  */ 	collapsible:       false,
+/* 191  */ 	minimizable:       false,
+/* 192  */ 	maximizable:       false,
+/* 193  */ 	closable:          false,
 /* 194  */ 
 /* 195  */ 	// Draggable
 /* 196  */ 	draggable:         null,
@@ -765,7 +765,7 @@
 /* 720  */ 
 /* 721  */ 	},
 /* 722  */ 	/*
-/* 723  *| 
+/* 723  *|
 /* 724  *| 	Internal Function: attachDraggable()
 /* 725  *| 		Make window draggable.
 /* 726  *| 

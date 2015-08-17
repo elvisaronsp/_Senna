@@ -76,15 +76,20 @@ class Module {
 		$auth = new AuthenticationService;
 		$auth->setStorage(new SessionStorage("Usuario"));
 
+
+
 		$controller = $e->getTarget();
 		$matchedRoute = $controller->getEvent()->getRouteMatch()->getMatchedRouteName();
 
 		if(!$auth->hasIdentity() and ($matchedRoute == "senna")){
 			return $controller->redirect()->toRoute("application");
 		}
-		if($auth->hasIdentity() and $matchedRoute == "application" ){
+
+		if($auth->hasIdentity() and $matchedRoute == "application" )
+		{
 			return $controller->redirect()->toRoute("senna");
 		}
+
 	}
 
 

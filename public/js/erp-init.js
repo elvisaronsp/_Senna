@@ -31,7 +31,7 @@
 /* 28 */ 		padding: { top: 0, right: 0, bottom: 0, left: 0 },
 /* 29 */ 		onContentLoaded: initializeWindows
 /* 30 */ 	});
-/* 31 */ 	
+
 /* 32 */ 	MochaUI.load($$("#menu_inicio")[0]);
 /* 33 */ };
 /* 34 */ 

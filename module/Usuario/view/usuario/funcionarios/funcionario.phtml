@@ -1,1 +1,1193 @@
-Este e a view de dados do funcionario
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <link rel="shortcut icon" href="http://app.tagplus.com.br/fox3/resources/images/icons/../temas/tagplus/favicon.ico" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv='cache-control' content='no-cache' />
+    <meta http-equiv='expires' content='0' />
+    <meta http-equiv='pragma' content='no-cache' />
+    <meta name="robots" content="NOINDEX,NOFOLLOW" />
+    <meta name="base_url" content="http://app.tagplus.com.br/fox3/" />
+
+    <title></title>
+    <script type="text/javascript" src="http://app.tagplus.com.br/fox3//application/libraries/common/min/?b=js/common&amp;f=mocha/scripts/mootools-1.2-core.js,mocha/scripts/mootools-1.2-more.js,mocha/scripts/source/Core/Core.js,mocha/scripts/source/Window/Window.js,mocha/scripts/source/Window/Modal.js,mocha/scripts/mocha-ext.js,mocha/scripts/base.js,jquery/core.js,jquery/debug.js,jquery/dump.js,jquery/bt.js,jquery/validate.js,jquery/tab.js,jquery/tablestyle.js,jquery/clonefield.js,jquery/maskedinput.js,sexyalertbox.js,jquery/uppercase.js,jquery/date.js,jquery/datepicker.js,jquery/autocomplete.js,jquery/readonly.js,jquery/confirm_message.js,jquery/livequery.js,forms.js,jquery/priceformat.js,jquery/cloneform.js,jquery/ui.js&amp;v=2.1.11"></script>
+    <!--[if IE]><script type="text/javascript"  src="http://app.tagplus.com.br/fox3/resources/js/common/mocha/scripts/excanvas-compressed.js?v=2.1.11"></script><![endif]-->
+
+
+
+    <link href="http://app.tagplus.com.br/fox3/resources/css/noprint.css?v=2.1.11" media="print" rel="stylesheet" type="text/css" />
+    <link href="http://app.tagplus.com.br/fox3/resources/css/glyphs.css?v=2.1.11" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://app.tagplus.com.br/fox3/resources/css/loader.css?v=2.1.11" media="screen" rel="stylesheet" type="text/css" />
+    <link href="\css/style.css?v=2.1.11" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://app.tagplus.com.br/fox3/resources/css/temas/tagplus/style_tagplus.css?v=2.1.11" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://app.tagplus.com.br/fox3/resources/css/sexyalertbox.css?v=2.1.11" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://app.tagplus.com.br/fox3/resources/css/datepicker.css?v=2.1.11" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://app.tagplus.com.br/fox3/resources/css/cloneform.css?v=2.1.11" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://app.tagplus.com.br/fox3/resources/css/jqueryui.css?v=2.1.11" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://app.tagplus.com.br/fox3/resources/css/clonetable.css?v=2.1.11" media="screen" rel="stylesheet" type="text/css" />
+
+
+    <script type='text/javascript'>
+
+
+
+        if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Continuar","intro_button_avancar":"Avan\u00e7ar","intro_button_entendi":"<i class=\"icon-ok\"><\/i> Entendi","intro_button_ok":"<i class=\"icon-ok\"><\/i> Ok","intro_button_concluir":"<i class=\"icon-thumbs-up\"><\/i> Concluir","intro_button_voltar":"Voltar","intro_button_fechar":"Fechar","intro_button_cancelar":"<i class=\"icon-remove\"><\/i> Cancelar Tutorial","label_sim":"Sim","label_nao":"N\u00e3o","lang_range_separator":"a","lang_range_periodo_vazio":"Todo o Per\u00edodo","lang_range_date_format":"dd mmm","lang_range_date_format_dia":"dd de mmmm yyyy","lang_range_date_format_mes":"mmmm yyyy","lang_range_date_format_ano":"yyyy","lang_date_format":"dd\/mm\/yyyy","lang_start_date":"01\/01\/2011"});
+
+
+        /*************************************************
+         cadastro/complementos_cadastros/form_enderecos.js
+         *************************************************/
+
+        /**
+         * @author Bruno
+         */
+//montando autocomplete para seleção de fornecedores
+        (function($){
+
+            var preencheForm = function ($parent, json)
+            {
+                $parent.find("[name*=endereco__logradouro]").val(json.logradouro);
+                $parent.find("[id*=endereco__bairro]").val(json.bairro);
+                $parent.find("[id*=cidade_nome]").val(json.cidade);
+                $parent.find("[id*=cidade_cod]").val(json.cidade_cod);
+                $parent.find("[id*=estado_nome]").val(json.estado);
+                $parent.find("[id*=estado_cod]").val(json.estado_cod);
+                $parent.find("[id*=pais_nome]").val(json.pais);
+                $parent.find("[id*=pais_cod]").val(json.pais_cod);
+                $parent.find("[name*=endereco__cep]").val(json.cep);
+                $parent.find("[name*=endereco_entidade__id_endereco]").val(json.id);
+                $parent.find('[name*=btn_mapa]').removeAttr('disabled').unbind('click').click(
+                    function ()
+                    {
+                        var container = $parent;
+
+                        showMap(container);
+                    }
+                );
+            };
+
+            /**
+             * Mostra Mapa do endereço informado
+             */
+            var map;
+            var showMap = function (container) {
+                // Armazena dados
+                var rua = container.find("[name*=endereco__logradouro]").val();
+                var bairro = container.find("[id*=endereco__bairro]").val();
+                var cidade = container.find("[id*=cidade_nome]").val();
+                var estado = container.find("[id*=estado_nome]").val();
+                var pais = container.find("[id*=pais_nome]").val();
+                // Trata exterior
+                if (!pais)
+                    pais = container.find("[id*=ext_endereco__id_pais]").val();
+                var cep = container.find("[name*=endereco__cep]").val();
+                var num = container.find("[name*=endereco_entidade__numero]").val();
+                var address = rua+','+num+'-'+bairro+','+cidade+'-'+estado+','+cep+','+pais;
+
+                // Valida dados necessários para exibição do mapa
+                var ret = false;
+                var vars = ['rua','cidade','estado','pais'];
+                $.each(vars, function (i,val) {
+                    if (!eval(val)){
+                        ret = true;
+                        return false;
+                    }
+                });
+                if (ret){
+                    parent.Sexy.alert('Favor informar os dados do endereço a ser exibido.');
+                    return false;
+                }
+                // Instancia geocoder da API
+                var geocoder = new google.maps.Geocoder();
+
+                // Recupera longitude e latitude, recebendo o endereço como paramentro
+                geocoder.geocode( { 'address': address},
+                    // Callback do pedido de latitude e longitude
+                    function(results, status)
+                    {
+                        // Se resultado é válido
+                        if (status == google.maps.GeocoderStatus.OK)
+                        {
+                            alert('http://app.tagplus.com.br/fox3/usuario/infos/mapa');
+                            // Abre modal com o mapa
+                            parent.MochaUI.openWindow({
+                                id:'http://app.tagplus.com.br/fox3/usuario/infos/mapa',
+                                title:'Mapa',
+                                onContentLoaded:function ()
+                                {
+                                    // Armazena objeto para latitude e longitude
+                                    var myLatlng = results[0].geometry.location;
+
+                                    // Armazena elemento da janela (modal)
+                                    var janela = this.iframeEl;
+                                    janela = $(janela).contents();
+
+                                    // Opções do mapa
+                                    var myOptions = {
+                                        zoom: 15,
+                                        center: myLatlng,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    };
+
+                                    // Criar o mapa na div "content" da janela
+                                    map = new google.maps.Map(janela.find('#content').css({'width':'100%','height':'100%','padding':'0','margin':'0'}).get(0), myOptions);
+                                    // Cria marcador
+                                    var marker = new google.maps.Marker({
+                                        map: map,
+                                        position: myLatlng
+                                    });
+                                    // Adiciona evento "Click" para o marcador
+                                    google.maps.event.addListener(marker, 'click', function() {
+                                        map.setZoom(17);
+                                    });
+                                }
+                            });
+                        }
+                        else
+                        {
+                            Sexy.alert("Não foi possível encontrar o endereço informado");
+                        }
+                    }
+                );
+            };
+
+            var exist_principal = function(){
+                var retorno = false;
+                var fields = $('#endereco .clonedField:not(.hiddenClone)').find('[name*=principal_radio]');
+                fields.each(function(){
+                    if($(this).is(':checked'))
+                        retorno =  true;
+                });
+                return retorno;
+            };
+
+            var set_principal_padrao = function(){
+                var visibles= $('#endereco .clonedField:not(.hiddenClone):first');
+                var inserido_ultimo = $('#endereco .clonedField:not(.hiddenClone):last');
+                if(inserido_ultimo.find('[name*=endereco_entidade__id]').val() == ''){
+                    $('#endereco .clonedField:not(.hiddenClone):last').find('[name*=btn_mapa]').attr('disabled','disabled');
+                }
+                if(!exist_principal()){
+                    visibles.find('[name*=principal_radio]').attr('checked','checked');
+                    visibles.find('[name*=__principal]').val(1);
+                }
+            };
+
+            jQuery(document).ready(function(){
+
+                // Habilita botoes de mapa
+                $('[name=btn_mapa]').each(
+                    function ()
+                    {
+                        if($(this).parents('.clonedField').find('[name*=endereco_entidade__id]').val() != '')
+                        {
+                            $(this).removeAttr('disabled');
+                        }
+                    }
+                ).click(
+                    function ()
+                    {
+                        showMap($(this).parents('.clonedField'));
+                    }
+                );
+
+
+                // Trata cadastro de endereço principal
+                $('#endereco .clonedField').each(
+                    function ()
+                    {
+                        /*acao_novo_endereco($(this));
+                         auto_comlepete_endereco($(this));*/
+
+                        if ($(this).find('[name*=__principal]').val() == 1)
+                        {
+                            $(this).find('[name*=principal_radio]').attr('checked','checked');
+                        }
+                        $(this).find('[name*=principal_radio]').click(
+                            function ()
+                            {
+                                $('[name*=endereco_entidade__principal]').val('0');
+                                $(this).parents('.clonedField').find('[name*=__principal]').val($(this).is(':checked') ? 1 : 0);
+                            }
+                        );
+                    }
+                );
+
+                //verifica se existe algum campo marcado como principal na hora de remover um clone
+                $(".removeClone").click(function(){
+                    set_principal_padrao();
+                });
+                //verifica se existe algum campo marcado como principal na hora de inserir um clone
+                $(".cloneable").click(function(){
+                    set_principal_padrao();
+                });
+
+                /*
+                 //Tratando cadastro de novos enderecos
+                 $("[id*=endereco__id]").bind('onWindowLoad', function(evt, newDocument, val){
+                 //OBtendo os dados da tela que abriu.
+                 var logradouro	= $(newDocument).find("#endereco__logradouro").val();
+                 var bairro		= $(newDocument).find("#endereco__bairro").val();
+                 var cidade		= $(newDocument).find("#endereco__id_cidade").val();
+
+                 if(logradouro == '' || bairro == '' || cidade == ''){
+                 //Retirando os espaços
+                 val = val.replace(/^s+|s+$/g, '').replace('.', '');
+                 // Caso o CEP não esteja nesse formato ele vai ser inserido no campo de logradouro
+                 var objER = /^[0-9]{5}[-]?[0-9]{3}$/;
+                 //Verficando se foi inserido um conteúdo
+                 if(val.length > 0){
+                 if(objER.test(val)){
+                 $(newDocument).find("#endereco__cep").val(val);
+                 $(newDocument).find("#btn_cep").click();
+                 }
+                 else
+                 $(newDocument).find("#endereco__logradouro").val(val);
+                 }
+                 }
+
+                 });
+                 */
+                /* BOTÃO DE BUSCA DE CEP ******************************/
+                $("[id*=btn_cep]").click(function(evt, el){ get_cep_ws($(this).parents('.clonedField')) });
+                $("[name*=endereco__cep]").blur(function(evt, el){
+                    if($('#flag_exterior').val() != '1')
+                        get_cep_ws($(this).parents('.clonedField'))
+                });
+
+
+                $("[id*=endereco__id_cidade]").change(function(evt, el, json){
+                    container = $(this).parents('.clonedField');
+                    $(container).find("[name*=endereco__id_cidade]").val(json.id);
+                    $(container).find("[name*=localidade_cidade__nome]").val(json.nome);
+                    $(container).find("[name*=cidade_cod]").val(json.cod);
+                    $(container).find("[name*=estado_cod]").val(json.cod_estado);
+                    $(container).find("[name*=estado]").val(json.sigla);
+                });
+
+                $("[id*=btn_correio]").click(function(evt, el){
+                    window.open('http://www.buscacep.correios.com.br/');
+                });
+
+
+            });
+
+
+            var get_cep_ws = function (container) {
+                //Carregando
+                $("#loader").show().find(".carregando").hide();
+                $("#loader").find(".enviando").show();
+
+                var cep = $(container).find("[name*=endereco__cep]").val();
+                var url = '{url_ws_cep}';
+
+                if (!cep){
+                    Sexy.alert('Por favor, informe o CEP.');
+                    $("#loader").hide();
+                }
+                else{
+                    //Faz uma requisição pra verificar se o cep ja foi cadastrado
+                    $.ajax({
+                        type: "POST",
+                        url: 'http://app.tagplus.com.br/fox3/cadastro/enderecos/get_endereco_by_cep/'+cep,
+                        dataType: 'json',
+                        async:false,
+                        success: function(data){
+                            if(data.length != 0){
+                                //Se tem só 1 endereço
+                                if(data.length == 1){
+                                    var json =  data[0];
+                                    $(container).find('[name*=endereco__cep]').val(json.cep);
+                                    $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
+                                    $(container).find('[name*=endereco__bairro]').val(json.bairro);
+                                    $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
+                                    $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
+                                    $(container).find('[name*=estado]').val(json.sigla_estado);
+                                    $(container).find('[name*=pais]').val(json.pais);
+                                    $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
+                                    $(container).find('[name*=cidade_cod]').val(json.cidade_cod);
+                                    $(container).find('[name*=estado_cod]').val(json.estado_cod);
+                                    $(container).find('[name*=pais_cod]').val(json.pais_cod);
+                                    //Se tem mas de 1 pergunto
+                                }else{
+                                    Sexy.confirm('Foi encontrado mais de um endereço para o mesmo CEP. Deseja selecionar estes endereços?',{
+                                        textBoxBtnOk:"Sim",
+                                        textBoxBtnCancel:"Não",
+                                        onComplete:function (ret) {
+                                            if (ret){
+                                                // Abre modal com o mapa
+                                                var data_end = false;
+                                                var url = 'http://app.tagplus.com.br/fox3/cadastro/enderecos/form_enderecos_mult';
+                                                parent.MochaUI.openWindow({
+                                                    id:url,
+                                                    title: 'Endereço',
+                                                    type:'modal',
+                                                    //Id de onde foi clicado enviado como parametro.
+                                                    contentURL: url,
+                                                    width:700,
+                                                    height:486,
+                                                    onContentLoaded:function () {
+
+                                                        var janela = this.iframeEl;
+                                                        janela = $(janela).contents();
+
+                                                        janela.find("[id*=_endereco__id]").attr('source','http://app.tagplus.com.br/fox3/autocomplete/enderecos/index/'+cep);
+                                                    },
+                                                    onClose:function (){
+                                                        var janela = this.iframeEl;
+                                                        janela = $(janela).contents();
+                                                        var id_endereco = janela.find('[id*=_endereco__id]').val();
+
+                                                        if((id_endereco) && (id_endereco != undefined)){
+                                                            $.getJSON("http://app.tagplus.com.br/fox3/cadastro/enderecos/get_endereco_by_id/"+id_endereco,{},function(json){
+                                                                $(container).find('[name*=endereco__id]').val(id_endereco);
+                                                                $(container).find('[name*=endereco__cep]').val(json.cep);
+                                                                $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
+                                                                $(container).find('[name*=endereco__bairro]').val(json.bairro);
+                                                                $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
+                                                                $(container).find('[autosuggest*=endereco__id_cidade]').val(json.nome_cidade);
+                                                                $(container).find('[name*=estado]').val(json.sigla_estado);
+                                                                $(container).find('[name*=pais]').val(json.pais);
+                                                                $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
+                                                                $(container).find('[name*=cidade_cod]').val(json.cod_cidade);
+                                                                $(container).find('[name*=estado_cod]').val(json.cod_estado);
+                                                                $(container).find('[name*=pais_cod]').val(json.cod_pais);
+                                                            });
+                                                        }
+                                                    }
+                                                });//Modal
+                                            }
+                                        }
+                                    });//SexyConfirm
+                                }
+
+                                $("#loader").hide();
+                            }else{
+                                //Procura no WS
+                                $.getJSON("http://app.tagplus.com.br/fox3/cadastro/enderecos/get_cep_ws/" + cep,{},function(json){
+                                    if (!json || json.resultado == ''){
+                                        $("#loader").hide();
+                                        Sexy.alert("Não foi possível pesquisar este CEP. Por favor tente novamente em alguns instantes");
+                                        return false;
+                                    }
+
+                                    if (!json || json.resultado == 0){
+                                        $("#loader").hide();
+                                        Sexy.alert("CEP não encontrado.");
+                                        return false;
+                                    }
+
+                                    //Erro ao recuperar CEP
+                                    if(json.cod_error){
+                                        $("#loader").hide();
+                                        Sexy.alert("Não foi possível pesquisar este CEP. Por favor tente novamente em alguns instantes");
+                                        return false;
+
+                                    }
+
+                                    //Verificando se houve retorno no webservice caso não manda editar direto
+                                    if(json.logradouro != '' && json.bairro != '' && json.id_cidade != ''){
+                                        // Criando string contendo o endereço completo e adicionando conteúdo ao campo próprio
+                                        var endereco_completo = '['+json.cep+'] '+json.logradouro+', '+json.bairro+' - '+json.cidade+'/'+json.uf_nome;
+                                        var msg = ('O Endereço: \$s%1, foi encontrado.<br /><br /> O que você deseja fazer?').replace('$s%1',endereco_completo);
+
+                                        json.uf_nome = json.uf;
+                                        $(container).find('[name*=endereco__cep]').val(json.cep);
+                                        $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
+                                        $(container).find('[name*=endereco__bairro]').val(json.bairro);
+                                        $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
+                                        $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
+                                        $(container).find('[name*=estado]').val(json.uf_nome);
+                                        $(container).find('[name*=pais]').val(json.pais);
+                                        $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
+                                        $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
+                                        $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
+                                        $(container).find('[name*=pais_cod]').val(json.pais_cod);
+                                    }else{
+                                        $(container).find('[name*=endereco__cep]').val(json.cep);
+                                        $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
+                                        $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
+                                        $(container).find('[name*=estado]').val(json.uf);
+                                        $(container).find('[name*=pais]').val(json.pais);
+                                        $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
+                                        $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
+
+                                    }
+                                    $("#loader").hide();
+                                });
+                            }//Else
+                        }//Success
+                    });//Ajax
+                }
+            }
+        })(jQuery);
+
+
+        /************************************************
+         cadastro/complementos_cadastros/form_contatos.js
+         ************************************************/
+
+        /**
+         * @author Eduardo
+         */
+//montando autocomplete para seleção de fornecedores
+        (function($){
+
+            /**
+             * Retorna os elementos id_tipo_contato com contato igual ao informado
+             * @author jdrummond
+             * @since  22/11/12
+             * @param  {string}  id_contato
+             * @return {obj}
+             */
+            var get_contatos_iguais = function (id_contato) {
+                var retorno = [];
+
+                $('#contato .clonedField:not(.hiddenClone) input[name*=contato__id_tipo_contato]').each(function () {
+                    if ($(this).val() == id_contato || (id_contato == 0 && $(this).val() == '') ||  (id_contato == '' && $(this).val() == 0)) {
+                        retorno.push($(this));
+                    }
+                });
+
+                return retorno;
+            };
+
+            /**
+             * Trata marcação de principal
+             * @author jdrummond
+             * @since  22/11/12
+             * @return void
+             */
+            var verifica_marca_contatos_principais = function () {
+                // Aponta quais IDs de tipo de contato já possuem principal marcado
+                var contatos_com_principal = [];
+                $('#contato .clonedField:not(.hiddenClone) [name*=contato__principal]:checked').each(function () {
+                    var id_tipo_contato = $(this).parents('.clonedField').find('input[name*=contato__id_tipo_contato]').val();
+                    if (id_tipo_contato == 0)
+                        id_tipo_contato = "";
+                    contatos_com_principal.push(id_tipo_contato);
+                });
+
+                // Percorre todos os tipos de contato verificando se já possuem principal marcado, e, caso negativo, marca
+                $('#contato .clonedField:not(.hiddenClone) input[name*=contato__id_tipo_contato]').each(function () {
+                    var id_tipo_contato = $(this).val();
+                    if (id_tipo_contato == 0)
+                        id_tipo_contato = "";
+                    var contatos_iguais = get_contatos_iguais(id_tipo_contato);
+                    // Se possui apenas um com esse ID, marca checked
+                    if (contatos_iguais.length == 1) {
+                        $(this).parents('.clonedField').find('[name*=contato__principal]').attr('checked','checked');
+                    }
+                    else {
+                        // Se não possui nenhum marcado, marca o primeiro
+                        var ja_possui_principal = false;
+                        $.each(contatos_com_principal,function (i,v){
+                            if (v == id_tipo_contato) {
+                                ja_possui_principal = true;
+                                return false;
+                            }
+                        });
+                        // Marca principal em quem não tiver
+                        if (!ja_possui_principal) {
+                            $(this).parents('.clonedField').find('[name*=contato__principal]').removeAttr('checked');
+                            contatos_iguais[0].parents('.clonedField').find('[name*=contato__principal]').attr('checked','checked');
+                        }
+                    }
+                });
+            }
+
+            var tratamento_change_tipo_contato = function(el) {
+                if(tipo_contato[$(el).val()] == "T"){
+                    $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('email','true');
+                    $(el).parents('div:first').find('[name*=contato__descricao]').attr('maxlength','20').attr('minlength','4');
+                }else{
+                    if(tipo_contato[$(el).val()] == "E"){
+                        $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('maxlength','20').removeAttr('minlength','4');
+                        $(el).parents('div:first').find('[name*=contato__descricao]').attr('email','true');
+                    }else{
+                        $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('email','true');
+                        $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('maxlength','20').removeAttr('minlength','4');
+                        $(el).parents('div:first').find('[name*=contato__descricao]').attr('maxlength','50');
+                    }
+                }
+                verifica_marca_contatos_principais();
+            };
+
+            var tipo_contato = new Array();
+
+            tipo_contato["1"] = "T";
+
+            tipo_contato["2"] = "E";
+
+            tipo_contato["3"] = "O";
+
+            tipo_contato["4"] = "O";
+
+            tipo_contato["5"] = "O";
+
+            //Principal
+            $(document).ready(function(){
+
+                $('[id*=contato].clonedField').each(function (){
+                    if ($(this).find('[name*=contato__editavel]').val() == '0'){
+                        $(this).find('input').attr('disabled',true);
+                        $(this).find('select').attr('disabled','disabled');
+                        $(this).find('.removeClone').remove();
+                    }
+
+                    $('[id*=contato].clonedField').find('[name*=contato__id_tipo_contato]').each(function(){
+                        if(tipo_contato[$(this).val()] == "T"){
+                            $(this).parents('div:first').find('[name*=contato__descricao]').attr('maxlength','20').attr('minlength','4');
+                        }else{
+                            if(tipo_contato[$(this).val()] == "E"){
+                                $(this).parents('div:first').find('[name*=contato__descricao]').attr('email','true');
+                            }
+                            else{
+                                $(this).parents('div:first').find('[name*=contato__descricao]').attr('maxlength','50');
+                            }
+                        }
+
+                    });//end each();
+
+                    //adicinando comportamento no checkbox principal
+                    $(this).find('[name*=contato__principal]').click(function(){
+                        // Não permite desmarcar
+                        if (!$(this).is(':checked')) {
+                            $(this).attr('checked','checked');
+                            return;
+                        }
+                        var $tipo = $(this).parents("div:eq(1)").find('[name*=contato__id_tipo_contato]');
+
+                        $('[id*=contato].clonedField').each(function(){
+                            $tipo_atual = $(this).find('[name*=contato__id_tipo_contato]');
+                            //verifica se  a div que esta sendo verificada nao e a propria div do click
+                            if($tipo_atual.parents('div').attr('id') != $tipo.parents('div').attr('id')){
+                                //verifica se o tipo de contato procurado e igual o tipo de contato do principal marcado.
+                                if(($tipo.val() == $tipo_atual.val()) || ($tipo.val()==0 && $tipo_atual.val()=='') || ($tipo.val()=='' && $tipo_atual.val()==0)){
+                                    $tipo_atual.parents('div:first').find('[name*=contato__principal]').removeAttr('checked');
+                                }
+                            }
+                        });//end each();
+                    });//end click();
+
+                    // Ao remover um contato
+                    $('#contato').bind('onHideClone.trataprincipal',verifica_marca_contatos_principais)
+                        .bind('onShowClone.trataprincipal',verifica_marca_contatos_principais);
+
+                    //adicionando comportamento ao evento click no tipo de contato.
+                    $(this).find('[name*=contato__id_tipo_contato]').change(function () {
+                        $(this).parents('.clonedField').find('[name*=contato__principal]').removeAttr('checked');
+                        tratamento_change_tipo_contato($(this));
+                    }).bind('clear',function () {
+                        $(this).parents('.clonedField').find('[name*=contato__principal]').removeAttr('checked');
+                        tratamento_change_tipo_contato($(this));
+                    });
+                });
+
+                //insere autocomplete
+//        autocompleteProduto("#lancamentos", "#lancamentos tbody tr:first");
+
+                //coloca o foco sempre no botao de add um novo contato.
+                $('[rel=contato]').focus();
+            });
+
+        })(jQuery);
+
+        jQuery(document).ready(function(){jQuery.extend(jQuery.validator.messages, {accept: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.'/> ", cnpj: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Informe um CNPJ válido.'/> ", cpf: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Informe um CPF válido.'/> ", creditcard: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.'/> ", date: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a uma data v&aacute;lida.'/> ", digits: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a somente d&iacute;gitos.'/> ", email: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um endere&ccedil;o eletr&ocirc;nico v&aacute;lido.'/> ", equalTo: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a o mesmo valor novamente.'/> ", max: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor menor ou igual a {0}.'/> "), maxlength: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a n&atilde;o mais que {0} caracteres.'/> "), min: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior ou igual a {0}.'/> "), minlength: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a ao menos {0} caracteres.'/> "), number: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um n&uacute;mero v&aacute;lido.'/> ", range: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor entre {0} e {1}.'/> "), rangelength: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor contendo de {0} a {1} caracteres.'/> "), required: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Este campo é obrigatório.'/> ", requiredIf: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Este campo deve ser preenchido.'/> ", remote: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Por favor, corrija este campo.'/> ", url: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a uma URL v&aacute;lida.'/> ", time: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a uma hora válida'/> ", code: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um código válido'/> ", price: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior que 0'/> ", cidade: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Cidade não cadastrada no sistema.'/> ", pais: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='País não 'cadastrado no sistema.'/> ", requiredCep: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='CEP e ou Logradouro não cadastrados no sistema.'/> ", transporte: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='O valor deste campo deve ser definido.'/> ", positive: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forneça um valor maior que 0,00.'/> ", cfop: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='CFOP inválido'/> ", cfop_transp: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='CFOP inválido'/> ", code_ean: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Caso seja preenchido, este campo deve ser um EAN válido e possuir 8, 12,13 ou 14 caracteres.'/> ", number_letter: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Por favor insirá apenas números ou letras, não será permitido caracteres especiais'/> ", cod_ncm: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 2 ou 8 caracteres.'/> ", max_vr_cupom: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='O valor neste campo deve ser inferior a {0}'/> "), autosuggest: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Este campo não possui um valor válido selecionado'/> ", password: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Senha deve conter pelo menos 6 caracteres utilizando letras e números'/> "}); });
+
+        Date.monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+        Date.abbrMonthNames = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+        Date.dayNames = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+        jQuery.dpText = { TEXT_PREV_YEAR:'Ano Anterior', TEXT_PREV_MONTH:'Mês Anterior', TEXT_NEXT_YEAR:'Próximo Ano', TEXT_NEXT_MONTH:'Próximo Mês', TEXT_CLOSE:'Fechar', TEXT_CHOOSE_DATE:'Escolha a Data', HEADER_FORMAT:'mmmm yyyy'};
+        Date.firstDayOfWeek=0;
+        Date.format = jQuery.i18n._('lang_date_format');
+
+
+
+        /*********************
+         usuario/infos/form.js
+         *********************/
+
+        (function ($){
+            $(document).ready(function(){
+                $("#senha").val('');
+
+                if ($('#contato').find('.clonedField:not(.hiddenClone)').length == 0){
+                    $('#fieldset_contato').text('Nenhum contato cadastrado.')
+                }
+                if ($('#endereco').find('.clonedField:not(.hiddenClone)').length == 0){
+                    $('#fieldset_endereco').text('Nenhum endereço cadastrado.')
+                }
+                if ($('#funcionario_dependente').find('.clonedField:not(.hiddenClone)').length == 0){
+                    $('#fieldset_dependente').text('Nenhum dependente cadastrado.')
+                }
+                $('.cloneable,.removeClone').remove();
+            });
+        })(jQuery);
+    </script>
+
+</head>
+<body >
+<!--Container tela_register.php-->
+<div id="loader">
+    <div class="loader-text">
+        <span class='carregando'>Carregando ...</span>
+        <span class='enviando' style="display: none">Enviando ...</span>
+    </div>
+    <div class="loader-bg">&nbsp;</div>
+</div>
+
+<div id="tela" style='height:auto !important;'>
+    <div id="conteudo" style='position:absolute;top:0px;bottom:0px;height:auto !important;'><!--Container form_container_envia_email_teste.php-->
+        <form action="http://app.tagplus.com.br/fox3/usuario/infos/save" class="form" id="form" method="post" windowId="http://app.tagplus.com.br/fox3/usuario/infos/form">
+            <div class="form_actions" id="form_actions">
+                <input class="save" name="Salvar" saveWindowForm="true" type="submit" value="Salvar"></input>
+            </div>
+            <div class="form_fields" id="form_fields">
+
+                <input id="id" name="id" type="hidden" value="1"></input>
+
+                <div class="tab" id="tab_dados_gerais_70534208287087cb8cfa7797aab9922bbc958efb" ref="Dados Gerais" rel="tab_dados_gerais">
+                    <input id="id_funcionario" name="id_funcionario" type="hidden" value="1"></input>
+
+
+                    <div class="warning_alertas" id="fieldset_composicao" style="">
+                        <div style="">
+                            Ola Kamila.Por razoes de seguranca, precisamos que voce altere sua senha de acesso antes de continuar a utilizar o SENNA. Seja criativa =)
+                        </div>
+                    </div>
+
+
+                    <!-- Sexo -->
+                    <fieldset class="fieldset " style="width:180px;">
+                        <legend><span class="legend"><span class="legend_label">Sexo</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <p class="field " style="width:150px; "><span class="input " rel="sexo" style=""><select class="" disabled="disabled" eval="M" id="sexo" name="sexo" size="1" style=""><option value="">Selecione</option><option value="F">Feminino</option><option value="M">Masculino</option></select></span></p>
+
+                    </fieldset>
+                    <hr class="clear" size="1"></hr>
+                    <fieldset class="fieldset " style="width:996px;">
+                        <legend><span class="legend"><span class="legend_label">Informações Pessoais</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <!-- Nome -->
+                        <p class="field " style="width:390px; "><label class="" for="razao_social" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="razao_social" style=""><input class="focus" disabled="disabled" id="razao_social" name="razao_social" style="" type="text" value="kamila"></input></span></p>
+                        <!-- CPF -->
+                        <p class="field " style="width:auto; width: 100px; "><label class="" for="cpf" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="cpf" style=""><input disabled="disabled" id="cpf" mask="999.999.999-99" name="cpf" style="" type="text" value=""></input></span></p>
+                        <!-- RG -->
+                        <p class="field " style="width:auto; width: 95px; margin-left:10px;"><label class="" for="rg" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="rg" style=""><input disabled="disabled" id="rg" name="rg" style="" type="text" value=""></input></span></p>
+                        <!-- Nascimento -->
+                        <p class="field " style="width:125px;; "><label class="" for="data_nascimento" style="">Data de Nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="data_nascimento" style=""><input disabled="disabled" id="data_nascimento" mask="39/19/9999" name="data_nascimento" style="" type="text" value=""></input></span></p>
+                        <!-- Escolaridade -->
+                        <p class="field " style="width:205px;; "><label class="" for="escolaridade" style="">Escolaridade</label><span class="input_alert">&nbsp;</span><span class="input " rel="escolaridade" style=""><input disabled="disabled" id="escolaridade" name="escolaridade" style="" type="text" value="Ensino Superior Completo"></input></span></p>
+
+                    </fieldset>
+                    <hr class="clear" size="1"></hr>
+                    <fieldset class="fieldset " style="width:97%;width: 437px; float: left;">
+                        <legend><span class="legend"><span class="legend_label">Dados de Acesso</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <!-- Código de Acesso-->
+                        <p class="field inline" style="width:auto; width:90% !important;"><label class="" for="codigo_acesso" style="">Nome de Usuário</label><span class="input_alert">&nbsp;</span><span class="input " rel="codigo_acesso" style=""><input disabled="disabled" id="codigo_acesso" name="codigo_acesso" style="" type="text" value="jefferson"></input></span></p>
+
+                        Senha
+                        <p class="field inline" style="width:auto; width:90% !important;"><label class="" for="senha" style="">Senha</label><span class="input_alert">&nbsp;</span><span class="input " rel="senha" style=""><input autocomplete="off" class="{password_class_required} password required" id="senha" name="senha" style="" type="password" value=""></input></span></p>
+                        Confirma Senha
+                        <p class="field inline" style="width:auto; width:90% !important;"><label class="" for="senha_confirma" style="">Confirmação de Senha</label><span class="input_alert">&nbsp;</span><span class="input " rel="senha_confirma" style=""><input class="{password_class_required} password required" equalTo="#senha" id="senha_confirma" name="senha_confirma" style="" type="password" value=""></input></span></p>
+
+                        <!-- Perfil de acesso -->
+                        <p class="field inline" style="width:auto; width:90% !important;"><label class="" for="perfil" style="">Perfil de Acesso</label><span class="input_alert">&nbsp;</span><span class="input " rel="perfil" style=""><input disabled="disabled" id="perfil" name="perfil" style="" type="text" value="Administrador"></input></span></p>
+
+                    </fieldset>
+
+                    <fieldset class="fieldset " style="width:250px;float:left">
+                        <legend><span class="legend"><span class="legend_label">Horários</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <!-- Hora de Entrada -->
+                        <p class="field inline" style="width:auto; "><label class="" for="hora_entrada" style="">Hora de Entrada</label><span class="input_alert">&nbsp;</span><span class="input " rel="hora_entrada" style=""><input disabled="disabled" id="hora_entrada" name="hora_entrada" style="" type="text" value=""></input></span></p>
+                        <!-- Hora de Entrada Almoco -->
+                        <p class="field inline" style="width:auto; "><label class="" for="hora_almoco_entrada" style="">Início do Almoço</label><span class="input_alert">&nbsp;</span><span class="input " rel="hora_almoco_entrada" style=""><input disabled="disabled" id="hora_almoco_entrada" name="hora_almoco_entrada" style="" type="text" value="00:00:00"></input></span></p>
+                        <!-- Hora de Saida Almoco -->
+                        <p class="field inline" style="width:auto; "><label class="" for="hora_almoco_saida" style="">Fim do Almoço</label><span class="input_alert">&nbsp;</span><span class="input " rel="hora_almoco_saida" style=""><input disabled="disabled" id="hora_almoco_saida" name="hora_almoco_saida" style="" type="text" value="00:00:00"></input></span></p>
+                        <!-- Hora de Saida -->
+                        <p class="field inline" style="width:auto; "><label class="" for="hora_saida" style="">Hora de Saída</label><span class="input_alert">&nbsp;</span><span class="input " rel="hora_saida" style=""><input disabled="disabled" id="hora_saida" name="hora_saida" style="" type="text" value=""></input></span></p>
+
+                    </fieldset>
+
+                    <fieldset class="fieldset " show="inline" style="width:273px;">
+                        <legend><span class="legend"><span class="legend_label">Dados Bancários</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <p class="field inline" style="width:45%; "><label class="" for="tipo_conta" style="">Tipo de Conta Bancária</label><span class="input_alert">&nbsp;</span><span class="input " rel="tipo_conta" style=""><input disabled="disabled" id="tipo_conta" name="tipo_conta" style="" type="text" value="0"></input></span></p>
+                        <p class="field inline" style="width:45%; "><label class="" for="banco_agencia" style="">Agência Bancária</label><span class="input_alert">&nbsp;</span><span class="input " rel="banco_agencia" style=""><input disabled="disabled" id="banco_agencia" name="banco_agencia" style="" type="text" value=""></input></span></p>
+                        <p class="field inline" style="width:45%; "><label class="" for="banco_conta" style="">Conta Bancária</label><span class="input_alert">&nbsp;</span><span class="input " rel="banco_conta" style=""><input disabled="disabled" id="banco_conta" name="banco_conta" style="" type="text" value=""></input></span></p>
+                        <p class="field inline" style="width:45%; "><label class="" for="banco_numero" style="">Número do Banco</label><span class="input_alert">&nbsp;</span><span class="input " rel="banco_numero" style=""><input disabled="disabled" id="banco_numero" name="banco_numero" style="" type="text" value=""></input></span></p>
+
+                    </fieldset>
+                    <hr class="clear" size="1"></hr>
+                    <fieldset class="fieldset " show="inline" style="width:996px;">
+                        <legend><span class="legend"><span class="legend_label">Dados Trabalhistas</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <!-- Setor -->
+                        <p class="field " style="width:260px; "><label class="" for="setor" style="">Departamento</label><span class="input_alert">&nbsp;</span><span class="input " rel="setor" style=""><input disabled="disabled" id="setor" name="setor" style="" type="text" value="Administrativo"></input></span></p>
+                        <!-- Data Admissao -->
+                        <p class="field " style="width:120px; "><label class="" for="data_admissao" style="">Data de Admissão</label><span class="input_alert">&nbsp;</span><span class="input " rel="data_admissao" style=""><input disabled="disabled" id="data_admissao" mask="39/19/9999" name="data_admissao" style="" type="text" value=""></input></span></p>
+                        <!-- Data Demissao -->
+                        <p class="field " style="width:120px; "><label class="" for="data_demissao" style="">Data de Demissão</label><span class="input_alert">&nbsp;</span><span class="input " rel="data_demissao" style=""><input disabled="disabled" id="data_demissao" mask="39/19/9999" name="data_demissao" style="" type="text" value=""></input></span></p>
+                        <!-- Comissao -->
+                        <p class="field " style="width:105px; "><label class="" for="comissao" style="">Comissão (%)</label><span class="input_alert">&nbsp;</span><span class="input " rel="comissao" style=""><input disabled="disabled" id="comissao" name="comissao" number_format="+#.#0,[2,2]" style="" type="text" value="0.00"></input></span></p>
+                        <!-- Descanso semanal -->
+                        <p class="field " style="width:150px; "><label class="" for="descanso_semanal" style="">Descanso Semanal</label><span class="input_alert">&nbsp;</span><span class="input " rel="descanso_semanal" style=""><input disabled="disabled" id="descanso_semanal" name="descanso_semanal" style="" type="text" value=""></input></span></p>
+                        <!-- CTPS -->
+                        <p class="field " style="width:150px; "><label class="" for="ctps" style="">CTPS</label><span class="input_alert">&nbsp;</span><span class="input short" rel="ctps" style=""><input disabled="disabled" id="ctps" name="ctps" style="" type="text" value=""></input></span></p>
+
+                    </fieldset>
+                    <div class="tab_navigator "><input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;<input class="nextTab" name="Continuar" type="button" value="Continuar"></input></div></div>
+
+                <div class="tab" id="tab_contatos_426250920f30cdcb6d7ffeb8d1e85d268be85bff8" ref="Contatos" rel="tab_contatos">
+                    <fieldset class="fieldset " id="fieldset_contato" style="width:97%;">
+                        <legend><span class="legend"><span class="legend_label">Contatos</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <div id="contato">
+                            <input class="clone_flag" name="contato_flag" type="hidden" value=""></input>
+                            <div class="clonedField" id="contato0">
+                                <input class="clone_id" id="contato__id_274565914c5b9419312e39f6d458e55e195dfd42c0" name="contato__id[0]" type="hidden" value="1"></input>
+                                <input id="contato__editavel_649353505b8105e7894644e5061efb5f7a71993d60" name="contato__editavel[0]" type="hidden" value="1"></input>
+                                <input id="contato__id_entidade_1174751451ea855261a759cb672b4a5737dd0a521d0" name="contato__id_entidade[0]" type="hidden" value="2"></input>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc0" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc0" style=""><input id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc0" name="contato__id_tipo_cadastro[0]" type="hidden" value="2"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[0]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc0" minLength="0" name="ac_038725707063c588091d4f49468e53bd8b02d99389" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="Comercial" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d010" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d010" style=""><input id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d010" name="contato__id_tipo_contato[0]" type="hidden" value="2"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[0]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d010" minLength="0" name="ac_010723046526284f577a180401c7112ad854fda6da4" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_contatos/get" style="" type="text" value="Email" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:auto; width:270px"><label class="" for="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b0" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b0" style=""><input class=" required" id="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b0" maxlength="50" name="contato__descricao[0]" style="" type="text" value="kamila@gmail.com"></input></span></p>
+                                <p class="field " style="width:auto; width:310px"><label class="" for="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c0" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c0" style=""><input id="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c0" maxlength="50" name="contato__detalhes[0]" style="" type="text" value=""></input></span></p>
+                                <div style="float:left; padding:23px; margin-left: -15px">
+                                    <p class="checkbox_field  block" style=""><label class="" for="contato__principal[0]" style=""><input id="contato__principal_16038512749251545e594068527fcbd5f50267e9610" name="contato__principal[0]" rel="1" style="" type="checkbox" value="1"></input><span>Principal</span></label></p>
+                                </div>
+                                <hr class="clear" size="1"></hr>
+                            </div>
+                            <div class="clonedField" id="contato1">
+                                <input class="clone_id" id="contato__id_274565914c5b9419312e39f6d458e55e195dfd42c1" name="contato__id[1]" type="hidden" value="2"></input>
+                                <input id="contato__editavel_649353505b8105e7894644e5061efb5f7a71993d61" name="contato__editavel[1]" type="hidden" value="1"></input>
+                                <input id="contato__id_entidade_1174751451ea855261a759cb672b4a5737dd0a521d1" name="contato__id_entidade[1]" type="hidden" value="2"></input>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc1" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc1" style=""><input id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc1" name="contato__id_tipo_cadastro[1]" type="hidden" value="2"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[1]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc1" minLength="0" name="ac_138725707063c588091d4f49468e53bd8b02d99389" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="Comercial" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d011" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d011" style=""><input id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d011" name="contato__id_tipo_contato[1]" type="hidden" value="1"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[1]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d011" minLength="0" name="ac_110723046526284f577a180401c7112ad854fda6da4" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_contatos/get" style="" type="text" value="Telefone" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:auto; width:270px"><label class="" for="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b1" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b1" style=""><input class=" required" id="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b1" maxlength="50" name="contato__descricao[1]" style="" type="text" value="(41) 9565-3232"></input></span></p>
+                                <p class="field " style="width:auto; width:310px"><label class="" for="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c1" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c1" style=""><input id="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c1" maxlength="50" name="contato__detalhes[1]" style="" type="text" value=""></input></span></p>
+                                <div style="float:left; padding:23px; margin-left: -15px">
+                                    <p class="checkbox_field  block" style=""><label class="" for="contato__principal[1]" style=""><input id="contato__principal_16038512749251545e594068527fcbd5f50267e9611" name="contato__principal[1]" rel="1" style="" type="checkbox" value="1"></input><span>Principal</span></label></p>
+                                </div>
+                                <hr class="clear" size="1"></hr>
+                            </div>
+                            <div class="clonedField" id="contato2">
+                                <input class="clone_id" id="contato__id_274565914c5b9419312e39f6d458e55e195dfd42c2" name="contato__id[2]" type="hidden" value=""></input>
+                                <input id="contato__editavel_649353505b8105e7894644e5061efb5f7a71993d62" name="contato__editavel[2]" type="hidden" value=""></input>
+                                <input id="contato__id_entidade_1174751451ea855261a759cb672b4a5737dd0a521d2" name="contato__id_entidade[2]" type="hidden" value=""></input>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc2" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc2" style=""><input id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc2" name="contato__id_tipo_cadastro[2]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[2]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc2" minLength="0" name="ac_238725707063c588091d4f49468e53bd8b02d99389" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d012" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d012" style=""><input id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d012" name="contato__id_tipo_contato[2]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[2]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d012" minLength="0" name="ac_210723046526284f577a180401c7112ad854fda6da4" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:auto; width:270px"><label class="" for="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b2" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b2" style=""><input class=" required" id="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b2" maxlength="50" name="contato__descricao[2]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; width:310px"><label class="" for="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c2" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c2" style=""><input id="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c2" maxlength="50" name="contato__detalhes[2]" style="" type="text" value=""></input></span></p>
+                                <div style="float:left; padding:23px; margin-left: -15px">
+                                    <p class="checkbox_field  block" style=""><label class="" for="contato__principal[2]" style=""><input id="contato__principal_16038512749251545e594068527fcbd5f50267e9612" name="contato__principal[2]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label></p>
+                                </div>
+                                <hr class="clear" size="1"></hr>
+                            </div>
+                            <div class="clonedField" id="contato3">
+                                <input class="clone_id" id="contato__id_274565914c5b9419312e39f6d458e55e195dfd42c3" name="contato__id[3]" type="hidden" value=""></input>
+                                <input id="contato__editavel_649353505b8105e7894644e5061efb5f7a71993d63" name="contato__editavel[3]" type="hidden" value=""></input>
+                                <input id="contato__id_entidade_1174751451ea855261a759cb672b4a5737dd0a521d3" name="contato__id_entidade[3]" type="hidden" value=""></input>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc3" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc3" style=""><input id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc3" name="contato__id_tipo_cadastro[3]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[3]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc3" minLength="0" name="ac_338725707063c588091d4f49468e53bd8b02d99389" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d013" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d013" style=""><input id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d013" name="contato__id_tipo_contato[3]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[3]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d013" minLength="0" name="ac_310723046526284f577a180401c7112ad854fda6da4" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:auto; width:270px"><label class="" for="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b3" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b3" style=""><input class=" required" id="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b3" maxlength="50" name="contato__descricao[3]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; width:310px"><label class="" for="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c3" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c3" style=""><input id="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c3" maxlength="50" name="contato__detalhes[3]" style="" type="text" value=""></input></span></p>
+                                <div style="float:left; padding:23px; margin-left: -15px">
+                                    <p class="checkbox_field  block" style=""><label class="" for="contato__principal[3]" style=""><input id="contato__principal_16038512749251545e594068527fcbd5f50267e9613" name="contato__principal[3]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label></p>
+                                </div>
+                                <hr class="clear" size="1"></hr>
+                            </div>
+                            <div class="clonedField" id="contato4">
+                                <input class="clone_id" id="contato__id_274565914c5b9419312e39f6d458e55e195dfd42c4" name="contato__id[4]" type="hidden" value=""></input>
+                                <input id="contato__editavel_649353505b8105e7894644e5061efb5f7a71993d64" name="contato__editavel[4]" type="hidden" value=""></input>
+                                <input id="contato__id_entidade_1174751451ea855261a759cb672b4a5737dd0a521d4" name="contato__id_entidade[4]" type="hidden" value=""></input>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc4" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc4" style=""><input id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc4" name="contato__id_tipo_cadastro[4]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[4]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc4" minLength="0" name="ac_438725707063c588091d4f49468e53bd8b02d99389" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d014" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d014" style=""><input id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d014" name="contato__id_tipo_contato[4]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[4]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d014" minLength="0" name="ac_410723046526284f577a180401c7112ad854fda6da4" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:auto; width:270px"><label class="" for="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b4" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b4" style=""><input class=" required" id="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b4" maxlength="50" name="contato__descricao[4]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; width:310px"><label class="" for="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c4" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c4" style=""><input id="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c4" maxlength="50" name="contato__detalhes[4]" style="" type="text" value=""></input></span></p>
+                                <div style="float:left; padding:23px; margin-left: -15px">
+                                    <p class="checkbox_field  block" style=""><label class="" for="contato__principal[4]" style=""><input id="contato__principal_16038512749251545e594068527fcbd5f50267e9614" name="contato__principal[4]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label></p>
+                                </div>
+                                <hr class="clear" size="1"></hr>
+                            </div>
+                            <div class="clonedField" id="contato5">
+                                <input class="clone_id" id="contato__id_274565914c5b9419312e39f6d458e55e195dfd42c5" name="contato__id[5]" type="hidden" value=""></input>
+                                <input id="contato__editavel_649353505b8105e7894644e5061efb5f7a71993d65" name="contato__editavel[5]" type="hidden" value=""></input>
+                                <input id="contato__id_entidade_1174751451ea855261a759cb672b4a5737dd0a521d5" name="contato__id_entidade[5]" type="hidden" value=""></input>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc5" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc5" style=""><input id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc5" name="contato__id_tipo_cadastro[5]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[5]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc5" minLength="0" name="ac_538725707063c588091d4f49468e53bd8b02d99389" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d015" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d015" style=""><input id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d015" name="contato__id_tipo_contato[5]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[5]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d015" minLength="0" name="ac_510723046526284f577a180401c7112ad854fda6da4" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:auto; width:270px"><label class="" for="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b5" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b5" style=""><input class=" required" id="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b5" maxlength="50" name="contato__descricao[5]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; width:310px"><label class="" for="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c5" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c5" style=""><input id="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c5" maxlength="50" name="contato__detalhes[5]" style="" type="text" value=""></input></span></p>
+                                <div style="float:left; padding:23px; margin-left: -15px">
+                                    <p class="checkbox_field  block" style=""><label class="" for="contato__principal[5]" style=""><input id="contato__principal_16038512749251545e594068527fcbd5f50267e9615" name="contato__principal[5]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label></p>
+                                </div>
+                                <hr class="clear" size="1"></hr>
+                            </div>
+                            <div class="clonedField" id="contato6">
+                                <input class="clone_id" id="contato__id_274565914c5b9419312e39f6d458e55e195dfd42c6" name="contato__id[6]" type="hidden" value=""></input>
+                                <input id="contato__editavel_649353505b8105e7894644e5061efb5f7a71993d66" name="contato__editavel[6]" type="hidden" value=""></input>
+                                <input id="contato__id_entidade_1174751451ea855261a759cb672b4a5737dd0a521d6" name="contato__id_entidade[6]" type="hidden" value=""></input>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc6" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc6" style=""><input id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc6" name="contato__id_tipo_cadastro[6]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[6]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc6" minLength="0" name="ac_638725707063c588091d4f49468e53bd8b02d99389" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d016" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d016" style=""><input id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d016" name="contato__id_tipo_contato[6]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[6]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d016" minLength="0" name="ac_610723046526284f577a180401c7112ad854fda6da4" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:auto; width:270px"><label class="" for="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b6" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b6" style=""><input class=" required" id="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b6" maxlength="50" name="contato__descricao[6]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; width:310px"><label class="" for="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c6" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c6" style=""><input id="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c6" maxlength="50" name="contato__detalhes[6]" style="" type="text" value=""></input></span></p>
+                                <div style="float:left; padding:23px; margin-left: -15px">
+                                    <p class="checkbox_field  block" style=""><label class="" for="contato__principal[6]" style=""><input id="contato__principal_16038512749251545e594068527fcbd5f50267e9616" name="contato__principal[6]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label></p>
+                                </div>
+                                <hr class="clear" size="1"></hr>
+                            </div>
+                            <div class="clonedField" id="contato7">
+                                <input class="clone_id" id="contato__id_274565914c5b9419312e39f6d458e55e195dfd42c7" name="contato__id[7]" type="hidden" value=""></input>
+                                <input id="contato__editavel_649353505b8105e7894644e5061efb5f7a71993d67" name="contato__editavel[7]" type="hidden" value=""></input>
+                                <input id="contato__id_entidade_1174751451ea855261a759cb672b4a5737dd0a521d7" name="contato__id_entidade[7]" type="hidden" value=""></input>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc7" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc7" style=""><input id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc7" name="contato__id_tipo_cadastro[7]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[7]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_18167824067ebf73803370d5ce55db6df4246d7ccc7" minLength="0" name="ac_738725707063c588091d4f49468e53bd8b02d99389" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:105px; "><label class="" for="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d017" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d017" style=""><input id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d017" name="contato__id_tipo_contato[7]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[7]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_70758153ed31370cf0b5d0814d60a38c77822d017" minLength="0" name="ac_710723046526284f577a180401c7112ad854fda6da4" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_contatos/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                <p class="field " style="width:auto; width:270px"><label class="" for="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b7" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b7" style=""><input class=" required" id="contato__descricao_2078270045dafa844cedd84d6fe4e3a0e5da97ac0b7" maxlength="50" name="contato__descricao[7]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; width:310px"><label class="" for="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c7" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c7" style=""><input id="contato__detalhes_9874918857ce5f9c77e834798b4629a139f6b557c7" maxlength="50" name="contato__detalhes[7]" style="" type="text" value=""></input></span></p>
+                                <div style="float:left; padding:23px; margin-left: -15px">
+                                    <p class="checkbox_field  block" style=""><label class="" for="contato__principal[7]" style=""><input id="contato__principal_16038512749251545e594068527fcbd5f50267e9617" name="contato__principal[7]" rel="" style="" type="checkbox" value="1"></input><span>Principal</span></label></p>
+                                </div>
+                                <hr class="clear" size="1"></hr>
+                            </div>
+                            <input class="cloneable" rel="contato" separator="false" type="button" value="Inserir novo contato"></input>
+                        </div>
+
+                    </fieldset>
+                    <div class="tab_navigator "><input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;<input class="nextTab" name="Continuar" type="button" value="Continuar"></input></div></div>
+                <div class="tab" id="tab_enderecos_1477581655ba831435d136d52c731913e478795c09" ref="Endereços" rel="tab_enderecos">
+                    <fieldset class="fieldset " id="fieldset_endereco" style="width:97%;">
+                        <legend><span class="legend"><span class="legend_label">Endereço</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+                        <div id="endereco">
+                            <input class="clone_flag" name="endereco_flag" type="hidden" value=""></input>
+                            <div class="clonedField" id="endereco0">
+                                <input class="clone_id" id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db0" name="endereco_entidade__id[0]" type="hidden" value=""></input>
+                                <input class="clone_readonly" id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521900" name="endereco_readonly[0]" type="hidden" value="{readonly}"></input>
+                                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac20" name="endereco_principal[0]" type="hidden" value=""></input>
+                                <input id="endereco__id_752553073197ab91aa24700e186489f37163940900" name="endereco__id[0]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e0" name="endereco_entidade__principal[0]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c190" name="endereco_entidade__id_entidade[0]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8930" name="endereco_entidade__id_endereco[0]" type="hidden" value=""></input>
+                                <input class="disabled" disabled="disabled" id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9360" name="endereco__logradouro[0]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline" style=""><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span style="">Principal</span></label></span></p>
+                                </div>
+                                <div style="position:relative; margin-top: 30px;">
+
+                                    <!-- CEP -->
+                                    <p class="field " style="width:90px; "><label class="" for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c550" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c550" style=""><input class=" required" id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c550" mask="99999-999" name="endereco__cep[0]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                                    <!-- Logradouro -->
+                                    <p class="field " style="width:448px; "><label class="" for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897610" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897610" style=""><input class=" required" id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897610" name="endereco__logradouro[0]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b0" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b0" style=""><input class=" required" id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b0" maxlength="5" name="endereco_entidade__numero[0]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e570" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e570" style=""><input id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e570" maxlength="20" name="endereco_entidade__complemento[0]" style="" type="text" value=""></input></span></p>
+                                    <hr class="clear" size="1"></hr>
+                                    <!-- Bairro -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1680" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1680" style=""><input class=" required" id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1680" name="endereco__bairro[0]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <!-- Cidade -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390150" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390150" style=""><input id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390150" name="endereco__id_cidade[0]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[0]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390150" minLength="0" name="ac_04529000113879a10e85705ee3a2cf1e2d132636cb" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                                    <p class="field " style="width:18%; "><label class="" for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5460" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5460" style=""><input id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5460" name="endereco_entidade__informacoes_adicionais[0]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:131px; "><label class="" for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c00" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c00" style=""><input id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c00" name="endereco_entidade__id_tipo_cadastro[0]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[0]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c00" minLength="0" name="ac_017452965904e8109bac577217ac398106a1c57b5fe" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                    <p class="field " style="width:38px; "><label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                                    <input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                                </div>
+                            </div>
+                            <div class="clonedField" id="endereco1">
+                                <input class="clone_id" id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db1" name="endereco_entidade__id[1]" type="hidden" value=""></input>
+                                <input class="clone_readonly" id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521901" name="endereco_readonly[1]" type="hidden" value="{readonly}"></input>
+                                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac21" name="endereco_principal[1]" type="hidden" value=""></input>
+                                <input id="endereco__id_752553073197ab91aa24700e186489f37163940901" name="endereco__id[1]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e1" name="endereco_entidade__principal[1]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c191" name="endereco_entidade__id_entidade[1]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8931" name="endereco_entidade__id_endereco[1]" type="hidden" value=""></input>
+                                <input class="disabled" disabled="disabled" id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9361" name="endereco__logradouro[1]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline" style=""><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span style="">Principal</span></label></span></p>
+                                </div>
+                                <div style="position:relative; margin-top: 30px;">
+
+                                    <!-- CEP -->
+                                    <p class="field " style="width:90px; "><label class="" for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c551" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c551" style=""><input class=" required" id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c551" mask="99999-999" name="endereco__cep[1]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                                    <!-- Logradouro -->
+                                    <p class="field " style="width:448px; "><label class="" for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897611" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897611" style=""><input class=" required" id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897611" name="endereco__logradouro[1]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b1" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b1" style=""><input class=" required" id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b1" maxlength="5" name="endereco_entidade__numero[1]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e571" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e571" style=""><input id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e571" maxlength="20" name="endereco_entidade__complemento[1]" style="" type="text" value=""></input></span></p>
+                                    <hr class="clear" size="1"></hr>
+                                    <!-- Bairro -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1681" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1681" style=""><input class=" required" id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1681" name="endereco__bairro[1]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <!-- Cidade -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390151" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390151" style=""><input id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390151" name="endereco__id_cidade[1]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[1]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390151" minLength="0" name="ac_14529000113879a10e85705ee3a2cf1e2d132636cb" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                                    <p class="field " style="width:18%; "><label class="" for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5461" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5461" style=""><input id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5461" name="endereco_entidade__informacoes_adicionais[1]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:131px; "><label class="" for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c01" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c01" style=""><input id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c01" name="endereco_entidade__id_tipo_cadastro[1]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[1]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c01" minLength="0" name="ac_117452965904e8109bac577217ac398106a1c57b5fe" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                    <p class="field " style="width:38px; "><label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                                    <input class="btn_mapa" count="1" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                                </div>
+                            </div>
+                            <div class="clonedField" id="endereco2">
+                                <input class="clone_id" id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db2" name="endereco_entidade__id[2]" type="hidden" value=""></input>
+                                <input class="clone_readonly" id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521902" name="endereco_readonly[2]" type="hidden" value="{readonly}"></input>
+                                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac22" name="endereco_principal[2]" type="hidden" value=""></input>
+                                <input id="endereco__id_752553073197ab91aa24700e186489f37163940902" name="endereco__id[2]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e2" name="endereco_entidade__principal[2]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c192" name="endereco_entidade__id_entidade[2]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8932" name="endereco_entidade__id_endereco[2]" type="hidden" value=""></input>
+                                <input class="disabled" disabled="disabled" id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9362" name="endereco__logradouro[2]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline" style=""><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span style="">Principal</span></label></span></p>
+                                </div>
+                                <div style="position:relative; margin-top: 30px;">
+
+                                    <!-- CEP -->
+                                    <p class="field " style="width:90px; "><label class="" for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c552" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c552" style=""><input class=" required" id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c552" mask="99999-999" name="endereco__cep[2]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                                    <!-- Logradouro -->
+                                    <p class="field " style="width:448px; "><label class="" for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897612" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897612" style=""><input class=" required" id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897612" name="endereco__logradouro[2]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b2" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b2" style=""><input class=" required" id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b2" maxlength="5" name="endereco_entidade__numero[2]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e572" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e572" style=""><input id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e572" maxlength="20" name="endereco_entidade__complemento[2]" style="" type="text" value=""></input></span></p>
+                                    <hr class="clear" size="1"></hr>
+                                    <!-- Bairro -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1682" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1682" style=""><input class=" required" id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1682" name="endereco__bairro[2]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <!-- Cidade -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390152" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390152" style=""><input id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390152" name="endereco__id_cidade[2]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[2]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390152" minLength="0" name="ac_24529000113879a10e85705ee3a2cf1e2d132636cb" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                                    <p class="field " style="width:18%; "><label class="" for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5462" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5462" style=""><input id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5462" name="endereco_entidade__informacoes_adicionais[2]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:131px; "><label class="" for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c02" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c02" style=""><input id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c02" name="endereco_entidade__id_tipo_cadastro[2]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[2]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c02" minLength="0" name="ac_217452965904e8109bac577217ac398106a1c57b5fe" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                    <p class="field " style="width:38px; "><label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                                    <input class="btn_mapa" count="2" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                                </div>
+                            </div>
+                            <div class="clonedField" id="endereco3">
+                                <input class="clone_id" id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db3" name="endereco_entidade__id[3]" type="hidden" value=""></input>
+                                <input class="clone_readonly" id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521903" name="endereco_readonly[3]" type="hidden" value="{readonly}"></input>
+                                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac23" name="endereco_principal[3]" type="hidden" value=""></input>
+                                <input id="endereco__id_752553073197ab91aa24700e186489f37163940903" name="endereco__id[3]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e3" name="endereco_entidade__principal[3]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c193" name="endereco_entidade__id_entidade[3]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8933" name="endereco_entidade__id_endereco[3]" type="hidden" value=""></input>
+                                <input class="disabled" disabled="disabled" id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9363" name="endereco__logradouro[3]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline" style=""><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span style="">Principal</span></label></span></p>
+                                </div>
+                                <div style="position:relative; margin-top: 30px;">
+
+                                    <!-- CEP -->
+                                    <p class="field " style="width:90px; "><label class="" for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c553" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c553" style=""><input class=" required" id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c553" mask="99999-999" name="endereco__cep[3]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                                    <!-- Logradouro -->
+                                    <p class="field " style="width:448px; "><label class="" for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897613" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897613" style=""><input class=" required" id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897613" name="endereco__logradouro[3]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b3" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b3" style=""><input class=" required" id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b3" maxlength="5" name="endereco_entidade__numero[3]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e573" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e573" style=""><input id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e573" maxlength="20" name="endereco_entidade__complemento[3]" style="" type="text" value=""></input></span></p>
+                                    <hr class="clear" size="1"></hr>
+                                    <!-- Bairro -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1683" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1683" style=""><input class=" required" id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1683" name="endereco__bairro[3]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <!-- Cidade -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390153" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390153" style=""><input id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390153" name="endereco__id_cidade[3]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[3]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390153" minLength="0" name="ac_34529000113879a10e85705ee3a2cf1e2d132636cb" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                                    <p class="field " style="width:18%; "><label class="" for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5463" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5463" style=""><input id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5463" name="endereco_entidade__informacoes_adicionais[3]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:131px; "><label class="" for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c03" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c03" style=""><input id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c03" name="endereco_entidade__id_tipo_cadastro[3]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[3]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c03" minLength="0" name="ac_317452965904e8109bac577217ac398106a1c57b5fe" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                    <p class="field " style="width:38px; "><label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                                    <input class="btn_mapa" count="3" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                                </div>
+                            </div>
+                            <div class="clonedField" id="endereco4">
+                                <input class="clone_id" id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db4" name="endereco_entidade__id[4]" type="hidden" value=""></input>
+                                <input class="clone_readonly" id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521904" name="endereco_readonly[4]" type="hidden" value="{readonly}"></input>
+                                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac24" name="endereco_principal[4]" type="hidden" value=""></input>
+                                <input id="endereco__id_752553073197ab91aa24700e186489f37163940904" name="endereco__id[4]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e4" name="endereco_entidade__principal[4]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c194" name="endereco_entidade__id_entidade[4]" type="hidden" value=""></input>
+                                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8934" name="endereco_entidade__id_endereco[4]" type="hidden" value=""></input>
+                                <input class="disabled" disabled="disabled" id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9364" name="endereco__logradouro[4]" requiredCep="true" size="38%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
+                                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true" value=""></input>
+                                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
+                                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
+                                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
+                                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+
+                                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+                                    <p class="field " style="width:auto; "><span class="input radio" rel="" style=""><label class="inline" style=""><input class="" eval="" name="principal_radio[]" style="" type="radio" value="1"></input><span style="">Principal</span></label></span></p>
+                                </div>
+                                <div style="position:relative; margin-top: 30px;">
+
+                                    <!-- CEP -->
+                                    <p class="field " style="width:90px; "><label class="" for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c554" style="">Cep</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c554" style=""><input class=" required" id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c554" mask="99999-999" name="endereco__cep[4]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+                                    <!-- Logradouro -->
+                                    <p class="field " style="width:448px; "><label class="" for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897614" style="">Logradouro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897614" style=""><input class=" required" id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897614" name="endereco__logradouro[4]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b4" style="">Número</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b4" style=""><input class=" required" id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b4" maxlength="5" name="endereco_entidade__numero[4]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:8%; "><label class="" for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e574" style="">Complemento</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e574" style=""><input id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e574" maxlength="20" name="endereco_entidade__complemento[4]" style="" type="text" value=""></input></span></p>
+                                    <hr class="clear" size="1"></hr>
+                                    <!-- Bairro -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1684" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1684" style=""><input class=" required" id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1684" name="endereco__bairro[4]" style="" type="text" uppercase="true" value=""></input></span></p>
+                                    <!-- Cidade -->
+                                    <p class="field " style="width:25%; "><label class="" for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390154" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390154" style=""><input id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390154" name="endereco__id_cidade[4]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco__id_cidade[4]" class=" required autosuggest" filters="[]" form_title="Cadastrando Cidade" form_url="" form_url_field="" id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390154" minLength="0" name="ac_44529000113879a10e85705ee3a2cf1e2d132636cb" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade" style="" type="text" uppercase="true" value="{cidade}" valueclear="true" valuefield="id_cidade"></input><em class="autocomplete_search  required autosuggest"></em></span></p>
+                                    <p class="field " style="width:18%; "><label class="" for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5464" style="">Referência</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5464" style=""><input id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5464" name="endereco_entidade__informacoes_adicionais[4]" style="" type="text" value=""></input></span></p>
+                                    <p class="field " style="width:131px; "><label class="" for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c04" style="">Tipo de Endereço</label><span class="input_alert">&nbsp;</span><span class="input " rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c04" style=""><input id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c04" name="endereco_entidade__id_tipo_cadastro[4]" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="endereco_entidade__id_tipo_cadastro[4]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Endereço" form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form" form_url_field="descricao" id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c04" minLength="0" name="ac_417452965904e8109bac577217ac398106a1c57b5fe" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get" style="" type="text" value="" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span></p>
+                                    <p class="field " style="width:38px; "><label class="" for="estado" style="">Estado</label><span class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input class="disabled" disabled="disabled" id="estado" name="estado" style="" type="text" uppercase="true" value="{estado}"></input></span></p>
+
+
+                                    <input class="btn_mapa" count="4" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input>
+                                </div>
+                            </div>
+                            <input class="cloneable" rel="endereco" separator="true" type="button" value="Inserir Endereço"></input>
+                        </div>
+
+                    </fieldset>
+                    <div class="tab_navigator "><input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;<input class="nextTab" name="Continuar" type="button" value="Continuar"></input></div></div>
+
+                <div class="tab" id="tab_dependentes_669985910bebc7e758cf9c592d8e4c5c9676a03f4" ref="Dependentes" rel="tab_dependentes">
+                    <fieldset class="fieldset " id="fieldset_dependente" style="width:97%;">
+                        <legend><span class="legend"><span class="legend_label">Dependentes</span><span class="input_alert">&nbsp;</span></span></legend>
+
+                        <div id="funcionario_dependente">
+                            <input class="clone_flag" name="funcionario_dependente_flag" type="hidden" value=""></input>
+                            <div class="clonedField" id="funcionario_dependente1">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b01" name="funcionario_dependente__id[1]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f1" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f1" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f1" name="funcionario_dependente__nome[1]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1431" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1431" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1431" name="funcionario_dependente__tipo[1]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063381" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063381" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063381" name="funcionario_dependente__rg[1]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98361" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98361" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98361" mask="999.999.999-99" name="funcionario_dependente__cpf[1]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e81" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e81" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e81" mask="39/19/9999" name="funcionario_dependente__data_nascimento[1]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <div class="clonedField" id="funcionario_dependente2">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b02" name="funcionario_dependente__id[2]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f2" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f2" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f2" name="funcionario_dependente__nome[2]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1432" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1432" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1432" name="funcionario_dependente__tipo[2]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063382" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063382" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063382" name="funcionario_dependente__rg[2]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98362" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98362" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98362" mask="999.999.999-99" name="funcionario_dependente__cpf[2]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e82" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e82" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e82" mask="39/19/9999" name="funcionario_dependente__data_nascimento[2]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <div class="clonedField" id="funcionario_dependente3">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b03" name="funcionario_dependente__id[3]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f3" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f3" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f3" name="funcionario_dependente__nome[3]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1433" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1433" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1433" name="funcionario_dependente__tipo[3]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063383" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063383" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063383" name="funcionario_dependente__rg[3]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98363" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98363" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98363" mask="999.999.999-99" name="funcionario_dependente__cpf[3]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e83" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e83" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e83" mask="39/19/9999" name="funcionario_dependente__data_nascimento[3]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <div class="clonedField" id="funcionario_dependente4">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b04" name="funcionario_dependente__id[4]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f4" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f4" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f4" name="funcionario_dependente__nome[4]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1434" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1434" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1434" name="funcionario_dependente__tipo[4]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063384" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063384" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063384" name="funcionario_dependente__rg[4]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98364" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98364" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98364" mask="999.999.999-99" name="funcionario_dependente__cpf[4]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e84" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e84" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e84" mask="39/19/9999" name="funcionario_dependente__data_nascimento[4]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <div class="clonedField" id="funcionario_dependente5">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b05" name="funcionario_dependente__id[5]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f5" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f5" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f5" name="funcionario_dependente__nome[5]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1435" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1435" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1435" name="funcionario_dependente__tipo[5]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063385" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063385" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063385" name="funcionario_dependente__rg[5]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98365" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98365" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98365" mask="999.999.999-99" name="funcionario_dependente__cpf[5]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e85" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e85" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e85" mask="39/19/9999" name="funcionario_dependente__data_nascimento[5]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <div class="clonedField" id="funcionario_dependente6">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b06" name="funcionario_dependente__id[6]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f6" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f6" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f6" name="funcionario_dependente__nome[6]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1436" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1436" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1436" name="funcionario_dependente__tipo[6]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063386" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063386" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063386" name="funcionario_dependente__rg[6]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98366" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98366" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98366" mask="999.999.999-99" name="funcionario_dependente__cpf[6]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e86" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e86" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e86" mask="39/19/9999" name="funcionario_dependente__data_nascimento[6]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <div class="clonedField" id="funcionario_dependente7">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b07" name="funcionario_dependente__id[7]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f7" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f7" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f7" name="funcionario_dependente__nome[7]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1437" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1437" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1437" name="funcionario_dependente__tipo[7]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063387" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063387" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063387" name="funcionario_dependente__rg[7]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98367" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98367" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98367" mask="999.999.999-99" name="funcionario_dependente__cpf[7]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e87" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e87" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e87" mask="39/19/9999" name="funcionario_dependente__data_nascimento[7]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <div class="clonedField" id="funcionario_dependente8">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b08" name="funcionario_dependente__id[8]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f8" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f8" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f8" name="funcionario_dependente__nome[8]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1438" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1438" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1438" name="funcionario_dependente__tipo[8]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063388" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063388" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063388" name="funcionario_dependente__rg[8]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98368" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98368" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98368" mask="999.999.999-99" name="funcionario_dependente__cpf[8]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e88" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e88" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e88" mask="39/19/9999" name="funcionario_dependente__data_nascimento[8]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <div class="clonedField" id="funcionario_dependente9">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b09" name="funcionario_dependente__id[9]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f9" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f9" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f9" name="funcionario_dependente__nome[9]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1439" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1439" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c1439" name="funcionario_dependente__tipo[9]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063389" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063389" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d063389" name="funcionario_dependente__rg[9]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98369" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98369" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b98369" mask="999.999.999-99" name="funcionario_dependente__cpf[9]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e89" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e89" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e89" mask="39/19/9999" name="funcionario_dependente__data_nascimento[9]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <div class="clonedField" id="funcionario_dependente10">
+                                <input class="clone_id" id="funcionario_dependente__id_171995838259a4220741014ad4cc24228085b934b010" name="funcionario_dependente__id[10]" type="hidden" value=""></input>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f10" style="">Nome</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f10" style=""><input class=" nome required" id="funcionario_dependente__nome_356599956688129d80d8c4942eb2ca7bd9a67cd0f10" name="funcionario_dependente__nome[10]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c14310" style="">Tipo do dependente</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c14310" style=""><select class="" eval="" id="funcionario_dependente__tipo_440505361ddeb0785fe766c036aeaf52ed60c14310" name="funcionario_dependente__tipo[10]" size="1" style=""><option value="">Selecione</option><option value="CJ">Conjugue</option><option value="FL">Filho</option><option value="ET">Enteado</option><option value="PA">Pai</option><option value="MA">Mãe</option><option value="IR">Irmão</option></select></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d0633810" style="">RG</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d0633810" style=""><input id="funcionario_dependente__rg_146546478315cc248a1657a3be089c398e93d0633810" name="funcionario_dependente__rg[10]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b983610" style="">CPF</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b983610" style=""><input class=" cpf required" id="funcionario_dependente__cpf_108482688ca8f22d53acce698355a80b7429b983610" mask="999.999.999-99" name="funcionario_dependente__cpf[10]" style="" type="text" value=""></input></span></p>
+                                <p class="field " style="width:auto; "><label class="" for="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e810" style="">Data de nascimento</label><span class="input_alert">&nbsp;</span><span class="input " rel="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e810" style=""><input class=" date required" id="funcionario_dependente__data_nascimento_3293853720193fccc1f9d6f6120546a9cd9bd41e810" mask="39/19/9999" name="funcionario_dependente__data_nascimento[10]" style="" type="text" value=""></input></span></p>
+                            </div>
+                            <input class="cloneable" rel="funcionario_dependente" separator="true" type="button" value="Adicionar dependente"></input>
+                        </div>
+
+                    </fieldset>
+                    <div class="tab_navigator "><input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;<input class="nextTab" name="Continuar" type="button" value="Continuar"></input></div></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="footer">
+
+
+</div>
+
+
+
+</body>
+</html>

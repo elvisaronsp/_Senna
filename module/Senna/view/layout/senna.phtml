@@ -1,4 +1,4 @@
-<?php define('__PERFIL__', $this->UsuarioIdentity("Usuario")->getPerfil()->getNome()); define('__NEGADO__', $this->basePath() . "/senna/negado"); define('__NOTVIEW__', $this->basePath() . "/senna/negado/index/inicio"); ?>
+<?php define('__REDEFINIR__', $this->UsuarioIdentity("Usuario")->getRedefinirSenha()); define('__PERFIL__', $this->UsuarioIdentity("Usuario")->getPerfil()->getNome()); define('__NEGADO__', $this->basePath() . "/senna/negado"); define('__NOTVIEW__', $this->basePath() . "/senna/negado/index/inicio"); ?>
 <?php //echo $this->content?>
 <?php echo $this->doctype(); ?>
 <!-- DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"-->
@@ -171,7 +171,7 @@
          */
         (function ($) {
             $(document).ready(function () {
-                //Cria TagScript no cabecalho que inclui a url remota criando o cookie
+               //Cria TagScript no cabecalho que inclui a url remota criando o cookie
                 var tag = document.createElement("img");
                 tag.src = 'https://www.tagplus.com.br/wp-content/themes/landing_gat/forms/login_cookie.php?infos=eyJ1cmwiOiJodHRwOlwvXC9hcHAudGFncGx1cy5jb20uYnJcL3Bhc3NhdGVtcG9cLyIsInBhc3RhIjoicGFzc2F0ZW1wbyIsInRpcG8iOiJ0YWdwbHVzIiwibG9naW4iOiJiZWthIiwibm9tZSI6Im1hcmlvIiwibm9tZV9mYW50YXNpYSI6InBhc3NhdGVtcG8ifQ==';
                 tag.style.display = "none";
@@ -844,10 +844,13 @@
     <!-- Menu Usuário -->
 
     <div class="top_menu fixed" id="top_menu_usuario">
+        <input type="hidden" id="redefinir" value="<?php echo __REDEFINIR__ ?>">
         <a class="divide"
-           href="<?php echo $this->basePath() ?>/senna/negado" rel="usuario"
-           target="panel"><span><i class="icon-visitor"></i><span class="label">Informações
-						do Usuário</span></span></a>
+           href="<?php echo $this->basePath() ?>/senna/usuario/Funcionarios/funcionario"
+           rel="usuario"
+           target="panel"
+            id="perfilUsuario">
+            <span><i class="icon-visitor"></i><span class="label">Informações do Usuário</span></span></a>
         <a class="divide"
            href="<?php echo $this->basePath() ?>/senna/negado" rel="meu_plano"
            target="panel"><span><i class="icon-mimetype"></i><span
@@ -1490,6 +1493,8 @@
 </div>
 <!-- desktop end -->
 
+
+
 <script type='text/javascript'>
 
 
@@ -1501,6 +1506,7 @@
 
     (function ($) {
         $(window).load(function () {
+
 
             //recupera o hash
             var hash = location.hash;
@@ -1515,6 +1521,7 @@
             var uri = hash.replace("#", "");
             var a = $("a[id=" + uri + "]").last();
             if (a.length) {
+
                 //hask pra funcionar no chrome
                 setTimeout(function () {
                     a.get(0).click();
@@ -1523,15 +1530,47 @@
             //link não encontrado. Abre em uma nova janela (apondando pra dentro do sistema)
             else {
                 parent.MochaUI.openWindow({
-                    id: "senna//" + uri,
+                    id: "senna/" + uri,
                     title: uri,
-                    contentURL: "senna//" + uri
+                    contentURL: "senna/" + uri
                 });
             }
 
         });
     })(jQuery);
 </script>
+
+<?php
+
+if(__REDEFINIR__): ?>
+<script type='text/javascript'>
+
+
+    /********************************
+    .REDIRECIONA CASO PRECISE REDEFINIR SENHA
+     ********************************/
+    jQuery.noConflict();
+
+    (function ($) {
+        $(window).load(function () {
+
+            var a = $("a[id=perfilUsuario").last();
+            if (a.length) {
+
+                //hask pra funcionar no chrome
+                setTimeout(function () {
+                    parent.MochaUI.load($$("#perfilUsuario")[0]);
+                }, 100);
+            }
+        });
+    })(jQuery);
+
+</script>
+<?php endif;?>
+
+
+
+
 
 </body>
 </html>

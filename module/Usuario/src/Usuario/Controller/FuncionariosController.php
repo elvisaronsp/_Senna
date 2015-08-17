@@ -251,7 +251,7 @@ class FuncionariosController extends GrudController
     public function FuncionarioAction()
     {
         $viewModel = new ViewModel ();
-        $viewModel->setTerminal(true);
+        //$viewModel->setTerminal(true);
 
         return $viewModel;
     }

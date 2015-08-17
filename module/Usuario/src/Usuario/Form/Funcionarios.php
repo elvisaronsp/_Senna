@@ -26,6 +26,12 @@ class Funcionarios extends Form
         $this->add($hidden);
 
         //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('atualizadoEm');
+        $hidden->setAttribute('id', "atualizadoEm")
+            ->setValue("");
+        $this->add($hidden);
+
+        //input hidden
         $hidden = new \Zend\Form\Element\Hidden('id_entidade');
         $hidden->setAttribute('id', "id_entidade")
             ->setValue("");
@@ -197,7 +203,7 @@ class Funcionarios extends Form
             ->setAttribute('class', "temp  required autosuggest")
             ->setAttribute('filters', "[]")
             ->setAttribute('form_title', "Cadastrando Perfil de Acesso")
-            ->setAttribute('form_url', "/senna/acesso/perfil/form")
+            ->setAttribute('form_url', "/senna/acesso/perfis/form")
             ->setAttribute('form_url_field', "descricao")
             ->setAttribute('minLength', "0")
             ->setAttribute('new_item_info', "Criar um novo perfil")
