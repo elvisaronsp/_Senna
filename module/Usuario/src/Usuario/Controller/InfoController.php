@@ -7,42 +7,43 @@ use Zend\Authentication\Storage\Session as SessionStorage;
 use Zend\View\Model\ViewModel;
 
 /**
- * Class FuncionariosController
+ * Class InfoController
  * @package Usuario\Controller
  */
-class FuncionariosController extends GrudController
+class InfoController extends GrudController
 {
     /**
      * contrutor da classe FuncionariosController
      */
     public function __construct()
     {
+
         $this->entity = "Usuario\Entity\Funcionarios";
-        $this->service = "Usuario\Service\Funcionarios";
+        $this->service = "Usuario\Service\Info";
         $this->horarios = "Usuario\Entity\Horarios";
         $this->contatos = "Usuario\Entity\Contatos";
         $this->enderecos = "Usuario\Entity\Enderecos";
-        $this->form = "Usuario\Form\Funcionarios";
-        $this->message_insert = "Funcionario CADASTRADO com sucesso";
+        $this->form = "Usuario\Form\InfoFuncionario";
+       /* $this->message_insert = "Funcionario CADASTRADO com sucesso";
         $this->message_update = "Funcionario ATUALIZADO com sucesso";
         $this->message_delete = "Funcionario EXCLUIDO com sucesso";
+        */
     }
 
     /**
      * @return ViewModel
      */
-    public function FormAction()
+    public function IndexAction()
     {
         $form = $this->getServiceLocator()->get($this->form);
+        $retorno = array('form' => $form,);
 
         $auth = new AuthenticationService;
         $auth->setStorage(new SessionStorage("Usuario"));
-        $form->get('empresa')->setAttribute('value', $auth->getIdentity()->getEmpresa()->getId());
-
         $repository = $this->getEm()->getRepository($this->entity);
-        $retorno = array('form' => $form);
-        if ($this->params()->fromRoute('id', 0)) {
-            $entity = $repository->find($this->params()->fromRoute('id', 0));
+
+        if ($auth->getIdentity()->getId()) {
+            $entity = $repository->find($auth->getIdentity()->getId());
             $form->setData($entity->toArray());
             $this->setValueForm($form, $entity->toArray());
             $retorno = array('form' => $form,);
@@ -59,6 +60,7 @@ class FuncionariosController extends GrudController
      */
     public function SaveAction()
     {
+        /*
         $retorno = array();
         $request = $this->getRequest();
         $service = $this->getServiceLocator()->get($this->service);
@@ -117,26 +119,7 @@ class FuncionariosController extends GrudController
         $viewModel = new ViewModel($retorno);
         $viewModel->setTerminal(true);
         return $viewModel;
-    }
-
-    /**
-     * @return ViewModel
-     */
-    public function deleteAction()
-    {
-        $retorno = array();
-        $auth = new AuthenticationService;
-        $auth->setStorage(new SessionStorage("Usuario"));
-        $service = $this->getServiceLocator()->get($this->service);
-        if ($this->params()->fromRoute('id') != $auth->getIdentity()->getId()) {
-            if (!$service->delete($this->params()->fromRoute('id', 0)))
-                $retorno['data'] = "Erro ao tentar excluir"; else
-                $retorno['data'] = $this->message_delete;
-        }
-        $viewModel = new ViewModel ($retorno);
-        $viewModel->setTerminal(true);
-
-        return $viewModel;
+        */
     }
 
     /**
@@ -146,19 +129,66 @@ class FuncionariosController extends GrudController
      */
     protected function setValueForm($form, $data)
     {
+        $form->get('sexo')->setAttribute('eval',($data['sexo']=="M")? "0":"1");
 
-        $form->get('ativo')->setAttribute('eval', $data['ativo']);
-        $form->get('sexo')->setAttribute('eval', $data['sexo']);
-        $form->get('tipoContaBancaria')->setAttribute('eval', $data['tipoContaBancaria']);
-        $form->get('escolaridade')->setAttribute('eval', $data['escolaridade']);
-        $form->get('setor')->setAttribute('eval', $data['setor']);
-        $form->get('ac_perfil_acessso')->setAttribute('value', $data['perfil']);
-        $form->get('id_perfil')->setAttribute('value', $data['id_perfil']);
-        $form->get('solicitarRedefinirSenha')->setAttribute('eval', ($data['redefinirSenha']) ? '1' : '0');
-        $form->get('modoFerias')->setAttribute('eval', ($data['ferias']) ? '1' : '0');
-        $form->get('alertas')->setAttribute('eval', ($data['alertas']) ? '1' : '0');
-        $form->get('visualizar_dashboard')->setAttribute('rel', ($data['visualizarDashboard']) ? '1' : '0');
-        $form->get('visualizar_todos_funcionarios')->setAttribute('rel', ($data['visualizarTodosFuncionarios']) ? '1' : '0');
+        switch ($data['escolaridade']) :
+            case "0":
+                $escolaridade = "Ensino Fundamental Incompleto";
+                break;
+            case "1":
+                $escolaridade = "Ensino Fundamental Completo";
+                break;
+            case "2":
+                $escolaridade = "Ensino Médio Incompleto";
+                break;
+            case "3":
+                $escolaridade = "Ensino Médio Completo";
+                break;
+            case "4":
+                $escolaridade = "Ensino Superior Incompleto";
+                break;
+            default:
+                $escolaridade = "Ensino Superior Completo";
+                break;
+        endswitch;
+        $form->get('escolaridade')->setAttribute('value', $escolaridade);
+
+        switch ($data['setor']) :
+            case "0":
+                $setor = "ADMINISTRATIVO";
+                break;
+            case "1":
+                $setor = "FINANCEIRO";
+                break;
+            case "2":
+                $setor = "COMERCIAL";
+                break;
+            case "3":
+                $setor = "VENDAS";
+                break;
+            case "4":
+                $setor = "GERENCIA";
+                break;
+            default:
+                $setor = "PRODUÇÃO";
+                break;
+        endswitch;
+
+        $form->get('setor')->setAttribute('value', $setor);
+
+        switch ($data['tipoContaBancaria']) :
+            case "0":
+                $tipoContaBancaria = "CONTA CORRENTE";
+                break;
+            case "1":
+                $tipoContaBancaria = "CONTA POUPANÇA";
+                break;
+            case "2":
+                $tipoContaBancaria = "CONTA SALÁRIO";
+                break;
+        endswitch;
+        $form->get('tipoContaBancaria')->setAttribute('value',$tipoContaBancaria);
+
         // horarios
         $repository = $this->getEm()->getRepository($this->horarios);
         $horario = $repository->findBy(array('usuario' => $data['id']));
@@ -167,14 +197,23 @@ class FuncionariosController extends GrudController
         $form->get('hora_almoco_entrada')->setAttribute('value', $horario['0']->toArray()['horaAlmocoEntrada']);
         $form->get('hora_almoco_saida')->setAttribute('value', $horario['0']->toArray()['horaAlmocoSaida']);
         $form->get('hora_saida')->setAttribute('value', $horario['0']->toArray()['horaSaida']);
-        $form->get('dias_da_semana_1')->setAttribute('rel', $horario['0']->toArray()['diasDaSemana1']);
-        $form->get('dias_da_semana_2')->setAttribute('rel', $horario['0']->toArray()['diasDaSemana2']);
-        $form->get('dias_da_semana_3')->setAttribute('rel', $horario['0']->toArray()['diasDaSemana3']);
-        $form->get('dias_da_semana_4')->setAttribute('rel', $horario['0']->toArray()['diasDaSemana4']);
-        $form->get('dias_da_semana_5')->setAttribute('rel', $horario['0']->toArray()['diasDaSemana5']);
-        $form->get('dias_da_semana_6')->setAttribute('rel', $horario['0']->toArray()['diasDaSemana6']);
-        $form->get('dias_da_semana_7')->setAttribute('rel', $horario['0']->toArray()['diasDaSemana7']);
         // fim horarios
+
+
+        /*
+        $form->get('ativo')->setAttribute('eval', $data['ativo']);
+
+        $form->get('tipoContaBancaria')->setAttribute('eval', $data['tipoContaBancaria']);
+
+        $form->get('setor')->setAttribute('eval', $data['setor']);
+        $form->get('ac_perfil_acessso')->setAttribute('value', $data['perfil']);
+        $form->get('id_perfil')->setAttribute('value', $data['id_perfil']);
+        $form->get('solicitarRedefinirSenha')->setAttribute('eval', ($data['redefinirSenha']) ? '1' : '0');
+        $form->get('modoFerias')->setAttribute('eval', ($data['ferias']) ? '1' : '0');
+        $form->get('alertas')->setAttribute('eval', ($data['alertas']) ? '1' : '0');
+        $form->get('visualizar_dashboard')->setAttribute('rel', ($data['visualizarDashboard']) ? '1' : '0');
+        $form->get('visualizar_todos_funcionarios')->setAttribute('rel', ($data['visualizarTodosFuncionarios']) ? '1' : '0');
+
 
         // contatos
         $repository = $this->getEm()->getRepository($this->contatos);
@@ -233,29 +272,11 @@ class FuncionariosController extends GrudController
             $form->get('endereco_entidade__principal[' . $key . ']')->setAttribute('value', $enderecos[$key]->getPrincipal());
         endforeach;
         // fim de enderecos
+        */
     }
 
-    /**
-     * @return ViewModel
-     */
-    public function MapaAction()
-    {
-        $viewModel = new ViewModel ();
-        $viewModel->setTerminal(true);
 
-        return $viewModel;
-    }
 
-    /**
-     * @return ViewModel
-     */
-    public function FuncionarioAction()
-    {
-        $viewModel = new ViewModel ();
-        //$viewModel->setTerminal(true);
-
-        return $viewModel;
-    }
 
     /**
      * @return bool

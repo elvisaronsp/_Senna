@@ -99,6 +99,7 @@ return array(
             'Usuario\Controller\Funcionarios' => 'Usuario\Controller\FuncionariosController',
             'Usuario\Controller\Index' => 'Usuario\Controller\IndexController',
             'Usuario\Controller\Authentication' => 'Usuario\Controller\AuthenticationController',
+            'Usuario\Controller\Info' => 'Usuario\Controller\InfoController',
         )
     ),
     'view_manager' => array(

@@ -313,6 +313,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
         if ($("#id").val() != "") {
             $('#fielset_id').hide();
+            $('#fielset_redefinir').hide();
             if ($("#cpf").val() != "") {
                 $("#cpf").addClass("required");
             }

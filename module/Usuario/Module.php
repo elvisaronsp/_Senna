@@ -39,6 +39,11 @@ class Module
                         $sm->get('Usuario\Mail\Transport'),
                         $sm->get('View'));
                 },
+                'Usuario\Service\Info' => function($sm){
+                    return new Service\Info($sm->get('Doctrine\ORM\Entitymanager'),
+                        $sm->get('Usuario\Mail\Transport'),
+                        $sm->get('View'));
+                },
                 'Usuario\Mail\Transport' => function($sm) {
                     $config = $sm->get('Config');
                     $transport = new SmtpTransport;
@@ -61,6 +66,10 @@ class Module
                 'Usuario\Form\Reset' => function($sm)
                 {
                     return new Form\Reset();
+                },
+                'Usuario\Form\InfoFuncionario' => function($sm)
+                {
+                    return new Form\InfoFuncionario();
                 },
                 'Usuario\Auth\Adapter' => function($sm){
                     return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));

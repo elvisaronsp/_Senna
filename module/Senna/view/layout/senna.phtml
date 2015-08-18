@@ -1,4 +1,10 @@
-<?php define('__REDEFINIR__', $this->UsuarioIdentity("Usuario")->getRedefinirSenha()); define('__PERFIL__', $this->UsuarioIdentity("Usuario")->getPerfil()->getNome()); define('__NEGADO__', $this->basePath() . "/senna/negado"); define('__NOTVIEW__', $this->basePath() . "/senna/negado/index/inicio"); ?>
+<?php
+define('__REDEFINIR__', $this->UsuarioIdentity("Usuario")->getRedefinirSenha());
+define('__PERFIL__', $this->UsuarioIdentity("Usuario")->getPerfil()->getNome());
+define('__NEGADO__', $this->basePath() . "/senna/negado");
+define('__NOTVIEW__', $this->basePath() . "/senna/negado/index/inicio");
+define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getNomefantasia());
+?>
 <?php //echo $this->content?>
 <?php echo $this->doctype(); ?>
 <!-- DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"-->
@@ -230,7 +236,7 @@
     <div id="desktopHeader">
         <div id="desktopTitlebarWrapper">
             <div id="desktopTitlebar">
-                <div id="applicationName">CAPITAL PONTO</div>
+                <div id="applicationName"><?=__EMPRESA__?></div>
                 <div id="topNav">
                     <ul>
                         <li>
@@ -846,7 +852,7 @@
     <div class="top_menu fixed" id="top_menu_usuario">
         <input type="hidden" id="redefinir" value="<?php echo __REDEFINIR__ ?>">
         <a class="divide"
-           href="<?php echo $this->basePath() ?>/senna/usuario/Funcionarios/funcionario"
+           href="<?php echo $this->basePath() ?>/senna/usuario/info"
            rel="usuario"
            target="panel"
             id="perfilUsuario">
