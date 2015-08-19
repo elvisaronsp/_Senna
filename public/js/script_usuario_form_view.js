@@ -332,15 +332,11 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
         $('#contato__id_tipo_cadastro_3 ').attr("readonly","true");
         $('#contato__id_tipo_cadastro_4 ').attr("readonly","true");
 
-
         function beforeSuccess(btn, text){
-alert()
             var p = window.parent;
             var d = parent.document;
             if(text.session_updated && text.session_updated!=''){
-                parent.Sexy.confirm("Seu perfil de acesso foi alterado com sucesso!<br/><br/>Contanto, é necessário recarregar o sistema para que as novas permissões tenham efeito.<br/><br/><b>ATENÇÃO:</b> Você perderá todas as informações que não estejam salvas.", {
-                    textBoxBtnOk:'Atualizar Sessão Agora',
-                    textBoxBtnCancel:'Deixar para depois',
+                parent.Sexy.alert("Seu perfil de acesso foi alterado com sucesso!<br/><br/>Contanto, é necessário recarregar o sistema para que as novas permissões tenham efeito.<br/><br/><b>ATENÇÃO:</b> Você perderá todas as informações que não estejam salvas.", {
                     onComplete: function(val) {
                         if(val){
                             jQuery(d).find("#loader").show();
@@ -350,9 +346,7 @@ alert()
                 });
             }
         }
-        $$('#form').addEvent('beforeSuccess', beforeSuccess());
-
-
+        $$('#form').addEvent('afterSubmit', beforeSuccess);
     });
 })(jQuery);
 

@@ -56,6 +56,9 @@ class InfoController extends GrudController
      */
     public function SaveAction()
     {
+        // Recupera sessao do usuario
+        $auth = new AuthenticationService;
+        $auth->setStorage(new SessionStorage("Usuario"));
 
         $retorno = array();
         $request = $this->getRequest();
@@ -85,13 +88,11 @@ class InfoController extends GrudController
                 'id_field' => 'id',
                 'id_value' => "" . $entity->getId() . "",
                 'message' => $this->message_update,
-                'session_updated' => true,
+                'session_updated' => ($auth->getIdentity()->getRedefinirSenha())?true:false,
                 'type' => 'success'
             );
 
-            // recrava dados na sessao
-            $auth = new AuthenticationService;
-            $auth->setStorage(new SessionStorage("Usuario"));
+            // regrava dados na sessao
             $auth->getIdentity()->setRedefinirSenha('0');
 
 
