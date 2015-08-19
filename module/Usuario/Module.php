@@ -39,11 +39,6 @@ class Module
                         $sm->get('Usuario\Mail\Transport'),
                         $sm->get('View'));
                 },
-                'Usuario\Service\Info' => function($sm){
-                    return new Service\Info($sm->get('Doctrine\ORM\Entitymanager'),
-                        $sm->get('Usuario\Mail\Transport'),
-                        $sm->get('View'));
-                },
                 'Usuario\Mail\Transport' => function($sm) {
                     $config = $sm->get('Config');
                     $transport = new SmtpTransport;

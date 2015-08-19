@@ -17,17 +17,13 @@ class InfoController extends GrudController
      */
     public function __construct()
     {
-
         $this->entity = "Usuario\Entity\Funcionarios";
-        $this->service = "Usuario\Service\Info";
+        $this->service = "Usuario\Service\Funcionarios";
         $this->horarios = "Usuario\Entity\Horarios";
         $this->contatos = "Usuario\Entity\Contatos";
         $this->enderecos = "Usuario\Entity\Enderecos";
         $this->form = "Usuario\Form\InfoFuncionario";
-       /* $this->message_insert = "Funcionario CADASTRADO com sucesso";
-        $this->message_update = "Funcionario ATUALIZADO com sucesso";
-        $this->message_delete = "Funcionario EXCLUIDO com sucesso";
-        */
+        $this->message_update = "Perfil ATUALIZADO com sucesso";
     }
 
     /**
@@ -60,66 +56,49 @@ class InfoController extends GrudController
      */
     public function SaveAction()
     {
-        /*
+
         $retorno = array();
         $request = $this->getRequest();
         $service = $this->getServiceLocator()->get($this->service);
-        if (empty($request->getPost()['id'])) {
-            $podeCadastrar = $this->verificaExistencia();
-            if (!$podeCadastrar) {
-                # INSERT
-                if ($request->isPost()) {
-                    $entity = $service->insert($request->getPost()->toArray());
-                    $retorno['data'] = array(
-                        'id_field' => 'id',
-                        'id_value' => "" . $entity->getId() . "",
-                        'message'  => $this->message_insert,
-                        'type'     => 'success',);
-                }
-            } else {
-                $retorno['erro'] = $podeCadastrar;
+
+        # UPDATE
+        if ($request->isPost()) {
+
+            // remove contatos para atualizacao
+            $repository = $this->getEm()->getRepository($this->contatos);
+            $contatos = $repository->findBy(array('usuario' => $request->getPost()['id']));
+
+            foreach ($contatos as $contato) {
+                $this->getEm()->remove($contato);
             }
-        } else {
-            # UPDATE
-            if ($request->isPost()) {
 
-                // remove contatos para atualizacao
-                $repository = $this->getEm()->getRepository($this->contatos);
-                $contatos = $repository->findBy(array( 'usuario' => $request->getPost()['id'] ));
+            // remove enderecos para atualizacao
+            $repository = $this->getEm()->getRepository($this->enderecos);
+            $enderecos = $repository->findBy(array('usuario' => $request->getPost()['id']));
 
-                foreach ($contatos as $contato) {
-                    $this->getEm()->remove($contato);
-                }
-                // remove enderecos para atualizacao
-                $repository = $this->getEm()->getRepository($this->enderecos);
-                $enderecos = $repository->findBy(array( 'usuario' => $request->getPost()['id'] ));
-
-                foreach ($enderecos as $endereco) {
-                    $this->getEm()->remove($endereco);
-                }
-
-                // remove horarios para atualizacao
-                $repository = $this->getEm()->getRepository($this->horarios);
-                $horarios = $repository->findBy(array( 'usuario' => $request->getPost()['id'] ));
-
-                foreach ($horarios as $horario) {
-                    $this->getEm()->remove($horario);
-                }
-
-                $entity = $service->update($request->getPost()->toArray());
-                $retorno['data'] = array(
-                    'id_field'        => 'id',
-                    'id_value'        => "" . $entity->getId() . "",
-                    'message'         => $this->message_update,
-                    'session_updated' => true,
-                    'type'            => 'success'
-                );
+            foreach ($enderecos as $endereco) {
+                $this->getEm()->remove($endereco);
             }
+
+            $entity = $service->update($request->getPost()->toArray());
+            $retorno['data'] = array(
+                'id_field' => 'id',
+                'id_value' => "" . $entity->getId() . "",
+                'message' => $this->message_update,
+                'session_updated' => true,
+                'type' => 'success'
+            );
+
+            // recrava dados na sessao
+            $auth = new AuthenticationService;
+            $auth->setStorage(new SessionStorage("Usuario"));
+            $auth->getIdentity()->setRedefinirSenha('0');
+
+
+            $viewModel = new ViewModel($retorno);
+           $viewModel->setTerminal(true);
+           return $viewModel;
         }
-        $viewModel = new ViewModel($retorno);
-        $viewModel->setTerminal(true);
-        return $viewModel;
-        */
     }
 
     /**
@@ -199,22 +178,6 @@ class InfoController extends GrudController
         $form->get('hora_saida')->setAttribute('value', $horario['0']->toArray()['horaSaida']);
         // fim horarios
 
-
-        /*
-        $form->get('ativo')->setAttribute('eval', $data['ativo']);
-
-        $form->get('tipoContaBancaria')->setAttribute('eval', $data['tipoContaBancaria']);
-
-        $form->get('setor')->setAttribute('eval', $data['setor']);
-        $form->get('ac_perfil_acessso')->setAttribute('value', $data['perfil']);
-        $form->get('id_perfil')->setAttribute('value', $data['id_perfil']);
-        $form->get('solicitarRedefinirSenha')->setAttribute('eval', ($data['redefinirSenha']) ? '1' : '0');
-        $form->get('modoFerias')->setAttribute('eval', ($data['ferias']) ? '1' : '0');
-        $form->get('alertas')->setAttribute('eval', ($data['alertas']) ? '1' : '0');
-        $form->get('visualizar_dashboard')->setAttribute('rel', ($data['visualizarDashboard']) ? '1' : '0');
-        $form->get('visualizar_todos_funcionarios')->setAttribute('rel', ($data['visualizarTodosFuncionarios']) ? '1' : '0');
-
-
         // contatos
         $repository = $this->getEm()->getRepository($this->contatos);
         $contatos = $repository->findBy(array('usuario' => $data['id']));
@@ -244,6 +207,8 @@ class InfoController extends GrudController
             $form->get('contato__detalhes[' . $key . ']')->setAttribute('value', $contatos[$key]->getDetalhes());
         endforeach;
         // fim contatos
+
+
         // enderecos
         $repository = $this->getEm()->getRepository($this->enderecos);
         $enderecos = $repository->findBy(array('usuario' => $data['id']), array('principal' => 'DESC'));
@@ -272,11 +237,7 @@ class InfoController extends GrudController
             $form->get('endereco_entidade__principal[' . $key . ']')->setAttribute('value', $enderecos[$key]->getPrincipal());
         endforeach;
         // fim de enderecos
-        */
     }
-
-
-
 
     /**
      * @return bool

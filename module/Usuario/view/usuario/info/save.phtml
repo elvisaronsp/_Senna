@@ -1,0 +1,17 @@
+<?php
+if(isset($this->data))
+{
+   print json_encode($this->data);
+}
+else
+{
+    header("HTTP/1.0 500 Internal Server Error");
+
+    echo "<h5>Atenção:</h5>
+            <br/>
+            <div style='max-height:270px;overflow:auto;display:block;'>
+            Não é possivel Atualizar seu perfil de acesso
+
+            </div>";
+    die();
+}

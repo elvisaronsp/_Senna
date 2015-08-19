@@ -198,10 +198,12 @@ class Funcionarios extends AbstractService
      */
     private function incluirHorarios($entityFuncionario, $data)
     {
-        $entityHorarios = new $this->horarios($data);
-        $entityHorarios->setUsuario($entityFuncionario);
-        $this->em->persist($entityHorarios);
-        $this->em->flush();
+        if(isset($data['hora_entrada'])):
+            $entityHorarios = new $this->horarios($data);
+            $entityHorarios->setUsuario($entityFuncionario);
+            $this->em->persist($entityHorarios);
+            $this->em->flush();
+        endif;
     }
 
     /**
@@ -258,6 +260,7 @@ class Funcionarios extends AbstractService
         if (empty($data['senha'])):
             unset($data['senha']);
         else:
+            $data['redefinirSenha'] = "0";
             //$this->enviarEmail("Alteracao de senha", $data['email'], 'edit-user', $data);
         endif;
         return $data;
@@ -298,13 +301,15 @@ class Funcionarios extends AbstractService
     {
         $entity = $this->em->getReference($this->entity, $data['id']);
         $data = $this->verificaAlteracaoSenha($data);
+
         (new Hydrator\ClassMethods())->hydrate($data, $entity);
+
+
         $this->setParamExtra($entity, $data);
         $this->incluirContatos($entity, $data);
         $this->incluirEndereco($entity, $data);
         $this->incluirHorarios($entity, $data);
         $this->verificaBloqueiosLogin($entity, $data);
-
 
         $this->em->persist($entity);
         $this->em->flush();

@@ -522,7 +522,7 @@ class Funcionarios
      */
     public function encryptSenha($senha)
     {
-        return base64_encode(Pbkdf2::calc('sha256', $senha, $this->salt, 10000, strlen($senha * 150)));
+        return  base64_encode(Pbkdf2::calc('sha256', $senha, $this->salt, 10000, strlen($senha)*10));
     }
 
     /**

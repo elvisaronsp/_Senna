@@ -7,8 +7,6 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     "intro_button_voltar": "Voltar",
     "intro_button_fechar": "Fechar",
     "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial",
-    "label_sim": "Sim",
-    "label_nao": "N\u00e3o",
     "lang_range_separator": "a",
     "lang_range_periodo_vazio": "Todo o Per\u00edodo",
     "lang_range_date_format": "dd mmm",
@@ -16,18 +14,14 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     "lang_range_date_format_mes": "mmmm yyyy",
     "lang_range_date_format_ano": "yyyy",
     "lang_date_format": "dd\/mm\/yyyy",
-    "lang_start_date": "01\/01\/2011"
+    "lang_start_date": "01\/01\/2011",
+    "label_upload_error": "<b>Erro !<\/b>",
+    "label_conf_remover": "Deseja realmente excluir este arquivo?<br\/>Esta opera\u00e7\u00e3o n\u00e3o poder\u00e1 ser desfeita.",
+    "label_conf_sim": "Apagar Arquivo",
+    "label_conf_nao": "Cancelar"
 });
 
 
-/*************************************************
- cadastro/complementos_cadastros/form_enderecos.js
- *************************************************/
-
-/**
- * @author Bruno
- */
-//montando autocomplete para seleção de fornecedores
 (function ($) {
 
     var preencheForm = function ($parent, json) {
@@ -50,91 +44,6 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
         );
     };
 
-    /**
-     * Mostra Mapa do endereço informado
-     */
-    var map;
-    var showMap = function (container) {
-        // Armazena dados
-        var rua = container.find("[name*=endereco__logradouro]").val();
-        var bairro = container.find("[id*=endereco__bairro]").val();
-        var cidade = container.find("[id*=cidade_nome]").val();
-        var estado = container.find("[id*=estado_nome]").val();
-        var pais = container.find("[id*=pais_nome]").val();
-        // Trata exterior
-        if (!pais)
-            pais = container.find("[id*=ext_endereco__id_pais]").val();
-        var cep = container.find("[name*=endereco__cep]").val();
-        var num = container.find("[name*=endereco_entidade__numero]").val();
-        var address = rua + ',' + num + '-' + bairro + ',' + cidade + '-' + estado + ',' + cep + ',' + pais;
-
-        // Valida dados necessários para exibição do mapa
-        var ret = false;
-        var vars = ['rua', 'cidade', 'estado', 'pais'];
-        $.each(vars, function (i, val) {
-            if (!eval(val)) {
-                ret = true;
-                return false;
-            }
-        });
-        if (ret) {
-            parent.Sexy.alert('Favor informar os dados do endereço a ser exibido.');
-            return false;
-        }
-        // Instancia geocoder da API
-        var geocoder = new google.maps.Geocoder();
-
-        // Recupera longitude e latitude, recebendo o endereço como paramentro
-        geocoder.geocode({'address': address},
-            // Callback do pedido de latitude e longitude
-            function (results, status) {
-                // Se resultado é válido
-                if (status == google.maps.GeocoderStatus.OK) {
-                    alert('http://app.tagplus.com.br/fox3/usuario/infos/mapa');
-                    // Abre modal com o mapa
-                    parent.MochaUI.openWindow({
-                        id: 'http://app.tagplus.com.br/fox3/usuario/infos/mapa',
-                        title: 'Mapa',
-                        onContentLoaded: function () {
-                            // Armazena objeto para latitude e longitude
-                            var myLatlng = results[0].geometry.location;
-
-                            // Armazena elemento da janela (modal)
-                            var janela = this.iframeEl;
-                            janela = $(janela).contents();
-
-                            // Opções do mapa
-                            var myOptions = {
-                                zoom: 15,
-                                center: myLatlng,
-                                mapTypeId: google.maps.MapTypeId.ROADMAP
-                            };
-
-                            // Criar o mapa na div "content" da janela
-                            map = new google.maps.Map(janela.find('#content').css({
-                                'width': '100%',
-                                'height': '100%',
-                                'padding': '0',
-                                'margin': '0'
-                            }).get(0), myOptions);
-                            // Cria marcador
-                            var marker = new google.maps.Marker({
-                                map: map,
-                                position: myLatlng
-                            });
-                            // Adiciona evento "Click" para o marcador
-                            google.maps.event.addListener(marker, 'click', function () {
-                                map.setZoom(17);
-                            });
-                        }
-                    });
-                }
-                else {
-                    Sexy.alert("Não foi possível encontrar o endereço informado");
-                }
-            }
-        );
-    };
 
     var exist_principal = function () {
         var retorno = false;
@@ -160,21 +69,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
     jQuery(document).ready(function () {
 
-        // Habilita botoes de mapa
-        $('[name=btn_mapa]').each(
-            function () {
-                if ($(this).parents('.clonedField').find('[name*=endereco_entidade__id]').val() != '') {
-                    $(this).removeAttr('disabled');
-                }
-            }
-        ).click(
-            function () {
-                showMap($(this).parents('.clonedField'));
-            }
-        );
-
-
-        // Trata cadastro de endereço principal
+        // Trata cadastro de endereÃ§o principal
         $('#endereco .clonedField').each(
             function () {
                 /*acao_novo_endereco($(this));
@@ -201,33 +96,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
             set_principal_padrao();
         });
 
-        /*
-         //Tratando cadastro de novos enderecos
-         $("[id*=endereco__id]").bind('onWindowLoad', function(evt, newDocument, val){
-         //OBtendo os dados da tela que abriu.
-         var logradouro	= $(newDocument).find("#endereco__logradouro").val();
-         var bairro		= $(newDocument).find("#endereco__bairro").val();
-         var cidade		= $(newDocument).find("#endereco__id_cidade").val();
-
-         if(logradouro == '' || bairro == '' || cidade == ''){
-         //Retirando os espaços
-         val = val.replace(/^s+|s+$/g, '').replace('.', '');
-         // Caso o CEP não esteja nesse formato ele vai ser inserido no campo de logradouro
-         var objER = /^[0-9]{5}[-]?[0-9]{3}$/;
-         //Verficando se foi inserido um conteúdo
-         if(val.length > 0){
-         if(objER.test(val)){
-         $(newDocument).find("#endereco__cep").val(val);
-         $(newDocument).find("#btn_cep").click();
-         }
-         else
-         $(newDocument).find("#endereco__logradouro").val(val);
-         }
-         }
-
-         });
-         */
-        /* BOTÃO DE BUSCA DE CEP ******************************/
+        /* BOTÃƒO DE BUSCA DE CEP ******************************/
         $("[id*=btn_cep]").click(function (evt, el) {
             get_cep_ws($(this).parents('.clonedField'))
         });
@@ -238,6 +107,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
 
         $("[id*=endereco__id_cidade]").change(function (evt, el, json) {
+
             container = $(this).parents('.clonedField');
             $(container).find("[name*=endereco__id_cidade]").val(json.id);
             $(container).find("[name*=localidade_cidade__nome]").val(json.nome);
@@ -253,246 +123,95 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
     });
 
-
+    //######## CONSULTA DE CEP #######
     var get_cep_ws = function (container) {
         //Carregando
         $("#loader").show().find(".carregando").hide();
         $("#loader").find(".enviando").show();
 
         var cep = $(container).find("[name*=endereco__cep]").val();
-        var url = '{url_ws_cep}';
-
         if (!cep) {
             Sexy.alert('Por favor, informe o CEP.');
             $("#loader").hide();
-        }
-        else {
-            //Faz uma requisição pra verificar se o cep ja foi cadastrado
-            $.ajax({
-                type: "POST",
-                url: 'http://app.tagplus.com.br/fox3/cadastro/enderecos/get_endereco_by_cep/' + cep,
-                dataType: 'json',
-                async: false,
-                success: function (data) {
-                    if (data.length != 0) {
-                        //Se tem só 1 endereço
-                        if (data.length == 1) {
-                            var json = data[0];
-                            $(container).find('[name*=endereco__cep]').val(json.cep);
-                            $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
-                            $(container).find('[name*=endereco__bairro]').val(json.bairro);
-                            $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
-                            $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
-                            $(container).find('[name*=estado]').val(json.sigla_estado);
-                            $(container).find('[name*=pais]').val(json.pais);
-                            $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
-                            $(container).find('[name*=cidade_cod]').val(json.cidade_cod);
-                            $(container).find('[name*=estado_cod]').val(json.estado_cod);
-                            $(container).find('[name*=pais_cod]').val(json.pais_cod);
-                            //Se tem mas de 1 pergunto
-                        } else {
-                            Sexy.confirm('Foi encontrado mais de um endereço para o mesmo CEP. Deseja selecionar estes endereços?', {
-                                textBoxBtnOk: "Sim",
-                                textBoxBtnCancel: "Não",
-                                onComplete: function (ret) {
-                                    if (ret) {
-                                        // Abre modal com o mapa
-                                        var data_end = false;
-                                        var url = 'http://app.tagplus.com.br/fox3/cadastro/enderecos/form_enderecos_mult';
-                                        parent.MochaUI.openWindow({
-                                            id: url,
-                                            title: 'Endereço',
-                                            type: 'modal',
-                                            //Id de onde foi clicado enviado como parametro.
-                                            contentURL: url,
-                                            width: 700,
-                                            height: 486,
-                                            onContentLoaded: function () {
+        } else {
+            $.getJSON("/senna/cadastro/endereco/busqueEnderecoPorCep/" + cep, {}, function (json) {
+                if (!json || json.resultado == '') {
+                    $("#loader").hide();
+                    Sexy.alert("NÃ£o foi possÃ­vel pesquisar este CEP. Por favor tente novamente em alguns instantes");
+                    return false;
+                }
 
-                                                var janela = this.iframeEl;
-                                                janela = $(janela).contents();
+                if (!json || json.resultado == 0) {
+                    $("#loader").hide();
+                    Sexy.alert("CEP nÃ£o encontrado.");
+                    return false;
+                }
 
-                                                janela.find("[id*=_endereco__id]").attr('source', 'http://app.tagplus.com.br/fox3/autocomplete/enderecos/index/' + cep);
-                                            },
-                                            onClose: function () {
-                                                var janela = this.iframeEl;
-                                                janela = $(janela).contents();
-                                                var id_endereco = janela.find('[id*=_endereco__id]').val();
+                //Erro ao recuperar CEP
+                if (json.cod_error) {
+                    $("#loader").hide();
+                    Sexy.alert("NÃ£o foi possÃ­vel pesquisar este CEP. Por favor tente novamente em alguns instantes");
+                    return false;
 
-                                                if ((id_endereco) && (id_endereco != undefined)) {
-                                                    $.getJSON("http://app.tagplus.com.br/fox3/cadastro/enderecos/get_endereco_by_id/" + id_endereco, {}, function (json) {
-                                                        $(container).find('[name*=endereco__id]').val(id_endereco);
-                                                        $(container).find('[name*=endereco__cep]').val(json.cep);
-                                                        $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
-                                                        $(container).find('[name*=endereco__bairro]').val(json.bairro);
-                                                        $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
-                                                        $(container).find('[autosuggest*=endereco__id_cidade]').val(json.nome_cidade);
-                                                        $(container).find('[name*=estado]').val(json.sigla_estado);
-                                                        $(container).find('[name*=pais]').val(json.pais);
-                                                        $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
-                                                        $(container).find('[name*=cidade_cod]').val(json.cod_cidade);
-                                                        $(container).find('[name*=estado_cod]').val(json.cod_estado);
-                                                        $(container).find('[name*=pais_cod]').val(json.cod_pais);
-                                                    });
-                                                }
-                                            }
-                                        });//Modal
-                                    }
-                                }
-                            });//SexyConfirm
-                        }
+                }
 
-                        $("#loader").hide();
-                    } else {
-                        //Procura no WS
-                        $.getJSON("http://app.tagplus.com.br/fox3/cadastro/enderecos/get_cep_ws/" + cep, {}, function (json) {
-                            if (!json || json.resultado == '') {
-                                $("#loader").hide();
-                                Sexy.alert("Não foi possível pesquisar este CEP. Por favor tente novamente em alguns instantes");
-                                return false;
-                            }
-
-                            if (!json || json.resultado == 0) {
-                                $("#loader").hide();
-                                Sexy.alert("CEP não encontrado.");
-                                return false;
-                            }
-
-                            //Erro ao recuperar CEP
-                            if (json.cod_error) {
-                                $("#loader").hide();
-                                Sexy.alert("Não foi possível pesquisar este CEP. Por favor tente novamente em alguns instantes");
-                                return false;
-
-                            }
-
-                            //Verificando se houve retorno no webservice caso não manda editar direto
-                            if (json.logradouro != '' && json.bairro != '' && json.id_cidade != '') {
-                                // Criando string contendo o endereço completo e adicionando conteúdo ao campo próprio
-                                var endereco_completo = '[' + json.cep + '] ' + json.logradouro + ', ' + json.bairro + ' - ' + json.cidade + '/' + json.uf_nome;
-                                var msg = ('O Endereço: \$s%1, foi encontrado.<br /><br /> O que você deseja fazer?').replace('$s%1', endereco_completo);
-
-                                json.uf_nome = json.uf;
-                                $(container).find('[name*=endereco__cep]').val(json.cep);
-                                $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
-                                $(container).find('[name*=endereco__bairro]').val(json.bairro);
-                                $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
-                                $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
-                                $(container).find('[name*=estado]').val(json.uf_nome);
-                                $(container).find('[name*=pais]').val(json.pais);
-                                $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
-                                $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
-                                $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
-                                $(container).find('[name*=pais_cod]').val(json.pais_cod);
-                            } else {
-                                $(container).find('[name*=endereco__cep]').val(json.cep);
-                                $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
-                                $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
-                                $(container).find('[name*=estado]').val(json.uf);
-                                $(container).find('[name*=pais]').val(json.pais);
-                                $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
-                                $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
-
-                            }
-                            $("#loader").hide();
-                        });
-                    }//Else
-                }//Success
-            });//Ajax
+                //Verificando se houve retorno no webservice caso nÃ£o manda editar direto
+                if (json.logradouro != '' && json.bairro != '' && json.id_cidade != '') {
+                    json.uf_nome = json.uf;
+                    $(container).find('[name*=endereco__cep]').val(json.cep);
+                    $(container).find('[name*=endereco__logradouro]').val(json.logradouro);
+                    $(container).find('[name*=endereco__bairro]').val(json.bairro);
+                    $(container).find('[name*=endereco__id_cidade]').val(json.cidade); //id_cidade
+                    $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
+                    $(container).find('[name*=estado]').val(json.estado_nome);
+                    $(container).find('[name*=pais]').val(json.pais);
+                    $(container).find('[name*=endereco__id_pais]').val(json.id_pais);
+                    $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
+                    $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
+                    $(container).find('[name*=pais_cod]').val(json.pais_cod);
+                } else {
+                    $(container).find('[name*=endereco__cep]').val(json.cep);
+                    $(container).find('[name*=endereco__id_cidade]').val(json.id_cidade);
+                    $(container).find('[autosuggest*=endereco__id_cidade]').val(json.cidade);
+                    $(container).find('[name*=estado]').val("TE");
+                    $(container).find('[name*=pais]').val(json.pais);
+                    $(container).find('[name*=cidade_cod]').val(json.cod_ibge_municipio);
+                    $(container).find('[name*=estado_cod]').val(json.cod_ibge_estado);
+                    $(container).find('[name*=endereco_entidade__numero]').focus();
+                }
+                $("#loader").hide();
+            });
         }
     }
+
+
 })(jQuery);
 
-
-/************************************************
- cadastro/complementos_cadastros/form_contatos.js
- ************************************************/
-
-/**
- * @author Eduardo
- */
-//montando autocomplete para seleção de fornecedores
 (function ($) {
 
-    /**
-     * Retorna os elementos id_tipo_contato com contato igual ao informado
-     * @author jdrummond
-     * @since  22/11/12
-     * @param  {string}  id_contato
-     * @return {obj}
-     */
-    var get_contatos_iguais = function (id_contato) {
-        var retorno = [];
-
-        $('#contato .clonedField:not(.hiddenClone) input[name*=contato__id_tipo_contato]').each(function () {
-            if ($(this).val() == id_contato || (id_contato == 0 && $(this).val() == '') || (id_contato == '' && $(this).val() == 0)) {
-                retorno.push($(this));
-            }
-        });
-
-        return retorno;
-    };
-
-    /**
-     * Trata marcação de principal
-     * @author jdrummond
-     * @since  22/11/12
-     * @return void
-     */
-    var verifica_marca_contatos_principais = function () {
-        // Aponta quais IDs de tipo de contato já possuem principal marcado
-        var contatos_com_principal = [];
-        $('#contato .clonedField:not(.hiddenClone) [name*=contato__principal]:checked').each(function () {
-            var id_tipo_contato = $(this).parents('.clonedField').find('input[name*=contato__id_tipo_contato]').val();
-            if (id_tipo_contato == 0)
-                id_tipo_contato = "";
-            contatos_com_principal.push(id_tipo_contato);
-        });
-
-        // Percorre todos os tipos de contato verificando se já possuem principal marcado, e, caso negativo, marca
-        $('#contato .clonedField:not(.hiddenClone) input[name*=contato__id_tipo_contato]').each(function () {
-            var id_tipo_contato = $(this).val();
-            if (id_tipo_contato == 0)
-                id_tipo_contato = "";
-            var contatos_iguais = get_contatos_iguais(id_tipo_contato);
-            // Se possui apenas um com esse ID, marca checked
-            if (contatos_iguais.length == 1) {
-                $(this).parents('.clonedField').find('[name*=contato__principal]').attr('checked', 'checked');
-            }
-            else {
-                // Se não possui nenhum marcado, marca o primeiro
-                var ja_possui_principal = false;
-                $.each(contatos_com_principal, function (i, v) {
-                    if (v == id_tipo_contato) {
-                        ja_possui_principal = true;
-                        return false;
-                    }
-                });
-                // Marca principal em quem não tiver
-                if (!ja_possui_principal) {
-                    $(this).parents('.clonedField').find('[name*=contato__principal]').removeAttr('checked');
-                    contatos_iguais[0].parents('.clonedField').find('[name*=contato__principal]').attr('checked', 'checked');
-                }
-            }
-        });
-    }
 
     var tratamento_change_tipo_contato = function (el) {
-        if (tipo_contato[$(el).val()] == "T") {
-            $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('email', 'true');
-            $(el).parents('div:first').find('[name*=contato__descricao]').attr('maxlength', '20').attr('minlength', '4');
-        } else {
-            if (tipo_contato[$(el).val()] == "E") {
-                $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('maxlength', '20').removeAttr('minlength', '4');
-                $(el).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
-            } else {
-                $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('email', 'true');
-                $(el).parents('div:first').find('[name*=contato__descricao]').removeAttr('maxlength', '20').removeAttr('minlength', '4');
-                $(el).parents('div:first').find('[name*=contato__descricao]').attr('maxlength', '50');
+        $('[id*=contato].clonedField').find('[name*=ac_]').each(function () {
+            switch ($(this).parents('span:first').find('[name*=contato__id_tipo_contato]').val()) {
+                case '1':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
+                    break;
+                case '2':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    break;
+                case '3':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('url', 'true');
+                    break;
+                case '4':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    break;
+                case '5':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
+                    break;
             }
-        }
-        verifica_marca_contatos_principais();
+        });
     };
+
 
     var tipo_contato = new Array();
 
@@ -509,130 +228,88 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     //Principal
     $(document).ready(function () {
 
-        $('[id*=contato].clonedField').each(function () {
-            if ($(this).find('[name*=contato__editavel]').val() == '0') {
-                $(this).find('input').attr('disabled', true);
-                $(this).find('select').attr('disabled', 'disabled');
-                $(this).find('.removeClone').remove();
+
+        $('[id*=contato].clonedField').find('[name*=ac_]').each(function () {
+            switch ($(this).parents('span:first').find('[name*=contato__id_tipo_contato]').val()) {
+                case '1':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
+                    break;
+                case '2':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    break;
+                case '3':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('url', 'true');
+                    break;
+                case '4':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    break;
+                case '5':
+                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
+                    break;
             }
-
-            $('[id*=contato].clonedField').find('[name*=contato__id_tipo_contato]').each(function () {
-                if (tipo_contato[$(this).val()] == "T") {
-                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('maxlength', '20').attr('minlength', '4');
-                } else {
-                    if (tipo_contato[$(this).val()] == "E") {
-                        $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
-                    }
-                    else {
-                        $(this).parents('div:first').find('[name*=contato__descricao]').attr('maxlength', '50');
-                    }
-                }
-
-            });//end each();
-
-            //adicinando comportamento no checkbox principal
-            $(this).find('[name*=contato__principal]').click(function () {
-                // Não permite desmarcar
-                if (!$(this).is(':checked')) {
-                    $(this).attr('checked', 'checked');
-                    return;
-                }
-                var $tipo = $(this).parents("div:eq(1)").find('[name*=contato__id_tipo_contato]');
-
-                $('[id*=contato].clonedField').each(function () {
-                    $tipo_atual = $(this).find('[name*=contato__id_tipo_contato]');
-                    //verifica se  a div que esta sendo verificada nao e a propria div do click
-                    if ($tipo_atual.parents('div').attr('id') != $tipo.parents('div').attr('id')) {
-                        //verifica se o tipo de contato procurado e igual o tipo de contato do principal marcado.
-                        if (($tipo.val() == $tipo_atual.val()) || ($tipo.val() == 0 && $tipo_atual.val() == '') || ($tipo.val() == '' && $tipo_atual.val() == 0)) {
-                            $tipo_atual.parents('div:first').find('[name*=contato__principal]').removeAttr('checked');
-                        }
-                    }
-                });//end each();
-            });//end click();
-
-            // Ao remover um contato
-            $('#contato').bind('onHideClone.trataprincipal', verifica_marca_contatos_principais)
-                .bind('onShowClone.trataprincipal', verifica_marca_contatos_principais);
-
-            //adicionando comportamento ao evento click no tipo de contato.
-            $(this).find('[name*=contato__id_tipo_contato]').change(function () {
-                $(this).parents('.clonedField').find('[name*=contato__principal]').removeAttr('checked');
-                tratamento_change_tipo_contato($(this));
-            }).bind('clear', function () {
-                $(this).parents('.clonedField').find('[name*=contato__principal]').removeAttr('checked');
-                tratamento_change_tipo_contato($(this));
-            });
         });
 
-        //insere autocomplete
-//        autocompleteProduto("#lancamentos", "#lancamentos tbody tr:first");
+        //adicionando comportamento ao evento click no tipo de contato.
+        $(this).find('[name*=contato__id_tipo_contato]').change(function () {
+            tratamento_change_tipo_contato($(this));
+        }).bind('clear', function () {
+            tratamento_change_tipo_contato($(this));
+        });
 
-        //coloca o foco sempre no botao de add um novo contato.
         $('[rel=contato]').focus();
     });
 
 })(jQuery);
 
-jQuery(document).ready(function () {
-    jQuery.extend(jQuery.validator.messages, {
-        accept: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.'/> ",
-        cnpj: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Informe um CNPJ válido.'/> ",
-        cpf: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Informe um CPF válido.'/> ",
-        creditcard: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.'/> ",
-        date: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a uma data v&aacute;lida.'/> ",
-        digits: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a somente d&iacute;gitos.'/> ",
-        email: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um endere&ccedil;o eletr&ocirc;nico v&aacute;lido.'/> ",
-        equalTo: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a o mesmo valor novamente.'/> ",
-        max: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor menor ou igual a {0}.'/> "),
-        maxlength: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a n&atilde;o mais que {0} caracteres.'/> "),
-        min: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior ou igual a {0}.'/> "),
-        minlength: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a ao menos {0} caracteres.'/> "),
-        number: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um n&uacute;mero v&aacute;lido.'/> ",
-        range: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor entre {0} e {1}.'/> "),
-        rangelength: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor contendo de {0} a {1} caracteres.'/> "),
-        required: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Este campo é obrigatório.'/> ",
-        requiredIf: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Este campo deve ser preenchido.'/> ",
-        remote: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Por favor, corrija este campo.'/> ",
-        url: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a uma URL v&aacute;lida.'/> ",
-        time: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a uma hora válida'/> ",
-        code: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um código válido'/> ",
-        price: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior que 0'/> ",
-        cidade: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Cidade não cadastrada no sistema.'/> ",
-        pais: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='País não 'cadastrado no sistema.'/> ",
-        requiredCep: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='CEP e ou Logradouro não cadastrados no sistema.'/> ",
-        transporte: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='O valor deste campo deve ser definido.'/> ",
-        positive: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Forneça um valor maior que 0,00.'/> ",
-        cfop: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='CFOP inválido'/> ",
-        cfop_transp: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='CFOP inválido'/> ",
-        code_ean: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Caso seja preenchido, este campo deve ser um EAN válido e possuir 8, 12,13 ou 14 caracteres.'/> ",
-        number_letter: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Por favor insirá apenas números ou letras, não será permitido caracteres especiais'/> ",
-        cod_ncm: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 2 ou 8 caracteres.'/> ",
-        max_vr_cupom: jQuery.validator.format("<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='O valor neste campo deve ser inferior a {0}'/> "),
-        autosuggest: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Este campo não possui um valor válido selecionado'/> ",
-        password: "<img src='http://app.tagplus.com.br/fox3/resources/images/icons/alert.png' class='tooltip' title='Senha deve conter pelo menos 6 caracteres utilizando letras e números'/> "
+
+
+
+(function ($) {
+
+
+
+
+    $(document).ready(function () {
+        $('#tab_dependentes_tab').hide();
     });
-});
+})(jQuery);
 
-Date.monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-Date.abbrMonthNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-Date.dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-jQuery.dpText = {
-    TEXT_PREV_YEAR: 'Ano Anterior',
-    TEXT_PREV_MONTH: 'Mês Anterior',
-    TEXT_NEXT_YEAR: 'Próximo Ano',
-    TEXT_NEXT_MONTH: 'Próximo Mês',
-    TEXT_CLOSE: 'Fechar',
-    TEXT_CHOOSE_DATE: 'Escolha a Data',
-    HEADER_FORMAT: 'mmmm yyyy'
-};
-Date.firstDayOfWeek = 0;
-Date.format = jQuery.i18n._('lang_date_format');
+(function ($) {
+    $(document).ready(function () {
+
+        var botao_inserir_novo = $("#contato .cloneable");
+        var botao_inserir_novo_endereco = $("#endereco .cloneable");
+
+        if ($("#id").val() == '') {
+            var botao_excluir = $("#contato .removeClone:first");
+            $(botao_inserir_novo).click();
+            $(botao_excluir).click();
+        }
+
+        $('[id*=contato].clonedField').find('.clone_id').each(function () {
+            if ($(this).val() != "")
+                (botao_inserir_novo).click();
+        });
+
+        // abre todos os enderecos
+        $('[id*=endereco].clonedField').each(function () {
+            botao_inserir_novo_endereco.click();
+        });
+
+        // fecha todos os enderecos (correcaod de bug da copia ... erro no riquered)
+        $('[id*=endereco].clonedField').each(function () {
+            var cep = $(this).find('div:last :input').attr('value');
+            if (!cep)
+            {
+                var botao_excluir_contato = $(this).find(".removeClone:first");
+                botao_excluir_contato.click();
+            }
+
+        });
+    });
+})(jQuery);
 
 
-/*********************
- usuario/infos/form.js
- *********************/
 
 (function ($) {
     $(document).ready(function () {
@@ -642,11 +319,95 @@ Date.format = jQuery.i18n._('lang_date_format');
             $('#fieldset_contato').html('infelizmente  n&atilde;o &agrave; nenhum contato seu cadastrado. Que tal dar uma passadinha no RH e atualizar seu cadastro?.')
         }
         if ($('#endereco').find('.clonedField:not(.hiddenClone)').length == 0) {
-            $('#fieldset_endereco').text('Infelismente não à nenhum contato seu cadastrado. Que tal dar uma passadinha no RH e atualizar seu cadastro? =) .')
+            $('#fieldset_endereco').text('Infelismente nÃ£o Ã  nenhum endereco seu cadastrado. Que tal dar uma passadinha no RH e atualizar seu cadastro? =) .')
         }
-        if ($('#funcionario_dependente').find('.clonedField:not(.hiddenClone)').length == 0) {
-            $('#fieldset_dependente').text('Nenhum dependente cadastrado.')
-        }
+
         $('.cloneable,.removeClone').remove();
+
+
+        // desabilita os campos de tipo de cadastro em contatos para que o usuario nao possa alterar
+        $('#contato__id_tipo_cadastro_0 ').attr("readonly","true");
+        $('#contato__id_tipo_cadastro_1 ').attr("readonly","true");
+        $('#contato__id_tipo_cadastro_2 ').attr("readonly","true");
+        $('#contato__id_tipo_cadastro_3 ').attr("readonly","true");
+        $('#contato__id_tipo_cadastro_4 ').attr("readonly","true");
+
+
+        function beforeSuccess(btn, text){
+alert()
+            var p = window.parent;
+            var d = parent.document;
+            if(text.session_updated && text.session_updated!=''){
+                parent.Sexy.confirm("Seu perfil de acesso foi alterado com sucesso!<br/><br/>Contanto, Ã© necessÃ¡rio recarregar o sistema para que as novas permissÃµes tenham efeito.<br/><br/><b>ATENÃ‡ÃƒO:</b> VocÃª perderÃ¡ todas as informaÃ§Ãµes que nÃ£o estejam salvas.", {
+                    textBoxBtnOk:'Atualizar SessÃ£o Agora',
+                    textBoxBtnCancel:'Deixar para depois',
+                    onComplete: function(val) {
+                        if(val){
+                            jQuery(d).find("#loader").show();
+                            p.location.reload();
+                        }
+                    }
+                });
+            }
+        }
+        $$('#form').addEvent('beforeSuccess', beforeSuccess());
+
+
     });
 })(jQuery);
+
+jQuery(document).ready(function () {
+    jQuery.extend(jQuery.validator.messages, {
+        accept: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.'/> ",
+        cnpj: "<img src='/images/alert.png' class='tooltip' title='Informe um CNPJ vÃ¡lido.'/> ",
+        cpf: "<img src='/images/alert.png' class='tooltip' title='Informe um CPF vÃ¡lido.'/> ",
+        creditcard: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.'/> ",
+        date: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a uma data v&aacute;lida.'/> ",
+        digits: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a somente d&iacute;gitos.'/> ",
+        email: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um endere&ccedil;o eletr&ocirc;nico v&aacute;lido.'/> ",
+        equalTo: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a o mesmo valor novamente.'/> ",
+        max: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor menor ou igual a {0}.'/> "),
+        maxlength: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a n&atilde;o mais que {0} caracteres.'/> "),
+        min: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior ou igual a {0}.'/> "),
+        minlength: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a ao menos {0} caracteres.'/> "),
+        number: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um n&uacute;mero v&aacute;lido.'/> ",
+        range: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor entre {0} e {1}.'/> "),
+        rangelength: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor contendo de {0} a {1} caracteres.'/> "),
+        required: "<img src='/images/alert.png' class='tooltip' title='Este campo Ã© obrigatÃ³rio.'/> ",
+        requiredIf: "<img src='/images/alert.png' class='tooltip' title='Este campo deve ser preenchido.'/> ",
+        remote: "<img src='/images/alert.png' class='tooltip' title='Por favor, corrija este campo.'/> ",
+        url: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a uma URL v&aacute;lida.'/> ",
+        time: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a uma hora vÃ¡lida'/> ",
+        code: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um cÃ³digo vÃ¡lido'/> ",
+        price: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior que 0'/> ",
+        cidade: "<img src='/images/alert.png' class='tooltip' title='Cidade nÃ£o cadastrada no sistema.'/> ",
+        pais: "<img src='/images/alert.png' class='tooltip' title='PaÃ­s nÃ£o 'cadastrado no sistema.'/> ",
+        requiredCep: "<img src='/images/alert.png' class='tooltip' title='CEP e ou Logradouro nÃ£o cadastrados no sistema.'/> ",
+        transporte: "<img src='/images/alert.png' class='tooltip' title='O valor deste campo deve ser definido.'/> ",
+        positive: "<img src='/images/alert.png' class='tooltip' title='ForneÃ§a um valor maior que 0,00.'/> ",
+        cfop: "<img src='/images/alert.png' class='tooltip' title='CFOP invÃ¡lido'/> ",
+        cfop_transp: "<img src='/images/alert.png' class='tooltip' title='CFOP invÃ¡lido'/> ",
+        code_ean: "<img src='/images/alert.png' class='tooltip' title='Caso seja preenchido, este campo deve ser um EAN vÃ¡lido e possuir 8, 12,13 ou 14 caracteres.'/> ",
+        number_letter: "<img src='/images/alert.png' class='tooltip' title='Por favor insirÃ¡ apenas nÃºmeros ou letras, nÃ£o serÃ¡ permitido caracteres especiais'/> ",
+        cod_ncm: "<img src='/images/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 2 ou 8 caracteres.'/> ",
+        max_vr_cupom: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='O valor neste campo deve ser inferior a {0}'/> "),
+        autosuggest: "<img src='/images/alert.png' class='tooltip' title='Este campo nÃ£o possui um valor vÃ¡lido selecionado'/> ",
+        password: "<img src='/images/alert.png' class='tooltip' title='Senha deve conter pelo menos 6 caracteres utilizando letras e nÃºmeros'/> "
+    });
+});
+
+Date.monthNames = ['Janeiro', 'Fevereiro', 'MarÃ§o', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+Date.abbrMonthNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+Date.dayNames = ['Domingo', 'Segunda', 'TerÃ§a', 'Quarta', 'Quinta', 'Sexta', 'SÃ¡bado'];
+jQuery.dpText = {
+    TEXT_PREV_YEAR: 'Ano Anterior',
+    TEXT_PREV_MONTH: 'MÃªs Anterior',
+    TEXT_NEXT_YEAR: 'PrÃ³ximo Ano',
+    TEXT_NEXT_MONTH: 'PrÃ³ximo MÃªs',
+    TEXT_CLOSE: 'Fechar',
+    TEXT_CHOOSE_DATE: 'Escolha a Data',
+    HEADER_FORMAT: 'mmmm yyyy'
+};
+Date.firstDayOfWeek = 0;
+Date.format = jQuery.i18n._('lang_date_format');
+

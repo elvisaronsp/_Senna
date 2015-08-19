@@ -1,903 +1,600 @@
-<div class="tab" id="tab_enderecos_1477581655ba831435d136d52c731913e478795c09" ref="<img src='../../images/icon_endereco.png'> Endereços"
-     rel="tab_enderecos">
-    <fieldset class="fieldset " id="fieldset_endereco" style="width:97%;">
-        <legend><span class="legend"><span class="legend_label">Endere�o</span><span
-                    class="input_alert">&nbsp;</span></span></legend>
+<div class="tab" id="tab_enderecos" ref="<img src='../../images/icon_endereco.png'> Endereços"  rel="tab_enderecos">
 
-        <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <fieldset class="fieldset " style="width:97%;" id="fieldset_endereco">
 
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Endereço</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
         <div id="endereco">
+
             <input class="clone_flag" name="endereco_flag" type="hidden" value=""></input>
 
-            <div class="clonedField" id="endereco0">
-                <input class="clone_id"
-                       id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db0"
-                       name="endereco_entidade__id[0]" type="hidden" value=""></input>
-                <input class="clone_readonly"
-                       id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521900"
-                       name="endereco_readonly[0]" type="hidden" value="{readonly}"></input>
-                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac20"
-                       name="endereco_principal[0]" type="hidden" value=""></input>
-                <input id="endereco__id_752553073197ab91aa24700e186489f37163940900"
-                       name="endereco__id[0]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e0"
-                       name="endereco_entidade__principal[0]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c190"
-                       name="endereco_entidade__id_entidade[0]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8930"
-                       name="endereco_entidade__id_endereco[0]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled"
-                       id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9360"
-                       name="endereco__logradouro[0]" requiredCep="true" size="38%" type="hidden"
-                       uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- ENDEREÇO 0-->
+            <div class="clonedField hiddenClone"  id="endereco0">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[0]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
 
-                <div
-                    style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
-                    <p class="field " style="width:auto; "><span class="input radio" rel=""
-                                                                 style=""><label class="inline"
-                                                                                 style=""><input
-                                    class="" eval="" name="principal_radio[]" style="" type="radio"
-                                    value="1"></input><span style="">Principal</span></label></span></p>
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
                 </div>
+
                 <div style="position:relative; margin-top: 30px;">
 
                     <!-- CEP -->
-                    <p class="field " style="width:90px; "><label class=""
-                                                                  for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c550"
-                                                                  style="">Cep</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c550"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c550"
-                                                                                   mask="99999-999"
-                                                                                   name="endereco__cep[0]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_0" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[0]'));?>
+                        </span>
                     </p>
-                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar CEP"></input>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
                     <!-- Logradouro -->
-                    <p class="field " style="width:448px; "><label class=""
-                                                                   for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897610"
-                                                                   style="">Logradouro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897610"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897610"
-                                                                                   name="endereco__logradouro[0]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
-                    </p>
-                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar"></input>
-
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b0"
-                                                                style="">N�mero</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b0"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b0"
-                                                                                   maxlength="5"
-                                                                                   name="endereco_entidade__numero[0]"
-                                                                                   style="" type="text"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_0" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[0]'));?>
+                        </span>
                     </p>
 
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e570"
-                                                                style="">Complemento</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e570"
-                                                                   style=""><input
-                                id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e570"
-                                maxlength="20" name="endereco_entidade__complemento[0]" style=""
-                                type="text" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_0" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[0]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_0" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[0]'));?>
+                        </span>
+                    </p>
+
                     <hr class="clear" size="1"></hr>
+
                     <!-- Bairro -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1680"
-                                                                 style="">Bairro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1680"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1680"
-                                                                                   name="endereco__bairro[0]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_0" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[0]'));?>
+                        </span>
                     </p>
+
                     <!-- Cidade -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390150"
-                                                                 style="">Cidade</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390150"
-                                                                   style=""><input
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390150"
-                                name="endereco__id_cidade[0]" type="hidden" value=""></input><i
-                                class="ui-autocomplete_combo" tabindex="-1"></i><input
-                                autosuggest="endereco__id_cidade[0]" class=" required autosuggest"
-                                filters="[]" form_title="Cadastrando Cidade" form_url=""
-                                form_url_field=""
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390150"
-                                minLength="0" name="ac_04529000113879a10e85705ee3a2cf1e2d132636cb"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade"
-                                style="" type="text" uppercase="true" value="{cidade}" valueclear="true"
-                                valuefield="id_cidade"></input><em
-                                class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_0" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[0]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:18%; "><label class=""
-                                                                 for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5460"
-                                                                 style="">Refer�ncia</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5460"
-                                                                   style=""><input
-                                id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5460"
-                                name="endereco_entidade__informacoes_adicionais[0]" style="" type="text"
-                                value=""></input></span></p>
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_0" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[0]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:131px; "><label class=""
-                                                                   for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c00"
-                                                                   style="">Tipo de
-                            Endere�o</label><span class="input_alert">&nbsp;</span><span class="input "
-                                                                                         rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c00"
-                                                                                         style=""><input
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c00"
-                                name="endereco_entidade__id_tipo_cadastro[0]" type="hidden"
-                                value=""></input><i class="ui-autocomplete_combo"
-                                                    tabindex="-1"></i><input
-                                autosuggest="endereco_entidade__id_tipo_cadastro[0]"
-                                class=" autosuggest" filters="[]"
-                                form_title="Cadastrando Tipo de Endere�o"
-                                form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form"
-                                form_url_field="descricao"
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c00"
-                                minLength="0" name="ac_017452965904e8109bac577217ac398106a1c57b5fe"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get"
-                                style="" type="text" value="" valueclear="true" valuefield="id"></input><em
-                                class="autocomplete_search  autosuggest"></em></span></p>
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_0" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[0]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_0'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:38px; "><label class="" for="estado"
-                                                                  style="">Estado</label><span
-                            class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input
-                                class="disabled" disabled="disabled" id="estado" name="estado" style=""
-                                type="text" uppercase="true" value="{estado}"></input></span></p>
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[0]'));?>
+                        </span>
+                    </p>
 
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
 
-                    <input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa"
-                           style="float:left;margin-top:13px; margin-left:1%" type="button"
-                           value="Mapa"></input>
                 </div>
             </div>
-            <div class="clonedField" id="endereco1">
-                <input class="clone_id"
-                       id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db1"
-                       name="endereco_entidade__id[1]" type="hidden" value=""></input>
-                <input class="clone_readonly"
-                       id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521901"
-                       name="endereco_readonly[1]" type="hidden" value="{readonly}"></input>
-                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac21"
-                       name="endereco_principal[1]" type="hidden" value=""></input>
-                <input id="endereco__id_752553073197ab91aa24700e186489f37163940901"
-                       name="endereco__id[1]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e1"
-                       name="endereco_entidade__principal[1]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c191"
-                       name="endereco_entidade__id_entidade[1]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8931"
-                       name="endereco_entidade__id_endereco[1]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled"
-                       id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9361"
-                       name="endereco__logradouro[1]" requiredCep="true" size="38%" type="hidden"
-                       uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- FIM ENDEREÇO  -->
 
-                <div
-                    style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
-                    <p class="field " style="width:auto; "><span class="input radio" rel=""
-                                                                 style=""><label class="inline"
-                                                                                 style=""><input
-                                    class="" eval="" name="principal_radio[]" style="" type="radio"
-                                    value="1"></input><span style="">Principal</span></label></span></p>
+            <!-- ENDEREÇO 1 -->
+            <div class="clonedField hiddenClone" id="endereco1">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[1]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
                 </div>
+
                 <div style="position:relative; margin-top: 30px;">
 
                     <!-- CEP -->
-                    <p class="field " style="width:90px; "><label class=""
-                                                                  for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c551"
-                                                                  style="">Cep</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c551"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c551"
-                                                                                   mask="99999-999"
-                                                                                   name="endereco__cep[1]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_1" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[1]'));?>
+                        </span>
                     </p>
-                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar CEP"></input>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
                     <!-- Logradouro -->
-                    <p class="field " style="width:448px; "><label class=""
-                                                                   for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897611"
-                                                                   style="">Logradouro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897611"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897611"
-                                                                                   name="endereco__logradouro[1]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
-                    </p>
-                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar"></input>
-
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b1"
-                                                                style="">N�mero</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b1"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b1"
-                                                                                   maxlength="5"
-                                                                                   name="endereco_entidade__numero[1]"
-                                                                                   style="" type="text"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_1" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[1]'));?>
+                        </span>
                     </p>
 
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e571"
-                                                                style="">Complemento</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e571"
-                                                                   style=""><input
-                                id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e571"
-                                maxlength="20" name="endereco_entidade__complemento[1]" style=""
-                                type="text" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_1" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[1]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_1" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[1]'));?>
+                        </span>
+                    </p>
+
                     <hr class="clear" size="1"></hr>
+
                     <!-- Bairro -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1681"
-                                                                 style="">Bairro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1681"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1681"
-                                                                                   name="endereco__bairro[1]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_1" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[1]'));?>
+                        </span>
                     </p>
+
                     <!-- Cidade -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390151"
-                                                                 style="">Cidade</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390151"
-                                                                   style=""><input
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390151"
-                                name="endereco__id_cidade[1]" type="hidden" value=""></input><i
-                                class="ui-autocomplete_combo" tabindex="-1"></i><input
-                                autosuggest="endereco__id_cidade[1]" class=" required autosuggest"
-                                filters="[]" form_title="Cadastrando Cidade" form_url=""
-                                form_url_field=""
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390151"
-                                minLength="0" name="ac_14529000113879a10e85705ee3a2cf1e2d132636cb"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade"
-                                style="" type="text" uppercase="true" value="{cidade}" valueclear="true"
-                                valuefield="id_cidade"></input><em
-                                class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_1" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[1]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:18%; "><label class=""
-                                                                 for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5461"
-                                                                 style="">Refer�ncia</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5461"
-                                                                   style=""><input
-                                id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5461"
-                                name="endereco_entidade__informacoes_adicionais[1]" style="" type="text"
-                                value=""></input></span></p>
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_1" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[1]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:131px; "><label class=""
-                                                                   for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c01"
-                                                                   style="">Tipo de
-                            Endere�o</label><span class="input_alert">&nbsp;</span><span class="input "
-                                                                                         rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c01"
-                                                                                         style=""><input
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c01"
-                                name="endereco_entidade__id_tipo_cadastro[1]" type="hidden"
-                                value=""></input><i class="ui-autocomplete_combo"
-                                                    tabindex="-1"></i><input
-                                autosuggest="endereco_entidade__id_tipo_cadastro[1]"
-                                class=" autosuggest" filters="[]"
-                                form_title="Cadastrando Tipo de Endere�o"
-                                form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form"
-                                form_url_field="descricao"
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c01"
-                                minLength="0" name="ac_117452965904e8109bac577217ac398106a1c57b5fe"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get"
-                                style="" type="text" value="" valueclear="true" valuefield="id"></input><em
-                                class="autocomplete_search  autosuggest"></em></span></p>
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_1" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[1]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_1'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:38px; "><label class="" for="estado"
-                                                                  style="">Estado</label><span
-                            class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input
-                                class="disabled" disabled="disabled" id="estado" name="estado" style=""
-                                type="text" uppercase="true" value="{estado}"></input></span></p>
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[1]'));?>
+                        </span>
+                    </p>
 
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
 
-                    <input class="btn_mapa" count="1" disabled="disabled" id="btn_mapa" name="btn_mapa"
-                           style="float:left;margin-top:13px; margin-left:1%" type="button"
-                           value="Mapa"></input>
                 </div>
             </div>
-            <div class="clonedField" id="endereco2">
-                <input class="clone_id"
-                       id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db2"
-                       name="endereco_entidade__id[2]" type="hidden" value=""></input>
-                <input class="clone_readonly"
-                       id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521902"
-                       name="endereco_readonly[2]" type="hidden" value="{readonly}"></input>
-                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac22"
-                       name="endereco_principal[2]" type="hidden" value=""></input>
-                <input id="endereco__id_752553073197ab91aa24700e186489f37163940902"
-                       name="endereco__id[2]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e2"
-                       name="endereco_entidade__principal[2]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c192"
-                       name="endereco_entidade__id_entidade[2]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8932"
-                       name="endereco_entidade__id_endereco[2]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled"
-                       id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9362"
-                       name="endereco__logradouro[2]" requiredCep="true" size="38%" type="hidden"
-                       uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- FIM ENDEREÇO  -->
 
-                <div
-                    style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
-                    <p class="field " style="width:auto; "><span class="input radio" rel=""
-                                                                 style=""><label class="inline"
-                                                                                 style=""><input
-                                    class="" eval="" name="principal_radio[]" style="" type="radio"
-                                    value="1"></input><span style="">Principal</span></label></span></p>
+            <!-- ENDEREÇO 2 -->
+            <div class="clonedField hiddenClone" id="endereco2">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[2]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
                 </div>
+
                 <div style="position:relative; margin-top: 30px;">
 
                     <!-- CEP -->
-                    <p class="field " style="width:90px; "><label class=""
-                                                                  for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c552"
-                                                                  style="">Cep</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c552"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c552"
-                                                                                   mask="99999-999"
-                                                                                   name="endereco__cep[2]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_2" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[2]'));?>
+                        </span>
                     </p>
-                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar CEP"></input>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
                     <!-- Logradouro -->
-                    <p class="field " style="width:448px; "><label class=""
-                                                                   for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897612"
-                                                                   style="">Logradouro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897612"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897612"
-                                                                                   name="endereco__logradouro[2]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
-                    </p>
-                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar"></input>
-
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b2"
-                                                                style="">N�mero</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b2"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b2"
-                                                                                   maxlength="5"
-                                                                                   name="endereco_entidade__numero[2]"
-                                                                                   style="" type="text"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_2" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[2]'));?>
+                        </span>
                     </p>
 
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e572"
-                                                                style="">Complemento</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e572"
-                                                                   style=""><input
-                                id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e572"
-                                maxlength="20" name="endereco_entidade__complemento[2]" style=""
-                                type="text" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_2" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[2]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_2" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[2]'));?>
+                        </span>
+                    </p>
+
                     <hr class="clear" size="1"></hr>
+
                     <!-- Bairro -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1682"
-                                                                 style="">Bairro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1682"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1682"
-                                                                                   name="endereco__bairro[2]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_2" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[2]'));?>
+                        </span>
                     </p>
+
                     <!-- Cidade -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390152"
-                                                                 style="">Cidade</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390152"
-                                                                   style=""><input
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390152"
-                                name="endereco__id_cidade[2]" type="hidden" value=""></input><i
-                                class="ui-autocomplete_combo" tabindex="-1"></i><input
-                                autosuggest="endereco__id_cidade[2]" class=" required autosuggest"
-                                filters="[]" form_title="Cadastrando Cidade" form_url=""
-                                form_url_field=""
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390152"
-                                minLength="0" name="ac_24529000113879a10e85705ee3a2cf1e2d132636cb"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade"
-                                style="" type="text" uppercase="true" value="{cidade}" valueclear="true"
-                                valuefield="id_cidade"></input><em
-                                class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_2" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[2]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:18%; "><label class=""
-                                                                 for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5462"
-                                                                 style="">Refer�ncia</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5462"
-                                                                   style=""><input
-                                id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5462"
-                                name="endereco_entidade__informacoes_adicionais[2]" style="" type="text"
-                                value=""></input></span></p>
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_2" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[2]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:131px; "><label class=""
-                                                                   for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c02"
-                                                                   style="">Tipo de
-                            Endere�o</label><span class="input_alert">&nbsp;</span><span class="input "
-                                                                                         rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c02"
-                                                                                         style=""><input
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c02"
-                                name="endereco_entidade__id_tipo_cadastro[2]" type="hidden"
-                                value=""></input><i class="ui-autocomplete_combo"
-                                                    tabindex="-1"></i><input
-                                autosuggest="endereco_entidade__id_tipo_cadastro[2]"
-                                class=" autosuggest" filters="[]"
-                                form_title="Cadastrando Tipo de Endere�o"
-                                form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form"
-                                form_url_field="descricao"
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c02"
-                                minLength="0" name="ac_217452965904e8109bac577217ac398106a1c57b5fe"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get"
-                                style="" type="text" value="" valueclear="true" valuefield="id"></input><em
-                                class="autocomplete_search  autosuggest"></em></span></p>
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_2" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[2]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_2'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:38px; "><label class="" for="estado"
-                                                                  style="">Estado</label><span
-                            class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input
-                                class="disabled" disabled="disabled" id="estado" name="estado" style=""
-                                type="text" uppercase="true" value="{estado}"></input></span></p>
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[2]'));?>
+                        </span>
+                    </p>
 
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
 
-                    <input class="btn_mapa" count="2" disabled="disabled" id="btn_mapa" name="btn_mapa"
-                           style="float:left;margin-top:13px; margin-left:1%" type="button"
-                           value="Mapa"></input>
                 </div>
             </div>
-            <div class="clonedField" id="endereco3">
-                <input class="clone_id"
-                       id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db3"
-                       name="endereco_entidade__id[3]" type="hidden" value=""></input>
-                <input class="clone_readonly"
-                       id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521903"
-                       name="endereco_readonly[3]" type="hidden" value="{readonly}"></input>
-                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac23"
-                       name="endereco_principal[3]" type="hidden" value=""></input>
-                <input id="endereco__id_752553073197ab91aa24700e186489f37163940903"
-                       name="endereco__id[3]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e3"
-                       name="endereco_entidade__principal[3]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c193"
-                       name="endereco_entidade__id_entidade[3]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8933"
-                       name="endereco_entidade__id_endereco[3]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled"
-                       id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9363"
-                       name="endereco__logradouro[3]" requiredCep="true" size="38%" type="hidden"
-                       uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- FIM ENDEREÇO  -->
 
-                <div
-                    style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
-                    <p class="field " style="width:auto; "><span class="input radio" rel=""
-                                                                 style=""><label class="inline"
-                                                                                 style=""><input
-                                    class="" eval="" name="principal_radio[]" style="" type="radio"
-                                    value="1"></input><span style="">Principal</span></label></span></p>
+            <!-- ENDEREÇO 3 -->
+            <div class="clonedField hiddenClone" id="endereco3">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[3]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
                 </div>
+
                 <div style="position:relative; margin-top: 30px;">
 
                     <!-- CEP -->
-                    <p class="field " style="width:90px; "><label class=""
-                                                                  for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c553"
-                                                                  style="">Cep</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c553"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c553"
-                                                                                   mask="99999-999"
-                                                                                   name="endereco__cep[3]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_3" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[3]'));?>
+                        </span>
                     </p>
-                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar CEP"></input>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
                     <!-- Logradouro -->
-                    <p class="field " style="width:448px; "><label class=""
-                                                                   for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897613"
-                                                                   style="">Logradouro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897613"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897613"
-                                                                                   name="endereco__logradouro[3]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
-                    </p>
-                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar"></input>
-
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b3"
-                                                                style="">N�mero</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b3"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b3"
-                                                                                   maxlength="5"
-                                                                                   name="endereco_entidade__numero[3]"
-                                                                                   style="" type="text"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_3" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[3]'));?>
+                        </span>
                     </p>
 
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e573"
-                                                                style="">Complemento</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e573"
-                                                                   style=""><input
-                                id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e573"
-                                maxlength="20" name="endereco_entidade__complemento[3]" style=""
-                                type="text" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_3" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[3]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_3" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[3]'));?>
+                        </span>
+                    </p>
+
                     <hr class="clear" size="1"></hr>
+
                     <!-- Bairro -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1683"
-                                                                 style="">Bairro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1683"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1683"
-                                                                                   name="endereco__bairro[3]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_3" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[3]'));?>
+                        </span>
                     </p>
+
                     <!-- Cidade -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390153"
-                                                                 style="">Cidade</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390153"
-                                                                   style=""><input
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390153"
-                                name="endereco__id_cidade[3]" type="hidden" value=""></input><i
-                                class="ui-autocomplete_combo" tabindex="-1"></i><input
-                                autosuggest="endereco__id_cidade[3]" class=" required autosuggest"
-                                filters="[]" form_title="Cadastrando Cidade" form_url=""
-                                form_url_field=""
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390153"
-                                minLength="0" name="ac_34529000113879a10e85705ee3a2cf1e2d132636cb"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade"
-                                style="" type="text" uppercase="true" value="{cidade}" valueclear="true"
-                                valuefield="id_cidade"></input><em
-                                class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_3" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[3]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:18%; "><label class=""
-                                                                 for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5463"
-                                                                 style="">Refer�ncia</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5463"
-                                                                   style=""><input
-                                id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5463"
-                                name="endereco_entidade__informacoes_adicionais[3]" style="" type="text"
-                                value=""></input></span></p>
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_3" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[3]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:131px; "><label class=""
-                                                                   for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c03"
-                                                                   style="">Tipo de
-                            Endere�o</label><span class="input_alert">&nbsp;</span><span class="input "
-                                                                                         rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c03"
-                                                                                         style=""><input
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c03"
-                                name="endereco_entidade__id_tipo_cadastro[3]" type="hidden"
-                                value=""></input><i class="ui-autocomplete_combo"
-                                                    tabindex="-1"></i><input
-                                autosuggest="endereco_entidade__id_tipo_cadastro[3]"
-                                class=" autosuggest" filters="[]"
-                                form_title="Cadastrando Tipo de Endere�o"
-                                form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form"
-                                form_url_field="descricao"
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c03"
-                                minLength="0" name="ac_317452965904e8109bac577217ac398106a1c57b5fe"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get"
-                                style="" type="text" value="" valueclear="true" valuefield="id"></input><em
-                                class="autocomplete_search  autosuggest"></em></span></p>
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_3" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[3]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_3'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:38px; "><label class="" for="estado"
-                                                                  style="">Estado</label><span
-                            class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input
-                                class="disabled" disabled="disabled" id="estado" name="estado" style=""
-                                type="text" uppercase="true" value="{estado}"></input></span></p>
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[3]'));?>
+                        </span>
+                    </p>
 
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
 
-                    <input class="btn_mapa" count="3" disabled="disabled" id="btn_mapa" name="btn_mapa"
-                           style="float:left;margin-top:13px; margin-left:1%" type="button"
-                           value="Mapa"></input>
                 </div>
             </div>
-            <div class="clonedField" id="endereco4">
-                <input class="clone_id"
-                       id="endereco_entidade__id_18929900498414fb2d6fb83e003f4a2d7d1a95c8db4"
-                       name="endereco_entidade__id[4]" type="hidden" value=""></input>
-                <input class="clone_readonly"
-                       id="endereco_readonly_18993663791cb2c46c41b8ea0709b8fa4384c521904"
-                       name="endereco_readonly[4]" type="hidden" value="{readonly}"></input>
-                <input id="endereco_principal_2853348364ee9b836f57a1b93a57bee7befb4bac24"
-                       name="endereco_principal[4]" type="hidden" value=""></input>
-                <input id="endereco__id_752553073197ab91aa24700e186489f37163940904"
-                       name="endereco__id[4]" type="hidden" value=""></input>
-                <input id="endereco_entidade__principal_3177682320a801c2e55b6671775d6530a8ca9c31e4"
-                       name="endereco_entidade__principal[4]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_entidade_1148196282532337cb0341b900561f36cf1d614c194"
-                       name="endereco_entidade__id_entidade[4]" type="hidden" value=""></input>
-                <input id="endereco_entidade__id_endereco_599451701a89005acc581c62dbbab47af3f56c8934"
-                       name="endereco_entidade__id_endereco[4]" type="hidden" value=""></input>
-                <input class="disabled" disabled="disabled"
-                       id="endereco__logradouro_11887267113e8c341917133db312c552c9435f9364"
-                       name="endereco__logradouro[4]" requiredCep="true" size="38%" type="hidden"
-                       uppercase="true" value=""></input>
-                <input id="cidade_nome" name="cidade_nome" size="19%" type="hidden" value=""></input>
-                <input id="estado_nome" name="estado_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="pais_nome" name="pais_nome" size="19%" type="hidden" uppercase="true"
-                       value=""></input>
-                <input id="cidade_cod" name="cidade_cod" size="18%" type="hidden" value=""></input>
-                <input id="estado_cod" name="estado_cod" size="18%" type="hidden" value=""></input>
-                <input id="pais_cod" name="pais_cod" size="18%" type="hidden" value=""></input>
-                <input id="endereco__id_pais" name="endereco__id_pais" type="hidden" value=""></input>
+            <!-- FIM ENDEREÇO  -->
 
-                <div
-                    style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
-                    <p class="field " style="width:auto; "><span class="input radio" rel=""
-                                                                 style=""><label class="inline"
-                                                                                 style=""><input
-                                    class="" eval="" name="principal_radio[]" style="" type="radio"
-                                    value="1"></input><span style="">Principal</span></label></span></p>
+            <!-- ENDEREÇO 4 -->
+            <div class="clonedField hiddenClone" id="endereco4">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[4]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
                 </div>
+
                 <div style="position:relative; margin-top: 30px;">
 
                     <!-- CEP -->
-                    <p class="field " style="width:90px; "><label class=""
-                                                                  for="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c554"
-                                                                  style="">Cep</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c554"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__cep_427686128b0a2b8dbae4fa4cc70953ce0128a4c554"
-                                                                                   mask="99999-999"
-                                                                                   name="endereco__cep[4]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_4" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[4]'));?>
+                        </span>
                     </p>
-                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar CEP"></input>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
                     <!-- Logradouro -->
-                    <p class="field " style="width:448px; "><label class=""
-                                                                   for="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897614"
-                                                                   style="">Logradouro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897614"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__logradouro_203290796370da8b1bb3a15694dca166c13c1897614"
-                                                                                   name="endereco__logradouro[4]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
-                    </p>
-                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px"
-                           style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button"
-                           value="Buscar"></input>
-
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b4"
-                                                                style="">N�mero</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b4"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco_entidade__numero_1989273074e325d59be95bbff9e4e3321fada9771b4"
-                                                                                   maxlength="5"
-                                                                                   name="endereco_entidade__numero[4]"
-                                                                                   style="" type="text"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_4" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[4]'));?>
+                        </span>
                     </p>
 
-                    <p class="field " style="width:8%; "><label class=""
-                                                                for="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e574"
-                                                                style="">Complemento</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e574"
-                                                                   style=""><input
-                                id="endereco_entidade__complemento_2142627754348a9396c1a5cfbd0f99ed62146e9e574"
-                                maxlength="20" name="endereco_entidade__complemento[4]" style=""
-                                type="text" value=""></input></span></p>
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_4" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[4]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_4" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[4]'));?>
+                        </span>
+                    </p>
+
                     <hr class="clear" size="1"></hr>
+
                     <!-- Bairro -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1684"
-                                                                 style="">Bairro</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1684"
-                                                                   style=""><input class=" required"
-                                                                                   id="endereco__bairro_1637950045423c61e1c4b411512da925bca11db1684"
-                                                                                   name="endereco__bairro[4]"
-                                                                                   style="" type="text"
-                                                                                   uppercase="true"
-                                                                                   value=""></input></span>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_4" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[4]'));?>
+                        </span>
                     </p>
+
                     <!-- Cidade -->
-                    <p class="field " style="width:25%; "><label class=""
-                                                                 for="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390154"
-                                                                 style="">Cidade</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390154"
-                                                                   style=""><input
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390154"
-                                name="endereco__id_cidade[4]" type="hidden" value=""></input><i
-                                class="ui-autocomplete_combo" tabindex="-1"></i><input
-                                autosuggest="endereco__id_cidade[4]" class=" required autosuggest"
-                                filters="[]" form_title="Cadastrando Cidade" form_url=""
-                                form_url_field=""
-                                id="endereco__id_cidade_159608150e3d69e7ecaf79afa7883b8a95c4390154"
-                                minLength="0" name="ac_44529000113879a10e85705ee3a2cf1e2d132636cb"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/enderecos/ac_cidade"
-                                style="" type="text" uppercase="true" value="{cidade}" valueclear="true"
-                                valuefield="id_cidade"></input><em
-                                class="autocomplete_search  required autosuggest"></em></span></p>
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_4" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[4]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:18%; "><label class=""
-                                                                 for="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5464"
-                                                                 style="">Refer�ncia</label><span
-                            class="input_alert">&nbsp;</span><span class="input "
-                                                                   rel="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5464"
-                                                                   style=""><input
-                                id="endereco_entidade__informacoes_adicionais_17594557397a81ebe723b1b46ad319ced9f20bc5464"
-                                name="endereco_entidade__informacoes_adicionais[4]" style="" type="text"
-                                value=""></input></span></p>
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_4" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[4]'));?>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:131px; "><label class=""
-                                                                   for="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c04"
-                                                                   style="">Tipo de
-                            Endere�o</label><span class="input_alert">&nbsp;</span><span class="input "
-                                                                                         rel="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c04"
-                                                                                         style=""><input
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c04"
-                                name="endereco_entidade__id_tipo_cadastro[4]" type="hidden"
-                                value=""></input><i class="ui-autocomplete_combo"
-                                                    tabindex="-1"></i><input
-                                autosuggest="endereco_entidade__id_tipo_cadastro[4]"
-                                class=" autosuggest" filters="[]"
-                                form_title="Cadastrando Tipo de Endere�o"
-                                form_url="http://app.tagplus.com.br/fox3/cadastro/tipos_cadastros/form"
-                                form_url_field="descricao"
-                                id="endereco_entidade__id_tipo_cadastro_2132648648bb1c7ae4b5f8be03cafe6d881f9ef0c04"
-                                minLength="0" name="ac_417452965904e8109bac577217ac398106a1c57b5fe"
-                                new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo"
-                                source="http://app.tagplus.com.br/fox3/autocomplete/tipos_cadastros/get"
-                                style="" type="text" value="" valueclear="true" valuefield="id"></input><em
-                                class="autocomplete_search  autosuggest"></em></span></p>
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_4" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[4]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_4'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
 
-                    <p class="field " style="width:38px; "><label class="" for="estado"
-                                                                  style="">Estado</label><span
-                            class="input_alert">&nbsp;</span><span class="input " rel="estado" style=""><input
-                                class="disabled" disabled="disabled" id="estado" name="estado" style=""
-                                type="text" uppercase="true" value="{estado}"></input></span></p>
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[4]'));?>
+                        </span>
+                    </p>
 
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
 
-                    <input class="btn_mapa" count="4" disabled="disabled" id="btn_mapa" name="btn_mapa"
-                           style="float:left;margin-top:13px; margin-left:1%" type="button"
-                           value="Mapa"></input>
                 </div>
             </div>
-            <input class="cloneable" rel="endereco" separator="true" type="button"
-                   value="Inserir Endere�o"></input>
+            <!-- FIM ENDEREÇO  -->
+            <input class="cloneable" rel="endereco" separator="true" type="button" value="Inserir Endereço"></input>
+
         </div>
 
     </fieldset>
-    <div class="tab_navigator "><input class="prevTab" name="Voltar" type="button"
-                                       value="Voltar"></input>&nbsp;&nbsp;<input class="nextTab"
-                                                                                 name="Continuar"
-                                                                                 type="button"
-                                                                                 value="Continuar"></input>
+
+    <!-- (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR  -->
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>
+        &nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
     </div>
+    <!-- FIM (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR -->
+
 </div>
+
+
