@@ -91,7 +91,7 @@ class Adapter extends AbstractActionController implements AdapterInterface
             elseif (!$usuario->getConfirmado())
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm","<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} sua conta ainda não está ativa.<br />Por favor verifique seu email. Para receber o e-mail de ativação novamente <a href='#' id='solicitarRedefinicaoNovamente'>Clique aqui.</a>"));
 
-            elseif (!$repositoryHorarios->findByHorarios($horario,$usuario->getPerfil()->getAdmin()))
+            elseif (!$repository->buscarHorariosDoFuncionario($horario,$usuario->getPerfil()->getAdmin()))
                 return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array("atencaoForm", "<strong>ATENÇÃO:</strong><br />Olá {$nomeUsuario} você está tentanto acessar o <u>Senna</u> fora do horario permitido.<br />Tente novamente mais tarde, dentro de seu horario."));
 
             elseif (!$usuario->getAtivo())

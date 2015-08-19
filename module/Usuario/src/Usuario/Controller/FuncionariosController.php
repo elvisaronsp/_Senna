@@ -80,38 +80,40 @@ class FuncionariosController extends GrudController
         } else {
             # UPDATE
             if ($request->isPost()) {
+                $podeCadastrar = $this->verificaExistencia();
+                if (!$podeCadastrar) {
+                    // remove contatos para atualizacao
+                    $repository = $this->getEm()->getRepository($this->contatos);
+                    $contatos = $repository->findBy(array('usuario' => $request->getPost()['id']));
 
-                // remove contatos para atualizacao
-                $repository = $this->getEm()->getRepository($this->contatos);
-                $contatos = $repository->findBy(array( 'usuario' => $request->getPost()['id'] ));
+                    foreach ($contatos as $contato) {
+                        $this->getEm()->remove($contato);
+                    }
+                    // remove enderecos para atualizacao
+                    $repository = $this->getEm()->getRepository($this->enderecos);
+                    $enderecos = $repository->findBy(array('usuario' => $request->getPost()['id']));
 
-                foreach ($contatos as $contato) {
-                    $this->getEm()->remove($contato);
+                    foreach ($enderecos as $endereco) {
+                        $this->getEm()->remove($endereco);
+                    }
+
+                    // remove horarios para atualizacao
+                    $repository = $this->getEm()->getRepository($this->horarios);
+                    $horarios = $repository->findBy(array('usuario' => $request->getPost()['id']));
+
+                    foreach ($horarios as $horario) {
+                        $this->getEm()->remove($horario);
+                    }
+
+                    $entity = $service->update($request->getPost()->toArray());
+                    $retorno['data'] = array(
+                        'id_field' => 'id',
+                        'id_value' => "" . $entity->getId() . "",
+                        'message' => $this->message_update,
+                        'session_updated' => true,
+                        'type' => 'success'
+                    );
                 }
-                // remove enderecos para atualizacao
-                $repository = $this->getEm()->getRepository($this->enderecos);
-                $enderecos = $repository->findBy(array( 'usuario' => $request->getPost()['id'] ));
-
-                foreach ($enderecos as $endereco) {
-                    $this->getEm()->remove($endereco);
-                }
-
-                // remove horarios para atualizacao
-                $repository = $this->getEm()->getRepository($this->horarios);
-                $horarios = $repository->findBy(array( 'usuario' => $request->getPost()['id'] ));
-
-                foreach ($horarios as $horario) {
-                    $this->getEm()->remove($horario);
-                }
-
-                $entity = $service->update($request->getPost()->toArray());
-                $retorno['data'] = array(
-                    'id_field'        => 'id',
-                    'id_value'        => "" . $entity->getId() . "",
-                    'message'         => $this->message_update,
-                    'session_updated' => true,
-                    'type'            => 'success'
-                );
             }
         }
         $viewModel = new ViewModel($retorno);
@@ -264,11 +266,11 @@ class FuncionariosController extends GrudController
     {
         $request = $this->getRequest();
         $repository = $this->getEm()->getRepository($this->entity);
-        if ($repository->findOneByLogin($request->getPost()['login'])):
+        if ($repository->findByNot('login',$request->getPost()['login'])):
             return "LOGIN";
-        elseif ($repository->findOneByCpf((!empty($request->getPost()['cpf'])?$request->getPost()['cpf']:"0"))):
+        elseif ($repository->findByNot('cpf',(!empty($request->getPost()['cpf'])?$request->getPost()['cpf']:"0"))):
             return "CPF";
-        elseif ($repository->findOneByEmail($request->getPost()['email'])):
+        elseif ($repository->findByNot('email',$request->getPost()['email'])):
             return "E-MAIL";
         endif;
 

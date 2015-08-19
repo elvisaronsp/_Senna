@@ -8,11 +8,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class FuncionariosRepository extends EntityRepository {
 
+
+    public function findByNot($campo, $value)
+    {
+        $qb = $this->_em->createQueryBuilder('a');
+        $qb->where($qb->expr()->not($qb->expr()->eq('a.'.$campo, '?1')));
+        $qb->setParameter(1, $value);
+
+        return $qb->getQuery()->getResult();
+    }
+
     /**
      * @param array $where
      * @return array
      */
-    public function toList(array $where=null) {
+    public function toList(array $where=null)
+    {
 
         $usuarios = array ();
 
@@ -114,7 +125,6 @@ class FuncionariosRepository extends EntityRepository {
             return false;
     }
 
-
     /**
      * @param $horario
      * @return bool
@@ -122,11 +132,14 @@ class FuncionariosRepository extends EntityRepository {
      * pode true
      * nao pode false
      */
-    public function findByHorarios($horario,$isAdmin)
+    public function buscarHorariosDoFuncionario($horario,$isAdmin)
     {
+
         if(!$isAdmin):
             $dataAtual = new \DateTime('now');
+
             $diaAtual = date('w', strtotime($dataAtual->format('Y-m-d')));
+
             switch ($diaAtual):
                 case "1":
                     if(!$horario['0']->toArray()['diasDaSemana1'])
@@ -135,21 +148,27 @@ class FuncionariosRepository extends EntityRepository {
                 case "2":
                     if(!$horario['0']->toArray()['diasDaSemana2'])
                         return false;
+                    break;
                 case "3":
                     if(!$horario['0']->toArray()['diasDaSemana3'])
                         return false;
+                    break;
                 case "4":
                     if(!$horario['0']->toArray()['diasDaSemana4'])
                         return false;
+                    break;
                 case "5":
                     if(!$horario['0']->toArray()['diasDaSemana5'])
                         return false;
+                    break;
                 case "6":
                     if(!$horario['0']->toArray()['diasDaSemana6'])
                         return false;
-                default:
+                    break;
+                case "7":
                     if(!$horario['0']->toArray()['diasDaSemana7'])
                         return false;
+                    break;
             endswitch;
 
             $entrada        = strtotime($horario['0']->toArray()['horaEntrada']);
