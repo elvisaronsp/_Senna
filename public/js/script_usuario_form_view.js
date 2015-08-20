@@ -319,7 +319,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
             $('#fieldset_contato').html('infelizmente  n&atilde;o &agrave; nenhum contato seu cadastrado. Que tal dar uma passadinha no RH e atualizar seu cadastro?.')
         }
         if ($('#endereco').find('.clonedField:not(.hiddenClone)').length == 0) {
-            $('#fieldset_endereco').text('Infelismente não à nenhum endereco seu cadastrado. Que tal dar uma passadinha no RH e atualizar seu cadastro? =) .')
+            $('#fieldset_endereco').text('Infelizmente não à nenhum endereco seu cadastrado. Que tal dar uma passadinha no RH e atualizar seu cadastro? =) .')
         }
 
         $('.cloneable,.removeClone').remove();

@@ -306,6 +306,7 @@ class Funcionarios extends Form
             ->setAttribute('class', "")
             ->setAttribute('maxLength', "10")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 

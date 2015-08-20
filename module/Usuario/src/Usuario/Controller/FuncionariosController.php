@@ -113,6 +113,8 @@ class FuncionariosController extends GrudController
                         'session_updated' => true,
                         'type' => 'success'
                     );
+                }else {
+                    $retorno['erro'] = $podeCadastrar;
                 }
             }
         }
@@ -266,12 +268,14 @@ class FuncionariosController extends GrudController
     {
         $request = $this->getRequest();
         $repository = $this->getEm()->getRepository($this->entity);
-        if ($repository->findByNot('login',$request->getPost()['login'])):
+        if ($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'login',$request->getPost()['login'])):
             return "LOGIN";
-        elseif ($repository->findByNot('cpf',(!empty($request->getPost()['cpf'])?$request->getPost()['cpf']:"0"))):
+        elseif ($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'cpf',(!empty($request->getPost()['cpf'])?$request->getPost()['cpf']:"0"))):
             return "CPF";
-        elseif ($repository->findByNot('email',$request->getPost()['email'])):
+        elseif ($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'email',$request->getPost()['email'])):
             return "E-MAIL";
+        elseif ($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'telefoneprincipal',$request->getPost()['telefoneprincipal'])):
+            return "TELEFONE";
         endif;
 
         return false;

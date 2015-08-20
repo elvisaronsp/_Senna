@@ -6,17 +6,8 @@ use Doctrine\ORM\EntityRepository;
  * Class FuncionariosRepository
  * @package Usuario\Repository
  */
-class FuncionariosRepository extends EntityRepository {
-
-
-    public function findByNot($campo, $value)
-    {
-        $qb = $this->_em->createQueryBuilder('a');
-        $qb->where($qb->expr()->not($qb->expr()->eq('a.'.$campo, '?1')));
-        $qb->setParameter(1, $value);
-
-        return $qb->getQuery()->getResult();
-    }
+class FuncionariosRepository extends EntityRepository
+{
 
     /**
      * @param array $where
@@ -26,17 +17,17 @@ class FuncionariosRepository extends EntityRepository {
     {
 
         $usuarios = array ();
-
+        $query =  $this->_em->createQueryBuilder();
+        $query->select('funcionarios');
+        $query->from('Usuario\Entity\Funcionarios', 'funcionarios');
         if (!empty($this->_em) && isset($where['busca'])):
-            $query =  $this->_em->createQueryBuilder();
-            $query->select('funcionarios');
-            $query->from('Acl\Entity\Perfis', 'funcionarios');
             $query->andWhere($query->expr()->like('funcionarios.nome', $query->expr()->literal('%'.$where['busca'].'%')));
-            //print_r($query->getQuery()->getDql());exit;
-            $entities = $query->getQuery()->getResult();
         else:
-            $entities = $this->findAll();
+            $query->where($query->expr()->not($query->expr()->eq('funcionarios.login', '?1')));
+            $query->setParameter(1, "ADMIN");
         endif;
+        //print_r($query->getQuery()->getDql());exit;
+        $entities = $query->getQuery()->getResult();
 
         foreach ( $entities as $key => $entity ) :
             $usuarios  [$key] ['id'] = "" . $entity->getId() . "";
@@ -134,7 +125,6 @@ class FuncionariosRepository extends EntityRepository {
      */
     public function buscarHorariosDoFuncionario($horario,$isAdmin)
     {
-
         if(!$isAdmin):
             $dataAtual = new \DateTime('now');
 
@@ -183,5 +173,30 @@ class FuncionariosRepository extends EntityRepository {
             return false;
         endif;
         return true;
+    }
+
+    /**
+     * @param null $id
+     * @param $campo
+     * @param $value
+     * @return bool
+     * Busca por existencia no banco de dados
+     */
+    public function findByNot($id = null,$campo, $value)
+    {
+        $query =  $this->_em->createQueryBuilder();
+        $query->select('funcionarios');
+        $query->from('Usuario\Entity\Funcionarios', 'funcionarios');
+        if($id):
+            $query->where($query->expr()->not($query->expr()->eq('funcionarios.id', '?1')));
+            $query->setParameter(1, $id);
+            $query->andWhere('funcionarios.'.$campo.'= ?2');
+            $query->setParameter(2, $value);
+        else:
+            $query->where('funcionarios.'.$campo.'= ?1');
+            $query->setParameter(1, $value);
+        endif;
+        //print_r($query->getQuery()->getDql());exit;
+        return ($query->getQuery()->getResult())?true:false;
     }
 }

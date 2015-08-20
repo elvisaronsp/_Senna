@@ -52,7 +52,6 @@ class InfoController extends GrudController
 
     /**
      * @return ViewModel
-     * OK
      */
     public function SaveAction()
     {
@@ -238,23 +237,5 @@ class InfoController extends GrudController
             $form->get('endereco_entidade__principal[' . $key . ']')->setAttribute('value', $enderecos[$key]->getPrincipal());
         endforeach;
         // fim de enderecos
-    }
-
-    /**
-     * @return bool
-     */
-    private function  verificaExistencia()
-    {
-        $request = $this->getRequest();
-        $repository = $this->getEm()->getRepository($this->entity);
-        if ($repository->findOneByLogin($request->getPost()['login'])):
-            return "LOGIN";
-        elseif ($repository->findOneByCpf((!empty($request->getPost()['cpf'])?$request->getPost()['cpf']:"0"))):
-            return "CPF";
-        elseif ($repository->findOneByEmail($request->getPost()['email'])):
-            return "E-MAIL";
-        endif;
-
-        return false;
     }
 }
