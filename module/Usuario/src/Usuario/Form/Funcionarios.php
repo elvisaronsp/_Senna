@@ -1655,7 +1655,5 @@ class Funcionarios extends Form
         $hidden->setAttribute('id', "endereco_entidade__principal_4")
             ->setValue("");
         $this->add($hidden);
-
-
     }
 }

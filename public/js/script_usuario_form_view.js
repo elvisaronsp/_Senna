@@ -21,9 +21,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     "label_conf_nao": "Cancelar"
 });
 
-
 (function ($) {
-
     var preencheForm = function ($parent, json) {
         $parent.find("[name*=endereco__logradouro]").val(json.logradouro);
         $parent.find("[id*=endereco__bairro]").val(json.bairro);
@@ -188,8 +186,6 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 })(jQuery);
 
 (function ($) {
-
-
     var tratamento_change_tipo_contato = function (el) {
         $('[id*=contato].clonedField').find('[name*=ac_]').each(function () {
             switch ($(this).parents('span:first').find('[name*=contato__id_tipo_contato]').val()) {
@@ -261,14 +257,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
 })(jQuery);
 
-
-
-
 (function ($) {
-
-
-
-
     $(document).ready(function () {
         $('#tab_dependentes_tab').hide();
     });
@@ -309,8 +298,6 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     });
 })(jQuery);
 
-
-
 (function ($) {
     $(document).ready(function () {
         $("#senha").val('');
@@ -323,7 +310,6 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
         }
 
         $('.cloneable,.removeClone').remove();
-
 
         // desabilita os campos de tipo de cadastro em contatos para que o usuario nao possa alterar
         $('#contato__id_tipo_cadastro_0 ').attr("readonly","true");

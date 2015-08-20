@@ -80,7 +80,6 @@ class FuncionariosRepository extends EntityRepository
             return false;
     }
 
-
     /**
      * @param $email
      * @return bool
