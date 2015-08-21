@@ -483,14 +483,19 @@ define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getNomefa
                                         class='icon-database menu_icon'></i><span class='label'>Importação/Exportação
 										de Dados </span></span></a>
                     </li>
-                    <li class='item '
-                        meta='clientes cadastro/clientes cadastro cadastro de clientes cliente cadastro de cliente cadastro cliente cadastro clientes uc007 uc095 cadastros'>
+                    <li class='item ' meta='clientes cadastro/clientes cadastro cadastro de clientes cliente cadastro de cliente cadastro cliente cadastro clientes uc007 uc095 cadastros'>
                         <a
-                                href='<?php echo $this->basePath() ?>/senna/negado'
-                                id='menu_cadastro/clientes' rel='menu_item_cadastro_clientes'
-                                target='panel' key='31' class='item'><span><i
-                                        class='icon-address-book menu_icon'></i><span class='label'>Clientes
-								</span></span></a>
+                                href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Clientes', "1")) ? $this->basePath() . '/senna/clientes' : __NEGADO__; ?>'
+                                id='menu_cadastro/clientes'
+                                rel='menu_item_cadastro_clientes'
+                                target='panel'
+                                key='31'
+                                class='item'>
+                            <span>
+                                <i class='icon-address-book menu_icon'></i><span class='label'>Clientes
+								</span>
+                            </span>
+                        </a>
                     </li>
                     <li class='item '
                         meta='dados da sua empresa cadastro/empresas empresa cadastro cadastro de empresa cadastro empresa uc001 cadastros'>
@@ -927,7 +932,8 @@ define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getNomefa
 
             <li class="mais_usado">
                 <a class="mais_usado"
-                   href="<?php echo $this->basePath() ?>/senna/negado" rel="Gerenciar Usuários"
+                   href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Gerenciar usuarios', "1")) ? $this->basePath() . '/senna/usuario/funcionarios' : __NEGADO__; ?>'
+                   rel="Gerenciar Usuários"
                    target="panel" title="Gerenciar Usuários"> <span> <i
                                 class="icon-users menu_icon"></i> <span class="label"> Gerenciar
 								Usuários </span>
@@ -937,7 +943,8 @@ define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getNomefa
 
             <li class="mais_usado">
                 <a class="mais_usado"
-                   href="<?php echo $this->basePath() ?>/senna/negado" rel="Clientes" target="panel"
+                   href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Clientes', "1")) ? $this->basePath() . '/senna/clientes' : __NEGADO__; ?>'
+                   rel="Clientes" target="panel"
                    title="Clientes"> <span> <i class="icon-address-book menu_icon"></i>
 							<span class="label"> Clientes </span>
 					</span>
@@ -1199,13 +1206,12 @@ define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getNomefa
                                     class='item'><span><i class='icon-database menu_icon'></i><span
                                             class='label'>Importação/Exportação de Dados </span></span></a>
                         </li>
-                        <li class='item '
-                            meta='clientes cadastro/clientes cadastro cadastro de clientes cliente cadastro de cliente cadastro cliente cadastro clientes uc007 uc095 cadastros'>
+                        <li class='item ' meta='clientes cadastro/clientes cadastro cadastro de clientes cliente cadastro de cliente cadastro cliente cadastro clientes uc007 uc095 cadastros'>
                             <a
-                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_cadastro/clientes'
-                                    rel='menu_item_cadastro_clientes' target='panel' key='31'
-                                    class='item'><span><i class='icon-address-book menu_icon'></i><span
-                                            class='label'>Clientes </span></span></a>
+                                href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Clientes', "1")) ? $this->basePath() . '/senna/clientes' : __NEGADO__; ?>'
+                                rel='menu_item_cadastro_clientes' target='panel' key='31'
+                                class='item'><span><i class='icon-address-book menu_icon'></i><span
+                                class='label'>Clientes </span></span></a>
                         </li>
                         <li class='item '
                             meta='dados da sua empresa cadastro/empresas empresa cadastro cadastro de empresa cadastro empresa uc001 cadastros'>

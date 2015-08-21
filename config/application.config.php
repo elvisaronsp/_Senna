@@ -12,6 +12,7 @@ return array(
         'Negado',
         'Cadastro',
         'Usuario',
+        'Clientes',
         'Util',
         'Acl',
         'InfanaticaCepModule'

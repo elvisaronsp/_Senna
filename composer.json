@@ -11,7 +11,9 @@
     "php": ">=5.3.3",
     "zendframework/zendframework": "2.4.*",
     "doctrine/doctrine-orm-module": "0.8.0",
-    "hounddog/doctrine-data-fixture-module": "0.0.4"
+    "hounddog/doctrine-data-fixture-module": "0.0.4",
+    "zendframework/zftool": "dev-master",
+    "zendframework/zftool": "dev-master"
   },
 
   "minimum-stability": "dev"
