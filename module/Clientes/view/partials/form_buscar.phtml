@@ -1,0 +1,206 @@
+<div id="list_control">
+    <form action="<?php echo $this->basePath() ?>/senna/clientes/clientes/filter" class="form" debug="false" enctype="text/plain" id="filter" method="post">
+
+        <input name="add" type="button" value="Novo" windowName="Cadastrar Cliente"></input>
+        <input name="edit" type="button" value="Alterar"></input>
+        <input confirm="Deseja realmente apagar o cliente selecionado? <br />Caso o mesmo possua vinculo ele será desativado." name="delete" type="button" value="Apagar"></input>
+        <input debug="true" name="pesquisar" type="submit" value=""></input>
+        <input debug="true" name="empresa" type="hidden" value="<?php echo __EMPRESA__ ?>"></input>
+
+        <!-- BOTAO MAIS ACOES -->
+        <div class="action_menu_wrapper">
+            <input class="action_menu_trigger noicon" style="" type="button" value="Mais Ações"></input>
+            <span class="action_menu">
+                <a href="http://www.receita.fazenda.gov.br/PessoaJuridica/CNPJ/cnpjreva/Cnpjreva_Solicitacao.asp" style="text-decoration:none" target="_blank">
+                    <input class="document_properties" name="button_consulta_cnpj" type="button" value="Consultar CNPJ"></input>
+                </a>
+                <a href="http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/consultapublica.asp" style="text-decoration:none" target="_blank">
+                    <input class="btn_document_inspect" name="button_consulta_cpf" type="button" value="Consultar CPF"></input>
+                </a>
+                <a id="enviar_gmail" style="text-decoration:none" target="_blank">
+                    <input class="gmail" name="button_enviar_gmail" type="button" value="Enviar GMail"></input>
+                </a>
+                <input class="generate" id="exportar_csv" name="exportar" type="button" value="Exportar Emails"></input>
+                <input class="search" id="button_saldo_devedor" name="saldo_devedor" type="button" value="Saldo Devedor"></input>
+            </span>
+        </div>
+        <!-- FIM DO BOTAO MAIS ACOES -->
+
+        <!-- CAMPO FILTRAR -->
+        <span>
+            <p class="field " style="width:auto; ">
+                <span class="input " rel="search_text" style="">
+                    <input class="focus" id="search_text" name="busca" placeholder="Filtrar" style="" type="text" value=""></input>
+                </span>
+            </p>
+        </span>
+        <!-- FIM CAMPO FILTRAR -->
+
+        <input aux_value="Filtro Avançado" class="search pesquisa_avancada" id="pesquisa_avancada" name="pesquisa_avancada" type="button" value="Filtro Avançado"></input>
+
+        <!-- MODAL DE BUSCA AVANCADA -->
+        <div id="modal_filter" style="display:none">
+            <div id="modal_filter_background">&nbsp;</div>
+            <div id="modal_filter_container" style="height: 49%!important;">
+
+                <!-- BOTOES DO FORMULARIO DE BUSCA AVANCADA -->
+                <div class="modal_filter_actions form_actions">
+                    <input class="search pesquisa_avancada" name="pesquisa_avancada" style="float: left; margin-left:10px;" type="submit" value="Aplicar Filtro Avançado"></input>
+                    <input class="clean button" id="clean_button" name="limpar" type="submit" value="Limpar Filtro"></input>
+                    <input class="cancel close button" id="close_filter_button" name="fechar" style="background-position:12px center;" type="button" value="Fechar"></input>
+                </div>
+                <!-- FIM BOTOES DO FORMULARIO DE BUSCA AVANCADA -->
+
+                <!-- FORMULARIO FILTRO AVANCADO-->
+                <div class="modal_filter_form">
+
+                    <input disabled="disabled" id="filtro_avancado_ativo" name="filtro_avancado_ativo" type="hidden" value="true"></input>
+                    <input id="filter_form" name="filter_form" type="hidden" value="{filter_form}"></input>
+
+                    <!-- STATUS FORM FILTRO AVANCADO-->
+                    <fieldset class="fieldset " style="width:326px;">
+                        <legend>
+                            <span class="legend">
+                                <span class="legend_label">Ativo</span>
+                                <span class="input_alert">&nbsp;</span>
+                            </span>
+                        </legend>
+
+                        <p class="field " style="width:316px; ">
+                            <span class="input " rel="ativo" style="">
+                                <select class="" eval="" id="ativo" name="ativo" size="1" style="">
+                                    <option value="">Independe</option>
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </span>
+                        </p>
+
+                    </fieldset>
+                    <!-- FIM STATUS FORM FILTRO AVANCADO-->
+
+                    <!-- TIPO DE CLIENTE FORM FILTRO AVANCADO-->
+                    <fieldset class="fieldset " style="width:326px;">
+                        <legend>
+                            <span class="legend">
+                                <span class="legend_label">Tipo de cliente</span>
+                                <span class="input_alert">&nbsp;</span>
+                            </span>
+                        </legend>
+
+                        <p class="field " style="width:316px; ">
+                            <span class="input " rel="tipo" style="">
+                                <select class="" eval="" id="tipo" name="tipo" size="1" style="">
+                                    <option value="">Independe</option>
+                                    <option value="1">Pessoa Física</option>
+                                    <option value="2">Pessoa Jurídica</option>
+                                </select>
+                            </span>
+                        </p>
+
+                    </fieldset>
+                    <!-- FIM TIPO DE CLIENTE FORM FILTRO AVANCADO-->
+
+                    <!-- ORIGEM FORM FILTRO AVANCADO-->
+                    <fieldset class="fieldset " style="width:326px;">
+
+                        <legend>
+                            <span class="legend">
+                                <span class="legend_label">Origem</span>
+                                <span class="input_alert">&nbsp;</span>
+                            </span>
+                        </legend>
+
+                        <p class="field " style="width:316px; ">
+                            <span class="input " rel="origem" style="">
+                                <select class="" eval="" id="origem" name="origem" size="1" style="">
+                                    <option value="">Independe</option>
+                                    <option value="1">Nacional</option>
+                                    <option value="2">Estrangeira</option>
+                                </select>
+                            </span>
+                        </p>
+
+                    </fieldset>
+                    <!-- FIM ORIGEM FORM FILTRO AVANCADO-->
+
+                    <!-- SEXO FORM FILTRO AVANCADO-->
+                    <fieldset class="fieldset " style="width:326px;">
+
+                        <legend>
+                            <span class="legend">
+                                <span class="legend_label">Sexo</span>
+                                <span class="input_alert">&nbsp;</span>
+                            </span>
+                        </legend>
+
+                        <p class="field " style="width:316px; ">
+                            <span class="input " rel="sexo" style="">
+                                <select class="" eval="" id="sexo" name="sexo" size="1" style="">
+                                    <option value="">Independe</option>
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Feminino</option>
+                                </select>
+                            </span>
+                        </p>
+
+                    </fieldset>
+                    <!-- FIM SEXO FORM FILTRO AVANCADO-->
+
+                    <!-- PERIODO DO FORM FILTRO AVANCADO-->
+                    <div class="column">
+
+                        <fieldset class="fieldset " style="width:97%;height:80px">
+
+                            <legend>
+                                <span class="legend">
+                                    <span class="legend_label">Período</span>
+                                    <span class="input_alert">&nbsp;</span>
+                                </span>
+                            </legend>
+
+                            <p class="field inline" style="width:auto; margin-left:-30px;">
+                                <label class="" for="dataConsiderada" style="">Data Considerada</label>
+                                <span class="input_alert">&nbsp;</span>
+                                <span class="input " rel="data_considerada" style="">
+                                    <select class="" eval="{dataConsiderada}" id="dataConsiderada" name="dataConsiderada" size="1" style="">
+                                        <option value="0">Data de Cadastro</option>
+                                        <option value="1">Data de Alteração</option>
+                                    </select>
+                                </span>
+                            </p>
+
+                            <span class="input radio" rel="">
+
+                                <div style="width:100%;float:left;margin:3px;">
+                                    <input eval="0" name="data_periodo" style="float:left; margin-top:3px;" type="radio" value="0"></input>
+                                    <span class="periodo" style="display:block;width:94%;float:left">
+                                        <p class="field inline auto" style="width:137px !important; float:left;clear:none !important; margin:0px; padding:0px;">
+                                            <label class="" for="dataInicial" style="width:16px">De</label>
+                                            <span class="input " rel="dataInicial" style="">
+                                                <input class="date date" id="dataInicial" mask="39/19/9999" name="dataInicial" style="" type="text" value=""></input>
+                                            </span>
+                                        </p>
+                                        <p class="field inline  auto"
+                                           style="width:133px !important; float:left; clear:none !important; margin:0px; padding:0px;">
+                                            <label class="" for="dataFinal" style="width:10px">a</label>
+                                            <span class="input " rel="dataFinal" style="">
+                                                <input class="date date" id="dataFinal" mask="39/19/9999" name="dataFinal" style="" type="text" value=""></input>
+                                            </span>
+                                        </p>
+                                    </span>
+                                </div>
+                            </span>
+
+                        </fieldset>
+
+                    </div>
+                    <!-- FIM DE PERIODO DO FORM FILTRO AVANCADO-->
+                </div>
+                <!-- FIM FORMULARIO FILTRO AVANCADO-->
+            </div>
+        </div>
+        <!-- FIM MODAL DE BUSCA AVANCADA -->
+    </form>
+</div>
+

@@ -1,6 +1,8 @@
+<?php define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getId());  ?>
 <?php echo $this->doctype(); ?>
 <html>
 <head>
+
     <meta http-equiv='cache-control' content='no-cache'/>
     <meta http-equiv='expires' content='0'/>
     <meta http-equiv='pragma' content='no-cache'/>
@@ -52,10 +54,9 @@
         ->appendStylesheet($this->basePath() . '/css/jqueryui.css')
         ->appendStylesheet($this->basePath() . '/css/datepicker.css') ?>
 
-
 </head>
 <body >
-<!--Container tela.php-->
+
 <div id="loader">
     <div class="loader-text">
         <span class='carregando'>Carregando ...</span>
@@ -63,163 +64,20 @@
     </div>
     <div class="loader-bg">&nbsp;</div>
 </div>
+
 <div id="tela" style="height: 100%;">
     <div id="conteudo">
-        <div id="list_control">
-            <form action="filter" class="form" debug="false" enctype="text/plain" id="filter" method="post">
-                <input name="add" type="button" value="Novo" windowName="Cadastrar Cliente"></input>
-                <input name="edit" type="button" value="Alterar"></input>
-                <input confirm="Deseja realmente apagar o cliente selecionado? <br />Caso o mesmo possua vinculo ele será desativado." name="delete" type="button" value="Apagar"></input>
-                <input debug="true" name="pesquisar" type="submit" value=""></input>
 
-                <div class="action_menu_wrapper">
-                    <input class="action_menu_trigger noicon" style="" type="button" value="Mais Ações"></input>
-                    <span class="action_menu">
-                        <a href="http://www.receita.fazenda.gov.br/PessoaJuridica/CNPJ/cnpjreva/Cnpjreva_Solicitacao.asp" style="text-decoration:none" target="_blank"><input class="document_properties" name="button_consulta_cnpj" type="button" value="Consultar CNPJ"></input></a>
-                        <a href="http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/consultapublica.asp" style="text-decoration:none" target="_blank"><input class="btn_document_inspect" name="button_consulta_cpf" type="button" value="Consultar CPF"></input></a>
-                        <a id="enviar_gmail" style="text-decoration:none" target="_blank">
-                            <input class="gmail" name="button_enviar_gmail" type="button" value="Enviar GMail"></input>
-                        </a>
-                        <input class="generate" id="exportar_csv" name="exportar" type="button" value="Exportar Emails"></input>
-                        <input class="search" id="button_saldo_devedor" name="saldo_devedor" type="button" value="Saldo Devedor"></input>
-                    </span>
-                </div>
-
-                <span>
-                    <p class="field " style="width:auto; ">
-                        <span class="input " rel="search_text" style="">
-                            <input class="focus" id="search_text" name="busca" placeholder="Filtrar" style="" type="text" value=""></input>
-                        </span>
-                    </p>
-                </span>
-                <!--Container base_filter.php-->
-
-                <input aux_value="Filtro Avançado" class="search pesquisa_avancada" id="pesquisa_avancada" name="pesquisa_avancada" type="button" value="Filtro Avançado"></input>
-
-                <div id="modal_filter" style="display:none">
-                    <div id="modal_filter_background">&nbsp;</div>
-                    <div id="modal_filter_container">
-
-                        <!-- Botoes padrao para ação do formulario -->
-                        <div class="modal_filter_actions form_actions">
-                            <input class="search pesquisa_avancada" name="pesquisa_avancada" style="float: left; margin-left:10px;" type="submit" value="Aplicar Filtro Avançado"></input>
-                            <input class="clean button" id="clean_button" name="limpar" type="submit" value="Limpar Filtro"></input>
-                            <input class="cancel close button" id="close_filter_button" name="fechar" style="background-position:12px center;" type="button" value="Fechar"></input>
-                        </div>
-
-                        <!-- Formulario -->
-                        <div class="modal_filter_form">
-                            <input disabled="disabled" id="filtro_avancado_ativo" name="filtro_avancado_ativo" type="hidden" value="true"></input>
-                            <input id="filter_form" name="filter_form" type="hidden" value="{filter_form}"></input>
-                            <fieldset class="fieldset " style="width:326px;">
-                                <legend><span class="legend"><span class="legend_label">Ativo</span><span class="input_alert">&nbsp;</span></span></legend>
-
-                                <p class="field " style="width:316px; "><span class="input " rel="ativo" style=""><select class="" eval="" id="ativo" name="ativo" size="1" style=""><option value="">Independe</option><option value="0">Não</option><option value="1">Sim</option></select></span></p>
-
-                            </fieldset>
-                            <fieldset class="fieldset " style="width:326px;">
-                                <legend><span class="legend"><span class="legend_label">Tipo de cliente</span><span class="input_alert">&nbsp;</span></span></legend>
-
-                                <p class="field " style="width:316px; "><span class="input " rel="tipo" style=""><select class="" eval="" id="tipo" name="tipo" size="1" style=""><option value="">Independe</option><option value="F">Pessoa Física</option><option value="J">Pessoa Jurídica</option></select></span></p>
-
-                            </fieldset>
-                            <fieldset class="fieldset " style="width:326px;">
-                                <legend><span class="legend"><span class="legend_label">Origem</span><span class="input_alert">&nbsp;</span></span></legend>
-
-                                <p class="field " style="width:316px; "><span class="input " rel="exterior" style=""><select class="" eval="" id="exterior" name="exterior" size="1" style=""><option value="">Independe</option><option value="0">Nacional</option><option value="1">Estrangeira</option></select></span></p>
-
-                            </fieldset>
-                            <fieldset class="fieldset " style="width:326px;">
-                                <legend><span class="legend"><span class="legend_label">Sexo</span><span class="input_alert">&nbsp;</span></span></legend>
-
-                                <p class="field " style="width:316px; "><span class="input " rel="sexo" style=""><select class="" eval="" id="sexo" name="sexo" size="1" style=""><option value="">Independe</option><option value="F">Feminino</option><option value="M">Masculino</option></select></span></p>
-
-                            </fieldset>
-                            <div class="column">
-                                <fieldset class="fieldset " style="width:97%;height:157px">
-                                    <legend><span class="legend"><span class="legend_label">Período</span><span class="input_alert">&nbsp;</span></span></legend>
-
-                                    <p class="field inline" style="width:auto; margin-left:-30px;"><label class="" for="data_considerada" style="">Data Considerada</label><span class="input_alert">&nbsp;</span><span class="input " rel="data_considerada" style=""><select class="" eval="{data_considerada}" id="data_considerada" name="data_considerada" size="1" style=""><option value="1">Data de Cadastro</option><option value="2">Data de Alteração</option></select></span></p>
-                                    <span class="input radio" rel="">
-                                        <div style="width:100%;float:left;margin:3px;">
-                                            <input eval="0" name="data_periodo" style="float:left; margin-top:3px;" type="radio" value="0"></input>
-                                            <span class="periodo" style="display:block;width:94%;float:left">
-                                                <p class="field inline auto" style="width:137px !important; float:left;clear:none !important; margin:0px; padding:0px;"><label class="" for="data_inicial" style="width:16px">De</label><span class="input " rel="data_inicial" style=""><input class="date date" id="data_inicial" mask="39/19/9999" name="data_inicial" style="" type="text" value=""></input></span></p>
-                                                <p class="field inline  auto" style="width:133px !important; float:left; clear:none !important; margin:0px; padding:0px;"><label class="" for="data_final" style="width:10px">a</label><span class="input " rel="data_final" style=""><input class="date date" id="data_final" mask="39/19/9999" name="data_final" style="" type="text" value=""></input></span></p>
-                                            </span>
-                                        </div>
-                                        <div style="float:left;">
-
-                                            <div style="width:150px;float:left;margin:3px; text-align:left">
-                                                <label>
-                                                    <input eval="0" name="data_periodo" style="margin-right:2px;" type="radio" value="1"></input><span>Mês Atual</span>
-                                                </label>
-                                            </div>
-
-                                            <div style="width:150px;float:left;margin:3px; text-align:left">
-                                                <label>
-                                                    <input eval="0" name="data_periodo" style="margin-right:2px;" type="radio" value="2"></input><span>Mês Passado</span>
-                                                </label>
-                                            </div>
-
-                                            <div style="width:150px;float:left;margin:3px; text-align:left">
-                                                <label>
-                                                    <input eval="0" name="data_periodo" style="margin-right:2px;" type="radio" value="3"></input><span>Semana Atual</span>
-                                                </label>
-                                            </div>
-
-                                            <div style="width:150px;float:left;margin:3px; text-align:left">
-                                                <label>
-                                                    <input eval="0" name="data_periodo" style="margin-right:2px;" type="radio" value="4"></input><span>Semana Passada</span>
-                                                </label>
-                                            </div>
-
-                                            <div style="width:150px;float:left;margin:3px; text-align:left">
-                                                <label>
-                                                    <input eval="0" name="data_periodo" style="margin-right:2px;" type="radio" value="5"></input><span>Últimos 7 dias</span>
-                                                </label>
-                                            </div>
-
-                                            <div style="width:150px;float:left;margin:3px; text-align:left">
-                                                <label>
-                                                    <input eval="0" name="data_periodo" style="margin-right:2px;" type="radio" value="6"></input><span>Últimos 30 dias</span>
-                                                </label>
-                                            </div>
-
-                                        </div>
-                                    </span>
-
-                                </fieldset>
-                            </div>
-                            <div class="column">
-                                <!-- LOCALIDADE -->
-                                <fieldset class="fieldset " style="width:97%;height:157px">
-                                    <legend><span class="legend"><span class="legend_label">Filtros</span><span class="input_alert">&nbsp;</span></span></legend>
-
-                                    <p class="field info-right" style="width:auto; width:97%"><label class="" for="ac_1344133070e0f2ffa62ab0acaf69826db2de94a681" style="">UF</label><span class="input_alert">&nbsp;</span><span class="input " rel="ac_1344133070e0f2ffa62ab0acaf69826db2de94a681" style=""><span class="multisuggest_wrapper"><span class="multisuggest_container" id="container_ac_1344133070e0f2ffa62ab0acaf69826db2de94a681"></span><input class=" autosuggest multisuggest" comparefield="id" container="container_ac_1344133070e0f2ffa62ab0acaf69826db2de94a681" id="ac_1344133070e0f2ffa62ab0acaf69826db2de94a681" minLength="2" multisuggest="ac_1344133070e0f2ffa62ab0acaf69826db2de94a681" name="ac_1344133070e0f2ffa62ab0acaf69826db2de94a681" ref="uf" source="http://app.tagplus.com.br/capitalponto/autocomplete/estados/get_uf_mult" style="" type="text" value="" valuefield="value"></input></span></span></p>
-                                    <p class="field info-right" style="width:auto; width:97%"><label class="" for="ac_20648284504b50b03048c3537a81539bc1c6d40d16" style="">Cidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="ac_20648284504b50b03048c3537a81539bc1c6d40d16" style=""><span class="multisuggest_wrapper"><span class="multisuggest_container" id="container_ac_20648284504b50b03048c3537a81539bc1c6d40d16"></span><input class=" autosuggest multisuggest" comparefield="id" container="container_ac_20648284504b50b03048c3537a81539bc1c6d40d16" id="ac_20648284504b50b03048c3537a81539bc1c6d40d16" minLength="2" multisuggest="ac_20648284504b50b03048c3537a81539bc1c6d40d16" name="ac_20648284504b50b03048c3537a81539bc1c6d40d16" ref="cidade" source="http://app.tagplus.com.br/capitalponto/autocomplete/cidades/get_cidade_mult" style="" type="text" value="" valuefield="value"></input></span></span></p>
-                                    <p class="field info-right" style="width:auto; width:97%"><label class="" for="ac_385310864c2ce5af4d52b1d4e8c41201b490cca1a" style="">Bairro</label><span class="input_alert">&nbsp;</span><span class="input " rel="ac_385310864c2ce5af4d52b1d4e8c41201b490cca1a" style=""><span class="multisuggest_wrapper"><span class="multisuggest_container" id="container_ac_385310864c2ce5af4d52b1d4e8c41201b490cca1a"></span><input class=" autosuggest multisuggest" comparefield="id" container="container_ac_385310864c2ce5af4d52b1d4e8c41201b490cca1a" id="ac_385310864c2ce5af4d52b1d4e8c41201b490cca1a" minLength="2" multisuggest="ac_385310864c2ce5af4d52b1d4e8c41201b490cca1a" name="ac_385310864c2ce5af4d52b1d4e8c41201b490cca1a" ref="bairro" source="http://app.tagplus.com.br/capitalponto/autocomplete/enderecos/ac_bairro" style="" type="text" value="" valuefield="value"></input></span></span></p>
-
-                                </fieldset>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </form>
-
-        </div>
+        <?php echo $this->partial('partials/form_buscar'); ?>
 
         <input id="emails_clientes" name="emails_clientes" type="hidden" value=""></input>
-        <div id="datatable" windowName="Alterar Cliente">
+        <div id="datatable" windowName="Editar Cliente">
             <div col="id" hidden="true">#</div>
-            <div col="id_entidade" hidden="true">#</div>
-            <div col="possui_vinculo" hidden="true">#</div>
-            <div align="center" col="ativo" type="string" width="45"> Ativo</div>
-            <div col="razao_social" type="string">Nome/Razão Social</div>
-            <div col="cpfcnpj" type="string" width="12%">CPF/CNPJ</div>
-            <div col="codigo" type="string" width="150">Código do Cliente</div>
-            <div col="email" type="string" width="23%">Email</div>
+            <div col="ativo" type="string" align="center"  width="45">Ativo</div>
+            <div col="razaoSocial" type="string">Nome/Razão Social</div>
+            <div col="cpfCnpj" type="string" width="12%">CPF/CNPJ</div>
+            <div col="codigoCliente" type="string" width="150">Código do Cliente</div>
+            <div col="email" type="string" width="23%">E-mail</div>
             <div col="telefone" type="string" width="10%">Telefone</div>
             <div col="origem" type="string" width="8%">Origem</div>
         </div>
@@ -227,6 +85,7 @@
         <div add_btn_title="Clique aqui para adicionar um novo registro" adv_search_btn_title="Limpe ou altere o Filtro Avançado para exibir resultados" id="list_empty" search_btn_title="Remova ou altere sua pesquisa para exibir resultados">
             <h3>Nenhum registro foi encontrado</h3>
         </div>
+
     </div>
 </div>
 

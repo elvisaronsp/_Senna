@@ -972,7 +972,6 @@ class Funcionarios
     public function setCriadoem()
     {
         $this->criadoEm = new \DateTime("now");
-
     }
 
     /**

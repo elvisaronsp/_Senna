@@ -31,9 +31,13 @@ class Module
     public function getServiceConfig()
     {
         return array(
-            'factories' => array()
+            'factories' => array(
+                'Clientes\Form\Cliente' => function($sm)
+                {
+                    return new Form\Cliente();
+                }
+            )
         );
-
     }
 
     /**
