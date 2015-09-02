@@ -1,11 +1,7 @@
 <div class="tab" id="tab_dados_pessoais" ref="<img src='../../../images/data.png'> Dados Pessoais" rel="tab_dados_pessoais">
 
-    <input id="id" name="id" type="hidden" value=""></input>
-    <input id="id_entidade" name="id_entidade" type="hidden" value=""></input>
-    <input id="id_funcionario" name="id_funcionario" type="hidden" value=""></input>
-    <input id="id_cliente_principal" name="id_cliente_principal" type="hidden" value=""></input>
-    <input id="credito" name="credito" type="hidden" value=""></input>
-    <input id="is_imported" name="is_imported" type="hidden" value="0"></input>
+    <input id="id" name="id" type="hidden" value="" class="text" rel="seila"></input>
+    <input id="empresa" name="empresa" type="hidden" value=""></input>
 
     <fieldset class="fieldset " style="width:15%;">
         <legend>
@@ -21,13 +17,9 @@
                     <input class="" eval="1" name="ativo" style="" type="radio" value="0"></input>
                     <span style="">Não</span>
                 </label>
-                <label class="inline" style="">
-                    <input class="" eval="1" name="ativo" style="" type="radio" value="1"></input>
-                    <span style="">Sim</span>
-                </label>
+
             </span>
         </p>
-
     </fieldset>
     <fieldset class="fieldset " style="width:25%;">
         <legend>
@@ -61,7 +53,7 @@
         <p class="field " style="width:auto; ">
             <span class="input radio" rel="" style="">
                 <label class="inline" style="">
-                    <input class=" required" eval="0" name="exterior" style="" type="radio" value="0"></input>
+                    <input class="required" eval="0" name="exterior" style="" type="radio" value="0"></input>
                     <span style="">Nacional</span>
                 </label>
                 <label class="inline" style="">
@@ -227,7 +219,7 @@
         </p>
 
     </fieldset>
-    <fieldset class="fieldset " style="width:97%;height:65px;">
+    <fieldset class="fieldset " style="width:97%;height:90px;">
         <legend>
             <span class="legend">
                 <span class="legend_label">Informação Adicional</span>
@@ -237,7 +229,7 @@
 
         <p class="field " style="width:100%; ">
             <span class="input " rel="informacao_adicional" style="">
-                <textarea cols="90" id="informacao_adicional" maxlength="4000" name="informacao_adicional" rows="12" style=""></textarea>
+                <textarea cols="90" id="informacao_adicional" maxlength="4000" name="informacao_adicional" rows="25"  style="height:70px;resize: none;"></textarea>
             </span>
         </p>
 
