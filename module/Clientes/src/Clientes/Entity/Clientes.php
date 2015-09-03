@@ -197,6 +197,19 @@ class Clientes
     private $atualizadoem;
 
 
+    private $dataNascimento;
+    private $estadoCivil;
+    private $rendaMensal;
+    private $profissao;
+    private $filiacaoMae;
+    private $filiacaoPai;
+    private $conjugeNome;
+    private $conjugeCpf;
+    private $conjugeDataNascimento;
+    private $conjugeProfissao;
+    private $suframa;
+
+
     /**
      * @param array $options
      */
@@ -675,6 +688,203 @@ class Clientes
     }
 
     /**
+     * @return mixed
+     */
+    public function getDataNascimento()
+    {
+        return ($this->dataNascimento) ? date_format($this->dataNascimento, 'd-m-Y') : "";
+    }
+
+    /**
+     * @param mixed $dataNascimento
+     * @return Clientes
+     */
+    public function setDataNascimento($dataNascimento)
+    {
+        $this->dataNascimento = new \DateTime(implode("-", array_reverse(explode("/", $dataNascimento))));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEstadoCivil()
+    {
+        return $this->estadoCivil;
+    }
+
+    /**
+     * @param mixed $estadoCivil
+     * @return Clientes
+     */
+    public function setEstadoCivil($estadoCivil)
+    {
+        $this->estadoCivil = $estadoCivil;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRendaMensal()
+    {
+        return $this->rendaMensal;
+    }
+
+    /**
+     * @param mixed $rendaMensal
+     * @return Clientes
+     */
+    public function setRendaMensal($rendaMensal)
+    {
+        $this->rendaMensal = $rendaMensal;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProfissao()
+    {
+        return $this->profissao;
+    }
+
+    /**
+     * @param mixed $profissao
+     * @return Clientes
+     */
+    public function setProfissao($profissao)
+    {
+        $this->profissao = $profissao;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFiliacaoMae()
+    {
+        return $this->filiacaoMae;
+    }
+
+    /**
+     * @param mixed $filiacaoMae
+     * @return Clientes
+     */
+    public function setFiliacaoMae($filiacaoMae)
+    {
+        $this->filiacaoMae = $filiacaoMae;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFiliacaoPai()
+    {
+        return $this->filiacaoPai;
+    }
+
+    /**
+     * @param mixed $filiacaoPai
+     * @return Clientes
+     */
+    public function setFiliacaoPai($filiacaoPai)
+    {
+        $this->filiacaoPai = $filiacaoPai;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConjugeNome()
+    {
+        return $this->conjugeNome;
+    }
+
+    /**
+     * @param mixed $conjugeNome
+     * @return Clientes
+     */
+    public function setConjugeNome($conjugeNome)
+    {
+        $this->conjugeNome = $conjugeNome;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConjugeCpf()
+    {
+        return $this->conjugeCpf;
+    }
+
+    /**
+     * @param mixed $conjugeCpf
+     * @return Clientes
+     */
+    public function setConjugeCpf($conjugeCpf)
+    {
+        $this->conjugeCpf = $conjugeCpf;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConjugeDataNascimento()
+    {
+        return ($this->conjugeDataNascimento) ? date_format($this->conjugeDataNascimento, 'd-m-Y') : "";
+    }
+
+    /**
+     * @param mixed $conjugeDataNascimento
+     * @return Clientes
+     */
+    public function setConjugeDataNascimento($conjugeDataNascimento)
+    {
+        $this->conjugeDataNascimento = new \DateTime(implode("-", array_reverse(explode("/", $conjugeDataNascimento))));
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConjugeProfissao()
+    {
+        return $this->conjugeProfissao;
+    }
+
+    /**
+     * @param mixed $conjugeProfissao
+     * @return Clientes
+     */
+    public function setConjugeProfissao($conjugeProfissao)
+    {
+        $this->conjugeProfissao = $conjugeProfissao;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSuframa()
+    {
+        return $this->suframa;
+    }
+
+    /**
+     * @param mixed $suframa
+     * @return Clientes
+     */
+    public function setSuframa($suframa)
+    {
+        $this->suframa = $suframa;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
@@ -713,7 +923,18 @@ class Clientes
             'ativo'                    => $this->ativo,
             'empresa'                  => $this->empresa,
             'criadoEm'                 => $this->criadoem,
-            'atualizadoEm'             => $this->atualizadoem
+            'atualizadoEm'             => $this->atualizadoem,
+            'dataNascimento'           => $this->dataNascimento,
+            'estadoCivil'              => $this->estadoCivil,
+            'rendaMensal'              => $this->rendaMensal,
+            'profissao'                => $this->profissao,
+            'filiacaoMae'              => $this->filiacaoMae,
+            'filiacaoPai'              => $this->filiacaoPai,
+            'conjugeNome'              => $this->conjugeNome,
+            'conjugeCpf'               => $this->conjugeCpf,
+            'conjugeDataNascimento'    => $this->conjugeDataNascimento,
+            'conjugeProfissao'         => $this->conjugeProfissao,
+            'suframa'                  => $this->suframa
         );
     }
 }

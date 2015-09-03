@@ -1,7 +1,7 @@
 <div class="tab" id="tab_dados_pessoais" ref="<img src='../../../images/data.png'> Dados Pessoais" rel="tab_dados_pessoais">
 
-    <input id="id" name="id" type="hidden" value="" class="text" rel="seila"></input>
-    <input id="empresa" name="empresa" type="hidden" value=""></input>
+    <?php echo $this->formElement($input = $form->get('id'));?>
+    <?php echo $this->formElement($input = $form->get('empresa'));?>
 
     <fieldset class="fieldset " style="width:15%;">
         <legend>
@@ -13,11 +13,7 @@
 
         <p class="field " style="width:auto; ">
             <span class="input radio" rel="" style="">
-                <label class="inline" style="">
-                    <input class="" eval="1" name="ativo" style="" type="radio" value="0"></input>
-                    <span style="">Não</span>
-                </label>
-
+                <?php echo $this->formElement($input = $form->get('ativo'));?>
             </span>
         </p>
     </fieldset>
@@ -30,14 +26,7 @@
 
         <p class="field " style="width:auto; ">
             <span class="input radio" rel="" style="">
-                <label class="inline" style="">
-                    <input class=" required" eval="F" name="tipo" style="" type="radio" value="F"></input>
-                    <span style="">Pessoa Física</span>
-                </label>
-                <label class="inline" style="">
-                    <input class=" required" eval="F" name="tipo" style="" type="radio" value="J"></input>
-                    <span style="">Pessoa Jurídica</span>
-                </label>
+                <?php echo $this->formElement($input = $form->get('tipo'));?>
             </span>
         </p>
 
@@ -52,17 +41,10 @@
 
         <p class="field " style="width:auto; ">
             <span class="input radio" rel="" style="">
-                <label class="inline" style="">
-                    <input class="required" eval="0" name="exterior" style="" type="radio" value="0"></input>
-                    <span style="">Nacional</span>
-                </label>
-                <label class="inline" style="">
-                    <input class=" required" eval="0" name="exterior" style="" type="radio" value="1"></input>
-                    <span style="">Estrangeira</span>
-                </label>
+                <?php echo $this->formElement($input = $form->get('origem'));?>
             </span>
         </p>
-        <input id="flag_exterior" name="flag_exterior" type="hidden" value="0"></input>
+        <?php echo $this->formElement($input = $form->get('flag_exterior'));?>
 
     </fieldset>
     <fieldset class="fieldset " style="width:26.3%;">
@@ -74,13 +56,13 @@
         </legend>
 
         <p class="field " style="width:95%; ">
-            <span class="input " rel="data_cadastro" style="">
-                <input class="center" disabled="disabled" id="data_cadastro" mask="39/19/9999" name="data_cadastro" style="" type="text" value="23/08/2015"></input>
+            <span class="input " rel="criadoEm" style="">
+                <?php echo $this->formElement($input = $form->get('criadoEm'));?>
             </span>
         </p>
 
     </fieldset>
-    <input id="tipocliente" name="tipocliente" type="hidden" value=""></input>
+    <?php echo $this->formElement($input = $form->get('tipocliente'));?>
     <hr class="clear" size="1"></hr>
     <fieldset class="fieldset " id="field_tipo" style="width:97%;width:65%; float:left;">
         <legend>
@@ -93,8 +75,8 @@
         <p class="field " style="width:72%; ">
             <label class="" for="razao_social" style="">Razão Social</label>
             <span class="input_alert">&nbsp;</span>
-            <span class="input " rel="razao_social" style="">
-                <input class="focus required" id="razao_social" maxlength="60" name="razao_social" style="" type="text" value=""></input>
+            <span class="input " rel="razaoSocial" style="">
+                <?php echo $this->formElement($input = $form->get('razaoSocial'));?>
             </span>
         </p>
 
@@ -103,7 +85,7 @@
                 <label class="" for="cpf" style="">CPF</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="cpf" style="">
-                    <input class=" cpf" id="cpf" mask="999.999.999-99" name="cpf" style="" type="text" value=""></input>
+                    <?php echo $this->formElement($input = $form->get('cpf'));?>
                 </span>
             </p>
         </div>
@@ -113,7 +95,7 @@
                 <label class="" for="cnpj" style="">CNPJ</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="cnpj" style="">
-                    <input class="search cnpj" id="cnpj" mask="99.999.999/9999-99" name="cnpj" pstyle="width:115px;" style="" type="text" value=""></input>
+                    <?php echo $this->formElement($input = $form->get('cnpj'));?>
                 </span>
             </p>
             <input class="btn_view" id="pesquisar_cnpj" name="" style="float:left;height:23px;margin:22px 0 0;padding:0;width:33px;" title="Pesquisar dados pelo CNPJ" type="button" value=""></input>
@@ -121,8 +103,8 @@
             <p class="field " style="width:72%; ">
                 <label class="" for="nome_fantasia" style="">Nome Fantasia</label>
                 <span class="input_alert">&nbsp;</span>
-                <span class="input " rel="nome_fantasia" style="">
-                    <input id="nome_fantasia" maxlength="255" name="nome_fantasia" style="" type="text" value=""></input>
+                <span class="input " rel="nomeFantasia" style="">
+                    <?php echo $this->formElement($input = $form->get('nomeFantasia'));?>
                 </span>
             </p>
 
@@ -130,7 +112,7 @@
                 <label class="" for="responsavel" style="">Responsável</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="responsavel" style="">
-                    <input id="responsavel" maxlength="255" name="responsavel" style="" type="text" value=""></input>
+                    <?php echo $this->formElement($input = $form->get('responsavel'));?>
                 </span>
             </p>
         </div>
@@ -142,8 +124,8 @@
                 <img alt="info" class="infotip" src="http://app.tagplus.com.br/capitalponto/resources/images/icons/info.png" title="Número do passaporte ou outro documento legal para identificar a pessoa estrangeira."></img>
             </span>
             <span class="input_alert">&nbsp;</span>
-            <span class="input " rel="ident_estrangeiro" style="">
-                <input id="ident_estrangeiro" maxlength="20" name="ident_estrangeiro" style="" type="text" value=""></input>
+            <span class="input " rel="identificacaoEstrangeiro" style="">
+                <?php echo $this->formElement($input = $form->get('identificacaoEstrangeiro'));?>
             </span>
         </p>
 
@@ -152,14 +134,14 @@
                 <label class="" for="ie" style="">Inscrição Estadual</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="ie" style="">
-                    <input id="ie" maxlength="16" name="ie" style="" type="text" value=""></input>
+                    <?php echo $this->formElement($input = $form->get('ie'));?>
                 </span>
             </p>
 
             <div style="float:left; width:65px;padding-top:22px">
                 <p class="checkbox_field  block" style="">
-                    <label class="" for="isento_ie" style="">
-                        <input campo="ie" id="isento_ie" name="isento_ie" rel="" style="" type="checkbox" value="1"></input>
+                    <label class="" for="ieIsento" style="">
+                        <?php echo $this->formElement($input = $form->get('ieIsento'));?>
                         <span>Isento</span>
                     </label>
                 </p>
@@ -171,14 +153,14 @@
                 <label class="" for="im" style="">Inscrição Municipal</label>
                 <span class="input_alert">&nbsp;</span>
                 <span class="input " rel="im" style="">
-                    <input id="im" maxlength="20" name="im" style="" type="text" value=""></input>
+                    <?php echo $this->formElement($input = $form->get('im'));?>
                 </span>
             </p>
 
             <div style="float:left; width:65px;padding-top:22px">
                 <p class="checkbox_field  block" style="">
-                    <label class="" for="isento_im" style="">
-                        <input campo="im" id="isento_im" name="isento_im" rel="" style="" type="checkbox" value="1"></input>
+                    <label class="" for="imInsento" style="">
+                        <?php echo $this->formElement($input = $form->get('imInsento'));?>
                         <span>Isento</span>
                     </label>
                 </p>
@@ -188,8 +170,8 @@
         <p class="field " style="width:170px; ">
             <label class="" for="cod_barra" style="">Código do Cliente</label>
             <span class="input_alert">&nbsp;</span>
-            <span class="input " rel="cod_barra" style="">
-                <input id="cod_barra" maxlength="14" name="cod_barra" style="" type="text" uppercase="true" value=""></input>
+            <span class="input " rel="codigoCliente" style="">
+                <?php echo $this->formElement($input = $form->get('codigoCliente'));?>
             </span>
         </p>
         <span class="ean" id="ean" style="margin-top:25px" title="Gerar Código EAN">&nbsp;</span>
@@ -205,16 +187,16 @@
         <p class="field " style="width:95%; ">
             <label class="" for="email_principal_aux" style="">Email</label>
             <span class="input_alert">&nbsp;</span>
-            <span class="input " rel="email_principal_aux" style="">
-                <input id="email_principal_aux" maxlength="50" name="email_principal_aux" style="" type="text" value=""></input>
+            <span class="input " rel="email" style="">
+                <?php echo $this->formElement($input = $form->get('email'));?>
             </span>
         </p>
 
         <p class="field " style="width:95%; ">
             <label class="" for="telefone_principal_aux" style="">Telefone</label>
             <span class="input_alert">&nbsp;</span>
-            <span class="input " rel="telefone_principal_aux" style="">
-                <input id="telefone_principal_aux" maxlength="14" name="telefone_principal_aux" style="" type="text" value=""></input>
+            <span class="input " rel="telefone" style="">
+                <?php echo $this->formElement($input = $form->get('telefone'));?>
             </span>
         </p>
 
@@ -228,8 +210,8 @@
         </legend>
 
         <p class="field " style="width:100%; ">
-            <span class="input " rel="informacao_adicional" style="">
-                <textarea cols="90" id="informacao_adicional" maxlength="4000" name="informacao_adicional" rows="25"  style="height:70px;resize: none;"></textarea>
+            <span class="input " rel="observacao" style="">
+                <?php echo $this->formElement($textarea = $form->get('observacao'));?>
             </span>
         </p>
 
