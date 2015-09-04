@@ -1,11 +1,11 @@
 <div class="tab" id="label_vendedores" ref="
-
+    
     <img src='../../../images/vendedor.png'> Vendedores" rel="label_vendedores">
     <div class="help_infos" id="tip_cabecalho" style=" ">
-        <div style=""> Caso deseje que o funcion√°rio venda exclusivamente para determinado(s) cliente(s), basta
-            inseri-lo(s) abaixo. Ao realizar uma venda, se o funcion√°rio n√£o tiver permiss√£o, ela n√£o ser√°
-            concretizada/finalizada. Op√ß√£o v√°lida para as seguintes movimenta√ß√µes: Pedido/Or√ßamento, Venda Simples,
-            Pr√©-Venda, Dav, Dav OS, NF-e e NFS-e.
+        <div style=""> Caso deseje que o funcion·rio venda exclusivamente para determinado(s) cliente(s), basta
+            inseri-lo(s) abaixo. Ao realizar uma venda, se o funcion·rio n„o tiver permiss„o, ela n„o ser·
+            concretizada/finalizada. OpÁ„o v·lida para as seguintes movimentaÁıes: Pedido/OrÁamento, Venda Simples,
+            PrÈ-Venda, Dav, Dav OS, NF-e e NFS-e.
         </div>
     </div>
     <div class="fieldset" style="width:98%">
@@ -27,13 +27,13 @@
                 <tbody>
                 <tr>
                     <td>
-                        <?php echo $this->formElement($input = $form->get('idVendedor'));?>
-                        <?php echo $this->formElement($input = $form->get('idVendedorIdCliente'));?>
+                        <input id="idVendedor" name="idVendedor" type="hidden" value=""></input>
+                        <input id="idVendedorIdCliente" name="idVendedorIdCliente" type="hidden" value=""></input>
                         <p class="field " style="width:auto; ">
                             <span class="input " rel="vendedorCliente" style="">
-                                <?php echo $this->formElement($input = $form->get('vendedorCliente'));?>
+                                <input id="vendedorCliente" name="vendedorCliente" type="hidden" value=""></input>
                                 <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                                <?php echo $this->formElement($input = $form->get('ac_vendedor'));?>
+                                <input autosuggest="vendedorCliente" class=" autosuggest" filters="[]" form_title="Cadastrando" form_url="" form_url_field="" id="vendedorCliente" minLength="0" name="ac_vendedor" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="/senna/usuarios/funcionarios/getFuncionarios/" style="" type="text" uppercase="true" value="" valueclear="true" valuefield="idFuncionario"></input>
                                 <em class="autocomplete_search  autosuggest"></em>
                             </span>
                         </p>
@@ -41,14 +41,14 @@
                     <td>
                         <p class="field " style="width:auto; ">
                             <span class="input " rel="CpfCnpjVendedor" style="">
-                                <?php echo $this->formElement($input = $form->get('CpfCnpjVendedor'));?>
+                                <input disabled="disabled" id="CpfCnpjVendedor" name="CpfCnpjVendedor" style="text-align:center;" type="text" value=""></input>
                             </span>
                         </p>
                     </td>
                     <td>
                         <p class="field " style="width:auto; ">
                             <span class="input " rel="vendedorDataHora" style="">
-                                <?php echo $this->formElement($input = $form->get('vendedorDataHora'));?>
+                                <input disabled="disabled" id="vendedorDataHora" name="vendedorDataHora" style="text-align:center;" type="text" value=""></input>
                             </span>
                         </p>
                     </td>

@@ -1,250 +1,263 @@
-<div class="tab" id="tab_contatos_2082507298656ef068aac6221358742246a063a23" ref="Contatos" rel="tab_contatos">
+<div class="tab" id="tab_contatos" ref="<img src='../../../images/icon_contato.png'>  Contatos Extras" rel="tab_contatos">
+
     <fieldset class="fieldset " style="width:97%;">
         <legend>
-            <span class="legend"><span class="legend_label">Contatos</span><span class="input_alert">&nbsp;</span></span>
+            <span class="legend">
+                <span class="legend_label">Contatos</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
         </legend>
 
         <div id="contato">
+
             <input class="clone_flag" name="contato_flag" type="hidden" value=""></input>
 
-            <div class="clonedField" id="contato1">
-                <input class="clone_id" id="contato__id_189212706844f3f7fe64d5e3a762346983f865d7791" name="contato__id[1]" type="hidden" value=""></input>
-                <input id="contato__editavel_20756124427b43336a9627426f00b2b558988a83ac1" name="contato__editavel[1]" type="hidden" value="{editavel}"></input>
-                <input id="contato__id_entidade_18147421103cc666f27c4484ce9443d06adbd98ca1" name="contato__id_entidade[1]" type="hidden" value=""></input>
+            <!-- CAMPOS DE CONTATO 1 -->
+            <div class="clonedField hiddenClone" id="contato0">
 
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a31" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a31" style=""><input id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a31" name="contato__id_tipo_cadastro[1]" type="hidden" value="{id_tipo_cadastro}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[1]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a31" minLength="0" name="ac_16095225154e0710048947cac00ceb8d81f6220cd3" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_cadastros/get" style="" type="text" value="{descricao_tipo_cadastro}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+                <?php echo $this->formElement($input = $form->get('contato__id[0]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[0]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[0]'));?>
+
+                <p class="field " style="width:115px; ">
+                    <label class="" for="contato__id_tipo_cadastro_0" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_0" style="">
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[0]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818001" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818001" style=""><input id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818001" name="contato__id_tipo_contato[1]" type="hidden" value="{id_tipo_contato}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[1]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818001" minLength="0" name="ac_1757237156aa29f35aa2a4da5e184541d10568030b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_contatos/get" style="" type="text" value="{descricao_tipo_contato}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+                    <label class="" for="contato__id_tipo_contato_0" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_0" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[0]'));?>
+                        <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                        <?php echo $this->formElement($input = $form->get('ac_0'));?>
+                        <em class="autocomplete_search  required autosuggest"></em>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_852511150dbf4901654295c16463caf90cfcb28311" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_852511150dbf4901654295c16463caf90cfcb28311" style=""><input class=" required" id="contato__descricao_852511150dbf4901654295c16463caf90cfcb28311" maxlength="50" name="contato__descricao[1]" style="" type="text" value="{descricao}"></input></span>
+                    <label class="" for="contato__descricao_0" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_0" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[0]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7181" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7181" style=""><input id="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7181" maxlength="50" name="contato__detalhes[1]" style="" type="text" value="{detalhes}"></input></span>
+                    <label class="" for="contato__detalhes_0" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_0" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[0]'));?>
+                    </span>
                 </p>
 
-                <div style="float:left; padding:23px; margin-left: -15px">
-                    <p class="checkbox_field  block" style="">
-                        <label class="" for="contato__principal[1]" style="">
-                            <input id="contato__principal_430005188acca9819a01bb884ce423c03ac152eef1" name="contato__principal[1]" rel="{principal}" style="" type="checkbox" value="1"></input><span>Principal</span></label>
-                    </p>
-                </div>
                 <hr class="clear" size="1"></hr>
             </div>
-            <div class="clonedField" id="contato2">
-                <input class="clone_id" id="contato__id_189212706844f3f7fe64d5e3a762346983f865d7792" name="contato__id[2]" type="hidden" value=""></input>
-                <input id="contato__editavel_20756124427b43336a9627426f00b2b558988a83ac2" name="contato__editavel[2]" type="hidden" value="{editavel}"></input>
-                <input id="contato__id_entidade_18147421103cc666f27c4484ce9443d06adbd98ca2" name="contato__id_entidade[2]" type="hidden" value=""></input>
+            <!-- FIM CAMPOS DE CONTATO 1 -->
 
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a32" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a32" style=""><input id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a32" name="contato__id_tipo_cadastro[2]" type="hidden" value="{id_tipo_cadastro}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[2]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a32" minLength="0" name="ac_26095225154e0710048947cac00ceb8d81f6220cd3" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_cadastros/get" style="" type="text" value="{descricao_tipo_cadastro}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+            <!-- CAMPOS DE CONTATO 2 -->
+            <div class="clonedField hiddenClone" id="contato1">
+
+                <?php echo $this->formElement($input = $form->get('contato__id[1]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[1]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[1]'));?>
+
+                <p class="field " style="width:115px; ">
+                    <label class="" for="contato__id_tipo_cadastro_1" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_1" style="">
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[1]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818002" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818002" style=""><input id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818002" name="contato__id_tipo_contato[2]" type="hidden" value="{id_tipo_contato}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[2]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818002" minLength="0" name="ac_2757237156aa29f35aa2a4da5e184541d10568030b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_contatos/get" style="" type="text" value="{descricao_tipo_contato}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+                    <label class="" for="contato__id_tipo_contato_1" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_1" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[1]'));?>
+                        <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                        <?php echo $this->formElement($input = $form->get('ac_1'));?>
+                        <em class="autocomplete_search  required autosuggest"></em>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_852511150dbf4901654295c16463caf90cfcb28312" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_852511150dbf4901654295c16463caf90cfcb28312" style=""><input class=" required" id="contato__descricao_852511150dbf4901654295c16463caf90cfcb28312" maxlength="50" name="contato__descricao[2]" style="" type="text" value="{descricao}"></input></span>
+                    <label class="" for="contato__descricao_1" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_1" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[1]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7182" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7182" style=""><input id="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7182" maxlength="50" name="contato__detalhes[2]" style="" type="text" value="{detalhes}"></input></span>
+                    <label class="" for="contato__detalhes_1" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_1" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[1]'));?>
+                    </span>
                 </p>
 
-                <div style="float:left; padding:23px; margin-left: -15px">
-                    <p class="checkbox_field  block" style="">
-                        <label class="" for="contato__principal[2]" style="">
-                            <input id="contato__principal_430005188acca9819a01bb884ce423c03ac152eef2" name="contato__principal[2]" rel="{principal}" style="" type="checkbox" value="1"></input><span>Principal</span></label>
-                    </p>
-                </div>
                 <hr class="clear" size="1"></hr>
             </div>
-            <div class="clonedField" id="contato3">
-                <input class="clone_id" id="contato__id_189212706844f3f7fe64d5e3a762346983f865d7793" name="contato__id[3]" type="hidden" value=""></input>
-                <input id="contato__editavel_20756124427b43336a9627426f00b2b558988a83ac3" name="contato__editavel[3]" type="hidden" value="{editavel}"></input>
-                <input id="contato__id_entidade_18147421103cc666f27c4484ce9443d06adbd98ca3" name="contato__id_entidade[3]" type="hidden" value=""></input>
+            <!-- FIM CAMPOS DE CONTATO 2 -->
 
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a33" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a33" style=""><input id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a33" name="contato__id_tipo_cadastro[3]" type="hidden" value="{id_tipo_cadastro}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[3]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a33" minLength="0" name="ac_36095225154e0710048947cac00ceb8d81f6220cd3" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_cadastros/get" style="" type="text" value="{descricao_tipo_cadastro}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+            <!-- CAMPOS DE CONTATO 3 -->
+            <div class="clonedField hiddenClone" id="contato2">
+
+                <?php echo $this->formElement($input = $form->get('contato__id[2]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[2]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[2]'));?>
+
+                <p class="field " style="width:115px; ">
+                    <label class="" for="contato__id_tipo_cadastro_2" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_2" style="">
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[2]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818003" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818003" style=""><input id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818003" name="contato__id_tipo_contato[3]" type="hidden" value="{id_tipo_contato}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[3]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818003" minLength="0" name="ac_3757237156aa29f35aa2a4da5e184541d10568030b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_contatos/get" style="" type="text" value="{descricao_tipo_contato}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+                    <label class="" for="contato__id_tipo_contato_2" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_2" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[2]'));?>
+                        <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                        <?php echo $this->formElement($input = $form->get('ac_2'));?>
+                        <em class="autocomplete_search  required autosuggest"></em>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_852511150dbf4901654295c16463caf90cfcb28313" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_852511150dbf4901654295c16463caf90cfcb28313" style=""><input class=" required" id="contato__descricao_852511150dbf4901654295c16463caf90cfcb28313" maxlength="50" name="contato__descricao[3]" style="" type="text" value="{descricao}"></input></span>
+                    <label class="" for="contato__descricao_2" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_2" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[2]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7183" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7183" style=""><input id="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7183" maxlength="50" name="contato__detalhes[3]" style="" type="text" value="{detalhes}"></input></span>
+                    <label class="" for="contato__detalhes_2" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_2" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[2]'));?>
+                    </span>
                 </p>
 
-                <div style="float:left; padding:23px; margin-left: -15px">
-                    <p class="checkbox_field  block" style="">
-                        <label class="" for="contato__principal[3]" style="">
-                            <input id="contato__principal_430005188acca9819a01bb884ce423c03ac152eef3" name="contato__principal[3]" rel="{principal}" style="" type="checkbox" value="1"></input><span>Principal</span></label>
-                    </p>
-                </div>
                 <hr class="clear" size="1"></hr>
-            </div>
-            <div class="clonedField" id="contato4">
-                <input class="clone_id" id="contato__id_189212706844f3f7fe64d5e3a762346983f865d7794" name="contato__id[4]" type="hidden" value=""></input>
-                <input id="contato__editavel_20756124427b43336a9627426f00b2b558988a83ac4" name="contato__editavel[4]" type="hidden" value="{editavel}"></input>
-                <input id="contato__id_entidade_18147421103cc666f27c4484ce9443d06adbd98ca4" name="contato__id_entidade[4]" type="hidden" value=""></input>
 
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a34" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a34" style=""><input id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a34" name="contato__id_tipo_cadastro[4]" type="hidden" value="{id_tipo_cadastro}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[4]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a34" minLength="0" name="ac_46095225154e0710048947cac00ceb8d81f6220cd3" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_cadastros/get" style="" type="text" value="{descricao_tipo_cadastro}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+            </div>
+            <!-- FIM CAMPOS DE CONTATO 1 -->
+
+            <!-- CAMPOS DE CONTATO 4 -->
+            <div class="clonedField hiddenClone" id="contato3">
+
+                <?php echo $this->formElement($input = $form->get('contato__id[3]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[3]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[3]'));?>
+
+                <p class="field " style="width:115px; ">
+                    <label class="" for="contato__id_tipo_cadastro_3" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_3" style="">
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[3]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818004" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818004" style=""><input id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818004" name="contato__id_tipo_contato[4]" type="hidden" value="{id_tipo_contato}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[4]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818004" minLength="0" name="ac_4757237156aa29f35aa2a4da5e184541d10568030b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_contatos/get" style="" type="text" value="{descricao_tipo_contato}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+                    <label class="" for="contato__id_tipo_contato_3" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_3" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[3]'));?>
+                        <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                        <?php echo $this->formElement($input = $form->get('ac_3'));?>
+                        <em class="autocomplete_search  required autosuggest"></em>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_852511150dbf4901654295c16463caf90cfcb28314" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_852511150dbf4901654295c16463caf90cfcb28314" style=""><input class=" required" id="contato__descricao_852511150dbf4901654295c16463caf90cfcb28314" maxlength="50" name="contato__descricao[4]" style="" type="text" value="{descricao}"></input></span>
+                    <label class="" for="contato__descricao_3" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_3" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[3]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7184" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7184" style=""><input id="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7184" maxlength="50" name="contato__detalhes[4]" style="" type="text" value="{detalhes}"></input></span>
+                    <label class="" for="contato__detalhes_3" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_3" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[3]'));?>
+                    </span>
                 </p>
 
-                <div style="float:left; padding:23px; margin-left: -15px">
-                    <p class="checkbox_field  block" style="">
-                        <label class="" for="contato__principal[4]" style="">
-                            <input id="contato__principal_430005188acca9819a01bb884ce423c03ac152eef4" name="contato__principal[4]" rel="{principal}" style="" type="checkbox" value="1"></input><span>Principal</span></label>
-                    </p>
-                </div>
                 <hr class="clear" size="1"></hr>
-            </div>
-            <div class="clonedField" id="contato5">
-                <input class="clone_id" id="contato__id_189212706844f3f7fe64d5e3a762346983f865d7795" name="contato__id[5]" type="hidden" value=""></input>
-                <input id="contato__editavel_20756124427b43336a9627426f00b2b558988a83ac5" name="contato__editavel[5]" type="hidden" value="{editavel}"></input>
-                <input id="contato__id_entidade_18147421103cc666f27c4484ce9443d06adbd98ca5" name="contato__id_entidade[5]" type="hidden" value=""></input>
 
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a35" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a35" style=""><input id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a35" name="contato__id_tipo_cadastro[5]" type="hidden" value="{id_tipo_cadastro}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[5]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a35" minLength="0" name="ac_56095225154e0710048947cac00ceb8d81f6220cd3" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_cadastros/get" style="" type="text" value="{descricao_tipo_cadastro}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+            </div>
+            <!-- FIM CAMPOS DE CONTATO 4 -->
+
+            <!-- CAMPOS DE CONTATO 5 -->
+            <div class="clonedField hiddenClone" id="contato4">
+
+                <?php echo $this->formElement($input = $form->get('contato__id[4]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__editavel[4]'));?>
+                <?php echo $this->formElement($input = $form->get('contato__id_entidade[4]'));?>
+
+                <p class="field " style="width:115px; ">
+                    <label class="" for="contato__id_tipo_cadastro_4" style="">Tipo de Cadastro</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_cadastro_4" style="">
+                         <?php echo $this->formElement($input = $form->get('contato__id_tipo_cadastro[4]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818005" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818005" style=""><input id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818005" name="contato__id_tipo_contato[5]" type="hidden" value="{id_tipo_contato}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[5]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818005" minLength="0" name="ac_5757237156aa29f35aa2a4da5e184541d10568030b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_contatos/get" style="" type="text" value="{descricao_tipo_contato}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
+                    <label class="" for="contato__id_tipo_contato_4" style="">Tipo de Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__id_tipo_contato_4" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__id_tipo_contato[4]'));?>
+                        <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                        <?php echo $this->formElement($input = $form->get('ac_4'));?>
+                        <em class="autocomplete_search  required autosuggest"></em>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_852511150dbf4901654295c16463caf90cfcb28315" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_852511150dbf4901654295c16463caf90cfcb28315" style=""><input class=" required" id="contato__descricao_852511150dbf4901654295c16463caf90cfcb28315" maxlength="50" name="contato__descricao[5]" style="" type="text" value="{descricao}"></input></span>
+                    <label class="" for="contato__descricao_4" style="">Contato</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__descricao_4" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__descricao[4]'));?>
+                    </span>
                 </p>
 
                 <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7185" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7185" style=""><input id="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7185" maxlength="50" name="contato__detalhes[5]" style="" type="text" value="{detalhes}"></input></span>
+                    <label class="" for="contato__detalhes_4" style="">Detalhes</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="contato__detalhes_4" style="">
+                        <?php echo $this->formElement($input = $form->get('contato__detalhes[4]'));?>
+                    </span>
                 </p>
 
-                <div style="float:left; padding:23px; margin-left: -15px">
-                    <p class="checkbox_field  block" style="">
-                        <label class="" for="contato__principal[5]" style="">
-                            <input id="contato__principal_430005188acca9819a01bb884ce423c03ac152eef5" name="contato__principal[5]" rel="{principal}" style="" type="checkbox" value="1"></input><span>Principal</span></label>
-                    </p>
-                </div>
                 <hr class="clear" size="1"></hr>
+
             </div>
-            <div class="clonedField" id="contato6">
-                <input class="clone_id" id="contato__id_189212706844f3f7fe64d5e3a762346983f865d7796" name="contato__id[6]" type="hidden" value=""></input>
-                <input id="contato__editavel_20756124427b43336a9627426f00b2b558988a83ac6" name="contato__editavel[6]" type="hidden" value="{editavel}"></input>
-                <input id="contato__id_entidade_18147421103cc666f27c4484ce9443d06adbd98ca6" name="contato__id_entidade[6]" type="hidden" value=""></input>
+            <!-- CAMPOS DE CONTATO 5 -->
 
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a36" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a36" style=""><input id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a36" name="contato__id_tipo_cadastro[6]" type="hidden" value="{id_tipo_cadastro}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[6]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a36" minLength="0" name="ac_66095225154e0710048947cac00ceb8d81f6220cd3" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_cadastros/get" style="" type="text" value="{descricao_tipo_cadastro}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
-                </p>
-
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818006" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818006" style=""><input id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818006" name="contato__id_tipo_contato[6]" type="hidden" value="{id_tipo_contato}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[6]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818006" minLength="0" name="ac_6757237156aa29f35aa2a4da5e184541d10568030b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_contatos/get" style="" type="text" value="{descricao_tipo_contato}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
-                </p>
-
-                <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_852511150dbf4901654295c16463caf90cfcb28316" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_852511150dbf4901654295c16463caf90cfcb28316" style=""><input class=" required" id="contato__descricao_852511150dbf4901654295c16463caf90cfcb28316" maxlength="50" name="contato__descricao[6]" style="" type="text" value="{descricao}"></input></span>
-                </p>
-
-                <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7186" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7186" style=""><input id="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7186" maxlength="50" name="contato__detalhes[6]" style="" type="text" value="{detalhes}"></input></span>
-                </p>
-
-                <div style="float:left; padding:23px; margin-left: -15px">
-                    <p class="checkbox_field  block" style="">
-                        <label class="" for="contato__principal[6]" style="">
-                            <input id="contato__principal_430005188acca9819a01bb884ce423c03ac152eef6" name="contato__principal[6]" rel="{principal}" style="" type="checkbox" value="1"></input><span>Principal</span></label>
-                    </p>
-                </div>
-                <hr class="clear" size="1"></hr>
-            </div>
-            <div class="clonedField" id="contato7">
-                <input class="clone_id" id="contato__id_189212706844f3f7fe64d5e3a762346983f865d7797" name="contato__id[7]" type="hidden" value=""></input>
-                <input id="contato__editavel_20756124427b43336a9627426f00b2b558988a83ac7" name="contato__editavel[7]" type="hidden" value="{editavel}"></input>
-                <input id="contato__id_entidade_18147421103cc666f27c4484ce9443d06adbd98ca7" name="contato__id_entidade[7]" type="hidden" value=""></input>
-
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a37" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a37" style=""><input id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a37" name="contato__id_tipo_cadastro[7]" type="hidden" value="{id_tipo_cadastro}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[7]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a37" minLength="0" name="ac_76095225154e0710048947cac00ceb8d81f6220cd3" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_cadastros/get" style="" type="text" value="{descricao_tipo_cadastro}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
-                </p>
-
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818007" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818007" style=""><input id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818007" name="contato__id_tipo_contato[7]" type="hidden" value="{id_tipo_contato}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[7]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818007" minLength="0" name="ac_7757237156aa29f35aa2a4da5e184541d10568030b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_contatos/get" style="" type="text" value="{descricao_tipo_contato}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
-                </p>
-
-                <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_852511150dbf4901654295c16463caf90cfcb28317" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_852511150dbf4901654295c16463caf90cfcb28317" style=""><input class=" required" id="contato__descricao_852511150dbf4901654295c16463caf90cfcb28317" maxlength="50" name="contato__descricao[7]" style="" type="text" value="{descricao}"></input></span>
-                </p>
-
-                <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7187" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7187" style=""><input id="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7187" maxlength="50" name="contato__detalhes[7]" style="" type="text" value="{detalhes}"></input></span>
-                </p>
-
-                <div style="float:left; padding:23px; margin-left: -15px">
-                    <p class="checkbox_field  block" style="">
-                        <label class="" for="contato__principal[7]" style="">
-                            <input id="contato__principal_430005188acca9819a01bb884ce423c03ac152eef7" name="contato__principal[7]" rel="{principal}" style="" type="checkbox" value="1"></input><span>Principal</span></label>
-                    </p>
-                </div>
-                <hr class="clear" size="1"></hr>
-            </div>
-            <div class="clonedField" id="contato8">
-                <input class="clone_id" id="contato__id_189212706844f3f7fe64d5e3a762346983f865d7798" name="contato__id[8]" type="hidden" value=""></input>
-                <input id="contato__editavel_20756124427b43336a9627426f00b2b558988a83ac8" name="contato__editavel[8]" type="hidden" value="{editavel}"></input>
-                <input id="contato__id_entidade_18147421103cc666f27c4484ce9443d06adbd98ca8" name="contato__id_entidade[8]" type="hidden" value=""></input>
-
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a38" style="">Tipo de Cadastro</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a38" style=""><input id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a38" name="contato__id_tipo_cadastro[8]" type="hidden" value="{id_tipo_cadastro}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_cadastro[8]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Cadastro" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_cadastros/form" form_url_field="descricao" id="contato__id_tipo_cadastro_6133288497f05b3ac099ee5141cfe6e3d4dc1c2a38" minLength="0" name="ac_86095225154e0710048947cac00ceb8d81f6220cd3" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_cadastros/get" style="" type="text" value="{descricao_tipo_cadastro}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
-                </p>
-
-                <p class="field " style="width:105px; ">
-                    <label class="" for="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818008" style="">Tipo de Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818008" style=""><input id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818008" name="contato__id_tipo_contato[8]" type="hidden" value="{id_tipo_contato}"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="contato__id_tipo_contato[8]" class=" autosuggest" filters="[]" form_title="Cadastrando Tipo de Contato" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tipos_contatos/form" form_url_field="descricao" id="contato__id_tipo_contato_164116511244150491efc650d2ce5b1a0262f818008" minLength="0" name="ac_8757237156aa29f35aa2a4da5e184541d10568030b" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/tipos_contatos/get" style="" type="text" value="{descricao_tipo_contato}" valueclear="true" valuefield="id"></input><em class="autocomplete_search  autosuggest"></em></span>
-                </p>
-
-                <p class="field " style="width:auto; width:270px">
-                    <label class="" for="contato__descricao_852511150dbf4901654295c16463caf90cfcb28318" style="">Contato</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__descricao_852511150dbf4901654295c16463caf90cfcb28318" style=""><input class=" required" id="contato__descricao_852511150dbf4901654295c16463caf90cfcb28318" maxlength="50" name="contato__descricao[8]" style="" type="text" value="{descricao}"></input></span>
-                </p>
-
-                <p class="field " style="width:auto; width:310px">
-                    <label class="" for="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7188" style="">Detalhes</label><span class="input_alert">&nbsp;</span><span class="input " rel="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7188" style=""><input id="contato__detalhes_1258580140b05ce4a20db62d80988d15ee2f56b7188" maxlength="50" name="contato__detalhes[8]" style="" type="text" value="{detalhes}"></input></span>
-                </p>
-
-                <div style="float:left; padding:23px; margin-left: -15px">
-                    <p class="checkbox_field  block" style="">
-                        <label class="" for="contato__principal[8]" style="">
-                            <input id="contato__principal_430005188acca9819a01bb884ce423c03ac152eef8" name="contato__principal[8]" rel="{principal}" style="" type="checkbox" value="1"></input><span>Principal</span></label>
-                    </p>
-                </div>
-                <hr class="clear" size="1"></hr>
-            </div>
             <input class="cloneable" rel="contato" separator="false" type="button" value="Inserir novo contato"></input>
+
         </div>
 
     </fieldset>
+
+    <!-- (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR  -->
     <div class="tab_navigator ">
-        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>
+        &nbsp;&nbsp;
         <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
     </div>
+    <!-- FIM (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR -->
+
 </div>
+

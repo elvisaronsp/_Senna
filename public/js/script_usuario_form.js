@@ -272,6 +272,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 (function ($) {
     $(document).ready(function () {
 
+        /* CONTATOS  E ENDEREÇOS */
         var botao_inserir_novo = $("#contato .cloneable");
         var botao_inserir_novo_endereco = $("#endereco .cloneable");
         if ($("#id").val() == '') {
@@ -301,7 +302,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
             }
 
         });
-
+        /* FIM CONTATOS  E ENDEREÇOS */
 
         //   $('[id*=endereco].clonedField ').find('div:last :input').each(function() {
         //      alert($(this).attr('id'))

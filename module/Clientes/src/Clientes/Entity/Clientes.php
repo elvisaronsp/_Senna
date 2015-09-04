@@ -87,9 +87,9 @@ class Clientes
     /**
      * @var boolean
      *
-     * @ORM\Column(name="imInsento", type="boolean", nullable=true)
+     * @ORM\Column(name="imIsento", type="boolean", nullable=true)
      */
-    private $iminsento = '0';
+    private $imisento = '0';
 
     /**
      * @var string
@@ -404,18 +404,18 @@ class Clientes
     /**
      * @return boolean
      */
-    public function getImInsento()
+    public function getImIsento()
     {
-        return $this->iminsento;
+        return $this->imisento;
     }
 
     /**
-     * @param boolean $iminsento
+     * @param boolean $imisento
      * @return Clientes
      */
-    public function setImInsento($iminsento)
+    public function setImIsento($imisento)
     {
-        $this->iminsento = $iminsento;
+        $this->imisento = $imisento;
         return $this;
     }
 
@@ -908,7 +908,7 @@ class Clientes
             'ie'                       => $this->ie,
             'ieIsento'                 => $this->ieisento,
             'im'                       => $this->im,
-            'imInsento'                => $this->iminsento,
+            'imIsento'                => $this->imisento,
             'codigoCliente'            => $this->codigocliente,
             'tipo'                     => $this->tipo,
             'origem'                   => $this->origem,

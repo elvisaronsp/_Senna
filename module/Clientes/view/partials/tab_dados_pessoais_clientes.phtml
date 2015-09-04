@@ -1,3 +1,24 @@
+<style>
+
+    div#ratting {
+        margin: 10px 0; }
+
+    div#ratting label, div#ratting span {
+        font-size: 12px;
+        color: #999999;
+        position: relative;
+        top: -3px;
+        display: inline-block;
+        font-weight: bold;
+        font-family: sans-serif; }
+
+    div#ratting label {
+        text-align: right;
+        width: 120px;
+        padding-right: 3px;
+        color: #666666; }
+
+</style>
 <div class="tab" id="tab_dados_pessoais" ref="<img src='../../../images/data.png'> Dados Pessoais" rel="tab_dados_pessoais">
 
     <?php echo $this->formElement($input = $form->get('id'));?>
@@ -34,14 +55,21 @@
     <fieldset class="fieldset " style="width:25%;">
         <legend>
             <span class="legend">
-                <span class="legend_label">Origem</span>
+                <span class="legend_label">Classificação</span>
                 <span class="input_alert">&nbsp;</span>
             </span>
         </legend>
 
         <p class="field " style="width:auto; ">
             <span class="input radio" rel="" style="">
-                <?php echo $this->formElement($input = $form->get('origem'));?>
+                <div name="simple" id="ratting">
+                    <input type="radio" name="rating" value="1">
+                    <input type="radio" name="rating" value="2">
+                    <input type="radio" name="rating" value="3">
+                    <input type="radio" name="rating" value="4">
+                    <input type="radio" name="rating" value="5">
+                    <span id="simpleTip">Cliente 1 estrela.</span>
+                </div>
             </span>
         </p>
         <?php echo $this->formElement($input = $form->get('flag_exterior'));?>
@@ -98,7 +126,7 @@
                     <?php echo $this->formElement($input = $form->get('cnpj'));?>
                 </span>
             </p>
-            <input class="btn_view" id="pesquisar_cnpj" name="" style="float:left;height:23px;margin:22px 0 0;padding:0;width:33px;" title="Pesquisar dados pelo CNPJ" type="button" value=""></input>
+
 
             <p class="field " style="width:72%; ">
                 <label class="" for="nome_fantasia" style="">Nome Fantasia</label>
@@ -160,7 +188,7 @@
             <div style="float:left; width:65px;padding-top:22px">
                 <p class="checkbox_field  block" style="">
                     <label class="" for="imInsento" style="">
-                        <?php echo $this->formElement($input = $form->get('imInsento'));?>
+                        <?php echo $this->formElement($input = $form->get('imIsento'));?>
                         <span>Isento</span>
                     </label>
                 </p>

@@ -968,6 +968,8 @@ class Funcionarios extends Form
             ->setValue("");
         $this->add($input);
 
+
+        //#################### ENDEREÇOS ###################################
         // radio
         $this->add(array(
             'type' => 'radio',
@@ -1655,5 +1657,7 @@ class Funcionarios extends Form
         $hidden->setAttribute('id', "endereco_entidade__principal_4")
             ->setValue("");
         $this->add($hidden);
+
+        //#################### FIM DE ENDEREÇOS ################################
     }
 }

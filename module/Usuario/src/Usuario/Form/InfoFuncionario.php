@@ -659,6 +659,407 @@ class InfoFuncionario extends Form
         $this->add($input);
 
         ############################## FIM CONTATOS #############################
+//#####################  CONTATOS #############################
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id[0]');
+        $hidden->setAttribute('id', "contato__id_0")
+            ->setAttribute("class", "clone_id")
+            ->setValue("");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__editavel[0]');
+        $hidden->setAttribute('id', "contato__editavel_0")
+            ->setValue("");
+        $this->add($hidden);
+
+        //#### CONTATO 0
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_entidade[0]');
+        $hidden->setAttribute('id', "contato__id_entidade_0")
+            ->setValue("");
+        $this->add($hidden);
+
+        // select
+        $select = new Select();
+        $select->setName("contato__id_tipo_cadastro[0]")
+            ->setAttribute('id', "contato__id_tipo_cadastro_0")
+            ->setAttribute('eval', "{contato__id_tipo_cadastro_0}")
+            ->setAttribute('size', "1")
+            ->setAttribute('style', "")
+            ->setAttribute('class', "valid")
+            ->setOptions(array('value_options' => array("COMERCIAL", "PARTICULAR", "RESIDENCIAL", "ENTREGA", "EMERGENCIAS")));
+        $this->add($select);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_tipo_contato[0]');
+        $hidden->setAttribute('id', "contato__id_tipo_contato_0")
+            ->setValue("");
+        $this->add($hidden);
+
+        // input sugestao
+        $input = new \Zend\Form\Element\Text("ac_0");
+        $input->setAttribute('id', "contato__id_tipo_contato_0")
+            ->setAttribute('style', "")
+            ->setAttribute('autosuggest', "contato__id_tipo_contato[0]")
+            ->setAttribute('class', "autosuggest required ui-autocomplete-input")
+            ->setAttribute('filters', "[]")
+            ->setAttribute('form_title', "Cadastrando Cidade")
+            ->setAttribute('form_url', "")
+            ->setAttribute('form_url_field', "")
+            ->setAttribute('minlength', "0")
+            ->setAttribute('new_item_info', "Criar um novo registro")
+            ->setAttribute('new_item_label', "Cadastrar Novo")
+            ->setAttribute('source', "/senna/cadastro/util/getTiposCadastros")
+            ->setAttribute('uppercase', "true")
+            ->setAttribute('valueclear', "true")
+            ->setAttribute('valuefield', "id")
+            ->setAttribute('autocomplete', "off")
+            ->setAttribute('autocomplete', "textbox")
+            ->setAttribute('aria-autocomplete', "list")
+            ->setAttribute('aria-haspopup', "true")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__descricao[0]");
+        $input->setAttribute('id', "contato__descricao_0")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "required")
+            ->setAttribute('style', "")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__detalhes[0]");
+        $input->setAttribute('id', "contato__detalhes_0")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "")
+            ->setAttribute('style', "")
+            ->setAttribute('uppercase', "true")
+            ->setValue("");
+        $this->add($input);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id[1]');
+        $hidden->setAttribute('id', "contato__id_1")
+            ->setValue("")
+            ->setAttribute("class", "clone_id");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__editavel[1]');
+        $hidden->setAttribute('id', "contato__editavel_1")
+            ->setValue("");
+        $this->add($hidden);
+
+        //#### CONTATO 1
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_entidade[1]');
+        $hidden->setAttribute('id', "contato__id_entidade_1")
+            ->setValue("");
+        $this->add($hidden);
+
+        // select
+        $select = new Select();
+        $select->setName("contato__id_tipo_cadastro[1]")
+            ->setAttribute('id', "contato__id_tipo_cadastro_1")
+            ->setAttribute('eval', "{contato__id_tipo_cadastro_1}")
+            ->setAttribute('size', "1")
+            ->setAttribute('style', "")
+            ->setAttribute('class', "valid")
+            ->setOptions(array('value_options' => array("COMERCIAL", "PARTICULAR", "RESIDENCIAL", "ENTREGA", "EMERGENCIAS")));
+        $this->add($select);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_tipo_contato[1]');
+        $hidden->setAttribute('id', "contato__id_tipo_contato_1")
+            ->setValue("");
+        $this->add($hidden);
+
+        // input sugestao
+        $input = new \Zend\Form\Element\Text("ac_1");
+        $input->setAttribute('id', "contato__id_tipo_contato_1")
+            ->setAttribute('style', "")
+            ->setAttribute('autosuggest', "contato__id_tipo_contato[1]")
+            ->setAttribute('class', "autosuggest required ui-autocomplete-input")
+            ->setAttribute('filters', "[]")
+            ->setAttribute('form_title', "Cadastrando Cidade")
+            ->setAttribute('form_url', "")
+            ->setAttribute('form_url_field', "")
+            ->setAttribute('minlength', "0")
+            ->setAttribute('new_item_info', "Criar um novo registro")
+            ->setAttribute('new_item_label', "Cadastrar Novo")
+            ->setAttribute('source', "/senna/cadastro/util/getTiposCadastros")
+            ->setAttribute('uppercase', "true")
+            ->setAttribute('valueclear', "true")
+            ->setAttribute('valuefield', "id")
+            ->setAttribute('autocomplete', "off")
+            ->setAttribute('autocomplete', "textbox")
+            ->setAttribute('aria-autocomplete', "list")
+            ->setAttribute('aria-haspopup', "true")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__descricao[1]");
+        $input->setAttribute('id', "contato__descricao_1")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "required")
+            ->setAttribute('style', "")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__detalhes[1]");
+        $input->setAttribute('id', "contato__detalhes_1")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "")
+            ->setAttribute('style', "")
+            ->setAttribute('uppercase', "true")
+            ->setValue("");
+        $this->add($input);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id[2]');
+        $hidden->setAttribute('id', "contato__id_2")
+            ->setValue("")
+            ->setAttribute("class", "clone_id");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__editavel[2]');
+        $hidden->setAttribute('id', "contato__editavel_2")
+            ->setValue("");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_entidade[2]');
+        $hidden->setAttribute('id', "contato__id_entidade_2")
+            ->setValue("");
+        $this->add($hidden);
+
+        // select
+        $select = new Select();
+        $select->setName("contato__id_tipo_cadastro[2]")
+            ->setAttribute('id', "contato__id_tipo_cadastro_2")
+            ->setAttribute('eval', "{contato__id_tipo_cadastro_2}")
+            ->setAttribute('size', "1")
+            ->setAttribute('style', "")
+            ->setAttribute('class', "valid")
+            ->setOptions(array('value_options' => array("COMERCIAL", "PARTICULAR", "RESIDENCIAL", "ENTREGA", "EMERGENCIAS")));
+        $this->add($select);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_tipo_contato[2]');
+        $hidden->setAttribute('id', "contato__id_tipo_contato_2")
+            ->setValue("");
+        $this->add($hidden);
+
+        // input sugestao
+        $input = new \Zend\Form\Element\Text("ac_2");
+        $input->setAttribute('id', "contato__id_tipo_contato_2")
+            ->setAttribute('style', "")
+            ->setAttribute('autosuggest', "contato__id_tipo_contato[2]")
+            ->setAttribute('class', "autosuggest required ui-autocomplete-input")
+            ->setAttribute('filters', "[]")
+            ->setAttribute('form_title', "Cadastrando Cidade")
+            ->setAttribute('form_url', "")
+            ->setAttribute('form_url_field', "")
+            ->setAttribute('minlength', "0")
+            ->setAttribute('new_item_info', "Criar um novo registro")
+            ->setAttribute('new_item_label', "Cadastrar Novo")
+            ->setAttribute('source', "/senna/cadastro/util/getTiposCadastros")
+            ->setAttribute('uppercase', "true")
+            ->setAttribute('valueclear', "true")
+            ->setAttribute('valuefield', "id")
+            ->setAttribute('autocomplete', "off")
+            ->setAttribute('autocomplete', "textbox")
+            ->setAttribute('aria-autocomplete', "list")
+            ->setAttribute('aria-haspopup', "true")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__descricao[2]");
+        $input->setAttribute('id', "contato__descricao_2")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "required")
+            ->setAttribute('style', "")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__detalhes[2]");
+        $input->setAttribute('id', "contato__detalhes_2")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "")
+            ->setAttribute('style', "")
+            ->setAttribute('uppercase', "true")
+            ->setValue("");
+        $this->add($input);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id[3]');
+        $hidden->setAttribute('id', "contato__id_3")
+            ->setValue("")
+            ->setAttribute("class", "clone_id");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__editavel[3]');
+        $hidden->setAttribute('id', "contato__editavel_3")
+            ->setValue("");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_entidade[3]');
+        $hidden->setAttribute('id', "contato__id_entidade_3")
+            ->setValue("");
+        $this->add($hidden);
+
+        // select
+        $select = new Select();
+        $select->setName("contato__id_tipo_cadastro[3]")
+            ->setAttribute('id', "contato__id_tipo_cadastro_3")
+            ->setAttribute('eval', "{contato__id_tipo_cadastro_3}")
+            ->setAttribute('size', "1")
+            ->setAttribute('style', "")
+            ->setAttribute('class', "valid")
+            ->setOptions(array('value_options' => array("COMERCIAL", "PARTICULAR", "RESIDENCIAL", "ENTREGA", "EMERGENCIAS")));
+        $this->add($select);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_tipo_contato[3]');
+        $hidden->setAttribute('id', "contato__id_tipo_contato_3")
+            ->setValue("");
+        $this->add($hidden);
+
+        // input sugestao
+        $input = new \Zend\Form\Element\Text("ac_3");
+        $input->setAttribute('id', "contato__id_tipo_contato_3")
+            ->setAttribute('style', "")
+            ->setAttribute('autosuggest', "contato__id_tipo_contato[3]")
+            ->setAttribute('class', "autosuggest required ui-autocomplete-input")
+            ->setAttribute('filters', "[]")
+            ->setAttribute('form_title', "Cadastrando Cidade")
+            ->setAttribute('form_url', "")
+            ->setAttribute('form_url_field', "")
+            ->setAttribute('minlength', "0")
+            ->setAttribute('new_item_info', "Criar um novo registro")
+            ->setAttribute('new_item_label', "Cadastrar Novo")
+            ->setAttribute('source', "/senna/cadastro/util/getTiposCadastros")
+            ->setAttribute('uppercase', "true")
+            ->setAttribute('valueclear', "true")
+            ->setAttribute('valuefield', "id")
+            ->setAttribute('autocomplete', "off")
+            ->setAttribute('autocomplete', "textbox")
+            ->setAttribute('aria-autocomplete', "list")
+            ->setAttribute('aria-haspopup', "true")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__descricao[3]");
+        $input->setAttribute('id', "contato__descricao_3")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "required")
+            ->setAttribute('style', "")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__detalhes[3]");
+        $input->setAttribute('id', "contato__detalhes_3")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "")
+            ->setAttribute('style', "")
+            ->setAttribute('uppercase', "true")
+            ->setValue("");
+        $this->add($input);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id[4]');
+        $hidden->setAttribute('id', "contato__id_4")
+            ->setValue("")
+            ->setAttribute("class", "clone_id");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__editavel[4]');
+        $hidden->setAttribute('id', "contato__editavel_4")
+            ->setValue("");
+        $this->add($hidden);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_entidade[4]');
+        $hidden->setAttribute('id', "contato__id_entidade_4")
+            ->setValue("");
+        $this->add($hidden);
+
+        // select
+        $select = new Select();
+        $select->setName("contato__id_tipo_cadastro[4]")
+            ->setAttribute('id', "contato__id_tipo_cadastro_4")
+            ->setAttribute('eval', "{contato__id_tipo_cadastro_4}")
+            ->setAttribute('size', "1")
+            ->setAttribute('style', "")
+            ->setAttribute('class', "valid")
+            ->setOptions(array('value_options' => array("COMERCIAL", "PARTICULAR", "RESIDENCIAL", "ENTREGA", "EMERGENCIAS")));
+        $this->add($select);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('contato__id_tipo_contato[4]');
+        $hidden->setAttribute('id', "contato__id_tipo_contato_4")
+            ->setValue("");
+        $this->add($hidden);
+
+        // input sugestao
+        $input = new \Zend\Form\Element\Text("ac_4");
+        $input->setAttribute('id', "contato__id_tipo_contato_4")
+            ->setAttribute('style', "")
+            ->setAttribute('autosuggest', "contato__id_tipo_contato[4]")
+            ->setAttribute('class', "autosuggest required ui-autocomplete-input")
+            ->setAttribute('filters', "[]")
+            ->setAttribute('form_title', "Cadastrando Cidade")
+            ->setAttribute('form_url', "")
+            ->setAttribute('form_url_field', "")
+            ->setAttribute('minlength', "0")
+            ->setAttribute('new_item_info', "Criar um novo registro")
+            ->setAttribute('new_item_label', "Cadastrar Novo")
+            ->setAttribute('source', "/senna/cadastro/util/getTiposCadastros")
+            ->setAttribute('uppercase', "true")
+            ->setAttribute('valueclear', "true")
+            ->setAttribute('valuefield', "id")
+            ->setAttribute('autocomplete', "off")
+            ->setAttribute('autocomplete', "textbox")
+            ->setAttribute('aria-autocomplete', "list")
+            ->setAttribute('aria-haspopup', "true")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__descricao[4]");
+        $input->setAttribute('id', "contato__descricao_4")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "required")
+            ->setAttribute('style', "")
+            ->setValue("");
+        $this->add($input);
+
+        // input
+        $input = new \Zend\Form\Element\Text("contato__detalhes[4]");
+        $input->setAttribute('id', "contato__detalhes_4")
+            ->setAttribute('maxLength', "50")
+            ->setAttribute('class', "")
+            ->setAttribute('style', "")
+            ->setAttribute('uppercase', "true")
+            ->setValue("");
+        $this->add($input);
+
+        ############################## FIM CONTATOS #############################
 
 
         ############################## ENDERECOS ###############################
