@@ -35,7 +35,10 @@ class Module
                 'Clientes\Form\Cliente' => function($sm)
                 {
                     return new Form\Cliente();
-                }
+                },
+                'Clientes\Service\Clientes' => function($sm){
+                    return new Service\Clientes($sm->get('Doctrine\ORM\Entitymanager'));
+                },
             )
         );
     }

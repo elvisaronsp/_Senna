@@ -72,14 +72,14 @@ class Cliente extends Form
             'name' => 'tipo',
             'attributes' => array(
                 'class' => 'required',
-                'eval' => '1',
+                'eval' => '0',
             ),
             'options' => array(
                 'label_options' => array('disable_html_escape' => true),
                 'label_attributes' => array('class' => 'inline'),
                 'value_options' => array(
-                    '1' => '<span>Juridíca</span>',
-                    '0' => '<span>Fisca</span>'
+                    '0' => '<span>Fisíca</span>',
+                    '1' => '<span>Juridíca</span>'
                 ),
             )
         ));
@@ -118,6 +118,16 @@ class Cliente extends Form
 
         /**
          * @element input
+         * @type hidden
+         * @name [classificacao]
+         **/
+        $input = new \Zend\Form\Element\Hidden('classificacao');
+        $input->setAttribute('id', 'classificacao')
+            ->setValue('1');
+        $this->add($input);
+
+        /**
+         * @element input
          * @type text
          * @name [criadoEm]
          **/
@@ -148,6 +158,7 @@ class Cliente extends Form
         $input->setAttribute('id', 'razaoSocial')
             ->setAttribute('class', 'focus required')
             ->setAttribute('maxlength', '60')
+            ->setAttribute('uppercase', "true")
             ->setValue('');
         $this->add($input);
 
@@ -158,7 +169,7 @@ class Cliente extends Form
          **/
         $input = new \Zend\Form\Element\Text('cpf');
         $input->setAttribute('id', 'cpf')
-            ->setAttribute('class', 'cpf')
+            ->setAttribute('class', 'cpf required')
             ->setAttribute('mask', '999.999.999-99')
             ->setValue('');
         $this->add($input);
@@ -170,8 +181,8 @@ class Cliente extends Form
          **/
         $input = new \Zend\Form\Element\Text('cnpj');
         $input->setAttribute('id', 'cnpj')
-            ->setAttribute('class', 'search cnpj')
-            ->setAttribute('mask', '99.999.999/9999-99')
+            ->setAttribute('class', "cnpj valid required")
+            ->setAttribute("mask", "99.999.999/9999-99")
             ->setAttribute('pstyle', 'width:115px;')
             ->setValue('');
         $this->add($input);
@@ -184,6 +195,7 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('nomeFantasia');
         $input->setAttribute('id', 'nomeFantasia')
             ->setAttribute('maxlength', '255')
+            ->setAttribute('class', 'required')
             ->setValue('');
         $this->add($input);
 
@@ -195,6 +207,7 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('responsavel');
         $input->setAttribute('id', 'responsavel')
             ->setAttribute('maxlength', '255')
+            ->setAttribute('class', 'required')
             ->setValue('');
         $this->add($input);
 
@@ -235,7 +248,7 @@ class Cliente extends Form
             'attributes' => array(
                 'campo' => 'ie',
                 'id' => 'ieIsento',
-                'value' => '1',
+                'value' => '0',
             )
         ));
 
@@ -265,7 +278,7 @@ class Cliente extends Form
             'attributes' => array(
                 'campo' => 'im',
                 'id' => 'imIsento',
-                'value' => '1',
+                'value' => '0',
             )
         ));
 
@@ -276,7 +289,8 @@ class Cliente extends Form
          **/
         $input = new \Zend\Form\Element\Text('codigoCliente');
         $input->setAttribute('id', 'codigoCliente')
-            ->setAttribute('maxlength', '14')
+            ->setAttribute('maxlength', '13')
+            ->setAttribute('class', 'required')
             ->setAttribute('uppercase', 'true')
             ->setValue('');
         $this->add($input);
@@ -289,6 +303,8 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('email');
         $input->setAttribute('id', 'email')
             ->setAttribute('maxlength', '50')
+            ->setAttribute('class', 'required')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -297,10 +313,14 @@ class Cliente extends Form
          * @type text
          * @name [telefone]
          **/
-        $input = new \Zend\Form\Element\Text('telefone');
-        $input->setAttribute('id', 'telefone')
-            ->setAttribute('maxlength', '14')
-            ->setValue('');
+        $input = new \Zend\Form\Element\Text("telefone");
+        $input->setAttribute('class', "required")
+            ->setAttribute('id', "telefone")
+            ->setAttribute('uppercase', "false")
+            ->setAttribute('maxLength', "14")
+            ->setAttribute('style', "")
+            ->setAttribute("mask", "(99)9999-9999?9")
+            ->setValue("");
         $this->add($input);
 
         /**
@@ -312,6 +332,7 @@ class Cliente extends Form
             ->setAttribute('cols', '90')
             ->setAttribute('maxlength', '4000')
             ->setAttribute('rows', '25')
+            ->setAttribute('uppercase', "true")
             ->setAttribute('style', 'height:70px;resize:none;')
             ->setValue('');
         $this->add($textarea);

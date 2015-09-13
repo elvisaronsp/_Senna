@@ -41,8 +41,9 @@
         ->appendFile($this->basePath() . '/js/jquery/ui.js')
         ->appendFile($this->basePath() . '/js/jquery/autosuggest.js')
         ->appendFile($this->basePath() . '/js/jquery/clonetable.js')
-        ->appendFile($this->basePath() . '/js/script_clientes_form.js')
-        ->appendFile($this->basePath() . '/js/moostarrating.js')?>
+        ->appendFile($this->basePath() . '/js/jquery/radioImageSelect.js')
+        ->appendFile($this->basePath() . '/js/script_criar_venda_form.js')
+        ->appendFile($this->basePath() . '/js/moostarrating.js') ?>
 
     <!-- Estilos da pagina Css/code -->
     <?php echo $this->headLink()
@@ -84,35 +85,35 @@
         <div class="form_fields" id="form_fields">
 
             <!-- TAB DADOS PESSOAIS -->
-            <?php echo $this->partial('partials/tab_dados_pessoais_clientes'); ?>
+            <?php echo $this->partial('partials/tab_configuracao_1'); ?>
             <!-- -->
 
             <!-- TAB DADOS SECUNDARIOS -->
-            <?php echo $this->partial('partials/tab_dados_secundarios_clientes'); ?>
+            <?php //echo $this->partial('partials/tab_dados_secundarios_clientes'); ?>
             <!-- -->
 
             <!-- TAB DE CONTATOS -->
-            <?php echo $this->partial('partials/tab_contatos_clientes'); ?>
+            <?php //echo $this->partial('partials/tab_contatos_clientes'); ?>
             <!-- -->
 
             <!-- TAB ENDERECO -->
-            <?php echo $this->partial('partials/tab_enderecos_clientes'); ?>
+            <?php //echo $this->partial('partials/tab_enderecos_clientes'); ?>
             <!-- -->
 
             <!-- TAB TRIBUTACAO -->
-            <?php echo $this->partial('partials/tab_tributacao_clientes'); ?>
+            <?php //echo $this->partial('partials/tab_tributacao_clientes'); ?>
             <!-- -->
 
             <!-- TAB NOTAS VINCULADAS -->
-            <?php echo $this->partial('partials/tab_notas_vinculadas_clientes'); ?>
+            <?php //echo $this->partial('partials/tab_notas_vinculadas_clientes'); ?>
             <!-- -->
 
             <!-- TAB SALDO CLIENTES -->
-            <?php echo $this->partial('partials/tab_saldo_clientes'); ?>
+            <?php //echo $this->partial('partials/tab_saldo_clientes'); ?>
             <!-- -->
 
             <!-- TAB VENDEDORES CLIENTES -->
-            <?php echo $this->partial('partials/tab_vendedores_clientes'); ?>
+            <?php //echo $this->partial('partials/tab_vendedores_clientes'); ?>
             <!-- -->
 
         </div>

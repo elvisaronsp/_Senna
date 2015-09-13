@@ -38,14 +38,14 @@ class ClientesController extends GrudController
 
         $auth = new AuthenticationService;
         $auth->setStorage(new SessionStorage("Usuario"));
-        //$form->get('empresa')->setAttribute('value', $auth->getIdentity()->getEmpresa()->getId());
+        $form->get('empresa')->setAttribute('value', $auth->getIdentity()->getEmpresa()->getId());
 
         $repository = $this->getEm()->getRepository($this->entity);
         $retorno = array('form' => $form);
         if ($this->params()->fromRoute('id', 0)) {
             $entity = $repository->find($this->params()->fromRoute('id', 0));
             $form->setData($entity->toArray());
-            $this->setValueForm($form, $entity->toArray());
+            //$this->setValueForm($form, $entity->toArray());
             $retorno = array('form' => $form);
         }
         $viewModel = new ViewModel ($retorno);
@@ -53,5 +53,104 @@ class ClientesController extends GrudController
 
         return $viewModel;
     }
+
+    /**
+     * @return ViewModel
+     */
+    public function SaveAction()
+    {
+        $retorno = array();
+        $request = $this->getRequest();
+        //echo "<pre>";
+        //print_r($request->getPost());
+        //echo "</pre>";
+        $service = $this->getServiceLocator()->get($this->service);
+        if (empty($request->getPost()['id'])) {
+            $podeCadastrar = $this->verificaExistencia();
+            if (!$podeCadastrar) {
+                # INSERT
+                if ($request->isPost()) {
+                    $entity = $service->insert($request->getPost()->toArray());
+                    $retorno['data'] = array(
+                        'id_field' => 'id',
+                        'id_value' => "" . $entity->getId() . "",
+                        'message'  => $this->message_insert,
+                        'type'     => 'success',);
+                }
+            } else {
+                $retorno['erro'] = $podeCadastrar;
+            }
+        } else {
+            # UPDATE
+            if ($request->isPost()) {
+                $podeCadastrar = $this->verificaExistencia();
+                if (!$podeCadastrar) {
+                    // remove contatos para atualizacao
+                    $repository = $this->getEm()->getRepository($this->contatos);
+                    $contatos = $repository->findBy(array('usuario' => $request->getPost()['id']));
+
+                    foreach ($contatos as $contato) {
+                        $this->getEm()->remove($contato);
+                    }
+                    // remove enderecos para atualizacao
+                    $repository = $this->getEm()->getRepository($this->enderecos);
+                    $enderecos = $repository->findBy(array('usuario' => $request->getPost()['id']));
+
+                    foreach ($enderecos as $endereco) {
+                        $this->getEm()->remove($endereco);
+                    }
+
+                    // remove horarios para atualizacao
+                    $repository = $this->getEm()->getRepository($this->horarios);
+                    $horarios = $repository->findBy(array('usuario' => $request->getPost()['id']));
+
+                    foreach ($horarios as $horario) {
+                        $this->getEm()->remove($horario);
+                    }
+
+                    $entity = $service->update($request->getPost()->toArray());
+                    $retorno['data'] = array(
+                        'id_field' => 'id',
+                        'id_value' => "" . $entity->getId() . "",
+                        'message' => $this->message_update,
+                        'session_updated' => true,
+                        'type' => 'success'
+                    );
+                }else {
+                    $retorno['erro'] = $podeCadastrar;
+                }
+            }
+        }
+        $viewModel = new ViewModel($retorno);
+        $viewModel->setTerminal(true);
+        return $viewModel;
+    }
+
+    /**
+     * @return bool|string
+     */
+    private function  verificaExistencia()
+    {
+        $request = $this->getRequest();
+        $repository = $this->getEm()->getRepository($this->entity);
+        if ($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'razaoSocial',$request->getPost()['razaoSocial'])):
+            return "RAZÃO SOCIAL";
+        elseif($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'cpf',$request->getPost()['cpf'])):
+            return "CPF";
+        elseif($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'codigoCliente',$request->getPost()['codigoCliente'])):
+            return "CODIGO CLIENTE";
+        elseif($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'email',$request->getPost()['email'])):
+            return "E-MAIL";
+        elseif($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'telefone',$request->getPost()['telefone'])):
+            return "TELEFONE";
+        elseif($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'cnpj',$request->getPost()['cnpj'])):
+            return "CNPJ";
+        elseif($repository->findByNot((!empty($request->getPost()['id']))?$request->getPost()['id']:null,'nomeFantasia',$request->getPost()['nomeFantasia'])):
+            return "NOME FANTASIA";
+        endif;
+
+        return false;
+    }
+
 
 }

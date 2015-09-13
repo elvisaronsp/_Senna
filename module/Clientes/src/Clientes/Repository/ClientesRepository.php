@@ -92,4 +92,29 @@ class ClientesRepository extends EntityRepository
             return $clientes;
         endif;
     }
+
+    /**
+     * @param null $id
+     * @param $campo
+     * @param $value
+     * @return bool
+     * Busca por existencia no banco de dados
+     */
+    public function findByNot($id = null,$campo, $value)
+    {
+        $query =  $this->_em->createQueryBuilder();
+        $query->select('clientes');
+        $query->from('Clientes\Entity\Clientes', 'clientes');
+        if($id):
+            $query->where($query->expr()->not($query->expr()->eq('clientes.id', '?1')));
+            $query->setParameter(1, $id);
+            $query->andWhere('clientes.'.$campo.'= ?2');
+            $query->setParameter(2, $value);
+        else:
+            $query->where('clientes.'.$campo.'= ?1');
+            $query->setParameter(1, $value);
+        endif;
+        //print_r($query->getQuery()->getDql());exit;
+        return ($query->getQuery()->getResult())?true:false;
+    }
 }

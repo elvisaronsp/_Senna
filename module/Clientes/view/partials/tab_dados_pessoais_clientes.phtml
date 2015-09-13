@@ -1,25 +1,4 @@
-<style>
-
-    div#ratting {
-        margin: 10px 0; }
-
-    div#ratting label, div#ratting span {
-        font-size: 12px;
-        color: #999999;
-        position: relative;
-        top: -3px;
-        display: inline-block;
-        font-weight: bold;
-        font-family: sans-serif; }
-
-    div#ratting label {
-        text-align: right;
-        width: 120px;
-        padding-right: 3px;
-        color: #666666; }
-
-</style>
-<div class="tab" id="tab_dados_pessoais" ref="<img src='../../../images/data.png'> Dados Pessoais" rel="tab_dados_pessoais">
+<div class="tab" id="tab_dados_pessoais" ref="<img src='\images/data.png'> Dados Pessoais" rel="tab_dados_pessoais">
 
     <?php echo $this->formElement($input = $form->get('id'));?>
     <?php echo $this->formElement($input = $form->get('empresa'));?>
@@ -56,12 +35,15 @@
         <legend>
             <span class="legend">
                 <span class="legend_label">Classificação</span>
+                <span class="input_info" style="">
+                    <img alt="info" class="infotip" src="/images/info.png" title="Classificação de clientes. A classificção de clientes rege a quantidade de itens em cada venda por cliente e a forma de faturamento aceitavel."></img>
+                </span>
                 <span class="input_alert">&nbsp;</span>
             </span>
         </legend>
 
-        <p class="field " style="width:auto; ">
             <span class="input radio" rel="" style="">
+                <?php echo $this->formElement($input = $form->get('classificacao'));?>
                 <div name="simple" id="ratting">
                     <input type="radio" name="rating" value="1">
                     <input type="radio" name="rating" value="2">
@@ -71,7 +53,7 @@
                     <span id="simpleTip">Cliente 1 estrela.</span>
                 </div>
             </span>
-        </p>
+
         <?php echo $this->formElement($input = $form->get('flag_exterior'));?>
 
     </fieldset>
@@ -92,7 +74,7 @@
     </fieldset>
     <?php echo $this->formElement($input = $form->get('tipocliente'));?>
     <hr class="clear" size="1"></hr>
-    <fieldset class="fieldset " id="field_tipo" style="width:97%;width:65%; float:left;">
+    <fieldset class="fieldset " id="campos_tipo_cliente" style="width:97%;width:65%; float:left;">
         <legend>
             <span class="legend">
                 <span class="legend_label">%temp%</span>
@@ -146,16 +128,16 @@
         </div>
 
         <hr class="clear" size="1"></hr>
-        <p class="field " style="width:170px; ">
+        <!--p class="field " style="width:170px; ">
             <label class="" for="ident_estrangeiro" style="">Identificação do Estrangeiro</label>
             <span class="input_info" style="">
-                <img alt="info" class="infotip" src="http://app.tagplus.com.br/capitalponto/resources/images/icons/info.png" title="Número do passaporte ou outro documento legal para identificar a pessoa estrangeira."></img>
+                <img alt="info" class="infotip" src="/images/info.png" title="Número do passaporte ou outro documento legal para identificar a pessoa estrangeira."></img>
             </span>
             <span class="input_alert">&nbsp;</span>
             <span class="input " rel="identificacaoEstrangeiro" style="">
-                <?php echo $this->formElement($input = $form->get('identificacaoEstrangeiro'));?>
+                <?php //echo $this->formElement($input = $form->get('identificacaoEstrangeiro'));?>
             </span>
-        </p>
+        </p-->
 
         <div id="grupo_ie">
             <p class="field " style="width:150px; ">
@@ -205,7 +187,7 @@
         <span class="ean" id="ean" style="margin-top:25px" title="Gerar Código EAN">&nbsp;</span>
 
     </fieldset>
-    <fieldset class="fieldset " id="field_contatos_principais" style="width:97%;width:30%; float:left;">
+    <fieldset class="fieldset " id="campos_contatos_principais" style="width:97%;width:30%; float:left;">
         <legend>
             <span class="legend"><span class="legend_label">Contatos Principais</span>
                 <span class="input_alert">&nbsp;</span>

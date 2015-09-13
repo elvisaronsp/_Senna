@@ -22,6 +22,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 });
 
 
+//### TRATAMENTO DE ENDERECOS
 (function ($) {
 
     var preencheForm = function ($parent, json) {
@@ -186,7 +187,7 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
 
 
 })(jQuery);
-
+//### TRATAMENTO DE CONTATOS
 (function ($) {
 
 

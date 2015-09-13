@@ -26,14 +26,14 @@ class Clientes
      *
      * @ORM\Column(name="razaoSocial", type="string", length=255, nullable=false)
      */
-    private $razaosocial = '';
+    private $razaoSocial = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="nomeFantasia", type="string", length=255, nullable=true)
      */
-    private $nomefantasia;
+    private $nomeFantasia;
 
     /**
      * @var string
@@ -75,7 +75,7 @@ class Clientes
      *
      * @ORM\Column(name="ieIsento", type="boolean", nullable=true)
      */
-    private $ieisento = '0';
+    private $ieIsento = '0';
 
     /**
      * @var string
@@ -89,14 +89,14 @@ class Clientes
      *
      * @ORM\Column(name="imIsento", type="boolean", nullable=true)
      */
-    private $imisento = '0';
+    private $imIsento = '0';
 
     /**
      * @var string
      *
      * @ORM\Column(name="codigoCliente", type="string", length=25, nullable=true)
      */
-    private $codigocliente;
+    private $codigoCliente;
 
     /**
      * @var string
@@ -117,7 +117,7 @@ class Clientes
      *
      * @ORM\Column(name="identificacaoEstrangeiro", type="string", length=50, nullable=true)
      */
-    private $identificacaoestrangeiro;
+    private $identificacaoEstrangeiro;
 
     /**
      * @var string
@@ -176,9 +176,8 @@ class Clientes
     private $ativo = '1';
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="empresa_id", type="string", length=1, nullable=true)
+     * @ORM\OneToOne(targetEntity="Senna\Entity\Empresa")
+     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
      */
     private $empresa;
 
@@ -187,14 +186,14 @@ class Clientes
      *
      * @ORM\Column(name="criadoEm", type="datetime", nullable=true)
      */
-    private $criadoem;
+    private $criadoEm;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="atualizadoEm", type="datetime", nullable=true)
      */
-    private $atualizadoem;
+    private $atualizadoEm;
 
 
     private $dataNascimento;
@@ -215,8 +214,8 @@ class Clientes
      */
     public function __construct($options = array())
     {
-        $this->criadoem = new \DateTime("now");
-        $this->atualizadoem = new \DateTime("now");
+        $this->criadoEm = new \DateTime("now");
+        $this->atualizadoEm = new \DateTime("now");
 
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
@@ -244,16 +243,16 @@ class Clientes
      */
     public function getRazaoSocial()
     {
-        return $this->razaosocial;
+        return $this->razaoSocial;
     }
 
     /**
-     * @param string $razaosocial
+     * @param string $razaoSocial
      * @return Clientes
      */
-    public function setRazaoSocial($razaosocial)
+    public function setRazaoSocial($razaoSocial)
     {
-        $this->razaosocial = $razaosocial;
+        $this->razaoSocial = $razaoSocial;
         return $this;
     }
 
@@ -262,16 +261,16 @@ class Clientes
      */
     public function getNomeFantasia()
     {
-        return $this->nomefantasia;
+        return $this->nomeFantasia;
     }
 
     /**
-     * @param string $nomefantasia
+     * @param string $nomeFantasia
      * @return Clientes
      */
-    public function setNomeFantasia($nomefantasia)
+    public function setNomeFantasia($nomeFantasia)
     {
-        $this->nomefantasia = $nomefantasia;
+        $this->nomeFantasia = $nomeFantasia;
         return $this;
     }
 
@@ -370,16 +369,16 @@ class Clientes
      */
     public function getIeIsento()
     {
-        return $this->ieisento;
+        return $this->ieIsento;
     }
 
     /**
-     * @param boolean $ieisento
+     * @param boolean $ieIsento
      * @return Clientes
      */
-    public function setIeIsento($ieisento)
+    public function setIeIsento($ieIsento)
     {
-        $this->ieisento = $ieisento;
+        $this->ieIsento = $ieIsento;
         return $this;
     }
 
@@ -404,18 +403,18 @@ class Clientes
     /**
      * @return boolean
      */
-    public function getImIsento()
+    public function getimIsento()
     {
-        return $this->imisento;
+        return $this->imIsento;
     }
 
     /**
-     * @param boolean $imisento
+     * @param boolean $imIsento
      * @return Clientes
      */
-    public function setImIsento($imisento)
+    public function setimIsento($imIsento)
     {
-        $this->imisento = $imisento;
+        $this->imIsento = $imIsento;
         return $this;
     }
 
@@ -424,16 +423,16 @@ class Clientes
      */
     public function getCodigoCliente()
     {
-        return $this->codigocliente;
+        return $this->codigoCliente;
     }
 
     /**
-     * @param string $codigocliente
+     * @param string $codigoCliente
      * @return Clientes
      */
-    public function setCodigoCliente($codigocliente)
+    public function setCodigoCliente($codigoCliente)
     {
-        $this->codigocliente = $codigocliente;
+        $this->codigoCliente = $codigoCliente;
         return $this;
     }
 
@@ -476,18 +475,18 @@ class Clientes
     /**
      * @return string
      */
-    public function getIdentificacaoEstrangeiro()
+    public function getidentificacaoEstrangeiro()
     {
-        return $this->identificacaoestrangeiro;
+        return $this->identificacaoEstrangeiro;
     }
 
     /**
-     * @param string $identificacaoestrangeiro
+     * @param string $identificacaoEstrangeiro
      * @return Clientes
      */
-    public function setIdentificacaoEstrangeiro($identificacaoestrangeiro)
+    public function setidentificacaoEstrangeiro($identificacaoEstrangeiro)
     {
-        $this->identificacaoestrangeiro = $identificacaoestrangeiro;
+        $this->identificacaoEstrangeiro = $identificacaoEstrangeiro;
         return $this;
     }
 
@@ -656,34 +655,34 @@ class Clientes
     /**
      * @return \DateTime
      */
-    public function getCriadoEm()
+    public function getcriadoEm()
     {
-        return date_format($this->criadoem, 'd-m-Y H:i');
+        return date_format($this->criadoEm, 'd-m-Y H:i');
     }
 
     /**
      * @return $this
      */
-    public function setCriadoEm()
+    public function setcriadoEm()
     {
-        $this->criadoem = new \DateTime("now");
+        $this->criadoEm = new \DateTime("now");
         return $this;
     }
 
     /**
      * @return \DateTime
      */
-    public function getAtualizadoEm()
+    public function getatualizadoEm()
     {
-        return date_format($this->atualizadoem, 'd-m-Y H:i');
+        return date_format($this->atualizadoEm, 'd-m-Y H:i');
     }
 
     /**
      * @ORM\PrePersist
      */
-    public function setAtualizadoEm()
+    public function setatualizadoEm()
     {
-        $this->atualizadoem = new \DateTime("now");
+        $this->atualizadoEm = new \DateTime("now");
         return $this;
     }
 
@@ -889,7 +888,7 @@ class Clientes
      */
     public function __toString()
     {
-        return $this->razaosocial;
+        return $this->razaoSocial;
     }
 
     /**
@@ -899,20 +898,20 @@ class Clientes
     {
         return array(
             'id'                       => $this->id,
-            'razaoSocial'              => $this->razaosocial,
-            'nomeFantasia'             => $this->nomefantasia,
+            'razaoSocial'              => $this->razaoSocial,
+            'nomeFantasia'             => $this->nomeFantasia,
             'cnpj'                     => $this->cnpj,
             'cpf'                      => $this->cpf,
             'sexo'                     => $this->sexo,
             'responsavel'              => $this->responsavel,
             'ie'                       => $this->ie,
-            'ieIsento'                 => $this->ieisento,
+            'ieIsento'                 => $this->ieIsento,
             'im'                       => $this->im,
-            'imIsento'                => $this->imisento,
-            'codigoCliente'            => $this->codigocliente,
+            'imIsento'                 => $this->imIsento,
+            'codigoCliente'            => $this->codigoCliente,
             'tipo'                     => $this->tipo,
             'origem'                   => $this->origem,
-            'identificacaoEstrangeiro' => $this->identificacaoestrangeiro,
+            'identificacaoEstrangeiro' => $this->identificacaoEstrangeiro,
             'observacao'               => $this->observacao,
             'email'                    => $this->email,
             'telefone'                 => $this->telefone,
@@ -921,9 +920,9 @@ class Clientes
             'saldo'                    => $this->saldo,
             'classificacao'            => $this->classificacao,
             'ativo'                    => $this->ativo,
-            'empresa'                  => $this->empresa,
-            'criadoEm'                 => $this->criadoem,
-            'atualizadoEm'             => $this->atualizadoem,
+            'empresa'                  => $this->getEmpresa()->getId(),
+            'criadoEm'                 => $this->getcriadoEm(),
+            'atualizadoEm'             => $this->getatualizadoEm(),
             'dataNascimento'           => $this->dataNascimento,
             'estadoCivil'              => $this->estadoCivil,
             'rendaMensal'              => $this->rendaMensal,

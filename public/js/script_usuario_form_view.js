@@ -336,58 +336,5 @@ if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
     });
 })(jQuery);
 
-jQuery(document).ready(function () {
-    jQuery.extend(jQuery.validator.messages, {
-        accept: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.'/> ",
-        cnpj: "<img src='/images/alert.png' class='tooltip' title='Informe um CNPJ válido.'/> ",
-        cpf: "<img src='/images/alert.png' class='tooltip' title='Informe um CPF válido.'/> ",
-        creditcard: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.'/> ",
-        date: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a uma data v&aacute;lida.'/> ",
-        digits: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a somente d&iacute;gitos.'/> ",
-        email: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um endere&ccedil;o eletr&ocirc;nico v&aacute;lido.'/> ",
-        equalTo: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a o mesmo valor novamente.'/> ",
-        max: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor menor ou igual a {0}.'/> "),
-        maxlength: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a n&atilde;o mais que {0} caracteres.'/> "),
-        min: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior ou igual a {0}.'/> "),
-        minlength: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a ao menos {0} caracteres.'/> "),
-        number: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um n&uacute;mero v&aacute;lido.'/> ",
-        range: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor entre {0} e {1}.'/> "),
-        rangelength: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor contendo de {0} a {1} caracteres.'/> "),
-        required: "<img src='/images/alert.png' class='tooltip' title='Este campo é obrigatório.'/> ",
-        requiredIf: "<img src='/images/alert.png' class='tooltip' title='Este campo deve ser preenchido.'/> ",
-        remote: "<img src='/images/alert.png' class='tooltip' title='Por favor, corrija este campo.'/> ",
-        url: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a uma URL v&aacute;lida.'/> ",
-        time: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a uma hora válida'/> ",
-        code: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um código válido'/> ",
-        price: "<img src='/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior que 0'/> ",
-        cidade: "<img src='/images/alert.png' class='tooltip' title='Cidade não cadastrada no sistema.'/> ",
-        pais: "<img src='/images/alert.png' class='tooltip' title='País não 'cadastrado no sistema.'/> ",
-        requiredCep: "<img src='/images/alert.png' class='tooltip' title='CEP e ou Logradouro não cadastrados no sistema.'/> ",
-        transporte: "<img src='/images/alert.png' class='tooltip' title='O valor deste campo deve ser definido.'/> ",
-        positive: "<img src='/images/alert.png' class='tooltip' title='Forneça um valor maior que 0,00.'/> ",
-        cfop: "<img src='/images/alert.png' class='tooltip' title='CFOP inválido'/> ",
-        cfop_transp: "<img src='/images/alert.png' class='tooltip' title='CFOP inválido'/> ",
-        code_ean: "<img src='/images/alert.png' class='tooltip' title='Caso seja preenchido, este campo deve ser um EAN válido e possuir 8, 12,13 ou 14 caracteres.'/> ",
-        number_letter: "<img src='/images/alert.png' class='tooltip' title='Por favor insirá apenas números ou letras, não será permitido caracteres especiais'/> ",
-        cod_ncm: "<img src='/images/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 2 ou 8 caracteres.'/> ",
-        max_vr_cupom: jQuery.validator.format("<img src='/images/alert.png' class='tooltip' title='O valor neste campo deve ser inferior a {0}'/> "),
-        autosuggest: "<img src='/images/alert.png' class='tooltip' title='Este campo não possui um valor válido selecionado'/> ",
-        password: "<img src='/images/alert.png' class='tooltip' title='Senha deve conter pelo menos 6 caracteres utilizando letras e números'/> "
-    });
-});
 
-Date.monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-Date.abbrMonthNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-Date.dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-jQuery.dpText = {
-    TEXT_PREV_YEAR: 'Ano Anterior',
-    TEXT_PREV_MONTH: 'Mês Anterior',
-    TEXT_NEXT_YEAR: 'Próximo Ano',
-    TEXT_NEXT_MONTH: 'Próximo Mês',
-    TEXT_CLOSE: 'Fechar',
-    TEXT_CHOOSE_DATE: 'Escolha a Data',
-    HEADER_FORMAT: 'mmmm yyyy'
-};
-Date.firstDayOfWeek = 0;
-Date.format = jQuery.i18n._('lang_date_format');
 

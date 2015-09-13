@@ -82,7 +82,7 @@ class Funcionarios extends AbstractService
     }
 
     /**
-     * @see insert , update , login
+     * @see SE , update , login
      * @param $entity
      * @param $data
      * @return mixed
