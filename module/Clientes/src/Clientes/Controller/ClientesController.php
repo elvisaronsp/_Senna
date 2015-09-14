@@ -28,6 +28,19 @@ class ClientesController extends GrudController
         $this->message_delete = "Cliente EXCLUIDO com sucesso";
     }
 
+    /**
+     * @param $form
+     * @param $data
+     * SETA O RESTANTES DO CAMPOS QUE NAO SÃO DO TIPO SIMPLES
+     */
+    protected function setValueForm($form, $data)
+    {
+        $form->get('ativo')->setAttribute('eval', $data['ativo']);
+        $form->get('sexo')->setAttribute('eval', $data['sexo']);
+        $form->get('estadoCivil')->setAttribute('eval', $data['estadoCivil']);
+        $form->get('alertas')->setAttribute('eval', ($data['alertas']) ? '1' : '0');
+    }
+
 
     /**
      * @return ViewModel
@@ -45,7 +58,7 @@ class ClientesController extends GrudController
         if ($this->params()->fromRoute('id', 0)) {
             $entity = $repository->find($this->params()->fromRoute('id', 0));
             $form->setData($entity->toArray());
-            //$this->setValueForm($form, $entity->toArray());
+            $this->setValueForm($form, $entity->toArray());
             $retorno = array('form' => $form);
         }
         $viewModel = new ViewModel ($retorno);

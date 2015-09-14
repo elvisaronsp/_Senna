@@ -152,7 +152,7 @@ class Clientes
      *
      * @ORM\Column(name="limiteCredito", type="float", precision=10, scale=2, nullable=true)
      */
-    private $limitecredito = '0.00';
+    private $limiteCredito = '0.00';
 
     /**
      * @var float
@@ -176,12 +176,6 @@ class Clientes
     private $ativo = '1';
 
     /**
-     * @ORM\OneToOne(targetEntity="Senna\Entity\Empresa")
-     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
-     */
-    private $empresa;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="criadoEm", type="datetime", nullable=true)
@@ -195,18 +189,95 @@ class Clientes
      */
     private $atualizadoEm;
 
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dataNascimento", type="date", nullable=true)
+     */
     private $dataNascimento;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estadoCivil", type="boolean", nullable=true)
+     */
     private $estadoCivil;
-    private $rendaMensal;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="rendaMensal", type="float", precision=10, scale=2, nullable=true)
+     */
+    private $rendaMensal = '0.00';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="profissao", type="string", length=255, nullable=true)
+     */
     private $profissao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filiacaoMae", type="string", length=255, nullable=true)
+     */
     private $filiacaoMae;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filiacaoPai", type="string", length=255, nullable=true)
+     */
     private $filiacaoPai;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="conjugeNome", type="string", length=255, nullable=true)
+     */
     private $conjugeNome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="conjugeCpf", type="string", length=14, nullable=true)
+     */
     private $conjugeCpf;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="conjugeDataNascimento", type="date", nullable=true)
+     */
     private $conjugeDataNascimento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="conjugeProfissao", type="string", length=255, nullable=true)
+     */
     private $conjugeProfissao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="suframa", type="string", length=50, nullable=true)
+     */
     private $suframa;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Senna\Entity\Empresa")
+     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
+     */
+    private $empresa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rg", type="string", length=50, nullable=true)
+     */
+    private $rg;
 
 
     /**
@@ -567,16 +638,16 @@ class Clientes
      */
     public function getLimiteCredito()
     {
-        return $this->limitecredito;
+        return $this->limiteCredito;
     }
 
     /**
-     * @param float $limitecredito
+     * @param float $limiteCredito
      * @return Clientes
      */
-    public function setLimiteCredito($limitecredito)
+    public function setLimiteCredito($limiteCredito)
     {
-        $this->limitecredito = $limitecredito;
+        $this->limiteCredito = str_replace(" ","",str_replace(",", ".", str_replace(".", " ", $limiteCredito)));
         return $this;
     }
 
@@ -735,7 +806,7 @@ class Clientes
      */
     public function setRendaMensal($rendaMensal)
     {
-        $this->rendaMensal = $rendaMensal;
+        $this->rendaMensal = str_replace(" ","",str_replace(",", ".", str_replace(".", " ", $rendaMensal)));
         return $this;
     }
 
@@ -886,6 +957,24 @@ class Clientes
     /**
      * @return string
      */
+    public function getRg()
+    {
+        return $this->rg;
+    }
+
+    /**
+     * @param string $rg
+     * @return Clientes
+     */
+    public function setRg($rg)
+    {
+        $this->rg = $rg;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->razaoSocial;
@@ -902,6 +991,7 @@ class Clientes
             'nomeFantasia'             => $this->nomeFantasia,
             'cnpj'                     => $this->cnpj,
             'cpf'                      => $this->cpf,
+            'rg'                       => $this->rg,
             'sexo'                     => $this->sexo,
             'responsavel'              => $this->responsavel,
             'ie'                       => $this->ie,
@@ -916,14 +1006,14 @@ class Clientes
             'email'                    => $this->email,
             'telefone'                 => $this->telefone,
             'alertas'                  => $this->alertas,
-            'limiteCredito'            => $this->limitecredito,
+            'limiteCredito'            => $this->limiteCredito,
             'saldo'                    => $this->saldo,
             'classificacao'            => $this->classificacao,
             'ativo'                    => $this->ativo,
             'empresa'                  => $this->getEmpresa()->getId(),
             'criadoEm'                 => $this->getcriadoEm(),
             'atualizadoEm'             => $this->getatualizadoEm(),
-            'dataNascimento'           => $this->dataNascimento,
+            'dataNascimento'           => $this->getDataNascimento(),
             'estadoCivil'              => $this->estadoCivil,
             'rendaMensal'              => $this->rendaMensal,
             'profissao'                => $this->profissao,
@@ -931,7 +1021,7 @@ class Clientes
             'filiacaoPai'              => $this->filiacaoPai,
             'conjugeNome'              => $this->conjugeNome,
             'conjugeCpf'               => $this->conjugeCpf,
-            'conjugeDataNascimento'    => $this->conjugeDataNascimento,
+            'conjugeDataNascimento'    => $this->getConjugeDataNascimento(),
             'conjugeProfissao'         => $this->conjugeProfissao,
             'suframa'                  => $this->suframa
         );

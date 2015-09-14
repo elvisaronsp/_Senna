@@ -1,4 +1,7 @@
 <?php
+
+echo str_replace(" ","",str_replace(",", ".", str_replace(".", " ", "9.875.421,00")));
+/*
 require 'funcoes.php';
 $arquivo = file('form.txt', FILE_IGNORE_NEW_LINES);
 
@@ -37,4 +40,5 @@ endforeach;
 //echo "<pre>";
 //print_r($conteudo);
 //echo "</pre>";
+*/
 ?>

@@ -346,6 +346,7 @@ class Cliente extends Form
          **/
         $input = new \Zend\Form\Element\Text('rg');
         $input->setAttribute('id','rg')
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('maxlength','45')
             ->setValue('');
         $this->add($input);
@@ -390,7 +391,7 @@ class Cliente extends Form
         $select = new Select();
         $select->setName("estadoCivil")
             ->setAttribute('id', "estadoCivil")
-            ->setAttribute('eval', "1")
+            ->setAttribute('eval', "0")
             ->setAttribute('size', "1")
             ->setAttribute('style', "")
             ->setOptions(array(
@@ -502,14 +503,14 @@ class Cliente extends Form
             'name' => 'alertas',
             'attributes' => array(
                 'class'=>'required',
-                'eval'=>'1',
+                'eval'=>'0',
             ),
             'options' => array(
                 'label_options' => array('disable_html_escape' => true),
                 'label_attributes' => array('class' => 'inline'),
                 'value_options' => array(
-                    '0' => '<span>Sim</span>',
-                    '1' => '<span>Não</span>'
+                    '1' => '<span>Sim</span>',
+                    '0' => '<span>Não</span>'
                 ),
             )
         ));

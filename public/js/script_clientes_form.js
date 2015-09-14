@@ -437,7 +437,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
             $("#boxconjuge").hide();
             $("#conjuge").removeClass('required');
         }
-        $("#estado_civil").change(function(){
+        $("#estadoCivil").change(function(){
             if ($("#estadoCivil").val() == '1') {
                 $("#boxconjuge").show();
             }
@@ -481,6 +481,10 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
         MooStarRatingImages.defaultImageFolder ='/images/ratting/';
         var simpleRating = new MooStarRating({ div: 'simple', width: 20 });
         simpleRating.setValue($('#classificacao').val());
+        if(simpleRating.getValue() < 4)
+            {
+                $('#limiteCredito').hide();
+            }
 
         var rattingAlerta = "";
         function myCallback(value) {
@@ -499,6 +503,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
                     "<strong>3º Pedido:</strong><span style='font-size: 13px;'> 150 unidades.</span><br />" +
                     "<strong>Pendencias:</strong><span style='font-size: 13px;'> Cliente não pode possuir pendencias pra realizar novos pedidos.</span><br />"
                 );
+                $('#limiteCredito').hide();
             } else if (value == 2 && valorATual != value) {
                 parent.Sexy.alert("<strong>Você está alterando a classificação do cliente.</strong><br />Clientes com classificação "+estrela_2+" estrela. <br />" +
                     "<strong>Faturamento:</strong><span style='font-size: 13px;'> Permite faturamento 30 dias após a emissão da nota fiscal.</span><br />" +
@@ -508,6 +513,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
                     "<strong>3º Pedido:</strong><span style='font-size: 13px;'> 300 unidades.</span><br />" +
                     "<strong>Pendencias:</strong><span style='font-size: 13px;'> Cliente não pode possuir pendencias pra realizar novos pedidos.</span><br />"
                 );
+                $('#limiteCredito').hide();
             } else if (value == 3 && valorATual != value) {
                 parent.Sexy.alert("<strong>Você está alterando a classificação do cliente.</strong><br />Clientes com classificação "+estrela_3+" estrela. <br />" +
                     "<strong>Faturamento:</strong><span style='font-size: 13px;'> Permite faturamento 30 dias após a emissão da nota fiscal.</span><br />" +
@@ -517,18 +523,21 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
                     "<strong>3º Pedido:</strong><span style='font-size: 13px;'> 550 unidades.</span><br />" +
                     "<strong>Pendencias:</strong><span style='font-size: 13px;'> Cliente não pode possuir pendencias pra realizar novos pedidos.</span><br />"
                 );
+                $('#limiteCredito').hide();
             } else if (value == 4 && valorATual != value) {
                 parent.Sexy.alert("<strong>Você está alterando a classificação do cliente.</strong><br />Clientes com classificação "+estrela_4+" estrela. <br />" +
                     "<strong>Faturamento:</strong><span style='font-size: 13px;'> Permite faturamento 30 dias após a emissão da nota fiscal.</span><br />" +
                     "<strong>Quantidade:</strong><span style='font-size: 13px;'> Ilimitada. Mudança de classificação manual.</span><br />" +
                     "<strong>Pendencias:</strong><span style='font-size: 13px;'> Não verifica pendencias para novos pedidos.</span><br />"
                 );
+                $('#limiteCredito').show();
             } else if (value == 5 && valorATual != value) {
                 parent.Sexy.alert("<strong>Você está alterando a classificação do cliente.</strong><br />Clientes com classificação "+estrela_5+" estrela. <br />" +
                     "<strong>Faturamento:</strong><span style='font-size: 13px;'> Permite faturamento 30 dias após a emissão da nota fiscal.(Datas de faturamento aleatória).</span><br />" +
                     "<strong>Quantidade:</strong><span style='font-size: 13px;'> Ilimitada.Mudança de classificação manual.</span><br />" +
                     "<strong>Pendencias:</strong><span style='font-size: 13px;'> Não verifica pendencias para novos pedidos.</span><br />"
                 );
+                $('#limiteCredito').show();
             }
             $('#classificacao').val(value);
             $('#simpleTip').html("Cliente "+value+" Estrelas.");
