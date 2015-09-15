@@ -1,0 +1,86 @@
+<div class="tab" id="tab_tributacao_tab" ref="Tributação" rel="tab_tributacao">
+    <fieldset class="fieldset " style="width:97%;width:960px;">
+        <legend>
+            <span class="legend"><span class="legend_label">Tributação</span><span class="input_alert">&nbsp;</span></span>
+        </legend>
+        <table borborder="0" cellpadding="0" cellspacing="0" class="form_table" id="tributos" width="100%">
+            <thead>
+            <tr>
+                <th width="50">Item</th>
+                <th width="80">NCM</th>
+                <th width="35%">Descrição</th>
+                <th width="5">CFOP</th>
+                <th width="25%">Natureza da operação</th>
+                <th width="110">CST A</th>
+                <th width="90"></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td>
+                    <p class="field " style="width:auto; ">
+                        <span class="input " rel="item" style=""><input class="center" disabled="disabled" id="item" name="item" style="" type="text" value="{item}"></input></span>
+                    </p>
+                </td>
+                <td>
+                    <input class="clone_id" id="tributo_ncm__id" name="tributo_ncm__id" type="hidden" value=""></input>
+                    <input id="tributo_detalhe__id_tributo_cfop" name="tributo_detalhe__id_tributo_cfop" type="hidden" value="{id_cfop}"></input>
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input " rel="tributo_ncm__cod_ncm" style=""><input id="tributo_ncm__cod_ncm" name="tributo_ncm__cod_ncm" type="hidden" value=""></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="tributo_ncm__cod_ncm" class=" autosuggest" filters="[]" form_title="Cadastrando NCM" form_url="http://app.tagplus.com.br/capitalponto/cadastro/tributacoes/form" form_url_field="tributo_ncm_referencia__cod_ncm" id="tributo_ncm__cod_ncm" maxLength="8" minLength="0" name="ac_0290737595a3b0c004502a8c156272f6d355bb95b5" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="http://app.tagplus.com.br/capitalponto/autocomplete/clientes/getNcm" style="" type="text" value="" valueclear="true" valuefield="value"></input><em class="autocomplete_search  autosuggest"></em></span>
+                    </p>
+                </td>
+                <td>
+                    <p class="field " style="width:auto; text-align:left;">
+                        <span class="input " rel="tributo_ncm__descricao" style=""><input disabled="disabled" id="tributo_ncm__descricao" name="tributo_ncm__descricao" style="" type="text" value=""></input></span>
+                    </p>
+                </td>
+                <td>
+                    <p class="field " style="width:auto; ">
+                        <span class="input " rel="tributo_detalhe__cod_cfop" style=""><input class="right" id="tributo_detalhe__cod_cfop" mask="C.999" name="tributo_detalhe__cod_cfop" style="" type="text" value="{cod_cfop}"></input></span>
+                    </p>
+                </td>
+                <td>
+                    <p class="field " style="width:100%; ">
+                        <span class="input " rel="natureza_operacao" style=""><input id="natureza_operacao" name="natureza_operacao" readonly="readonly" style="" type="text" value=""></input></span>
+                    </p>
+                </td>
+                <td>
+                    <p class="field " style="width:auto; ">
+                                        <span class="input " rel="tributo_detalhe__cst_a" style=""><select class="" eval="" id="tributo_detalhe__cst_a" name="tributo_detalhe__cst_a" size="1" style="">
+                                                <option value="0">0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8</option>
+                                                <option value="1">1 - Estrangeira - Importação direta, exceto a indicada no código 6</option>
+                                                <option value="2">2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7</option>
+                                                <option value="3">3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%</option>
+                                                <option value="4">4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes</option>
+                                                <option value="5">5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%</option>
+                                                <option value="6">6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural</option>
+                                                <option value="7">7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante em lista da CAMEX e gás natural</option>
+                                                <option value="8">8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%</option>
+                                                <option value="9">9 - Qualquer Origem</option>
+                                            </select></span></p>
+                </td>
+                <td>
+                    <input class="btn_tributacao" id="btn_tributacao" name="Tributação" type="button" value="Tributação"></input>
+                    <input id="json_tributos" name="json_tributos" type="hidden" value=""></input>
+                </td>
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>
+                    <input class="btn_tributacao" id="carregar_tributacao" name="Carregar Tributação de Cliente" style="position:relative;" type="button" value="Carregar Tributação de Cliente"></input>
+                    <input id="json_tributos_carregado" name="json_tributos_carregado" type="hidden" value=""></input>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+
+    </fieldset>
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+    </div>
+</div>

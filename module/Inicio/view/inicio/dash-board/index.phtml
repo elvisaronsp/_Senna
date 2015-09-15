@@ -1,0 +1,676 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv='cache-control' content='no-cache' />
+    <meta http-equiv='expires' content='0' />
+    <meta http-equiv='pragma' content='no-cache' />
+    <meta name="robots" content="NOINDEX,NOFOLLOW" />
+    <meta name="base_url" content="" />
+
+    <!-- Scripts javaScript -->
+    <?php echo $this->headScript()
+                    ->appendFile($this->basePath() . 'https://www.google.com/jsapi')
+                    ->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+                    ->appendFile($this->basePath() . '/js/links-init.js')
+                    ->appendFile($this->basePath() . '/js/jquery/core.js')
+                    ->appendFile($this->basePath() . '/js/jquery/ui.js')
+                    ->appendFile($this->basePath() . '/js/jquery/tab.js')
+                    ->appendFile($this->basePath() . '/js/jquery/autosuggest.js')
+                    ->appendFile($this->basePath() . '/js/live.js')
+                    ->appendFile($this->basePath() . '/js/jquery/bt.js')
+                    ->appendFile($this->basePath() . '/js/forms.js')
+                    ->appendFile($this->basePath() . '/js/atalhos.js')
+                    ->appendFile($this->basePath() . '/js/jquery/date.js')
+                    ->appendFile($this->basePath() . '/js/jquery/datepicker.js')
+                    ->appendFile($this->basePath() . '/js/jquery/maskedinput.js')
+                    ->appendFile($this->basePath() . '/js/jquery/tabBox.js')
+                    ->appendFile($this->basePath() . '/js/jquery/gchart.js')?>
+
+
+    <!-- Estilos da pagina Css/code -->
+    <?php echo $this->headLink()
+                    //->appendStylesheet($this->basePath() . '/css/noprint.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/style.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/content.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/style_tagplus.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/ui.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/jqueryui.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/inicio.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/datepicker.css?v=2.0.1')?>
+
+
+    <script type='text/javascript'>
+        if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
+            "intro_button_continuar": "Continuar",
+            "intro_button_avancar": "Avan\u00e7ar",
+            "intro_button_entendi": "<i class=\"icon-ok\"><\/i> Entendi",
+            "intro_button_ok": "<i class=\"icon-ok\"><\/i> Ok",
+            "intro_button_concluir": "<i class=\"icon-thumbs-up\"><\/i> Concluir",
+            "intro_button_voltar": "Voltar",
+            "intro_button_fechar": "Fechar",
+            "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial",
+            "intro_dashboard_inicio_title": "Primeiros Passos",
+            "intro_dashboard_inicio_text": "Ol\u00e1!<br\/>Agora voc\u00ea vai aprender os primeiros passos para utilizar o sistema com sucesso.<br\/>N\u00e3o demorar\u00e1 mais do que 90 Segundos =).",
+            "intro_dashboard_inicio_fechar": "J\u00e1 conhe\u00e7o o sistema",
+            "intro_dashboard_cancelar": "Cancelar Tutorial",
+            "intro_dashboard_passo1_title": "Ajuda",
+            "intro_dashboard_passo1_text": "Aqui voc\u00ea encontrar\u00e1 todo o <b>suporte<\/b> para utilizar o sistema,<br \/> como por exemplo Chat, E-mail e Suporte Remoto.",
+            "intro_dashboard_passo2_title": "Alertas",
+            "intro_dashboard_passo2_text": "Aqui voc\u00ea encontra suas <b>notifica\u00e7\u00f5es<\/b>. Informa\u00e7\u00f5es sobre treinamento,<br \/> atualiza\u00e7\u00f5es e at\u00e9 mesmo o vencimento de sua fatura ser\u00e3o exibidos aqui.",
+            "intro_dashboard_passo3_title": "Menu",
+            "intro_dashboard_passo3_text": "Este \u00e9 o <b>menu<\/b> principal do sistema. Atrav\u00e9s dele \u00e9 poss\u00edvel realizar <b>vendas<\/b>,<br \/> visualizar seus <b>gr\u00e1ficos<\/b> e acessar \u00e0s 8 op\u00e7\u00f5es mais utilizadas por voc\u00ea no sistema.",
+            "intro_dashboard_passo4_title": "Menu",
+            "intro_dashboard_passo4_text": "Ao passar o mouse por cima o mesmo ser\u00e1 expandido, permitindo o acesso<br \/> as demais <b>funcionalidades<\/b> do sistema atrav\u00e9s do \u00edcone em destaque <b>Menu<\/b>",
+            "intro_dashboard_passo5_title": "Menu Expandido",
+            "intro_dashboard_passo5_text": "Aqui s\u00e3o exibidas todas as <b>fun\u00e7\u00f5es<\/b> do sistema",
+            "intro_dashboard_passo6_title": "Pesquisa",
+            "intro_dashboard_passo6_text": "Digitando o <b>nome<\/b> ou uma <b>palavra-chave<\/b> da fun\u00e7\u00e3o,<br \/> voc\u00ea poder\u00e1 localiz\u00e1-la mais facilmente."
+        });
+
+        Date.monthNames = ['Janeiro', 'Fevereiro', 'Mar�o', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        Date.dayNames = ['Domingo', 'Segunda', 'Ter�a', 'Quarta', 'Quinta', 'Sexta', 'S�bado'];
+        jQuery.dpText = {
+            TEXT_PREV_YEAR: 'Ano Anterior',
+            TEXT_PREV_MONTH: 'M�s Anterior',
+            TEXT_NEXT_YEAR: 'Pr�ximo Ano',
+            TEXT_NEXT_MONTH: 'Pr�ximo M�s',
+            TEXT_CLOSE: 'Fechar',
+            TEXT_CHOOSE_DATE: 'Escolha a Data',
+            HEADER_FORMAT: 'mmmm yyyy'
+        };
+        Date.firstDayOfWeek = 0;
+
+
+
+
+        /*********************
+        /inicio/aba_resumo.js
+        *********************/
+
+        (function($) {
+
+            $(document).ready(function() {
+                //Evento para os Contas a Receber
+                openContasReceber();
+
+                //Evento para os Contas a Pagar
+                openContasPagar();
+
+                //Evento para Estoque M�nimo
+                openEstoqueMinimo();
+
+                //Evento para Estoque M�nimo
+                openPromocao();
+
+                //Aniversariantes
+                openAniverClientes();
+            });
+
+
+            /**
+             * Tratamento para os Aniversariantes
+             */
+            function openAniverClientes() {
+                var id_cliente = $('[ref=aniversario_clientes]').parent('td').attr('id');
+                if (id_cliente) {
+                    $('[ref=aniversario_clientes]').live('click', function() {
+                        //Obtendo o id
+                        id_cliente = $(this).parent('td').attr('id');
+
+                        var url = "/senna/zf2//cadastro/clientes/form/" + id_cliente;
+                        parent.parent.MochaUI.openWindow({
+                            id: url,
+                            //Nome do produto como titulo
+                            title: 'Clientes',
+                            //Id de onde foi clicado enviado como parametro.
+                            contentURL: url
+                        });
+                    });
+                }
+            }
+
+            /**
+             * Tratamento para mostrar contas a receber
+             */
+            function openContasReceber() {
+                var id_financeiro = $('[ref=conta_receber]').parent('td').attr('id');
+
+                if (id_financeiro) {
+                    $('[ref=conta_receber]').live('click', function() {
+                        //Obtendo o id
+                        id_financeiro = $(this).parent('td').attr('id');
+
+                        var url = "/senna/zf2//financeiro/lancamentos/form/" + id_financeiro;
+                        parent.parent.MochaUI.openWindow({
+                            id: url,
+                            //Nome do produto como titulo
+                            title: 'Contas a Pagar e Receber',
+                            //Id de onde foi clicado enviado como parametro.
+                            contentURL: url
+                        });
+                    });
+                }
+            }
+
+            /**
+             * Tratamento para mostrar a contas a pagar
+             */
+            function openContasPagar() {
+                var id_financeiro = $('[ref=conta_pagar]').parent('td').attr('id');
+
+                if (id_financeiro) {
+                    $('[ref=conta_pagar]').live('click', function() {
+                        //Obtendo o id
+                        id_financeiro = $(this).parent('td').attr('id');
+                        var url = "/senna/zf2//financeiro/lancamentos/form/" + id_financeiro;
+                        parent.parent.MochaUI.openWindow({
+                            id: url,
+                            //Nome do produto como titulo
+                            title: 'Contas a Pagar e Receber',
+                            //Id de onde foi clicado enviado como parametro.
+                            contentURL: url
+                        });
+                    });
+                }
+            }
+
+            /**
+             * Tratamento para mostrar o produto que est� com o estoque minimo
+             */
+            function openEstoqueMinimo() {
+                var id_produto = $('[ref=estoque_minimo]').parent('td').attr('id');
+
+                if (id_produto) {
+                    $('[ref=estoque_minimo]').live('click', function() {
+                        //Obtendo o id
+                        id_produto = $(this).parent('td').attr('id');
+
+                        var url = "/senna/zf2//produto/produtos/form/" + id_produto;
+                        parent.parent.MochaUI.openWindow({
+                            id: url,
+                            //Nome do produto como titulo
+                            title: 'Produtos',
+                            //Id de onde foi clicado enviado como parametro.
+                            contentURL: url
+                        });
+                    });
+                }
+            }
+
+            /**
+             * Tratamento para mostrar o produto que est� com o estoque minimo
+             */
+            function openPromocao() {
+                var id_produto = $('[ref=promocao]').parent('td').attr('id');
+
+                if (id_produto) {
+                    $('[ref=promocao]').live('click', function() {
+                        //Obtendo o id
+                        id_produto = $(this).parent('td').attr('id');
+
+                        var url = "/senna/zf2//produto/produtos/form/" + id_produto;
+                        parent.parent.MochaUI.openWindow({
+                            id: url,
+                            //Nome do produto como titulo
+                            title: 'Produtos',
+                            //Id de onde foi clicado enviado como parametro.
+                            contentURL: url
+                        });
+                    });
+                }
+            }
+        })(jQuery);
+    </script>
+
+</head>
+
+<body>
+
+    <div id="painel">
+        <div class="numeros_wrapper">
+
+            <div class="numero">
+                <h5>Total de Contas a Receber</h5>
+                <small>R$</small>
+                <span style="color:#498E0A;">0,00</span>
+            </div>
+            <div class="numero">
+                <h5>Total de Contas a Pagar</h5>
+                <small>R$</small>
+                <span style="color:#AC2511;">0,00</span>
+            </div>
+            <div class="numero">
+                <h5>Produtos em Estoque</h5>
+                <span>0,000</span>
+            </div>
+            <div class="numero">
+                <h5>Total de Vendas Realizadas</h5>
+                <span>0,00</span>
+            </div>
+
+        </div>
+        <div class="tab_box cinza" style="">
+            <ul class="tab_selector">
+                <li>
+                <a class="tabtip" rel="cbdc4646a9de2b471495e3624f37ad2c" title="Quantidade total de vendas <b>confirmadas</b>, considerando o per�odo e funcion�rio(s) selecionados"><span>Evolução de Vendas</span></a>
+                </li>
+                <li><a class="tabtip" rel="a488d10f846070d6a954bd1aa2420549" title="Valor total das vendas <b>confirmadas</b>, considerando o per�odo e funcion�rio(s) selecionados"><span>Evolução do Faturamento</span></a>
+                </li>
+                <li><a class="tabtip" rel="eef1aa8845c861510d1a7b9a8cc77da6" title="Valor total das vendas <b>confirmadas</b>, do(s) funcion�rio(s) selecionado(s) considerando os �ltimos 12 meses, agrupadas por m�s"><span>Histórico do Faturamento</span></a>
+                </li>
+            </ul>
+            <div class="tab_box_content">
+
+                <div class="cbdc4646a9de2b471495e3624f37ad2c">
+                    <div class="datatable" options="{     chartArea:{      top:40,       width:'95%',       height:'auto',      left:20     },      seriesType:'area',      series:{      0:{type:'area', pointSize:0}     },      colors:['#0FB1E0', '#CCC'],      hAxis:{      showTextEvery:1,       maxAlternation:1,       textStyle:{color:'#666'}     },      vAxis:{      minValue:4,       textPosition:'in',       gridlines:{       color:'#DDD'      }     }    }" type="Area">
+                        <cols>
+                            <c type="string">Hora Alteração</c>
+                            <c type="number">Vendas</c>
+                            <c type="number">Média</c>
+                        </cols>
+                        <rows>
+
+                            <row>
+                                <v>11/10</v>
+                                <v>0</v>
+                                <v>0</v>
+                            </row>
+
+                            <row>
+                                <v>12/10</v>
+                                <v>0</v>
+                                <v>0</v>
+                            </row>
+
+                            <row>
+                                <v>13/10</v>
+                                <v>0</v>
+                                <v>0</v>
+                            </row>
+
+                            <row>
+                                <v>14/10</v>
+                                <v>0</v>
+                                <v>0</v>
+                            </row>
+
+                            <row>
+                                <v>15/10</v>
+                                <v>0</v>
+                                <v>0</v>
+                            </row>
+
+                            <row>
+                                <v>16/10</v>
+                                <v>0</v>
+                                <v>0</v>
+                            </row>
+
+                            <row>
+                                <v>17/10</v>
+                                <v>0</v>
+                                <v>0</v>
+                            </row>
+
+                            <row>
+                                <v>18/10</v>
+                                <v>0</v>
+                                <v>0</v>
+                            </row>
+
+                        </rows>
+                    </div>
+                </div>
+
+
+                <div class="a488d10f846070d6a954bd1aa2420549">
+                    <div class="datatable" options="{     chartArea:{      top:40,       width:'95%',       height:'auto',      left:20     },      seriesType:'area',      series:{      0:{type:'area', pointSize:0}     },      colors:['#096985', '#CCC'],      hAxis:{      showTextEvery:1,       maxAlternation:1,       textStyle:{       color:'#666'      },      gridlines:{       color:'#DDD'      }     },      vAxis:{      format:'R$ #,###',       minValue:400,       textPosition:'in',       gridlines:{       color:'#DDD'      }     }    }" type="Area">
+                        <cols>
+                            <c type="string">%label_dia%</c>
+                            <c type="number">Faturamento </c>
+                            <c type="number">Média</c>
+                        </cols>
+                        <rows>
+
+                            <row>
+                                <v>11/10</v>
+                                <v f="R$ 0,00">0</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>12/10</v>
+                                <v f="R$ 0,00">0</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>13/10</v>
+                                <v f="R$ 0,00">0</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>14/10</v>
+                                <v f="R$ 0,00">0</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>15/10</v>
+                                <v f="R$ 0,00">0</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>16/10</v>
+                                <v f="R$ 0,00">0</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>17/10</v>
+                                <v f="R$ 0,00">0</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>18/10</v>
+                                <v f="R$ 0,00">0</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                        </rows>
+                    </div>
+                </div>
+
+                <div class="eef1aa8845c861510d1a7b9a8cc77da6">
+                    <div class="datatable" options="{     chartArea:{      top:40,       width:'98%',       height:'auto',      left:0     },      colors:['#B4D1DA'],      hAxis:{      maxAlternation:1,       textStyle:{       color:'#666'      },      gridlines:{       color:'#DDD',      }     },       vAxis:{      format:'R$ #,###',       minValue:400,       textPosition:'in',       gridlines:{       color:'#DDD'      }     }     }" type="Column">
+                        <cols>
+                            <c type="string">%label_mes%</c>
+                            <c type="number">Faturamento </c>
+                        </cols>
+                        <rows>
+
+                            <row>
+                                <v>Out/2013</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Nov/2013</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Dez/2013</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Jan/2014</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Fev/2014</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Mar/2014</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Abr/2014</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Mai/2014</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Jun/2014</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Jul/2014</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Ago/2014</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                            <row>
+                                <v>Set/2014</v>
+                                <v f="R$ 0,00">0</v>
+                            </row>
+
+                        </rows>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="width: 49%; float: left;">
+            <div class="tab_box cinza" style="">
+                <ul class="tab_selector">
+                    <li><a class="tabtip" rel="73e6cf5efed88d8b7d7ded2efe8bed63" title="Contas a receber <b>não</b> confirmadas, cujo o vencimento está no período indicado e lan�amento foi realizado pelo(s) funcion�rio(s) selecionado(s)"><span>Contas a Receber</span></a>
+                    </li>
+                    <li><a class="tabtip" rel="f2fcb7aa5bcd070630a907658de15996" title="Contas a pagar <b>não</b> confirmadas, cujo o vencimento está no período indicado e lançamento foi realizado pelo(s) funcion�rio(s) selecionado(s)"><span>Contas a Pagar</span></a>
+                    </li>
+                </ul>
+                <div class="tab_box_content">
+                    <div class="73e6cf5efed88d8b7d7ded2efe8bed63">
+                        <div class="" style="">
+                            <div class="thead">
+                                <table border="0">
+                                    <thead>
+                                        <tr>
+                                            <td>Descrição</td>
+                                            <td width="80px;">Vencimento</td>
+                                            <td width="80px;">Valor</td>
+                                            <td width="30px;"></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbody">
+                                <table border="0">
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Sem Dados</td>
+                                            <td align="center" width="80px;">-</td>
+                                            <td align="right" width="80px;">0</td>
+                                            <td align="right" id="" width="30px;">
+                                                <input class="btn_view" name="" ref="conta_receber" style="background-color: transparent; border: 0;width: 15px; cursor:pointer;" title="Exibir Lan�amento" type="button" value=""></input>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="f2fcb7aa5bcd070630a907658de15996">
+                        <div class="" style="">
+                            <div class="thead">
+                                <table border="0">
+                                    <thead>
+                                        <tr>
+                                            <td>Descrição</td>
+                                            <td width="80px;">Vencimento</td>
+                                            <td width="80px;">Valor</td>
+                                            <td width="30px;"></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbody">
+                                <table border="0">
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Sem Dados</td>
+                                            <td align="center" width="80px;">-</td>
+                                            <td align="right" width="80px;">0</td>
+                                            <td align="right" id="" width="30px;">
+                                                <input class="btn_view" name="" ref="conta_pagar" style="background-color: transparent; border: 0;width: 15px; cursor:pointer;" title="Exibir Lan�amento" type="button" value=""></input>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab_box cinza" style="margin-top:10px;">
+                <ul class="tab_selector">
+                    <li><a class="tabtip" rel="d9c2e00de15c58777429908b52f77ba2" title="Produtos cujo o estoque de revenda é <b>menor</b> que o estoque mínimo definido. Limitado a 500 produtos"><span>Estoque Mínimo</span></a>
+                    </li>
+                    <li><a class="tabtip" rel="f0f982736b7821edeffc7355d629f397" title="Produtos que não são comercializados é 3 meses ou mais, considerando a data atual. Limitado a 500 produtos"><span>Sugestão de Promoção</span></a>
+                    </li>
+                </ul>
+                <div class="tab_box_content">
+                    <div class="d9c2e00de15c58777429908b52f77ba2">
+                        <div class="" style="">
+                            <div class="thead">
+                                <table border="0">
+                                    <thead>
+                                        <tr>
+                                            <td>Descrição</td>
+                                            <td width="80px;">Qtd.</td>
+                                            <td width="80px;">Qtd. Min.</td>
+                                            <td width="30px;"></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbody">
+                                <table border="0">
+                                    <tbody>
+
+                                        <tr>
+                                            <td>teste</td>
+                                            <td align="right" width="80px;">0,000</td>
+                                            <td align="right" width="80px;">0,000</td>
+                                            <td align="right" id="1" width="30px;">
+                                                <input class="btn_view" name="" ref="estoque_minimo" style="background-color: transparent; border: 0;width: 15px; cursor:pointer;" type="button" value=""></input>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="f0f982736b7821edeffc7355d629f397">
+                        <div class="" style="">
+                            <div class="thead">
+                                <table border="0">
+                                    <thead>
+                                        <tr>
+                                            <td>Descrição</td>
+                                            <td width="80px;">Última Venda</td>
+                                            <td width="30px;"></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbody">
+                                <table border="0">
+                                    <tbody>
+
+                                        <tr>
+                                            <td>Sem Dados</td>
+                                            <td align="right" width="80px;">-</td>
+                                            <td align="right" id="" width="30px;">
+                                                <input class="btn_view" name="" ref="promocao" style="background-color: transparent; border: 0;width: 15px; cursor:pointer;" type="button" value=""></input>
+                                            </td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab_box cinza" style="width: 49%; float: left;">
+            <ul class="tab_selector">
+                <li><a class="tabtip" rel="1ae31dc643727829b55dfc2a44b389a8" title="Representatividade do(s) clientes distrobu�do(s) de acordo com o estado, considerando somente o endere�o principal"><span>Clientes por Estados</span></a>
+                </li>
+                <li><a class="tabtip" rel="8d520041e3df917a70d1d287a2b94264" title="Clientes que fazem anivers�rio, considerando o per�odo selecionado"><span>Aniversariantes</span></a>
+                </li>
+            </ul>
+            <div class="tab_box_content">
+                <div class="1ae31dc643727829b55dfc2a44b389a8">
+                    <div class="datatable" options="{     chartArea:{      top:10,       width:'98%',       height:'90%',      left:0     },     legend:false,     region: 'BR',           displayMode: 'regions',           resolution: 'provinces',           colorAxis: {colors: ['#096985']}     }" type="Geo">
+                        <cols>
+                            <c type="string">Descrição</c>
+                            <c type="number">Quantidade</c>
+                        </cols>
+                        <rows>
+
+                        </rows>
+                    </div>
+                </div>
+
+                <div class="8d520041e3df917a70d1d287a2b94264">
+                    <div class="" style="">
+                        <div class="thead">
+                            <table border="0">
+                                <thead>
+                                    <tr>
+                                        <td>Nome</td>
+                                        <td width="120px;">Data de Nascimento</td>
+                                        <td width="30px;"></td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tbody">
+                            <table border="0">
+                                <tbody>
+
+                                    <tr>
+                                        <td>Sem Dados</td>
+                                        <td align="center" width="120px;">-</td>
+                                        <td align="right" id="" width="30px;">
+                                            <input class="btn_view" name="" ref="aniversario_clientes" style="background-color: transparent; border: 0;width: 15px; cursor:pointer;" title="Exibir Lan�amento" type="button" value=""></input>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

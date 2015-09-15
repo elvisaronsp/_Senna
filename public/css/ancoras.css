@@ -1,0 +1,232 @@
+@CHARSET "UTF-8";
+
+/**
+ * TELA DE VENDAS
+ ***********************************************************/
+ 
+h1{
+	font-size: 		28px;
+	color: 			#444;
+	text-align: 	center;
+	padding: 		18px 0px 15px;
+}
+
+#ancora{
+	box-sizing:		border-box;
+	-moz-box-sizing:border-box;
+	display: 		block;
+	margin: 		0px auto;
+	float: 			left; 
+	padding: 		0 10px 0 10px; 
+	width: 			100%;
+}
+	#ancora .caixa{
+		background-color: 	#999;
+		cursor: 			pointer;
+		display: 			block;
+		float: 				left;
+		height: 			115px;
+		margin: 			0 1px 1px 0;
+		position: 			relative;
+		width: 				calc(50% - 2px);
+		overflow:			hidden;
+	}
+	#ancora .caixa.colunas_1{
+		width: 				calc(100% - 2px);
+	}
+	#ancora .caixa.colunas_2{
+		width: 				calc(50% - 1px);
+	}
+	#ancora .caixa.colunas_3{
+		width: 				calc((100% / 3) - 2px);
+	}
+	#ancora .caixa.colunas_4{
+		width: 				calc((100% / 4) - 3px);
+	}
+	#ancora .caixa.colunas_2:nth-child(2n){
+		margin-right: 		0;
+	}
+	#ancora .caixa.colunas_3:nth-child(3n){
+		margin-right: 		0;
+	}
+	#ancora .caixa.colunas_4:nth-child(4n){
+		margin-right: 		0;
+	}
+		#ancora .caixa .imagem{
+			border-right: 		1px solid #FFF;
+			float: 				left;
+			margin:				10px 25px 10px 0;
+			height:				calc(100% - 20px);
+			line-height:		100px;
+			padding:			0 30px;
+			display: 			inline-block;
+			width: 				26px;
+		}
+			#ancora .caixa .imagem i{
+				font-size: 			24px;
+				color: 				#FFF;
+			}
+		#ancora .caixa .corpo{
+			color: 				#FFF;
+			float: 				left;
+			margin:				18px 0 0;
+			position: 			absolute;
+			margin-left: 		110px;
+			width: 				calc(100% - 110px);
+		}
+			#ancora .caixa h4{
+				display:		block;
+				padding: 		0;
+				margin:			0;
+				text-indent:	0;
+				position:		relative;
+			}
+				#ancora .caixa h4 i{
+					display: 		none;
+				}
+				#ancora .caixa h4 span{
+					color:			#FFF;
+					display: 		block;
+					margin-top:		25px;
+					font-weight:	bold;
+					font-size: 		18px;
+				}
+			#ancora .caixa .corpo p{
+				color:			#FFF;
+				display:		block;
+				font-size: 		12px;
+				font-weight: 	normal;
+				opacity: 		0;
+				padding-right: 	15px;
+				position: 		absolute;
+				top:			20px;
+				
+			}
+			
+		#ancora .caixa .links{
+			display:		block;
+			position: 		absolute;
+			top:			-59px;
+			right:			1px;
+			z-index: 		1;
+			width: 			auto;
+			text-align: 	center;
+		}
+			#ancora .caixa .links a{
+				border-radius: 		1px;
+				padding: 			0 9px;
+				text-decoration: 	none;
+				background-color: 	rgba(0,0,0,0.2);
+				height: 			30px;
+				display: 			block;
+				float: 				right;
+				margin-left: 		1px;
+			}
+			#ancora .caixa .links a *{
+				color:			#FFF;
+				cursor:			pointer;
+				display: 		inline-block;
+			    line-height: 	30px;
+			}
+			#ancora .caixa .links a label{
+				position: 		relative;
+				top: 			-1px;
+			}
+			#ancora .caixa .links a span{
+			    padding-right:	6px;
+			    font-size: 		12px;
+			}
+			#ancora .caixa .links a:hover{
+				background-color: 	rgba(255,255,255,0.2);
+			}
+			#ancora .caixa .links a:hover *{
+				color:			#FFF;
+			}
+			
+	#ancora .caixa.amarelo			{ background-color: #E8B249; }
+	#ancora .caixa.azul				{ background-color: #2B70AD; }
+	#ancora .caixa.laranja			{ background-color: #E07802; }
+	#ancora .caixa.marrom			{ background-color: #AF8A69; }
+	#ancora .caixa.verde			{ background-color: #69A821; }
+	#ancora .caixa.vermelho			{ background-color: #C94242; }
+	#ancora .caixa.rosa				{ background-color: #DD6EDC; }
+	#ancora .caixa.roxo				{ background-color: #A478D3; }
+	#ancora .caixa.amarelolion		{ background-color: #F4CE07; }
+		
+
+
+/* EFEITOS */
+/*
+#ancora .caixa,
+#ancora .caixa > *{
+	-webkit-backface-visibility: 	hidden;
+	-moz-backface-visibility: 		hidden;
+	backface-visibility: 			hidden;
+}
+*/
+#ancora .caixa{
+	-webkit-transition: 			background 0.2s;
+	-moz-transition: 				background 0.2s;
+	transition: 					background 0.2s;
+}
+#ancora .caixa:hover{
+	background-color: 				#096982;
+}
+#ancora .caixa:hover h4,
+#ancora .caixa:hover p{
+	color: 							#FFF; 
+}
+	
+	#ancora .caixa .imagem{
+		-webkit-transition: 			-webkit-transform 0.2s;
+		-moz-transition: 				-moz-transform 0.2s;
+		transition: 					transform 0.2s;
+	}
+	#ancora .caixa:hover .imagem{
+		-webkit-transform:				translateX(-100px);
+		-moz-transform:					translateX(-100px);
+		transform:						translateX(-100px);
+	}
+	
+	#ancora .caixa .corpo{
+		-webkit-transition: 			-webkit-transform 0.2s;
+		-moz-transition: 				-moz-transform 0.2s;
+		transition: 					transform 0.2s;
+	}
+	#ancora .caixa:hover .corpo{
+		-webkit-transform:				translateX(-90px);
+		-moz-transform:					translateX(-90px);
+		transform:						translateX(-90px);
+	}
+	
+		#ancora .caixa h4 span{
+			-webkit-transition: 			margin-top 0.2s, font-size 0.2s;
+			-moz-transition: 				margin-top 0.2s, font-size 0.2s;
+			transition: 					margin-top 0.2s, font-size 0.2s;
+		}
+		#ancora .caixa:hover .corpo h4 span{
+			margin-top: 					0;
+			font-size: 						16px;
+		}
+		#ancora .caixa .corpo p{
+			-webkit-transition: 			opacity 0.2s;
+			-moz-transition: 				opacity 0.2s;
+			transition: 					opacity 0.2s;
+		}
+		#ancora .caixa:hover .corpo p{
+			opacity: 						1;
+		}
+	
+	#ancora .caixa .links{
+		-webkit-transition: 			-webkit-transform 0.2s;
+		-moz-transition: 				-moz-transform 0.2s;
+		transition: 					transform 0.2s;
+	}
+	#ancora .caixa:hover .links{
+		-webkit-transform:				translateY(60px);
+		-moz-transform:					translateY(60px);
+		transform:						translateY(60px);
+	}
+		
+		
+		

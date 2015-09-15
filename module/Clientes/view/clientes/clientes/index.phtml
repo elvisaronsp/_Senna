@@ -1,0 +1,94 @@
+<?php define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getId());  ?>
+<?php echo $this->doctype(); ?>
+<html>
+<head>
+
+    <meta http-equiv='cache-control' content='no-cache'/>
+    <meta http-equiv='expires' content='0'/>
+    <meta http-equiv='pragma' content='no-cache'/>
+    <meta name="robots" content="NOINDEX,NOFOLLOW"/>
+    <meta name="base_url" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!-- Scripts javaScript -->
+    <?php echo $this->headScript()
+        ->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+        ->appendFile($this->basePath() . '/js/mootools-1.2-more.js')
+        ->appendFile($this->basePath() . '/js/core.js')
+        ->appendFile($this->basePath() . '/js/window.js')
+        ->appendFile($this->basePath() . '/js/modal.js')
+        ->appendFile($this->basePath() . '/js/mocha-ext.js')
+        ->appendFile($this->basePath() . '/js/base.js')
+        ->appendFile($this->basePath() . '/js/atalhos.js')
+        ->appendFile($this->basePath() . '/js/detect-zoom.js')
+        ->appendFile($this->basePath() . '/js/listing.js')
+        ->appendFile($this->basePath() . '/js/omnigrid.js')
+        ->appendFile($this->basePath() . '/js/sexyalertbox.js')
+        ->appendFile($this->basePath() . '/js/jquery/core.js')
+        ->appendFile($this->basePath() . '/js/jquery/dump.js')
+        ->appendFile($this->basePath() . '/js/jquery/debug.js')
+        ->appendFile($this->basePath() . '/js/jquery/bt.js')
+        ->appendFile($this->basePath() . '/js/jquery/validate.js')
+        ->appendFile($this->basePath() . '/js/jquery/maskedinput.js')
+        ->appendFile($this->basePath() . '/js/jquery/uppercase.js')
+        ->appendFile($this->basePath() . '/js/jquery/date.js')
+        ->appendFile($this->basePath() . '/js/jquery/datepicker.js')
+        ->appendFile($this->basePath() . '/js/jquery/livequery.js')
+        ->appendFile($this->basePath() . '/js/forms.js')
+        ->appendFile($this->basePath() . '/js/jquery/listing.js')
+        ->appendFile($this->basePath() . '/js/jquery/autosuggestmulti.js')
+        ->appendFile($this->basePath() . '/js/jquery/readonly.js')
+        ->appendFile($this->basePath() . '/js/jquery/ui.js')
+        ->appendFile($this->basePath() . '/js/script_clientes_index.js') ?>
+
+    <!-- Estilos da pagina Css/code -->
+    <?php echo $this->headLink()
+        //->appendStylesheet($this->basePath() . '/css/noprint.css')
+        ->appendStylesheet($this->basePath() . '/css/loader.css')
+        ->appendStylesheet($this->basePath() . '/css/style.css')
+        ->appendStylesheet($this->basePath() . '/css/style_tagplus.css')
+        ->appendStylesheet($this->basePath() . '/css/glyphs.css')
+        ->appendStylesheet($this->basePath() . '/css/listing.css')
+        ->appendStylesheet($this->basePath() . '/css/omnigrid.css')
+        ->appendStylesheet($this->basePath() . '/css/sexyalertbox.css')
+        ->appendStylesheet($this->basePath() . '/css/jqueryui.css')
+        ->appendStylesheet($this->basePath() . '/css/datepicker.css') ?>
+
+</head>
+<body >
+
+<div id="loader">
+    <div class="loader-text">
+        <span class='carregando'>Carregando ...</span>
+        <span class='enviando' style="display: none">Enviando ...</span>
+    </div>
+    <div class="loader-bg">&nbsp;</div>
+</div>
+
+<div id="tela" style="height: 100%;">
+    <div id="conteudo">
+
+        <?php echo $this->partial('partials/form_buscar'); ?>
+
+        <input id="emails_clientes" name="emails_clientes" type="hidden" value=""></input>
+        <div id="datatable" windowName="Editar Cliente">
+            <div col="id" hidden="true">#</div>
+            <div col="ativo" type="string" align="center"  width="45">Ativo</div>
+            <div col="razaoSocial" type="string">Nome/Razão Social</div>
+            <div col="cpfCnpj" type="string" width="12%">CPF/CNPJ</div>
+            <div col="codigoCliente" type="string" width="150">Código do Cliente</div>
+            <div col="email" type="string" width="23%">E-mail</div>
+            <div col="telefone" type="string" width="10%">Telefone</div>
+            <div col="origem" type="string" width="8%">Origem</div>
+        </div>
+
+        <div add_btn_title="Clique aqui para adicionar um novo registro" adv_search_btn_title="Limpe ou altere o Filtro Avançado para exibir resultados" id="list_empty" search_btn_title="Remova ou altere sua pesquisa para exibir resultados">
+            <h3>Nenhum registro foi encontrado</h3>
+        </div>
+
+    </div>
+</div>
+
+<div id="footer"></div>
+</body>
+</html>

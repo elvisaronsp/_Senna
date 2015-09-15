@@ -1,0 +1,314 @@
+<div class="tab" id="tab_dados_secundarios" ref="Dados Secundarios" rel="tab_dados_secundarios">
+
+    <!-- (COLUNA LADO ESQUERDO) RG-DATA DE NASCIMENTO-ESCOLARIDADE  -->
+    <fieldset class="fieldset " style="width:33%;height:131px;">
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Informações Pessoais</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <!-- rg -->
+        <p class="field inline" style="width:auto; width:95% !important;">
+            <label class="" for="rg" style="width:40%">RG</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="rg" style="width: 58%">
+                <?php echo $this->formElement($input = $form->get('rg'));?>
+            </span>
+        </p>
+
+        <!-- Nascimento -->
+        <p class="field inline" style="width:auto; width:95% !important;">
+            <label class="" for="dataNascimento" style="width:40%">Data de Nascimento</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="dataNascimento" style="width: 58%">
+                <?php echo $this->formElement($input = $form->get('dataNascimento'));?>
+            </span>
+        </p>
+
+        <!-- Escolaridade -->
+        <p class="field inline" style="width:auto; width:95% !important;">
+            <label class="" for="escolaridade" style="width:40%">Escolaridade</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="escolaridade" style="width: 58%">
+                <?php echo $this->formElement($input = $form->get('escolaridade'));?>
+            </span>
+        </p>
+
+    </fieldset>
+    <!-- FIM (COLUNA LADO ESQUERDO) RG-DATA DE NASCIMENTO-ESCOLARIDADE  -->
+
+    <!-- (COLUNA CENTRAL) DATA ADMISSAO-DATA DEMISSAO-DESCANÇO SEMANAL-CRPS  -->
+    <fieldset class="fieldset " show="inline" style="width:27%;height:131px;">
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Dados Trabalhistas</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <!--Data de adminissao-->
+        <p class="field inline" style="width:auto; width:95% !important;">
+            <label class="" for="dataAdminissao" style="width:40%">Data de Admissão</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="dataAdminissao" style="width: 58%">
+                <?php echo $this->formElement($input = $form->get('dataAdminissao'));?>
+            </span>
+        </p>
+
+        <!-- Data Demissao -->
+        <p class="field inline" style="width:auto; width:95% !important;">
+            <label class="" for="dataDemissao" style="width:40%">Data de Demissão</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="dataDemissao" style="width: 58%">
+                <?php echo $this->formElement($input = $form->get('dataDemissao'));?>
+            </span>
+        </p>
+
+        <!-- Descanso semanal -->
+        <p class="field inline" style="width:auto; width:95% !important;">
+            <label class="" for="descancoSemanal" style="width:40%">Descanso Semanal</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="descancoSemanal" style="width: 58%">
+                <?php echo $this->formElement($input = $form->get('descancoSemanal'));?>
+            </span>
+        </p>
+
+        <!-- CTPS -->
+        <p class="field inline" style="width:auto; width:95% !important;">
+            <label class="" for="ctps" style="width:40%">CTPS</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input short" rel="ctps" style="width: 58%">
+                <?php echo $this->formElement($input = $form->get('ctps'));?>
+            </span>
+        </p>
+
+    </fieldset>
+    <!-- FIM (COLUNA CENTRAL) DATA ADMISSAO-DATA DEMISSAO-DESCANÇO SEMANAL-CRPS  -->
+
+    <!-- (COLUNA LADO DIREITO ) TIPO CONTA BANCARIA-AGENCIA-CONTA-NUMERO BANCO -->
+    <fieldset class="fieldset " show="inline" style="width:33%;height:131px;">
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Dados Bancários</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <!--Tipo conta bancaria-->
+        <p class="field inline" style="width:45%; ">
+            <label class="" for="tipoContaBancaria" style="">Tipo de Conta Bancária</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="tipoContaBancaria" style="">
+                <?php echo $this->formElement($input = $form->get('tipoContaBancaria'));?>
+            </span>
+        </p>
+
+        <!--Agencia-->
+        <p class="field inline" style="width:45%; ">
+            <label class="" for="agencia" style="">Agência Bancária</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="agencia" style="">
+                <?php echo $this->formElement($input = $form->get('agencia'));?>
+            </span>
+        </p>
+
+        <!--conta corrente-->
+        <p class="field inline" style="width:45%; ">
+            <label class="" for="contaCorrente" style="">Conta Bancária</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="contaCorrente" style="">
+                <?php echo $this->formElement($input = $form->get('contaCorrente'));?>
+            </span>
+        </p>
+
+        <!--Numero do banco-->
+        <p class="field inline" style="width:45%; ">
+            <label class="" for="numerobanco" style="">Numero banco</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="numerobanco" style="">
+                <?php echo $this->formElement($input = $form->get('numerobanco'));?>
+            </span>
+        </p>
+
+    </fieldset>
+    <!-- FIM (COLUNA LADO DIREITO ) TIPO CONTA BANCARIA-AGENCIA-CONTA-NUMERO BANCO -->
+
+    <!-- (COLUNA LADO ESQUERDO) COMISSAO  -->
+    <fieldset class="fieldset " show="inline" style="width:33%;">
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Comissão</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <!--comissao-->
+        <p class="field inline" style="width:auto; width:95% !important;">
+            <label class="" for="comissao" style="width:40%">Comissão (%)</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="comissao" style="width: 58%">
+                <?php echo $this->formElement($input = $form->get('comissao'));?>
+            </span>
+        </p>
+
+    </fieldset>
+    <!-- FIM (COLUNA LADO ESQUERDO) COMISSAO  -->
+
+    <!-- (COLUNA CENTRAL) DESCONTO MAXIMO  -->
+    <fieldset class="fieldset " show="inline" style="width:27%;">
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Desconto Máximo</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+       </legend>
+
+        <!--Desconto Maximo-->
+        <p class="field inline" style="width:auto; width:95% !important;">
+            <label class="" for="descontoMaximo" style="width:44%">Desconto Máximo (%)</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="desconto_maximo_permitido" style="width: 54%">
+                <?php echo $this->formElement($input = $form->get('descontoMaximo'));?>
+            </span>
+        </p>
+
+    </fieldset>
+    <!-- FIM (COLUNA CENTRAL) DESCONTO MAXIMO  -->
+
+    <hr class="clear" size="1"></hr>
+
+    <!--AVISO AO USUARIO-->
+    <div class="help_infos" id="tip_cabecalho" style=" ">
+        <div style="">Indica o dia e horário de acesso do usuário. Caso o mesmo tente acessar fora do dia e horário estabelecido(s), o acesso será negado. Será levado em consideração o horário de Brasília, no formato '00:00' às '23:59'. Os dias marcados serão aqueles que o usuário terá acesso.</div>
+    </div>
+
+    <!--  (COLUNA ESQUERDA) HORARIOS DE SERVIÇO  -->
+    <fieldset class="fieldset " style="width:342px;">
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Horários</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+
+        <div style="float:left; width:213px;">
+
+            <!-- Hora de Entrada -->
+            <p class="field inline" style="width:auto; ">
+                <label class="" for="hora_entrada" style="width:40%">Hora de Entrada</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="hora_entrada" style="width: 28%">
+                    <?php echo $this->formElement($input = $form->get('hora_entrada'));?>
+                </span>
+            </p>
+
+            <!-- Hora de Entrada Almoco -->
+            <p class="field inline" style="width:auto; ">
+                <label class="" for="hora_almoco_entrada" style="width:40%">Início do Almoço</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="hora_almoco_entrada" style="width: 28%">
+                    <?php echo $this->formElement($input = $form->get('hora_almoco_entrada'));?>
+                </span>
+            </p>
+
+            <!-- Hora de Saida Almoco -->
+            <p class="field inline" style="width:auto; ">
+                <label class="" for="hora_almoco_saida" style="width:40%">Fim do Almoço</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="hora_almoco_saida" style="width: 28%">
+                    <?php echo $this->formElement($input = $form->get('hora_almoco_saida'));?>
+                </span>
+            </p>
+
+            <!-- Hora de Saida -->
+            <p class="field inline" style="width:auto; ">
+                <label class="" for="hora_saida" style="width:40%">Hora de Saída</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="hora_saida" style="width: 28%">
+                    <?php echo $this->formElement($input = $form->get('hora_saida'));?>
+                </span>
+            </p>
+
+        </div>
+
+        <div style="float:right; width:75px; margin-right:50px;">
+
+            <!-- Dias da Semana -->
+            <p class="checkbox_field  block" style="">
+                <label class="" for="dias_da_semana_1" style="">
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_1'));?>
+                    <span>Segunda</span>
+                </label>
+            </p>
+
+            <p class="checkbox_field  block" style="">
+                <label class="" for="dias_da_semana_2" style="">
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_2'));?>
+                    <span>Terça</span>
+                </label>
+
+            </p>
+
+            <p class="checkbox_field  block" style="">
+                <label class="" for="dias_da_semana_3" style="">
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_3'));?>
+                    <span>Quarta</span>
+                </label>
+            </p>
+
+
+            <p class="checkbox_field  block" style="">
+                <label class="" for="dias_da_semana_4" style="">
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_4'));?>
+                    <span>Quinta</span>
+                </label>
+
+            </p>
+
+            <p class="checkbox_field  block" style="">
+                <label class="" for="dias_da_semana_5" style="">
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_5'));?>
+                    <span>Sexta</span>
+                </label>
+            </p>
+
+            <p class="checkbox_field  block" style="">
+                <label class="" for="dias_da_semana_6" style="">
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_6'));?>
+                    <span style="color: #057EBE;">Sábado</span>
+                </label>
+            </p>
+
+            <p class="checkbox_field  block" style="">
+                <label class="" for="dias_da_semana_0" style="">
+                    <?php echo $this->formElement($input = $form->get('dias_da_semana_7'));?>
+                    <span style="color: #FF0000;">Domingo</span>
+                </label>
+            </p>
+
+        </div>
+
+    </fieldset>
+    <!-- (COLUNA ESQUERDA) HORARIOS DE SERVIÇO  -->
+
+    <div class="tab_navigator ">
+        <!-- BOTÕES CONTINUAR-VOLTAR  -->
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>
+        &nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+        <!-- BOTÕES CONTINUAR-VOLTAR  -->
+    </div>
+
+</div>
+
+
+

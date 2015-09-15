@@ -1,0 +1,1588 @@
+<?php
+define('__REDEFINIR__', $this->UsuarioIdentity("Usuario")->getRedefinirSenha());
+define('__PERFIL__', $this->UsuarioIdentity("Usuario")->getPerfil()->getNome());
+define('__NEGADO__', $this->basePath() . "/senna/negado");
+define('__NOTVIEW__', $this->basePath() . "/senna/negado/index/inicio");
+define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getNomefantasia());
+?>
+<?php //echo $this->content?>
+<?php echo $this->doctype(); ?>
+<!-- DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"-->
+<html>
+
+<head>
+    <meta http-equiv='cache-control' content='no-cache'/>
+    <meta http-equiv='expires' content='0'/>
+    <meta http-equiv='pragma' content='no-cache'/>
+    <meta name="robots" content="NOINDEX,NOFOLLOW"/>
+    <meta name="base_url" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/png" href="/images/favicon.ico"/>
+
+
+    <?php echo $this->headTitle('SENNA ::' . $this->translate(' Capital Ponto'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <title></title>
+    <?php
+
+    echo $this->headScript()->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+            ->appendFile($this->basePath() . '/js/mootools-1.2-more.js')
+            ->appendFile($this->basePath() . '/js/core.js')
+            ->appendFile($this->basePath() . '/js/window.js')
+            ->appendFile($this->basePath() . '/js/modal.js')
+            ->appendFile($this->basePath() . '/js/Windows-from-html.js')
+            ->appendFile($this->basePath() . '/js/Arrange-cascade.js')
+            ->appendFile($this->basePath() . '/js/Arrange-tile.js')
+            ->appendFile($this->basePath() . '/js/Layout.js')
+            ->appendFile($this->basePath() . '/js/Dock.js')
+            ->appendFile($this->basePath() . '/js/Workspaces.js')
+            ->appendFile($this->basePath() . '/js/mocha-ext.js')
+            ->appendFile($this->basePath() . '/js/base.js')
+            ->appendFile($this->basePath() . '/js/links-init.js')
+            ->appendFile($this->basePath() . '/js/erp-init.js')
+            ->appendFile($this->basePath() . '/js/tree.js')
+            ->appendFile($this->basePath() . '/js/sexyalertbox.js')
+            ->appendFile($this->basePath() . '/js/jquery/core.js')
+            ->appendFile($this->basePath() . '/js/jquery/interface.js')
+            ->appendFile($this->basePath() . '/js/jquery/bt.js')
+            ->appendFile($this->basePath() . '/js/jquery/masonry.js')
+            ->appendFile($this->basePath() . '/js/atalhos.js')
+            ->appendFile($this->basePath() . '/js/detect-zoom.js')
+            ->appendFile($this->basePath() . '/js/jquery/livequery.js')
+            ->appendFile($this->basePath() . '/js/jquery/menu.js') ?>
+
+
+    <?php
+
+    echo $this->headLink()->
+    // ->appendStylesheet($this->basePath() . '/css/noprint.css')
+    appendStylesheet($this->basePath() . '/css/glyphs.css')
+            ->appendStylesheet($this->basePath() . '/css/content.css')
+            ->appendStylesheet($this->basePath() . '/css/ui.css')
+            ->appendStylesheet($this->basePath() . '/css/sexyalertbox.css')
+            ->appendStylesheet($this->basePath() . '/css/loader.css')
+            ->appendStylesheet($this->basePath() . '/css/dock.css')
+            ->appendStylesheet($this->basePath() . '/css/ui_tagplus.css')
+            ->appendStylesheet($this->basePath() . '/css/menu.css')
+            ->appendStylesheet($this->basePath() . '/css/style_tagplus.css') ?>
+
+
+    <script type='text/javascript'>
+
+
+        if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
+            "intro_button_continuar": "Continuar",
+            "intro_button_avancar": "Avan\u00e7ar",
+            "intro_button_entendi": "<i class=\"icon-ok\"><\/i> Entendi",
+            "intro_button_ok": "<i class=\"icon-ok\"><\/i> Ok",
+            "intro_button_concluir": "<i class=\"icon-thumbs-up\"><\/i> Concluir",
+            "intro_button_voltar": "Voltar",
+            "intro_button_fechar": "Fechar",
+            "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial",
+            "lang_range_separator": "a",
+            "lang_range_periodo_vazio": "Todo o Per\u00edodo",
+            "lang_range_date_format": "dd mmm",
+            "lang_range_date_format_dia": "dd de mmmm yyyy",
+            "lang_range_date_format_mes": "mmmm yyyy",
+            "lang_range_date_format_ano": "yyyy",
+            "lang_date_format": "dd\/mm\/yyyy",
+            "lang_start_date": "01\/01\/2011",
+            "intro_dashboard_inicio_title": "Primeiros Passos",
+            "intro_dashboard_inicio_text": "Ol\u00e1 <b>%s<\/b>!<br\/>Agora voc\u00ea vai aprender os primeiros passos para utilizar o sistema com sucesso.<br\/>N\u00e3o demorar\u00e1 mais do que 90 segundos =).",
+            "intro_dashboard_inicio_fechar": "J\u00e1 conhe\u00e7o o sistema",
+            "intro_dashboard_cancelar": "Cancelar Tutorial",
+            "intro_dashboard_passo1_title": "Ajuda",
+            "intro_dashboard_passo1_text": "Aqui voc\u00ea encontrar\u00e1 todo o <b>suporte<\/b> para utilizar o sistema,<br \/>como por exemplo Chat, E-mail e Suporte Remoto.",
+            "intro_dashboard_passo2_title": "Alertas",
+            "intro_dashboard_passo2_text": "Aqui voc\u00ea encontra suas <b>notifica\u00e7\u00f5es<\/b>. Informa\u00e7\u00f5es sobre treinamento,<br \/>atualiza\u00e7\u00f5es e at\u00e9 mesmo o vencimento de sua fatura ser\u00e3o exibidos aqui.",
+            "intro_dashboard_passo3_title": "Menu",
+            "intro_dashboard_passo3_text": "Este \u00e9 o <b>menu<\/b> principal do sistema. Atrav\u00e9s dele \u00e9 poss\u00edvel realizar <b>vendas<\/b>,<br \/>visualizar seus <b>gr\u00e1ficos<\/b> e acessar as 8 op\u00e7\u00f5es mais utilizadas por voc\u00ea no sistema.",
+            "intro_dashboard_passo4_title": "Menu",
+            "intro_dashboard_passo4_text": "Ao passar o mouse por cima o menu ser\u00e1 expandido, permitindo o acesso<br \/>\u00e0s demais <b>funcionalidades<\/b> do sistema atrav\u00e9s do \u00edcone em destaque <b>Menu<\/b>",
+            "intro_dashboard_passo5_title": "Menu Expandido",
+            "intro_dashboard_passo5_text": "Aqui s\u00e3o exibidas todas as <b>fun\u00e7\u00f5es<\/b> do sistema",
+            "intro_dashboard_passo6_title": "Pesquisa",
+            "intro_dashboard_passo6_text": "Digitando o <b>nome<\/b> ou uma <b>palavra-chave<\/b> da fun\u00e7\u00e3o,<br \/>voc\u00ea poder\u00e1 localiz\u00e1-la mais facilmente."
+        });
+
+        var confirmation = function (a, b) {
+            b = $extend({'textBoxBtnOk': 'Sim', 'textBoxBtnCancel': 'Não'}, b || {});
+            Sexy.confirm(a, b);
+        };
+
+        /*********************
+         common/base/avisos.js
+         *********************/
+
+        /**
+         * Javascripts para avisos do sistema
+         */
+        (function ($) {
+            $(window).load(function () {
+                //Exibindo Tela de Boas Vindas
+                if ("" != "") {
+                    setTimeout(function () {
+                        parent.MochaUI.openModal({
+                            id: "",
+                            title: "Bem Vindo",
+                            contentURL: "",
+                            headerHeight: 30,
+                            width: 1000,
+                            height: 620,
+                            headerStartColor: [255, 255, 255],
+                            headerStopColor: [255, 255, 255],
+                            closeColor: [55, 55, 55],
+                            closeBgColor: [255, 255, 255],
+                            addClass: "modal2",
+                            shadowBlur: 0,
+                            shadowOffset: {'x': 0, 'y': 0},
+                            onClose: function () {
+                                $(document).trigger("activate.tour");
+                            }
+                        });
+                    }, 500);
+                }
+
+                //Exibindo Aviso de Atualização
+                var aviso = "";
+                if (aviso != "") {
+                    setTimeout(function () {
+                        Sexy.confirm(aviso, {
+                            'BoxClass': 'BoxUpdate',
+                            'textBoxBtnOk': 'Ver Alterações',
+                            'textBoxBtnCancel': 'Fechar',
+                            'onComplete': function (e) {
+                                if (e) {
+                                    parent.MochaUI.openModal({
+                                        id: "senna/suporte/infos",
+                                        title: "Informações do Sistema",
+                                        contentURL: "senna/suporte/infos"
+                                    });
+                                }
+                                $("#top_menu_suporte_trigger").btOn();
+                            }
+                        });
+                    }, 500);
+                }
+
+            });
+        })(jQuery);
+
+        /**************************
+         common/base/auth_cookie.js
+         **************************/
+
+        /**
+         * Efetua um post na página tagplus que registra o cookie de login
+         */
+        (function ($) {
+            $(document).ready(function () {
+               //Cria TagScript no cabecalho que inclui a url remota criando o cookie
+                var tag = document.createElement("img");
+                tag.src = 'https://www.tagplus.com.br/wp-content/themes/landing_gat/forms/login_cookie.php?infos=eyJ1cmwiOiJodHRwOlwvXC9hcHAudGFncGx1cy5jb20uYnJcL3Bhc3NhdGVtcG9cLyIsInBhc3RhIjoicGFzc2F0ZW1wbyIsInRpcG8iOiJ0YWdwbHVzIiwibG9naW4iOiJiZWthIiwibm9tZSI6Im1hcmlvIiwibm9tZV9mYW50YXNpYSI6InBhc3NhdGVtcG8ifQ==';
+                tag.style.display = "none";
+                tag.async = true;
+                tag.onload = function () {
+                    tag.onload = null;
+                    if (tag.parentNode) {
+                        tag.parentNode.removeChild(tag);
+                    }
+                    tag = null;
+                }
+                document.getElementsByTagName("body")[0].appendChild(tag);
+            });
+
+        })(jQuery);
+
+    </script>
+
+</head>
+<body class='main_body'>
+
+<!-- Exibição de pesquisa junto ao usuário -->
+<script type="text/javascript">
+    //  var _kiq = _kiq || [];(function(){setTimeout(function(){var d = document, f = d.getElementsByTagName('script')[0], s = d.createElement('script'); s.type = 'text/javascript';s.async = true; s.src = '//s3.amazonaws.com/ki.js/52664/bk6.js'; f.parentNode.insertBefore(s, f);},1);})();
+</script>
+
+<!--loader-->
+<div id="loader">
+    <div class="loader-text">
+        <span class="carregando">Carregando ...</span> <span class="enviando"
+                                                             style="display: none">Enviando ...</span>
+    </div>
+    <div class="loader-bg">&nbsp;</div>
+</div>
+
+
+<!--avisos-->
+
+<!-- Aviso para zoom ativo na pagina -->
+<div btn_label="Fechar" id="zoomAlert" style="display: none;">
+    <h5>AVISO</h5>
+    <br/>Foi detectado o uso incorreto de zoom que pode comprometer a
+    visualização correta das telas do sistema.<br/>
+    <br/>Para corrigir o problema pressione <u>simultaneamente</u> as
+    teclas <b>'Ctrl' + 0 (numeral zero)</b>.<br/>
+    <br/>Em caso de dúvidas entre em contato com nosso suporte.
+</div>
+
+
+<!--auth_cookie-->
+
+
+<div id="desktop">
+
+    <!-- desktopHeader -->
+    <div id="desktopHeader">
+        <div id="desktopTitlebarWrapper">
+            <div id="desktopTitlebar">
+                <div id="applicationName"><?=__EMPRESA__?></div>
+                <div id="topNav">
+                    <ul>
+                        <li>
+                            <a id="top_menu_usuario_trigger"><span><i class="icon-user"></i><span
+                                            class="label"><?= $this->UsuarioIdentity("Usuario")->getNome() ?></span></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="top_menu_suporte_trigger" rel="ajuda" title="Suporte"><span><i
+                                            class="icon-question-sign"
+                                            style="font-size: 16px; padding-top: 1px;"></i><span
+                                            class="label hidden"></span></span></a>
+                        </li>
+                        <li>
+                            <a class="alerta ativo static" id="top_menu_alertas_trigger"><span
+                                        class="alert_counter"></span><span><i class="icon-bell"></i><span
+                                            class="label hidden">%label_aviso%</span></span></a>
+                        </li>
+                        <li>
+                            <a id="top_menu_agenda_trigger" rel="agenda"
+                               title="Visualizar Agenda"><span><i class="icon-calendar"
+                                                                  style="font-size: 16px; padding-top: 1px;"></i><span
+                                            class="label hidden"></span></span></a>
+                        </li>
+                        <li>
+                            <a id="top_menu_modal_trigger"><span><img alt="menu"
+                                                                      src="images/menu16x16.png"></img><span
+                                            class="label">Menu</span></span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Cor do sistema -->
+                <div id="applicationColor" rel="[22, 160, 133]"
+                     style="display: none;"></div>
+
+                <!-- Registros por Página -->
+                <div id="listingPerPage" rel="25" style="display: none;"></div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- desktopHeader end -->
+
+    <!--menu-->
+    <!-- Menu topo -->
+    <div class="top_menu reord fixed" id="top_menu_modal">
+        <ul>
+            <li class='categoria ' meta='movimentações movimentacoes'>
+                <a
+                        rel='menu_categoria_vendas' class='returnFalse expanded' key='0'
+                        class='item'><span><span class='label'>Movimentações </span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='pedidos/orçamentos pedidos/orcamentos venda/pedidos_venda pedido de venda pedidos de venda pedido venda uc048 movimentações movimentacoes'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_venda/pedidos_venda'
+                                rel='menu_item_cadastro_pedido_venda' target='panel' key='5'
+                                shortcut='alt+shift+1' class='item'><span><i
+                                        class='icon-cart-remove menu_icon'></i><span class='label'>Pedidos/Orçamentos
+										<span class='shortcut'>alt+shift+1</span>
+								</span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='venda simples nao_fiscal/vendas_nao_fiscais venda não-fiscal não fiscal venda sem documento uc125 nao-fiscal nao fiscal movimentações movimentacoes'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_nao_fiscal/vendas_nao_fiscais'
+                                rel='menu_item_cadastro_vendas_nao_fiscais' target='panel'
+                                key='86' shortcut='alt+shift+5' class='item'><span><i
+                                        class='icon-basket menu_icon'></i><span class='label'>Venda
+										Simples <span class='shortcut'>alt+shift+5</span>
+								</span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='ordens de serviço ordens de servico servico/ordem_servicos ordem de serviço o.s. os ordem serviço uc074 ordem de servico ordem servico movimentações movimentacoes'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_servico/ordem_servicos'
+                                rel='menu_item_servico_lancamentos' target='panel' key='6'
+                                shortcut='alt+shift+2' class='item'><span><i
+                                        class='icon-service-go menu_icon'></i><span class='label'>Ordens
+										de Serviço <span class='shortcut'>alt+shift+2</span>
+								</span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='emitir nf-e cadastro/nfes nota fiscal eletrônica nfe nf-e nota fiscal uc046 nota fiscal eletronica movimentações movimentacoes'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_cadastro/nfes' rel='menu_item_cadastro_nfe'
+                                target='panel' key='7' shortcut='alt+shift+3' class='item'><span><i
+                                        class='icon-nfe menu_icon'></i><span class='label'>Emitir NF-e
+										<span class='shortcut'>alt+shift+3</span>
+								</span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='emitir nfc-e cadastro/nfces nota fiscal eletrônica ao consumidor nfce nfc-e nota fiscal nota consumidor consumidor nota nota fiscal eletronica ao consumidor movimentações movimentacoes'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_cadastro/nfces' rel='menu_item_cadastro_nfce'
+                                target='panel' key='120' class='item'><span><i
+                                        class='icon-nfce menu_icon'></i><span class='label'>Emitir
+										NFC-e </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='emitir nfs-e servico/nfses nota fiscal eletrônica de serviços nota fiscal nota fiscal de serviços eletrônica nfse nfs-e nota de serviço nota eletrônica de serviços nota de serviços eletrônica uc072 nota fiscal eletronica de servicos nota fiscal de servicos eletronica nota de servico nota eletronica de servicos nota de servicos eletronica movimentações movimentacoes'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_servico/nfses' rel='menu_item_nfse' target='panel'
+                                key='8' shortcut='alt+shift+4' class='item'><span><i
+                                        class='icon-nfse menu_icon'></i><span class='label'>Emitir
+										NFS-e <span class='shortcut'>alt+shift+4</span>
+								</span></span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class='categoria ' meta='loja virtual'>
+                <a
+                        rel='menu_categoria_ecommerce' class='returnFalse' key='88'
+                        class='item'><span><span class='label'>Loja Virtual </span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='pedidos de loja virtual ecommerce/pedidos_ecommerce loja virtual ecommerce loja pedido uc132'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ecommerce/pedidos_ecommerce'
+                                rel='menu_item_pedido_ecommerce' target='panel' key='90'
+                                class='item'><span><i class='icon-loja-pedidos menu_icon'></i><span
+                                        class='label'>Pedidos de Loja Virtual </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='sincronizações loja virtual sincronizacoes loja virtual ecommerce/sincronizacoes loja virtual ecommerce loja configuração informações sincronização setup configuracao informacoes sincronizacao'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ecommerce/sincronizacoes' rel='menu_item_sinc_ecommerce'
+                                target='window' key='96' class='item'><span><i
+                                        class='icon-loja-sincroniza menu_icon'></i><span class='label'>Sincronizações
+										Loja Virtual </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='configurações da loja virtual configuracoes da loja virtual ecommerce/configuracoes_ecommerce loja virtual ecommerce loja configuração informações sincronização setup configuracao informacoes sincronizacao'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ecommerce/configuracoes_ecommerce'
+                                rel='menu_item_config_ecommerce' target='window' key='89'
+                                class='item'><span><i class='icon-loja-config menu_icon'></i><span
+                                        class='label'>Configurações da Loja Virtual </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='acessar administração da loja acessar administracao da loja ecommerce/configuracoes_ecommerce/admin loja virtual ecommerce loja configuração informações sincronização setup configuracao informacoes sincronizacao'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ecommerce/configuracoes_ecommerce/admin'
+                                rel='menu_item_login_ecommerce' target='_blank' key='98'
+                                class='item'><span><i class='icon-loja-admin menu_icon'></i><span
+                                        class='label'>Acessar Administração da Loja </span></span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class='categoria ' meta='compras'>
+                <a rel='menu_categoria_compra'
+                   class='returnFalse' key='10' class='item'><span><span class='label'>Compras
+						</span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='pedidos de compra cadastro/pedidos_compra nota fiscal nota fiscal de entrada nota fiscal entrada entrada compra nota fiscal de compra nota fiscal compra uc031 compras'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_cadastro/pedidos_compra'
+                                rel='menu_item_cadastro_pedidos_compra' target='panel' key='103'
+                                class='item'><span><i class='icon-cart-add menu_icon'></i><span
+                                        class='label'>Pedidos de Compra </span></span></a>
+                    </li>
+                    <li class='item  grupo'
+                        meta='registrar compra ancoras/realizar_compra nota fiscal nota fiscal de entrada nota fiscal entrada entrada compra nota fiscal de compra nota fiscal compra uc031 manifesto destinatario nota fiscal eletrônica notas fiscais nfse nfs-e nf-e nfe acompanhamento destinada uc114 nota fiscal eletronica compras'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ancoras/realizar_compra' rel='menu_item_realizar_compra'
+                                target='window' key='110' item_group='true' class='item'><span><i
+                                        class='icon-cart-plus menu_icon'></i><span class='label'>Registrar
+										Compra </span></span></a>
+                        <em class='submenu_link'
+                            rel='menu_item_realizar_compra'><i class='icon-arrow-right'></i></em></li>
+                </ul>
+            </li>
+            <li class='categoria ' meta='consultas e acompanhamentos'>
+                <a
+                        rel='menu_categoria_consultas' class='returnFalse' key='12'
+                        class='item'><span><span class='label'>Consultas e Acompanhamentos
+						</span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='acompanhamento nf-e/nfs-e cadastro/acompanhamento_notas nota fiscal eletrônica notas fiscais nfse nfs-e nf-e nfe nota fiscal acompanhamento uc114 nota fiscal eletronica consultas e acompanhamentos'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_cadastro/acompanhamento_notas'
+                                rel='menu_item_acompanhamento_notas' target='window' key='80'
+                                class='item'><span><i class='icon-eye menu_icon'></i><span
+                                        class='label'>Acompanhamento NF-e/NFS-e </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='visualizar caixas do pdv venda/caixas caixas caixa pdv ponto de venda ecf turno uc086 consultas e acompanhamentos'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_venda/caixas' rel='menu_item_caixas' target='panel'
+                                key='74' class='item'><span><i
+                                        class='icon-money-drawer menu_icon'></i><span class='label'>Visualizar
+										Caixas do PDV </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='agenda agenda/agendas datas compromissos consultas eventos vencimentos consultas e acompanhamentos'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_agenda/agendas' rel='menu_item_agendas' target='panel'
+                                key='122' class='item'><span><i class='icon-calendar menu_icon'></i><span
+                                        class='label'>Agenda </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='relatórios relatorios relatorio/relatorios relatorio report infos informações extrato consultas clientes financeiro vendas notas entidades fornecedores estoque informacoes consultas e acompanhamentos'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_relatorio/relatorios' rel='menu_item_relatorios'
+                                target='panel' key='14' item_group='noshow'
+                                shortcut='alt+shift+r' class='item'><span><i
+                                        class='icon-bars menu_icon'></i><span class='label'>Relatórios
+										<span class='shortcut'>alt+shift+r</span>
+								</span></span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class='categoria ' meta='cadastros'>
+                <a
+                        rel='menu_categoria_cadastro' class='returnFalse' key='30'
+                        class='item'><span><span class='label'>Cadastros </span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='importação/exportação de dados importacao/exportacao de dados ancoras/dados importação de dados conversão transferência exportação de dados backup uc120 uc128 importacao de dados conversao transferencia exportacao de dados cadastros'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ancoras/dados' rel='menu_item_cadastro_importacao'
+                                target='panel' key='77' class='item'><span><i
+                                        class='icon-database menu_icon'></i><span class='label'>Importação/Exportação
+										de Dados </span></span></a>
+                    </li>
+                    <li class='item ' meta='clientes cadastro/clientes cadastro cadastro de clientes cliente cadastro de cliente cadastro cliente cadastro clientes uc007 uc095 cadastros'>
+                        <a
+                                href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Clientes', "1")) ? $this->basePath() . '/senna/clientes/clientes' : __NEGADO__; ?>'
+                                id='menu_cadastro/clientes'
+                                rel='menu_item_cadastro_clientes'
+                                target='panel'
+                                key='31'
+                                class='item'>
+                            <span>
+                                <i class='icon-address-book menu_icon'></i><span class='label'>Clientes
+								</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class='item '
+                        meta='dados da sua empresa cadastro/empresas empresa cadastro cadastro de empresa cadastro empresa uc001 cadastros'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/cadastro/empresa'
+                                id='menu_cadastro/empresas' rel='menu_item_cadastro_empresa'
+                                target='panel' key='69' class='item'><span><i
+                                        class='icon-building menu_icon'></i><span class='label'>Dados
+										da sua Empresa </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='fornecedores cadastro/fornecedores cadastro cadastro de fornecedores fornecedor cadastro de fornecedor cadastro fornecedor cadastro fornecedores uc008 cadastros'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_cadastro/fornecedores'
+                                rel='menu_item_cadastro_fornecedores' target='panel' key='32'
+                                class='item'><span><i class='icon-provider menu_icon'></i><span
+                                        class='label'>Fornecedores </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='transportadoras cadastro/transportadoras cadastro cadastro de transportadoras transportadora cadastro de transportadora cadastro transportadora cadastro transportadoras uc009 cadastros'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_cadastro/transportadoras'
+                                rel='menu_item_cadastro_transportadoras' target='panel' key='33'
+                                class='item'><span><i class='icon-truck menu_icon'></i><span
+                                        class='label'>Transportadoras </span></span></a>
+                    </li>
+                    <li class='item  grupo'
+                        meta='cadastros auxiliares ancoras/cadastros_auxiliares cadastros auxiliares tipo de cadastro tipos de contato contador endereço departamento cep localidade setor contato status cadastro de atividades atividades endereco'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ancoras/cadastros_auxiliares'
+                                rel='menu_item_cadastros_auxiliares' target='window' key='108'
+                                item_group='true' class='item'><span><i
+                                        class='icon-attachment menu_icon'></i><span class='label'>Cadastros
+										Auxiliares </span></span></a>
+                        <em class='submenu_link'
+                            rel='menu_item_cadastros_auxiliares'><i class='icon-arrow-right'></i></em></li>
+                </ul>
+            </li>
+            <li class='categoria ' meta='cadastros de produtos'>
+                <a
+                        rel='menu_categoria_produtos' class='returnFalse arrow-right'
+                        key='40' class='item'><span><span class='label'>Cadastros de
+								Produtos </span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='gerenciar produtos produto/produtos cadastro de produtos produto produtos cadastro de produto cadastro cadastro produto cadastro produtos cadastro itens uc025 cadastros de produtos'>
+                        <a
+                                href='senna/produto/produtos' id='menu_produto/produtos'
+                                rel='menu_item_produto_cadastro' target='panel' key='41'
+                                class='item'><span><i class='icon-product menu_icon'></i><span
+                                        class='label'>Gerenciar Produtos </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='ajuste de estoque nao_fiscal/ajustes_estoque ajuste estoque compra venda movimentação romaneio uc126 movimentacao cadastros de produtos'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_nao_fiscal/ajustes_estoque'
+                                rel='menu_item_cadastro_ajuste_estoque' target='panel' key='85'
+                                class='item'><span><i class='icon-box-adjust menu_icon'></i><span
+                                        class='label'>Ajuste de Estoque </span></span></a>
+                    </li>
+                    <li class='item  grupo'
+                        meta='cadastros auxiliares de produtos ancoras/cadastros_auxiliares_produtos produto produtos unidade unidades cadastro de unidade cadastro cadastro de unidades uc020 categoria de produto categorias de produtos categorias de produto categoria de produtos cadastro de categoria de produto cadastro de categorias de produtos cadastro de categorias de produto cadastro de categoria de produtos uc019 grade cadatro modalidades cadastro de grade cadastro de grades cadastro de modalidades cadastro de modalidade uc065 cadastros de produtos'>
+                        <a
+                                href='/senna/ancoras/cadastrosauxiliares'
+                                id='menu_ancoras/cadastros_auxiliares_produtos'
+                                rel='menu_item_cadastros_aux_produtos' target='window' key='114'
+                                item_group='true' class='item'><span><i
+                                        class='icon-stack-plus menu_icon'></i><span class='label'>Cadastros
+										Auxiliares de Produtos </span></span></a>
+                        <em
+                                class='submenu_link' rel='menu_item_cadastros_aux_produtos'><i
+                                    class='icon-arrow-right'></i></em></li>
+                    <li class='item  grupo'
+                        meta='valores de venda ancoras/valores_venda produto produtos cadastro cadastro de valor de venda cadastro de valores de venda cadastro de tipos de valor de venda cadastro de tipos de valores de venda valor de venda valor de produto valor de produtos valor preço tabela de preço cadastro de tabela de preço cadastro de tabelas de preço uc035 preco tabela de preco cadastro de tabela de preco cadastro de tabelas de preco cadastros de produtos'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ancoras/valores_venda'
+                                rel='menu_item_cadastro_valores_venda' target='window' key='107'
+                                item_group='true' class='item'><span><i
+                                        class='icon-coins menu_icon'></i><span class='label'>Valores de
+										Venda </span></span></a>
+                        <em class='submenu_link'
+                            rel='menu_item_cadastro_valores_venda'><i
+                                    class='icon-arrow-right'></i></em></li>
+                    <li class='item '
+                        meta='etiquetas cadastro/gerar_etiquetas etiqueta emissão de etiqueta emissão etiquetas produto produtos pimaco argox uc121 emissao de etiqueta emissao etiquetas cadastros de produtos'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_cadastro/gerar_etiquetas'
+                                rel='menu_item_cadastro_gerar_etiquetas' target='window' key='76'
+                                class='item'><span><i class='icon-tag-barcode menu_icon'></i><span
+                                        class='label'>Etiquetas </span></span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class='categoria '
+                meta='cadastros de serviços cadastros de servicos'>
+                <a
+                        rel='menu_categoria_os' class='returnFalse arrow-right' key='46'
+                        class='item'><span><span class='label'>Cadastros de Serviços </span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='gerenciar serviços gerenciar servicos servico/servicos serviço serviços cadastro serviços cadastro de serviços cadastro uc070 servico servicos cadastro servicos cadastro de servicos cadastros de serviços cadastros de servicos'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_servico/servicos'
+                                rel='menu_item_ordem_servico_cadastros' target='panel' key='47'
+                                class='item'><span><i class='icon-wrench2 menu_icon'></i><span
+                                        class='label'>Gerenciar Serviços </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='tabela de serviços tabela de servicos servico/servicos_tabelas serviço serviços cadastro tabela serviços cadastro de tabela de serviços cadastro servico servicos cadastro tabela servicos cadastro de tabela de servicos cadastros de serviços cadastros de servicos'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_servico/servicos_tabelas'
+                                rel='menu_item_ordem_servico_servicos_tabelas' target='panel'
+                                key='48' class='item'><span><i
+                                        class='icon-service-table menu_icon'></i><span class='label'>Tabela
+										de Serviços </span></span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class='categoria '
+                meta='usuários e vendedores usuarios e vendedores'>
+                <a
+                        rel='menu_item_usuarios' class='returnFalse arrow-right' key='49'
+                        class='item'><span><span class='label'>Usuários e Vendedores </span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='gerenciar usuários gerenciar usuarios usuario/funcionarios funcionário vendedor cadastro de funcionários cadastro de vendedor cadastro de usuário usuário cadastro usuário cadastro vendedor cadastro funcionário cadastro uc006 funcionario cadastro de funcionarios cadastro de usuario usuario cadastro usuario cadastro funcionario usuários e vendedores usuarios e vendedores'>
+                        <a
+                                href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Gerenciar usuarios', "1")) ? $this->basePath() . '/senna/usuario/funcionarios' : __NEGADO__; ?>'
+                                id='menu_usuario/funcionariosLinkCheck'
+                                rel='menu_item_usuario_funcionarios' target='panel' key='50'
+                                class='item'><span><i class='icon-users menu_icon'></i><span
+                                        class='label'>Gerenciar Usuários </span></span></a>
+                    </li>
+                    <li class='item '
+                        meta='perfis de acesso usuario/perfis cadastro perfil perfis perfil de acesso acesso permissões cadastro de permissões permissão cadastro de permissão cadastro de perfil de acesso cadastro de perfis de acesso uc005 permissoes cadastro de permissoes permissao cadastro de permissao usuários e vendedores usuarios e vendedores'>
+                        <a
+                                href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Perfis de acesso', "1")) ? $this->basePath() . '/senna/acesso/perfis' : __NEGADO__; ?>'
+                                id='menu_usuario/perfis' rel='menu_item_usuario_perfis'
+                                target='panel' key='51' class='item'><span><i
+                                        class='icon-key menu_icon'></i><span class='label'>Perfis de
+										Acesso </span></span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class='categoria ' meta='cadastros financeiros'>
+                <a
+                        rel='menu_categoria_financeiro' class='returnFalse arrow-right'
+                        key='54' class='item'><span><span class='label'>Cadastros
+								Financeiros </span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='contas a pagar e receber financeiro/lancamentos conta contas fluxo de caixa fluxo caixa contas à pagar e receber financeiro caixa finança receitas despesas uc066 financa cadastros financeiros'>
+                        <a href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_financeiro/lancamentos'
+                                rel='menu_item_financeiro_cadastro_lancamentos' target='panel'
+                                key='13' class='item'><span><i class='icon-dollar menu_icon'></i><span
+                                        class='label'>Contas a Pagar e Receber </span></span></a>
+                    </li>
+                    <li class='item  grupo'
+                        meta='confirmar lançamentos confirmar lancamentos ancoras/financeiro_lote contas conta fluxo de caixa contas à pagar e receber confirmação massa financeiro caixa finança boleto boletos conciliação bancaria conciliação bancaria uc142 contas a pagar e receber confirmacao financa conciliacao conciliacao bancaria cadastros financeiros'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ancoras/financeiro_lote'
+                                rel='menu_item_financeiro_lancamento_massa' target='window'
+                                key='112' item_group='true' class='item'><span><i
+                                        class='icon-money menu_icon'></i><span class='label'>Confirmar
+										Lançamentos </span></span></a>
+                        <em class='submenu_link'
+                            rel='menu_item_financeiro_lancamento_massa'><i
+                                    class='icon-arrow-right'></i></em></li>
+                    <li class='item  grupo'
+                        meta='opções financeiras opcoes financeiras ancoras/opcoes_financeiras uc080 uc063 cadastros formas de pagamento cadastro de forma de pagamento cadastro de contas conta conta bancaria contas contas bancarias boleto boletos acompanhamento banco planos plano plano orçamentario planos orçamentarios plano orcamentario planos orcamentarios cadastros financeiros'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ancoras/opcoes_financeiras'
+                                rel='menu_item_opcoes_financeiras' target='window' key='118'
+                                item_group='true' class='item'><span><i
+                                        class='icon-resellerhosting menu_icon'></i><span class='label'>Opções
+										Financeiras </span></span></a>
+                        <em class='submenu_link'
+                            rel='menu_item_opcoes_financeiras'><i class='icon-arrow-right'></i></em></li>
+                </ul>
+            </li>
+            <li class='categoria ' meta='tributação tributacao'>
+                <a
+                        rel='menu_categoria_tributacao' class='returnFalse arrow-right'
+                        key='58' class='item'><span><span class='label'>Tributação </span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='tributos de mercadorias (ncm) cadastro/tributacoes uc051 tributação tributacao'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado' id='menu_cadastro/tributacoes'
+                                rel='menu_item_cadastro_tributacao' target='panel' key='60'
+                                class='item'><span><i class='icon-box-tax menu_icon'></i><span
+                                        class='label'>Tributos de Mercadorias (NCM) </span></span></a>
+                    </li>
+                    <li class='item  grupo'
+                        meta='cadastros tributários auxiliares cadastros tributarios auxiliares ancoras/tributos_auxiliares uc080 uc063 cadastros tributarios padrões operações interestaduais padroes operacoes tributação tributacao'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_ancoras/tributos_auxiliares'
+                                rel='menu_item_cadastro_trib_aux' target='window' key='109'
+                                item_group='true' class='item'><span><i
+                                        class='icon-percent-attachment menu_icon'></i><span
+                                        class='label'>Cadastros Tributários Auxiliares </span></span></a>
+                        <em class='submenu_link' rel='menu_item_cadastro_trib_aux'><i
+                                    class='icon-arrow-right'></i></em></li>
+                </ul>
+            </li>
+            <li class='categoria ' meta='preferências preferencias'>
+                <a
+                        rel='menu_categoria_preferencias' class='returnFalse' key='70'
+                        class='item'><span><span class='label'>Preferências </span></span></a>
+                <ul>
+                    <li class='item '
+                        meta='avisos por email relatorio/relatorios_emails avisos relatório relatorio preferências preferencias'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado'
+                                id='menu_relatorio/relatorios_emails'
+                                rel='menu_item_email_report' target='panel' key='123'
+                                class='item'><span><i class='icon-mail-send menu_icon'></i><span
+                                        class='label'>Avisos por Email </span></span></a>
+                    </li>
+                    <li class='item  grupo'
+                        meta='configurações gerais configuracoes gerais ancoras/preferencias ajuste configurações configuração preferências manutenção pdv erp sistema cobrança pagamento cartão crédito configuracoes configuracao preferencias manutencao cobranca cartao credito'>
+                        <a
+                                href='<?php echo $this->basePath() ?>/senna/negado' id='menu_ancoras/preferencias'
+                                rel='menu_item_preferencias_gerais' target='window' key='93'
+                                item_group='true' class='item'><span><i
+                                        class='icon-cog2 menu_icon'></i><span class='label'>Configurações
+										Gerais </span></span></a>
+                        <em class='submenu_link'
+                            rel='menu_item_preferencias_gerais'><i class='icon-arrow-right'></i></em></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!--Menu Alertas-->
+
+    <!-- div id='top_menu_alertas' class='top_menu fixed alerta ativo static'>
+<div class='wrapper'>
+
+    <span class='alerta_msg alerta static'>
+        <a href="https://www.tagplus.com.br/o/assinatura/f.php?cc=13469151&nome_responsavel=passatempo&telefone_empresa=(41) 9554-24585&email_empresa=j._fernandes@hotmail.com" target="modal" window_title="" window_width="860" ><span><i class='icon-calendar'></i> <span>Restam 14 dias do seu período de testes.<br/><u>Clique aqui</u> para escolher seu plano agora.</span></span></a>
+        <span class='close'><i class='icon-remove'></i></span>
+    </span>
+
+
+
+    <span class='aviso_msg alerta aviso static' id='menu_aviso_135'>
+        <a href="senna/sistema/avisos/show/135/#135" target="modal2" window_title="Avisos" ><span><i class='icon-envelop'></i> <span>Novo Vídeo do TagPlus</span></span></a>
+        <span class='close'><i class='icon-remove'></i></span>
+    </span>
+
+    <span class='aviso_msg alerta aviso static' id='menu_aviso_134'>
+        <a href="senna/sistema/avisos/show/134/#134" target="modal2" window_title="Avisos" ><span><i class='icon-envelop'></i> <span>Treinamento TagPlus - 16/01/2015 - 10:30 (UTC-03:00)</span></span></a>
+        <span class='close'><i class='icon-remove'></i></span>
+    </span>
+
+    <span class='aviso_msg alerta aviso static' id='menu_aviso_133'>
+        <a href="senna/sistema/avisos/show/133/#133" target="modal2" window_title="Avisos" ><span><i class='icon-envelop'></i> <span>NF-e de entrada: O que é, legislação e devolução de produtos</span></span></a>
+        <span class='close'><i class='icon-remove'></i></span>
+    </span>
+
+    <span class='aviso_msg alerta aviso static' id='menu_aviso_65'>
+        <a href="senna/sistema/avisos/show/65/#65" target="modal2" window_title="Avisos" ><span><i class='icon-envelop'></i> <span>Economize com a NF-e</span></span></a>
+        <span class='close'><i class='icon-remove'></i></span>
+    </span>
+
+    <span class='aviso_msg alerta aviso static' id='menu_aviso_22'>
+        <a href="senna/sistema/avisos/show/22/#22" target="modal2" window_title="Avisos" ><span><i class='icon-envelop'></i> <span>Aprendar a utilizar o sistema!</span></span></a>
+        <span class='close'><i class='icon-remove'></i></span>
+    </span>
+
+    <span class='aviso_msg alerta aviso static' id='menu_aviso_19'>
+        <a href="senna/sistema/avisos/show/19/#19" target="modal2" window_title="Avisos" ><span><i class='icon-envelop'></i> <span>Não fique mais desatualizado!</span></span></a>
+        <span class='close'><i class='icon-remove'></i></span>
+    </span>
+
+    <span class='aviso_msg alerta aviso static' id='menu_aviso_24'>
+        <a href="senna/sistema/avisos/show/24/#24" target="modal2" window_title="Avisos" ><span><i class='icon-envelop'></i> <span>Não fique mais desatualizado!</span></span></a>
+        <span class='close'><i class='icon-remove'></i></span>
+    </span>
+
+    <span class='aviso_msg alerta aviso static' id='menu_aviso_20'>
+        <a href="senna/sistema/avisos/show/20/#20" target="modal2" window_title="Avisos" ><span><i class='icon-envelop'></i> <span>Aprenda a utilizar o sistema!</span></span></a>
+        <span class='close'><i class='icon-remove'></i></span>
+    </span>
+
+</div>
+
+<span class='link'>
+    <a target='modal2' href='senna/sistema/avisos' window_title='Avisos'>Listar Todos Avisos</a>
+</span>
+<span class='alerta_msg alerta empty'>
+    <a target='modal2' href='senna/sistema/avisos' window_title='Avisos'>Todos os seus avisos foram lidos<hr/><b>Listar todos os avisos</b></a>
+</span>
+</div-->
+
+    <!-- Menu Agenda -->
+
+    <div id='top_menu_agenda' class='top_menu'>
+        <a target="panel" href='<?php echo $this->basePath() ?>/senna/negado'
+           rel='agenda' class='divide'><span><i class='icon-calendar'></i><span
+                        class='label hidden'>Visualizar Agenda</span></span></a>
+        <a
+                target="window" href="<?php echo $this->basePath() ?>/senna/negado"
+                rel='evento_agenda'><span><i class='icon-plus'></i><span
+                        class='label hidden'>Criar Evento na Agenda</span></span></a>
+    </div>
+
+    <!-- Menu Suporte -->
+
+    <div class="top_menu" id="top_menu_suporte">
+        <a href="<?php echo $this->basePath() ?>/senna/negado" rel="chat"
+           target="jswindow"><span><i class="icon-bubble"></i><span
+                        class="label hidden">Atendimento via Chat</span></span></a>
+        <a
+                class="divide" href="<?php echo $this->basePath() ?>/senna/negado"
+                rel="help" target="window"><span><i class="icon-envelope-alt"></i><span
+                        class="label hidden">Atendimento via Email</span></span></a>
+        <a
+                class="divide" href="<?php echo $this->basePath() ?>/senna/negado"
+                rel="user_support" target="window"><span><i class="icon-reading"></i><span
+                        class="label hidden">Configurar Usuário Suporte</span></span></a>
+        <a
+                href="<?php echo $this->basePath() ?>/senna/negado"
+                rel="central_suporte" target="new"><span><i class="icon-support"></i><span
+                        class="label hidden">Página de Suporte</span></span></a>
+        <!--<a target="new" href="http://www.youtube.com/gattecnologia" rel='youtube'><span><i class='icon-movie'></i><span class='label hidden'>Vídeos</span></span></a> -->
+        <!--<a target="new" href="http://blog.tagplus.com.br/" rel='blog' class='divide'><span><i class='icon-pencil'></i><span class='label hidden'>Blog</span></span></a> -->
+        <a class="divide"
+           href="<?php echo $this->basePath() ?>/senna/negado"
+           rel="user_support" target="new"><span><i class="icon-user2"></i><span
+                        class="label hidden">Suporte Remoto</span></span></a>
+        <a
+                class="divide" href="<?php echo $this->basePath() ?>/senna/negado"
+                rel="user_support" target="modal"><span><i
+                        class="icon-cloud-download"></i><span class="label divide hidden">Downloads
+						de Arquivos</span></span></a>
+        <a class="divide"
+           href="<?php echo $this->basePath() ?>/senna/negado" rel="infos"
+           target="modal2"><span><i class="icon-info"></i><span
+                        class="label hidden">Informações do Sistema</span></span></a>
+    </div>
+
+
+    <!-- Menu Usuário -->
+
+    <div class="top_menu fixed" id="top_menu_usuario">
+        <input type="hidden" id="redefinir" value="<?php echo __REDEFINIR__ ?>">
+        <a class="divide"
+           href="<?php echo $this->basePath() ?>/senna/usuario/info"
+           rel="usuario"
+           target="panel"
+            id="perfilUsuario">
+            <span><i class="icon-visitor"></i><span class="label">Informações do Usuário</span></span></a>
+        <a class="divide"
+           href="<?php echo $this->basePath() ?>/senna/negado" rel="meu_plano"
+           target="panel"><span><i class="icon-mimetype"></i><span
+                        class="label">Meu Plano</span></span></a>
+        <a class="divide"
+           href="<?php echo $this->basePath() ?>/senna/negado"
+           rel="meus_cartoes" style="display: none;" target="panel">
+				<span>
+					<i class="icon-credit2"></i>
+					<span class="label">Meus Cartões de Crédito</span>
+				</span>
+        </a>
+        <!-- bnt Sair-->
+        <a confirm="Deseja realmente encerrar sua sessão no Senna?"
+           href="<?php echo $this->url('usuario-logout', array('controller' => 'authentication', 'action' => 'logout')) ?>"
+           rel="Sair do Senna">
+				<span>
+					<i class="icon-signout"></i>
+					<span class="label">Sair</span>
+				</span>
+        </a>
+    </div>
+
+
+    <!-- Menu Lateral -->
+    <div id="menu_wrapper">
+        <ul id="menu">
+
+            <!-- Dashboard -->
+            <li>
+
+                <a href='<?php echo ($this->UsuarioIdentity("Usuario")->getVisualizarDashboard()) ? $this->basePath() . '/senna/inicio' : __NOTVIEW__; ?>'
+                   id="menu_inicio" rel="menu_inicio"
+                   target="panel" title="Início"><span><i class="icon-home menu_icon"></i><span
+                                class="label">Início</span></span></a>
+            </li>
+
+            <!-- Vender -->
+            <li>
+                <a class="divider_bottom" href="<?php echo $this->basePath() ?>/senna/negado"
+                   rel="vendas" shortcut="f3" target="panel"
+                   title="Efetuar Venda (F3)"><span><i class="icon-cart menu_icon"></i><span
+                                class="label">Realizar Venda</span></span></a>
+            </li>
+
+
+            <!-- Mais Acessados -->
+
+            <li class="mais_usado">
+                <a class="mais_usado"
+                   href="<?php echo $this->basePath() ?>/senna/negado" rel="Gerenciar Serviços"
+                   target="panel" title="Gerenciar Serviços"> <span> <i
+                                class="icon-wrench2 menu_icon"></i> <span class="label">
+								Gerenciar Serviços </span>
+						</span>
+                </a>
+            </li>
+
+            <li class="mais_usado">
+                <a class="mais_usado"
+                   href="<?php echo $this->basePath() ?>/senna/negado" rel="Registrar Compra"
+                   target="window" title="Registrar Compra"> <span> <i
+                                class="icon-cart-plus menu_icon"></i> <span class="label">
+								Registrar Compra </span>
+					</span>
+                </a>
+            </li>
+
+            <li class="mais_usado">
+                <a class="mais_usado"
+                   href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Gerenciar usuarios', "1")) ? $this->basePath() . '/senna/usuario/funcionarios' : __NEGADO__; ?>'
+                   rel="Gerenciar Usuários"
+                   target="panel" title="Gerenciar Usuários"> <span> <i
+                                class="icon-users menu_icon"></i> <span class="label"> Gerenciar
+								Usuários </span>
+					</span>
+                </a>
+            </li>
+
+            <li class="mais_usado">
+                <a class="mais_usado"
+                   href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Clientes', "1")) ? $this->basePath() . '/senna/clientes/clientes' : __NEGADO__; ?>'
+                   rel="Clientes" target="panel"
+                   title="Clientes"> <span> <i class="icon-address-book menu_icon"></i>
+							<span class="label">Clientes</span>
+					</span>
+                </a>
+            </li>
+
+            <li class="mais_usado">
+                <a class="mais_usado"
+                   href="senna/produto/produtos" rel="Gerenciar Produtos"
+                   target="panel" title="Gerenciar Produtos"> <span> <i
+                                class="icon-product menu_icon"></i> <span class="label">
+								Gerenciar Produtos </span>
+					</span>
+                </a>
+            </li>
+
+            <li class="mais_usado">
+                <a class="mais_usado"
+                   href="<?php echo $this->basePath() ?>/senna/negado" rel="Contas a Pagar e Receber"
+                   target="panel" title="Contas a Pagar e Receber"> <span> <i
+                                class="icon-dollar menu_icon"></i> <span class="label"> Contas a
+								Pagar e Receber </span>
+					</span>
+                </a>
+            </li>
+
+            <li class="mais_usado">
+                <a class="mais_usado"
+                   href="<?php echo $this->basePath() ?>/senna/negado" rel="Relatórios" target="panel"
+                   title="Relatórios"> <span> <i class="icon-bars menu_icon"></i> <span
+                                class="label"> Relatórios <span class='shortcut'>alt+shift+r</span>
+						</span>
+					</span>
+                </a>
+            </li>
+
+            <li class="mais_usado">
+                <a class="mais_usado"
+                   href="<?php echo $this->basePath() ?>/senna/negado" rel="Fornecedores"
+                   target="panel" title="Fornecedores"> <span> <i
+                                class="icon-provider menu_icon"></i> <span class="label">
+								Fornecedores </span>
+					</span>
+                </a>
+            </li>
+
+
+            <!-- MENU -->
+            <li>
+                <a class="" id="menu_modal_trigger" target="" title="Menu (F2)"><span><i
+                                class="icon-menu menu_icon"></i><span class="label">Menu</span></span></a>
+            </li>
+
+            <!-- Sair
+    <li><a rel="sair" confirm="Deseja realmente encerrar sua sessão ?" href="./home/logout" class='sair' title="Sair" ><span><img src="senna/resources/images/icons/dashboard/door_out.png" alt="Sair" class="menu_icon" /><span class='label'>Sair</span></span></a></li>
+    -->
+        </ul>
+    </div>
+    <div id="menu_wrapper_closer" style="display: none;"></div>
+    <div id="menu_modal_triangle" style="display: none;"></div>
+    <div id="menu_modal_bg" style="display: none;"></div>
+    <div id="menu_modal_wrapper" style="display: none;">
+        <div id="filtro">
+            <input autocomplete="off" name="filtro"
+                   placeholder="Pesquisar no Menu" type="text"></input>
+        </div>
+        <div id="menu_modal_scroll">
+            <ul id="menu_modal">
+                <li class='categoria ' meta='movimentações movimentacoes'>
+                    <a
+                            rel='menu_categoria_vendas' class='returnFalse expanded' key='0'
+                            class='item'><span><span class='label'>Movimentações </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='pedidos/orçamentos pedidos/orcamentos venda/pedidos_venda pedido de venda pedidos de venda pedido venda uc048 movimentações movimentacoes'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_venda/pedidos_venda'
+                                    rel='menu_item_cadastro_pedido_venda' target='panel' key='5'
+                                    shortcut='alt+shift+1' class='item'><span><i
+                                            class='icon-cart-remove menu_icon'></i><span class='label'>Pedidos/Orçamentos
+											<span class='shortcut'>alt+shift+1</span>
+									</span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='venda simples nao_fiscal/vendas_nao_fiscais venda não-fiscal não fiscal venda sem documento uc125 nao-fiscal nao fiscal movimentações movimentacoes'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_nao_fiscal/vendas_nao_fiscais'
+                                    rel='menu_item_cadastro_vendas_nao_fiscais' target='panel'
+                                    key='86' shortcut='alt+shift+5' class='item'><span><i
+                                            class='icon-basket menu_icon'></i><span class='label'>Venda
+											Simples <span class='shortcut'>alt+shift+5</span>
+									</span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='ordens de serviço ordens de servico servico/ordem_servicos ordem de serviço o.s. os ordem serviço uc074 ordem de servico ordem servico movimentações movimentacoes'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_servico/ordem_servicos'
+                                    rel='menu_item_servico_lancamentos' target='panel' key='6'
+                                    shortcut='alt+shift+2' class='item'><span><i
+                                            class='icon-service-go menu_icon'></i><span class='label'>Ordens
+											de Serviço <span class='shortcut'>alt+shift+2</span>
+									</span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='emitir nf-e cadastro/nfes nota fiscal eletrônica nfe nf-e nota fiscal uc046 nota fiscal eletronica movimentações movimentacoes'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_cadastro/nfes'
+                                    rel='menu_cadastro/nfes' target='panel' key='7'
+                                    shortcut='alt+shift+3' class='item'><span><i
+                                            class='icon-nfe menu_icon'></i><span class='label'>Emitir NF-e
+											<span class='shortcut'>alt+shift+3</span>
+									</span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='emitir nfc-e cadastro/nfces nota fiscal eletrônica ao consumidor nfce nfc-e nota fiscal nota consumidor consumidor nota nota fiscal eletronica ao consumidor movimentações movimentacoes'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_cadastro/nfces'
+                                    rel='menu_item_cadastro_nfce' target='panel' key='120'
+                                    class='item'><span><i class='icon-nfce menu_icon'></i><span
+                                            class='label'>Emitir NFC-e </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='emitir nfs-e servico/nfses nota fiscal eletrônica de serviços nota fiscal nota fiscal de serviços eletrônica nfse nfs-e nota de serviço nota eletrônica de serviços nota de serviços eletrônica uc072 nota fiscal eletronica de servicos nota fiscal de servicos eletronica nota de servico nota eletronica de servicos nota de servicos eletronica movimentações movimentacoes'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_servico/nfses'
+                                    rel='menu_item_nfse' target='panel' key='8'
+                                    shortcut='alt+shift+4' class='item'><span><i
+                                            class='icon-nfse menu_icon'></i><span class='label'>Emitir
+											NFS-e <span class='shortcut'>alt+shift+4</span>
+									</span></span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='categoria ' meta='loja virtual'>
+                    <a
+                            rel='menu_categoria_ecommerce' class='returnFalse' key='88'
+                            class='item'><span><span class='label'>Loja Virtual </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='pedidos de loja virtual ecommerce/pedidos_ecommerce loja virtual ecommerce loja pedido uc132'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                            '
+                            id='menu_ecommerce/pedidos_ecommerce'
+                            rel='menu_item_pedido_ecommerce' target='panel' key='90'
+                            class='item'><span><i class='icon-loja-pedidos menu_icon'></i><span
+                                        class='label'>Pedidos de Loja Virtual </span></span></a></li>
+                        <li class='item '
+                            meta='sincronizações loja virtual sincronizacoes loja virtual ecommerce/sincronizacoes loja virtual ecommerce loja configuração informações sincronização setup configuracao informacoes sincronizacao'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_ecommerce/sincronizacoes'
+                                    rel='menu_item_sinc_ecommerce' target='window' key='96'
+                                    class='item'><span><i class='icon-loja-sincroniza menu_icon'></i><span
+                                            class='label'>Sincronizações Loja Virtual </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='configurações da loja virtual configuracoes da loja virtual ecommerce/configuracoes_ecommerce loja virtual ecommerce loja configuração informações sincronização setup configuracao informacoes sincronizacao'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_ecommerce/configuracoes_ecommerce'
+                                    rel='menu_item_config_ecommerce' target='window' key='89'
+                                    class='item'><span><i class='icon-loja-config menu_icon'></i><span
+                                            class='label'>Configurações da Loja Virtual </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='acessar administração da loja acessar administracao da loja ecommerce/configuracoes_ecommerce/admin loja virtual ecommerce loja configuração informações sincronização setup configuracao informacoes sincronizacao'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_ecommerce/configuracoes_ecommerce/admin'
+                                    rel='menu_item_login_ecommerce' target='_blank' key='98'
+                                    class='item'><span><i class='icon-loja-admin menu_icon'></i><span
+                                            class='label'>Acessar Administração da Loja </span></span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='categoria ' meta='compras'>
+                    <a
+                            rel='menu_categoria_compra' class='returnFalse' key='10'
+                            class='item'><span><span class='label'>Compras </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='pedidos de compra cadastro/pedidos_compra nota fiscal nota fiscal de entrada nota fiscal entrada entrada compra nota fiscal de compra nota fiscal compra uc031 compras'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_cadastro/pedidos_compra'
+                                    rel='menu_item_cadastro_pedidos_compra' target='panel' key='103'
+                                    class='item'><span><i class='icon-cart-add menu_icon'></i><span
+                                            class='label'>Pedidos de Compra </span></span></a>
+                        </li>
+                        <li class='item  grupo'
+                            meta='registrar compra ancoras/realizar_compra nota fiscal nota fiscal de entrada nota fiscal entrada entrada compra nota fiscal de compra nota fiscal compra uc031 manifesto destinatario nota fiscal eletrônica notas fiscais nfse nfs-e nf-e nfe acompanhamento destinada uc114 nota fiscal eletronica compras'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_ancoras/realizar_compra'
+                                    rel='menu_item_realizar_compra' target='window' key='110'
+                                    item_group='true' class='item'><span><i
+                                            class='icon-cart-plus menu_icon'></i><span class='label'>Registrar
+											Compra </span></span></a>
+                            <em class='submenu_link'
+                                rel='menu_item_realizar_compra'><i class='icon-arrow-right'></i></em></li>
+                    </ul>
+                </li>
+                <li class='categoria ' meta='consultas e acompanhamentos'>
+                    <a
+                            rel='menu_categoria_consultas' class='returnFalse' key='12'
+                            class='item'><span><span class='label'>Consultas e Acompanhamentos
+							</span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='acompanhamento nf-e/nfs-e cadastro/acompanhamento_notas nota fiscal eletrônica notas fiscais nfse nfs-e nf-e nfe nota fiscal acompanhamento uc114 nota fiscal eletronica consultas e acompanhamentos'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_cadastro/acompanhamento_notas'
+                                    rel='menu_item_acompanhamento_notas' target='window' key='80'
+                                    class='item'><span><i class='icon-eye menu_icon'></i><span
+                                            class='label'>Acompanhamento NF-e/NFS-e </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='visualizar caixas do pdv venda/caixas caixas caixa pdv ponto de venda ecf turno uc086 consultas e acompanhamentos'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_venda/caixas'
+                                    rel='menu_item_caixas' target='panel' key='74' class='item'><span><i
+                                            class='icon-money-drawer menu_icon'></i><span class='label'>Visualizar
+											Caixas do PDV </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='agenda agenda/agendas datas compromissos consultas eventos vencimentos consultas e acompanhamentos'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_agenda/agendas'
+                                    rel='menu_item_agendas' target='panel' key='122' class='item'><span><i
+                                            class='icon-calendar menu_icon'></i><span class='label'>Agenda
+									</span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='relatórios relatorios relatorio/relatorios relatorio report infos informações extrato consultas clientes financeiro vendas notas entidades fornecedores estoque informacoes consultas e acompanhamentos'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_relatorio/relatorios'
+                                    rel='menu_item_relatorios' target='panel' key='14'
+                                    item_group='noshow' shortcut='alt+shift+r' class='item'><span><i
+                                            class='icon-bars menu_icon'></i><span class='label'>Relatórios
+											<span class='shortcut'>alt+shift+r</span>
+									</span></span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='categoria ' meta='cadastros'>
+                    <a
+                            rel='menu_categoria_cadastro' class='returnFalse' key='30'
+                            class='item'><span><span class='label'>Cadastros </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='importação/exportação de dados importacao/exportacao de dados ancoras/dados importação de dados conversão transferência exportação de dados backup uc120 uc128 importacao de dados conversao transferencia exportacao de dados cadastros'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_ancoras/dados'
+                                    rel='menu_item_cadastro_importacao' target='panel' key='77'
+                                    class='item'><span><i class='icon-database menu_icon'></i><span
+                                            class='label'>Importação/Exportação de Dados </span></span></a>
+                        </li>
+                        <li class='item ' meta='clientes cadastro/clientes cadastro cadastro de clientes cliente cadastro de cliente cadastro cliente cadastro clientes uc007 uc095 cadastros'>
+                            <a
+                                href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Clientes', "1")) ? $this->basePath() . '/senna/clientes/clientes' : __NEGADO__; ?>'
+                                rel='menu_item_cadastro_clientes' target='panel' key='31'
+                                class='item'><span><i class='icon-address-book menu_icon'></i><span
+                                class='label'>Clientes </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='dados da sua empresa cadastro/empresas empresa cadastro cadastro de empresa cadastro empresa uc001 cadastros'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/cadastro/empresa'
+                                    id='menu_cadastro/empresas'
+                                    rel='menu_item_cadastro_empresa' target='panel' key='69'
+                                    class='item'><span><i class='icon-building menu_icon'></i><span
+                                            class='label'>Dados da sua Empresa </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='fornecedores cadastro/fornecedores cadastro cadastro de fornecedores fornecedor cadastro de fornecedor cadastro fornecedor cadastro fornecedores uc008 cadastros'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_cadastro/fornecedores'
+                                    rel='menu_item_cadastro_fornecedores' target='panel' key='32'
+                                    class='item'><span><i class='icon-provider menu_icon'></i><span
+                                            class='label'>Fornecedores </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='transportadoras cadastro/transportadoras cadastro cadastro de transportadoras transportadora cadastro de transportadora cadastro transportadora cadastro transportadoras uc009 cadastros'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_cadastro/transportadoras'
+                                    rel='menu_item_cadastro_transportadoras' target='panel' key='33'
+                                    class='item'><span><i class='icon-truck menu_icon'></i><span
+                                            class='label'>Transportadoras </span></span></a>
+                        </li>
+                        <li class='item  grupo'
+                            meta='cadastros auxiliares ancoras/cadastros_auxiliares cadastros auxiliares tipo de cadastro tipos de contato contador endereço departamento cep localidade setor contato status cadastro de atividades atividades endereco'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_ancoras/cadastros_auxiliares'
+                                    rel='menu_item_cadastros_auxiliares' target='window' key='108'
+                                    item_group='true' class='item'><span><i
+                                            class='icon-attachment menu_icon'></i><span class='label'>Cadastros
+											Auxiliares </span></span></a>
+                            <em class='submenu_link'
+                                rel='menu_item_cadastros_auxiliares'><i class='icon-arrow-right'></i></em></li>
+                    </ul>
+                </li>
+                <li class='categoria ' meta='cadastros de produtos'>
+                    <a
+                            rel='menu_categoria_produtos' class='returnFalse arrow-right'
+                            key='40' class='item'><span><span class='label'>Cadastros de
+									Produtos </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='gerenciar produtos produto/produtos cadastro de produtos produto produtos cadastro de produto cadastro cadastro produto cadastro produtos cadastro itens uc025 cadastros de produtos'>
+                            <a
+                                    href='senna/produto/produtos' id='menu_produto/produtos'
+                                    rel='menu_item_produto_cadastro' target='panel' key='41'
+                                    class='item'><span><i class='icon-product menu_icon'></i><span
+                                            class='label'>Gerenciar Produtos </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='ajuste de estoque nao_fiscal/ajustes_estoque ajuste estoque compra venda movimentação romaneio uc126 movimentacao cadastros de produtos'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_nao_fiscal/ajustes_estoque'
+                                    rel='menu_item_cadastro_ajuste_estoque' target='panel' key='85'
+                                    class='item'><span><i class='icon-box-adjust menu_icon'></i><span
+                                            class='label'>Ajuste de Estoque </span></span></a>
+                        </li>
+                        <li class='item  grupo'
+                            meta='cadastros auxiliares de produtos ancoras/cadastros_auxiliares_produtos produto produtos unidade unidades cadastro de unidade cadastro cadastro de unidades uc020 categoria de produto categorias de produtos categorias de produto categoria de produtos cadastro de categoria de produto cadastro de categorias de produtos cadastro de categorias de produto cadastro de categoria de produtos uc019 grade cadatro modalidades cadastro de grade cadastro de grades cadastro de modalidades cadastro de modalidade uc065 cadastros de produtos'>
+                            <a
+                                    href='/senna/ancoras/cadastrosauxiliares'
+                                    id='menu_ancoras/cadastros_auxiliares_produtos'
+                                    rel='menu_item_cadastros_aux_produtos' target='window' key='114'
+                                    item_group='true' class='item'><span><i
+                                            class='icon-stack-plus menu_icon'></i><span class='label'>Cadastros
+											Auxiliares de Produtos </span></span></a>
+                            <em
+                                    class='submenu_link' rel='menu_item_cadastros_aux_produtos'><i
+                                        class='icon-arrow-right'></i></em></li>
+                        <li class='item  grupo'
+                            meta='valores de venda ancoras/valores_venda produto produtos cadastro cadastro de valor de venda cadastro de valores de venda cadastro de tipos de valor de venda cadastro de tipos de valores de venda valor de venda valor de produto valor de produtos valor preço tabela de preço cadastro de tabela de preço cadastro de tabelas de preço uc035 preco tabela de preco cadastro de tabela de preco cadastro de tabelas de preco cadastros de produtos'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_ancoras/valores_venda'
+                                    rel='menu_item_cadastro_valores_venda' target='window' key='107'
+                                    item_group='true' class='item'><span><i
+                                            class='icon-coins menu_icon'></i><span class='label'>Valores
+											de Venda </span></span></a>
+                            <em class='submenu_link'
+                                rel='menu_item_cadastro_valores_venda'><i
+                                        class='icon-arrow-right'></i></em></li>
+                        <li class='item '
+                            meta='etiquetas cadastro/gerar_etiquetas etiqueta emissão de etiqueta emissão etiquetas produto produtos pimaco argox uc121 emissao de etiqueta emissao etiquetas cadastros de produtos'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_cadastro/gerar_etiquetas'
+                                    rel='menu_item_cadastro_gerar_etiquetas' target='window'
+                                    key='76' class='item'><span><i
+                                            class='icon-tag-barcode menu_icon'></i><span class='label'>Etiquetas
+									</span></span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='categoria '
+                    meta='cadastros de serviços cadastros de servicos'>
+                    <a
+                            rel='menu_categoria_os' class='returnFalse arrow-right' key='46'
+                            class='item'><span><span class='label'>Cadastros de Serviços </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='gerenciar serviços gerenciar servicos servico/servicos serviço serviços cadastro serviços cadastro de serviços cadastro uc070 servico servicos cadastro servicos cadastro de servicos cadastros de serviços cadastros de servicos'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_servico/servicos'
+                                    rel='menu_item_ordem_servico_cadastros' target='panel' key='47'
+                                    class='item'><span><i class='icon-wrench2 menu_icon'></i><span
+                                            class='label'>Gerenciar Serviços </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='tabela de serviços tabela de servicos servico/servicos_tabelas serviço serviços cadastro tabela serviços cadastro de tabela de serviços cadastro servico servicos cadastro tabela servicos cadastro de tabela de servicos cadastros de serviços cadastros de servicos'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_servico/servicos_tabelas'
+                                    rel='menu_item_ordem_servico_servicos_tabelas' target='panel'
+                                    key='48' class='item'><span><i
+                                            class='icon-service-table menu_icon'></i><span class='label'>Tabela
+											de Serviços </span></span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='categoria '
+                    meta='usuários e vendedores usuarios e vendedores'>
+                    <a
+                            rel='menu_item_usuarios' class='returnFalse arrow-right' key='49'
+                            class='item'><span><span class='label'>Usuários e Vendedores </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='gerenciar usuários gerenciar usuarios usuario/funcionarios funcionário vendedor cadastro de funcionários cadastro de vendedor cadastro de usuário usuário cadastro usuário cadastro vendedor cadastro funcionário cadastro uc006 funcionario cadastro de funcionarios cadastro de usuario usuario cadastro usuario cadastro funcionario usuários e vendedores usuarios e vendedores'>
+                            <a
+                                    href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Gerenciar usuarios', "1")) ? $this->basePath() . '/senna/usuario/funcionarios' : __NEGADO__; ?>'
+                                    id='menu_usuario/funcionariosLinkCheck'
+                                    rel='menu_item_usuario_funcionarios' target='panel' key='50'
+                                    class='item'><span><i class='icon-users menu_icon'></i><span
+                                            class='label'>Gerenciar Usuários </span></span></a>
+                        </li>
+                        <li class='item '
+                            meta='perfis de acesso usuario/perfis cadastro perfil perfis perfil de acesso acesso permissões cadastro de permissões permissão cadastro de permissão cadastro de perfil de acesso cadastro de perfis de acesso uc005 permissoes cadastro de permissoes permissao cadastro de permissao usuários e vendedores usuarios e vendedores'>
+                            <a
+                                    href='<?php echo ($this->PermissaoUsuario(__PERFIL__, 'Perfis de acesso', "1")) ? $this->basePath() . '/senna/acesso/perfis' : __NEGADO__; ?>'
+                                    id='menu_usuario/perfis'
+                                    rel='menu_item_usuario_perfis' target='panel' key='51'
+                                    class='item'><span><i class='icon-key menu_icon'></i><span
+                                            class='label'>Perfis de Acesso </span></span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='categoria ' meta='cadastros financeiros'>
+                    <a
+                            rel='menu_categoria_financeiro' class='returnFalse arrow-right'
+                            key='54' class='item'><span><span class='label'>Cadastros
+									Financeiros </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='contas a pagar e receber financeiro/lancamentos conta contas fluxo de caixa fluxo caixa contas à pagar e receber financeiro caixa finança receitas despesas uc066 financa cadastros financeiros'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_financeiro/lancamentos'
+                                    rel='menu_item_financeiro_cadastro_lancamentos' target='panel'
+                                    key='13' class='item'><span><i class='icon-dollar menu_icon'></i><span
+                                            class='label'>Contas a Pagar e Receber </span></span></a>
+                        </li>
+                        <li class='item  grupo'
+                            meta='confirmar lançamentos confirmar lancamentos ancoras/financeiro_lote contas conta fluxo de caixa contas à pagar e receber confirmação massa financeiro caixa finança boleto boletos conciliação bancaria conciliação bancaria uc142 contas a pagar e receber confirmacao financa conciliacao conciliacao bancaria cadastros financeiros'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_ancoras/financeiro_lote'
+                                    rel='menu_item_financeiro_lancamento_massa' target='window'
+                                    key='112' item_group='true' class='item'><span><i
+                                            class='icon-money menu_icon'></i><span class='label'>Confirmar
+											Lançamentos </span></span></a>
+                            <em class='submenu_link'
+                                rel='menu_item_financeiro_lancamento_massa'><i
+                                        class='icon-arrow-right'></i></em></li>
+                        <li class='item  grupo'
+                            meta='opções financeiras opcoes financeiras ancoras/opcoes_financeiras uc080 uc063 cadastros formas de pagamento cadastro de forma de pagamento cadastro de contas conta conta bancaria contas contas bancarias boleto boletos acompanhamento banco planos plano plano orçamentario planos orçamentarios plano orcamentario planos orcamentarios cadastros financeiros'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_ancoras/opcoes_financeiras'
+                                    rel='menu_item_opcoes_financeiras' target='window' key='118'
+                                    item_group='true' class='item'><span><i
+                                            class='icon-resellerhosting menu_icon'></i><span class='label'>Opções
+											Financeiras </span></span></a>
+                            <em class='submenu_link'
+                                rel='menu_item_opcoes_financeiras'><i class='icon-arrow-right'></i></em></li>
+                    </ul>
+                </li>
+                <li class='categoria ' meta='tributação tributacao'>
+                    <a
+                            rel='menu_categoria_tributacao' class='returnFalse arrow-right'
+                            key='58' class='item'><span><span class='label'>Tributação </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='tributos de mercadorias (ncm) cadastro/tributacoes uc051 tributação tributacao'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_cadastro/tributacoes'
+                                    rel='menu_item_cadastro_tributacao' target='panel' key='60'
+                                    class='item'><span><i class='icon-box-tax menu_icon'></i><span
+                                            class='label'>Tributos de Mercadorias (NCM) </span></span></a>
+                        </li>
+                        <li class='item  grupo'
+                            meta='cadastros tributários auxiliares cadastros tributarios auxiliares ancoras/tributos_auxiliares uc080 uc063 cadastros tributarios padrões operações interestaduais padroes operacoes tributação tributacao'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_ancoras/tributos_auxiliares'
+                                    rel='menu_item_cadastro_trib_aux' target='window' key='109'
+                                    item_group='true' class='item'><span><i
+                                            class='icon-percent-attachment menu_icon'></i><span
+                                            class='label'>Cadastros Tributários Auxiliares </span></span></a>
+                            <em class='submenu_link' rel='menu_item_cadastro_trib_aux'><i
+                                        class='icon-arrow-right'></i></em></li>
+                    </ul>
+                </li>
+                <li class='categoria ' meta='preferências preferencias'>
+                    <a
+                            rel='menu_categoria_preferencias' class='returnFalse' key='70'
+                            class='item'><span><span class='label'>Preferências </span></span></a>
+                    <ul>
+                        <li class='item '
+                            meta='avisos por email relatorio/relatorios_emails avisos relatório relatorio preferências preferencias'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado'
+                                    id='menu_relatorio/relatorios_emails'
+                                    rel='menu_item_email_report' target='panel' key='123'
+                                    class='item'><span><i class='icon-mail-send menu_icon'></i><span
+                                            class='label'>Avisos por Email </span></span></a>
+                        </li>
+                        <li class='item  grupo'
+                            meta='configurações gerais configuracoes gerais ancoras/preferencias ajuste configurações configuração preferências manutenção pdv erp sistema cobrança pagamento cartão crédito configuracoes configuracao preferencias manutencao cobranca cartao credito'>
+                            <a
+                                    href='<?php echo $this->basePath() ?>/senna/negado' id='menu_ancoras/preferencias'
+                                    rel='menu_item_preferencias_gerais' target='window' key='93'
+                                    item_group='true' class='item'><span><i
+                                            class='icon-cog2 menu_icon'></i><span class='label'>Configurações
+											Gerais </span></span></a>
+                            <em class='submenu_link'
+                                rel='menu_item_preferencias_gerais'><i class='icon-arrow-right'></i></em></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="menu_sub_wrapper">
+        <div id="menu_sub_modal_scroll">
+            <a class="submenu_hide"><i class="icon-chevron-left"></i><span>esconder</span></a>
+            <div id="menu_sub"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        //This runs when a person leaves your page.
+        window.addEvent('domready', function () {
+            $$('a[confirm]').each(function (el) {
+                el.addEvent('click', function (e) {
+                    e.stop();
+                    $el = $(el);
+                    var msg = $el.get("confirm");
+                    var link = $el.get("href");
+                    confirmation(msg, {
+                        onComplete: function (res) {
+                            if (res) {
+                                $$("#loader").set("style", "display:block");//exibe o loading
+                                document.location.href = link;
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+
+    <!--conteudo-->
+    <div id="pageWrapper"></div>
+
+    <div id="dockWrapper">
+        <div id="dock">
+            <div id="dockPlacement"></div>
+            <div id="dockAutoHide"></div>
+            <div id="dockSort">
+                <div id="dockClear" class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- desktop end -->
+
+
+
+<script type='text/javascript'>
+
+
+    /********************************
+     ../views/common/home/redirect.js
+     ********************************/
+
+    jQuery.noConflict();
+
+    (function ($) {
+        $(window).load(function () {
+
+
+            //recupera o hash
+            var hash = location.hash;
+
+            //caso o hash não tenha sido definido ou seja vazio, não continua
+            if (hash == undefined || hash == "") return;
+
+            //impede que o reload execute a ação novamente
+            location.hash = "";
+
+            //clica no link para redirect
+            var uri = hash.replace("#", "");
+            var a = $("a[id=" + uri + "]").last();
+            if (a.length) {
+
+                //hask pra funcionar no chrome
+                setTimeout(function () {
+                    a.get(0).click();
+                }, 100);
+            }
+            //link não encontrado. Abre em uma nova janela (apondando pra dentro do sistema)
+            else {
+                parent.MochaUI.openWindow({
+                    id: "senna/" + uri,
+                    title: uri,
+                    contentURL: "senna/" + uri
+                });
+            }
+
+        });
+    })(jQuery);
+</script>
+
+<?php
+
+if(__REDEFINIR__): ?>
+<script type='text/javascript'>
+
+
+    /********************************
+    .REDIRECIONA CASO PRECISE REDEFINIR SENHA
+     ********************************/
+    jQuery.noConflict();
+
+    (function ($) {
+        $(window).load(function () {
+
+            var a = $("a[id=perfilUsuario").last();
+            if (a.length) {
+
+                //hask pra funcionar no chrome
+                setTimeout(function () {
+                    parent.MochaUI.load($$("#perfilUsuario")[0]);
+                }, 100);
+            }
+        });
+    })(jQuery);
+
+</script>
+<?php endif;?>
+
+
+
+
+
+</body>
+</html>

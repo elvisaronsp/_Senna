@@ -1,0 +1,668 @@
+<?php echo $this->doctype(); ?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv='cache-control' content='no-cache' />
+<meta http-equiv='expires' content='0' />
+<meta http-equiv='pragma' content='no-cache' />
+<meta name="robots" content="NOINDEX,NOFOLLOW" />
+<meta name="base_url" content="" />
+
+<!-- Scripts javaScript -->
+<?php echo $this->headScript ()
+				->appendFile ( $this->basePath () . '/js/mootools-1.2-core.js' )
+				->appendFile ( $this->basePath () . '/js/mootools-1.2-more.js' )
+				->appendFile ( $this->basePath () . '/js/core.js' )
+				->appendFile ( $this->basePath () . '/js/window.js' )
+				->appendFile ( $this->basePath () . '/js/modal.js' )
+				->appendFile ( $this->basePath () . '/js/mocha-ext.js' )
+				->appendFile ( $this->basePath () . '/js/base.js' )
+				->appendFile ( $this->basePath () . '/js/atalhos.js' )
+				->appendFile ( $this->basePath () . '/js/detect-zoom.js' )
+				->appendFile ( $this->basePath () . '/js/listing.js' )
+				->appendFile ( $this->basePath () . '/js/omnigrid.js' )
+				->appendFile ( $this->basePath () . '/js/sexyalertbox.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/core.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/dump.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/debug.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/bt.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/validate.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/maskedinput.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/uppercase.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/date.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/datepicker.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/livequery.js' )
+				->appendFile ( $this->basePath () . '/js/forms.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/listing.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/autosuggestmulti.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/readonly.js' )
+				->appendFile ( $this->basePath () . '/js/jquery/ui.js' )
+				->appendFile ( $this->basePath () . '/js/live.js' )
+				->appendFile ( $this->basePath () . '/js/fileuploader.js' )
+				->appendFile ( $this->basePath () . '/js/upload.js' )?>
+				
+<!-- Estilos da pagina Css/code -->
+<?php echo $this->headLink () 
+			 // ->appendStylesheet($this->basePath() . '/css/noprint.css?v=2.0.1')
+				->appendStylesheet ( $this->basePath () . '/css/loader.css?v=2.0.1' )
+				->appendStylesheet ( $this->basePath () . '/css/style.css?v=2.0.1' )
+				->appendStylesheet ( $this->basePath () . '/css/style_tagplus.css?v=2.0.1' )
+				->appendStylesheet ( $this->basePath () . '/css/glyphs.css?v=2.0.1' )
+				->appendStylesheet ( $this->basePath () . '/css/listing.css?v=2.0.1' )
+				->appendStylesheet ( $this->basePath () . '/css/omnigrid.css?v=2.0.1' )
+				->appendStylesheet ( $this->basePath () . '/css/jqueryui.css?v=2.0.1' )
+				->appendStylesheet ( $this->basePath () . '/css/datepicker.css?v=2.0.1' )
+				->appendStylesheet ( $this->basePath () . '/css/sexyalertbox.css?v=2.0.1' )
+				->appendStylesheet ( $this->basePath () . '/css/fileuploader.css?v=2.0.1' )?>
+        
+        <script type='text/javascript'>
+            var uploadMessages = {
+                typeError: 'Arquivo "<i>%1s</i>" possui uma extensão inválida.<br/>Envie apenas <i>%2s</i>.',
+                sizeError: 'Arquivo "<i>{file}</i>" é muito grande.<br/>Tamanho máximo: <i>{sizeLimit}</i>.',
+                minSizeError: 'Arquivo "<i>{file}</i>" é muito pequeno.<br/>Tamanho mNãonimo: <i>{minSizeLimit}</i>.',
+                emptyError: '# label_upload_error_vazio #',
+                onLeave: 'Os arquivos estão sendo enviados.\nAo sair os envios serão cancelados.',
+                textBoxBtnOk: 'Sim',
+                textBoxBtnCancel: 'Não',
+                textConfirmDelete: 'Deseja realmente excluir este arquivo?',
+                textDeleteSuccess: 'Arquivo excluído com sucesso',
+                textDeleteFailure: 'Erro ao tentar excluir arquivo: ',
+                textDeleteNotAllowed: 'Você Não pode apagar uma imagem principal.',
+            };
+            
+
+            jQuery(document).ready(function () {
+                jQuery.extend(jQuery.validator.messages, {
+                    accept: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.'/> ",
+                    cnpj: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Informe um CNPJ válido.'/> ",
+                    cpf: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Informe um CPF vválidolido.'/> ",
+                    creditcard: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.'/> ",
+                    date: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a uma data v&aacute;lida.'/> ",
+                    digits: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a somente d&iacute;gitos.'/> ",
+                    email: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um endere&ccedil;o eletr&ocirc;nico v&aacute;lido.'/> ",
+                    equalTo: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a o mesmo valor novamente.'/> ",
+                    max: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor menor ou igual a {0}.'/> "),
+                    maxlength: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a n&atilde;o mais que {0} caracteres.'/> "),
+                    min: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior ou igual a {0}.'/> "),
+                    minlength: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a ao menos {0} caracteres.'/> "),
+                    number: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um n&uacute;mero v&aacute;lido.'/> ",
+                    range: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor entre {0} e {1}.'/> "),
+                    rangelength: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor contendo de {0} a {1} caracteres.'/> "),
+                    required: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Este campo é obrigatório.'/> ",
+                    requiredIf: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Este campo deve ser preenchido.'/> ",
+                    remote: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Por favor, corrija este campo.'/> ",
+                    url: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a uma URL v&aacute;lida.'/> ",
+                    time: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a uma hora válida'/> ",
+                    code: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um código válido'/> ",
+                    price: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior que 0'/> ",
+                    cidade: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Cidade Não cadastrada no sistema.'/> ",
+                    pais: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='País Não 'cadastrado no sistema.'/> ",
+                    requiredCep: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='CEP e ou Logradouro Não cadastrados no sistema.'/> ",
+                    transporte: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='O valor deste campo deve ser definido.'/> ",
+                    positive: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forneça um valor maior que 0,00.'/> ",
+                    cfop: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='CFOP inválido'/> ",
+                    cfop_transp: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='CFOP inválido'/> ",
+                    code_ean: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 8, 12,13 ou 14 caracteres.'/> ",
+                    cod_ncm: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 2 ou 8 caracteres.'/> ",
+                    max_vr_cupom: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='O valor neste campo deve ser inferior a {0}'/> "),
+                    autosuggest: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Este campo Não possui um valor válido selecionado'/> ",
+                    password: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Senha deve conter pelo menos 6 caracteres utilizando letras e números'/> ",
+                    desc_principal: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='A Descrição Não deve conter aspas duplas (&quot;) ou aspas simples (&lsquo;)'/> ",
+                    desc_resumida: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='A Descrição não deve conter aspas duplas (&quot;) ou aspas simples (&lsquo;)'/> ",
+                    codigo_para_comercializavel: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='<br/><br/><br/><br/><br/>No Código de <strong style=\"color:#A27D35 \">Produto Comercializável no PDV</strong> é  PERMITIDO somente:<ul  style=\"color:#A27D35 \"><li>Letras sem acentuação</li><li>números</li><li>espaço</li><li>vírgula (,)</li><li>ponto-e-vírgula (;)</li><li>ponto final (.)</li><li>barra invertida (\)</li><li>sinal de igual (=)</li><li>chave ({})</li><li>colchetes ([])</li><li>underline (_)</li><li>E comercial (&)</li><li>acento circunflexo (^)</li><li>til (~)</li><li>cifrão ($)</li><li>tralha (#)</li></ul> Além de: sinal de mais (+), traço (-), porcentagem (%) ou parentéses, desde que Não seja no início ou no final do código.'/> "),
+                    codigo_para_n_comercializavel: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='O código Não deve conter aspas duplas (&quot;) ou aspas simples (&lsquo;)'/> ",
+                    primeiroCaractere: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='O nome do atributo Não pode iniciar com número'/> ",
+                    codigo_para_comercializavel_n_fiscal: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='<br/><br/>No Código de <strong style=\"color:#A27D35 \">Produto Comercializável no PDV</strong> Não é PERMITIDO :<ul  style=\"color:#A27D35 \"></li><li>Asterísco (*)</li><li>Barra invertida</li><li>Porcentagem (%)</li><li>Underline</li><li>Abre e Fecha parenteses (())</li><li>Abre e Fecha colchetes ([])</li><li>Aspas Simples </li><li>Aspas Duplas</li></ul> Além de: sinal de traço (-) desde que Não seja no início ou no final do código.'/> "
+                });
+            });
+            
+            Date.monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+            Date.dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+            jQuery.dpText = {
+                TEXT_PREV_YEAR: 'Ano Anterior',
+                TEXT_PREV_MONTH: 'Mês Anterior',
+                TEXT_NEXT_YEAR: 'Próximo Ano',
+                TEXT_NEXT_MONTH: 'Próximo Mês',
+                TEXT_CLOSE: 'Fechar',
+                TEXT_CHOOSE_DATE: 'Escolha a Data',
+                HEADER_FORMAT: 'mmmm yyyy'
+            };
+            Date.firstDayOfWeek = 0;
+            
+            
+            var confirmation = function(a, b) {
+                b = $extend({
+                    'textBoxBtnOk': 'Sim',
+                    'textBoxBtnCancel': 'Não'
+                }, b || {});
+                Sexy.confirm(a, b);
+            };
+            if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
+                "intro_button_continuar": "Continuar",
+                "intro_button_avancar": "Avan\u00e7ar",
+                "intro_button_entendi": "<i class=\"icon-ok\"><\/i> Entendi",
+                "intro_button_ok": "<i class=\"icon-ok\"><\/i> Ok",
+                "intro_button_concluir": "<i class=\"icon-thumbs-up\"><\/i> Concluir",
+                "intro_button_voltar": "Voltar",
+                "intro_button_fechar": "Fechar",
+                "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial"
+            });
+            
+            /*******************************
+            produto/produtos/list_filter.js
+            *******************************/
+            
+            (function($) {
+                jQuery(document).ready(function() {
+                    prepareForm();
+            
+                });
+            
+                /**Troca de campos de data. Desabilitando campos**/
+                var toggleData = function() {
+                    if ($('[name=data_periodo]:checked').val() == '0') {
+                        $('#data_inicial').removeAttr('disabled');
+                        $('#data_final').removeAttr('disabled');
+                        $('.dp-choose-date').show();
+                    } else {
+                        $('#data_inicial').attr('disabled', 'disabled');
+                        $('#data_final').attr('disabled', 'disabled');
+                        $('.dp-choose-date').hide();
+                    }
+                };
+            
+                /** Prepara formul�rio **/
+                var prepareForm = function() {
+            
+                    $('[name=data_periodo]').unbind('click').click(toggleData);
+                };
+            
+            })(jQuery);
+            
+            
+            window.addEvent('domready', function() {
+                if ('1' != '1') {
+                    $$('#download_terminal').setStyle('display', 'none').addClass("disabled");
+                }
+            
+            
+                list.datagrid.addEvent('loaddata', function() {
+                    $$('#clonar_btn').set('disabled', true).addClass("disabled");
+                    $$('#apagar_em_loja_acoes').set('disabled', true).addClass("disabled");
+                });
+            
+                list.datagrid.addEvent('click', function(row) {
+                    $$('#clonar_btn').removeProperties("disabled").removeClass("disabled");
+            
+                    var data_sincronizacao = list.datagrid.getDataByRow(list.datagrid.getSelectedIndices()).data_sincronizacao_ecommerce;
+            
+                    if (data_sincronizacao == 1) {
+                        $$('#apagar_em_loja_acoes').removeProperties("disabled").removeClass("disabled");
+                    } else {
+                        $$('#apagar_em_loja_acoes').set('disabled', true).addClass("disabled");
+                    }
+                });
+            
+                list.onBeforeDeleteRow = function(row) {
+                    if (row.sincronizado == 1) {
+                        if (row.produto_ativo == 0) {
+                            Sexy.alert('Este produto Não pode ser apagado pois foi sincronizado com o PDV e já está desativado.');
+                            return false;
+                        } else {
+                            $$('input[name=delete]').set('confirm', 'Este produto Não pode ser removido, pois foi sincronizado com o PDV. Deseja desativar este produto?');
+                        }
+                    } else {
+                        if (row.possui_estoque == 1 || row.estoque_disponivel > 0) {
+                            $$('input[name=delete]').set('confirm', 'Este produto Não pode ser removido, pois possui estoque.<br />Deseja desativar este produto?');
+                        } else if (row.vinculado == 1 || row.vinculado_grade == 1) {
+                            $$('input[name=delete]').set('confirm', 'Este produto Não pode ser removido, pois possui vínculos no sistema.<br />Deseja desativar este produto?');
+                        } else {
+                            $$('input[name=delete]').set('confirm', 'Deseja realmente apagar o produto selecionado?');
+                        }
+                    }
+                };
+            
+                // Adicionando funcionalidade para o botao de apagar produto da loja virtual        
+                $$('#apagar_em_loja_acoes').addEvent('click', function(event) {
+            
+                    var id_produto = list.datagrid.getDataByRow(list.datagrid.getSelectedIndices()).id;
+                    var url = 'http://Senna.com.br/zf2/produto/produtos/form/' + id_produto;
+            
+                    Sexy.confirm("<b> Atenção:</b> Deseja <b> apagar </b> o produto da loja virtual? <br /><br /><b style='color:red'> Esta ação pode demorar alguns minutos</b>", {
+                        textBoxBtnOk: "Sim",
+                        textBoxBtnCancel: "Não",
+                        onComplete: function(val) {
+                            if (val) {
+            
+                                new Request.JSON({
+                                    method: 'get',
+                                    url: 'http://Senna.com.br/zf2/produto/produtos/apagar_produto_na_loja/' + id_produto,
+                                    onRequest: function() {
+                                        list.datagrid.showLoader();
+                                    },
+                                    onComplete: function(response) {
+                                        parent.MochaUI.success("Produto apagado da Loja Virtual");
+            
+                                        list.datagrid.hideLoader();
+                                        list.datagrid.loadData();
+            
+                                        parent.MochaUI.openWindow({
+                                            id: url,
+                                            title: "Cadastrar Produto",
+                                            type: 'window',
+                                            //Id de onde foi clicado enviado como parametro.
+                                            contentURL: url
+                                        });
+                                    }
+                                }).send();
+            
+                            } else {
+                                list.datagrid.loadData();
+                            }
+                        }
+                    });
+                });
+            
+                // Adicionando funcionalidade para o botao de gerar danfe
+                $$('#clonar_btn').addEvent('click', function(event) {
+                    var url = 'http://Senna.com.br/zf2/produto/produtos/reload_form_clonar/' + list.datagrid.getDataByRow(list.datagrid.getSelectedIndices()).id;
+                    var $this = $(this);
+            
+                    if (list.datagrid.getDataByRow(list.datagrid.getSelectedIndices()).produto_ativo == 1) {
+                        Sexy.confirm('<b> Atenção:</b> Deseja <b> desativar </b> o produto clonado?', {
+                            textBoxBtnOk: 'Sim',
+                            textBoxBtnCancel: 'Não',
+                            onComplete: function(ret) {
+                                if (ret) {
+            
+                                    new Request.JSON({
+                                        method: 'get',
+                                        url: 'http://Senna.com.br/zf2/produto/produtos/desativa_produto/' + list.datagrid.getDataByRow(list.datagrid.getSelectedIndices()).id,
+                                        onRequest: function() {
+                                            list.datagrid.showLoader();
+                                        },
+                                        onComplete: function(response) {
+                                            parent.MochaUI.success("Produto desativado com sucesso");
+                                            list.datagrid.hideLoader();
+                                            list.datagrid.loadData();
+            
+                                            parent.MochaUI.openWindow({
+                                                id: url,
+                                                title: "Cadastrar Produto",
+                                                type: 'window',
+                                                //Id de onde foi clicado enviado como parametro.
+                                                contentURL: url
+                                            });
+                                        }
+                                    }).send();
+                                } else {
+                                    parent.MochaUI.openWindow({
+                                        id: url,
+                                        //Nome do produto como titulo
+                                        title: "Cadastrar Produto",
+                                        type: 'window',
+                                        //Id de onde foi clicado enviado como parametro.
+                                        contentURL: url
+                                    });
+                                }
+                            }
+                        });
+                    } else {
+                        parent.MochaUI.openWindow({
+                            id: url,
+                            //Nome do produto como titulo
+                            title: "Cadastrar Produto",
+                            type: 'window',
+                            //Id de onde foi clicado enviado como parametro.
+                            contentURL: url
+                        });
+                    }
+                });
+            
+            
+            
+            
+                // Adicionando funcionalidade para o botao de Etiquetas
+                $$('#filter input[name=etiqueta]').addEvent('click', function() {
+                    var url = '<?php echo $this->basePath() ?>/senna/negado';
+                    parent.MochaUI.openWindow({
+                        id: url,
+                        //Nome do produto como titulo
+                        title: 'Gerar Etiquetas',
+                        //Id de onde foi clicado enviado como parametro.
+                        contentURL: url,
+                        onClose: function() {
+                            list.datagrid.loadData();
+                        }
+                    });
+                });
+            
+                // Adicionando funcionalidade para o botao de Ajustes de Valores Venda
+                $$('#filter input[name=ajuste_vr_venda]').addEvent('click', function() {
+                    var url =  '<?php echo $this->basePath() ?>/senna/negado';
+                    parent.MochaUI.openWindow({
+                        id: url,
+                        //Nome da aba
+                        title: 'Ajuste de Valores de Venda',
+                        //Id de onde foi clicado enviado como parametro.
+                        contentURL: url,
+                        onClose: function() {
+                            list.datagrid.loadData();
+                        }
+                    });
+                });
+            
+                // Adicionando funcionalidade para o botao de Ajustes de Valores Venda
+                $$('#filter input[name=ajuste_estoque]').addEvent('click', function() {
+                    var url =  '<?php echo $this->basePath() ?>/senna/negado';
+                    parent.MochaUI.openWindow({
+                        id: url,
+                        //Nome da aba
+                        title: 'Ajuste de Estoque',
+                        //Id de onde foi clicado enviado como parametro.
+                        contentURL: url,
+                        onClose: function() {
+                            list.datagrid.loadData();
+                        }
+                    });
+                });
+            
+            });
+        </script>
+</head>
+<body>
+
+	<div id="loader">
+		<div class="loader-text">
+			<span class='carregando'>Carregando ...</span> <span class='enviando'
+				style="display: none">Enviando ...</span>
+		</div>
+		<div class="loader-bg">&nbsp;</div>
+	</div>
+	<div id="tela" style="height: 100%;">
+		<div id="conteudo">
+			<div id="list_control">
+				<form
+					action="<?php echo $this->basePath() ?>/senna/produto/produtos/filter"
+					class="form" debug="false" enctype="text/plain" id="filter"
+					method="post">
+
+					<input name="add" type="button" value="Novo"
+						windowName="Cadastrar Produto"></input> <input name="edit"
+						type="button" value="Editar"></input> <input
+						confirm="Deseja realmente apagar o produto selecionado?"
+						name="delete" type="button" value="Excluir"></input>
+
+					<div class="action_menu_wrapper">
+						<input class="action_menu_trigger" style="" type="button"
+							value="Mais Ações"></input>
+							
+							 <span class="action_menu" style="margin-top: -5px;">
+							 
+							  <input
+							class="btn_document_inspect" name="etiqueta" type="button"
+							value="Etiquetas"></input>
+							
+							 <input class="clonar" id="clonar_btn"
+							name="clonar" type="button" value="Clonar Produto"
+							windowName="Cadastrar Produto"></input> 
+							
+							<input class="delete"
+							id="apagar_em_loja_acoes" name="label_apagar_em_loja"
+							type="button" value="Apagar da Loja Virtual"></input>
+							
+							 <input
+							class="btn_calculator" name="ajuste_vr_venda" type="button"
+							value="Ajuste de Valores de Venda"></input> 
+							
+							<input
+							class="table_edit" id="gerar_ajuste_estoque_btn"
+							name="ajuste_estoque" type="button" value="Ajuste de Estoque"></input>
+							
+							
+							<a
+							href= '<?php echo $this->basePath() ?>/senna/negado'
+							id="link_terminal" style="text-decoration: none"> <input
+								class="generate button" id="download_terminal"
+								name="download_terminal" type="button"
+								value="Terminal de Consulta"></input>
+						</a>
+						</span>
+					</div>
+
+					<input debug="false" name="pesquisar" type="submit" value=""></input>
+
+					<span>
+						<p class="field" style="width: auto;">
+							<span class="input " rel="search_text" style=""> <input
+								class="focus" id="search_text" name="busca"
+								placeholder="Filtrar" style="" type="text" value=""></input>
+							</span>
+						</p>
+					</span> <input aux_value="Filtro Avançado"
+						class="search pesquisa_avancada" id="pesquisa_avancada"
+						name="pesquisa_avancada" type="button" value="Filtro Avançado"></input>
+					<div id="modal_filter" style="display: none">
+						<div id="modal_filter_background">&nbsp;</div>
+						<div id="modal_filter_container">
+							<!-- Botoes padrao para a��o do formulario -->
+							<div class="modal_filter_actions form_actions">
+								<input class="search pesquisa_avancada" name="pesquisa_avancada"
+									style="float: left; margin-left: 10px;" type="submit"
+									value="Aplicar Filtro Avançado"></input> <input
+									class="clean button" id="clean_button" name="limpar"
+									type="submit" value="Limpar Filtro"></input> <input
+									class="cancel close button" id="close_filter_button"
+									name="fechar" style="background-position: 12px center;"
+									type="button" value="Fechar"></input>
+							</div>
+							<!-- Formulario -->
+							<div class="modal_filter_form">
+
+								<input disabled="disabled" id="filtro_avancado_ativo"
+									name="filtro_avancado_ativo" type="hidden" value="true"></input>
+								<input id="filter_form" name="filter_form" type="hidden"
+									value="{filter_form}"></input>
+
+								<div class="column" style="width: 99%">
+									<fieldset class="fieldset " style="width: 97%;">
+
+										<legend>
+											<span class="legend"> <span class="legend_label">Período</span>
+												<span class="input_alert">&nbsp;</span>
+											</span>
+										</legend>
+
+										<p class="field inline"
+											style="width: auto; margin-left: -190px;">
+											<label class="" for="data_considerada" style="">Data
+												Considerada</label><span class="input_alert">&nbsp;</span> <span
+												class="input " rel="data_considerada" style=""> <select
+												eval="{data_considerada}" id="data_considerada"
+												name="data_considerada" size="1" style="">
+													<option value="1">Data de criação</option>
+													<option value="2">Data de Alteração</option>
+											</select>
+											</span>
+										</p>
+
+										<span class="input radio" rel="">
+											<div style="width: 100%; float: left; margin: 3px;">
+												<input eval="0" name="data_periodo"
+													style="float: left; margin-top: 3px;" type="radio"
+													value="0"></input> <span class="periodo"
+													style="display: block; width: 94%; float: left">
+
+													<p class="field inline auto"
+														style="width: 137px !important; float: left; clear: none !important; margin: 0px; padding: 0px;">
+														<label class="" for="data_inicial" style="width: 16px">De</label>
+														<span class="input " rel="data_inicial" style=""> <input
+															class="date" id="data_inicial" mask="39/19/9999"
+															name="data_inicial" style="" type="text" value=""></input>
+														</span>
+													</p>
+
+													<p class="field inline  auto"
+														style="width: 133px !important; float: left; clear: none !important; margin: 0px; padding: 0px;">
+														<label class="" for="data_final" style="width: 10px">a</label>
+														<span class="input " rel="data_final" style=""> <input
+															class="date" id="data_final" mask="39/19/9999"
+															name="data_final" style="" type="text" value=""></input>
+														</span>
+													</p>
+												</span>
+											</div>
+
+											<div style="float: left;">
+
+												<div
+													style="width: 200px; float: left; margin: 3px; text-align: left">
+													<label> <input eval="0" name="data_periodo"
+														style="margin-right: 2px;" type="radio" value="1"></input>
+														<span>Somente o mês Atual</span>
+													</label>
+												</div>
+
+
+												<div
+													style="width: 200px; float: left; margin: 3px; text-align: left">
+													<label> <input eval="0" name="data_periodo"
+														style="margin-right: 2px;" type="radio" value="2"></input>
+														<span>Somente a semana Atual</span>
+													</label>
+												</div>
+
+												<!-- div style="width:150px;float:left;margin:3px; text-align:left">
+                                                        <label>
+                                                            <input eval="0" name="data_periodo" style="margin-right:2px;" type="radio" value="3"></input>
+                                                            <span>�ltimos 15 dias</span>
+                                                        </label>
+                                                    </div>
+                                                    
+                                                    <div style="width:150px;float:left;margin:3px; text-align:left">
+                                                        <label>
+                                                            <input eval="0" name="data_periodo" style="margin-right:2px;" type="radio" value="4"></input>
+                                                            <span>�ltimos 30 dias</span>
+                                                        </label>
+                                                    </div-->
+											</div>
+										</span>
+									</fieldset>
+
+									<hr class="clear" size="1"></hr>
+
+									<fieldset class="fieldset " style="width: 97%;">
+
+										<legend>
+											<span class="legend"> <span class="legend_label">Filtros</span>
+												<span class="input_alert">&nbsp;</span>
+											</span>
+										</legend>
+
+										<p class="field " style="width: 37%;">
+											<label class="" for="ativo" style="">Ativo</label> <span
+												class="input_alert">&nbsp;</span> <span class="input "
+												rel="ativo" style=""> <select eval="{ativo}" id="ativo"
+												name="ativo" size="1" style="">
+													<option value="">Todos</option>
+													<option value="0">Não</option>
+													<option value="1">Sim</option>
+											</select>
+											</span>
+										</p>
+
+										<p class="field " style="width: 100%;">
+											<label class="" for="categorias" style="">Categoria</label> <span
+												class="input_alert">&nbsp;</span> <span class="input "
+												rel="categorias" style=""> <span
+												class="multisuggest_wrapper"><span
+													class="multisuggest_container" id="categorias"></span> <input
+													class=" autosuggest multisuggest" comparefield="id"
+													container="categorias" id="categorias_input" minLength="0"
+													multisuggest="categorias_input" name="categorias_input"
+													ref="categoria"
+													source="/senna/produto/classesprodutos/getcategorias"
+													style="" type="text" value="" valuefield="value"></input> </span>
+											</span>
+										</p>
+										<!-- p class="field " style="width:100%; ">
+                                                <label class="" for="fornecedor_input" style="">Fornecedor</label>
+                                                <span class="input_alert">&nbsp;</span>
+                                                    <span class="input " rel="fornecedor_input" style="">
+                                                        <span class="multisuggest_wrapper"><span class="multisuggest_container" id="container_fornecedor_input"></span>
+                                                        <input class=" autosuggest multisuggest" comparefield="id" container="container_fornecedor_input" id="fornecedor_input" minLength="0" multisuggest="fornecedor_input" name="fornecedor_input" ref="fornecedor" source="http://Senna.com.br/zf2/autocomplete/entidades/get/F" style="" type="text" value="" valuefield="value"></input>
+                                                    </span>
+                                                </span>
+                                            </p>
+                                            <p class="field " style="width:100%; ">
+                                                <label class="" for="detalhes" style="">Detalhes</label>
+                                                <span class="input_alert">&nbsp;</span>
+                                                    <span class="input " rel="detalhes" style="">
+                                                        <span class="multisuggest_wrapper"><span class="multisuggest_container" id="container_detalhes"></span>
+                                                        <input class=" autosuggest multisuggest" comparefield="id" container="container_detalhes" id="detalhes" minLength="0" multisuggest="detalhes" name="detalhes" ref="atributo" source="http://Senna.com.br/zf2/autocomplete/produtos/get_atributos" style="" type="text" value="" valuefield="value"></input>
+                                                    </span>
+                                                </span>
+                                            </p> -->
+									</fieldset>
+
+									<fieldset class="fieldset " style="width: 97%;">
+										<legend>
+											<span class="legend"> <span class="legend_label">Tipo do item</span>
+												<span class="input_alert">&nbsp;</span>
+											</span>
+										</legend>
+										<p class="field " style="width: auto;">
+
+											<span class="input_alert">&nbsp;</span> <span class="input "
+												rel="vinculacao" style=""> <span class=" multiselect_field"
+												id="vinculacao" name="vinculacao"
+												style="height: 140px; width: 326px" value=""> <label
+													for="vinculacao_N"> <input id="vinculacao_N"
+														name="vinculacao[]" rel="" type="checkbox" value="N"></input>
+														<span><i>Normal</i></span>
+												</label> <label for="vinculacao_G"> <input id="vinculacao_G"
+														name="vinculacao[]" rel="" type="checkbox" value="G"></input>
+														<span><i>Grade</i></span>
+												</label>
+											</span>
+											</span>
+										</p>
+
+									</fieldset>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div id="datatable" windowName="descricao_produto">
+
+				<div col="sincronizado" hidden="true"></div>
+				<div col="vinculado" hidden="true"></div>
+				<div col="possui_estoque" hidden="true"></div>
+				<div col="data_sincronizacao_ecommerce" hidden="true"></div>
+
+				<div align="center" col="ativo" type="string" width="45">Ativo</div>
+				<div col="cod_secundario" type="string" width="130">Código Interno</div>
+				<div col="descricao_produto" type="string">Descrição Principal</div>
+				<div col="classe_item" type="string" width="200 ">Classe/Sub-Classe</div>
+				<div col="unidade" type="string" width="100 ">Unidade</div>
+
+				<div col="cod_barra" type="number" width="150">Código de Barras
+					(EAN)</div>
+				<div col="valor_varejo" type="number" width="120">Valor venda</div>
+				<div col="estoque_disponivel" type="number" width="110">Qtd estoque</div>
+				<div col="valor_estoque" type="number" width="120">Valor estoque</div>
+
+			</div>
+			<div add_btn_title="Clique aqui para adicionar um novo registro"
+				adv_search_btn_title="Limpe ou altere o Filtro Avançado para exibir resultados"
+				id="list_empty"
+				search_btn_title="Remova ou altere sua pesquisa para exibir resultados">
+				<h3>Nenhum item de venda foi encontrado</h3>
+			</div>
+		</div>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

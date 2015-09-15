@@ -1,0 +1,62 @@
+<div class="tab" id="label_vendedores" ref="<img src='\images/vendedor.png'> Vendedores" rel="label_vendedores">
+    <div class="help_infos" id="tip_cabecalho" style=" ">
+        <div style=""> Caso deseje que o funcionário venda exclusivamente para determinado(s) cliente(s), basta
+            inseri-lo(s) abaixo. Ao realizar uma venda, se o funcionário não tiver permissão, ela não será
+            concretizada/finalizada. Opção válida para as seguintes movimentações: Pedido/Orçamento, Venda Simples,
+            Pré-Venda, Dav, Dav OS, NF-e e NFS-e.
+        </div>
+    </div>
+    <div class="fieldset" style="width:98%">
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Vendedores</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+            <table borborder="0" cellpadding="0" cellspacing="0" class="form_table" id="clientes_vendedores" style="width:98%">
+                <thead>
+                <tr>
+                    <th width="53%">Vendedor</th>
+                    <th width="22%">cpf/cnpj</th>
+                    <th width="22%">data/hora</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <?php echo $this->formElement($input = $form->get('idVendedor'));?>
+                        <?php echo $this->formElement($input = $form->get('idVendedorIdCliente'));?>
+                        <p class="field " style="width:auto; ">
+                            <span class="input " rel="vendedorCliente" style="">
+                                <?php echo $this->formElement($input = $form->get('vendedorCliente'));?>
+                                <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                                <?php echo $this->formElement($input = $form->get('ac_vendedor'));?>
+                                <em class="autocomplete_search  autosuggest"></em>
+                            </span>
+                        </p>
+                    </td>
+                    <td>
+                        <p class="field " style="width:auto; ">
+                            <span class="input " rel="CpfCnpjVendedor" style="">
+                                <?php echo $this->formElement($input = $form->get('CpfCnpjVendedor'));?>
+                            </span>
+                        </p>
+                    </td>
+                    <td>
+                        <p class="field " style="width:auto; ">
+                            <span class="input " rel="vendedorDataHora" style="">
+                                <?php echo $this->formElement($input = $form->get('vendedorDataHora'));?>
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+    </div>
+</div>

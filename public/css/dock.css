@@ -1,0 +1,36 @@
+/* dock2 - bottom */
+#fisheye {
+	position: absolute;
+	display:block;
+	width: 500px;
+	top: 5px;
+	right: 200px;
+	height: 45px; 
+	text-align: center;
+	background: transparent url('../images/dock-bg.png') no-repeat bottom center;
+}
+.fisheye-container {
+	z-index: 10;
+	position: absolute;
+	height: 20px;
+}
+#fisheye a.dash_link {
+	display: block; 
+	width: 40px; 
+	color: #000; 
+	bottom: 0px; 
+	position: absolute;
+	text-align: center;
+	text-decoration: none;
+	position: absolute;
+	top: 0px;
+}
+#fisheye .dash_link span {
+	display: none;
+	padding-left: 10px;
+}
+#fisheye .dash_link img {
+	border: none; 
+	margin: 5px 20px 0px; 
+	width: 66%; 
+}

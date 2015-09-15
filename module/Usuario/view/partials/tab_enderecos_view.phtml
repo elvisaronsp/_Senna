@@ -1,0 +1,600 @@
+<div class="tab" id="tab_enderecos" ref="<img src='../../images/icon_endereco.png'> Endereços"  rel="tab_enderecos">
+
+    <fieldset class="fieldset " style="width:97%;" id="fieldset_endereco">
+
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Endereço</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+        <div id="endereco">
+
+            <input class="clone_flag" name="endereco_flag" type="hidden" value=""></input>
+
+            <!-- ENDEREÇO 0-->
+            <div class="clonedField hiddenClone"  id="endereco0">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[0]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
+                </div>
+
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_0" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[0]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_0" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[0]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_0" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[0]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_0" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[0]'));?>
+                        </span>
+                    </p>
+
+                    <hr class="clear" size="1"></hr>
+
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_0" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[0]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_0" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[0]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_0" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[0]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_0" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_0" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[0]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_0'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
+
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[0]'));?>
+                        </span>
+                    </p>
+
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
+
+                </div>
+            </div>
+            <!-- FIM ENDEREÇO  -->
+
+            <!-- ENDEREÇO 1 -->
+            <div class="clonedField hiddenClone" id="endereco1">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[1]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
+                </div>
+
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_1" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[1]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_1" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[1]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_1" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[1]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_1" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[1]'));?>
+                        </span>
+                    </p>
+
+                    <hr class="clear" size="1"></hr>
+
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_1" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[1]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_1" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[1]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_1" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[1]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_1" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_1" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[1]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_1'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
+
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[1]'));?>
+                        </span>
+                    </p>
+
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
+
+                </div>
+            </div>
+            <!-- FIM ENDEREÇO  -->
+
+            <!-- ENDEREÇO 2 -->
+            <div class="clonedField hiddenClone" id="endereco2">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[2]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
+                </div>
+
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_2" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[2]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_2" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[2]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_2" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[2]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_2" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[2]'));?>
+                        </span>
+                    </p>
+
+                    <hr class="clear" size="1"></hr>
+
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_2" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[2]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_2" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[2]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_2" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[2]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_2" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_2" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[2]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_2'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
+
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[2]'));?>
+                        </span>
+                    </p>
+
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
+
+                </div>
+            </div>
+            <!-- FIM ENDEREÇO  -->
+
+            <!-- ENDEREÇO 3 -->
+            <div class="clonedField hiddenClone" id="endereco3">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[3]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
+                </div>
+
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_3" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[3]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_3" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[3]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_3" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[3]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_3" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[3]'));?>
+                        </span>
+                    </p>
+
+                    <hr class="clear" size="1"></hr>
+
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_3" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[3]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_3" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[3]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_3" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[3]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_3" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_3" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[3]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_3'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
+
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[3]'));?>
+                        </span>
+                    </p>
+
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
+
+                </div>
+            </div>
+            <!-- FIM ENDEREÇO  -->
+
+            <!-- ENDEREÇO 4 -->
+            <div class="clonedField hiddenClone" id="endereco4">
+                <?php echo $this->formElement($input = $form->get('endereco_entidade__principal[4]'));?>
+                <div style="position:absolute; top:0px; width: 100%; background-color: #FFF; height: 24px; ">
+
+                    <p class="field " style="width:auto; ">
+                        <span class="input radio" rel="" style="">
+                            <label class="">
+                                <?php echo $this->formElement($input = $form->get('principal_radio[]'));?>
+                                <span><?php echo $input->getlabel();?></span>
+                            </label>
+                        </span>
+                    </p>
+
+                </div>
+
+                <div style="position:relative; margin-top: 30px;">
+
+                    <!-- CEP -->
+                    <p class="field " style="width:90px; ">
+                        <label class="" for="endereco__cep_4" style="">Cep</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__cep_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__cep[4]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_cep" name="Buscar CEP" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar CEP"></input>
+
+                    <!-- Logradouro -->
+                    <p class="field " style="width:448px; ">
+                        <label class="" for="endereco__logradouro_4" style="">Logradouro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__logradouro_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__logradouro[4]'));?>
+                        </span>
+                    </p>
+
+                    <input class="btn_view" id="btn_correio" name="Buscar" size="50px" style="margin-left:5px;margin-top:16px;height:30px;float:left" type="button" value="Buscar"></input>
+
+                    <!-- Numero -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__numero_4" style="">Número</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__numero_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__numero[4]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Complemento -->
+                    <p class="field " style="width:8%; ">
+                        <label class="" for="endereco_entidade__complemento_4" style="">Complemento</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__complemento_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__complemento[4]'));?>
+                        </span>
+                    </p>
+
+                    <hr class="clear" size="1"></hr>
+
+                    <!-- Bairro -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__bairro_4" style="">Bairro</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__bairro_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__bairro[4]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Cidade -->
+                    <p class="field " style="width:25%; ">
+                        <label class="" for="endereco__id_cidade_4" style="">Cidade</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco__id_cidade_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco__id_cidade[4]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Referencia -->
+                    <p class="field " style="width:18%; ">
+                        <label class="" for="endereco_entidade__informacoes_adicionais_4" style="">Referência</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__informacoes_adicionais_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__informacoes_adicionais[4]'));?>
+                        </span>
+                    </p>
+
+                    <!-- Tipo de endereco -->
+                    <p class="field " style="width:131px; ">
+                        <label class="" for="endereco_entidade__id_tipo_cadastro_4" style="">Tipo de Endereço</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="endereco_entidade__id_tipo_cadastro_4" style="">
+                            <?php echo $this->formElement($input = $form->get('endereco_entidade__id_tipo_cadastro[4]'));?>
+                            <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                            <?php echo $this->formElement($input = $form->get('ac_e_4'));?>
+                            <em class="autocomplete_search  autosuggest"></em>
+                        </span>
+                    </p>
+
+                    <!-- Estado -->
+                    <p class="field " style="width:38px; ">
+                        <label class="" for="estado" style="">Estado</label>
+                        <span class="input_alert">&nbsp;</span>
+                        <span class="input " rel="estado" style="">
+                            <?php echo $this->formElement($input = $form->get('estado[4]'));?>
+                        </span>
+                    </p>
+
+                    <!--input class="btn_mapa" count="0" disabled="disabled" id="btn_mapa" name="btn_mapa" style="float:left;margin-top:13px; margin-left:1%" type="button" value="Mapa"></input-->
+
+                </div>
+            </div>
+            <!-- FIM ENDEREÇO  -->
+            <input class="cloneable" rel="endereco" separator="true" type="button" value="Inserir Endereço"></input>
+
+        </div>
+
+    </fieldset>
+
+    <!-- (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR  -->
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>
+        &nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+    </div>
+    <!-- FIM (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR -->
+
+</div>
+
+

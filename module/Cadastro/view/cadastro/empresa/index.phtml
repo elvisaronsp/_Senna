@@ -1,0 +1,151 @@
+<?php echo $this->doctype(); ?>
+<html>
+
+<head>
+    <meta http-equiv='cache-control' content='no-cache'/>
+    <meta http-equiv='expires' content='0'/>
+    <meta http-equiv='pragma' content='no-cache'/>
+    <meta name="robots" content="NOINDEX,NOFOLLOW"/>
+    <meta name="base_url" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+    <!-- Scripts javaScript -->
+    <?php echo $this->headScript()
+        ->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+        ->appendFile($this->basePath() . '/js/mootools-1.2-more.js')
+        ->appendFile($this->basePath() . '/js/core.js')
+        ->appendFile($this->basePath() . '/js/window.js')
+        ->appendFile($this->basePath() . '/js/modal.js')
+        ->appendFile($this->basePath() . '/js/mocha-ext.js')
+        ->appendFile($this->basePath() . '/js/base.js')
+        ->appendFile($this->basePath() . '/js/atalhos.js')
+        ->appendFile($this->basePath() . '/js/detect-zoom.js')
+        ->appendFile($this->basePath() . '/js/jquery/core.js')
+        ->appendFile($this->basePath() . '/js/forms.js')
+        ->appendFile($this->basePath() . '/js/jquery/bt.js')
+        ->appendFile($this->basePath() . '/js/listing.js')
+        ->appendFile($this->basePath() . '/js/omnigrid.js')
+        ->appendFile($this->basePath() . '/js/sexyalertbox.js') ?>
+
+
+    <!-- Estilos da pagina Css/code -->
+    <?php echo $this->headLink()
+        //->appendStylesheet($this->basePath() . '/css/noprint.css')
+        ->appendStylesheet($this->basePath() . '/css/loader.css')
+        ->appendStylesheet($this->basePath() . '/css/style.css')
+        ->appendStylesheet($this->basePath() . '/css/style_tagplus.css')
+        ->appendStylesheet($this->basePath() . '/css/glyphs.css')
+        ->appendStylesheet($this->basePath() . '/css/listing.css')
+        ->appendStylesheet($this->basePath() . '/css/omnigrid.css')
+        ->appendStylesheet($this->basePath() . '/css/sexyalertbox.css') ?>
+
+    <script type='text/javascript'>
+        var confirmation = function (a, b) {
+            b = $extend({
+                'textBoxBtnOk': 'Sim',
+                'textBoxBtnCancel': 'Não'
+            }, b || {});
+            Sexy.confirm(a, b);
+        };
+        if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
+            "intro_button_continuar": "Continuar",
+            "intro_button_avancar": "Avan\u00e7ar",
+            "intro_button_entendi": "<i class=\"icon-ok\"><\/i> Entendi",
+            "intro_button_ok": "<i class=\"icon-ok\"><\/i> Ok",
+            "intro_button_concluir": "<i class=\"icon-thumbs-up\"><\/i> Concluir",
+            "intro_button_voltar": "Voltar",
+            "intro_button_fechar": "Fechar",
+            "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial"
+        });
+
+        /******************************************
+         produto/produto_modalidades_grades/list.js
+         ******************************************/
+
+        window.addEvent('domready', function () {
+            var disable_modalidade = function () {
+                $$('#modalidade').set('value', '');
+                $$('[autosuggest=modalidade]').set('value', '');
+                $$('#modalidade').setProperty('disabled', 'disabled');
+                $$('[autosuggest=modalidade]').setProperty('disabled', 'disabled');
+            };
+            var enable_modalidade = function (id) {
+                $$('#modalidade').set('value', id);
+                $$('[autosuggest=modalidade]').set('value', id);
+                $$('#modalidade').removeProperty('disabled');
+                $$('[autosuggest=modalidade]').removeProperty('disabled');
+            };
+            list.datagrid.addEvent('loaddata', function () {
+                disable_modalidade();
+            });
+            list.datagrid.addEvent('dblclick', function (event) {
+                if (!this.getDataByRow(this.getSelectedIndices()).id_modalidade) {
+                    disable_modalidade();
+                } else {
+                    enable_modalidade(this.getDataByRow(this.getSelectedIndices()).modalidade);
+                }
+            });
+            $$('input.edit').addEvent('click', function () {
+                if (!list.datagrid.getDataByRow(list.datagrid.getSelectedIndices()).id_modalidade) {
+                    disable_modalidade();
+                } else {
+                    enable_modalidade(list.datagrid.getDataByRow(list.datagrid.getSelectedIndices()).modalidade);
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+<!--Container tela.php-->
+<div id="loader">
+    <div class="loader-text">
+        <span class='carregando'>Carregando ...</span>
+        <span class='enviando' style="display: none">Enviando ...</span>
+    </div>
+    <div class="loader-bg">&nbsp;</div>
+</div>
+
+<div id="tela" style="height: 100%;">
+    <div id="conteudo">
+        <div id="list_control">
+            <form action="/senna/cadastro/empresa/filter" class="form" debug="false" enctype="text/plain" id="filter"
+                  method="post">
+                <input name="add" type="button" value="Novo" windowName="Cadastro de empresas do grupo"></input>
+                <input name="edit" type="button" value="Alterar" windowName="Atualizar emrepsa"></input>
+                <input
+                    confirm="Tem certeza que deseja apagar a empresa selecionada?"
+                    name="delete" type="button" value="Apagar"></input>
+                <input debug="true" name="pesquisar" type="submit" value=""></input>
+                    <span><p class="field " style="width:auto; "><span class="input " rel="search_text" style=""><input
+                                    class="focus" id="search_text" name="busca" placeholder="Filtrar" style=""
+                                    type="text" value=""></input></span>
+                        </p>
+                    </span>
+            </form>
+
+        </div>
+
+        <div id="datatable" windowName="Cadastro de empresas do grupo">
+            <div col="id" hidden="true">ID</div>
+            <div col="nomeFantasia" type="string">Nome fantasia</div>
+            <div col="tipo" type="string">Tipo</div>
+            <div col="cnpj" type="string" width="25%">CNPJ</div>
+            <div col="uf" type="string" width="5%">Estado</div>
+            <div col="responsavel" type="string" width="25%">Responsavel</div>
+        </div>
+
+
+        <div add_btn_title="Clique aqui para adicionar um novo registro"
+             adv_search_btn_title="Limpe ou altere o Filtro Avan�ado para exibir resultados" id="list_empty"
+             search_btn_title="Remova ou altere sua pesquisa para exibir resultados">
+            <h3>Nenhum registro foi encontrado</h3>
+        </div>
+    </div>
+</div>
+
+<div id="footer"></div>
+</body>
+</html>

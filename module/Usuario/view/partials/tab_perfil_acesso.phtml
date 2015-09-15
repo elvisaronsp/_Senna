@@ -1,0 +1,306 @@
+<div class="tab" id="tab_perfil_acesso" ref="Dados Gerais" rel="tab_perfil_acesso">
+
+    <!-- ID OCULTOS  -->
+    <?php echo $this->formElement($input = $form->get('id_entidade'));?>
+    <?php echo $this->formElement($input = $form->get('id_empresa'));?>
+    <?php echo $this->formElement($input = $form->get('id_funcionario'));?>
+    <!-- FIM ID OCULTOS -->
+
+    <!-- (LADO ESQUERDO) ATIVO-SEXO  -->
+    <div style="float:left; width:30%; margin-right:12px">
+        <!-- Ativo -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Ativo</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('ativo'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Genero -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Gênero</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('sexo'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- enviar mensagem de boas vindas -->
+        <fieldset class="fieldset " id="fielset_id" style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">E-mail de boas vindas</span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Envie o novo funcionario um link de acesso da conta do qual o funcionario será capaz de defini sua própria senha. Caso contrário, você precisará definir senha e comunicar as informações de login para os novos funcionários."></img>
+                    </span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('mensagemBoasVindas'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Solicitar redefinir senha no primeiro login -->
+        <fieldset class="fieldset "  id="fielset_redefinir" style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Forçar alteração de senha</span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Habilite isso se você quiser forçar o novo funcionario para alterar sua senha no momento seguinte ao primeiro login."></img>
+                    </span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('solicitarRedefinirSenha'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Modo de ferias -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Modo de férias </span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Se você alterar o status do funcionario para o <b>Modo de férias</b>, o mesmo não ira receber alertas, nem podera acessar o sistema."></img>
+                    </span>
+                <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('modoFerias'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Enviar alertas de e-mail -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Aletas de e-mail</span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Enviar e-mails de alertas do sistema para o funcionario."></img>
+                    </span>
+                <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <p class="field " style="width:auto; ">
+                <span class="input radio" rel="" style="">
+                    <label class="">
+                        <?php echo $this->formElement($input = $form->get('alertas'));?>
+                        <span><?php echo $input->getlabel();?></span>
+                    </label>
+                </span>
+            </p>
+        </fieldset>
+
+    </div>
+    <!-- FIM (LADO ESQUERDO) ATIVO-SEXO-->
+
+    <!-- (LADO DIREITO) NOME-CPF-PERFIL-USUARIO-SENHA-EMAIL-TELEFONE-SETOR-OBSERVAÇÕES  -->
+    <div style="float:left; width:67%">
+        <!-- Nome-Cpf -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Informações Pessoais</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Nome -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="nome" style="width:25%">Nome completo</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="nome" style="width: 68%">
+                    <?php echo $this->formElement($form->get('nome'));?>
+                </span>
+            </p>
+
+
+            <!-- CPF -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="cpf" style="width:25%">CPF</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="cpf" style="width: 25%">
+                    <?php echo $this->formElement($form->get('cpf'));?>
+                    </input>
+                </span>
+            </p>
+        </fieldset>
+
+        <hr class="clear" size="1"></hr>
+
+        <!-- Perfil-Usuario-Senha -->
+        <fieldset class="fieldset " style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Dados de Acesso</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Perfil de acesso -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="id_perfil" style="width:25%">Perfil</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="id_perfil" style="width: 68%">
+                    <?php echo $this->formElement($form->get('id_perfil'));?>
+                    <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                    <?php echo $this->formElement($form->get('ac_perfil_acessso'));?>
+                    <em class="autocomplete_search required temp  autosuggest"></em>
+                </span>
+            </p>
+
+            <!-- Login de Acesso-->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="codigo_acesso" style="width:25%">Login</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="codigo_acesso" style="width: 68%">
+                    <?php echo $this->formElement($form->get('login'));?>
+                </span>
+            </p>
+            <span class="ean" id="ean" title="Gerar Código EAN13">&nbsp;</span>
+
+
+            <!-- Senha -->
+            <p class="field inline" style="width:auto; clear:none;width:48% !important;">
+                <label class="" for="senha" style="width:49%">Senha</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="senha" style="width:40%">
+                    <?php echo $this->formElement($form->get('senha'));?>
+                </span>
+            </p>
+
+            <!-- Confirma Senha -->
+            <p class="field inline" style="width:auto; clear:none;width:44% !important;">
+                <label class="" for="senha_confirma" style="width:41%">Confirmação de Senha</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="senha_confirma" style="width:44%">
+                    <?php echo $this->formElement($form->get('senha_confirma'));?>
+                </span>
+            </p>
+            <!--span class="application_key" id="pass_pdv" style="margin-left:1px;" title="Senha para Acesso Off-Line ao PDV">&nbsp;</span-->
+        </fieldset>
+
+        <!-- Email-Telefone -->
+        <fieldset class="fieldset " id="field_contatos_principais" style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Contatos Principais</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Email -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="email_principal_aux" style="width:25%">Email</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="email_principal_aux" style="width: 68%">
+                    <?php echo $this->formElement($form->get('email'));?>
+                </span>
+            </p>
+
+            <!-- Telefone -->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="telefone_principal_aux" style="width:25%">Telefone</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="telefone_principal_aux" style="width: 68%">
+                    <?php echo $this->formElement($form->get('telefoneprincipal'));?>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Setor -->
+        <fieldset class="fieldset " show="inline" style="width:97%;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Dados Trabalhistas</span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Setor
+            <!-- Setor-->
+            <p class="field inline" style="width:auto; width:93% !important;">
+                <label class="" for="id_financeiro_setor" style="width:25%">Setor</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="id_financeiro_setor" style="width: 68%">
+                    <?php echo $this->formElement($form->get('setor'));?>
+                </span>
+            </p>
+        </fieldset>
+
+        <!-- Observações -->
+        <fieldset class="fieldset " style="width:460px;">
+            <legend>
+                <span class="legend">
+                    <span class="legend_label">Observações</span>
+                    <span class="input_info" style="">
+                        <img alt="info" class="infotip" src="/images/info.png" title="Informações referentes ao funcionário"></img>
+                    </span>
+                    <span class="input_alert">&nbsp;</span>
+                </span>
+            </legend>
+
+            <!-- Observações -->
+            <p class="field " style="width:auto; ">
+                <span class="input " rel="observacoes" style="">
+                    <?php echo $this->formElement($form->get('observacoes'));?>
+                </span>
+            </p>
+        </fieldset>
+    </div>
+    <!--FIM LADO DIREITO) NOME-CPF-PERFIL-USUARIO-SENHA-EMAIL-TELEFONE-SETOR-OBSERVAÇÕES -->
+
+    <!-- (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR  -->
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>
+        &nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+    </div>
+    <!-- FIM (LADO DIREITO) BOTÕES CONTINUAR-VOLTAR -->
+
+</div>
+
+

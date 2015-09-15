@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv='cache-control' content='no-cache' />
+<meta http-equiv='expires' content='0' />
+<meta http-equiv='pragma' content='no-cache' />
+<meta name="robots" content="NOINDEX,NOFOLLOW" />
+<meta name="base_url" content="" />
+
+<title></title>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <?php echo $this->headScript()    
+                    ->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+					->appendFile($this->basePath() . '/js/links-init.js')
+					->appendFile($this->basePath() . '/js/jquery/core.js')
+					->appendFile($this->basePath() . '/js/jquery/ui.js')
+					->appendFile($this->basePath() . '/js/jquery/tab.js')
+					->appendFile($this->basePath() . '/js/jquery/autosuggest.js')
+					->appendFile($this->basePath() . '/js/jquery/bt.js')
+					->appendFile($this->basePath() . '/js/forms.js')
+					->appendFile($this->basePath() . '/js/jquery/date.js')
+					->appendFile($this->basePath() . '/js/jquery/datepicker.js')
+					->appendFile($this->basePath() . '/js/jquery/maskedinput.js')
+					->appendFile($this->basePath() . '/js/jquery/datepickerrange.js')
+					->appendFile($this->basePath() . '/js/jquery/gchart.js')
+					->appendFile($this->basePath() . '/js/atalhos.js')?>
+
+
+
+    <?php echo $this->headLink()
+                    //->appendStylesheet($this->basePath() . '/css/noprint.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/style.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/content.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/ui.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/style_tagplus.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/jqueryui.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/inicio.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/datepicker.css?v=2.0.1')
+                    ->appendStylesheet($this->basePath() . '/css/datepickerrange.css?v=2.0.1')?>
+
+
+<script type='text/javascript'>
+
+if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Continuar","intro_button_avancar":"Avan\u00e7ar","intro_button_entendi":"<i class=\"icon-ok\"><\/i> Entendi","intro_button_ok":"<i class=\"icon-ok\"><\/i> Ok","intro_button_concluir":"<i class=\"icon-thumbs-up\"><\/i> Concluir","intro_button_voltar":"Voltar","intro_button_fechar":"Fechar","intro_button_cancelar":"<i class=\"icon-remove\"><\/i> Cancelar Tutorial","lang_range_separator":"a","lang_range_periodo_vazio":"Todo o Per\u00edodo","lang_range_date_format":"dd mmm","lang_range_date_format_dia":"dd de mmmm yyyy","lang_range_date_format_mes":"mmmm yyyy","lang_range_date_format_ano":"yyyy","lang_date_format":"dd\/mm\/yyyy","lang_start_date":"01\/01\/2011","intro_dashboard_inicio_title":"Primeiros Passos","intro_dashboard_inicio_text":"Ol\u00e1 <b>%s<\/b>!<br\/>Agora voc\u00ea vai aprender os primeiros passos para utilizar o sistema com sucesso.<br\/>N\u00e3o demorar\u00e1 mais do que 90 segundos =).","intro_dashboard_inicio_fechar":"J\u00e1 conhe\u00e7o o sistema","intro_dashboard_cancelar":"Cancelar Tutorial","intro_dashboard_passo1_title":"Ajuda","intro_dashboard_passo1_text":"Aqui voc\u00ea encontrar\u00e1 todo o <b>suporte<\/b> para utilizar o sistema,<br \/>como por exemplo Chat, E-mail e Suporte Remoto.","intro_dashboard_passo2_title":"Alertas","intro_dashboard_passo2_text":"Aqui voc\u00ea encontra suas <b>notifica\u00e7\u00f5es<\/b>. Informa\u00e7\u00f5es sobre treinamento,<br \/>atualiza\u00e7\u00f5es e at\u00e9 mesmo o vencimento de sua fatura ser\u00e3o exibidos aqui.","intro_dashboard_passo3_title":"Menu","intro_dashboard_passo3_text":"Este \u00e9 o <b>menu<\/b> principal do sistema. Atrav\u00e9s dele \u00e9 poss\u00edvel realizar <b>vendas<\/b>,<br \/>visualizar seus <b>gr\u00e1ficos<\/b> e acessar as 8 op\u00e7\u00f5es mais utilizadas por voc\u00ea no sistema.","intro_dashboard_passo4_title":"Menu","intro_dashboard_passo4_text":"Ao passar o mouse por cima o menu ser\u00e1 expandido, permitindo o acesso<br \/>\u00e0s demais <b>funcionalidades<\/b> do sistema atrav\u00e9s do \u00edcone em destaque <b>Menu<\/b>","intro_dashboard_passo5_title":"Menu Expandido","intro_dashboard_passo5_text":"Aqui s\u00e3o exibidas todas as <b>fun\u00e7\u00f5es<\/b> do sistema","intro_dashboard_passo6_title":"Pesquisa","intro_dashboard_passo6_text":"Digitando o <b>nome<\/b> ou uma <b>palavra-chave<\/b> da fun\u00e7\u00e3o,<br \/>voc\u00ea poder\u00e1 localiz\u00e1-la mais facilmente."});
+
+
+Date.monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+Date.abbrMonthNames = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+Date.dayNames = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+jQuery.dpText = { TEXT_PREV_YEAR:'Ano Anterior', TEXT_PREV_MONTH:'Mês Anterior', TEXT_NEXT_YEAR:'Próximo Ano', TEXT_NEXT_MONTH:'Próximo Mês', TEXT_CLOSE:'Fechar', TEXT_CHOOSE_DATE:'Escolha a Data', HEADER_FORMAT:'mmmm yyyy'};
+Date.firstDayOfWeek=0;
+Date.format = jQuery.i18n._('lang_date_format');
+
+
+
+/****************
+/inicio/index.js
+****************/
+
+(function($){
+	
+	$(document).ready(function(){
+		
+		//autosuggest de funcionario
+		funcionario_autosuggest();
+		
+		//Monta as Abas
+		monta_abas();
+		
+	});
+	
+	/**
+	 * Montando abas especiais para dashboard
+	 */
+	function monta_abas(){
+		$(".tab_selector li a").click(function(){
+			var $this = $(this);
+			var ativa = $this.parents("ul:first").find(".tab_sel_ativa");
+			if(!$this.parent().is(ativa)){
+				ativa.removeClass("tab_sel_ativa");
+				$this.parent().addClass("tab_sel_ativa");
+			}
+			$("#dashboard_type").val($(this).attr("ref"));
+			$('#form').submit();
+		});
+	}
+	
+
+	/**
+	 * Tratamento de autosuggest de funcionario
+	 */
+	function funcionario_autosuggest(){
+		$("#id_funcionario").bind("change", function(evt, el, item){
+			$("#nome_funcionario").val(item.value);
+			
+			//Se for funcionario
+			if(item.depto == undefined)
+				$('#func_depto').val('0');
+			//Se For departamento
+			else	
+				$('#func_depto').val('1');
+		});
+	}
+	
+})(jQuery);
+</script>
+
+</head>
+<body >
+
+<div id="painel"><form action="/senna/inicio/dashboard" class="form" id="form" method="post" target="iframe_dashboard">
+	<div id="form_actions">
+		<p class="field " style="width:280px; "><span class="input " rel="id_funcionario" style=""><input id="id_funcionario" name="id_funcionario" type="hidden" value="-1"></input><i class="ui-autocomplete_combo" tabindex="-1"></i><input autosuggest="id_funcionario" class="infotip info-bottom autosuggest" filters="[]" form_title="Cadastrando false" form_url="" form_url_field="" id="id_funcionario" minLength="0" name="ac_062013537365ca52b47448a1166235da30cc82348e" new_item_info="Criar um novo registro" new_item_label="Cadastrar Novo" source="/senna/passatempo//inicio/get_funcionario_depto_autosuggest" style="" title="Caso tenha permissão de visualizar as informações de todos os funcionários, será listado primeiro todos os funcionários e em seguida todos os departamentos. " type="text" value="Todos Funcionários" valueclear="true" valuefield="id"></input><em class="autocomplete_search infotip info-bottom autosuggest"></em></span></p>
+		<input id="func_depto" name="func_depto" type="hidden" value=""></input>
+		<input id="nome_funcionario" name="nome_funcionario" type="hidden" value="Todos Funcionários"></input>
+		
+		<!-- Periodo -->
+		<div style="float: left; margin-left: 10px;">
+            
+            <div class="calendarRange" id="periodo" style="">
+    			<div class="calendarRange_filtro">
+    				<p class="field " style="width:auto; "><span class="input  icon" rel="" style=""><input class="calendarRange_input" name="" style="" tabindex="-1" type="text" value=""></input></span></p>
+    				<input class="calendarRange_input_inicio" id="data_inicial" name="data_inicial" type="hidden" value="11/01/2015"></input>
+    				<input class="calendarRange_input_fim" id="data_final" name="data_final" type="hidden" value="17/01/2015"></input>
+    				<span class="calendarRange_trigger">&nbsp;</span>
+    			    
+    			    
+    			</div>
+            
+    			<div class="calendarRange_popup">
+    				<div class="calendarRange_menu">
+    					<div class="calendarRange_itens">
+    						<span rel="['16\/01\/2015','16\/01\/2015']">Hoje</span><span rel="['11\/01\/2015','17\/01\/2015']">Semana Atual</span><span rel="['01\/01\/2015','31\/01\/2015']">Mês Atual</span><span rel="['18\/12\/2014','16\/01\/2015']">30 dias</span><span rel="['18\/11\/2014','16\/01\/2015']">60 dias</span><span rel="['19\/10\/2014','16\/01\/2015']">90 dias</span><span rel="['01\/01\/2015','31\/12\/2015']">2015</span>
+    					</div>
+    					<div class="calendarRange_picker">
+    						<div class="calendarRange_cal_start"></div>
+    						<div class="calendarRange_cal_end"></div>
+    						<div class="calendarRange_actions">
+    						  <input class="calendarRange_apply" name="Aplicar" type="button" value="Aplicar"></input>
+    						  <input class="calendarRange_cancel" name="Cancelar" type="button" value="Cancelar"></input>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+		</div>
+        
+        </div>
+		
+		<div class="form_actions">
+			<input class="pesquisar" name="Filtrar" type="submit" value="Filtrar"></input>
+		</div>
+		
+	</div>
+	
+	<div class="form_fields" id="corpo" style="position: relative;">
+		<input id="dashboard_type" name="dashboard_type" type="hidden" value="aba_resumo"></input>
+		<ul class="tab_selector">
+			<li class="tab_sel_ativa"><a ref="aba_resumo"><span>Geral</span></a></li>
+			<li><a ref="aba_venda"><span>Vendas</span></a></li>
+			<li><a ref="aba_financeiro"><span>Financeiro</span></a></li>
+			<li><a ref="aba_pedidos"><span>Pedidos</span></a></li>
+			<li><a ref="aba_clientes"><span>Clientes</span></a></li>
+			<li><a ref="aba_notas"><span>Notas</span></a></li>
+		</ul>
+		<div style="position: absolute; top: 35px; bottom: 5px; left: 0; right: 0;">
+			<iframe id="iframe_dashboard" name="iframe_dashboard" src="/senna/inicio/dashboard" style="border:0;width:100%;height:100%;"></iframe>
+		</div>
+	</div>
+	
+	
+</form></div>
+
+
+
+</body>
+</html>

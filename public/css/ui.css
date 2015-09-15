@@ -1,0 +1,1240 @@
+/*
+
+CSS for Mocha UI
+
+Copyright:
+	Copyright (c) 2007-2008 Greg Houston, <http://greghoustondesign.com/>.
+	
+License:
+	MIT-style license.
+
+*/
+
+/* Layout
+---------------------------------------------------------------- */
+
+html, body {
+	overflow: auto;
+}
+
+body {
+	font-family: Droid Sans, sans-serif, Arial;
+	margin: 0; /* Required */
+	background: #FFF;
+}
+#desktop {
+	visibility: hidden; 
+	position: relative;
+	min-width: 960px; /* Helps keep header content from wrapping */
+	height: 100%;
+	overflow: hidden;
+	cursor: default; /* Fix for issue in IE7. IE7 wants to use the I-bar text cursor */
+}
+
+#desktopHeader {
+	background: #f1f1f1;
+	position: absolute;
+	right: 0px;
+	z-index: 3;
+	height: 0px; /* importante para o JS */
+}
+
+#desktopTitlebarWrapper {
+	position: relative;	
+	height: 30px;
+	overflow: none;
+	background: #f1f1f1;
+}
+
+#desktopTitlebar {
+	display:block;
+	float: right;
+}
+
+#desktopTitlebar #applicationName{
+	float: left;
+	height: 100%;
+	color: #0B809E;
+	font-size: 12px;
+	padding: 6px 15px;
+}
+#desktopTitlebar h1.applicationTitle {
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+	line-height: 25px;
+	font-weight: bold;
+	color: #CCC;
+	text-align: left;
+}
+
+#desktopTitlebar h2.tagline {
+	text-align: left;
+	font-size: 10px;
+	color: #b2b2b2;
+	padding: 0px;
+	margin-top: -8px;
+}
+
+#desktopTitlebar h2.tagline .taglineEm {
+	color: #fff;
+	font-weight: bold;
+}
+
+#topNav {
+	font-family: Droid Sans, sans-serif, Arial;
+	font-weight: 300;
+	font-size: 11px;
+	color: #b2b2b2;
+	text-align: right;
+	float: right;
+	display: block;
+}
+
+	#topNav li {
+		list-style: none;
+		display: block;
+		float: right;
+		height: 31px;
+	}
+	#topNav a {
+		box-sizing: border-box; 
+		-moz-box-sizing: border-box; 
+		border-left: 1px solid #D3D3D3;
+		color: #333;
+		display: block;
+		float: left;
+		font-weight: normal;
+		height: calc( 100% - 1px );
+		padding: 0px 12px 0px 10px;
+		position: relative;
+	}
+		#topNav a > span {
+			display: block;
+			padding-top: 7px;
+		}
+		#topNav a img {
+			width: 16px;
+			height: 16px;
+			float: left;
+			border: 0px;
+		}
+		#topNav a .label {
+			float: left;
+			margin-left: 5px;
+			color: #777;
+			font-style: italic;
+		}
+		#topNav a .label.hidden {
+			display: none;
+			margin: 0;
+		}
+	#topNav a:hover .label,
+	#topNav a.ativo .label{
+		text-decoration: none;
+		color: #333;
+	}
+	
+	#topNav a:hover,
+	#topNav a.ativo{
+		background-color: #FFF;
+	}
+	#topNav a.ativo{
+		height: 100%;
+	}
+	#topNav a i[class*='icon-']{
+		float: left;
+		font-size: 14px;
+		line-height: 14px;
+		color: #555;
+	}
+	#topNav a.ativo i[class*='icon-'],
+	#topNav a:hover i[class*='icon-']{
+		color: #333;
+	}
+	
+/* Menu Modal */
+	#topNav a#top_menu_modal_trigger{
+		background-color: #E27125;
+		position: relative;
+		/*border-bottom: 1px solid #CC631E;*/
+	    border-left: 0 none !important;
+	    margin-right: -1px;
+	    /*margin-top: -1px;*/
+	    padding-bottom: 1px;
+	}
+		#topNav a#top_menu_modal_trigger .label{
+			color: #FFF;
+		}
+	#topNav a#top_menu_modal_trigger:hover,
+	#topNav a#top_menu_modal_trigger.ativo{
+		background-color: #333;
+	    margin-top: 0;
+	}
+	
+	
+/* Alertas */
+	#topNav a#top_menu_alertas_trigger.alerta:hover,
+	#topNav a#top_menu_alertas_trigger.alerta.ativo{
+		background-color: #FFF8D1;
+	}
+	#topNav a#top_menu_alertas_trigger.alerta.avisos_only:hover,
+	#topNav a#top_menu_alertas_trigger.alerta.avisos_only.ativo{
+		background-color: #FFFFE1;
+	}
+	#topNav a#top_menu_alertas_trigger.alerta:hover i,
+	#topNav a#top_menu_alertas_trigger.alerta.ativo i{
+		 color: 		#896D59;
+	}
+	
+	#topNav a .alert_counter{
+		background: none repeat scroll 0 0 #DF1010;
+	    border-radius: 2px 2px 2px 2px;
+	    color: #FFFFFF;
+	    font-size: 10px;
+	    height: 12px;
+	    line-height: 12px;
+	    padding: 0;
+	    position: absolute;
+	    right: 4px;
+	    text-align: center;
+	    top: 3px;
+	    width: 12px;
+	}
+	#topNav a .alert_counter:empty{
+		display: none;
+	}
+
+/* Page */
+
+#pageWrapper {
+	background: #FFF;
+	margin-left: 60px;
+}
+
+.desktopIcon {
+	cursor: pointer;
+}
+#desktopShortcuts a{
+	display: block;
+	float: left;
+	border: 1px dotted transparent;
+	padding: 3px;
+}
+#desktopShortcuts a:hover{
+	border-color: #444;
+	background-color: #1F1D1D;
+}
+
+/* Toolboxes */
+.toolbox {
+	float: right;
+	padding: 6px 3px 0 5px;
+	height: 23px;
+	overflow: hidden;
+}
+
+div.toolbox.divider { /* Have to specify div here for IE6's sake */
+	background: url(../../images/mocha/toolbox-divider.gif) left center no-repeat;
+	padding: 6px 3px 0 12px;
+}
+
+div.toolbox.divider2 { /* Have to specify div here for IE6's sake */
+	background: url(../../images/mocha/toolbox-divider2.gif) left center no-repeat;
+	padding: 6px 4px 0 12px;
+}
+
+.toolbox img {
+	cursor: pointer;
+	margin-right: 6px;
+	padding: 0;
+	float: left;
+}
+
+.toolbox img.disabled {
+	cursor: default;
+}
+
+#spinnerWrapper {
+	width: 16px;
+	height: 16px;
+	background: url(../../images/mocha/spinner-placeholder.gif) no-repeat;
+	margin-right: 5px;
+}
+
+#spinner {
+	visibility: hidden;
+	background: url(../../images/mocha/spinner.gif) no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+/* Navbar */
+
+#desktopNavbar {
+	background: #4C4C4C;
+	height: 30px;
+	margin: 0 0px;	
+}
+
+#desktopNavbar ul {	
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	font-size: 12px;
+}
+
+#desktopNavbar li {
+	float: left;
+}
+
+#desktopNavbar a {
+	display: block;
+}	
+	
+#desktopNavbar ul li a {
+	padding: 6px 10px 6px 10px;	
+	color: #b2b2b2;
+	font-weight: normal;
+}
+
+#desktopNavbar ul li a:hover {
+	color: #fff;
+}
+
+#desktopNavbar ul li a.arrow-right, #desktopNavbar ul li a:hover.arrow-right {
+	background-image: url(../../images/mocha/arrow-right.gif);
+	background-repeat: no-repeat;
+	background-position: right 7px;	
+} 
+
+#desktopNavbar li ul {
+	padding: 2px;
+	border: 1px solid #3f3f3f;
+	background: #fff url(../../images/mocha/bg-dropdown.gif) repeat-y;
+	position: absolute;
+	width: 200px;
+	left: -999em;
+	z-index: 8000;
+}
+
+#desktopNavbar li:hover ul ul,
+#desktopNavbar li.ieHover ul ul,
+#desktopNavbar li:hover ul ul ul,
+#desktopNavbar li.ieHover ul ul ul {
+	left: -999em;
+}
+
+#desktopNavbar li ul ul { /* third-and-above-level lists */
+	margin: -22px 0 0 200px;
+}
+
+#desktopNavbar li ul li .check {
+	position: absolute;
+	top: 8px;
+	left: 6px;
+	width: 5px;
+	height: 5px;
+	background: #555;
+	overflow: hidden;
+	line-height: 1px;
+	font-size: 1px;
+}
+
+#desktopNavbar li ul li a {
+	position: relative;
+	padding: 1px 9px 1px 25px;
+	width: 166px;
+	color: #3f3f3f;
+	font-weight: normal;
+}
+
+#desktopNavbar li ul li a:hover {
+	background: #6C98D9;
+	color: #fff;
+}
+
+#desktopNavbar li ul li a:hover .check {
+	background: #fff;
+}
+
+#desktopNavbar li:hover ul,
+#desktopNavbar li.ieHover ul,
+#desktopNavbar li li.ieHover ul,
+#desktopNavbar li li li.ieHover ul,
+#desktopNavbar li li:hover ul,
+#desktopNavbar li li li:hover ul { /* lists nested under hovered list items */
+	left: auto;
+}
+
+#desktopNavbar li:hover { /* For IE7 */
+    position: static;
+}
+
+#pageWrapper {
+	position: relative;
+	overflow: hidden; /* This can be set to hidden or auto */
+	border-top: 0px solid #222;
+}
+
+/* Footer */
+#desktopFooterWrapper {
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	overflow: hidden;
+	clear:both;
+	display:block;
+}
+
+#desktopFooter {
+	margin-top:10px;
+	border-top:1px solid #CCC;
+	font-size: 10px;
+	padding: 5px 8px;
+	background: #FFF;
+	color: #666;
+	text-align:center;
+}
+
+#desktopFooter a {
+	color: #999;
+	font-weight: normal;
+}
+
+#desktopFooter a:hover {
+	text-decoration: none;
+}
+
+#dashboard_footer span.sistema{
+	display:inline;
+	margin-top:	4px;
+}
+#dashboard_footer span.registro{
+	display:inline;
+	border-right: 1px solid #999; 
+	margin:4px 5px 0px 0px;
+	padding-right: 10px;
+}
+
+/* Dock/Taskbar */
+
+#dockWrapper {
+	display: none;
+	width: 100%;
+	border-top: 1px solid #EEE;
+}
+
+#dockWrapper.top {
+	border: 0;
+}
+
+#dock {
+	position: relative;
+	padding: 0px 0px 0 1px;
+	bottom: 0;
+	left: 0;
+	background: #f1f1f1;
+	min-height: 30px;
+	margin-left: 60px;
+}
+
+* #dock {
+}
+
+.dockTab {
+	float: left;
+	position: relative;	
+	font-size: 11px;
+	width: 150px;
+	height: 26px;
+	margin: 2px 0px 1px 2px;
+	overflow: hidden;	
+	cursor: pointer;
+	background-color: #777;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+}
+
+.dockTab.activeDockTab {	
+	background-color: #0B809E;
+}
+
+.dockText {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	font-weight: normal;
+	color: #CCC;	
+	text-align: left;
+	padding: 4px 10px 2px 10px;
+	width: 130px;
+	height: 19px;
+	overflow: hidden;
+}
+
+.dockText:hover {
+	color: #FFF;
+}
+
+.dockTab.activeDockTab .dockText {
+	color: #FFF;
+}
+
+#dockCanvas {
+	position: absolute;
+	top: 5px;
+	right: 3px;
+	z-index: 2;
+	display:none;
+}
+
+#dockPlacement {
+	display:none;
+	position: absolute;
+	top: 4px;
+	right: 8px;
+	width: 10px;
+	height: 9px;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	background: #f00; /* for troubleshooting */
+	cursor: pointer;
+	z-index: 3; /* for IE */
+	text-align: right;
+}
+
+#dockAutoHide {
+	display:none;
+	position: absolute;
+	top: 14px;
+	right: 8px;
+	width: 10px;
+	height: 9px;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	background: #f00; /* for troubleshooting */
+	cursor: pointer;
+	z-index: 3; /* for IE */
+}
+
+/* Panel Layout
+---------------------------------------------------------------- */
+
+/* Columns */
+
+.column {
+	position: relative;	
+	float: left;
+	overflow: hidden;
+	background: #f1f1f1;
+}
+
+/* Panels */
+
+.panel {
+	position: relative;	
+	overflow: auto;
+	border-bottom: 1px solid #DDD;
+	border-top: 0;
+}
+
+.pad {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 8px;
+	overflow: hidden;
+}
+
+#mainPanel_headerToolbox{
+	display: none;
+}
+
+.panel-header {
+	position: relative;	
+	background: #f1f1f1;
+	height: 30px;
+	border-bottom: 1px solid #d3d3d3;
+	box-shadow: 0px 1px 3px #333;
+}
+
+.panel-headerContent {
+	padding-top: 2px;
+}	
+
+.panel-headerContent.tabs {
+	background: url(../../images/mocha/tabs.gif) repeat-x;
+	background-position: left -68px;	
+}
+
+.panel-header h2 {
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 300;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 5px 10px 0 12px;
+	height: 20px;
+	overflow: hidden;
+	color: #3f3f3f;
+}
+.panel-header h2 i {
+	font-size: 14px;
+	margin-right: 5px;
+	color: #666;
+}
+.panel-header h2 .shortcut {
+	/*display: none !important;*/
+	color: #BBB;
+	font-size: 10px;
+	font-weight: normal;
+	margin-left: 10px;
+}
+	.panel-header h2 .shortcut:before {
+		content: "(";
+	}
+	.panel-header h2 .shortcut:after {
+		content: ")";
+	}
+
+.panel-header-toolbox {
+	float: right;
+	height: 26px;
+	margin: 2px 5px 5px 0;
+	text-align: right;
+}
+
+.panel-collapse {
+	background: url(../../images/mocha/collapse-expand.gif) left top no-repeat;
+	display: none;
+}
+
+.panel-expand {
+	background: url(../../images/mocha/collapse-expand.gif) left -16px no-repeat;
+}
+
+.icon16 {
+	margin: 5px 0 0 2px;
+	cursor: pointer;
+}
+
+.panel-footerWrapper {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background: #f9f9f9;
+	height: 30px;
+	overflow: hidden;
+	border-top: 1px solid #b9b9b9;
+}
+
+.panel-footer {
+	padding: 1px 0 0 8px;	
+}
+
+.panel-footerContent {
+	margin-top: 5px;
+}
+
+/* Handles */	
+
+.horizontalHandle {
+	display:none;
+}
+
+.horizontalHandle.detached .handleIcon {
+	background: transparent;	
+}
+
+.horizontalHandle .handleIcon {	
+	margin: 0 auto;
+	height: 4px;
+	line-height: 1px;
+	font-size: 1px;
+	overflow: hidden;
+	background: url(../../images/mocha/handle-icon-horizontal.gif) center center no-repeat;
+}
+
+.columnHandle {
+	min-height: 10px;	
+	float: left;
+	width: 1px;
+	overflow: hidden;
+	background-color: #D3D3D3;
+	border: 0px;
+	border-right: 1px solid #F9F9F9;
+	cursor: default !important;
+}
+
+/* Viewport overlays
+---------------------------------------------------------------- */
+
+#modalOverlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #999;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	z-index: 10000;
+}
+
+* html 	#modalOverlay {
+	position: absolute;
+}
+
+/* Fix for IE6 select z-index issue */
+#modalFix {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	z-index: 9999;
+}
+
+/* Underlay */
+
+#windowUnderlay { 
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #fff;	
+}
+
+* html #windowUnderlay { 
+	position: absolute;
+}
+
+/* Windows
+---------------------------------------------------------------- */
+
+.mocha {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	overflow: hidden;	
+}
+
+.mocha.isFocused {	
+}	
+
+.mochaOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;	
+}
+	
+.mochaTitlebar {
+	width: 100%;
+	overflow: hidden;	
+}
+
+.mochaTitlebar h3 {
+	font-size: 11px;
+	text-transform: uppercase;
+	line-height: 15px;	
+	font-weight: 300;
+	margin: 8px 10px 4px 12px;
+	padding: 0;
+	color: #CCC;
+}
+
+.mocha.isFocused .mochaTitlebar h3 {
+	color: #FFF;
+}
+
+.mochaToolbarWrapper {
+	width: 100%; /* For IE */
+	position: relative;
+	height: 29px;
+	background: #f1f1f1;	
+	overflow: hidden;
+	border-top: 1px solid #d9d9d9;
+}
+
+div.mochaToolbarWrapper.bottom {
+	border: 0;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.mochaToolbar {
+	width: 100%; /* For IE */
+	border-top: 1px solid #fff;
+}
+
+.mochaContentBorder {
+
+}
+
+.mochaContentWrapper { /* Has a fixed height and scrollbars if required. */
+	overflow: auto;
+}
+	
+.mochaContent {
+	padding: 10px 12px;
+}
+
+.mocha .handle {
+	position: absolute;
+	background: #0f0;
+	width: 3px;
+	height: 3px;
+	z-index: 2;
+	opacity: .0;
+	filter: alpha(opacity=0);
+	-moz-opacity: .0;
+	overflow: hidden;
+	font-size: 1px; /* For IE6 */
+}
+
+.mocha .corner { /* Corner resize handles */
+	background: #f00;
+	width: 10px;
+	height: 10px;
+}
+
+.mocha .cornerSE { /* Bottom right resize handle */
+	background: #f00;
+	width: 20px;
+	height: 20px;
+}
+
+.mochaCanvasHeader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
+	z-index: -1;
+	display: none;
+	overflow: hidden;
+}
+
+.mochaControls {
+	position: absolute;
+	width: 52px;
+	top: 8px;
+	right: 8px;
+	height: 14px;
+	z-index: 4;
+	background: transparent;
+}
+
+.mochaCanvasControls {
+	position: absolute;	
+	top: 8px;
+	right: 8px;	
+	z-index: 3;
+	background: transparent;
+
+}
+
+/*
+	To use images for these buttons:
+	1. Set the useCanvasControls window option to false.
+	2. If you use a different button size you may need to reposition the controls.
+	   Modify the controlsOffset window option.		
+	2. Add background images to each button.
+
+*/
+.mochaMinimizeButton, .mochaMaximizeButton, .mochaCloseButton {
+	float: right;
+	width: 14px;
+	height: 14px;
+	font-size: 1px;	
+	cursor: pointer;
+	z-index: 4;
+	background: #f00;
+	margin-left: 5px;
+}
+
+.mochaMinimizeButton {
+	margin-left: 0;
+}
+
+.mochaMaximizeButton {
+}
+
+.mochaCloseButton {
+}
+
+.mochaSpinner{
+	visibility: hidden;	
+	position: absolute;
+	top: 25% !important;
+	left: 50% !important;
+	width: 96px;
+	height: 96px;
+	margin-left: -48px;
+	background: url(../../images/mocha/gat-loader.gif) no-repeat;
+}
+
+.mochaIframe {
+	width: 100%;
+}  
+		
+/* Fix for IE6 select z-index issue */
+.zIndexFix {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	filter: mask();
+	width: 100px;
+	height: 100px;
+	border: 1px solid transparent;
+}
+
+/* Modals */
+
+.modal2 {
+	border-top: 5px solid #FFF;
+}
+
+.modal2 .mochaContentBorder {
+	border-width: 0px;
+}
+.modal2.mocha.isFocused .mochaTitlebar h3 {
+	color: #666;
+}
+	
+/* Window Themes */
+
+.mocha.no-canvas {
+	background: #f1f1f1;
+	border: 2px solid #555;	
+}
+
+.mocha.no-canvas .mochaTitlebar {
+	background: #f1f1f1;	
+}
+
+.mocha.transparent .mochaTitlebar h3 {
+	color: #fff;
+	display: none;
+}
+
+.mocha.notification .mochaTitlebar {
+	opacity: .0;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+}
+
+.mocha.notification .mochaContentBorder {
+	border-width: 0px;
+}
+
+.mocha.notification .mochaContentWrapper {
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/* Compontents
+---------------------------------------------------------------- */
+
+/* Toolbar Tabs */
+
+.toolbarTabs {	
+	padding: 0 5px 2px 2px;
+	background: url(../../images/mocha/tabs.gif) repeat-x;
+	background-position: left -70px;
+	overflow: visible;
+}
+
+.tab-menu {	
+	padding-top: 1px;
+	list-style:	none;
+	margin: 0;
+	padding: 0;
+	line-height: 16px;
+	font-size: 11px;
+}
+
+.tab-menu li {
+	display: block;
+	float: left;
+	margin:	0 0 5px 0;
+	cursor: pointer;	
+	background: url(../../images/mocha/tabs.gif) repeat-x;
+	background-position: left -35px;
+}
+
+.tab-menu li.selected {
+	background: url(../../images/mocha/tabs.gif) repeat-x;
+	background-position: left 0;
+}
+
+.tab-menu li a {
+	display: block;
+	margin-left: 8px;
+	padding: 6px 16px 5px 10px;
+	text-align: center;
+	font-weight: normal;
+	color: #141414;
+	background: url(../../images/mocha/tabs.gif) repeat-x;
+	background-position: right -35px;	
+}
+
+.tab-menu li.selected a {
+	color: #141414;
+	font-weight: bold;	
+	background: url(../../images/mocha/tabs.gif) repeat-x;
+	background-position: right 0;
+}
+
+/* Accordian */
+
+.accordianWrapper {
+	padding: 0;
+	background: #fff;
+}
+
+.accordianToggler {
+	margin: 0;
+	padding: 6px 10px;
+	background: #f1f1f1 url(../../images/mocha/bg-panel-header.gif) repeat-x;
+	font-size: 12px;
+	cursor: pointer;
+	border-top: 1px solid #e3e3e3;	
+}
+
+.topToggler {
+	border-top: none;
+}
+
+.accordianToggler.open {
+	background: #fff url(../../images/mocha/bg-panel-header.gif) repeat-x;	
+}
+
+.accordianContent {
+	padding: 10px 10px 5px 10px;
+}
+
+/* Sliders */
+
+.slider {
+	clear: both;
+	position: relative;
+	font-size: 12px;
+	font-weight: bold;
+	width: 200px;
+	margin-bottom: 15px;	
+}
+
+.sliderWrapper {
+	position: relative;
+	font-size: 1px;
+	line-height: 1px;
+	height: 9px;
+	width: 222px;
+}
+
+.sliderarea {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 7px;
+	width: 220px;
+	font-size: 1px;
+	line-height: 1px;
+	background: url(../../images/mocha/slider-area.gif) repeat-x;
+	border: 1px solid #a3a3a3;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+ 
+.sliderknob {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 9px;
+	width: 19px;
+	font-size: 1px;
+	line-height: 1px;	
+	background: url(../../images/mocha/knob.gif) no-repeat;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 2;
+}
+	
+.update {
+	padding-bottom: 5px;	
+}
+
+/* Folder Tree */
+
+.tree {
+	font-size: 11px;
+	line-height: 15px;
+	margin: 0;
+}
+
+.tree ul {
+	margin: 0;
+}
+
+.tree li {
+	list-style-type: none;
+	white-space: nowrap;
+}
+
+.tree li a {
+	color: #3f3f3f;	
+}	
+
+.tree li img {
+	vertical-align: middle;
+	width: 18px;
+	height: 18px;
+	overflow: hidden;
+}
+
+.tree li span {
+	padding-left: 2px;
+}
+
+/* View Toggle */
+
+.viewToggle {
+	position: absolute;
+	top: 4px;
+	right: 5px;
+	width: 60px;
+	text-align: right;
+}
+
+.viewToggle img.viewToggleList, .viewToggle img.viewToggleGrid {
+	width: 28px;
+	height: 22px;
+}	
+
+.viewToggle img.viewToggleList {
+	background: url(../../images/mocha/view-toggle.gif) no-repeat;
+	background-position: 0 -66px;
+}
+
+.viewToggle img.viewToggleGrid {
+	background: url(../../images/mocha/view-toggle.gif) no-repeat;
+	background-position: 0 0;
+}
+
+/* Miscellaneous
+---------------------------------------------------------------- */
+
+/* Window Builder Form Elements */
+	
+#desktop form {
+	margin: 0 0 0 0;
+	padding: 5px 0 0 0;
+}
+
+#newWindowForm {
+	width: 320px;
+}
+
+#desktop .input {
+	width: 225px;
+	padding: 1px 0 1px 3px;
+	border: 1px solid #bbb;	
+}
+
+#desktop textarea {
+	width: 225px;
+	height: 100px;
+	padding: 1px 0 1px 3px;
+	border: 1px solid #bbb;
+}
+
+#desktop .formLabel {
+	float: left;	
+	text-align: right;
+	width: 80px;
+	margin: 0 0 5px 0;
+}
+
+#desktop .formField {
+	float: right;
+	margin: 0 0 5px 0;
+	padding: 0 0 0 0;
+	width: 230px;
+}
+
+#desktop form .number {
+	width: 40px;
+}
+
+/* Menus */
+#menu{
+	margin: 0px;
+}
+#menu li{
+	list-style: none;
+	padding: 0px;
+}
+
+.menu-right li {
+	list-style-type: none;
+	display: inline;
+	margin: 0 0 0 20px;
+}
+
+/* Notifications */
+
+/* Success, error & notice boxes for messages and errors. */
+.notice, 
+.success,
+.information   	{ margin: 8px; border: 0; text-align: left; font-weight:300; font-size: 14px; border-radius: 1px; color: #FFF; text-shadow: 0px 1px 1px rgba(0,0,0,0.1);  top:-60px; opacity:0; -webkit-transition: top 0.3s ease, opacity 0.4s ease; transition: top 0.3s ease, opacity 0.4s ease;}
+.success    	{ background: rgba(127, 199, 78, 0.9); }
+.notice     	{ background: rgba(240, 180, 74, 0.9); }
+.information  	{ background: rgba(124, 172, 224, 0.9); }
+.notice a   	{ color: #FFF; text-decoration: underline; }
+.success a  	{ color: #FFF; text-decoration: underline; }
+.information a  { color: #FFF; text-decoration: underline; }
+.error a    	{ color: #D12F19; }
+
+.notice:before, 
+.success:before,
+.information:before { content: ""; font-family: 'glyphs'; position: absolute; left: 20px; top: 18px; font-size: 26px; text-shadow: none; }
+.success:before 	{ content: "\f0cf"; }
+.notice:before 		{ content: "\f079"; }
+.information:before { content: "\f080"; }
+
+/* Clears */
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+* .clear {
+	height: 1%;
+	font-size: 1px;
+	line-height: 1px;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+/* General */
+.debug{
+	display: inline;
+	margin-left: 100px;
+	font-weight:bolder;
+}

@@ -1,0 +1,161 @@
+<div class="tab" id="tab_dados_secundarios" ref="<img src='\images/data_2.png'> Dados Secundarios" rel="tab_dados_secundarios">
+
+    <!--  Dados da pessoa fisica -->
+    <fieldset class="fieldset " id="fisica" style="width:720px;float:left;">
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Dados Secundarios</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+        <div>
+            <p class="field " style="width:90px; ">
+                <label class="" for="rg" style="">RG</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="rg" style="">
+                    <?php echo $this->formElement($input = $form->get('rg'));?>
+                </span>
+            </p>
+            <p class="field " style="width:auto; ">
+                <label class="" for="data_nascimento" style="">Data de Nascimento</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="data_nascimento" style="">
+                    <?php echo $this->formElement($input = $form->get('dataNascimento'));?>
+                </span>
+            </p>
+            <p class="field " style="width:auto; ">
+                <label class="" style="">Sexo</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input radio" rel="" style="">
+                    <?php echo $this->formElement($input = $form->get('sexo'));?>
+                </span>
+            </p>
+            <p class="field " style="width:120px; ">
+                <label class="" for="estado_civil" style="">Estado Civil</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="estado_civil" style="">
+                    <?php echo $this->formElement($input = $form->get('estadoCivil'));?>
+                </span>
+            </p>
+            <p class="field " style="width:80px; ">
+                <label class="" for="renda_mensal" style="">Renda Mensal</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="renda_mensal" style="">
+                    <?php echo $this->formElement($input = $form->get('rendaMensal'));?>
+                </span>
+            </p>
+            <hr class="clear" size="1"></hr>
+            <p class="field " style="width:200px; ">
+                <label class="" for="profissao" style="">Profissão</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="profissao" style="">
+                    <?php echo $this->formElement($input = $form->get('profissao'));?>
+                </span>
+            </p>
+            <p class="field " style="width:230px; ">
+                <label class="" for="filiacao_mae" style="">Nome da Mãe</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="filiacao_mae" style="">
+                    <?php echo $this->formElement($input = $form->get('filiacaoMae'));?>
+                </span>
+            </p>
+            <p class="field " style="width:248px; ">
+                <label class="" for="filiacao_pai" style="">Nome do Pai</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="filiacao_pai" style="">
+                    <?php echo $this->formElement($input = $form->get('filiacaoPai'));?>
+                </span>
+            </p>
+            <hr class="clear" size="1"></hr>
+            <fieldset class="fieldset " id="boxconjuge" style="width:680px;">
+                <legend>
+                    <span class="legend">
+                        <span class="legend_label">Dados do Conjuge</span>
+                        <span class="input_alert">&nbsp;</span>
+                    </span>
+                </legend>
+                <p class="field " style="width:280px; ">
+                    <label class="" for="conjuge_nome" style="">Nome do Conjuge</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="conjugeNome" style="">
+                        <?php echo $this->formElement($input = $form->get('conjugeNome'));?>
+                    </span>
+                </p>
+                <p class="field " style="width:110px; ">
+                    <label class="" for="conjuge_cpf" style="">CPF do Conjuge</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="conjugeCpf" style="">
+                        <?php echo $this->formElement($input = $form->get('conjugeCpf'));?>
+                    </span>
+                </p>
+                <p class="field " style="width:auto; ">
+                    <label class="" for="conjuge_data_nascimento" style="">Data de Nascimento</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="conjugeDataNascimento" style="">
+                        <?php echo $this->formElement($input = $form->get('conjugeDataNascimento'));?>
+                    </span>
+                </p>
+                <p class="field " style="width:140px; ">
+                    <label class="" for="conjuge_profissao" style="">Profissão do Conjuge</label>
+                    <span class="input_alert">&nbsp;</span>
+                    <span class="input " rel="conjuge_profissao" style="">
+                        <?php echo $this->formElement($input = $form->get('conjugeProfissao'));?>
+                    </span>
+                </p>
+            </fieldset>
+        </div>
+    </fieldset>
+    <!--  FIM Dados da pessoa fisica -->
+
+    <!--  Dados gerais -->
+    <fieldset class="fieldset " id="tab_dados_gerais" style="width:240px;float:left;">
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Dados Gerais</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+        <p class="field " style="width:110px; ">
+            <label class="" style="">Recebe Email</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input radio" rel="" style="">
+                <?php echo $this->formElement($input = $form->get('alertas'));?>
+            </span>
+        </p>
+        <p class="field " style="width:110px; ">
+            <label class="" for="valor_limite_credito" style="">Limite de Crédito</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="valor_limite_credito" style="">
+                <?php echo $this->formElement($input = $form->get('limiteCredito'));?>
+            </span>
+        </p>
+        <p class="field " style="width:110px; ">
+            <label class="" for="saldo_para_compras" style="">Saldo para Compras</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="saldo_para_compras" style="">
+                <?php echo $this->formElement($input = $form->get('saldo'));?>
+            </span>
+        </p>
+        <?php echo $this->formElement($input = $form->get('foto'));?>
+        <hr class="clear" size="1"></hr>
+    </fieldset>
+    <!-- FIM Dados gerais -->
+
+    <hr class="clear" size="1"></hr>
+
+    <!-- Suframa -->
+    <p class="field " style="width:239px; ">
+        <label class="" for="suframa" style="">SUFRAMA</label>
+        <span class="input_alert">&nbsp;</span>
+        <span class="input " rel="suframa" style="">
+            <?php echo $this->formElement($input = $form->get('suframa'));?>
+        </span>
+    </p>
+    <!-- FIM Suframa -->
+
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+    </div>
+
+</div>

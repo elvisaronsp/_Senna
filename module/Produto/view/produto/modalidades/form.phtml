@@ -1,0 +1,254 @@
+<?php echo $this->doctype(); ?>
+<html>
+<head>
+
+<meta http-equiv='cache-control' content='no-cache' />
+<meta http-equiv='expires' content='0' />
+<meta http-equiv='pragma' content='no-cache' />
+<meta name="robots" content="NOINDEX,NOFOLLOW" />
+<meta name="base_url" content="" />
+    
+<!-- Scripts javaScript -->
+<?php echo $this->headScript()
+		    	->appendFile($this->basePath() . '/js/mootools-1.2-core.js')
+			    ->appendFile($this->basePath() . '/js/mootools-1.2-more.js')
+			    ->appendFile($this->basePath() . '/js/core.js')
+			    ->appendFile($this->basePath() . '/js/window.js')
+			    ->appendFile($this->basePath() . '/js/modal.js')
+			    ->appendFile($this->basePath() . '/js/mocha-ext.js')
+			    ->appendFile($this->basePath() . '/js/base.js')
+			    ->appendFile($this->basePath() . '/js/atalhos.js')
+			    ->appendFile($this->basePath() . '/js/detect-zoom.js')
+			    ->appendFile($this->basePath() . '/js/jquery/core.js')
+			    ->appendFile($this->basePath() . '/js/jquery/dump.js')
+			    ->appendFile($this->basePath() . '/js/jquery/debug.js')
+			    ->appendFile($this->basePath() . '/js/jquery/bt.js')
+			    ->appendFile($this->basePath() . '/js/jquery/validate.js')
+			    ->appendFile($this->basePath() . '/js/jquery/maskedinput.js')
+			    ->appendFile($this->basePath() . '/js/jquery/uppercase.js')
+			    ->appendFile($this->basePath() . '/js/jquery/clonefield.js')
+			    ->appendFile($this->basePath() . '/js/jquery/priceformat.js')
+			    ->appendFile($this->basePath() . '/js/jquery/tab.js')
+			    ->appendFile($this->basePath() . '/js/jquery/tablestyle.js')
+			    ->appendFile($this->basePath() . '/js/jquery/date.js')
+			    ->appendFile($this->basePath() . '/js/jquery/datepicker.js')
+			    ->appendFile($this->basePath() . '/js/sexyalertbox.js')
+			    ->appendFile($this->basePath() . '/js/jquery/confirm_message.js')
+			    ->appendFile($this->basePath() . '/js/jquery/livequery.js')
+			   	->appendFile($this->basePath() . '/js/forms.js')
+			    ->appendFile($this->basePath() . '/js/jquery/readonly.js')
+			    ->appendFile($this->basePath() . '/js/jquery/ui.js')
+			    ->appendFile($this->basePath() . '/js/jquery/autosuggest.js')
+			    ->appendFile($this->basePath() . '/js/jquery/serializetable.js')
+			    ->appendFile($this->basePath() . '/js/jquery/clonetable.js')?>
+
+<!-- Estilos da pagina Css/code -->
+<?php echo $this->headLink()
+   				///->appendStylesheet($this->basePath() . '/css/noprint.css')
+    			->appendStylesheet($this->basePath() . '/css/loader.css')
+			    ->appendStylesheet($this->basePath() . '/css/style.css')
+			    ->appendStylesheet($this->basePath() . '/css/style_tagplus.css')
+			    ->appendStylesheet($this->basePath() . '/css/sexyalertbox.css')
+			    ->appendStylesheet($this->basePath() . '/css/datepicker.css')
+				->appendStylesheet($this->basePath() . '/css/jqueryui.css')
+				->appendStylesheet($this->basePath() . '/css/clonetable.css')?>    
+
+<script type='text/javascript'>
+
+jQuery(document).ready(function() {
+    jQuery.extend(jQuery.validator.messages, {
+        accept: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.'/> ",
+        cnpj: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Informe um CNPJ v�lido.'/> ",
+        cpf: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Informe um CPF v�lido.'/> ",
+        creditcard: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.'/> ",
+        date: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a uma data v&aacute;lida.'/> ",
+        digits: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a somente d&iacute;gitos.'/> ",
+        email: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um endere&ccedil;o eletr&ocirc;nico v&aacute;lido.'/> ",
+        equalTo: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a o mesmo valor novamente.'/> ",
+        max: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor menor ou igual a {0}.'/> "),
+        maxlength: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a n&atilde;o mais que {0} caracteres.'/> "),
+        min: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior ou igual a {0}.'/> "),
+        minlength: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a ao menos {0} caracteres.'/> "),
+        number: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um n&uacute;mero v&aacute;lido.'/> ",
+        range: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor entre {0} e {1}.'/> "),
+        rangelength: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor contendo de {0} a {1} caracteres.'/> "),
+        required: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Este campo &eacute; obrigat&oacute;rio.'/> ",
+        requiredIf: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Este campo deve ser preenchido.'/> ",
+        remote: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Por favor, corrija este campo.'/> ",
+        url: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a uma URL v&aacute;lida.'/> ",
+        time: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a uma hora v�lida'/> ",
+        code: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um c�digo v�lido'/> ",
+        price: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne&ccedil;a um valor maior que 0'/> ",
+        cidade: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Cidade n�o cadastrada no sistema.'/> ",
+        pais: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Pa�s n�o 'cadastrado no sistema.'/> ",
+        requiredCep: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='CEP e ou Logradouro n�o cadastrados no sistema.'/> ",
+        transporte: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='O valor deste campo deve ser definido.'/> ",
+        positive: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Forne�a um valor maior que 0,00.'/> ",
+        cfop: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='CFOP inv�lido'/> ",
+        cfop_transp: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='CFOP inv�lido'/> ",
+        code_ean: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 8, 12,13 ou 14 caracteres.'/> ",
+        cod_ncm: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Caso seja preenchido ,este campo deve possuir 2 ou 8 caracteres.'/> ",
+        max_vr_cupom: jQuery.validator.format("<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='O valor neste campo deve ser inferior a {0}'/> "),
+        autosuggest: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Este campo não possui um valor v�lido selecionado'/> ",
+        password: "<img src='<?php $this->basePath();?>/images/alert.png' class='tooltip' title='Senha deve conter pelo menos 6 caracteres utilizando letras e n�meros'/> "
+    });
+});
+
+Date.monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+Date.dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+jQuery.dpText = {
+    TEXT_PREV_YEAR: 'Ano Anterior',
+    TEXT_PREV_MONTH: 'M�s Anterior',
+    TEXT_NEXT_YEAR: 'Pr�ximo Ano',
+    TEXT_NEXT_MONTH: 'Pr�ximo M�s',
+    TEXT_CLOSE: 'Fechar',
+    TEXT_CHOOSE_DATE: 'Escolha a Data',
+    HEADER_FORMAT: 'mmmm yyyy'
+};
+Date.firstDayOfWeek = 0;
+
+
+if (window.jQuery && jQuery.i18n) jQuery.i18n.load({
+    "intro_button_continuar": "Continuar",
+    "intro_button_avancar": "Avan\u00e7ar",
+    "intro_button_entendi": "<i class=\"icon-ok\"><\/i> Entendi",
+    "intro_button_ok": "<i class=\"icon-ok\"><\/i> Ok",
+    "intro_button_concluir": "<i class=\"icon-thumbs-up\"><\/i> Concluir",
+    "intro_button_voltar": "Voltar",
+    "intro_button_fechar": "Fechar",
+    "intro_button_cancelar": "<i class=\"icon-remove\"><\/i> Cancelar Tutorial"
+});
+/******************************************
+produto/produto_modalidades_grades/form.js
+******************************************/
+
+(function($){
+	$(document).ready(function(){
+		//altera a mascara do campo cpfo de acordo com o tipo de opera��o (entrada/saida)
+		$('[name*=tipo]').click(function(){
+			if($(this).val()=='M'){
+				$$('#modalidade').set('value','');
+				$$('[autosuggest=modalidade]').set('value','');
+				$$('#modalidade').setProperty('disabled','disabled');
+				$$('[autosuggest=modalidade]').setProperty('disabled','disabled');
+			}else{
+				$$('#modalidade').removeProperty('disabled');
+				$$('[autosuggest=modalidade]').removeProperty('disabled');
+			}
+		});
+		
+		/**
+		 * Inserindo Autocomplete da Modalidade a partir "change" do autosuggest
+		 */
+		$("#modalidade").change(function(evt, el, json){
+			if(json){
+
+				$('#id_modalidade').val(json.id);
+				$('#modalidade').val(json.id);
+				
+			}
+		});
+		
+		/**
+		 * Inserindo Autocomplete do NCM no produto a partir "change" do autosuggest
+		 */
+		$("#modalidade").bind('clear', (function(evt, el){
+			$('#id_modalidade').text("");
+		}));
+		
+		
+		if($("#id_modalidade").val())
+			enable_modalidade($("#id_modalidade").val());
+		else
+			disable_modalidade();
+		
+		
+		
+	});
+	
+	var disable_modalidade = function () {
+		$('#modalidade').val('');
+		$('[autosuggest=modalidade]').val('');
+		$('#modalidade').attr('disabled','disabled');
+		$('[autosuggest=modalidade]').attr('disabled','disabled');
+	};
+	
+	var enable_modalidade = function (id) {
+//		$('#modalidade').val(id);
+//		$('[autosuggest=modalidade]').val(id);
+		$('#modalidade').removeAttr('disabled');
+		$('[autosuggest=modalidade]').removeAttr('disabled');
+	};
+	
+	
+})(jQuery);
+	</script>
+
+</head>
+<body >
+<!--Container tela.php-->
+<div id="loader">
+	<div class="loader-text">
+		<span class='carregando'>Carregando ...</span>
+		<span class='enviando' style="display: none">Enviando ...</span>
+	</div>
+	<div class="loader-bg">&nbsp;</div>
+</div>
+
+<div id="tela" style="height: 100%;">
+	<div id="conteudo"><!--Container base_form.php-->
+<?php 
+            $form->setAttribute('action',$this->url('classes-produto',array('controller'=>'modalidades','action'=>'save')));
+            $form->setAttribute('windowId',$this->url('classes-produto',array('controller'=>'modalidades','action'=>'form')));
+        
+            $form->prepare();
+            echo $this->form()->openTag($form);?>
+	<div class="form_actions" id="form_actions">
+		
+				<?php echo $this->formElement($form->get('Salvar')),
+				  		   $this->formElement($form->get('Salvar e Criar Novo')),
+						   $this->formElement($form->get('Salvar e Fechar')),
+				 		   $this->formElement($form->get('Apagar'));?>
+          		<span class="sep" size="1">&nbsp;</span>
+                <?php echo $this->formElement($form->get('Fechar'));?>
+	</div>
+	<div class="form_fields" id="form_fields">
+		<fieldset class="fieldset " style="width:97%;margin-top:5px">
+
+	  <?php echo $this->formElement($form->get('id'));?>
+	
+	
+	<p class="field " style="width:47%; "><label class="" for="descricao" style="">Descrição</label><span class="input_alert">&nbsp;</span><span class="input " rel="descricao" style="">
+	
+	  <?php echo $this->formElement($form->get('descricao'));?>
+	
+	</span></p>
+	<p class="field" style="width:20%; "><label class="" style="">Tipo</label><span class="input_info"><img alt="info" class="infotip" src="/images/info.png" title="<br><br>Modalidade é o tipo de grade. Ex: Cor ou Tamanho. <br>Grade é a subdivisão da Modalidade. Ex: Azul, verde e branco ou pequeno, médiro e grande."></img></span><span class="input_alert">&nbsp;</span><span class="input radio" rel="" style=""><label class="inline">
+	  <?php echo $this->formElement($form->get('tipo'));?>
+	
+	</p>
+	<p class="field " style="width:auto; "><label class="" for="modalidade" style="">Modalidade</label><span class="input_alert">&nbsp;</span><span class="input " rel="modalidade" style="">
+	
+	<?php echo $this->formElement($form->get('modalidade'));?>
+	
+	<i class="ui-autocomplete_combo" tabindex="-1"></i>
+	
+	<?php echo $this->formElement($form->get('ac_modalidade'));?>
+	
+	
+	<em class="autocomplete_search  required autosuggest"></em></span></p>
+	<?php echo $this->formElement($form->get('id_modalidade'));?>
+	
+
+</fieldset>
+	</div>
+	<?php echo $this->form()->closeTag();?>
+</div>
+</div>
+
+<div id="footer"></div>
+
+
+
+</body>
+</html>

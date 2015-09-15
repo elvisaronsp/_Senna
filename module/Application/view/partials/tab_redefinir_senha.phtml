@@ -1,0 +1,26 @@
+<?php echo $this->formElement($input = $form->get('chaveAtivacao'));?>
+<div id="reset-form" class="content-box modal-content ">
+    <div class="content-box-wrapper pad20A">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Senha:</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon addon-inside bg-white font-primary">
+                    <i class="glyph-icon icon-unlock-alt"></i>
+                </span>
+                <?php echo $this->formElement($input = $form->get('senha'));?>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Confirmar senha:</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon addon-inside bg-white font-primary">
+                    <i class="glyph-icon icon-unlock-alt"></i>
+                </span>
+                <?php echo $this->formElement($input = $form->get('confirmacaoSenha'));?>
+            </div>
+        </div>
+    </div>
+    <div class="button-pane">
+        <?php echo $this->formElement($input = $form->get('salvar'));?>
+    </div>
+</div>

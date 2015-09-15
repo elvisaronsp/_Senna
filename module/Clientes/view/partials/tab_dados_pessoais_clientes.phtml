@@ -1,0 +1,233 @@
+<div class="tab" id="tab_dados_pessoais" ref="<img src='\images/data.png'> Dados Pessoais" rel="tab_dados_pessoais">
+
+    <?php echo $this->formElement($input = $form->get('id'));?>
+    <?php echo $this->formElement($input = $form->get('empresa'));?>
+
+    <fieldset class="fieldset " style="width:15%;">
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Ativo</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <p class="field " style="width:auto; ">
+            <span class="input radio" rel="" style="">
+                <?php echo $this->formElement($input = $form->get('ativo'));?>
+            </span>
+        </p>
+    </fieldset>
+    <fieldset class="fieldset " style="width:25%;">
+        <legend>
+            <span class="legend"><span class="legend_label">Tipo de cliente</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <p class="field " style="width:auto; ">
+            <span class="input radio" rel="" style="">
+                <?php echo $this->formElement($input = $form->get('tipo'));?>
+            </span>
+        </p>
+
+    </fieldset>
+    <fieldset class="fieldset " style="width:25%;">
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Classificação</span>
+                <span class="input_info" style="">
+                    <img alt="info" class="infotip" src="/images/info.png" title="Classificação de clientes. A classificção de clientes rege a quantidade de itens em cada venda por cliente e a forma de faturamento aceitavel."></img>
+                </span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+            <span class="input radio" rel="" style="">
+                <?php echo $this->formElement($input = $form->get('classificacao'));?>
+                <div name="simple" id="ratting">
+                    <input type="radio" name="rating" value="1">
+                    <input type="radio" name="rating" value="2">
+                    <input type="radio" name="rating" value="3">
+                    <input type="radio" name="rating" value="4">
+                    <input type="radio" name="rating" value="5">
+                    <span id="simpleTip">Cliente 1 estrela.</span>
+                </div>
+            </span>
+
+        <?php echo $this->formElement($input = $form->get('flag_exterior'));?>
+
+    </fieldset>
+    <fieldset class="fieldset " style="width:26.3%;">
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Data de Criação</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <p class="field " style="width:95%; ">
+            <span class="input " rel="criadoEm" style="">
+                <?php echo $this->formElement($input = $form->get('criadoEm'));?>
+            </span>
+        </p>
+
+    </fieldset>
+    <?php echo $this->formElement($input = $form->get('tipocliente'));?>
+    <hr class="clear" size="1"></hr>
+    <fieldset class="fieldset " id="campos_tipo_cliente" style="width:97%;width:65%; float:left;">
+        <legend>
+            <span class="legend">
+                <span class="legend_label">%temp%</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <p class="field " style="width:72%; ">
+            <label class="" for="razao_social" style="">Razão Social</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="razaoSocial" style="">
+                <?php echo $this->formElement($input = $form->get('razaoSocial'));?>
+            </span>
+        </p>
+
+        <div id="fisica_dados">
+            <p class="field " style="width:auto; ">
+                <label class="" for="cpf" style="">CPF</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="cpf" style="">
+                    <?php echo $this->formElement($input = $form->get('cpf'));?>
+                </span>
+            </p>
+        </div>
+
+        <div id="juridica_dados">
+            <p class="field " style="width:auto; ">
+                <label class="" for="cnpj" style="">CNPJ</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="cnpj" style="">
+                    <?php echo $this->formElement($input = $form->get('cnpj'));?>
+                </span>
+            </p>
+
+
+            <p class="field " style="width:72%; ">
+                <label class="" for="nome_fantasia" style="">Nome Fantasia</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="nomeFantasia" style="">
+                    <?php echo $this->formElement($input = $form->get('nomeFantasia'));?>
+                </span>
+            </p>
+
+            <p class="field " style="width:154px; ">
+                <label class="" for="responsavel" style="">Responsável</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="responsavel" style="">
+                    <?php echo $this->formElement($input = $form->get('responsavel'));?>
+                </span>
+            </p>
+        </div>
+
+        <hr class="clear" size="1"></hr>
+        <!--p class="field " style="width:170px; ">
+            <label class="" for="ident_estrangeiro" style="">Identificação do Estrangeiro</label>
+            <span class="input_info" style="">
+                <img alt="info" class="infotip" src="/images/info.png" title="Número do passaporte ou outro documento legal para identificar a pessoa estrangeira."></img>
+            </span>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="identificacaoEstrangeiro" style="">
+                <?php //echo $this->formElement($input = $form->get('identificacaoEstrangeiro'));?>
+            </span>
+        </p-->
+
+        <div id="grupo_ie">
+            <p class="field " style="width:150px; ">
+                <label class="" for="ie" style="">Inscrição Estadual</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="ie" style="">
+                    <?php echo $this->formElement($input = $form->get('ie'));?>
+                </span>
+            </p>
+
+            <div style="float:left; width:65px;padding-top:22px">
+                <p class="checkbox_field  block" style="">
+                    <label class="" for="ieIsento" style="">
+                        <?php echo $this->formElement($input = $form->get('ieIsento'));?>
+                        <span>Isento</span>
+                    </label>
+                </p>
+            </div>
+        </div>
+
+        <div id="juridica">
+            <p class="field " style="width:150px; ">
+                <label class="" for="im" style="">Inscrição Municipal</label>
+                <span class="input_alert">&nbsp;</span>
+                <span class="input " rel="im" style="">
+                    <?php echo $this->formElement($input = $form->get('im'));?>
+                </span>
+            </p>
+
+            <div style="float:left; width:65px;padding-top:22px">
+                <p class="checkbox_field  block" style="">
+                    <label class="" for="imInsento" style="">
+                        <?php echo $this->formElement($input = $form->get('imIsento'));?>
+                        <span>Isento</span>
+                    </label>
+                </p>
+            </div>
+        </div>
+
+        <p class="field " style="width:170px; ">
+            <label class="" for="cod_barra" style="">Código do Cliente</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="codigoCliente" style="">
+                <?php echo $this->formElement($input = $form->get('codigoCliente'));?>
+            </span>
+        </p>
+        <span class="ean" id="ean" style="margin-top:25px" title="Gerar Código EAN">&nbsp;</span>
+
+    </fieldset>
+    <fieldset class="fieldset " id="campos_contatos_principais" style="width:97%;width:30%; float:left;">
+        <legend>
+            <span class="legend"><span class="legend_label">Contatos Principais</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <p class="field " style="width:95%; ">
+            <label class="" for="email_principal_aux" style="">Email</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="email" style="">
+                <?php echo $this->formElement($input = $form->get('email'));?>
+            </span>
+        </p>
+
+        <p class="field " style="width:95%; ">
+            <label class="" for="telefone_principal_aux" style="">Telefone</label>
+            <span class="input_alert">&nbsp;</span>
+            <span class="input " rel="telefone" style="">
+                <?php echo $this->formElement($input = $form->get('telefone'));?>
+            </span>
+        </p>
+
+    </fieldset>
+    <fieldset class="fieldset " style="width:97%;height:90px;">
+        <legend>
+            <span class="legend">
+                <span class="legend_label">Informação Adicional</span>
+                <span class="input_alert">&nbsp;</span>
+            </span>
+        </legend>
+
+        <p class="field " style="width:100%; ">
+            <span class="input " rel="observacao" style="">
+                <?php echo $this->formElement($textarea = $form->get('observacao'));?>
+            </span>
+        </p>
+
+    </fieldset>
+    <div class="tab_navigator ">
+        <input class="prevTab" name="Voltar" type="button" value="Voltar"></input>&nbsp;&nbsp;
+        <input class="nextTab" name="Continuar" type="button" value="Continuar"></input>
+    </div>
+</div>

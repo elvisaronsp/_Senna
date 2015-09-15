@@ -1,0 +1,241 @@
+.uploader{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 100;
+	background-color: #FFF;
+	overflow: auto;
+	border: 20px solid rgba(0,0,0,0.6);
+}
+.uploader_close{
+	margin-top: 7px !important;
+}
+	.uploader *{
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+	}
+	.uploader h2{
+		padding-top: 15px;
+		text-align: center;
+		color: #444;
+	}
+	.uploader .dropbox{
+		display: none;
+		background-color: rgba(42, 100, 158, 0.5);
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		top: 0;
+		left: 0;
+	}
+	.uploader .dropbox.active{
+		display: block;
+	}
+	.uploader .thumbs{
+		display: block;
+		background-color: #F5F5F5;
+		border: 1px solid #EEE;
+		border-width: 1px 0;
+		margin: 15px 0;
+		width: auto;
+		padding: 10px;
+		min-height: 330px;
+		float: left;
+		clear: both;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 90px;
+		overflow: auto;
+	}
+		.uploader .thumbs > div{
+			background-color: #FFF;
+			border: 1px solid #FFF;
+			display: table;
+			height: 150px;
+			width: 150px;
+			margin: 10px 0 0 10px;
+			box-shadow: 0 1px 3px #CCC;
+			background-color: #FFF;
+			text-align: center; 
+			float: left;
+			position: relative;
+		}
+		.uploader .thumbs > div.error{
+			border-color: #BF5252
+		}
+			.uploader .thumbs > div span.fade{
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: rgba(255,255,255, 0.85);
+				z-index: 2;
+			}
+			.uploader .thumbs > div.error span.fade{
+				background-color: rgba(200, 90, 90, 0.5);
+				border: 2px solid #C35555;
+			}
+			
+			.uploader .thumbs > div.error a.info{
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-color: #C35555;
+				height: 16px;
+				padding: 5px 8px;
+				color: #FFF;
+				font-size: 12px;
+				font-weight: bold;
+				border-bottom-right-radius: 3px;
+				z-index: 11;
+				cursor: help;
+			}
+			
+			.uploader .thumbs > div span.img{
+				background-color: #F7F7F7;
+				display: table-cell;
+				text-align: center; 
+				vertical-align: middle;
+				width: 100%;
+			}
+				.uploader .thumbs > div span.img img{
+					max-height: 145px !important; 
+					max-width: 148px;
+					margin: auto auto;
+				}
+				.uploader .thumbs > div span.img.active img{
+					opacity: 0.45;
+				}
+			.uploader .thumbs > div span.progress{
+				position: absolute;
+				width: 120px;
+				height: 12px;
+				border: 1px solid #BBB;
+				border-radius: 3px;
+				display: inline-block;
+				margin-top: 65px;
+				background-color: #FFF;
+				z-index: 5;
+				left: 15px;
+			}
+			.uploader .thumbs > div span.progress > span{
+				display: block;
+				height: 100%;
+				background: transparent url('../images/progress.gif') no-repeat -10px -3px;
+				border-right: 1px solid #BBB;
+			}
+			
+			.uploader .thumbs > div.error span.progress,
+			.uploader .thumbs > div.success span.fade,
+			.uploader .thumbs > div.success span.progress{
+				display: none;
+			}
+			
+			.uploader .thumbs > div .delete{
+				display: none;
+				position: absolute;
+				top: 2px;
+				right: 2px;
+				cursor: pointer;
+				z-index: 5;
+				text-align: center;
+				width: 24px;
+				height: 24px;
+				background: transparent url('../images/remove.gif') no-repeat center center;
+				border-top-left-radius: 3px;
+			}
+			.uploader .thumbs > div.success:hover .delete{
+				display: block;
+			}
+			
+			.uploader .thumbs > div a.select{
+				display: none;
+				cursor: pointer;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: rgba(255, 255, 255, 0.65);
+				z-index: 2;
+			}
+			.uploader .thumbs > div.success a.select{
+				display: block;
+			}
+			.uploader .thumbs > div.success.selected span.img{
+				background-color: #FFF;
+			}
+			.uploader .thumbs > div.success.selected a.select,
+			.uploader .thumbs > div.success:hover a.select{
+				background-color: rgba(255, 241, 211, 0);
+				border: 3px solid #666;
+			}
+			.uploader .thumbs > div.success.selected a.select:before{
+				content: '';
+				background: #99B28F url("../images/tick.png") no-repeat center center;
+				width: 28px;
+				height: 28px;
+				position: absolute;
+				bottom: -2px;
+				left: -2px;
+				border-top-right-radius: 3px;  
+			}
+			.uploader .thumbs > div.success.selected a.select{
+				display: block;
+				border-color: #99B28F;
+			}
+		
+		.uploader .thumbs .novo{
+			border: 2px dashed #BBB;
+			display: inline-block;
+			height: 148px;
+			margin: 10px 0 0 10px;
+			position: relative;
+			width: 148px;
+			cursor: pointer;
+			float: left;
+		}
+		.uploader .thumbs .novo:hover{
+			background-color: #FAFAFA;
+			border-color: #AAA;
+		}
+		.uploader .thumbs .novo:after,
+		.uploader .thumbs .novo:before{
+			content:'';
+			background-color: #BBB;
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+		}
+		.uploader .thumbs .novo:before{
+			width: 40px;
+			height: 6px;
+			margin-top: -3px;
+			margin-left: -20px;
+		}
+		.uploader .thumbs .novo:after{
+			width: 6px;
+			height: 40px;
+			margin-top: -20px;
+			margin-left: -3px;
+		}
+		.uploader .thumbs .novo:hover:after,
+		.uploader .thumbs .novo:hover:before{
+			background-color: #AAA;
+		}
+		
+		
