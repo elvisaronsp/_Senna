@@ -1,4 +1,0 @@
-### Uncaught TypeError: Cannot read property 'nodeName' of undefined ###
-
-Isso significa que os componentes html estao sem todos os seus elementos.
-Verificar o FrameWork
