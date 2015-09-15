@@ -3,7 +3,7 @@
 > **Note:** Este repositorio embora publico é de uso particular. Favor não copiar o codigo aqui existente [Grupo Capital Ponto](https://grupocapitalponto.com.br).
 
 ## Install
-git clone git@github.com:cdjdesenvolvimento/_Senna.git
+git clone git@github.com:cdjdesenvolvimento/_Senna.git<br>
 cd _senna
 php composer.phar self-update
 php composer.phar install
