@@ -184,6 +184,7 @@ class Cliente extends Form
             ->setAttribute('class', "cnpj valid required")
             ->setAttribute("mask", "99.999.999/9999-99")
             ->setAttribute('pstyle', 'width:115px;')
+            ->setAttribute('cnpj','true')
             ->setValue('');
         $this->add($input);
 
@@ -304,6 +305,7 @@ class Cliente extends Form
         $input->setAttribute('id', 'email')
             ->setAttribute('maxlength', '50')
             ->setAttribute('class', 'required')
+            ->setAttribute('email', 'true   ')
             ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
@@ -1713,6 +1715,7 @@ class Cliente extends Form
         $input->setAttribute('id','CpfCnpjVendedor')
             ->setAttribute('disabled','disabled')
             ->setAttribute('style','text-align:center;')
+            ->setAttribute('cnpj','true')
             ->setValue('');
         $this->add($input);
 

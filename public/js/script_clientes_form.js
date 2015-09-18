@@ -313,6 +313,12 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
     }
 
     function exibiDadosPessoaFisica(){
+
+        $("[name=cnpj]").removeClass('required valid error').parents('p').find('.input_alert').hide();
+        $("[name=nomeFantasia]").removeClass('required error').parents('p').find('.input_alert').hide();
+        $("[name=responsavel]").removeClass('required error').parents('p').find('.input_alert').hide();
+        $("[name=cpf]").addClass('required valid');
+
         $("#fisica").show();
         $("#juridica").hide();
         $('#fisica_dados').show();
@@ -326,6 +332,12 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
 
     }
     function exibiDadosPessoaJuridica(){
+
+        $("[name=cpf]").removeClass('required valid error');
+        $("[name=cnpj]").addClass('required valid ').parents('p');
+        $("[name=nomeFantasia]").addClass('required ').parents('p');
+        $("[name=responsavel]").addClass('required ').parents('p');
+
         $('#fisica_dados').hide();
         $('#juridica_dados').show();
         $("#fisica").hide();
@@ -401,7 +413,8 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
 
         if ($("#id").val() != '')
         {
-            if($("[name=tipo]").val() == "0")
+
+            if($("[name=tipo]").attr('eval') == "0")
             {
                 $("[name=cnpj]").removeClass('required valid error').parents('p').find('.input_alert').remove();
                 $("[name=nomeFantasia]").removeClass('required error').parents('p').find('.input_alert').remove();
@@ -409,7 +422,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
             }
             else
             {
-                $("[name=cpf]").removeClass('required valid');
+                $("[name=cpf]").removeClass('required valid error');
             }
         }
 
@@ -484,6 +497,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
         if(simpleRating.getValue() < 4)
             {
                 $('#limiteCredito').hide();
+                $('#limiteCredito').parent().parent('p').hide();
             }
 
         var rattingAlerta = "";
@@ -504,6 +518,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
                     "<strong>Pendencias:</strong><span style='font-size: 13px;'> Cliente não pode possuir pendencias pra realizar novos pedidos.</span><br />"
                 );
                 $('#limiteCredito').hide();
+                $('#limiteCredito').parent().parent('p').hide();
             } else if (value == 2 && valorATual != value) {
                 parent.Sexy.alert("<strong>Você está alterando a classificação do cliente.</strong><br />Clientes com classificação "+estrela_2+" estrela. <br />" +
                     "<strong>Faturamento:</strong><span style='font-size: 13px;'> Permite faturamento 30 dias após a emissão da nota fiscal.</span><br />" +
@@ -514,6 +529,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
                     "<strong>Pendencias:</strong><span style='font-size: 13px;'> Cliente não pode possuir pendencias pra realizar novos pedidos.</span><br />"
                 );
                 $('#limiteCredito').hide();
+                $('#limiteCredito').parent().parent('p').hide();
             } else if (value == 3 && valorATual != value) {
                 parent.Sexy.alert("<strong>Você está alterando a classificação do cliente.</strong><br />Clientes com classificação "+estrela_3+" estrela. <br />" +
                     "<strong>Faturamento:</strong><span style='font-size: 13px;'> Permite faturamento 30 dias após a emissão da nota fiscal.</span><br />" +
@@ -524,6 +540,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
                     "<strong>Pendencias:</strong><span style='font-size: 13px;'> Cliente não pode possuir pendencias pra realizar novos pedidos.</span><br />"
                 );
                 $('#limiteCredito').hide();
+                $('#limiteCredito').parent().parent('p').hide();
             } else if (value == 4 && valorATual != value) {
                 parent.Sexy.alert("<strong>Você está alterando a classificação do cliente.</strong><br />Clientes com classificação "+estrela_4+" estrela. <br />" +
                     "<strong>Faturamento:</strong><span style='font-size: 13px;'> Permite faturamento 30 dias após a emissão da nota fiscal.</span><br />" +
@@ -544,15 +561,17 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
         }
         simpleRating.addEvent('click', myCallback);
 
+        $("[name=ieIsento]").change(function(){
 
-        $("[name=cpf]").change(function(){
-            $("[name=cnpj]").removeClass('required valid error').parents('p').find('.input_alert').remove();
-            $("[name=nomeFantasia]").removeClass('required error').parents('p').find('.input_alert').remove();
-            $("[name=responsavel]").removeClass('required error').parents('p').find('.input_alert').remove();
-        });
+            if ($(this).is(':checked'))
+            {
+                $(this).val(1);
 
-        $("[name=cnpj]").change(function(){
-            $("[name=cpf]").removeClass('required valid');
+            }
+            else
+            {
+                $(this).val(0);
+            }
         });
     });
 })(jQuery);

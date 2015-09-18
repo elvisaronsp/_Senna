@@ -664,7 +664,8 @@ class Funcionarios
      */
     public function setDatanascimento($datanascimento)
     {
-        $this->datanascimento = new \DateTime(implode("-", array_reverse(explode("/", $datanascimento))));
+        if (!empty($datanascimento))
+            $this->datanascimento = new \DateTime(implode("-", array_reverse(explode("/", $datanascimento))));
         return $this;
     }
 

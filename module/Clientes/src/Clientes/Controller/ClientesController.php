@@ -39,6 +39,7 @@ class ClientesController extends GrudController
         $form->get('sexo')->setAttribute('eval', $data['sexo']);
         $form->get('estadoCivil')->setAttribute('eval', $data['estadoCivil']);
         $form->get('alertas')->setAttribute('eval', ($data['alertas']) ? '1' : '0');
+        $form->get('tipo')->setAttribute('eval', ($data['tipo']) ? '1' : '0');
     }
 
 
@@ -99,27 +100,27 @@ class ClientesController extends GrudController
                 $podeCadastrar = $this->verificaExistencia();
                 if (!$podeCadastrar) {
                     // remove contatos para atualizacao
-                    $repository = $this->getEm()->getRepository($this->contatos);
-                    $contatos = $repository->findBy(array('usuario' => $request->getPost()['id']));
+                    //repository = $this->getEm()->getRepository($this->contatos);
+                    //$contatos = $repository->findBy(array('usuario' => $request->getPost()['id']));
 
-                    foreach ($contatos as $contato) {
-                        $this->getEm()->remove($contato);
-                    }
+                    //foreach ($contatos as $contato) {
+                    //    $this->getEm()->remove($contato);
+                    //}
                     // remove enderecos para atualizacao
-                    $repository = $this->getEm()->getRepository($this->enderecos);
-                    $enderecos = $repository->findBy(array('usuario' => $request->getPost()['id']));
+                    //$repository = $this->getEm()->getRepository($this->enderecos);
+                    //$enderecos = $repository->findBy(array('usuario' => $request->getPost()['id']));
 
-                    foreach ($enderecos as $endereco) {
-                        $this->getEm()->remove($endereco);
-                    }
+                    //foreach ($enderecos as $endereco) {
+                    //    $this->getEm()->remove($endereco);
+                    //}
 
                     // remove horarios para atualizacao
-                    $repository = $this->getEm()->getRepository($this->horarios);
-                    $horarios = $repository->findBy(array('usuario' => $request->getPost()['id']));
+                    //$repository = $this->getEm()->getRepository($this->horarios);
+                    //$horarios = $repository->findBy(array('usuario' => $request->getPost()['id']));
 
-                    foreach ($horarios as $horario) {
-                        $this->getEm()->remove($horario);
-                    }
+                    //foreach ($horarios as $horario) {
+                    //    $this->getEm()->remove($horario);
+                    //}
 
                     $entity = $service->update($request->getPost()->toArray());
                     $retorno['data'] = array(

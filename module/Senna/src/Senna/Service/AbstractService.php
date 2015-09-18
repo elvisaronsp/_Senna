@@ -62,4 +62,24 @@ use Senna\Entity\Configurator;
 			$this->em->flush();
 			return $id;
 	}
-}
+
+	 /**
+	  * @param $data
+	  * @param $key
+	  * Verifica se post Existe
+	  * @return bool 1 existe 0 não existe
+	  */
+	 public function checkPostReturnBoolean($data,$key)
+	 {
+
+		 if(isset($data[$key])):
+			 if($data[$key]):
+				 return true;
+			 else:
+				 return false;
+			 endif;
+		 else:
+			 return false;
+		 endif;
+	 }
+ }

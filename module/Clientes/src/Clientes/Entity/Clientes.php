@@ -771,7 +771,9 @@ class Clientes
      */
     public function setDataNascimento($dataNascimento)
     {
-        $this->dataNascimento = new \DateTime(implode("-", array_reverse(explode("/", $dataNascimento))));
+        if (!empty($dataNascimento))
+            $this->dataNascimento = new \DateTime(implode("-", array_reverse(explode("/", $dataNascimento))));
+        return $this;
     }
 
     /**
@@ -807,6 +809,7 @@ class Clientes
     public function setRendaMensal($rendaMensal)
     {
         $this->rendaMensal = str_replace(" ","",str_replace(",", ".", str_replace(".", " ", $rendaMensal)));
+
         return $this;
     }
 
@@ -914,7 +917,8 @@ class Clientes
      */
     public function setConjugeDataNascimento($conjugeDataNascimento)
     {
-        $this->conjugeDataNascimento = new \DateTime(implode("-", array_reverse(explode("/", $conjugeDataNascimento))));
+        if (!empty($conjugeDataNascimento))
+            $this->conjugeDataNascimento = new \DateTime(implode("-", array_reverse(explode("/", $conjugeDataNascimento))));
         return $this;
     }
 
@@ -1013,7 +1017,7 @@ class Clientes
             'empresa'                  => $this->getEmpresa()->getId(),
             'criadoEm'                 => $this->getcriadoEm(),
             'atualizadoEm'             => $this->getatualizadoEm(),
-            'dataNascimento'           => $this->getDataNascimento(),
+            'dataNascimento'           => ($this->getDataNascimento()) ? date_format($this->dataNascimento, 'd-m-Y') : "",
             'estadoCivil'              => $this->estadoCivil,
             'rendaMensal'              => $this->rendaMensal,
             'profissao'                => $this->profissao,
@@ -1021,7 +1025,7 @@ class Clientes
             'filiacaoPai'              => $this->filiacaoPai,
             'conjugeNome'              => $this->conjugeNome,
             'conjugeCpf'               => $this->conjugeCpf,
-            'conjugeDataNascimento'    => $this->getConjugeDataNascimento(),
+            'conjugeDataNascimento'    => ($this->getConjugeDataNascimento()) ? date_format($this->conjugeDataNascimento, 'd-m-Y') : "",
             'conjugeProfissao'         => $this->conjugeProfissao,
             'suframa'                  => $this->suframa
         );
