@@ -13,5 +13,16 @@ return array(
             'from' => 'no_reply@grupocapitalponto.com.br',
             #'ssl' => 'tls',
         )
-    )
+    ),
+    #'mail' => array(
+    #    "name" => "LocalWeb",
+    #    "host" => "smtp.dalcatech.com.br",
+    #    "port" => 587,
+    #    "connection_class" => "login",
+    #    'connection_config' => array(
+    #        "username" => "jefferson@dalcatech.com.br",
+    #        "password" => "fernandes1234",
+    #        'from' => 'jefferson@dalcatech.com.br',
+    #    )
+    #)
 );
