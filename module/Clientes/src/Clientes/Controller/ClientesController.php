@@ -4,6 +4,7 @@ namespace Clientes\Controller;
 use Senna\Controller\GrudController;
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Storage\Session as SessionStorage;
+use Zend\Debug\Debug;
 use Zend\View\Model\ViewModel;
 
 /**
