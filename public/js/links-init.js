@@ -9,7 +9,6 @@
 /* 6  */ 	$$('a[target]').each(function(el){
 /* 7  */ 		if(!el.retrieve('hasClick', false)){
 /* 8  */ 			el.addEvent('click', function(e){
-/* 9  */
 /* 10 */ 				switch (el.get('target')) {
 /* 11 */ 				case "jswindow":
 /* 12 */ 					new Event(e).stop();

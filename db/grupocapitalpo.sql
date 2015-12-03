@@ -1,6 +1,6 @@
 # Host: mysql.grupocapitalponto.com.br  (Version: 5.5.43-log)
-# Date: 2015-08-19 00:21:53
-# Generator: MySQL-Front 5.3  (Build 4.224)
+# Date: 2015-12-02 19:04:56
+# Generator: MySQL-Front 5.3  (Build 4.234)
 
 /*!40101 SET NAMES latin1 */;
 
@@ -15,13 +15,12 @@ CREATE TABLE `classesprodutos` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Data for table "classesprodutos"
 #
 
-INSERT INTO `classesprodutos` VALUES (1,'CRACHA'),(4,'CORDÕES'),(6,'ACABAMENTO');
 
 #
 # Structure for table "dashboard"
@@ -130,13 +129,13 @@ CREATE TABLE `empresa` (
   `qtde_usuarios` int(11) DEFAULT '0',
   `tipo` char(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "empresa"
 #
 
-INSERT INTO `empresa` VALUES (1,'CAPITAL PONTO','Aline Bairro',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'10.334.832/0001-06',NULL,'0','0',NULL,NULL,NULL,NULL,NULL,'PR','0000-00-00',NULL,NULL,1,NULL,NULL,NULL,10,10,0,NULL,NULL,'FB0056A08A508B573AC30ABDEA0730BF',NULL,NULL,NULL,NULL,NULL,0,NULL,'2000-01-01','2000-01-01','','',0,'','','2012-12-04',0,0,0,0,'0','0','Ate 180.000,00',4.00,0.00,0.00,0.00,0.00,2.75,1.25,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,'1000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'1'),(2,'RIO GRACHAS','Aline Bairro','','','','','','','','10.334.832/0001-06','','0','0','','','','','','PR','0000-00-00','','',1,'','','',10,10,0,'','','FB0056A08A508B573AC30ABDEA0730BF','','','','','',0,'','2000-01-01','2000-01-01','','',0,'','','2012-12-04',0,0,0,0,'0','0','Ate 180.000,00',4.00,0.00,0.00,0.00,0.00,2.75,1.25,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,'1000','','','','','','','','','',0,'1');
+INSERT INTO `empresa` VALUES (1,'GRUPO CAPITAL PONTO',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0','0',NULL,NULL,NULL,NULL,NULL,'PR','0000-00-00',NULL,NULL,1,NULL,NULL,NULL,10,10,0,NULL,NULL,'FB0056A08A508B573AC30ABDEA0730BF',NULL,NULL,NULL,NULL,NULL,0,NULL,'2000-01-01','2000-01-01','','',0,'','','2012-12-04',0,0,0,0,'0','0','Ate 180.000,00',4.00,0.00,0.00,0.00,0.00,2.75,1.25,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,'1000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'0');
 
 #
 # Structure for table "estoques"
@@ -149,13 +148,12 @@ CREATE TABLE `estoques` (
   `observacao` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `nomeINDEX` (`nome`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Data for table "estoques"
 #
 
-INSERT INTO `estoques` VALUES (1,'CAPITAL PONTO ',NULL);
 
 #
 # Structure for table "fornecedores"
@@ -314,13 +312,12 @@ CREATE TABLE `itensvenda` (
   KEY `TipoAdicionalINDEX` (`tipoAdicional`),
   KEY `vendeTouchINDEX` (`vendeTouchScreen`),
   KEY `descricaoCompletaINDEX` (`descricaoCompleta`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Data for table "itensvenda"
 #
 
-INSERT INTO `itensvenda` VALUES (5,NULL,NULL,2748973914709,'','N','00','1','DADSASA',NULL,1,1000,0,'1','UN','UNIDUNIDADE','CX','CAIXA',1.0000,'','0',0.01,0.0000,0.0000,0.00,0.00,0.00,0.00,0.00,'1','1','0','0','1','0',1,'0','0','0',NULL,0.00,'1','0','0',0,NULL,NULL,0,0,'0','0','0',0,0,'0','0',NULL,'0',NULL,0.000,0.000,0.000,0.000,0.00,0,'0','','1',NULL,NULL);
 
 #
 # Structure for table "itensvendaatributos"
@@ -335,13 +332,12 @@ CREATE TABLE `itensvendaatributos` (
   PRIMARY KEY (`Id`),
   KEY `CodigoItemVenda_FK` (`itensvenda_id`),
   CONSTRAINT `itensvendaatributos_ibfk_1` FOREIGN KEY (`itensvenda_id`) REFERENCES `itensvenda` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Data for table "itensvendaatributos"
 #
 
-INSERT INTO `itensvendaatributos` VALUES (5,5,'','');
 
 #
 # Structure for table "itensvendacomposicao"
@@ -380,13 +376,12 @@ CREATE TABLE `itensvendaestoque` (
   KEY `CodigoItemVenda_FK` (`itensvenda_id`),
   KEY `CodigoEstoque_FK` (`estoques_id`),
   CONSTRAINT `itensvendaestoque_ibfk_1` FOREIGN KEY (`itensvenda_id`) REFERENCES `itensvenda` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Data for table "itensvendaestoque"
 #
 
-INSERT INTO `itensvendaestoque` VALUES (5,5,1,0.000,0.000,0.000,1);
 
 #
 # Structure for table "log"
@@ -449,6 +444,59 @@ CREATE TABLE `sn_acessos` (
 INSERT INTO `sn_acessos` VALUES (1,'Visualizar','2015-06-23 22:41:22','2015-06-23 22:41:22'),(2,'Criar','2015-06-23 22:41:22','2015-06-23 22:41:22'),(3,'Editar','2015-06-23 22:41:22','2015-06-23 22:41:22'),(4,'Excluir','2015-06-23 22:41:22','2015-06-23 22:41:22');
 
 #
+# Structure for table "sn_clientes"
+#
+
+DROP TABLE IF EXISTS `sn_clientes`;
+CREATE TABLE `sn_clientes` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `razaoSocial` varchar(255) NOT NULL DEFAULT '',
+  `nomeFantasia` varchar(255) DEFAULT NULL,
+  `cnpj` varchar(18) DEFAULT NULL,
+  `cpf` varchar(14) DEFAULT NULL,
+  `rg` varchar(50) DEFAULT NULL,
+  `sexo` char(1) DEFAULT NULL COMMENT '0 - Homem 1 - Mulher',
+  `responsavel` varchar(100) DEFAULT NULL,
+  `ie` varchar(50) DEFAULT NULL,
+  `ieIsento` tinyint(1) DEFAULT '0',
+  `im` varchar(50) DEFAULT NULL,
+  `imIsento` tinyint(2) DEFAULT '0',
+  `codigoCliente` varchar(25) DEFAULT NULL,
+  `tipo` char(1) DEFAULT '1' COMMENT '0 - Pessoa Fisica 1- Pessoa Juridica',
+  `origem` char(1) DEFAULT '1' COMMENT '0 - Nacional 1 - Estrangeira',
+  `identificacaoEstrangeiro` varchar(50) DEFAULT NULL,
+  `observacao` mediumtext,
+  `email` varchar(100) DEFAULT NULL,
+  `telefone` varchar(14) DEFAULT NULL,
+  `alertas` tinyint(1) DEFAULT '0',
+  `limiteCredito` double(10,2) DEFAULT '0.00',
+  `saldo` double(10,2) DEFAULT '0.00',
+  `classificacao` char(1) DEFAULT '1',
+  `ativo` tinyint(1) DEFAULT '1',
+  `criadoEm` datetime DEFAULT '0000-00-00 00:00:00',
+  `atualizadoEm` datetime DEFAULT '0000-00-00 00:00:00',
+  `dataNascimento` date DEFAULT NULL,
+  `estadoCivil` tinyint(1) DEFAULT '0',
+  `rendaMensal` double(15,2) DEFAULT '0.00',
+  `profissao` varchar(255) DEFAULT NULL,
+  `filiacaoMae` varchar(255) DEFAULT NULL,
+  `filiacaoPai` varchar(255) DEFAULT NULL,
+  `conjugeNome` varchar(255) DEFAULT NULL,
+  `conjugeCpf` varchar(14) DEFAULT NULL,
+  `conjugeDataNascimento` date DEFAULT NULL,
+  `conjugeProfissao` varchar(255) DEFAULT NULL,
+  `suframa` varchar(50) DEFAULT NULL,
+  `empresa_id` char(1) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+#
+# Data for table "sn_clientes"
+#
+
+INSERT INTO `sn_clientes` VALUES (7,'KAMIAL','','','061.938.339-94','77498044','0','',NULL,1,'',0,'2789116604606','0','1',NULL,'','jefferson@teste.com','(41)9565-3780',0,0.00,0.00,'1',1,'2015-09-17 21:51:13','2015-09-17 21:51:13','1987-10-03',1,0.00,'sa','sa','sa','a','010.121.212-12','1987-10-03','a','','1');
+
+#
 # Structure for table "sn_perfis"
 #
 
@@ -469,7 +517,7 @@ CREATE TABLE `sn_perfis` (
 # Data for table "sn_perfis"
 #
 
-INSERT INTO `sn_perfis` VALUES (106,NULL,'ADMINISTRADOR',1,'2015-07-24 23:17:18','2015-07-24 23:17:18'),(107,NULL,'FINANCEIRO',NULL,'2015-08-15 21:18:24','2015-08-15 21:18:24');
+INSERT INTO `sn_perfis` VALUES (106,NULL,'ADMINISTRADOR',1,'2015-07-24 23:17:18','2015-07-24 23:17:18'),(107,NULL,'FINANCEIRO',0,'2015-08-15 21:18:24','2015-08-15 21:18:24');
 
 #
 # Structure for table "sn_recursos"
@@ -482,13 +530,13 @@ CREATE TABLE `sn_recursos` (
   `criado_em` datetime DEFAULT NULL,
   `atualizado_em` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "sn_recursos"
 #
 
-INSERT INTO `sn_recursos` VALUES (1,'Acesso ao Senna','2015-06-23 22:41:22','2015-06-23 22:41:22'),(2,'Cadastro de itens de venda','2015-06-24 19:38:07','2015-06-24 19:38:07'),(3,'Usuarios e vendedores','2015-06-24 19:38:07','2015-06-24 19:38:07'),(4,'Gerenciar usuarios','2015-06-24 19:38:07','2015-06-24 19:38:07'),(5,'Perfis de acesso','2015-06-24 19:38:07','2015-06-24 19:38:07');
+INSERT INTO `sn_recursos` VALUES (1,'Acesso ao Senna','2015-06-23 22:41:22','2015-06-23 22:41:22'),(2,'Cadastro de itens de venda','2015-06-24 19:38:07','2015-06-24 19:38:07'),(3,'Usuarios e vendedores','2015-06-24 19:38:07','2015-06-24 19:38:07'),(4,'Gerenciar usuarios','2015-06-24 19:38:07','2015-06-24 19:38:07'),(5,'Perfis de acesso','2015-06-24 19:38:07','2015-06-24 19:38:07'),(6,'Cadastros','2015-06-24 19:38:07','2015-06-24 19:38:07'),(7,'Clientes','2015-06-24 19:38:07','2015-06-24 19:38:07'),(8,'Fornecedores','2015-06-24 19:38:07','2015-06-24 19:38:07');
 
 #
 # Structure for table "sn_privilegios"
@@ -509,13 +557,13 @@ CREATE TABLE `sn_privilegios` (
   CONSTRAINT `sn_privilegios_ibfk_2` FOREIGN KEY (`resource_id`) REFERENCES `sn_recursos` (`id`),
   CONSTRAINT `sn_privilegios_ibfk_6` FOREIGN KEY (`role_id`) REFERENCES `sn_perfis` (`id`) ON DELETE CASCADE,
   CONSTRAINT `sn_privilegios_ibfk_7` FOREIGN KEY (`acessos_id`) REFERENCES `sn_acessos` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "sn_privilegios"
 #
 
-INSERT INTO `sn_privilegios` VALUES (23,106,1,'2015-07-24 23:17:18','2015-07-24 23:17:18',1),(24,106,2,'2015-07-24 23:17:18','2015-07-24 23:17:18',1),(25,106,3,'2015-07-24 23:17:18','2015-07-24 23:17:18',1),(26,106,4,'2015-07-24 23:17:18','2015-07-24 23:17:18',1),(27,106,5,'2015-07-24 23:17:18','2015-07-24 23:17:18',1),(28,107,1,'2015-08-15 21:18:24','2015-08-15 21:18:24',1);
+INSERT INTO `sn_privilegios` VALUES (37,106,1,'2015-08-21 00:54:37','2015-08-21 00:54:37',1),(38,106,2,'2015-08-21 00:54:37','2015-08-21 00:54:37',1),(39,106,3,'2015-08-21 00:54:37','2015-08-21 00:54:37',1),(40,106,4,'2015-08-21 00:54:37','2015-08-21 00:54:37',1),(41,106,5,'2015-08-21 00:54:37','2015-08-21 00:54:37',1),(42,107,1,'2015-09-15 02:54:48','2015-09-15 02:54:48',1),(43,107,2,'2015-09-15 02:54:48','2015-09-15 02:54:48',1);
 
 #
 # Structure for table "sn_setores"
@@ -582,13 +630,13 @@ CREATE TABLE `sn_usuarios` (
   `visualizarTodosFuncionarios` tinyint(3) DEFAULT '0',
   `empresa_id` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "sn_usuarios"
 #
 
-INSERT INTO `sn_usuarios` VALUES (37,'JEFFERSON FERNANDES','',1,1,'M','ADMIN','c/IqP4rAOow=','2015-08-18 19:44:17','sJO8vwA7XmsUVkChEn+q6yCLZ8qdcmziUEGiVwk6/UA=','CRPT9bEdXrwyoow/YdtKuWjP6RxX6u7xcX/RyKNUUKQ=','43a0c062812cb63fbb4cf085a54ea466','jefferson.fernandes@outlook.com','(41)9565-3780','','','2015-07-24',3,0.00,'2015-07-24','2015-07-24','','',0.00,2,'','','',NULL,'2015-08-18 19:44:17',1,0,106,5,'2015-07-24 23:18:49','2015-08-18 19:43:27',0,0,1,0,2),(68,'KAMILA REBECA ALMEIDA LEMOS','076.057.409-05',1,1,'F','KAMILA','3o9ZgFLgzpRjLbHzRPsV1WNUNkSC0Zv7n5Hll/uAHLA3r2q1zOL9oCQIOdTZvkYgCBvU4NM+0ha8Kgqj31jU+28C7MSNPA==','2015-08-18 19:47:10','CIub+5125jK6wXUqcPVmJEnQkCnasDCsn5QjtlUJHmA=','KqYif9hW/dzB33n1MKv9wS/HmWlECjRHDcExoJmexjk=','424b817b3deaa5022977873b26e17fda','kamyllarebeca@gmail.com','(41)9565-3780','TESTE DE OBSERVACAO','77498044','1990-02-02',4,10.00,'2015-05-02',NULL,'2','1234567897',11.00,2,'01254','1021','121212',NULL,'1899-12-30 00:00:00',1,0,107,5,'2015-08-16 20:55:43','2015-08-18 21:12:20',0,0,NULL,NULL,2);
+INSERT INTO `sn_usuarios` VALUES (37,'JEFFERSON FERNANDES','061.938.339-94',1,1,'M','ADMIN','c/IqP4rAOoz0s82BWwbIaaUSxQ2aTquDuk8kK3tM6E8bvrcTuv/DPBjUNEDGvXwFHcaX3YEBd22Xg58b','2015-08-19 15:29:31','sJO8vwA7XmsUVkChEn+q6yCLZ8qdcmziUEGiVwk6/UA=','Cwtl+REoDyFdFzgc0ydppywFjwaXVfFEAkbNm9o8A50=','ffb079d5492a341036ccaadc920947ae','jefferson.fernandes@outlook.com','(41)9565-3780','','','2015-07-24',3,0.00,'2015-07-24','2015-07-24','','',0.00,2,'','','',NULL,'2015-08-19 15:29:31',0,0,106,4,'2015-07-24 23:18:49','2015-08-19 23:32:24',0,0,1,0,1),(42,'ALINE','',1,1,'M','2769268230007','FYfIXQH8UxadB5+osURwy3ULCpQRsnn+FBjH7mraF6ltTdeko5/R44D4Y3NqhUajmr14vG5BtbIjPTUP',NULL,'0DaSLFMNnvAMgI0UjOMBkH08QFxdjl6L9e6EXTFhca4=','','fe47f9feff87d03d9ad48ab70c0bc719','jeajhsjahs@SDSDS.COM','(41)9565-3781','','','2015-10-15',3,0.00,NULL,NULL,'','',0.00,2,'','','',NULL,NULL,0,0,106,5,'2015-10-15 21:57:48','2015-11-05 21:45:41',0,0,NULL,NULL,1),(43,'DFDGTRHGF','',1,1,'M','2712914718527','dsnMZV4JMFxKcl6BpblJE4xyxvVn6Mt22AbeJ7FC7EKVu5lRLeErpjb6CzN1dYWpCPlNMYB81p9hH4qhJ1fLFjPJ0T7ZgjGnHFy5ZKdYV5k=',NULL,'129495V5vNG8N27ZDUjSZr/34hPhRje1IILwdlyeSF4=','','c1220baf76d8913b115414cf3e8c54af','sasasa@dsadsds.com','','','',NULL,3,0.00,NULL,NULL,'','',0.00,2,'','','',NULL,NULL,0,0,106,5,'2015-10-27 16:31:34','2015-10-27 16:31:34',0,0,NULL,NULL,1);
 
 #
 # Structure for table "sn_horarios"
@@ -612,13 +660,13 @@ CREATE TABLE `sn_horarios` (
   PRIMARY KEY (`id`),
   KEY `sn_usuarios_id` (`usuarios_id`),
   CONSTRAINT `sn_usuarios_id` FOREIGN KEY (`usuarios_id`) REFERENCES `sn_usuarios` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=185 DEFAULT CHARSET=latin1;
 
 #
 # Data for table "sn_horarios"
 #
 
-INSERT INTO `sn_horarios` VALUES (91,'08:00','12:00','13:00','18:00',1,1,1,1,1,1,1,37),(161,'00:00','12:00','13:00','23:59',1,1,1,1,1,1,1,68);
+INSERT INTO `sn_horarios` VALUES (173,'00:00','12:00','12:01','23:59',1,1,1,1,1,1,1,37),(182,'08:00','12:00','13:00','18:00',1,1,1,1,1,NULL,NULL,43),(184,'08:00','12:00','13:00','18:00',1,1,1,1,1,NULL,NULL,42);
 
 #
 # Structure for table "sn_enderecos_usuario"
@@ -641,13 +689,12 @@ CREATE TABLE `sn_enderecos_usuario` (
   PRIMARY KEY (`Id`),
   KEY `sn_enderecos_usuario` (`usuario_id`),
   CONSTRAINT `sn_enderecos_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `sn_usuarios` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Data for table "sn_enderecos_usuario"
 #
 
-INSERT INTO `sn_enderecos_usuario` VALUES (79,68,'81570-390','Rua Salomão Elias Feder',60,'CASA','Uberaba','Curitiba','REST',2,'PR',1);
 
 #
 # Structure for table "sn_contatos_usuario"
@@ -665,13 +712,12 @@ CREATE TABLE `sn_contatos_usuario` (
   PRIMARY KEY (`id`),
   KEY `sn_usuario_contatos` (`usuario_id`),
   CONSTRAINT `sn_usuario_contatos` FOREIGN KEY (`usuario_id`) REFERENCES `sn_usuarios` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=185 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Data for table "sn_contatos_usuario"
 #
 
-INSERT INTO `sn_contatos_usuario` VALUES (183,68,'0','1','(11)1111-11111','AAAAAAAAAAAAAAAA',0),(184,68,'0','1','(22)2222-22222','BBBBBBBBBBBBBBBB',0);
 
 #
 # Structure for table "subclassesprodutos"
@@ -711,43 +757,3 @@ CREATE TABLE `unidadesmedida` (
 #
 
 INSERT INTO `unidadesmedida` VALUES (11,'ASDSDSDSDS','DS','0','1','1');
-
-#
-# Structure for table "usuarios"
-#
-
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE `usuarios` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Id do usuario',
-  `login` varchar(15) NOT NULL DEFAULT '0' COMMENT 'Login de acesso do usuario',
-  `senha` varchar(20) DEFAULT '0' COMMENT 'Senha do usuario',
-  `nome` varchar(100) DEFAULT '0' COMMENT 'Nome do usuario',
-  `dataCadastro` date DEFAULT '0000-00-00' COMMENT 'Data de cadastro do usuario',
-  `ativo` int(2) DEFAULT '1' COMMENT 'Status do usuario 1-Ativo ,0- Inativo',
-  `nivel` char(1) DEFAULT '1' COMMENT '1-operacional,11-administrativo,111-financeiro,1111-administrador',
-  `numeroEmpresa_FK` tinyint(3) DEFAULT '1' COMMENT 'Numero da empresa do usuario',
-  `token` varchar(255) DEFAULT '0000000000000000000' COMMENT 'Token contolador de usuarios por login',
-  `redefinir` tinyint(1) DEFAULT '0' COMMENT 'Redefinir senha 1-redefinir,0-nao redefinir',
-  `ferias` tinyint(1) DEFAULT '0' COMMENT 'Usuario em ferias 1-em ferias,0-trabalhando',
-  `setor` int(11) DEFAULT '0' COMMENT 'setor de trabalho',
-  `Foto` varchar(255) DEFAULT '/image/users/userDefault.png' COMMENT 'avatar do usuario',
-  `email` varchar(255) DEFAULT NULL COMMENT 'Email do usuario',
-  `jornadaInicio` time DEFAULT '00:00:00' COMMENT 'Inicio da jornada de trabalho',
-  `jornadaFim` time DEFAULT '00:00:00' COMMENT 'Fim da jornada de trabalho',
-  `semanaTrabalho` varchar(7) DEFAULT '1111100',
-  `administrador` char(1) DEFAULT '0',
-  `cpf` varchar(15) DEFAULT '000.000.000-00',
-  PRIMARY KEY (`id`),
-  KEY `idx_idUsuario` (`id`),
-  KEY `idx_login` (`login`),
-  KEY `idx_senha` (`senha`),
-  KEY `idx_ativo` (`ativo`),
-  KEY `idx_numeroEmpresa_fk` (`numeroEmpresa_FK`),
-  KEY `idx_redefinir` (`redefinir`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
-#
-# Data for table "usuarios"
-#
-
-INSERT INTO `usuarios` VALUES (1,'admin','306325','Jefferson Fernandes','2014-02-16',1,'1',1,'0000000000000000000',0,0,0,'/image/users/userDefault.png','jefferson.fernandes@outlook.com','00:00:00','00:00:00','1111100','0','000.000.000-00');

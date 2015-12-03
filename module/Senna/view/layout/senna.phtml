@@ -855,7 +855,7 @@ define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getNomefa
     <!-- Menu Usuário -->
 
     <div class="top_menu fixed" id="top_menu_usuario">
-        <input type="hidden" id="redefinir" value="<?php echo __REDEFINIR__ ?>">
+        <input type="hidden" id="redefinir" value="<?php echo (__REDEFINIR__)?__REDEFINIR__:"0" ?>">
         <a class="divide"
            href="<?php echo $this->basePath() ?>/senna/usuario/info"
            rel="usuario"
@@ -1281,7 +1281,7 @@ define('__EMPRESA__', $this->UsuarioIdentity("Usuario")->getEmpresa()->getNomefa
                             <a
                                     href='/senna/ancoras/cadastrosauxiliares'
                                     id='menu_ancoras/cadastros_auxiliares_produtos'
-                                    rel='menu_item_cadastros_aux_produtos' target='window' key='114'
+                                    rel='menu_item_cadastros_aux_produtos' target='window'  key='114'
                                     item_group='true' class='item'><span><i
                                             class='icon-stack-plus menu_icon'></i><span class='label'>Cadastros
 											Auxiliares de Produtos </span></span></a>

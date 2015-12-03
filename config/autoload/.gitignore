@@ -1,2 +1,4 @@
+doctrine_orm.php
 local.php
 *.local.php
+*.doctrine_orm.php
