@@ -65,7 +65,7 @@ window.addEvent('domready',function (){
         $$('input[name=button_enviar_gmail]').removeProperties("disabled").removeClass("disabled");
         $$('input[name=saldo_devedor]').removeProperties("disabled").removeClass("disabled");
         // callback onclick
-        set_url_gmail();
+        //set_url_gmail();
     });
 
     function set_url_gmail(){

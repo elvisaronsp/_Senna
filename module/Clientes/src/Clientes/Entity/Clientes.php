@@ -197,9 +197,9 @@ class Clientes
     private $dataNascimento;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="estadoCivil", type="boolean", nullable=true)
+     * @ORM\Column(name="estadoCivil", type="string", length=1, nullable=true)
      */
     private $estadoCivil;
 
