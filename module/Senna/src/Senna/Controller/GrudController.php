@@ -275,4 +275,83 @@ abstract class GrudController extends AbstractActionController {
 		
 		return $this->em;
 	}
+
+	/**
+	 * @param $form
+	 * @param $contatos
+	 * @param $data
+	 * Recupera os contato do id passado e atribui ao elemesntos do formulario indicado
+	 */
+	public function recuperarContatosForm($form,$contatos,$data)
+	{
+		// contatos
+		$repository = $this->getEm()->getRepository($contatos);
+		$contatos = $repository->findBy(array('usuario' => $data['id']));
+		foreach ($contatos AS $key => $value):
+			$form->get('contato__id[' . $key . ']')->setAttribute('value', $contatos[$key]->getId());
+			$form->get('contato__id_tipo_cadastro[' . $key . ']')->setAttribute('eval', $contatos[$key]->getTipoCadastro());
+			switch ($contatos[$key]->getTipoContato()) :
+				case "1":
+					$tipoContato = "TELEFONE";
+					break;
+				case "2":
+					$tipoContato = "EMAIL";
+					break;
+				case "3":
+					$tipoContato = "TWITTER";
+					break;
+				case "4":
+					$tipoContato = "SKIPE";
+					break;
+				case "5":
+					$tipoContato = "FAX";
+					break;
+			endswitch;
+			$form->get('contato__id_tipo_contato[' . $key . ']')->setAttribute('value', $contatos[$key]->getTipoContato());
+			$form->get('ac_' . $key)->setAttribute('value', $tipoContato);
+			$form->get('contato__descricao[' . $key . ']')->setAttribute('value', $contatos[$key]->getContato());
+			$form->get('contato__detalhes[' . $key . ']')->setAttribute('value', $contatos[$key]->getDetalhes());
+		endforeach;
+		// fim contatos
+	}
+
+	/**
+	 * @param $form
+	 * @param $enderecos
+	 * @param $data
+	 * Recupera os enderecos do id passado e atribui ao elemesntos do formulario indicado
+	 */
+	public function recuperarEnderecosForm($form,$enderecos,$data)
+	{
+		// enderecos
+		$repository = $this->getEm()->getRepository($enderecos);
+		$enderecos = $repository->findBy(array('usuario' => $data['id']), array('principal' => 'DESC'));
+		foreach ($enderecos AS $key => $value):
+			$form->get('endereco__cep[' . $key . ']')->setAttribute('value', $enderecos[$key]->getCep());
+			$form->get('endereco__logradouro[' . $key . ']')->setAttribute('value', $enderecos[$key]->getLogradouro());
+			$form->get('endereco_entidade__numero[' . $key . ']')->setAttribute('value', $enderecos[$key]->getNumero());
+			$form->get('endereco_entidade__complemento[' . $key . ']')->setAttribute('value', $enderecos[$key]->getComplemento());
+			$form->get('endereco__bairro[' . $key . ']')->setAttribute('value', $enderecos[$key]->getBairro());
+			$form->get('endereco__id_cidade[' . $key . ']')->setAttribute('value', $enderecos[$key]->getCidade());
+			$form->get('endereco_entidade__informacoes_adicionais[' . $key . ']')->setAttribute('value', $enderecos[$key]->getReferencia());
+			$form->get('endereco_entidade__id_tipo_cadastro[' . $key . ']')->setAttribute('value', $enderecos[$key]->getTipo());
+			switch ($enderecos[$key]->getTipo()) :
+				case "1":
+					$tipoEndereco = "COMERCIAL";
+					break;
+				case "2":
+					$tipoEndereco = "ENTREGA";
+					break;
+				case "3":
+					$tipoEndereco = "REDIDENCIAL";
+					break;
+			endswitch;
+			$form->get('ac_e_' . $key)->setAttribute('value', $tipoEndereco);
+			$form->get('estado[' . $key . ']')->setAttribute('value', $enderecos[$key]->getUf());
+			$form->get('endereco_entidade__principal[' . $key . ']')->setAttribute('value', $enderecos[$key]->getPrincipal());
+		endforeach;
+		// fim de enderecos
+	}
+
+
 }

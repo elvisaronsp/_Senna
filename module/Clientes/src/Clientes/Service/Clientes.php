@@ -1,6 +1,7 @@
 <?php
 namespace Clientes\Service;
 
+use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
 use Senna\Service\AbstractService;
 use Zend\Stdlib\Hydrator;
@@ -23,10 +24,9 @@ class Clientes extends AbstractService
     {
         parent::__construct($em);
         $this->em = $em;
-        $this->entity = "Clientes\Entity\Clientes";
-        //$this->horarios = "Usuario\Entity\Horarios";
-        //$this->contatos = "Usuario\Entity\Contatos";
-        //$this->enderecos = "Usuario\Entity\Enderecos";
+        $this->entity    = "Clientes\Entity\Clientes";
+        $this->contatos  = "Clientes\Entity\Contatos";
+        $this->enderecos = "Clientes\Entity\Enderecos";
     }
 
     /**
@@ -82,12 +82,10 @@ class Clientes extends AbstractService
     {
         $entity = new $this->entity($data);
         $this->setParamExtra($entity, $data);
-
         $this->em->persist($entity);
         $this->em->flush();
-
-        //$this->incluirContatos($entity, $data);
-        //$this->incluirEndereco($entity, $data);
+        $this->incluirContatos($entity, $data);
+        $this->incluirEndereco($entity, $data);
         //$this->incluirHorarios($entity, $data);
         //$this->enviarBoasVindas($entity, $data);
 

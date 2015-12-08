@@ -132,45 +132,17 @@ class Funcionarios extends AbstractService
     }
 
     /**
-     * @param $entityFuncionario
+     * @param $entityRecebida
      * @param $data
-     * insere todos os contatos do usaario na tabela de contatos
      */
-    private function incluirContatos($entityFuncionario, $data)
-    {
-        if (isset($data['contato__id'])):
-            foreach ($data['contato__id'] AS $key => $value) {
-                if (!empty($data['ac_' . $key])):
-
-                    $entity = new $this->contatos();
-                    $entity->setUsuarioId($entityFuncionario);
-                    $entity->setTipoCadastro($data['contato__id_tipo_cadastro'][$key]);
-                    $entity->setTipoContato($data['contato__id_tipo_contato'][$key]);
-                    $entity->setContato($data['contato__descricao'][$key]);
-                    $entity->setDetalhes($data['contato__detalhes'][$key]);
-                    $entity->setPodeExcluir(false);
-
-                    $this->em->persist($entity);
-                    $this->em->flush();
-
-                endif;
-            }
-        endif;
-    }
-
-    /**
-     * @param $entityFuncionario
-     * @param $data
-     * Insere todos os enderecos do usuario na tabela de enderecos
-     */
-    private function incluirEndereco($entityFuncionario, $data)
+    private function incluirEndereco($entityRecebida, $data)
     {
         if (isset($data['endereco__cep'])):
             foreach ($data['endereco__cep'] AS $key => $value) {
                 if (!empty($data['ac_e_' . $key])):
 
                     $entity = new $this->enderecos();
-                    $entity->setUsuario($entityFuncionario);
+                    $entity->setUsuario($entityRecebida);
                     $entity->setCep($data['endereco__cep'][$key]);
                     $entity->setLogradouro($data['endereco__logradouro'][$key]);
                     $entity->setNumero($data['endereco_entidade__numero'][$key]);

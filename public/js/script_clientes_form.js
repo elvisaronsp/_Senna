@@ -5,40 +5,42 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
 
     var autocompleteVendedor = function(table, container){
         // Trata o comportamento do autosuggest de produtos
-        $(container).find("[name*=cliente_vendedor__id_funcionario]").change(function(evt, el, json){
+        $(container).find("[name*=vendedorCliente]").change(function(evt, el, json){
+
             if(json.flag_exterior == 1){
-                $(container).find("[name*=cpf_cnpj_vendedor]").val("");
+                $(container).find("[name*=CpfCnpjVendedor]").val("");
             }
             else{
-                $(container).find("[name*=cpf_cnpj_vendedor]").val(json.cpfcnpj);
+
+                $(container).find("[name*=CpfCnpjVendedor]").val(json.cpfcnpj);
                 var d = new Date();
                 var n = d.toLocaleString();
-                $(container).find("[name*=data_hora]").val(n);
+                $(container).find("[name*=vendedorDataHora]").val(n);
             }
-            $(container).find("[name*=cliente_vendedor__id_funcionario]").val(json.id);
+            $(container).find("[name*=vendedorCliente]").val(json.id);
         });
 
-        $(container).find("[name*=cliente_vendedor__id_funcionario]").bind("clear", function(evt){
-            $(container).find("[name*=cliente_vendedor__id_funcionario]," +
+        $(container).find("[name*=vendedorCliente]").bind("clear", function(evt){
+            $(container).find("[name*=vendedorCliente]," +
                 "[name*=cliente_vendedor__id_cliente]," +
-                "[name*=cliente_vendedor__id_funcionario]," +
-                "[name*=cpf_cnpj_vendedor],").val("");
+                "[name*=vendedorCliente]," +
+                "[name*=CpfCnpjVendedor],").val("");
 
             $(this).bestupper();
         });
 
-        if($(container).find("[name*=cliente_vendedor__id_funcionario]").val() != "" && "0" == '1'){
-            $(container).find("[autosuggest*=cliente_vendedor__id_funcionario]").attr('disabled','disabled');
+        if($(container).find("[name*=vendedorCliente]").val() != "" && "0" == '1'){
+            $(container).find("[autosuggest*=vendedorCliente]").attr('disabled','disabled');
             $(container).find(".removeTableClone").hide();
         }else{
-            $(container).find("[autosuggest*=cliente_vendedor__id_funcionario]").removeAttr('disabled');
+            $(container).find("[autosuggest*=vendedorCliente]").removeAttr('disabled');
             $(container).find(".removeTableClone").show();
         }
 
     };
 
     var validaLinhas = function(){
-        if($("#clientes_vendedores tbody tr:last").find("[name*=cliente_vendedor__id_funcionario]").val() ==''){
+        if($("#clientes_vendedores tbody tr:last").find("[name*=vendedorCliente]").val() ==''){
             return false;
         }
         return true;
@@ -55,6 +57,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
 
         //Insere autocomplete e efetua tratamentos para lançamentos
         $("#clientes_vendedores tbody tr").each(function (){
+
             autocompleteVendedor("#clientes_vendedores", $(this), true);
         });
 

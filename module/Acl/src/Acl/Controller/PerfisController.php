@@ -176,7 +176,10 @@ class PerfisController extends GrudController {
     }
 
 
-
+    /**
+     * @return ViewModel
+     * Busca por todos os perfis de acesso cadastrado no sistema
+     */
     public function getfuncionarioperfilAction()
     {
 

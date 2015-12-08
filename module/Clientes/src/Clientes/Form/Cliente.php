@@ -159,6 +159,7 @@ class Cliente extends Form
             ->setAttribute('class', 'focus required')
             ->setAttribute('maxlength', '60')
             ->setAttribute('uppercase', "true")
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -1699,11 +1700,11 @@ class Cliente extends Form
             ->setAttribute('form_title','Cadastrando')
             ->setAttribute('new_item_info','Criar')
             ->setAttribute('new_item_label','Cadastrar')
-            ->setAttribute('source','/senna/usuarios/funcionarios/getFuncionarios/')
+            ->setAttribute('source','/senna/usuario/funcionarios/getFuncionariosPermissaoVenda')
             ->setAttribute('uppercase','true')
             ->setAttribute('valueclear','true')
             ->setAttribute('valuefield','idFuncionario')
-            ->setValue('');
+            ->setValue('   ');
         $this->add($input);
 
         /**

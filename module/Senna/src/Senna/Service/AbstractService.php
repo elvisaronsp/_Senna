@@ -7,6 +7,7 @@
  * @project_name  Senna -- Grupo Capital Ponto
  */
 namespace Senna\Service;
+use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityManager;
 use Senna\Entity\Configurator;
 
@@ -20,7 +21,8 @@ use Senna\Entity\Configurator;
 	 * @var Entity
 	 */
 	protected $entity;
-	
+	protected $contatos;
+
 	public function __construct(EntityManager $em){
 		$this->em = $em;
 	}
@@ -82,4 +84,62 @@ use Senna\Entity\Configurator;
 			 return false;
 		 endif;
 	 }
+
+	 /**
+	  * @param $entityRecebida
+	  * @param $data
+	  */
+	 public function incluirContatos($entityRecebida, $data)
+	 {
+		 if (isset($data['contato__id'])):
+			 foreach ($data['contato__id'] AS $key => $value) {
+				 if (!empty($data['ac_' . $key])):
+
+					 $entity = new $this->contatos();
+					 $entity->setUsuarioId($entityRecebida);
+					 $entity->setTipoCadastro($data['contato__id_tipo_cadastro'][$key]);
+					 $entity->setTipoContato($data['contato__id_tipo_contato'][$key]);
+					 $entity->setContato($data['contato__descricao'][$key]);
+					 $entity->setDetalhes($data['contato__detalhes'][$key]);
+					 $entity->setPodeExcluir(false);
+
+					 $this->em->persist($entity);
+					 $this->em->flush();
+
+				 endif;
+			 }
+		 endif;
+	 }
+
+	 /**
+	  * @param $entityRecebida
+	  * @param $data
+	  */
+	 public function incluirEndereco($entityRecebida, $data)
+	 {
+		 if (isset($data['endereco__cep'])):
+			 foreach ($data['endereco__cep'] AS $key => $value) {
+				 if (!empty($data['ac_e_' . $key])):
+
+					 $entity = new $this->enderecos();
+					 $entity->setUsuario($entityRecebida);
+					 $entity->setCep($data['endereco__cep'][$key]);
+					 $entity->setLogradouro($data['endereco__logradouro'][$key]);
+					 $entity->setNumero($data['endereco_entidade__numero'][$key]);
+					 $entity->setComplemento($data['endereco_entidade__complemento'][$key]);
+					 $entity->setBairro($data['endereco__bairro'][$key]);
+					 $entity->setCidade($data['endereco__id_cidade'][$key]);
+					 $entity->setReferencia($data['endereco_entidade__informacoes_adicionais'][$key]);
+					 $entity->setTipo($data['endereco_entidade__id_tipo_cadastro'][$key]);
+					 $entity->setUf($data['estado'][$key]);
+					 $entity->setPrincipal($data['endereco_entidade__principal'][$key]);
+
+					 $this->em->persist($entity);
+					 $this->em->flush();
+
+				 endif;
+			 }
+		 endif;
+	 }
+
  }

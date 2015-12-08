@@ -41,6 +41,9 @@ class ClientesController extends GrudController
         $form->get('estadoCivil')->setAttribute('eval', $data['estadoCivil']);
         $form->get('alertas')->setAttribute('eval', ($data['alertas']) ? '1' : '0');
         $form->get('tipo')->setAttribute('eval', ($data['tipo']) ? '1' : '0');
+
+        $this->recuperarContatosForm($form,$this->contatos,$data);
+        $this->recuperarEnderecosForm($form,$this->enderecos,$data);
     }
 
 
