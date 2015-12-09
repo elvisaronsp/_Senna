@@ -27,6 +27,7 @@ class Clientes extends AbstractService
         $this->entity    = "Clientes\Entity\Clientes";
         $this->contatos  = "Clientes\Entity\Contatos";
         $this->enderecos = "Clientes\Entity\Enderecos";
+        $this->vendedores = "Clientes\Entity\Vendedores";
     }
 
     /**
@@ -86,6 +87,7 @@ class Clientes extends AbstractService
         $this->em->flush();
         $this->incluirContatos($entity, $data);
         $this->incluirEndereco($entity, $data);
+        $this->incluirVendedores($entity, $data);
         //$this->incluirHorarios($entity, $data);
         //$this->enviarBoasVindas($entity, $data);
 

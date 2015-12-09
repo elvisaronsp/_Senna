@@ -23,34 +23,44 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
-                        <?php echo $this->formElement($input = $form->get('idVendedor'));?>
-                        <?php echo $this->formElement($input = $form->get('idVendedorIdCliente'));?>
-                        <p class="field " style="width:auto; ">
-                            <span class="input " rel="vendedorCliente" style="">
-                                <?php echo $this->formElement($input = $form->get('vendedorCliente'));?>
-                                <i class="ui-autocomplete_combo" tabindex="-1"></i>
-                                <?php echo $this->formElement($input = $form->get('ac_vendedor'));?>
-                                <em class="autocomplete_search  autosuggest"></em>
-                            </span>
-                        </p>
-                    </td>
-                    <td>
-                        <p class="field " style="width:auto; ">
-                            <span class="input " rel="CpfCnpjVendedor" style="">
-                                <?php echo $this->formElement($input = $form->get('CpfCnpjVendedor'));?>
-                            </span>
-                        </p>
-                    </td>
-                    <td>
-                        <p class="field " style="width:auto; ">
-                            <span class="input " rel="vendedorDataHora" style="">
-                                <?php echo $this->formElement($input = $form->get('vendedorDataHora'));?>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
+
+                <?php
+                for ($i=0; $i<10; $i++)
+                {
+                    if(($form->check('vendedorCliente['.$i.']'))):
+                        ?>
+
+                        <tr>
+                            <td>
+                                <p class="field " style="width:auto; ">
+                                    <span class="input " rel="vendedorCliente" style="">
+                                        <?php echo $this->formElement($input = $form->get('vendedorCliente['.$i.']'));?>
+                                        <i class="ui-autocomplete_combo" tabindex="-1"></i>
+                                        <?php echo $this->formElement($input = $form->get('ac_vendedor['.$i.']'));?>
+                                        <em class="autocomplete_search  autosuggest"></em>
+                                    </span>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="field " style="width:auto; ">
+                                    <span class="input " rel="CpfCnpjVendedor" style="">
+                                        <?php echo $this->formElement($input = $form->get('CpfCnpjVendedor['.$i.']'));?>
+                                    </span>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="field " style="width:auto; ">
+                                    <span class="input " rel="vendedorDataHora" style="">
+                                        <?php echo $this->formElement($input = $form->get('vendedorDataHora['.$i.']'));?>
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <?php
+                    endif;
+                }
+                ?>
+
                 </tbody>
             </table>
         </fieldset>

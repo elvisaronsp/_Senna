@@ -19,16 +19,21 @@ use Senna\Entity\Configurator;
 	
 	/**
 	 * @var Entity
+	 * @var $contatos
+	 * @var $enderecos
+	 * @var $vendedores
 	 */
-	protected $entity;
-	protected $contatos;
+	 protected $entity;
+	 protected $contatos;
+	 protected $enderecos;
+	 protected $vendedores;
 
-	public function __construct(EntityManager $em){
-		$this->em = $em;
-	}
+	 public function __construct(EntityManager $em){
+		 $this->em = $em;
+	 }
 
-	/**
-	 * Metodo de insersao de novas classes 
+	 /**
+	  * Metodo de insersao de novas classes
 	 * @param array $data
 	 */
 	public function insert(array $data){
@@ -138,6 +143,27 @@ use Senna\Entity\Configurator;
 					 $this->em->flush();
 
 				 endif;
+			 }
+		 endif;
+	 }
+
+	 /**
+	  * @param $entityRecebida
+	  * @param $data
+	  * @throws \Doctrine\ORM\ORMException
+	  */
+	 public function incluirVendedores($entityRecebida, $data)
+	 {
+		 if (isset($data['vendedorCliente'])):
+			 foreach ($data['vendedorCliente'] AS $key => $value) {
+					 $entity = new $this->vendedores();
+					 $entity->setCliente($entityRecebida);
+
+					 $idVendedor = $this->em->getReference("Usuario\Entity\Funcionarios", $data['vendedorCliente'][$key]);
+					 $entity->setUsuario($idVendedor);
+
+					 $this->em->persist($entity);
+					 $this->em->flush();
 			 }
 		 endif;
 	 }

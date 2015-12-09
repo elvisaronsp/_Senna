@@ -352,6 +352,4 @@ abstract class GrudController extends AbstractActionController {
 		endforeach;
 		// fim de enderecos
 	}
-
-
 }

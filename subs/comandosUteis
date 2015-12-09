@@ -1,0 +1,1 @@
+vendor/bin/doctrine-module orm:convert-mapping --filter "SnVendedoresCliente" --from-database annotation module/clientes/src/clientes/Entity

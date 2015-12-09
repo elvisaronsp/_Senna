@@ -23,6 +23,7 @@ class ClientesController extends GrudController
         $this->service        = "Clientes\Service\Clientes";
         $this->contatos       = "Clientes\Entity\Contatos";
         $this->enderecos      = "Clientes\Entity\Enderecos";
+        $this->vendedores     = "Clientes\Entity\Vendedores";
         $this->form           = "Clientes\Form\Cliente";
         $this->message_insert = "Cliente CADASTRADO com sucesso";
         $this->message_update = "Cliente ATUALIZADO com sucesso";
@@ -36,14 +37,20 @@ class ClientesController extends GrudController
      */
     protected function setValueForm($form, $data)
     {
-        $form->get('ativo')->setAttribute('eval', $data['ativo']);
-        $form->get('sexo')->setAttribute('eval', $data['sexo']);
-        $form->get('estadoCivil')->setAttribute('eval', $data['estadoCivil']);
-        $form->get('alertas')->setAttribute('eval', ($data['alertas']) ? '1' : '0');
-        $form->get('tipo')->setAttribute('eval', ($data['tipo']) ? '1' : '0');
+        $form->setValueElement('ativo','eval',$data['ativo']);
+        $form->setValueElement('sexo','eval',$data['sexo']);
+        $form->setValueElement('estadoCivil','eval',$data['ativo']);
+        $form->setValueElement('alertas','eval',($data['alertas']) ? '1' : '0');
+        $form->setValueElement('tipo','eval',($data['tipo']) ? '1' : '0');
 
+        // contatos
         $this->recuperarContatosForm($form,$this->contatos,$data);
+        // enderecos
         $this->recuperarEnderecosForm($form,$this->enderecos,$data);
+        // Vendedores
+        $repository = $this->getEm()->getRepository($this->vendedores);
+        $vendedores = $repository->findBy(array('cliente' => $data['id']));
+        $form->criarVendedoresForm($vendedores);
     }
 
 

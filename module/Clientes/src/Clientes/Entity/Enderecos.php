@@ -8,19 +8,12 @@ use Zend\Stdlib\Hydrator;
  * SnEnderecosCliente
  *
  * @ORM\Table(name="sn_enderecos_cliente")
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Clientes\Repository\ClientesRepository")
  */
 class Enderecos
 {
-
-    /**
-     * @param array $options
-     */
-    public function __construct($options = array())
-    {
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
-    }
 
     /**
      * @var integer
@@ -106,6 +99,14 @@ class Enderecos
      * @ORM\Column(name="principal", type="boolean", nullable=true)
      */
     private $principal;
+
+    /**
+     * @param array $options
+     */
+    public function __construct($options = array())
+    {
+        (new Hydrator\ClassMethods)->hydrate($options, $this);
+    }
 
     /**
      * @return int

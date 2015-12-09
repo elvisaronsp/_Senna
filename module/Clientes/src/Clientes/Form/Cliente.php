@@ -2,6 +2,7 @@
 
 namespace Clientes\Form;
 
+use Doctrine\Common\Util\Debug;
 use Zend\Form\Element\Select;
 use Zend\Form\Form;
 
@@ -1657,84 +1658,140 @@ class Cliente extends Form
 
         //#################### FIM DE ENDEREÇOS ################################
 
-        /**
-         * @element input
-         * @type hidden
-         * @name [idVendedor]
-         **/
-        $input = new \Zend\Form\Element\Hidden('idVendedor');
-        $input->setAttribute('id','idVendedor')
-            ->setValue('');
-        $this->add($input);
+        $this->criarVendedoresForm();
 
-        /**
-         * @element input
-         * @type hidden
-         * @name [idVendedorIdCliente]
-         **/
-        $input = new \Zend\Form\Element\Hidden('idVendedorIdCliente');
-        $input->setAttribute('id','idVendedorIdCliente')
-            ->setValue('');
-        $this->add($input);
 
-        /**
-         * @element input
-         * @type hidden
-         * @name [vendedorCliente]
-         **/
-        $input = new \Zend\Form\Element\Hidden('vendedorCliente');
-        $input->setAttribute('id','vendedorCliente')
-            ->setValue('');
-        $this->add($input);
-
-        /**
-         * @element input
-         * @type text
-         * @name [ac_vendedor]
-         **/
-        $input = new \Zend\Form\Element\Text('ac_vendedor');
-        $input->setAttribute('id','ac_vendedor')
-            ->setAttribute('autosuggest','vendedorCliente')
-            ->setAttribute('class','autosuggest')
-            ->setAttribute('filters','[]')
-            ->setAttribute('form_title','Cadastrando')
-            ->setAttribute('new_item_info','Criar')
-            ->setAttribute('new_item_label','Cadastrar')
-            ->setAttribute('source','/senna/usuario/funcionarios/getFuncionariosPermissaoVenda')
-            ->setAttribute('uppercase','true')
-            ->setAttribute('valueclear','true')
-            ->setAttribute('valuefield','idFuncionario')
-            ->setValue('   ');
-        $this->add($input);
-
-        /**
-         * @element input
-         * @type text
-         * @name [CpfCnpjVendedor]
-         **/
-        $input = new \Zend\Form\Element\Text('CpfCnpjVendedor');
-        $input->setAttribute('id','CpfCnpjVendedor')
-            ->setAttribute('disabled','disabled')
-            ->setAttribute('style','text-align:center;')
-            ->setAttribute('cnpj','true')
-            ->setValue('');
-        $this->add($input);
-
-        /**
-         * @element input
-         * @type text
-         * @name [vendedorDataHora]
-         **/
-        $input = new \Zend\Form\Element\Text('vendedorDataHora');
-        $input->setAttribute('id','vendedorDataHora')
-            ->setAttribute('disabled','disabled')
-            ->setAttribute('style','text-align:center;')
-            ->setValue('');
-        $this->add($input);
     }
 
     public function clear($form)
     {
         $form->setData(array());
+    }
+
+    /**
+     * @param null $vendedores
+     */
+    public function criarVendedoresForm($vendedores = null)
+    {
+
+        if($vendedores != ""):
+            foreach ($vendedores AS $key => $value):
+                /**
+                 * @element input
+                 * @type hidden
+                 * @name [vendedorCliente]
+                 **/
+                $input = new \Zend\Form\Element\Hidden('vendedorCliente['.$key.']');
+                $input->setAttribute('id','vendedorCliente_'.$key)
+                    ->setValue( $vendedores[$key]->getUsuario()->getId());
+                $this->add($input);
+
+                /**
+                 * @element input
+                 * @type text
+                 * @name [ac_vendedor]
+                 **/
+                $input = new \Zend\Form\Element\Text('ac_vendedor['.$key.']');
+                $input->setAttribute('id','ac_vendedor_'.$key)
+                    ->setAttribute('autosuggest','vendedorCliente')
+                    ->setAttribute('class','autosuggest')
+                    ->setAttribute('filters','[]')
+                    ->setAttribute('form_title','Cadastrando')
+                    ->setAttribute('new_item_info','Criar')
+                    ->setAttribute('new_item_label','Cadastrar')
+                    ->setAttribute('source','/senna/usuario/funcionarios/getFuncionariosPermissaoVenda')
+                    ->setAttribute('uppercase','true')
+                    ->setAttribute('valueclear','true')
+                    ->setAttribute('valuefield','idFuncionario')
+                    ->setValue($vendedores[$key]->getUsuario());
+                $this->add($input);
+
+                /**
+                 * @element input
+                 * @type text
+                 * @name [CpfCnpjVendedor]
+                 **/
+                $input = new \Zend\Form\Element\Text('CpfCnpjVendedor['.$key.']');
+                $input->setAttribute('id','CpfCnpjVendedor_'.$key)
+                    ->setAttribute('disabled','disabled')
+                    ->setAttribute('style','text-align:center;')
+                    ->setAttribute('cnpj','true')
+                    ->setValue($vendedores[$key]->getUsuario()->getCpf());
+                $this->add($input);
+
+                /**
+                 * @element input
+                 * @type text
+                 * @name [vendedorDataHora]
+                 **/
+                $input = new \Zend\Form\Element\Text('vendedorDataHora['.$key.']');
+                $input->setAttribute('id','vendedorDataHora_'.$key)
+                    ->setAttribute('disabled','disabled')
+                    ->setAttribute('style','text-align:center;')
+                    ->setValue($vendedores[$key]->getCriadoEm());
+                $this->add($input);
+            endforeach;
+        else:
+
+            /**
+             * @element input
+             * @type hidden
+             * @name [vendedorCliente]
+             **/
+            $input = new \Zend\Form\Element\Hidden('vendedorCliente[0]');
+            $input->setAttribute('id','vendedorCliente')
+                ->setValue( '');
+            $this->add($input);
+
+            /**
+             * @element input
+             * @type text
+             * @name [ac_vendedor]
+             **/
+            $input = new \Zend\Form\Element\Text('ac_vendedor[0]');
+            $input->setAttribute('id','ac_vendedor')
+                ->setAttribute('autosuggest','vendedorCliente')
+                ->setAttribute('class','autosuggest')
+                ->setAttribute('filters','[]')
+                ->setAttribute('form_title','Cadastrando')
+                ->setAttribute('new_item_info','Criar')
+                ->setAttribute('new_item_label','Cadastrar')
+                ->setAttribute('source','/senna/usuario/funcionarios/getFuncionariosPermissaoVenda')
+                ->setAttribute('uppercase','true')
+                ->setAttribute('valueclear','true')
+                ->setAttribute('valuefield','idFuncionario')
+                ->setValue('');
+            $this->add($input);
+
+            /**
+             * @element input
+             * @type text
+             * @name [CpfCnpjVendedor]
+             **/
+            $input = new \Zend\Form\Element\Text('CpfCnpjVendedor[0]');
+            $input->setAttribute('id','CpfCnpjVendedor')
+                ->setAttribute('disabled','disabled')
+                ->setAttribute('style','text-align:center;')
+                ->setAttribute('cnpj','true')
+                ->setValue('');
+            $this->add($input);
+
+            /**
+             * @element input
+             * @type text
+             * @name [vendedorDataHora]
+             **/
+            $input = new \Zend\Form\Element\Text('vendedorDataHora[0]');
+            $input->setAttribute('id','vendedorDataHora')
+                ->setAttribute('disabled','disabled')
+                ->setAttribute('style','text-align:center;')
+                ->setValue('');
+            $this->add($input);
+        endif;
+    }
+
+    public function setValueElement($element,$atrb,$val)
+    {
+        $this->get($element)->setAttribute($atrb,$val);
     }
 }

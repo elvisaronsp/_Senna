@@ -49,8 +49,8 @@ class Perfis
      * @ORM\Column(type="datetime", name="atualizado_em")
      */
     private $atualizadoEm;
-    
-    
+
+
     public function __construct($options = array())
     {
         $this->criadoEm = new \DateTime("now");
