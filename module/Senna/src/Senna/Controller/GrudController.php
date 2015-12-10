@@ -9,6 +9,7 @@
  */
 namespace Senna\Controller;
 
+use Zend\Debug\Debug;
 use Zend\Mvc\Controller\AbstractActionController,
     Zend\View\Model\ViewModel;
 use Zend\Paginator\Paginator,
@@ -327,6 +328,7 @@ abstract class GrudController extends AbstractActionController {
 		$repository = $this->getEm()->getRepository($enderecos);
 		$enderecos = $repository->findBy(array('usuario' => $data['id']), array('principal' => 'DESC'));
 		foreach ($enderecos AS $key => $value):
+			$form->get('endereco_id[' . $key . ']')->setAttribute('value', $enderecos[$key]->getId());
 			$form->get('endereco__cep[' . $key . ']')->setAttribute('value', $enderecos[$key]->getCep());
 			$form->get('endereco__logradouro[' . $key . ']')->setAttribute('value', $enderecos[$key]->getLogradouro());
 			$form->get('endereco_entidade__numero[' . $key . ']')->setAttribute('value', $enderecos[$key]->getNumero());
@@ -352,4 +354,5 @@ abstract class GrudController extends AbstractActionController {
 		endforeach;
 		// fim de enderecos
 	}
+
 }

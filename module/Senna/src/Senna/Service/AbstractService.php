@@ -117,17 +117,33 @@ use Senna\Entity\Configurator;
 	 }
 
 	 /**
-	  * @param $entityRecebida
+	  * @param $entidadePai
 	  * @param $data
+	  * @throws \Doctrine\ORM\ORMException
+	  * Este metodo e utilizado para fazer a persistencia de campos do tipo endereço
+	  * especialmente pensado para facilitar a inserção e atualizção de campos de endereço em qualquer
+	  * tela da aplicacao.Este metodo verifica se o endereco que esta sendo persistido ja existe no banco de dados
+	  * caso exista ele faz a atualização do mesmo caso contratio faz o insert.
 	  */
-	 public function incluirEndereco($entityRecebida, $data)
+	 public function resolvePersistenciaEnderecos($entidadePai , $data)
 	 {
-		 if (isset($data['endereco__cep'])):
-			 foreach ($data['endereco__cep'] AS $key => $value) {
-				 if (!empty($data['ac_e_' . $key])):
+		 // se existir algum endereço sendo persistido
+		 if (isset($data['endereco_id'])):
 
-					 $entity = new $this->enderecos();
-					 $entity->setUsuario($entityRecebida);
+			 // Limpa o array de cep para que tenha apenas os enderecos que tenha alguma informacao
+			 $cep = array_filter($data['endereco__cep']);
+
+			  // Percorre todos os enderecos que estao sendo persistidos baseado nos cep que estao populados
+			 foreach ($cep AS $key => $value) :
+
+					 // Verifica se e um insert ou update false = update
+					 if (!empty($data['endereco_id'][$key])):
+						 $entity = $this->em->getReference($this->enderecos,$data['endereco_id'][$key]);
+					 else:
+						 $entity = new $this->enderecos();
+					 endif;
+
+					 $entity->setUsuario($entidadePai);
 					 $entity->setCep($data['endereco__cep'][$key]);
 					 $entity->setLogradouro($data['endereco__logradouro'][$key]);
 					 $entity->setNumero($data['endereco_entidade__numero'][$key]);
@@ -141,9 +157,20 @@ use Senna\Entity\Configurator;
 
 					 $this->em->persist($entity);
 					 $this->em->flush();
+			 endforeach;
+		 endif;
 
-				 endif;
-			 }
+		 // Caso não aja nenhum endereço sendo persistido ou
+		 // caso aja enderecos sendo persistido mas nao contenham nenhuma informacao
+		 // Remove todos os enderecos do usuario
+		 if(!isset($data['endereco_id']) || count($cep) < 1):
+			 // enderecos
+			 $repository = $this->em->getRepository($this->enderecos);
+			 $enderecos = $repository->findBy(array('usuario' => $entidadePai->getId()));
+			 foreach($enderecos as $e):
+				 $this->em->remove($e);
+				 $this->em->flush();
+			 endforeach;
 		 endif;
 	 }
 
@@ -156,14 +183,16 @@ use Senna\Entity\Configurator;
 	 {
 		 if (isset($data['vendedorCliente'])):
 			 foreach ($data['vendedorCliente'] AS $key => $value) {
+
+				 foreach($value As $k => $v):
 					 $entity = new $this->vendedores();
 					 $entity->setCliente($entityRecebida);
-
-					 $idVendedor = $this->em->getReference("Usuario\Entity\Funcionarios", $data['vendedorCliente'][$key]);
+					 $idVendedor = $this->em->getReference("Usuario\Entity\Funcionarios", $v);
 					 $entity->setUsuario($idVendedor);
 
 					 $this->em->persist($entity);
 					 $this->em->flush();
+				 endforeach;
 			 }
 		 endif;
 	 }

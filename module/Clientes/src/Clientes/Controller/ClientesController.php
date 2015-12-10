@@ -110,6 +110,8 @@ class ClientesController extends GrudController
             if ($request->isPost()) {
                 $podeCadastrar = $this->verificaExistencia();
                 if (!$podeCadastrar) {
+
+
                     // remove contatos para atualizacao
                     //repository = $this->getEm()->getRepository($this->contatos);
                     //$contatos = $repository->findBy(array('usuario' => $request->getPost()['id']));

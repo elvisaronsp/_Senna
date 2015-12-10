@@ -968,6 +968,13 @@ class Cliente extends Form
 
 
         //#################### ENDEREÇOS ###################################
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_id[0]');
+        $hidden->setAttribute('id', "endereco_id_0")
+            ->setValue("");
+        $this->add($hidden);
+
+
         // radio
         $this->add(array(
             'type' => 'radio',
@@ -1094,6 +1101,12 @@ class Cliente extends Form
             ->setValue("");
         $this->add($input);
 
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_id[1]');
+        $hidden->setAttribute('id', "endereco_id_1")
+            ->setValue("");
+        $this->add($hidden);
+
         // radio
         $this->add(array(
             'type' => 'radio',
@@ -1218,6 +1231,12 @@ class Cliente extends Form
             ->setValue("");
         $this->add($input);
 
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_id[2]');
+        $hidden->setAttribute('id', "endereco_id_2")
+            ->setValue("");
+        $this->add($hidden);
         // radio
         $this->add(array(
             'type' => 'radio',
@@ -1341,6 +1360,13 @@ class Cliente extends Form
             ->setAttribute('readonly', "true")
             ->setValue("");
         $this->add($input);
+
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_id[3]');
+        $hidden->setAttribute('id', "endereco_id_3")
+            ->setValue("");
+        $this->add($hidden);
 
         // radio
         $this->add(array(
@@ -1466,6 +1492,12 @@ class Cliente extends Form
             ->setAttribute('readonly', "true")
             ->setValue("");
         $this->add($input);
+
+        //input hidden
+        $hidden = new \Zend\Form\Element\Hidden('endereco_id[4]');
+        $hidden->setAttribute('id', "endereco_id_4")
+            ->setValue("");
+        $this->add($hidden);
 
         // radio
         $this->add(array(
