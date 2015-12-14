@@ -91,32 +91,6 @@ use Senna\Entity\Configurator;
 	 }
 
 	 /**
-	  * @param $entityRecebida
-	  * @param $data
-	  */
-	 public function incluirContatos($entityRecebida, $data)
-	 {
-		 if (isset($data['contato__id'])):
-			 foreach ($data['contato__id'] AS $key => $value) {
-				 if (!empty($data['ac_' . $key])):
-
-					 $entity = new $this->contatos();
-					 $entity->setUsuarioId($entityRecebida);
-					 $entity->setTipoCadastro($data['contato__id_tipo_cadastro'][$key]);
-					 $entity->setTipoContato($data['contato__id_tipo_contato'][$key]);
-					 $entity->setContato($data['contato__descricao'][$key]);
-					 $entity->setDetalhes($data['contato__detalhes'][$key]);
-					 $entity->setPodeExcluir(false);
-
-					 $this->em->persist($entity);
-					 $this->em->flush();
-
-				 endif;
-			 }
-		 endif;
-	 }
-
-	 /**
 	  * @param $entidadePai
 	  * @param $data
 	  * @throws \Doctrine\ORM\ORMException
