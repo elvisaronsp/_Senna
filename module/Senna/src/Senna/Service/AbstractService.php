@@ -120,10 +120,65 @@ use Senna\Entity\Configurator;
 	  * @param $entidadePai
 	  * @param $data
 	  * @throws \Doctrine\ORM\ORMException
+	  * Este metodo e utilizado para fazer a persistencia de campos do tipo contato
+	  * especialmente pensado para facilitar a inserção e atualizção de campos de contatos em qualquer
+	  * tela da aplicacao.Este metodo verifica se o contato que esta sendo persistido ja existe no banco de dados
+	  * caso exista ele faz a atualização do mesmo caso contrario faz o insert.
+	  */
+	 public function resolvePersistenciaContatos($entidadePai , $data)
+	 {
+		 // se existir algum contarto sendo persistido
+		 if (isset($data['contato__id'])):
+
+			 // Limpa o array de descricao para que tenha apenas os contatos que tenha alguma informacao
+			 $contato = array_filter($data['contato__descricao']);
+
+			 // Percorre todos os enderecos que estao sendo persistidos baseado nos cep que estao populados
+			 foreach ($contato AS $key => $value) :
+
+				 // Verifica se e um insert ou update false = update
+				 if (!empty($data['contato__id'][$key])):
+					 $entity = $this->em->getReference($this->contatos,$data['contato__id'][$key]);
+				 else:
+					 $entity = new $this->contatos();
+				 endif;
+
+				 $entity->setUsuarioId($entidadePai);
+				 $entity->setTipoCadastro($data['contato__id_tipo_cadastro'][$key]);
+				 $entity->setTipoContato($data['contato__id_tipo_contato'][$key]);
+				 $entity->setContato($data['contato__descricao'][$key]);
+				 $entity->setDetalhes($data['contato__detalhes'][$key]);
+				 $entity->setPodeExcluir(false);
+
+				 $this->em->persist($entity);
+				 $this->em->flush();
+			 endforeach;
+		 endif;
+
+		 // Caso não aja nenhum contato sendo persistido ou
+		 // caso aja contatos sendo persistido mas nao contenham nenhuma informacao
+		 // Remove todos os contatos do usuario
+		 if(!isset($data['contato__id']) || count($contato) < 1):
+			 // contatos
+			 $repository = $this->em->getRepository($this->contatos);
+			 $contatos = $repository->findBy(array('usuario' => $entidadePai->getId()));
+			 foreach($contatos as $e):
+				 $this->em->remove($e);
+				 $this->em->flush();
+			 endforeach;
+		 endif;
+	 }
+
+
+
+	 /**
+	  * @param $entidadePai
+	  * @param $data
+	  * @throws \Doctrine\ORM\ORMException
 	  * Este metodo e utilizado para fazer a persistencia de campos do tipo endereço
 	  * especialmente pensado para facilitar a inserção e atualizção de campos de endereço em qualquer
 	  * tela da aplicacao.Este metodo verifica se o endereco que esta sendo persistido ja existe no banco de dados
-	  * caso exista ele faz a atualização do mesmo caso contratio faz o insert.
+	  * caso exista ele faz a atualização do mesmo caso contrario faz o insert.
 	  */
 	 public function resolvePersistenciaEnderecos($entidadePai , $data)
 	 {

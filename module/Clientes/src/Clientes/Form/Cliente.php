@@ -173,6 +173,7 @@ class Cliente extends Form
         $input->setAttribute('id', 'cpf')
             ->setAttribute('class', 'cpf required')
             ->setAttribute('mask', '999.999.999-99')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -233,6 +234,7 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('ie');
         $input->setAttribute('id', 'ie')
             ->setAttribute('maxlength', '16')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -295,6 +297,7 @@ class Cliente extends Form
             ->setAttribute('maxlength', '13')
             ->setAttribute('class', 'required')
             ->setAttribute('uppercase', 'true')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -390,7 +393,7 @@ class Cliente extends Form
 
         /**
          * @element select
-         * @name [rendaMensal]
+         * @name [estadoCivil]
          **/
         $select = new Select();
         $select->setName("estadoCivil")
@@ -398,6 +401,7 @@ class Cliente extends Form
             ->setAttribute('eval', "0")
             ->setAttribute('size', "1")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setOptions(array(
                 'value_options' => array(
                     "SOLTEIRO",
@@ -416,6 +420,7 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('rendaMensal');
         $input->setAttribute('id','rendaMensal')
             ->setAttribute('number_format','+#.#0,[2,2]')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -427,6 +432,7 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('profissao');
         $input->setAttribute('id','profissao')
             ->setAttribute('maxlength','50')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -438,6 +444,7 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('filiacaoMae');
         $input->setAttribute('id','filiacaoMae')
             ->setAttribute('maxlength','255')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -449,6 +456,7 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('filiacaoPai');
         $input->setAttribute('id','filiacaoPai')
             ->setAttribute('maxlength','255')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -460,6 +468,7 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('conjugeNome');
         $input->setAttribute('id','conjugeNome')
             ->setAttribute('maxlength','255')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -494,6 +503,7 @@ class Cliente extends Form
         $input = new \Zend\Form\Element\Text('conjugeProfissao');
         $input->setAttribute('id','conjugeProfissao')
             ->setAttribute('maxlength','50')
+            ->setAttribute('autocomplete', "off")
             ->setValue('');
         $this->add($input);
 
@@ -624,6 +634,7 @@ class Cliente extends Form
             ->setAttribute('autocomplete', "textbox")
             ->setAttribute('aria-autocomplete', "list")
             ->setAttribute('aria-haspopup', "true")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -632,6 +643,7 @@ class Cliente extends Form
         $input->setAttribute('id', "contato__descricao_0")
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "required")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -642,6 +654,7 @@ class Cliente extends Form
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('uppercase', "true")
             ->setValue("");
         $this->add($input);
@@ -713,6 +726,7 @@ class Cliente extends Form
         $input->setAttribute('id', "contato__descricao_1")
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "required")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -723,6 +737,7 @@ class Cliente extends Form
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('uppercase', "true")
             ->setValue("");
         $this->add($input);
@@ -792,6 +807,7 @@ class Cliente extends Form
         $input->setAttribute('id', "contato__descricao_2")
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "required")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -802,6 +818,7 @@ class Cliente extends Form
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('uppercase', "true")
             ->setValue("");
         $this->add($input);
@@ -871,6 +888,7 @@ class Cliente extends Form
         $input->setAttribute('id', "contato__descricao_3")
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "required")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -881,6 +899,7 @@ class Cliente extends Form
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('uppercase', "true")
             ->setValue("");
         $this->add($input);
@@ -950,6 +969,7 @@ class Cliente extends Form
         $input->setAttribute('id', "contato__descricao_4")
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "required")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -960,6 +980,7 @@ class Cliente extends Form
             ->setAttribute('maxLength', "50")
             ->setAttribute('class', "")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('uppercase', "true")
             ->setValue("");
         $this->add($input);
@@ -1009,6 +1030,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1018,6 +1040,7 @@ class Cliente extends Form
             ->setAttribute('maxlength', "5")
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setAttribute('style', "")
             ->setValue("");
         $this->add($input);
@@ -1029,6 +1052,7 @@ class Cliente extends Form
             ->setAttribute('style', "")
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1038,6 +1062,7 @@ class Cliente extends Form
             ->setAttribute('style', "")
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1047,6 +1072,7 @@ class Cliente extends Form
             ->setAttribute('style', "")
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1057,6 +1083,7 @@ class Cliente extends Form
             ->setAttribute('maxlength', "50")
             ->setAttribute('style', "")
             ->setAttribute('class', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1141,6 +1168,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1151,6 +1179,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1160,6 +1189,7 @@ class Cliente extends Form
             ->setAttribute('maxlength', "20")
             ->setAttribute('uppercase', 'true')
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1169,6 +1199,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1178,6 +1209,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1187,6 +1219,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('maxlength', "50")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1271,6 +1304,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1281,6 +1315,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1290,6 +1325,7 @@ class Cliente extends Form
             ->setAttribute('maxlength', "20")
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1299,6 +1335,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1308,6 +1345,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1317,6 +1355,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('maxlength', "50")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1402,6 +1441,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1412,6 +1452,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1421,6 +1462,7 @@ class Cliente extends Form
             ->setAttribute('maxlength', "20")
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1430,6 +1472,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1439,6 +1482,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1448,6 +1492,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('maxlength', "50")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1533,6 +1578,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1543,6 +1589,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('class', "valid required")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1552,6 +1599,7 @@ class Cliente extends Form
             ->setAttribute('maxlength', "20")
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1561,6 +1609,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1570,6 +1619,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('style', "")
             ->setAttribute('class', "valid required")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 
@@ -1579,6 +1629,7 @@ class Cliente extends Form
             ->setAttribute('uppercase', "true")
             ->setAttribute('maxlength', "50")
             ->setAttribute('style', "")
+            ->setAttribute('autocomplete', "off")
             ->setValue("");
         $this->add($input);
 

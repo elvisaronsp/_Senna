@@ -61,7 +61,7 @@ class Clientes extends AbstractService
         $this->setParamExtra($entity, $data);
         $this->em->persist($entity);
         $this->em->flush();
-        $this->incluirContatos($entity, $data);
+        $this->resolvePersistenciaContatos($entity, $data);
         $this->resolvePersistenciaEnderecos($entity , $data);
         $this->incluirVendedores($entity, $data);
 
@@ -79,7 +79,7 @@ class Clientes extends AbstractService
         (new Hydrator\ClassMethods())->hydrate($data, $entity);
 
         $this->setParamExtra($entity, $data);
-       // $this->incluirContatos($entity, $data);
+        $this->resolvePersistenciaContatos($entity, $data);
         $this->resolvePersistenciaEnderecos($entity , $data);
         //$this->incluirVendedores($entity, $data);
 
