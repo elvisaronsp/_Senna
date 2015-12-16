@@ -63,7 +63,7 @@ class Clientes extends AbstractService
         $this->em->flush();
         $this->resolvePersistenciaContatos($entity, $data);
         $this->resolvePersistenciaEnderecos($entity , $data);
-        $this->incluirVendedores($entity, $data);
+        $this->resolvePersistenciaVendedores($entity, $data);
 
         return $entity;
     }
@@ -81,7 +81,7 @@ class Clientes extends AbstractService
         $this->setParamExtra($entity, $data);
         $this->resolvePersistenciaContatos($entity, $data);
         $this->resolvePersistenciaEnderecos($entity , $data);
-        //$this->incluirVendedores($entity, $data);
+        $this->resolvePersistenciaVendedores($entity, $data);
 
         $this->em->persist($entity);
         $this->em->flush();

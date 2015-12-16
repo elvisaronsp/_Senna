@@ -53,13 +53,13 @@ class ClientesController extends GrudController
         $form->criarVendedoresForm($vendedores);
     }
 
-
     /**
      * @return ViewModel
      */
     public function FormAction()
     {
         $form = $this->getServiceLocator()->get($this->form);
+        $form->criarBotaoExcluir($this->params()->fromRoute('id', 0));
 
         $auth = new AuthenticationService;
         $auth->setStorage(new SessionStorage("Usuario"));
@@ -86,9 +86,6 @@ class ClientesController extends GrudController
     {
         $retorno = array();
         $request = $this->getRequest();
-        //echo "<pre>";
-        //print_r($request->getPost());
-        //echo "</pre>";
         $service = $this->getServiceLocator()->get($this->service);
         if (empty($request->getPost()['id'])) {
             $podeCadastrar = $this->verificaExistencia();
@@ -111,30 +108,6 @@ class ClientesController extends GrudController
                 $podeCadastrar = $this->verificaExistencia();
                 if (!$podeCadastrar) {
 
-
-                    // remove contatos para atualizacao
-                    //repository = $this->getEm()->getRepository($this->contatos);
-                    //$contatos = $repository->findBy(array('usuario' => $request->getPost()['id']));
-
-                    //foreach ($contatos as $contato) {
-                    //    $this->getEm()->remove($contato);
-                    //}
-                    // remove enderecos para atualizacao
-                    //$repository = $this->getEm()->getRepository($this->enderecos);
-                    //$enderecos = $repository->findBy(array('usuario' => $request->getPost()['id']));
-
-                    //foreach ($enderecos as $endereco) {
-                    //    $this->getEm()->remove($endereco);
-                    //}
-
-                    // remove horarios para atualizacao
-                    //$repository = $this->getEm()->getRepository($this->horarios);
-                    //$horarios = $repository->findBy(array('usuario' => $request->getPost()['id']));
-
-                    //foreach ($horarios as $horario) {
-                    //    $this->getEm()->remove($horario);
-                    //}
-
                     $entity = $service->update($request->getPost()->toArray());
                     $retorno['data'] = array(
                         'id_field' => 'id',
@@ -149,6 +122,36 @@ class ClientesController extends GrudController
             }
         }
         $viewModel = new ViewModel($retorno);
+        $viewModel->setTerminal(true);
+        return $viewModel;
+    }
+
+
+    /**
+     * @return ViewModel
+     */
+    public function deleteAction()
+    {
+        $retorno = array();
+        $service = $this->getServiceLocator()->get($this->service);
+        if (!$service->delete($this->params()->fromRoute('id', 0))):
+            $retorno['data'] = "Erro ao tentar excluir";
+        else:
+            $retorno['data'] = $this->message_delete;
+        endif;
+        $viewModel = new ViewModel ($retorno);
+        $viewModel->setTerminal(true);
+
+        return $viewModel;
+    }
+    
+    /**
+     * Metodo Responsavel por verificar se id pode ser excluido
+     */
+    public function antesExcluirAction()
+    {
+        //$this->params()->fromRoute('id', 0)
+        $viewModel = new ViewModel(array('data'=>'0'));
         $viewModel->setTerminal(true);
         return $viewModel;
     }
@@ -178,6 +181,5 @@ class ClientesController extends GrudController
 
         return false;
     }
-
 
 }

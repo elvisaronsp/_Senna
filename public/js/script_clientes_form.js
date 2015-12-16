@@ -236,35 +236,36 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
 
     var tratamento_change_tipo_contato = function (el) {
         $('[id*=contato].clonedField').find('[name*=ac_]').each(function () {
-            switch ($(this).parents('span:first').find('[name*=contato__id_tipo_contato]').val()) {
+            switch (el.parents('span:first').find('[name*=contato__id_tipo_contato]').val())
+            {
                 case '1':
-                    $(this).parents('div:first').find('[name*=contato__descricao]').removeAttr('email');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').removeAttr('url');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask','(99)9999-9999?9');
+                    el.parents('div:first').find('[name*=contato__descricao]').removeAttr('email');
+                    el.parents('div:first').find('[name*=contato__descricao]').removeAttr('url');
+                    el.parents('div:first').find('[name*=contato__descricao]').attr('mask','(99)9999-9999?9');
                     return false;
                     break;
                 case '2':
-                    $(this).parents('div:first').find('[name*=contato__descricao]').unmask().removeAttr('mask');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').removeAttr('url');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    el.parents('div:first').find('[name*=contato__descricao]').unmask().removeAttr('mask');
+                    el.parents('div:first').find('[name*=contato__descricao]').removeAttr('url');
+                    el.parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
                     return false;
                     break;
                 case '3':
-                    $(this).parents('div:first').find('[name*=contato__descricao]').unmask().removeAttr('mask');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').removeAttr('email');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('url', 'true');
+                    el.parents('div:first').find('[name*=contato__descricao]').unmask().removeAttr('mask');
+                    el.parents('div:first').find('[name*=contato__descricao]').removeAttr('email');
+                    el.parents('div:first').find('[name*=contato__descricao]').attr('url', 'true');
                     return false;
                     break;
                 case '4':
-                    $(this).parents('div:first').find('[name*=contato__descricao]').unmask().removeAttr('mask');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').removeAttr('url');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
+                    el.parents('div:first').find('[name*=contato__descricao]').unmask().removeAttr('mask');
+                    el.parents('div:first').find('[name*=contato__descricao]').removeAttr('url');
+                    el.parents('div:first').find('[name*=contato__descricao]').attr('email', 'true');
                     return false;
                     break;
                 case '5':
-                    $(this).parents('div:first').find('[name*=contato__descricao]').removeAttr('email');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').removeAttr('url');
-                    $(this).parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
+                    el.parents('div:first').find('[name*=contato__descricao]').removeAttr('email');
+                    el.parents('div:first').find('[name*=contato__descricao]').removeAttr('url');
+                    el.parents('div:first').find('[name*=contato__descricao]').attr('mask', '(99)9999-9999?9');
                     return false;
                     break;
             }
@@ -493,7 +494,7 @@ if(window.jQuery && jQuery.i18n) jQuery.i18n.load({"intro_button_continuar":"Con
         $(".delete").bind("beforeDelete",function(){
             $this = $(this);
             $.ajax({
-                url: '/senna/clientes/clientes/antes_excluir'+$("#id").val(),
+                url: '/senna/clientes/clientes/antesExcluir/'+$("#id").val(),
                 dataType: 'json',
                 async:false,
                 success: function(data){

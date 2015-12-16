@@ -3,7 +3,7 @@
         <div style=""> Caso deseje que o funcionário venda exclusivamente para determinado(s) cliente(s), basta
             inseri-lo(s) abaixo. Ao realizar uma venda, se o funcionário não tiver permissão, ela não será
             concretizada/finalizada. Opção válida para as seguintes movimentações: Pedido/Orçamento, Venda Simples,
-            Pré-Venda, Dav, Dav OS, NF-e e NFS-e.
+            Pré-Venda.
         </div>
     </div>
     <div class="fieldset" style="width:98%">
@@ -34,6 +34,7 @@
                             <td>
                                 <p class="field " style="width:auto; ">
                                     <span class="input " rel="vendedorCliente" style="">
+                                        <?php echo $this->formElement($input = $form->get('vendedorId['.$i.']'));?>
                                         <?php echo $this->formElement($input = $form->get('vendedorCliente['.$i.']'));?>
                                         <i class="ui-autocomplete_combo" tabindex="-1"></i>
                                         <?php echo $this->formElement($input = $form->get('ac_vendedor['.$i.']'));?>

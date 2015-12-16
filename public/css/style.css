@@ -202,7 +202,7 @@ h5 					 { font-size: 14px; }
 		text-align: 	center;
 		top:			40%;
 		width: 			100%;
-		padding-top:	40px; 		
+		padding-top:	65px;
 	}
 
 
@@ -1682,7 +1682,7 @@ div.action_menu_wrapper {
 		box-shadow: 	1px 1px 2px #CCC;
 		display:		none;
 		left: 			5px;
-		margin: 		39px 0 0;
+		margin: 		-06px 0 0;
 		position: 		absolute;
 		text-indent: 	0;
 		width: 			200px;

@@ -101,6 +101,9 @@ use Senna\Entity\Configurator;
 	  */
 	 public function resolvePersistenciaContatos($entidadePai , $data)
 	 {
+		 $repository = $this->em->getRepository($this->contatos);
+		 $entityRemove = $repository->findAll();
+
 		 // se existir algum contarto sendo persistido
 		 if (isset($data['contato__id'])):
 
@@ -113,6 +116,7 @@ use Senna\Entity\Configurator;
 				 // Verifica se e um insert ou update false = update
 				 if (!empty($data['contato__id'][$key])):
 					 $entity = $this->em->getReference($this->contatos,$data['contato__id'][$key]);
+					 $entityCadastradas[] = $data['contato__id'][$key];
 				 else:
 					 $entity = new $this->contatos();
 				 endif;
@@ -129,21 +133,33 @@ use Senna\Entity\Configurator;
 			 endforeach;
 		 endif;
 
+
 		 // Caso não aja nenhum contato sendo persistido ou
 		 // caso aja contatos sendo persistido mas nao contenham nenhuma informacao
 		 // Remove todos os contatos do usuario
 		 if(!isset($data['contato__id']) || count($contato) < 1):
-			 // contatos
-			 $repository = $this->em->getRepository($this->contatos);
+			 // contato
 			 $contatos = $repository->findBy(array('usuario' => $entidadePai->getId()));
 			 foreach($contatos as $e):
 				 $this->em->remove($e);
 				 $this->em->flush();
 			 endforeach;
+		 return;
+		 endif;
+
+		 // 2/2 Segunda parte do metodo que remove id que foram excluidos da view
+		 if($entityRemove):
+			 foreach($entityRemove AS $k => $entity):
+				 if (!in_array($entity->getId(), $entityCadastradas)) {
+					 $entity = $repository->findBy(array('id' => $entity->getId()));
+					 foreach($entity as $e):
+						 $this->em->remove($e);
+						 $this->em->flush();
+					 endforeach;
+				 }
+			 endforeach;
 		 endif;
 	 }
-
-
 
 	 /**
 	  * @param $entidadePai
@@ -156,6 +172,10 @@ use Senna\Entity\Configurator;
 	  */
 	 public function resolvePersistenciaEnderecos($entidadePai , $data)
 	 {
+		 // 1/2 Segunda parte do metodo que remove id que foram excluidos da view
+		 $repository = $this->em->getRepository($this->enderecos);
+		 $entityRemove = $repository->findAll();
+
 		 // se existir algum endereço sendo persistido
 		 if (isset($data['endereco_id'])):
 
@@ -168,6 +188,7 @@ use Senna\Entity\Configurator;
 					 // Verifica se e um insert ou update false = update
 					 if (!empty($data['endereco_id'][$key])):
 						 $entity = $this->em->getReference($this->enderecos,$data['endereco_id'][$key]);
+						 $entityCadastradas[] = $data['endereco_id'][$key];
 					 else:
 						 $entity = new $this->enderecos();
 					 endif;
@@ -194,35 +215,101 @@ use Senna\Entity\Configurator;
 		 // Remove todos os enderecos do usuario
 		 if(!isset($data['endereco_id']) || count($cep) < 1):
 			 // enderecos
-			 $repository = $this->em->getRepository($this->enderecos);
 			 $enderecos = $repository->findBy(array('usuario' => $entidadePai->getId()));
 			 foreach($enderecos as $e):
 				 $this->em->remove($e);
 				 $this->em->flush();
 			 endforeach;
+			 return;
+		 endif;
+
+		 // 2/2 Segunda parte do metodo que remove id que foram excluidos da view
+		 if($entityRemove):
+			 foreach($entityRemove AS $k => $entity):
+				 if (!in_array($entity->getId(), $entityCadastradas)) {
+					 $entity = $repository->findBy(array('id' => $entity->getId()));
+					 foreach($entity as $e):
+						 $this->em->remove($e);
+						 $this->em->flush();
+					 endforeach;
+				 }
+			 endforeach;
 		 endif;
 	 }
 
 	 /**
-	  * @param $entityRecebida
+	  * @param $entidadePai
 	  * @param $data
 	  * @throws \Doctrine\ORM\ORMException
+	  * Este metodo e utilizado para fazer a persistencia de campos do tipo vendedores
+	  * especialmente pensado para facilitar a inserção e atualizção de campos de vendedores em qualquer
+	  * tela da aplicacao.Este metodo verifica se o vendedor que esta sendo persistido ja existe no banco de dados
+	  * caso exista ele faz a atualização do mesmo caso contrario faz o insert.
 	  */
-	 public function incluirVendedores($entityRecebida, $data)
+	 public function resolvePersistenciaVendedores($entidadePai , $data)
 	 {
+		 // 1/2 Segunda parte do metodo que remove id que foram excluidos da view
+		 $repository = $this->em->getRepository($this->vendedores);
+		 $entityRemove = $repository->findAll();
+
+		 // se existir algum vendedor sendo persistido
 		 if (isset($data['vendedorCliente'])):
-			 foreach ($data['vendedorCliente'] AS $key => $value) {
+
+			 // Limpa o array de vendedor para que tenha apenas os vendedores que tenha alguma informações
+			 $vendedor = array_filter($data['vendedorCliente']);
+			 $count = 0;
+			 $vendedoresCadastrados = array();
+			 // Percorre todos os vendedores que estao sendo persistidos baseado nos vendedores que estao populados
+			 foreach ($vendedor AS $key => $value) {
 
 				 foreach($value As $k => $v):
-					 $entity = new $this->vendedores();
-					 $entity->setCliente($entityRecebida);
-					 $idVendedor = $this->em->getReference("Usuario\Entity\Funcionarios", $v);
-					 $entity->setUsuario($idVendedor);
 
-					 $this->em->persist($entity);
-					 $this->em->flush();
+					 if(!empty($data['vendedorCliente'][$key][$k])):
+						 $count++;
+						 // Verifica se e um insert ou update false = update
+						 if (!empty($data['vendedorId'][$key][$k])):
+							 $entity = $this->em->getReference($this->vendedores,$data['vendedorId'][$key][$k]);
+							 $entityCadastradas[] = $data['vendedorId'][$key][$k];
+						 else:
+							 $entity = new $this->vendedores();
+						 endif;
+
+						 $entity->setCliente($entidadePai);
+						 $idVendedor = $this->em->getReference("Usuario\Entity\Funcionarios", $v);
+						 $entity->setUsuario($idVendedor);
+
+						 $this->em->persist($entity);
+						 $this->em->flush();
+					 endif;
+
 				 endforeach;
 			 }
+		 endif;
+
+		 // Caso não aja nenhum vendedor sendo persistido ou
+		 // caso aja vendedores sendo persistido mas nao contenham nenhuma informacao
+		 // Remove todos os vendedores do usuario
+		 if(!isset($data['vendedorCliente']) || $count < 1):
+			 // vendedores
+			 $vendedores = $repository->findBy(array('cliente' => $entidadePai->getId()));
+			 foreach($vendedores as $e):
+				 $this->em->remove($e);
+				 $this->em->flush();
+			 endforeach;
+		 return;
+		 endif;
+
+		 // 2/2 Segunda parte do metodo que remove id que foram excluidos da view
+		 if($entityRemove):
+			 foreach($entityRemove AS $k => $entity):
+				 if (!in_array($entity->getId(), $entityCadastradas)) {
+					 $entity = $repository->findBy(array('id' => $entity->getId()));
+					 foreach($entity as $e):
+						 $this->em->remove($e);
+						 $this->em->flush();
+					 endforeach;
+				 }
+			 endforeach;
 		 endif;
 	 }
 

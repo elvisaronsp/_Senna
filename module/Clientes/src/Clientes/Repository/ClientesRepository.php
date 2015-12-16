@@ -1,6 +1,7 @@
 <?php
 namespace Clientes\Repository;
 
+use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -79,10 +80,11 @@ class ClientesRepository extends EntityRepository
             $entities = $query->getQuery()->getResult();
 
             foreach ($entities as $key => $entity) :
+
                 $clientes  [$key] ['id']            = "" . $entity->getId() . "";
                 $clientes  [$key] ['ativo']         = "" . $entity->getAtivo() ? "<i class='icon-ok' title='Sim'>" : "" . "";"";
                 $clientes  [$key] ['razaoSocial']   = "" . $entity->getRazaoSocial() . "";
-                $clientes  [$key] ['cpfCnpj']       = "" . $entity->getTipo()  ? $entity->getCpf() : $entity->getCnpj() . "";
+                $clientes  [$key] ['cpfCnpj']       = "" . !$entity->getTipo()  ? $entity->getCpf() : $entity->getCnpj() . "";
                 $clientes  [$key] ['codigoCliente'] = "" . $entity->getCodigoCliente() . "";
                 $clientes  [$key] ['email']         = "" . $entity->getEmail() . "";
                 $clientes  [$key] ['telefone']      = "" . $entity->getTelefone() . "";

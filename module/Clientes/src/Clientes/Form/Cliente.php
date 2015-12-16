@@ -21,6 +21,7 @@ class Cliente extends Form
             'id' => 'form'
         ));
 
+
         //####### 1º ABA ###########
         /**
          * @element input
@@ -1752,6 +1753,46 @@ class Cliente extends Form
     }
 
     /**
+     * @param null $idVendedor
+     * Metodo criado para Gerar botao excluir do formulario
+     */
+    public function criarBotaoExcluir($idVendedor = null)
+    {
+        if($idVendedor != "0"):
+
+                $this->add ( array (
+                    'name' => "Apagar",
+                    'attributes' => array (
+                        'type' => 'button',
+                        'value' => 'Apagar',
+                        'confirm' => "Tem certeza que deseja apagar este registro?",
+                        'class' => 'delete',
+                        'deleteUrl' => '/senna/clientes/clientes/delete/'.$idVendedor,
+                        'labelsConfirm' => "{'labelSim':'Sim','labelNao':'Não'}",
+
+                    )
+                ) );
+
+        else:
+
+            $this->add ( array (
+                'name' => "Apagar",
+                'attributes' => array (
+                    'type' => 'button',
+                    'value' => 'Apagar',
+                    'confirm' => "Tem certeza que deseja apagar este registro?",
+                    'class' => 'delete',
+                    'disabled'=>'disabled',
+                    'deleteUrl' => '#',
+                    'labelsConfirm' => "{'labelSim':'Sim','labelNao':'N&atilde;o'}",
+
+                )
+            ) );
+
+        endif;
+
+    }
+    /**
      * @param null $vendedores
      */
     public function criarVendedoresForm($vendedores = null)
@@ -1759,6 +1800,16 @@ class Cliente extends Form
 
         if($vendedores != ""):
             foreach ($vendedores AS $key => $value):
+                /**
+                 * @element input
+                 * @type hidden
+                 * @name [idTabelaVendedoresClientes]
+                 **/
+                $input = new \Zend\Form\Element\Hidden('vendedorId['.$key.']');
+                $input->setAttribute('id','vendedorId_'.$key)
+                    ->setValue( $vendedores[$key]->getId());
+                $this->add($input);
+
                 /**
                  * @element input
                  * @type hidden
@@ -1815,6 +1866,16 @@ class Cliente extends Form
                 $this->add($input);
             endforeach;
         else:
+
+            /**
+             * @element input
+             * @type hidden
+             * @name [idTabelaVendedoresClientes]
+             **/
+            $input = new \Zend\Form\Element\Hidden('vendedorId[0]');
+            $input->setAttribute('id','vendedorId')
+                ->setValue('');
+            $this->add($input);
 
             /**
              * @element input
